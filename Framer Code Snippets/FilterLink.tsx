@@ -8,15 +8,17 @@
 // 4. Set the filter properties in the property panel
 //
 // Usage:
-// - Wrap an image, button, or any element with this component
+// - Wrap an image, button, or any element with this component, OR
+// - Set the "Text" property to display text directly (useful for header nav links)
 // - Set filter properties (category, type, area, amenity, search, featured)
 // - When clicked, it will navigate to /find-your-adventure with those filters applied
 
 import { addPropertyControls, ControlType } from "framer"
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 type Props = {
     children?: React.ReactNode
+    text?: string
     category?: string
     type?: string
     area?: string
@@ -30,11 +32,18 @@ type Props = {
     borderRadius?: number
     padding?: number
     display?: string
+    textColor?: string
+    fontSize?: number | string
+    fontWeight?: number | string
+    textAlign?: string
+    textDecoration?: string
+    fontFamily?: string
 }
 
 export default function FilterLink(props: Props) {
     const {
         children,
+        text = '',
         category = '',
         type = '',
         area = '',
@@ -47,14 +56,51 @@ export default function FilterLink(props: Props) {
         backgroundColor = 'transparent',
         borderRadius = 0,
         padding = 0,
-        display = 'inline-block'
+        display = 'inline-block',
+        textColor = '#000000',
+        fontSize = 16,
+        fontWeight = 'normal',
+        textAlign = 'left',
+        textDecoration = 'none',
+        fontFamily: fontFamilyProp
     } = props
+
+    // Get font from Framer document body
+    const [bodyFontFamily, setBodyFontFamily] = useState<string>('')
+
+    useEffect(() => {
+        if (typeof window !== 'undefined' && document.body) {
+            const computedStyle = window.getComputedStyle(document.body)
+            const font = computedStyle.getPropertyValue('font-family')
+            if (font) {
+                setBodyFontFamily(font.trim())
+            }
+        }
+    }, [])
+
+    // Use prop fontFamily if provided, otherwise use body font, otherwise fallback
+    const fontFamily = fontFamilyProp && fontFamilyProp !== 'inherit' 
+        ? fontFamilyProp 
+        : (bodyFontFamily || '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif')
 
     // Only run on client-side
     if (typeof window === 'undefined') {
         return (
-            <div style={{ width, height, backgroundColor, borderRadius, padding, display }}>
-                {children}
+            <div style={{ 
+                width, 
+                height, 
+                backgroundColor, 
+                borderRadius, 
+                padding, 
+                display,
+                color: textColor,
+                fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
+                fontWeight: typeof fontWeight === 'number' ? fontWeight : fontWeight,
+                textAlign: textAlign as any,
+                textDecoration: textDecoration,
+                fontFamily: fontFamily
+            }}>
+                {text || children}
             </div>
         )
     }
@@ -90,7 +136,11 @@ export default function FilterLink(props: Props) {
         // Only proceed if we have at least one filter
         if (Object.keys(filterParams).length === 0) {
             console.warn('⚠️ FilterLink: No filters specified, navigating without filters')
-            window.location.href = targetUrl
+            const currentPath = window.location.pathname
+            const targetPath = targetUrl.startsWith('/') ? targetUrl : `/${targetUrl}`
+            if (currentPath !== targetPath) {
+                window.location.href = targetUrl
+            }
             return
         }
 
@@ -136,12 +186,25 @@ export default function FilterLink(props: Props) {
             // Try sending directly if on same page
             trySendDirectly()
 
-            // Navigate to clean URL (no parameters)
-            window.location.href = targetUrl
+            // Only navigate if we're NOT already on the target page
+            // This prevents unnecessary reloads that interrupt the direct postMessage
+            const currentPath = window.location.pathname
+            const targetPath = targetUrl.startsWith('/') ? targetUrl : `/${targetUrl}`
+            
+            if (currentPath !== targetPath) {
+                // Navigate to clean URL (no parameters)
+                window.location.href = targetUrl
+            } else {
+                console.log('🔗 FilterLink: Already on target page, skipping navigation')
+            }
         } catch (e) {
             console.warn('⚠️ FilterLink: Error storing filter:', e)
-            // Fallback: navigate without filters
-            window.location.href = targetUrl
+            // Fallback: navigate without filters (only if not already on target page)
+            const currentPath = window.location.pathname
+            const targetPath = targetUrl.startsWith('/') ? targetUrl : `/${targetUrl}`
+            if (currentPath !== targetPath) {
+                window.location.href = targetUrl
+            }
         }
     }
 
@@ -157,10 +220,16 @@ export default function FilterLink(props: Props) {
                 backgroundColor: backgroundColor,
                 borderRadius: borderRadius,
                 padding: padding,
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                color: textColor,
+                fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
+                fontWeight: typeof fontWeight === 'number' ? fontWeight : fontWeight,
+                textAlign: textAlign as any,
+                textDecoration: textDecoration,
+                fontFamily: fontFamily
             }}
         >
-            {children}
+            {text || children}
         </div>
     )
 }
@@ -258,6 +327,57 @@ addPropertyControls(FilterLink, {
         options: ["inline-block", "block", "flex", "inline-flex", "inline"],
         optionTitles: ["Inline Block", "Block", "Flex", "Inline Flex", "Inline"],
         defaultValue: "inline-block"
+    },
+    text: {
+        type: ControlType.String,
+        title: "Text",
+        description: "Text to display (leave empty to use wrapped content)",
+        placeholder: "e.g., Find Adventures"
+    },
+    textColor: {
+        type: ControlType.Color,
+        title: "Text Color",
+        description: "Color of the text",
+        defaultValue: "#000000"
+    },
+    fontSize: {
+        type: ControlType.Number,
+        title: "Font Size",
+        description: "Font size in pixels",
+        defaultValue: 16,
+        min: 8,
+        max: 100
+    },
+    fontWeight: {
+        type: ControlType.Enum,
+        title: "Font Weight",
+        description: "Font weight",
+        options: ["normal", "bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+        optionTitles: ["Normal", "Bold", "100", "200", "300", "400", "500", "600", "700", "800", "900"],
+        defaultValue: "normal"
+    },
+    textAlign: {
+        type: ControlType.Enum,
+        title: "Text Align",
+        description: "Text alignment",
+        options: ["left", "center", "right", "justify"],
+        optionTitles: ["Left", "Center", "Right", "Justify"],
+        defaultValue: "left"
+    },
+    textDecoration: {
+        type: ControlType.Enum,
+        title: "Text Decoration",
+        description: "Text decoration (underline, etc.)",
+        options: ["none", "underline", "overline", "line-through"],
+        optionTitles: ["None", "Underline", "Overline", "Line Through"],
+        defaultValue: "none"
+    },
+    fontFamily: {
+        type: ControlType.String,
+        title: "Font Family",
+        description: "Font family (leave empty to use Framer document body font)",
+        defaultValue: "",
+        placeholder: "Auto (uses document body font)"
     }
 })
 

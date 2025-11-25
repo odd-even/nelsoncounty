@@ -6981,6 +6981,11 @@ function filterPreview() {
         const selectedAmenity = (amenityFilter ? amenityFilter.value : '') || (mobileAmenityFilter ? mobileAmenityFilter.value : '');
     
     const filtered = data.listings.filter(function(listing) {
+        // Skip listings without essential data (at minimum, a name)
+        if (!listing || !listing.name || listing.name.trim() === '') {
+            return false; // Filter out listings without names
+        }
+        
         const amenitiesText = Array.isArray(listing.amenities) ? listing.amenities.join(' ').toLowerCase() : '';
         const addressText = (listing.address || '').toLowerCase();
         const phoneText = (listing.phone || '').toLowerCase();
@@ -8022,6 +8027,12 @@ function renderPreview(filteredListings, appendMode) {
     const indexOffset = appendMode ? (currentPage - 1) * ITEMS_PER_PAGE : 0;
     console.log('🎨 About to render', sortedListings.length, 'cards', appendMode ? '(appending)' : '(new)');
     sortedListings.forEach(function(listing, localIndex) {
+        // Skip listings without essential data (at minimum, a name)
+        if (!listing || !listing.name || listing.name.trim() === '') {
+            console.warn('⚠️ Skipping listing with no name:', listing);
+            return; // Skip this listing
+        }
+        
         const index = localIndex + indexOffset; // Use global index for animation stagger
         if (index < 3 || index >= sortedListings.length - 3) {
             console.log(`🎨 Rendering card ${index + 1}/${sortedListings.length}:`, listing.name);
