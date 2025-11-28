@@ -110,18 +110,31 @@ export default function AdventureDirectory() {
   }, [])
 
   return (
-    <iframe
-      ref={iframeRef}
-      src="https://odd-even.github.io/nelsoncounty/frontpage_framer.html"
-      style={{
-        width: '100%',
-        height: '800px',
-        border: 'none',
-        minHeight: '400px',
-        maxHeight: '110vh', // Allow iframe to extend slightly beyond viewport
-        overflow: 'hidden'
-      }}
-      title="Adventure Directory"
-    />
+    <>
+      <style>{`
+        iframe {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE and Edge */
+        }
+        iframe::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
+      `}</style>
+      <iframe
+        ref={iframeRef}
+        src="https://odd-even.github.io/nelsoncounty/frontpage_framer.html"
+        style={{
+          width: '100%',
+          height: '800px',
+          border: 'none',
+          minHeight: '400px',
+          maxHeight: '110vh', // Allow iframe to extend slightly beyond viewport
+          overflow: 'auto', // Allow scrolling
+          scrollbarWidth: 'none', // Firefox
+          msOverflowStyle: 'none', // IE and Edge
+        }}
+        title="Adventure Directory"
+      />
+    </>
   )
 }

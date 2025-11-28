@@ -3060,12 +3060,13 @@
             transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; 
             background: var(--card-bg); 
             transform-origin: center center;
+            white-space: normal;
         }
         .flip-card:hover .flip-card-front,
         .flip-card:hover .flip-card-back {
             transform: scale(0.98);
         }
-        .flip-card-front { position: relative; opacity: 1; transform: scale(1); display: flex; flex-direction: column; overflow: hidden; }
+        .flip-card-front { position: relative; opacity: 1; transform: scale(1); display: flex; flex-direction: column; overflow: hidden; white-space: normal; }
         .flip-card-back { 
             position: absolute; 
             top: 0; 
@@ -3082,6 +3083,7 @@
             overflow-x: hidden; 
             -webkit-overflow-scrolling: touch;
             box-sizing: border-box;
+            white-space: normal;
         }
         .flip-card-back::-webkit-scrollbar {
             width: 6px;
@@ -3686,20 +3688,20 @@
                             </select>
                         </div>
                         <div class="mobile-filters-wrapper">
-                            <div class="mobile-filter-group">
-                                <select id="mobileTypeFilter" onchange="handleMobileTypeFilter()">
-                                    <option value="">All Types</option>
-                                </select>
-                            </div>
-                            <div class="mobile-filter-group">
-                                <select id="mobileAreaFilter" onchange="handleMobileAreaFilter()">
-                                    <option value="">Area</option>
-                                </select>
-                            </div>
-                            <div class="mobile-filter-group">
-                                <select id="mobileAmenityFilter" onchange="handleMobileAmenityFilter()">
-                                    <option value="">Amenities</option>
-                                </select>
+                        <div class="mobile-filter-group">
+                            <select id="mobileTypeFilter" onchange="handleMobileTypeFilter()">
+                                <option value="">All Types</option>
+                            </select>
+                        </div>
+                        <div class="mobile-filter-group">
+                            <select id="mobileAreaFilter" onchange="handleMobileAreaFilter()">
+                                <option value="">Area</option>
+                            </select>
+                        </div>
+                        <div class="mobile-filter-group">
+                            <select id="mobileAmenityFilter" onchange="handleMobileAmenityFilter()">
+                                <option value="">Amenities</option>
+                            </select>
                             </div>
                         </div>
                         <button id="mobileClearFiltersBtn" class="mobile-clear-btn" onclick="clearPreviewFilters()" style="display: none;">
@@ -5257,18 +5259,18 @@ function extractParamsFromReferrer() {
         }
     } catch (e) {
         // Cross-origin restriction - can't access parent URL directly, try referrer
-        try {
-            var referrer = document.referrer;
-            if (referrer && referrer.includes('?')) {
-                var referrerUrl = new URL(referrer);
-                var params = {};
-                referrerUrl.searchParams.forEach(function(value, key) {
-                    params[key] = value;
-                });
-                if (Object.keys(params).length > 0) {
-                    console.log('🔗 Extracted parameters from referrer:', params);
+    try {
+        var referrer = document.referrer;
+        if (referrer && referrer.includes('?')) {
+            var referrerUrl = new URL(referrer);
+            var params = {};
+            referrerUrl.searchParams.forEach(function(value, key) {
+                params[key] = value;
+            });
+            if (Object.keys(params).length > 0) {
+                console.log('🔗 Extracted parameters from referrer:', params);
                     receivedUrlParams = Object.assign({}, receivedUrlParams, params);
-                    return true;
+                return true;
                 }
             }
             // No referrer params - don't log, just continue
@@ -5286,18 +5288,18 @@ function extractParamsFromReferrer() {
         try {
             pendingGetUrlParamsRequest = true;
             lastGetUrlParamsRequest = now;
-            window.parent.postMessage({ 
-                type: 'getUrlParams',
+        window.parent.postMessage({ 
+            type: 'getUrlParams',
                 source: 'find-your-adventure'
-            }, '*');
+        }, '*');
             
             // Reset pending flag after a delay (in case response never comes)
             setTimeout(function() {
                 pendingGetUrlParamsRequest = false;
             }, 2000);
-        } catch (e) {
+    } catch (e) {
             pendingGetUrlParamsRequest = false;
-            console.log('⚠️ Could not send postMessage to parent:', e);
+        console.log('⚠️ Could not send postMessage to parent:', e);
         }
     }
     
@@ -5988,7 +5990,7 @@ function loadCategoriesFromGoogleSheets() {
     .catch(function(error) {
         console.warn('⚠️ Could not load categories from Google Sheets:', error);
         return {};
-    });
+        });
 }
 
 // Function to load data from GitHub (fallback)
@@ -6120,27 +6122,27 @@ loadDataFromGoogleSheets()
                 console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
             }
         
-            // Ensure filterOptions exist (if loaded from CSV, they're already there)
-            if (!data.filterOptions && data.listings) {
-                data.filterOptions = extractFilterOptions(data.listings);
-            }
-            
-            // Verify we're NOT using fallback data
-            if (data.listings.length === 20 && data.listings[0]?.name === 'Devil\'s Backbone Brewing Company') {
-                console.warn('⚠️ WARNING: This looks like fallback data! Something went wrong with Google Sheets fetch.');
-            }
-            
-            // Update head meta from fresh data
-            updateHeadFromData(data);
-            
-            // Force clear any cached/stale grid content
-            const grid = document.getElementById('previewGrid');
-            if (grid) {
-                grid.innerHTML = '';
-                console.log('🧹 Cleared previewGrid innerHTML');
-            }
-            
-            console.log('🎯 About to render', data.listings.length, 'listings');
+        // Ensure filterOptions exist (if loaded from CSV, they're already there)
+        if (!data.filterOptions && data.listings) {
+            data.filterOptions = extractFilterOptions(data.listings);
+        }
+        
+        // Verify we're NOT using fallback data
+        if (data.listings.length === 20 && data.listings[0]?.name === 'Devil\'s Backbone Brewing Company') {
+            console.warn('⚠️ WARNING: This looks like fallback data! Something went wrong with Google Sheets fetch.');
+        }
+        
+        // Update head meta from fresh data
+        updateHeadFromData(data);
+        
+        // Force clear any cached/stale grid content
+        const grid = document.getElementById('previewGrid');
+        if (grid) {
+            grid.innerHTML = '';
+            console.log('🧹 Cleared previewGrid innerHTML');
+        }
+        
+        console.log('🎯 About to render', data.listings.length, 'listings');
             console.log('📋 TYPE_CATEGORIES before rendering:', Object.keys(TYPE_CATEGORIES).length, 'categories');
             console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
             console.log('📋 Category names:', Object.keys(TYPE_CATEGORIES).map(function(k) {
@@ -6170,10 +6172,10 @@ loadDataFromGoogleSheets()
                 applyBreadcrumbFilter(pendingBreadcrumbFilter);
                 pendingBreadcrumbFilter = null; // Clear after applying
             }
-            
-            // Render type filter buttons dynamically based on usage
-            renderTypeFilterButtons(data.listings, '.type-quick-filters'); // Show all categories
-            
+        
+        // Render type filter buttons dynamically based on usage
+        renderTypeFilterButtons(data.listings, '.type-quick-filters'); // Show all categories
+        
             // Populate mobile category dropdown
             populateMobileCategoryFilter();
             
@@ -6223,14 +6225,14 @@ loadDataFromGoogleSheets()
                 });
                 filterPreview(); // This will apply filters and render
             } else {
-                renderPreview(); // Sorting is now handled inside renderPreview
+        renderPreview(); // Sorting is now handled inside renderPreview
             }
             
             // Mark as rendered to prevent duplicate renders
             hasRendered = true;
-            
-            // Extract parameters from referrer (for cross-origin iframe support)
-            extractParamsFromReferrer();
+        
+        // Extract parameters from referrer (for cross-origin iframe support)
+        extractParamsFromReferrer();
         }
         
         // Load categories from Google Sheets (public source, same for everyone)
@@ -6285,9 +6287,9 @@ loadDataFromGoogleSheets()
                 // After categories load, check URL parameters again to ensure filters are applied
                 // This is important because handleUrlParameters needs categories to be loaded
                 if (!hasRendered) {
-                    setTimeout(function() {
+        setTimeout(function() {
                         extractParamsFromReferrer();
-                        handleUrlParameters();
+            handleUrlParameters();
                     }, 300); // Short delay after categories load
                 }
             })
@@ -7289,7 +7291,7 @@ function clearPreviewFilters() {
                     try {
                         const referrerUrl = new URL(referrer);
                         parentPath = referrerUrl.pathname + (referrerUrl.hash || '');
-                    } catch (e) {
+            } catch (e) {
                         // Use default
                     }
                 }
@@ -7308,7 +7310,7 @@ function clearPreviewFilters() {
                 console.log('📨 Sent clearAll message to parent - filters cleared locally, ignoring URL params for 5 seconds');
                 
                 // Also send a second message after a delay to ensure parent gets it
-                setTimeout(function() {
+        setTimeout(function() {
                     window.parent.postMessage({
                         type: 'setUrlParams',
                         clearAll: true,
@@ -7656,72 +7658,72 @@ function reportContentHeight() {
     heightReportTimeout = setTimeout(function() {
         isReportingHeight = true;
         
-        try {
-            // Measure from top of document to bottom of last visible element
-            const previewGrid = document.getElementById('previewGrid');
-            const previewHeader = document.querySelector('.preview-header');
-            const previewMain = document.querySelector('.preview-main');
+    try {
+        // Measure from top of document to bottom of last visible element
+        const previewGrid = document.getElementById('previewGrid');
+        const previewHeader = document.querySelector('.preview-header');
+        const previewMain = document.querySelector('.preview-main');
+        
+        let height = 0;
+        
+        if (previewGrid) {
+            // Get all visible cards in the grid (not display:none)
+            const cards = Array.from(previewGrid.querySelectorAll('.flip-card')).filter(function(card) {
+                const style = window.getComputedStyle(card);
+                return style.display !== 'none' && style.visibility !== 'hidden';
+            });
             
-            let height = 0;
-            
-            if (previewGrid) {
-                // Get all visible cards in the grid (not display:none)
-                const cards = Array.from(previewGrid.querySelectorAll('.flip-card')).filter(function(card) {
-                    const style = window.getComputedStyle(card);
-                    return style.display !== 'none' && style.visibility !== 'hidden';
-                });
+            if (cards.length > 0) {
+                // Get the bottom of the last visible card
+                const lastCard = cards[cards.length - 1];
+                const lastCardRect = lastCard.getBoundingClientRect();
                 
-                if (cards.length > 0) {
-                    // Get the bottom of the last visible card
-                    const lastCard = cards[cards.length - 1];
-                    const lastCardRect = lastCard.getBoundingClientRect();
-                    
-                    // Get the top of the document
-                    const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-                    
-                    // Calculate height from top of document to bottom of last card
-                    height = lastCardRect.bottom + scrollTop;
-                    
-                    // Add header height if it exists and is above the grid
-                    if (previewHeader) {
-                        const headerRect = previewHeader.getBoundingClientRect();
-                        if (headerRect.top < previewGrid.getBoundingClientRect().top) {
-                            // Header is above grid, already included in calculation
-                        } else {
-                            // Header might be separate, add it
-                            height = Math.max(height, headerRect.bottom + scrollTop);
-                        }
-                    }
-                } else {
-                    // No cards visible - measure grid container itself
-                    const gridRect = previewGrid.getBoundingClientRect();
-                    const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-                    height = gridRect.bottom + scrollTop;
-                    
-                    if (previewHeader) {
-                        const headerRect = previewHeader.getBoundingClientRect();
+                // Get the top of the document
+                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                
+                // Calculate height from top of document to bottom of last card
+                height = lastCardRect.bottom + scrollTop;
+                
+                // Add header height if it exists and is above the grid
+                if (previewHeader) {
+                    const headerRect = previewHeader.getBoundingClientRect();
+                    if (headerRect.top < previewGrid.getBoundingClientRect().top) {
+                        // Header is above grid, already included in calculation
+                    } else {
+                        // Header might be separate, add it
                         height = Math.max(height, headerRect.bottom + scrollTop);
                     }
                 }
-            } else if (previewMain) {
-                // Fallback: measure main container
-                const mainRect = previewMain.getBoundingClientRect();
-                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
-                height = mainRect.bottom + scrollTop;
             } else {
-                // Ultimate fallback - use body/document height
-                const body = document.body;
-                const html = document.documentElement;
-                height = Math.max(
-                    body.scrollHeight,
-                    body.offsetHeight,
-                    html.scrollHeight,
-                    html.offsetHeight
-                );
+                // No cards visible - measure grid container itself
+                const gridRect = previewGrid.getBoundingClientRect();
+                const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                height = gridRect.bottom + scrollTop;
+                
+                if (previewHeader) {
+                    const headerRect = previewHeader.getBoundingClientRect();
+                    height = Math.max(height, headerRect.bottom + scrollTop);
+                }
             }
-            
-            // Add a buffer (30px) for safety
-            const heightWithBuffer = Math.ceil(height) + 30;
+        } else if (previewMain) {
+            // Fallback: measure main container
+            const mainRect = previewMain.getBoundingClientRect();
+            const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+            height = mainRect.bottom + scrollTop;
+        } else {
+            // Ultimate fallback - use body/document height
+            const body = document.body;
+            const html = document.documentElement;
+            height = Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.scrollHeight,
+                html.offsetHeight
+            );
+        }
+        
+        // Add a buffer (30px) for safety
+        const heightWithBuffer = Math.ceil(height) + 30;
             
             // Only report if height actually changed (prevent unnecessary updates)
             if (Math.abs(heightWithBuffer - lastReportedHeight) < 5) {
@@ -7730,36 +7732,36 @@ function reportContentHeight() {
             }
             
             lastReportedHeight = heightWithBuffer;
-            
-            console.log('📏 Reporting height:', heightWithBuffer, 'px', '(visible cards:', document.querySelectorAll('.flip-card:not([style*="display: none"])').length, ')');
-            
-            // Send height to parent window via postMessage
-            // Don't check window.parent/top properties - just call postMessage directly to avoid CORS errors
-            const message = {
-                type: 'resize',
-                height: heightWithBuffer,
+        
+        console.log('📏 Reporting height:', heightWithBuffer, 'px', '(visible cards:', document.querySelectorAll('.flip-card:not([style*="display: none"])').length, ')');
+        
+        // Send height to parent window via postMessage
+        // Don't check window.parent/top properties - just call postMessage directly to avoid CORS errors
+        const message = {
+            type: 'resize',
+            height: heightWithBuffer,
                 source: 'find-your-adventure'
-            };
-            
-            try {
-                window.parent.postMessage(message, '*');
-            } catch (e) {
-                // Cross-origin restriction - silently fail
-            }
-            
-            try {
-                window.top.postMessage(message, '*');
-            } catch (e) {
-                // Cross-origin restriction - silently fail
-            }
+        };
+        
+        try {
+            window.parent.postMessage(message, '*');
+        } catch (e) {
+            // Cross-origin restriction - silently fail
+        }
+        
+        try {
+            window.top.postMessage(message, '*');
+        } catch (e) {
+            // Cross-origin restriction - silently fail
+        }
             
             // Reset flag after a short delay
             setTimeout(function() {
                 isReportingHeight = false;
             }, 100);
-        } catch (e) {
-            // Silently fail if postMessage is blocked or parent is not accessible
-            console.log('Could not report height to parent:', e);
+    } catch (e) {
+        // Silently fail if postMessage is blocked or parent is not accessible
+        console.log('Could not report height to parent:', e);
             isReportingHeight = false;
         }
     }, 150);
@@ -7803,15 +7805,15 @@ function renderPreview(filteredListings, appendMode) {
                 'showing': listings.length,
                 'page': currentPage,
                 'appendMode': appendMode || false
-            });
-            
-            const grid = document.getElementById('previewGrid');
-            if (!grid) {
-                console.error('❌ previewGrid element not found');
+    });
+    
+    const grid = document.getElementById('previewGrid');
+    if (!grid) {
+        console.error('❌ previewGrid element not found');
                 isRendering = false;
-                return;
-            }
-            
+        return;
+    }
+    
             // Clear grid only if not appending (new filter/search)
             let needsDelayedRender = false;
             if (!appendMode) {
@@ -7825,7 +7827,7 @@ function renderPreview(filteredListings, appendMode) {
                     // Wait for fade-out, then clear and render
                     needsDelayedRender = true;
                     setTimeout(function() {
-                        grid.innerHTML = '';
+    grid.innerHTML = '';
                         grid.classList.add('grid-loaded');
                         // Now render cards after grid is cleared
                         renderCardsAfterGridClear();
@@ -8058,8 +8060,8 @@ function renderPreview(filteredListings, appendMode) {
         const slug = (listing.slug && listing.slug.trim() !== '') 
             ? listing.slug.trim() 
             : listing.name.toLowerCase()
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/^-+|-+$/g, '');
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
         
         // Create card as a div (not a link) for flip functionality
         const card = document.createElement('div');
@@ -8264,7 +8266,7 @@ function renderPreview(filteredListings, appendMode) {
         }
         
         const contentDiv = document.createElement('div');
-        contentDiv.style.cssText = 'padding: 20px 20px 20px 0; margin: 0;';
+        contentDiv.style.cssText = 'padding: 20px 20px 20px 0; margin: 0; white-space: normal;';
         // Fix encoding issues before displaying
         const fixedName = fixEncoding(listing.name);
         const fixedType = fixEncoding(listing.type);
@@ -8651,17 +8653,17 @@ function renderPreview(filteredListings, appendMode) {
             hasMoreItems = listingsToRender.length > totalRendered;
             isLoadingMore = false;
     
-            // Report content height to parent (for Framer embed)
-            // Wait for images and layout to settle
-            setTimeout(function() {
-                reportContentHeight();
+    // Report content height to parent (for Framer embed)
+    // Wait for images and layout to settle
+    setTimeout(function() {
+        reportContentHeight();
                 // Report again after images load (only once, not multiple times)
-                setTimeout(function() {
-                    reportContentHeight();
+        setTimeout(function() {
+            reportContentHeight();
                     // Reset render flag after height is reported
                     isRendering = false;
-                }, 500);
-            }, 200);
+        }, 500);
+    }, 200);
             } // End renderCardsAfterGridClear function
     
     // Adjust title sizes based on actual card width
@@ -8875,7 +8877,7 @@ function renderPreview(filteredListings, appendMode) {
             lastWindowHeight = window.innerHeight - 1;
             window.titleSizeResizeHandler();
         };
-        }
+    }
     } catch (e) {
         console.error('Error in renderPreview:', e);
         isRendering = false;
@@ -9134,14 +9136,14 @@ function handleTypeFilter() {
         // No type selected - clear filters
         currentTypeFilter = [];
         currentCategoryFilter = null;
-        
+    
         // Activate "All Types" button
-        document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
-            btn.classList.remove('active');
+    document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
+        btn.classList.remove('active');
             if (btn.dataset.type === '' && !btn.dataset.category) {
-                btn.classList.add('active');
-            }
-        });
+            btn.classList.add('active');
+        }
+    });
     }
     
     filterPreview();
@@ -9472,7 +9474,7 @@ function updateMapMarkers(listings) {
     // Clear existing clusterer if it exists
     if (markerCluster) {
         try {
-            markerCluster.clearMarkers();
+        markerCluster.clearMarkers();
         } catch (e) {
             console.warn('Error clearing marker cluster:', e);
         }
@@ -9482,7 +9484,7 @@ function updateMapMarkers(listings) {
     // Clear existing markers
     markers.forEach(function(marker) {
         try {
-            marker.setMap(null);
+        marker.setMap(null);
         } catch (e) {
             console.warn('Error removing marker:', e);
         }
@@ -9562,13 +9564,13 @@ function updateMapMarkers(listings) {
             // When all geocoding is done, create the clusterer
             if (geocodeCount === totalListings) {
                 try {
-                    // Check if MarkerClusterer library is available
-                    if (typeof MarkerClusterer !== 'undefined') {
-                        // Create marker clusterer with the @googlemaps/js-marker-clusterer library
+                // Check if MarkerClusterer library is available
+                if (typeof MarkerClusterer !== 'undefined') {
+                    // Create marker clusterer with the @googlemaps/js-marker-clusterer library
                         // Configure to show more detail at higher zoom levels
                         var clusterOptions = {
-                            map: map,
-                            markers: markersToAdd
+                        map: map, 
+                        markers: markersToAdd 
                         };
                         
                         // If gridAlgorithm is available, use it for better zoom-based clustering
@@ -9580,16 +9582,16 @@ function updateMapMarkers(listings) {
                         }
                         
                         markerCluster = new MarkerClusterer(clusterOptions);
-                    } else {
-                        // Fallback: add markers directly to map if clusterer not available
-                        markersToAdd.forEach(function(marker) {
-                            marker.setMap(map);
-                        });
-                    }
-                    
-                    // Fit bounds with animation if there are markers
-                    if (markers.length > 0) {
-                        setTimeout(function() {
+                } else {
+                    // Fallback: add markers directly to map if clusterer not available
+                    markersToAdd.forEach(function(marker) {
+                        marker.setMap(map);
+                    });
+                }
+                
+                // Fit bounds with animation if there are markers
+                if (markers.length > 0) {
+                    setTimeout(function() {
                             try {
                                 // Check if bounds are valid (not empty)
                                 if (!bounds || (bounds.isEmpty && bounds.isEmpty())) {
@@ -9677,7 +9679,7 @@ function updateMapMarkers(listings) {
                                 console.warn('Error fitting map bounds:', e);
                                 isUpdatingMapMarkers = false;
                             }
-                        }, 500);
+                    }, 500);
                     } else {
                         isUpdatingMapMarkers = false;
                     }
@@ -9816,7 +9818,7 @@ function toggleSidebar() {
 // Detect if we're in an iframe (Framer embed) - already declared above, just update if needed
 try {
     if (!isInIframe) {
-        isInIframe = window.self !== window.top;
+    isInIframe = window.self !== window.top;
     }
 } catch (e) {
     // Cross-origin - assume we're in an iframe if we can't check
@@ -9899,7 +9901,7 @@ window.addEventListener('message', function(event) {
                 }
             });
             // Apply filters to show all listings (no filters active)
-            if (data) {
+        if (data) {
                 filterPreview();
             }
             // Hide clear button
@@ -9920,12 +9922,12 @@ window.addEventListener('message', function(event) {
                 return;
             }
             
-            // Parse the search string and store as parameters
-            var params = {};
-            var searchParams = new URLSearchParams(event.data.search);
-            for (var pair of searchParams.entries()) {
-                params[pair[0]] = pair[1];
-            }
+        // Parse the search string and store as parameters
+        var params = {};
+        var searchParams = new URLSearchParams(event.data.search);
+        for (var pair of searchParams.entries()) {
+            params[pair[0]] = pair[1];
+        }
             
             // If we just cleared filters and parent is still sending filter params, ignore them
             // Keep ignoring until parent sends empty parameters (indicating URL was cleared)
@@ -9953,9 +9955,9 @@ window.addEventListener('message', function(event) {
                 console.log('📨 Received URL search string via postMessage:', event.data.search);
                 // Merge received parameters with existing ones (preserve iframe URL params)
                 receivedUrlParams = mergedParams;
-                // Apply filters if data is loaded
-                if (data) {
-                    handleUrlParameters();
+        // Apply filters if data is loaded
+        if (data) {
+            handleUrlParameters();
                 }
             }
         }
@@ -9983,9 +9985,9 @@ window.addEventListener('message', function(event) {
             console.log('📨 Received URL parameters response from parent:', newParams);
             // Merge received parameters with existing ones (preserve iframe URL params)
             receivedUrlParams = mergedParams;
-            // Apply filters if data is loaded
-            if (data) {
-                handleUrlParameters();
+        // Apply filters if data is loaded
+        if (data) {
+            handleUrlParameters();
             }
         }
     }
