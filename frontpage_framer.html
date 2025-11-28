@@ -516,7 +516,7 @@
             background: var(--badge-featured-bg);
             color: var(--badge-featured-color);
             border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+            border: 1px solid #dddddd;
             z-index: 3;
         }
         :root.dark-mode .card-featured-tag {
@@ -599,7 +599,7 @@
             background-color: white;
             transition: .3s;
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border: 1px solid #dddddd;
         }
         input:checked + .theme-slider {
             background-color: var(--theme-primary);
@@ -694,7 +694,7 @@
         }
         :root.dark-mode body .flip-card:hover .flip-card-front {
             border-color: var(--theme-primary);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            border: 1px solid #dddddd;
         }
         :root.dark-mode body .flip-card-front h3 { color: #ffffff !important; }
         :root.dark-mode body .flip-card-front p { color: #9ca3af !important; }
@@ -704,7 +704,7 @@
             border: 1px solid #404040;
         }
         :root.dark-mode body .flip-card:hover .flip-card-back {
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            border: 1px solid #dddddd;
         }
         :root.dark-mode body .flip-card-back h3 { color: #ffffff !important; }
         :root.dark-mode body .flip-card-back p,
@@ -1013,7 +1013,7 @@
         .preview-sidebar.collapsed { width: 0; min-width: 0; overflow: hidden; }
         
         .sidebar-header {
-            padding: 15px 20px 20px 20px;
+            padding: 15px 20px 20px 0px;
             display: flex;
             justify-content: flex-start;
             border-bottom: none;
@@ -1030,12 +1030,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            border: 1px solid #dddddd;
             transition: all 0.3s;
             padding: 0;
         }
         .sidebar-toggle-btn:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            border: 1px solid #dddddd;
             transform: scale(1.05);
         }
         .sidebar-toggle-btn svg {
@@ -1058,7 +1058,7 @@
             align-items: center !important;
             justify-content: center !important;
             cursor: pointer !important;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid #dddddd !important;
             transition: all 0.3s;
             padding: 0 !important;
             margin: 0 !important;
@@ -1067,7 +1067,7 @@
             transform: none !important;
         }
         .show-sidebar-btn:hover {
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            border: 1px solid #dddddd;
             transform: scale(1.05);
         }
         .show-sidebar-btn svg {
@@ -1142,11 +1142,11 @@
         :root.dark-mode .filter-content::-webkit-scrollbar-thumb { background: #4a4a4a; }
         :root.dark-mode .filter-content::-webkit-scrollbar-thumb:hover { background: #5a5a5a; }
         
-        .filter-section { padding: 15px 20px 15px 10px; }
+        .filter-section { padding: 15px 20px 15px 0px; }
         .filter-section.search-section { 
             background: var(--card-bg); 
             border-bottom: 2px solid var(--border-color); 
-            padding: 20px 20px 20px 10px;
+            padding: 20px 20px 20px 0px;
         }
         
         
@@ -1207,7 +1207,7 @@
         .type-filter-see-more-btn:hover {
             background: var(--bg-hover);
             color: var(--text-primary);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dddddd;
             transform: scale(0.98);
             border-radius: 16px;
         }
@@ -1254,26 +1254,26 @@
             color: var(--text-secondary); 
         }
         .category-filter-btn {
-            padding: 10px 14px; /* Reduced vertical padding from 12px to 10px for less space */
+            padding: 10px 14px 10px 0px; /* Reduced vertical padding from 12px to 10px for less space, flush left */
             position: relative;
             display: flex;
             align-items: center;
             transition: background-color 0.2s ease-in-out;
-            border-radius: 16px !important; /* Rounded corners on all sides, override any inherited styles */
+            border-radius: 10px !important; /* Rounded corners on all sides, override any inherited styles */
         }
         /* Ensure category buttons always have rounded corners, regardless of position */
         .category-filter-btn:first-child,
         .category-filter-btn:last-child {
-            border-radius: 16px !important; /* Consistent rounded corners on all sides */
-            border-top-left-radius: 16px !important;
-            border-top-right-radius: 16px !important;
-            border-bottom-left-radius: 16px !important;
-            border-bottom-right-radius: 16px !important;
+            border-radius: 10px !important; /* Consistent rounded corners on all sides */
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
+            border-bottom-left-radius: 10px !important;
+            border-bottom-right-radius: 10px !important;
         }
         .category-filter-btn .category-icon {
             margin-right: 8px;
             position: absolute;
-            left: 6px; /* Align with button padding-left (6px) */
+            left: 0px; /* Flush left with page margin */
             top: 50%;
             transform: translateY(-50%);
             z-index: 10; /* Higher z-index to ensure icon appears above background circle */
@@ -1310,18 +1310,18 @@
         .category-filter-btn .category-name {
             flex: 1;
             font-weight: 500;
-            margin-left: 50px; /* 6px (left) + 40px (circle width) + 4px (right margin) = 50px */
+            margin-left: 44px; /* 0px (left) + 40px (circle width) + 4px (right margin) = 44px */
         }
         /* Circular background behind icon for category buttons on hover/active */
         .category-filter-btn::before {
             content: '';
             position: absolute;
-            left: 6px; /* Align with button padding-left (6px) */
+            left: 0px; /* Flush left with page margin */
             top: 50%;
             transform: translateY(-50%);
             width: 40px; /* Sized for SVG icon */
             height: 40px; /* Sized for SVG icon */
-            border-radius: 50%;
+            border-radius: 14px;
             background-color: transparent;
             background-image: none !important; /* Remove any icon backgrounds */
             filter: none !important; /* Remove any brightness/invert filters that might make it dark grey */
@@ -1338,13 +1338,13 @@
             background-color: #ffffff !important; /* Pure white background */
             background-image: none !important; /* Ensure no icon is shown */
             filter: none !important; /* Remove any brightness/invert filters */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important; /* Visible soft drop shadow */
+            border: 1px solid #dddddd !important; /* Soft gray border */
         }
         /* Ensure active state always shows the circle with pure white */
         .category-filter-btn.active::before {
             background-color: #ffffff !important;
             filter: none !important; /* Remove any brightness/invert filters */
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid #dddddd !important;
         }
         /* Button background stays transparent on hover - only the circle changes */
         .category-filter-btn:hover,
@@ -1361,7 +1361,7 @@
             background-color: #ffffff !important; /* Pure white for dark mode */
             background-image: none !important; /* Ensure no icon is shown */
             filter: none !important; /* Remove any brightness/invert filters */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important; /* More visible shadow for dark mode */
+            border: 1px solid #dddddd !important; /* Soft gray border for dark mode */
         }
         :root.dark-mode .category-filter-btn:hover,
         :root.dark-mode .category-filter-btn.active,
@@ -1449,7 +1449,7 @@
         .category-filter-btn:hover:active::before {
             background-color: #ffffff !important;
             filter: none !important;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid #dddddd !important;
         }
         .type-filter-btn.clicking::after,
         .type-filter-btn[data-type="Hiking"].clicking::after,
@@ -1637,7 +1637,7 @@
             background-position: 14px center, right 16px center; 
             background-size: 16px 16px, 12px 12px; 
             padding-right: 36px; 
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); }
+            border: 1px solid #dddddd; }
 
         /* Ensure pin icon color stays consistent on hover/focus for Area dropdown */
         #previewTypeFilter,
@@ -1676,8 +1676,8 @@
             padding-left: 40px;
             padding-right: 36px;
         }
-        .preview-filter-group select:hover { border-radius: 16px; background: #ffffff; box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04), 0 2px 12px rgba(0, 0, 0, 0.08); transform: scale(0.98); }
-        .preview-filter-group select:focus { outline: none; border-radius: 16px; background: #ffffff; box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04), 0 2px 12px rgba(0, 0, 0, 0.08); }
+        .preview-filter-group select:hover { border-radius: 16px; background: #ffffff; border: 1px solid #dddddd; transform: scale(0.98); }
+        .preview-filter-group select:focus { outline: none; border-radius: 16px; background: #ffffff; border: 1px solid #dddddd; }
         
         .preview-filters .btn { width: 100%; padding: 13px 20px; white-space: nowrap; font-size: 15px; margin-top: 8px; border-radius: 16px; }
         
@@ -1685,7 +1685,7 @@
             flex: 1; 
             min-width: 0; 
             max-width: 100%;
-            padding: 0 30px 30px 15px;
+            padding: 0 0px 200px 5px;
         }
         .preview-results { margin-bottom: 20px; font-size: 14px; color: var(--text-secondary); font-weight: 500; }
         .map-collapsed + .preview-results {
@@ -1764,12 +1764,12 @@
             font-size: 20px;
             transition: all 0.2s;
             background: #ffffff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #dddddd;
         }
         .top-search-container input:focus {
             outline: none;
             border-color: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 1px solid #dddddd;
         }
         .top-search-container input::placeholder {
             color: #000000;
@@ -1823,7 +1823,7 @@
                 top: 5px !important;
                 z-index: 1002 !important;
                 margin: 16px 16px 0 16px !important;
-                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+                border: 1px solid #dddddd !important;
                 border: 1px solid #e5e7eb;
                 border-radius: 22px;
                 overflow: hidden;
@@ -2492,14 +2492,14 @@
             .map-toggle-btn {
                 width: 36px;
                 height: 36px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+                border: 1px solid #dddddd !important;
                 gap: 6px;
             }
             .map-collapsed .map-toggle-btn {
                 width: auto !important;
                 padding: 10px 14px !important;
                 transform: translateY(-30px) !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+                border: 1px solid #dddddd !important;
             }
             .map-toggle-text {
                 font-size: 12px;
@@ -2557,7 +2557,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            border: 1px solid #dddddd;
             transition: all 0.3s;
             padding: 0;
             gap: 8px;
@@ -2572,14 +2572,14 @@
             width: auto;
             border-radius: 12px;
             padding: 10px 24px 10px 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #dddddd;
             height: auto;
         }
         .map-collapsed .map-toggle-text {
             display: inline;
         }
         .map-toggle-btn:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            border: 1px solid #dddddd;
             transform: translateY(-2px);
         }
         .map-toggle-btn svg {
@@ -2682,7 +2682,7 @@
         /* Custom Google Maps Info Window Styles */
         .gm-style .gm-style-iw-c {
             border-radius: 16px !important;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+            border: 1px solid #dddddd !important;
             padding: 0 12px 12px !important; /* add bottom padding to avoid clipping button */
             margin: 0 !important;
             max-width: 340px !important;
@@ -2847,7 +2847,7 @@
             height: 28px !important;
             background: rgba(255, 255, 255, 0.7) !important;
             border-radius: 50% !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+            border: 1px solid #dddddd !important;
             z-index: 1000 !important;
             display: flex !important;
             align-items: center !important;
@@ -2969,14 +2969,14 @@
             font-size: 13px;
             font-weight: 600;
             transition: all 0.3s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #dddddd;
             border: none;
             cursor: pointer;
         }
         .map-popup-btn:hover {
             background: var(--theme-primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid #dddddd;
         }
         /* Ensure Google Maps info window doesn't override button styles */
         .gm-style-iw .map-popup-btn {
@@ -2995,13 +2995,13 @@
             font-weight: 600 !important;
             line-height: 1 !important;
             cursor: pointer !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+            border: 1px solid #dddddd !important;
             margin-bottom: 10px !important;
         }
         .gm-style-iw .map-popup-btn:hover {
             background: var(--theme-primary-hover) !important;
             transform: translateY(-2px) !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+            border: 1px solid #dddddd !important;
         }
         
         .flip-card { 
@@ -3079,7 +3079,7 @@
         .flip-card-back::-webkit-scrollbar-thumb:hover {
             background: rgba(0, 0, 0, 0.3);
         }
-        .flip-card.flipped { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 24px; overflow: hidden; }
+        .flip-card.flipped { border: 1px solid #dddddd; border-radius: 24px; overflow: hidden; }
         .flip-card.flipped .flip-card-front { opacity: 0; transform: scale(0.96); pointer-events: none; }
         .flip-card.flipped .flip-card-back { opacity: 1; transform: scale(1); pointer-events: auto; border-radius: 24px; }
         
@@ -3260,16 +3260,16 @@
             background-repeat: no-repeat !important;
             background-position: right 12px center !important;
             padding-right: 36px !important;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+            border: 1px solid #dddddd !important;
             transition: all 0.2s ease !important;
         }
         #sortDropdown:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
+            border: 1px solid #dddddd !important;
             background-color: #fafafa !important;
         }
         #sortDropdown:focus {
             outline: none !important;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 2px rgba(45, 106, 79, 0.2) !important;
+            border: 1px solid #dddddd !important;
         }
         #sortDropdown option {
             background: #ffffff !important;
@@ -8283,7 +8283,7 @@ function renderPreview(filteredListings, appendMode) {
         // Add close button (X icon) in top right corner
         const closeBtn = document.createElement('button');
         closeBtn.className = 'card-close-btn';
-        closeBtn.style.cssText = 'position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border: none; background: rgba(255, 255, 255, 0.9); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s ease; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);';
+        closeBtn.style.cssText = 'position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border: 1px solid #dddddd; background: rgba(255, 255, 255, 0.9); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s ease;';
         closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
         closeBtn.onclick = function(e) {
             e.preventDefault();
@@ -9517,7 +9517,7 @@ function updateMapMarkers(listings) {
                     '</div>' +
                     imageHtml +
                     '<div class="map-popup-desc" style="margin-top: 12px;">' + escapeHtml(fixEncoding(listing.description).substring(0, 100)) + '...</div>' +
-                    '<button class="map-popup-btn" style="width: 100%; margin-top: 16px; background: #2d6a4f !important; color: white !important; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: visible; white-space: nowrap;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">View Details</button>' +
+                    '<button class="map-popup-btn" style="width: 100%; margin-top: 16px; background: #2d6a4f !important; color: white !important; border: 1px solid #dddddd; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; overflow: visible; white-space: nowrap;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">View Details</button>' +
                     '</div>';
                 
                 // Add click listener to show info window
