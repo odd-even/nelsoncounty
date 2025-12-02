@@ -8696,11 +8696,16 @@ function renderPreview(filteredListings, appendMode) {
                     }
                     
                     // Create a sentinel element at the bottom to detect when user scrolls to it
-                    // Style it to span all grid columns but not create a visible blank space
+                    // Place it AFTER the grid (not inside) to avoid creating blank spaces in the grid
                     const sentinel = document.createElement('div');
                     sentinel.id = 'infinite-scroll-sentinel';
-                    sentinel.style.cssText = 'grid-column: 1 / -1; height: 100px; width: 100%; opacity: 0; pointer-events: none; position: relative;';
-                    grid.appendChild(sentinel);
+                    sentinel.style.cssText = 'height: 100px; width: 100%; position: relative;';
+                    // Insert after the grid element, not inside it
+                    if (grid.nextSibling) {
+                        grid.parentNode.insertBefore(sentinel, grid.nextSibling);
+                    } else {
+                        grid.parentNode.appendChild(sentinel);
+                    }
                     
                     const scrollObserver = new IntersectionObserver(function(entries) {
                         entries.forEach(function(entry) {
