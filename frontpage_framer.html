@@ -2559,7 +2559,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            z-index: 1000;
+            z-index: 999; /* Lower than search bar (1000) so search bar appears above when scrolling */
             margin: 0;
             justify-content: flex-start;
         }
@@ -2598,7 +2598,7 @@
             padding: 0;
             gap: 8px;
             position: relative;
-            z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
+            z-index: 999; /* Lower than search bar (1000) when map is open, but higher when collapsed */
             pointer-events: auto !important; /* Ensure button is always clickable */
         }
         .map-toggle-text {
@@ -2613,7 +2613,7 @@
             padding: 10px 24px 10px 16px;
             border: 1px solid #dddddd;
             height: auto;
-            z-index: 1003 !important; /* Ensure it stays above filter bar when collapsed */
+            z-index: 1010 !important; /* Higher when collapsed to be above preview-results (1005) */
         }
         .map-collapsed .map-toggle-text {
             display: inline;
