@@ -1705,6 +1705,13 @@
         .preview-results { margin-bottom: 20px; font-size: 14px; color: var(--text-secondary); font-weight: 500; }
         .map-collapsed + .preview-results {
             margin-top: 30px;
+            position: relative;
+            z-index: 1004 !important; /* Higher than map-header to ensure sort dropdown is clickable */
+        }
+        .map-collapsed + .preview-results select {
+            pointer-events: auto !important; /* Ensure sort dropdown is clickable */
+            position: relative;
+            z-index: 1005 !important;
         }
         
         /* Top Search Bar */
@@ -2534,6 +2541,11 @@
             margin-top: 0;
             margin-bottom: -20px;
             background: transparent !important;
+            pointer-events: none; /* Allow clicks to pass through the collapsed container */
+        }
+        .map-collapsed .map-header,
+        .map-collapsed .map-toggle-btn {
+            pointer-events: auto !important; /* But keep the button clickable */
         }
         .map-header {
             display: flex;
@@ -2556,6 +2568,7 @@
             transform: translateX(-50%);
             z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) to stay visible */
             top: 23px;
+            pointer-events: auto !important; /* Ensure header is clickable */
         }
         .map-header h2 {
             font-size: 20px;
@@ -2583,6 +2596,7 @@
             gap: 8px;
             position: relative;
             z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) */
+            pointer-events: auto !important; /* Ensure button is always clickable */
         }
         .map-toggle-text {
             display: none;
