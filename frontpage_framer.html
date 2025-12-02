@@ -2512,12 +2512,14 @@
                 height: 36px;
                 border: 1px solid #dddddd !important;
                 gap: 6px;
+                z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) */
             }
             .map-collapsed .map-toggle-btn {
                 width: auto !important;
                 padding: 10px 14px !important;
                 transform: translateY(-30px) !important;
                 border: 1px solid #dddddd !important;
+                z-index: 1003 !important; /* Ensure it stays above filter bar when collapsed */
             }
             .map-toggle-text {
                 font-size: 12px;
@@ -2552,7 +2554,7 @@
             margin-bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 999;
+            z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) to stay visible */
             top: 23px;
         }
         .map-header h2 {
@@ -2579,6 +2581,8 @@
             transition: all 0.3s;
             padding: 0;
             gap: 8px;
+            position: relative;
+            z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) */
         }
         .map-toggle-text {
             display: none;
@@ -2592,6 +2596,7 @@
             padding: 10px 24px 10px 16px;
             border: 1px solid #dddddd;
             height: auto;
+            z-index: 1003 !important; /* Ensure it stays above filter bar when collapsed */
         }
         .map-collapsed .map-toggle-text {
             display: inline;
