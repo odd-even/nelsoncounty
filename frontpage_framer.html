@@ -7856,13 +7856,19 @@ function renderPreview(filteredListings, appendMode) {
             // Use allFilteredListings if available (from filterPreview), otherwise use passed filteredListings or all data
             const listingsToRender = allFilteredListings.length > 0 ? allFilteredListings : (filteredListings || data.listings);
             
-            // Calculate pagination
+            // Filter out invalid listings BEFORE pagination to prevent blank spaces
+            const validListings = listingsToRender.filter(function(listing) {
+                return listing && listing.name && listing.name.trim() !== '';
+            });
+            
+            // Calculate pagination on valid listings only
             const startIndex = appendMode ? (currentPage - 1) * ITEMS_PER_PAGE : 0;
             const endIndex = appendMode ? currentPage * ITEMS_PER_PAGE : ITEMS_PER_PAGE;
-            const listings = listingsToRender.slice(startIndex, endIndex);
+            const listings = validListings.slice(startIndex, endIndex);
             
             console.log('🎨 renderPreview called:', {
                 'total listings': listingsToRender.length,
+                'valid listings': validListings.length,
                 'showing': listings.length,
                 'page': currentPage,
                 'appendMode': appendMode || false
@@ -8107,10 +8113,11 @@ function renderPreview(filteredListings, appendMode) {
     const indexOffset = appendMode ? (currentPage - 1) * ITEMS_PER_PAGE : 0;
     console.log('🎨 About to render', sortedListings.length, 'cards', appendMode ? '(appending)' : '(new)');
     sortedListings.forEach(function(listing, localIndex) {
-        // Skip listings without essential data (at minimum, a name)
+        // Note: Invalid listings are already filtered out before pagination, so we don't need to skip here
+        // But keep this check as a safety measure
         if (!listing || !listing.name || listing.name.trim() === '') {
-            console.warn('⚠️ Skipping listing with no name:', listing);
-            return; // Skip this listing
+            console.warn('⚠️ Invalid listing found (should have been filtered earlier):', listing);
+            return; // Skip this listing as safety measure
         }
         
         const index = localIndex + indexOffset; // Use global index for animation stagger
@@ -8689,9 +8696,10 @@ function renderPreview(filteredListings, appendMode) {
                     }
                     
                     // Create a sentinel element at the bottom to detect when user scrolls to it
+                    // Style it to span all grid columns but not create a visible blank space
                     const sentinel = document.createElement('div');
                     sentinel.id = 'infinite-scroll-sentinel';
-                    sentinel.style.cssText = 'height: 100px; width: 100%;';
+                    sentinel.style.cssText = 'grid-column: 1 / -1; height: 100px; width: 100%; opacity: 0; pointer-events: none; position: relative;';
                     grid.appendChild(sentinel);
                     
                     const scrollObserver = new IntersectionObserver(function(entries) {
