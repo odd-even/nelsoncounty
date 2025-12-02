@@ -7543,7 +7543,9 @@ function applyBreadcrumbFilter(filterParams) {
 function filterByListingName(listingName) {
     if (!data) return;
     
-    // Clear all other filters (both desktop and mobile)
+    console.log('📍 Filtering to specific listing:', listingName);
+    
+    // Clear all other filters (both desktop and mobile) - FORCE CLEAR EVERYTHING
     const searchInput = document.getElementById('previewSearchInput');
     const mobileSearchInput = document.getElementById('previewSearchInputMobile');
     const areaFilter = document.getElementById('previewAreaFilter');
@@ -7551,14 +7553,43 @@ function filterByListingName(listingName) {
     const mobileTypeFilter = document.getElementById('mobileTypeFilter');
     const mobileAreaFilter = document.getElementById('mobileAreaFilter');
     const mobileAmenityFilter = document.getElementById('mobileAmenityFilter');
+    const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
+    const typeFilter = document.getElementById('previewTypeFilter');
     
+    // Clear all input values
     if (searchInput) searchInput.value = '';
     if (mobileSearchInput) mobileSearchInput.value = '';
-    if (areaFilter) areaFilter.value = '';
-    if (amenityFilter) amenityFilter.value = '';
-    if (mobileTypeFilter) mobileTypeFilter.value = '';
-    if (mobileAreaFilter) mobileAreaFilter.value = '';
-    if (mobileAmenityFilter) mobileAmenityFilter.value = '';
+    if (areaFilter) {
+        areaFilter.value = '';
+        if (areaFilter.options.length > 0) areaFilter.selectedIndex = 0;
+    }
+    if (amenityFilter) {
+        amenityFilter.value = '';
+        if (amenityFilter.options.length > 0) amenityFilter.selectedIndex = 0;
+    }
+    if (mobileTypeFilter) {
+        mobileTypeFilter.value = '';
+        if (mobileTypeFilter.options.length > 0) mobileTypeFilter.selectedIndex = 0;
+    }
+    if (mobileAreaFilter) {
+        mobileAreaFilter.value = '';
+        if (mobileAreaFilter.options.length > 0) mobileAreaFilter.selectedIndex = 0;
+    }
+    if (mobileAmenityFilter) {
+        mobileAmenityFilter.value = '';
+        if (mobileAmenityFilter.options.length > 0) mobileAmenityFilter.selectedIndex = 0;
+    }
+    if (mobileCategoryFilter) {
+        mobileCategoryFilter.value = '';
+        if (mobileCategoryFilter.options.length > 0) mobileCategoryFilter.selectedIndex = 0;
+        updateMobileCategoryIcon('');
+    }
+    if (typeFilter) {
+        typeFilter.value = '';
+        if (typeFilter.options.length > 0) typeFilter.selectedIndex = 0;
+    }
+    
+    // Clear all filter state variables
     currentTypeFilter = [];
     currentCategoryFilter = null;
     currentFeaturedOnly = false;
@@ -7571,10 +7602,15 @@ function filterByListingName(listingName) {
         }
     });
     
-    // Filter to show only the clicked listing
+    // Filter to show only the clicked listing (ignore all other filters)
     const filtered = data.listings.filter(function(listing) {
         return listing.name === listingName;
     });
+    
+    console.log('📍 Found', filtered.length, 'listing(s) matching:', listingName);
+    
+    // Set allFilteredListings to the filtered result so renderPreview uses it
+    allFilteredListings = filtered;
     
     // Show clear button (both desktop and mobile)
     const clearBtn = document.getElementById('clearFiltersBtn');
@@ -7589,6 +7625,7 @@ function filterByListingName(listingName) {
         sortDropdown.value = 'default';
     }
     
+    // Render with the filtered listing - this bypasses all other filters
     renderPreview(filtered); // Sorting is now handled inside renderPreview
     
     // Notify parent that filters were applied (for aggressive URL clearing)
