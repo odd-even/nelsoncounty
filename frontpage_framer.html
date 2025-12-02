@@ -2155,10 +2155,10 @@
             /* Clear button - appears inline with search bar on the right, same row */
             .mobile-filter-bar > .mobile-clear-btn {
                 order: 1;
-                flex: 0 0 60px;
-                width: 60px;
-                min-width: 60px;
-                max-width: 60px;
+                flex: 0 0 80px;
+                width: 80px;
+                min-width: 80px;
+                max-width: 80px;
                 padding: 14px 0;
                 border: none;
                 border-radius: 0;
@@ -2522,14 +2522,14 @@
                 height: 36px;
                 border: 1px solid #dddddd !important;
                 gap: 6px;
-                z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) */
+                z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
             }
             .map-collapsed .map-toggle-btn {
                 width: auto !important;
                 padding: 10px 14px !important;
                 transform: translateY(-30px) !important;
                 border: 1px solid #dddddd !important;
-                z-index: 1003 !important; /* Ensure it stays above filter bar when collapsed */
+                z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
             }
             .map-toggle-text {
                 font-size: 12px;
@@ -2569,7 +2569,7 @@
             margin-bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) to stay visible */
+            z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
             top: 23px;
             pointer-events: auto !important; /* Ensure header is clickable */
         }
@@ -2598,7 +2598,7 @@
             padding: 0;
             gap: 8px;
             position: relative;
-            z-index: 1003 !important; /* Higher than mobile-filter-bar (1002) */
+            z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
             pointer-events: auto !important; /* Ensure button is always clickable */
         }
         .map-toggle-text {
