@@ -7040,15 +7040,31 @@ function filterPreview() {
         const addressText = (listing.address || '').toLowerCase();
         const phoneText = (listing.phone || '').toLowerCase();
         const websiteText = (listing.website || '').toLowerCase();
-        const matchesSearch = !searchTerm || 
-            listing.name.toLowerCase().includes(searchTerm) ||
-            listing.type.toLowerCase().includes(searchTerm) ||
-            listing.area.toLowerCase().includes(searchTerm) ||
-            listing.description.toLowerCase().includes(searchTerm) ||
-            addressText.includes(searchTerm) ||
-            phoneText.includes(searchTerm) ||
-            websiteText.includes(searchTerm) ||
-            amenitiesText.includes(searchTerm);
+        
+        // Handle multiple search terms separated by "+" (OR logic - matches if listing contains ANY term)
+        let matchesSearch = true;
+        if (searchTerm) {
+            // Split by "+" and trim each term
+            const searchTerms = searchTerm.split('+').map(function(term) {
+                return term.trim();
+            }).filter(function(term) {
+                return term.length > 0; // Remove empty terms
+            });
+            
+            if (searchTerms.length > 0) {
+                // Check if listing matches ANY of the search terms (OR logic)
+                matchesSearch = searchTerms.some(function(term) {
+                    return listing.name.toLowerCase().includes(term) ||
+                        listing.type.toLowerCase().includes(term) ||
+                        listing.area.toLowerCase().includes(term) ||
+                        listing.description.toLowerCase().includes(term) ||
+                        addressText.includes(term) ||
+                        phoneText.includes(term) ||
+                        websiteText.includes(term) ||
+                        amenitiesText.includes(term);
+                });
+            }
+        }
         
         // Handle type matching
         // Priority 1: If a category filter is active (user clicked a category button), filter by category
@@ -7860,8 +7876,24 @@ function renderPreview(filteredListings, appendMode) {
         isRendering = true;
         
         try {
-            // Use allFilteredListings if available (from filterPreview), otherwise use passed filteredListings or all data
-            const listingsToRender = allFilteredListings.length > 0 ? allFilteredListings : (filteredListings || data.listings);
+            // Check if there's an active search term
+            const searchInput = document.getElementById('previewSearchInput');
+            const mobileSearchInput = document.getElementById('previewSearchInputMobile');
+            const searchTerm = (searchInput ? searchInput.value : (mobileSearchInput ? mobileSearchInput.value : '')).trim();
+            
+            // Use allFilteredListings if available (from filterPreview)
+            // If there's an active search and allFilteredListings is empty, use empty array (show no results)
+            // Otherwise, fall back to filteredListings or all data
+            let listingsToRender;
+            if (allFilteredListings.length > 0) {
+                listingsToRender = allFilteredListings;
+            } else if (searchTerm) {
+                // Active search with no matches - show empty results
+                listingsToRender = [];
+            } else {
+                // No active search - use fallback
+                listingsToRender = filteredListings || data.listings;
+            }
             
             // Filter out invalid listings BEFORE pagination to prevent blank spaces
             const validListings = listingsToRender.filter(function(listing) {
