@@ -1800,13 +1800,14 @@
             }
             
             window.handleEmailSubmit = async function handleEmailSubmit() {
+                const emailInput = document.getElementById('emailInput');
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                const emailForm = document.getElementById('emailForm');
+                const otpForm = document.getElementById('otpForm');
+                
                 try {
                     console.log('📧 handleEmailSubmit called');
-                    const emailInput = document.getElementById('emailInput');
-                    const errorDiv = document.getElementById('loginError');
-                    const errorText = document.getElementById('loginErrorText');
-                    const emailForm = document.getElementById('emailForm');
-                    const otpForm = document.getElementById('otpForm');
                     
                     if (!emailInput) {
                         console.error('❌ emailInput not found');
@@ -1819,39 +1820,65 @@
                         if (errorDiv) errorDiv.style.display = 'block';
                         return;
                     }
-                const email = emailInput.value.trim().toLowerCase();
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    errorText.textContent = 'Please enter a valid email address.';
-                    errorDiv.style.display = 'block';
-                    return;
-                }
-                errorDiv.style.display = 'none';
-                const submitBtn = emailForm.querySelector('button[type="submit"]');
-                const originalBtnText = submitBtn.textContent;
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending code...';
-                try {
-                    const result = await sendOTP(email);
-                    if (result.success) {
-                        emailForm.style.display = 'none';
-                        otpForm.style.display = 'block';
-                        const emailDisplay = document.getElementById('emailDisplay');
-                        if (emailDisplay) emailDisplay.textContent = email;
-                        otpForm.dataset.email = email;
-                        const otpInput = document.getElementById('otpInput');
-                        if (otpInput) otpInput.focus();
-                        errorText.textContent = `Verification code sent to ${email}`;
-                        errorText.style.color = '#22c55e';
-                        errorDiv.style.display = 'block';
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = originalBtnText;
-                    } else {
-                        errorText.textContent = result.error || 'Failed to send verification code.';
-                        errorText.style.color = '#dc3545';
-                        errorDiv.style.display = 'block';
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = originalBtnText;
+                    
+                    const email = emailInput.value.trim().toLowerCase();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        if (errorText) errorText.textContent = 'Please enter a valid email address.';
+                        if (errorDiv) errorDiv.style.display = 'block';
+                        return;
+                    }
+                    
+                    if (errorDiv) errorDiv.style.display = 'none';
+                    const submitBtn = emailForm ? emailForm.querySelector('button[type="submit"]') : null;
+                    const originalBtnText = submitBtn ? submitBtn.textContent : 'Send Verification Code';
+                    
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending code...';
+                    }
+                    
+                    try {
+                        const result = await sendOTP(email);
+                        if (result.success) {
+                            if (emailForm) emailForm.style.display = 'none';
+                            if (otpForm) otpForm.style.display = 'block';
+                            const emailDisplay = document.getElementById('emailDisplay');
+                            if (emailDisplay) emailDisplay.textContent = email;
+                            if (otpForm) otpForm.dataset.email = email;
+                            const otpInput = document.getElementById('otpInput');
+                            if (otpInput) otpInput.focus();
+                            if (errorText) {
+                                errorText.textContent = `Verification code sent to ${email}`;
+                                errorText.style.color = '#22c55e';
+                            }
+                            if (errorDiv) errorDiv.style.display = 'block';
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalBtnText;
+                            }
+                        } else {
+                            if (errorText) {
+                                errorText.textContent = result.error || 'Failed to send verification code.';
+                                errorText.style.color = '#dc3545';
+                            }
+                            if (errorDiv) errorDiv.style.display = 'block';
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalBtnText;
+                            }
+                        }
+                    } catch (error) {
+                        console.error('❌ Error sending OTP:', error);
+                        if (errorText) {
+                            errorText.textContent = 'An error occurred: ' + (error.message || 'Please try again.');
+                            errorText.style.color = '#dc3545';
+                        }
+                        if (errorDiv) errorDiv.style.display = 'block';
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalBtnText;
+                        }
                     }
                 } catch (error) {
                     console.error('❌ Error in handleEmailSubmit:', error);
@@ -1860,10 +1887,6 @@
                         errorText.style.color = '#dc3545';
                     }
                     if (errorDiv) errorDiv.style.display = 'block';
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.textContent = originalBtnText;
-                    }
                 }
             };
             
@@ -3257,7 +3280,9 @@ function saveIconMappingsToStorage(iconMappings) {
 }
 
 // Default icon mappings - comprehensive list (merged from admin and front page)
-const DEFAULT_ICON_MAPPINGS = {
+// Only declare if not already defined (admin.js might have it)
+if (typeof DEFAULT_ICON_MAPPINGS === 'undefined') {
+    var DEFAULT_ICON_MAPPINGS = {
     'Wine': 'icon-wine',
     'Winery': 'icon-wine',
     'Beer': 'icon-beer',
@@ -3354,6 +3379,7 @@ const DEFAULT_ICON_MAPPINGS = {
     'Farm': 'icon-farm',
     'Orchard': 'icon-farm'
 };
+} // End of DEFAULT_ICON_MAPPINGS conditional declaration
 
 // Initialize icon mappings from storage or defaults
 let ICON_MAPPINGS = loadIconMappingsFromStorage();
