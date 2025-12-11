@@ -1615,17 +1615,21 @@
             
             // Get GOOGLE_APPS_SCRIPT_URL from the page (defined later in script)
             function getGoogleAppsScriptURL() {
+                // Wait for GOOGLE_APPS_SCRIPT_URL to be defined
                 if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
                     return GOOGLE_APPS_SCRIPT_URL;
                 }
-                // Fallback - try to find it in the page
+                // Try to find it in the page by checking all script tags
                 const scripts = document.getElementsByTagName('script');
                 for (let i = 0; i < scripts.length; i++) {
                     const scriptText = scripts[i].textContent || scripts[i].innerHTML;
                     const match = scriptText.match(/GOOGLE_APPS_SCRIPT_URL\s*=\s*['"]([^'"]+)['"]/);
                     if (match) return match[1];
                 }
-                return 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
+                // Fallback URL - use the same URL as defined in the page
+                // This should match GOOGLE_APPS_SCRIPT_URL defined later in the script
+                // If you get 404 errors, make sure your Google Apps Script is deployed as a Web App
+                return 'https://script.google.com/macros/s/AKfycbwNH8P5P8iorzRTTx3FpVbYPFNBo1qUWIU630v7ymLJWypvJpSEfPZC5nfxJpjjwjF-Jg/exec';
             }
             
             function generateOTP() {
@@ -1694,10 +1698,23 @@
                         result = responseText ? JSON.parse(responseText) : { success: false, error: 'No response from server' };
                     } catch (fetchError) {
                         console.error('Fetch error:', fetchError);
-                        result = { 
-                            success: false, 
-                            error: 'Unable to connect to email service. Please check your Google Apps Script is deployed and accessible.' 
-                        };
+                        const errorMsg = fetchError.message || 'Unknown error';
+                        if (errorMsg.includes('404') || errorMsg.includes('Failed to fetch')) {
+                            result = { 
+                                success: false, 
+                                error: 'Email service not found (404). Please make sure your Google Apps Script is deployed as a Web App with "Execute as: Me" and "Who has access: Anyone".' 
+                            };
+                        } else if (errorMsg.includes('CORS') || errorMsg.includes('405')) {
+                            result = { 
+                                success: false, 
+                                error: 'CORS error. The script is using GET requests now, but please ensure your Google Apps Script is deployed correctly.' 
+                            };
+                        } else {
+                            result = { 
+                                success: false, 
+                                error: 'Unable to connect to email service: ' + errorMsg 
+                            };
+                        }
                     }
                     if (result.success) {
                         return { success: true };
@@ -10465,66 +10482,11 @@ function updateUnsavedChangesBadge() {
         
         // OLD GOOGLE OAUTH CODE - DISABLED
         // Email OTP authentication is now handled by the embedded code above
-        // This section is kept for reference but does not run
+        // This old Google OAuth event listener is disabled - just return immediately
         window.addEventListener('load', function() {
             // Email OTP authentication is handled by the code embedded earlier in the page
-            // This old Google OAuth code is disabled
+            // This old Google OAuth code is completely disabled
             return;
-            
-            // OLD CODE BELOW - NOT EXECUTED
-            if (false) { // Never executes
-            const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-            const adminEmail = sessionStorage.getItem('adminEmail');
-            
-            // Check if running from file:// protocol (won't work with Google OAuth)
-            const isFileProtocol = window.location.protocol === 'file:';
-            
-            // Get current origin for helpful error messages
-            const currentOrigin = window.location.origin;
-            const currentHost = window.location.host;
-            
-            if (isFileProtocol) {
-                const errorDiv = document.getElementById('loginError');
-                const errorText = document.getElementById('loginErrorText');
-                const loadingMessage = document.getElementById('loadingMessage');
-                const fallbackContainer = document.getElementById('fallbackButtonContainer');
-                
-                if (loadingMessage) loadingMessage.style.display = 'none';
-                errorText.innerHTML = `
-                    <strong>⚠️ File Protocol Detected:</strong><br>
-                    Google OAuth doesn't work with file:// protocol.<br>
-                    <strong>Solution:</strong> Run a local web server:<br>
-                    <code style="background: #f8f9fa; padding: 4px 8px; border-radius: 4px; display: block; margin: 10px 0;">
-                        python3 -m http.server 8000
-                    </code>
-                    Then open: <code>http://localhost:8000/index-sheets.html</code>
-                `;
-                errorDiv.style.display = 'block';
-                
-                // Show fallback button that explains the issue
-                if (fallbackContainer) {
-                    fallbackContainer.innerHTML = `
-                        <button disabled style="width: 100%; background: #ccc; color: #666; border: none; padding: 12px 24px; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: not-allowed;">
-                            Sign in with Google (Not Available - Use Local Server)
-                        </button>
-                    `;
-                    fallbackContainer.style.display = 'block';
-                }
-                return;
-            }
-            
-            // OLD GOOGLE OAUTH CODE REMOVED - Using Email OTP instead
-            // This code is disabled - authentication is now handled by Email OTP code above
-            // Clear any old session data
-            sessionStorage.clear();
-            localStorage.removeItem('adminLoggedIn');
-            
-            // Show login overlay - Email OTP will handle authentication
-            const overlay = document.getElementById('loginOverlay');
-            if (overlay) {
-                overlay.style.display = 'flex';
-            }
-            document.body.classList.remove('logged-in');
         });
         
         // Test and diagnostic functions

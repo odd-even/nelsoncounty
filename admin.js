@@ -4018,20 +4018,24 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 }
                 otpStorage.requestHistory[email.toLowerCase()].push(Date.now());
                 
-                // Send email via Google Apps Script
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'sendOTP',
-                        email: email,
-                        code: otpCode
-                    })
+                // Send email via Google Apps Script using GET to avoid CORS preflight
+                const params = new URLSearchParams({
+                    action: 'sendOTP',
+                    email: email,
+                    code: otpCode
                 });
                 
-                const result = await response.json();
+                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?' + params.toString(), {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Response not OK: ' + response.status);
+                }
+                
+                const responseText = await response.text();
+                const result = responseText ? JSON.parse(responseText) : { success: false, error: 'No response from server' };
                 
                 if (result.success) {
                     console.log('OTP sent successfully to:', email);
