@@ -1518,7 +1518,7 @@
             </div>
             
             <!-- Email Input Form -->
-            <form id="emailForm" onsubmit="event.preventDefault(); handleEmailSubmit();">
+            <form id="emailForm">
                 <div style="margin-bottom: 20px;">
                     <input 
                         type="email" 
@@ -1540,7 +1540,7 @@
             </form>
             
             <!-- OTP Input Form (hidden initially) -->
-            <form id="otpForm" onsubmit="event.preventDefault(); handleOTPSubmit();" style="display: none;">
+            <form id="otpForm" style="display: none;">
                 <div style="margin-bottom: 15px; text-align: center;">
                     <p style="color: #6c757d; margin: 0 0 10px 0;">Code sent to:</p>
                     <p style="font-weight: 600; color: #4E6B52; margin: 0;" id="emailDisplay"></p>
@@ -1567,7 +1567,7 @@
                 </button>
                 <button 
                     type="button" 
-                    onclick="resendOTP()"
+                    id="resendOTPButton"
                     style="width: 100%; padding: 10px 24px; background: transparent; color: #4E6B52; border: 2px solid #4E6B52; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s;"
                     onmouseover="this.style.background='#f0f4f1'"
                     onmouseout="this.style.background='transparent'"
@@ -1590,6 +1590,12 @@
     
     <!-- CRITICAL: Authentication code embedded directly - runs immediately -->
     <script>
+        // Make functions available immediately (before IIFE)
+        window.handleEmailSubmit = null;
+        window.handleOTPSubmit = null;
+        window.resendOTP = null;
+        window.logout = null;
+        
         (function() {
             'use strict';
             
@@ -2080,6 +2086,67 @@
                 clearAuthSession: typeof clearAuthSession
             });
             
+            // Attach event listeners to forms (instead of inline handlers)
+            function attachFormListeners() {
+                const emailForm = document.getElementById('emailForm');
+                const otpForm = document.getElementById('otpForm');
+                
+                if (emailForm) {
+                    emailForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        if (window.handleEmailSubmit) {
+                            window.handleEmailSubmit();
+                        } else {
+                            console.error('handleEmailSubmit not available');
+                            alert('Authentication system is loading. Please wait a moment and try again.');
+                        }
+                    });
+                    console.log('✅ Email form listener attached');
+                }
+                
+                if (otpForm) {
+                    otpForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        if (window.handleOTPSubmit) {
+                            window.handleOTPSubmit();
+                        } else {
+                            console.error('handleOTPSubmit not available');
+                            alert('Authentication system is loading. Please wait a moment and try again.');
+                        }
+                    });
+                    console.log('✅ OTP form listener attached');
+                }
+            }
+            
+            // Attach listeners when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachFormListeners);
+            } else {
+                attachFormListeners();
+            }
+            
+            // Attach resend button listener
+            function attachResendButtonListener() {
+                const resendBtn = document.getElementById('resendOTPButton');
+                if (resendBtn) {
+                    resendBtn.addEventListener('click', function() {
+                        if (window.resendOTP) {
+                            window.resendOTP();
+                        } else {
+                            console.error('resendOTP not available');
+                            alert('Authentication system is loading. Please wait a moment and try again.');
+                        }
+                    });
+                    console.log('✅ Resend button listener attached');
+                }
+            }
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', attachResendButtonListener);
+            } else {
+                attachResendButtonListener();
+            }
+            
             // Continuous monitoring to prevent bypass
             setInterval(function() {
                 if (ENABLE_EMAIL_OTP) {
@@ -2120,8 +2187,6 @@
                     }
                 }
             }, 1000); // Check every second
-                }
-            }, 500); // Check every 500ms
         })();
     </script>
     
