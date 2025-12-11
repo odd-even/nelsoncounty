@@ -3945,13 +3945,52 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             rateLimitWindow: 15 * 60 * 1000 // 15 minutes in milliseconds
         };
         
-        // SERVER-SIDE OTP: All OTP generation, storage, and validation happens on the server
-        // Client-side functions below just communicate with the server
+        // Store OTP data (in production, this should be server-side)
+        let otpStorage = {
+            codes: {},           // email -> { code, expires, attempts }
+            requestHistory: {}   // email -> [timestamps of requests]
+        };
         
-        // SERVER-SIDE OTP: Request OTP from server (no client-side generation)
+        // Generate a secure random OTP code
+        function generateOTP() {
+            // Generate 6-digit code using cryptographically secure method
+            const min = 100000;
+            const max = 999999;
+            const array = new Uint32Array(1);
+            window.crypto.getRandomValues(array);
+            return (min + (array[0] % (max - min + 1))).toString();
+        }
+        
+        // Check rate limiting for OTP requests
+        function checkRateLimit(email) {
+            const now = Date.now();
+            const history = otpStorage.requestHistory[email] || [];
+            
+            // Remove requests older than the rate limit window
+            const recentRequests = history.filter(function(timestamp) {
+                return (now - timestamp) < OTP_CONFIG.rateLimitWindow;
+            });
+            
+            // Update history
+            otpStorage.requestHistory[email] = recentRequests;
+            
+            // Check if limit exceeded
+            if (recentRequests.length >= OTP_CONFIG.rateLimitRequests) {
+                const oldestRequest = recentRequests[0];
+                const waitTime = Math.ceil((OTP_CONFIG.rateLimitWindow - (now - oldestRequest)) / 1000 / 60);
+                return {
+                    allowed: false,
+                    waitMinutes: waitTime
+                };
+            }
+            
+            return { allowed: true };
+        }
+        
+        // Send OTP via Google Apps Script
         async function sendOTP(email) {
             try {
-                // Client-side check first (quick rejection, but server validates too)
+                // Check if email is authorized
                 if (!AUTHORIZED_EMAILS.includes(email.toLowerCase())) {
                     return {
                         success: false,
@@ -3959,10 +3998,37 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     };
                 }
                 
-                // Request OTP from server (server generates, stores, and sends it)
+                // Check rate limiting
+                const rateLimit = checkRateLimit(email);
+                if (!rateLimit.allowed) {
+                    return {
+                        success: false,
+                        error: `Too many requests. Please wait ${rateLimit.waitMinutes} minute(s) before requesting another code.`
+                    };
+                }
+                
+                // Generate OTP
+                const otpCode = generateOTP();
+                const expiresAt = Date.now() + (OTP_CONFIG.expirationMinutes * 60 * 1000);
+                
+                // Store OTP (in production, this should be server-side)
+                otpStorage.codes[email.toLowerCase()] = {
+                    code: otpCode,
+                    expires: expiresAt,
+                    attempts: 0
+                };
+                
+                // Record this request
+                if (!otpStorage.requestHistory[email.toLowerCase()]) {
+                    otpStorage.requestHistory[email.toLowerCase()] = [];
+                }
+                otpStorage.requestHistory[email.toLowerCase()].push(Date.now());
+                
+                // Send email via Google Apps Script using GET to avoid CORS preflight
                 const params = new URLSearchParams({
                     action: 'sendOTP',
-                    email: email
+                    email: email,
+                    code: otpCode
                 });
                 
                 const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?' + params.toString(), {
@@ -3977,10 +4043,22 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 const responseText = await response.text();
                 const result = responseText ? JSON.parse(responseText) : { success: false, error: 'No response from server' };
                 
-                // Server handles all validation - just return the result
-                return result;
+                if (result.success) {
+                    console.log('OTP sent successfully to:', email);
+                    return { success: true };
+                } else {
+                    console.error('Failed to send OTP:', result.error);
+                    // Remove stored OTP if email failed
+                    delete otpStorage.codes[email.toLowerCase()];
+                    return {
+                        success: false,
+                        error: result.error || 'Failed to send OTP email. Please try again.'
+                    };
+                }
             } catch (error) {
                 console.error('Error sending OTP:', error);
+                // Remove stored OTP on error
+                delete otpStorage.codes[email.toLowerCase()];
                 return {
                     success: false,
                     error: 'Network error. Please check your connection and try again.'
@@ -3988,61 +4066,48 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             }
         }
         
-        // SERVER-SIDE OTP: Verify OTP with server and get session token
-        async function verifyOTP(email, code) {
-            try {
-                const params = new URLSearchParams({
-                    action: 'verifyOTP',
-                    email: email,
-                    code: code
-                });
-                
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?' + params.toString(), {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Response not OK: ' + response.status);
-                }
-                
-                const responseText = await response.text();
-                const result = responseText ? JSON.parse(responseText) : { success: false, error: 'No response from server' };
-                
-                return result;
-            } catch (error) {
-                console.error('Error verifying OTP:', error);
+        // Verify OTP code
+        function verifyOTP(email, code) {
+            const emailLower = email.toLowerCase();
+            const stored = otpStorage.codes[emailLower];
+            
+            if (!stored) {
                 return {
                     success: false,
-                    error: 'Network error. Please check your connection and try again.'
+                    error: 'No OTP code found. Please request a new code.'
                 };
             }
-        }
-        
-        // Validate session token with server
-        async function validateSessionWithServer(token) {
-            try {
-                const params = new URLSearchParams({
-                    action: 'validateSession',
-                    token: token
-                });
-                
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL + '?' + params.toString(), {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (!response.ok) {
-                    return { valid: false, error: 'Session validation failed' };
-                }
-                
-                const responseText = await response.text();
-                const result = responseText ? JSON.parse(responseText) : { valid: false, error: 'No response from server' };
-                
-                return result;
-            } catch (error) {
-                console.error('Error validating session:', error);
-                return { valid: false, error: 'Network error' };
+            
+            // Check expiration
+            if (Date.now() > stored.expires) {
+                delete otpStorage.codes[emailLower];
+                return {
+                    success: false,
+                    error: 'OTP code has expired. Please request a new code.'
+                };
+            }
+            
+            // Check attempts
+            stored.attempts++;
+            if (stored.attempts > OTP_CONFIG.maxAttempts) {
+                delete otpStorage.codes[emailLower];
+                return {
+                    success: false,
+                    error: 'Too many failed attempts. Please request a new code.'
+                };
+            }
+            
+            // Verify code
+            if (stored.code === code) {
+                // Success - clear OTP
+                delete otpStorage.codes[emailLower];
+                return { success: true };
+            } else {
+                const remainingAttempts = OTP_CONFIG.maxAttempts - stored.attempts;
+                return {
+                    success: false,
+                    error: `Invalid code. ${remainingAttempts} attempt(s) remaining.`
+                };
             }
         }
         
@@ -4172,28 +4237,17 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             submitBtn.textContent = 'Verifying...';
             
             try {
-                // Verify OTP with server (returns session token if successful)
-                const result = await verifyOTP(email, code);
+                const result = verifyOTP(email, code);
                 
-                if (result.success && result.sessionToken) {
-                    // Success - store SERVER-GENERATED session token
-                    const SESSION_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours
-                    const sessionData = {
-                        email: email,
-                        name: email.split('@')[0],
-                        token: result.sessionToken, // Server-generated token
-                        expires: Date.now() + SESSION_EXPIRATION_MS
-                    };
-                    localStorage.setItem('adminAuthSession', JSON.stringify(sessionData));
-                    
-                    // Also store in sessionStorage for backward compatibility
-                    sessionStorage.setItem('adminLoggedIn', 'true');
-                    sessionStorage.setItem('adminEmail', email);
-                    sessionStorage.setItem('adminName', email.split('@')[0]);
-                    
+                if (result.success) {
                     // Success - hide login overlay
                     const overlay = document.getElementById('loginOverlay');
                     overlay.style.display = 'none';
+                    
+                    // Store session info
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminEmail', email);
+                    sessionStorage.setItem('adminName', email.split('@')[0]);
                     
                     // Show success message briefly
                     const overlayContent = overlay.querySelector('.login-container');
@@ -4281,33 +4335,16 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             localStorage.removeItem('skipAuth');
             localStorage.removeItem('adminLoggedIn');
             
-            // Helper to get persistent session with SERVER VALIDATION
-            async function getAuthSession() {
+            // Helper to get persistent session (same as in index-sheets.html)
+            function getAuthSession() {
                 try {
                     const sessionData = localStorage.getItem('adminAuthSession');
                     if (!sessionData) return null;
                     
                     const session = JSON.parse(sessionData);
                     
-                    // Check if expired (client-side check first)
+                    // Check if expired (1 day)
                     if (Date.now() > session.expires) {
-                        localStorage.removeItem('adminAuthSession');
-                        return null;
-                    }
-                    
-                    // CRITICAL: Validate session token with server
-                    if (session.token) {
-                        const validation = await validateSessionWithServer(session.token);
-                        if (!validation.valid) {
-                            // Server says token is invalid - clear it
-                            localStorage.removeItem('adminAuthSession');
-                            sessionStorage.clear();
-                            return null;
-                        }
-                        // Server validated - update email from server response
-                        session.email = validation.email || session.email;
-                    } else {
-                        // Old session without token - invalidate it
                         localStorage.removeItem('adminAuthSession');
                         return null;
                     }
@@ -4319,18 +4356,18 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 }
             }
             
-            // Check for persistent session (SERVER-VALIDATED)
-            const session = await getAuthSession();
+            // Check for persistent session first (1 day expiration)
+            const session = getAuthSession();
             const persistentEmail = session ? session.email : null;
             const persistentLoggedIn = session !== null;
             
-            // Also check sessionStorage for backward compatibility (but server validation is primary)
+            // Also check sessionStorage for backward compatibility
             const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
             const sessionStorageEmail = sessionStorage.getItem('adminEmail');
             
-            // Use server-validated session only (no fallback to sessionStorage without token)
-            const isLoggedIn = persistentLoggedIn; // Server-validated only
-            const adminEmail = persistentEmail; // Server-validated only
+            // Use persistent session if available, otherwise fall back to sessionStorage
+            const isLoggedIn = persistentLoggedIn || (sessionStorageLoggedIn === 'true' && sessionStorageEmail);
+            const adminEmail = persistentEmail || sessionStorageEmail;
             
             // If logged in but no email (old session), force logout
             if ((sessionStorageLoggedIn === 'true' || persistentLoggedIn) && !adminEmail) {
@@ -4400,19 +4437,14 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         }
         
         // Run check immediately (in case DOM is already ready)
-        // Run checkAuthStatus (async function)
         if (document.readyState === 'loading') {
-            window.addEventListener('DOMContentLoaded', function() {
-                checkAuthStatus();
-            });
+            window.addEventListener('DOMContentLoaded', checkAuthStatus);
         } else {
             checkAuthStatus();
         }
         
         // Also run on full page load as backup
-        window.addEventListener('load', function() {
-            checkAuthStatus();
-        });
+        window.addEventListener('load', checkAuthStatus);
         
         // Test and diagnostic functions
         function testGoogleSignIn() {

@@ -11,32 +11,6 @@ const LISTINGS_SHEET_NAME = 'Nelson County';
 const CATEGORIES_SHEET_NAME = 'Categories';
 
 // -----------------------------------------------------------------------------
-// SERVER-SIDE AUTHENTICATION CONFIGURATION
-// -----------------------------------------------------------------------------
-
-// Authorized emails for admin access (SERVER-SIDE - cannot be bypassed)
-const AUTHORIZED_EMAILS = [
-  'ernest@oddplusevenstudio.com',
-  'ernest@oddpluseven.com',
-  'adam@oddpluseven.com',
-  'rj@oddpluseven.com',
-  'bniemeyer@nelsoncounty.org',
-  'makelley@nelsoncounty.org',
-  'esther@oddpluseven.com'
-];
-
-// OTP Configuration
-const OTP_CONFIG = {
-  expirationMinutes: 10,
-  maxAttempts: 5,
-  rateLimitRequests: 3,
-  rateLimitWindow: 15 * 60 * 1000 // 15 minutes
-};
-
-// Session Configuration
-const SESSION_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours
-
-// -----------------------------------------------------------------------------
 // ImageKit helpers
 // -----------------------------------------------------------------------------
 
@@ -111,215 +85,12 @@ function listSheetHeaders() {
 // Email OTP Authentication
 // -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// SERVER-SIDE OTP STORAGE AND VALIDATION
-// -----------------------------------------------------------------------------
-
-/**
- * Generate a cryptographically secure 6-digit OTP
- */
-function generateOTP() {
-  const min = 100000;
-  const max = 999999;
-  const randomBytes = Utilities.computeDigest(
-    Utilities.DigestAlgorithm.MD5,
-    Utilities.newBlob(Math.random().toString()).getBytes()
-  );
-  const randomNum = Math.abs(
-    (randomBytes[0] << 24) | (randomBytes[1] << 16) | (randomBytes[2] << 8) | randomBytes[3]
-  );
-  return (min + (randomNum % (max - min + 1))).toString();
-}
-
-/**
- * Store OTP server-side (in ScriptProperties for persistence)
- */
-function storeOTP(email, code) {
-  const emailKey = 'otp_' + email.toLowerCase();
-  const otpData = {
-    code: code,
-    expires: Date.now() + (OTP_CONFIG.expirationMinutes * 60 * 1000),
-    attempts: 0,
-    created: Date.now()
-  };
-  PropertiesService.getScriptProperties().setProperty(emailKey, JSON.stringify(otpData));
-  
-  // Also store in request history for rate limiting
-  const historyKey = 'otp_history_' + email.toLowerCase();
-  const history = JSON.parse(PropertiesService.getScriptProperties().getProperty(historyKey) || '[]');
-  history.push(Date.now());
-  // Keep only recent history (last hour)
-  const oneHourAgo = Date.now() - (60 * 60 * 1000);
-  const recentHistory = history.filter(function(timestamp) {
-    return timestamp > oneHourAgo;
-  });
-  PropertiesService.getScriptProperties().setProperty(historyKey, JSON.stringify(recentHistory));
-}
-
-/**
- * Verify OTP server-side
- */
-function verifyOTP(email, code) {
-  const emailKey = 'otp_' + email.toLowerCase();
-  const otpDataStr = PropertiesService.getScriptProperties().getProperty(emailKey);
-  
-  if (!otpDataStr) {
-    return {
-      success: false,
-      error: 'No OTP code found. Please request a new code.'
-    };
-  }
-  
-  const otpData = JSON.parse(otpDataStr);
-  
-  // Check expiration
-  if (Date.now() > otpData.expires) {
-    PropertiesService.getScriptProperties().deleteProperty(emailKey);
-    return {
-      success: false,
-      error: 'OTP code has expired. Please request a new code.'
-    };
-  }
-  
-  // Check attempts
-  otpData.attempts++;
-  if (otpData.attempts > OTP_CONFIG.maxAttempts) {
-    PropertiesService.getScriptProperties().deleteProperty(emailKey);
-    return {
-      success: false,
-      error: 'Too many failed attempts. Please request a new code.'
-    };
-  }
-  
-  // Verify code
-  if (otpData.code !== code) {
-    PropertiesService.getScriptProperties().setProperty(emailKey, JSON.stringify(otpData));
-    const remainingAttempts = OTP_CONFIG.maxAttempts - otpData.attempts;
-    return {
-      success: false,
-      error: 'Invalid code. ' + remainingAttempts + ' attempt(s) remaining.'
-    };
-  }
-  
-  // Success - delete OTP
-  PropertiesService.getScriptProperties().deleteProperty(emailKey);
-  return {
-    success: true
-  };
-}
-
-/**
- * Check rate limiting server-side
- */
-function checkRateLimit(email) {
-  const historyKey = 'otp_history_' + email.toLowerCase();
-  const history = JSON.parse(PropertiesService.getScriptProperties().getProperty(historyKey) || '[]');
-  const now = Date.now();
-  const recentRequests = history.filter(function(timestamp) {
-    return (now - timestamp) < OTP_CONFIG.rateLimitWindow;
-  });
-  
-  if (recentRequests.length >= OTP_CONFIG.rateLimitRequests) {
-    const oldestRequest = recentRequests[0];
-    const waitTime = Math.ceil((OTP_CONFIG.rateLimitWindow - (now - oldestRequest)) / 1000 / 60);
-    return {
-      allowed: false,
-      waitMinutes: waitTime
-    };
-  }
-  
-  return { allowed: true };
-}
-
-/**
- * Generate a secure session token
- */
-function generateSessionToken(email) {
-  const tokenData = {
-    email: email.toLowerCase(),
-    created: Date.now(),
-    expires: Date.now() + SESSION_EXPIRATION_MS,
-    random: Utilities.getUuid()
-  };
-  
-  // Create a secure token (base64 encoded JSON)
-  const tokenString = Utilities.base64Encode(JSON.stringify(tokenData));
-  return tokenString;
-}
-
-/**
- * Validate session token server-side
- */
-function validateSessionToken(token) {
-  try {
-    const tokenData = JSON.parse(Utilities.base64Decode(token));
-    
-    // Check expiration
-    if (Date.now() > tokenData.expires) {
-      return {
-        valid: false,
-        error: 'Session expired'
-      };
-    }
-    
-    // Check if email is authorized
-    if (!AUTHORIZED_EMAILS.includes(tokenData.email)) {
-      return {
-        valid: false,
-        error: 'Email not authorized'
-      };
-    }
-    
-    return {
-      valid: true,
-      email: tokenData.email
-    };
-  } catch (e) {
-    return {
-      valid: false,
-      error: 'Invalid session token'
-    };
-  }
-}
-
-/**
- * Store session token server-side (optional - for revocation)
- */
-function storeSessionToken(token, email) {
-  const tokenKey = 'session_' + email.toLowerCase();
-  PropertiesService.getScriptProperties().setProperty(tokenKey, token);
-}
-
 /**
  * Send OTP email for admin panel authentication
- * Now generates OTP server-side and stores it securely
+ * Called from: admin.js -> sendOTP()
  */
-function sendOTPEmail(email) {
+function sendOTPEmail(email, code) {
   try {
-    // Check if email is authorized
-    if (!AUTHORIZED_EMAILS.includes(email.toLowerCase())) {
-      return {
-        success: false,
-        error: 'This email is not authorized to access the admin panel.'
-      };
-    }
-    
-    // Check rate limiting
-    const rateLimit = checkRateLimit(email);
-    if (!rateLimit.allowed) {
-      return {
-        success: false,
-        error: 'Too many requests. Please wait ' + rateLimit.waitMinutes + ' minute(s) before requesting another code.'
-      };
-    }
-    
-    // Generate OTP server-side
-    const code = generateOTP();
-    
-    // Store OTP server-side
-    storeOTP(email, code);
-    
-    // Send email
     const subject = 'Nelson County Admin - Verification Code';
     const body = `
 Hello,
@@ -336,6 +107,8 @@ If you did not request this code, please ignore this email.
 Nelson County Admin Panel
     `.trim();
     
+    // Use MailApp - requires script.send_mail permission
+    // This will trigger authorization dialog on first run
     MailApp.sendEmail({
       to: email,
       subject: subject,
@@ -351,6 +124,7 @@ Nelson County Admin Panel
     const errorMsg = error.toString();
     Logger.log('Error sending OTP email: ' + errorMsg);
     
+    // Provide helpful error message for permission issues
     if (errorMsg.includes('permission') || errorMsg.includes('Required permissions')) {
       return {
         success: false,
@@ -421,24 +195,6 @@ function doGet(e) {
     // Handle OTP email sending via GET (to avoid CORS preflight)
     if (e && e.parameter && e.parameter.action === 'sendOTP') {
       const email = e.parameter.email;
-      if (!email) {
-        return ContentService
-          .createTextOutput(JSON.stringify({
-            success: false,
-            error: 'Missing email parameter'
-          }))
-          .setMimeType(ContentService.MimeType.JSON);
-      }
-      // Generate and send OTP server-side
-      const result = sendOTPEmail(email);
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    // Handle OTP verification via GET
-    if (e && e.parameter && e.parameter.action === 'verifyOTP') {
-      const email = e.parameter.email;
       const code = e.parameter.code;
       if (!email || !code) {
         return ContentService
@@ -448,33 +204,7 @@ function doGet(e) {
           }))
           .setMimeType(ContentService.MimeType.JSON);
       }
-      // Verify OTP server-side
-      const result = verifyOTP(email, code);
-      
-      // If successful, generate session token
-      if (result.success) {
-        const sessionToken = generateSessionToken(email);
-        storeSessionToken(sessionToken, email);
-        result.sessionToken = sessionToken;
-      }
-      
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    // Handle session validation via GET
-    if (e && e.parameter && e.parameter.action === 'validateSession') {
-      const token = e.parameter.token;
-      if (!token) {
-        return ContentService
-          .createTextOutput(JSON.stringify({
-            valid: false,
-            error: 'Missing session token'
-          }))
-          .setMimeType(ContentService.MimeType.JSON);
-      }
-      const result = validateSessionToken(token);
+      const result = sendOTPEmail(email, code);
       return ContentService
         .createTextOutput(JSON.stringify(result))
         .setMimeType(ContentService.MimeType.JSON);
@@ -646,49 +376,7 @@ function doPost(e) {
           .setMimeType(ContentService.MimeType.JSON);
       }
       
-      // Generate and send OTP server-side
-      const result = sendOTPEmail(data.email);
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    // Handle OTP verification (POST)
-    if (action === 'verifyOTP') {
-      if (!data.email || !data.code) {
-        return ContentService
-          .createTextOutput(JSON.stringify({
-            success: false,
-            error: 'Missing email or code'
-          }))
-          .setMimeType(ContentService.MimeType.JSON);
-      }
-      // Verify OTP server-side
-      const result = verifyOTP(data.email, data.code);
-      
-      // If successful, generate session token
-      if (result.success) {
-        const sessionToken = generateSessionToken(data.email);
-        storeSessionToken(sessionToken, data.email);
-        result.sessionToken = sessionToken;
-      }
-      
-      return ContentService
-        .createTextOutput(JSON.stringify(result))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-    
-    // Handle session validation (POST)
-    if (action === 'validateSession') {
-      if (!data.token) {
-        return ContentService
-          .createTextOutput(JSON.stringify({
-            valid: false,
-            error: 'Missing session token'
-          }))
-          .setMimeType(ContentService.MimeType.JSON);
-      }
-      const result = validateSessionToken(data.token);
+      const result = sendOTPEmail(data.email, data.code);
       return ContentService
         .createTextOutput(JSON.stringify(result))
         .setMimeType(ContentService.MimeType.JSON);

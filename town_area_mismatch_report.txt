@@ -1,0 +1,452 @@
+====================================================================================================
+TOWN/AREA MISMATCH ANALYSIS REPORT
+====================================================================================================
+
+Total listings analyzed: 390
+Found 78 potential mismatches
+
+====================================================================================================
+
+MOST CRITICAL: Address shows different town than tagged area
+
+====================================================================================================
+
+Found 39 listings where ADDRESS town differs from tagged area:
+
+1. ID: 9 | Corner Market
+   ❌ Tagged Area: 'Schuyler'
+   ✅ Address Town: 'Shipman'
+   📍 Address: 11309 James River Road, Shipman, VA 22971
+   📝 Also mentions in text: Shipman
+
+2. ID: 18 | Williams Grocery
+   ❌ Tagged Area: 'Schuyler'
+   ✅ Address Town: 'Shipman'
+   📍 Address: 439 Williamstown Road, Shipman, VA 22971
+   📝 Also mentions in text: Shipman
+
+3. ID: 26 | Coquito Kitchen
+   ❌ Tagged Area: 'Nellysford'
+   ✅ Address Town: 'Afton'
+   📍 Address: 190 Rockfish School Lane, Afton, VA 22920
+   📝 Also mentions in text: Afton, Rockfish
+
+4. ID: 29 | Fire & Frost Wood Fired Bakehouse
+   ❌ Tagged Area: 'Nellysford'
+   ✅ Address Town: 'Roseland'
+   📍 Address: 121 Blue Ridge Drive, Roseland, VA 22967
+   📝 Also mentions in text: Roseland, Wintergreen, Wintergreen Resort
+
+5. ID: 57 | Appalachian Trail from Rt 56 to Harpers Creek
+   ❌ Tagged Area: 'Tyro'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson, Tye River
+
+6. ID: 58 | Blackrock Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+7. ID: 61 | Cedar Ciffs North Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+8. ID: 64 | Devils Knob Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+9. ID: 73 | Lower Shamokin Falls Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+10. ID: 74 | Mau-Har Trail
+   ❌ Tagged Area: 'Tyro'
+   ✅ Address Town: 'Roseland'
+   📍 Address: Blue Ridge Parkway Milepost 13.7, Roseland, VA 22967
+   📝 Also mentions in text: Roseland
+
+11. ID: 78 | Old Appalachian Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+12. ID: 80 | Pedlars Edge Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+13. ID: 84 | The Plunge
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+14. ID: 87 | Upper Shamokin Gorge Trail
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+15. ID: 90 | Three Ridges
+   ❌ Tagged Area: 'Tyro'
+   ✅ Address Town: 'Roseland'
+   📍 Address: Reeds Gap Trailhead, Route 664, Roseland, VA 22967
+   📝 Also mentions in text: Roseland, Wintergreen
+
+16. ID: 91 | Stoney Creek Park
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: Stoney Creek West Drive, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford
+
+17. ID: 96 | Oak Ridge Loop
+   ❌ Tagged Area: 'Nelson County'
+   ✅ Address Town: 'Arrington'
+   📍 Address: 1010 Oak Ridge Road, Arrington, VA 22922
+   📝 Also mentions in text: Arrington, Oak Ridge, Rockfish
+
+18. ID: 97 | Woodson's Mill Loop
+   ❌ Tagged Area: 'Nelson County'
+   ✅ Address Town: 'Roseland'
+   📍 Address: 3211 Lowesville Road, Roseland, VA 22967
+   📝 Also mentions in text: Massies Mill, Nelson, Roseland, Woodson
+
+19. ID: 98 | Walton's Mountain Museum Loop
+   ❌ Tagged Area: 'Nelson County'
+   ✅ Address Town: 'Schuyler'
+   📍 Address: 6484 Rockfish River Road, Schuyler, VA 22969
+   📝 Also mentions in text: Rockfish, Schuyler
+
+20. ID: 100 | Nelson Scenic Loop
+   ❌ Tagged Area: 'Tyro'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: Route 151 & Route 664 Junction, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford, Nelson
+
+21. ID: 118 | Swimming
+   ❌ Tagged Area: 'Montebello'
+   ✅ Address Town: 'Wintergreen'
+   📍 Address: Wintergreen Aquatics & Fitness Center, 39 Mountain Inn Loop, Wintergreen, VA 22967
+   📝 Also mentions in text: Nelson, Rockfish, Wintergreen, Wintergreen Resort
+
+22. ID: 140 | HeartRock Retreat & Homestead
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Schuyler'
+   📍 Address: 2808 Glad Road, Schuyler, VA 22969
+   📝 Also mentions in text: Nelson, Schuyler
+
+23. ID: 149 | Silver Creek and Seamans' Orchards
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Tyro'
+   📍 Address: 5529 Crabtree Falls Highway, Tyro, VA 22976
+   📝 Also mentions in text: Tyro
+
+24. ID: 157 | Appalachian Horse Adventures
+   ❌ Tagged Area: 'Nelson County'
+   ✅ Address Town: 'Montebello'
+   📍 Address: 396 Fork Mountain Lane, Montebello, VA 24464
+   📝 Also mentions in text: Montebello, Tye River
+
+25. ID: 169 | Indian Summer Guide Service
+   ❌ Tagged Area: 'Nelson County'
+   ✅ Address Town: 'Afton'
+   📍 Address: 151 Veritas Lane, Afton, VA 22920
+   📝 Also mentions in text: Afton
+
+26. ID: 181 | Piedmont Grove Lodging
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: 76 Rodes Farm Drive, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford
+
+27. ID: 182 | Beech Grove Farmhouse
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Afton'
+   📍 Address: 9519 Critzers Shop Road, Afton, VA 22920
+   📝 Also mentions in text: Afton, Beech Grove
+
+28. ID: 184 | Blue Ridge Bliss
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Wintergreen'
+   📍 Address: 46 Ledges Lane, Wintergreen, VA 22958
+   📝 Also mentions in text: Nelson, Wintergreen
+
+29. ID: 213 | Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+   ❌ Tagged Area: 'Faber'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 2131 Stagebridge Road, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+30. ID: 248 | Mountain Dreams Condo
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: Wintergreen Resort, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford, Rockfish, Wintergreen, Wintergreen Resort
+
+31. ID: 256 | Fenton Inn
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: 29 Shelton Laurel Trail, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford
+
+32. ID: 262 | Rock-n-Creek Cabin
+   ❌ Tagged Area: 'Montebello'
+   ✅ Address Town: 'Roseland'
+   📍 Address: 2307 Whetstone Ridge Road, Roseland, VA 22967
+   📝 Also mentions in text: Roseland
+
+33. ID: 268 | Open Heart Inn
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Afton'
+   📍 Address: 9731 Rockfish Valley Highway, Afton, VA 22920
+   📝 Also mentions in text: Afton, Rockfish
+
+34. ID: 273 | Deep Sea Pete's Creekside Farm
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Lovingston'
+   📍 Address: 1219 Perry Lane, Lovingston, VA 22949
+   📝 Also mentions in text: Lovingston, Nelson
+
+35. ID: 274 | Basecamp 151
+   ❌ Tagged Area: 'Afton'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: 2904 Rockfish Valley Highway, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford, Rockfish
+
+36. ID: 379 | Altitude Adjustment
+   ❌ Tagged Area: 'Nellysford'
+   ✅ Address Town: 'Roseland'
+   📍 Address: Wintergreen Resort, Roseland, VA 22967
+   📝 Also mentions in text: Roseland, Wintergreen, Wintergreen Resort
+
+37. ID: 384 | Three Trees Farm
+   ❌ Tagged Area: 'Nelson 29'
+   ✅ Address Town: 'Arrington'
+   📍 Address: Walkers Mountain, Arrington, VA
+   📝 Also mentions in text: Arrington, Nelson
+
+38. ID: 388 | Everett Estate
+   ❌ Tagged Area: 'Wintergreen'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: 56 Rodes Farm Drive, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford
+
+39. ID: 389 | Don Lupe Mexican Restaurant
+   ❌ Tagged Area: 'Roseland'
+   ✅ Address Town: 'Nellysford'
+   📍 Address: 2815 Rockfish Valley Highway, Nellysford, VA 22958
+   📝 Also mentions in text: Nellysford, Rockfish
+
+
+====================================================================================================
+
+OTHER MISMATCHES: Text mentions different town(s) than tagged area
+
+====================================================================================================
+
+Found 39 additional listings with text/area mismatches:
+
+1. ID: 95 | Blue Ridge Parkway Loops
+   Tagged Area: 'Nelson County'
+   Towns in text: Afton
+   Address: Milepost 16, Blue Ridge Parkway, Love, VA 22952
+
+2. ID: 101 | Tye River
+   Tagged Area: 'Tyro'
+   Towns in text: Piney River, Tye River
+   Address: Tye River Main Access 2724 Patrick Henry Highway Piney River VA 22964
+
+3. ID: 107 | Fishing the Little Piney River
+   Tagged Area: 'Lowesville'
+   Towns in text: Piney River, Woodson
+   Address: 162 Woodson Road, Lowesville, VA 22967
+
+4. ID: 163 | Brew Ridge Trail
+   Tagged Area: 'Nelson County'
+   Towns in text: Nelson
+   Address: Route 151 Craft Beverage Corridor, Nelson County, VA 22958
+
+5. ID: 173 | Sentosa Cabin
+   Tagged Area: 'Schuyler'
+   Towns in text: Nellysford, Rockfish
+   Address: Nellysford, VA 22958
+
+6. ID: 174 | Roudy's Retreat
+   Tagged Area: 'Montebello'
+   Towns in text: Nelson, Roseland
+   Address: Roseland, VA 22967
+
+7. ID: 180 | Cozy Mountain Cottage
+   Tagged Area: 'Nellysford'
+   Towns in text: Roseland, Wintergreen, Wintergreen Resort
+   Address: Roseland, VA 22967
+
+8. ID: 183 | Straw Bale House
+   Tagged Area: 'Afton'
+   Towns in text: Nellysford
+   Address: Nellysford, VA 22958
+
+9. ID: 193 | Gracewood
+   Tagged Area: 'Afton'
+   Towns in text: Nellysford
+   Address: Nellysford, VA 22958
+
+10. ID: 194 | The Chimneys
+   Tagged Area: 'Montebello'
+   Towns in text: Nelson, Roseland
+   Address: Roseland, VA 22967
+
+11. ID: 201 | Carter's Cottage
+   Tagged Area: 'Afton'
+   Towns in text: Nellysford
+   Address: Nellysford, VA 22958
+
+12. ID: 208 | Meili Mountain
+   Tagged Area: 'Nelson County'
+   Towns in text: Nelson
+   Address: Nelson County, VA
+
+13. ID: 221 | The Castor Cabin
+   Tagged Area: 'Wintergreen'
+   Towns in text: Nelson, Roseland
+   Address: Roseland, VA 22967
+
+14. ID: 222 | Rocky Run Landing
+   Tagged Area: 'Arrington'
+   Towns in text: Tye River, Tyro
+   Address: Tyro, VA 22976
+
+15. ID: 228 | Ethan's Den
+   Tagged Area: 'Wintergreen'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+16. ID: 231 | Three Sisters Pre-Civil War Log Cabin
+   Tagged Area: 'Montebello'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+17. ID: 233 | Grace's Place Petite Retreats
+   Tagged Area: 'Roseland'
+   Towns in text: Wintergreen
+   Address: Wintergreen, VA 22958
+
+18. ID: 234 | Cottage on the Trail
+   Tagged Area: 'Afton'
+   Towns in text: Nellysford, Rockfish
+   Address: Nellysford, VA 22958
+
+19. ID: 260 | Three Springs Myndus
+   Tagged Area: 'Lovingston'
+   Towns in text: Arrington, Nelson
+   Address: Arrington, VA 22922
+
+20. ID: 265 | Avon Hill
+   Tagged Area: 'Howardsville'
+   Towns in text: Rockfish
+   Address: 289 Avon Road, Howardsville, VA 24562
+
+21. ID: 280 | Bear Tracks Cottage
+   Tagged Area: 'Nellysford'
+   Towns in text: Nelson, Roseland
+   Address: Roseland, VA 22967
+
+22. ID: 284 | Peaktime
+   Tagged Area: 'Roseland'
+   Towns in text: Afton, Nelson, Wintergreen
+   Address: Afton, VA 22920
+
+23. ID: 285 | Hawthorne
+   Tagged Area: 'Nellysford'
+   Towns in text: Afton
+   Address: Afton, VA 22920
+
+24. ID: 287 | Tupelo
+   Tagged Area: 'Roseland'
+   Towns in text: Nellysford, Wintergreen
+   Address: Nellysford, VA 22958
+
+25. ID: 290 | The Wooder House
+   Tagged Area: 'Nellysford'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+26. ID: 291 | The Ash House at Holland Hill
+   Tagged Area: 'Faber'
+   Towns in text: Nellysford
+   Address: Nellysford, VA 22958
+
+27. ID: 305 | Parrs Camp, Mountain Hollow
+   Tagged Area: 'Wintergreen'
+   Towns in text: Tye River, Tyro
+   Address: Tyro, VA 22976
+
+28. ID: 306 | Parr's Camp
+   Tagged Area: 'Wintergreen'
+   Towns in text: Tyro
+   Address: Tyro, VA 22976
+
+29. ID: 311 | Art & Soul Main House
+   Tagged Area: 'Wintergreen'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+30. ID: 313 | Berry Hill Lake
+   Tagged Area: 'Nellysford'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+31. ID: 320 | Boho Cliff House Retreat
+   Tagged Area: 'Wintergreen'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+32. ID: 333 | Tyebello Cabins
+   Tagged Area: 'Montebello'
+   Towns in text: Tyro
+   Address: Tyro, VA 22976
+
+33. ID: 337 | Mountain Home in Nelson County
+   Tagged Area: 'Faber'
+   Towns in text: Nelson, Wintergreen
+   Address: North Garden, VA 22959
+
+34. ID: 338 | Spy Run Hideaway
+   Tagged Area: 'Wintergreen'
+   Towns in text: Roseland
+   Address: Roseland, VA 22967
+
+35. ID: 344 | Rockfish Cabin
+   Tagged Area: 'Faber'
+   Towns in text: Afton, Rockfish
+   Address: Afton, VA 22920
+
+36. ID: 359 | Nectar Landing
+   Tagged Area: 'Roseland'
+   Towns in text: Nellysford
+   Address: Nellysford, VA 22958
+
+37. ID: 361 | Woodland Hideaway
+   Tagged Area: 'Shipman'
+   Towns in text: Afton
+   Address: Afton, VA 22920
+
+38. ID: 364 | The Treetops Lodge
+   Tagged Area: 'Lovingston'
+   Towns in text: Afton, Nelson
+   Address: Afton, VA 22920
+
+39. ID: 377 | Country Cottage
+   Tagged Area: 'Faber'
+   Towns in text: Afton, Nelson
+   Address: Afton, VA 22920
