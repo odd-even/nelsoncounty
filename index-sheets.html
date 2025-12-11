@@ -6431,6 +6431,14 @@ function updateUnsavedChangesBadge() {
                     console.log('Address autocomplete initialized successfully');
                 } catch (error) {
                     console.error('Error initializing address autocomplete:', error);
+                    // Check for specific Google Maps API errors
+                    if (error.message && (error.message.includes('This page can\'t load Google Maps correctly') || 
+                        error.message.includes('cannot load') || 
+                        error.message.includes('do you own this page'))) {
+                        console.warn('⚠️ Google Places API not enabled or API key has restrictions.');
+                        console.warn('To fix: Go to https://console.cloud.google.com/apis/library and enable "Places API"');
+                        console.warn('Then check API key restrictions at https://console.cloud.google.com/apis/credentials');
+                    }
                 }
             } else {
                 // API not loaded yet - retry after a short delay
