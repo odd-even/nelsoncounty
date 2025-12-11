@@ -5775,6 +5775,10 @@ function updateUnsavedChangesBadge() {
             setTimeout(function() {
                 initImageUploadButtons();
             }, 100);
+            // Initialize address autocomplete after modal is shown
+            setTimeout(function() {
+                initializeAddressAutocomplete();
+            }, 100);
         }
         
         function editListing(id) {
@@ -5899,6 +5903,10 @@ function updateUnsavedChangesBadge() {
             // Re-initialize image upload buttons after modal is shown
             setTimeout(function() {
                 initImageUploadButtons();
+            }, 100);
+            // Initialize address autocomplete after modal is shown
+            setTimeout(function() {
+                initializeAddressAutocomplete();
             }, 100);
         }
         
@@ -6369,40 +6377,73 @@ function updateUnsavedChangesBadge() {
         
         // Initialize Google Places Autocomplete for address field
         let autocomplete = null;
+        let addressInputHandlersInitialized = false;
         
         // Function to initialize Places Autocomplete (called when Google Maps API loads)
         window.initMap = function() {
+            // Just mark that API is ready - actual initialization happens when modal opens
+            console.log('Google Maps API loaded and ready');
+        };
+        
+        // Function to initialize autocomplete when modal opens
+        window.initializeAddressAutocomplete = function initializeAddressAutocomplete() {
             const addressInput = document.getElementById('listingAddress');
             const directionsLinkInput = document.getElementById('listingDirectionsLink');
             
-            if (addressInput && typeof google !== 'undefined' && google.maps && google.maps.places) {
+            if (!addressInput) {
+                console.warn('Address input not found');
+                return;
+            }
+            
+            // If Google Maps API is loaded, use autocomplete
+            if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+                // Clean up existing autocomplete if it exists
+                if (autocomplete) {
+                    google.maps.event.clearInstanceListeners(autocomplete);
+                    autocomplete = null;
+                }
+                
                 // Initialize Autocomplete with optimizations
-                // Note: The classic Autocomplete widget handles session tokens automatically
-                autocomplete = new google.maps.places.Autocomplete(addressInput, {
-                    fields: ['formatted_address', 'address_components', 'geometry', 'place_id'],
-                    types: ['address'], // Restrict to addresses only
-                    componentRestrictions: { country: 'us' } // Restrict to US addresses
-                });
-                
-                // When user selects an address from autocomplete
-                autocomplete.addListener('place_changed', function() {
-                    const place = autocomplete.getPlace();
+                try {
+                    autocomplete = new google.maps.places.Autocomplete(addressInput, {
+                        fields: ['formatted_address', 'address_components', 'geometry', 'place_id'],
+                        types: ['address'], // Restrict to addresses only
+                        componentRestrictions: { country: 'us' } // Restrict to US addresses
+                    });
                     
-                    if (place && place.formatted_address) {
-                        // Set the formatted address
-                        addressInput.value = place.formatted_address;
+                    // When user selects an address from autocomplete
+                    autocomplete.addListener('place_changed', function() {
+                        const place = autocomplete.getPlace();
                         
-                        // Auto-populate directions link if empty
-                        if (directionsLinkInput && !directionsLinkInput.value.trim()) {
-                            const encodedAddress = encodeURIComponent(place.formatted_address);
-                            const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                            directionsLinkInput.value = googleMapsUrl;
+                        if (place && place.formatted_address) {
+                            // Set the formatted address
+                            addressInput.value = place.formatted_address;
+                            
+                            // Auto-populate directions link if empty
+                            if (directionsLinkInput && !directionsLinkInput.value.trim()) {
+                                const encodedAddress = encodeURIComponent(place.formatted_address);
+                                const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+                                directionsLinkInput.value = googleMapsUrl;
+                            }
                         }
-                    }
-                });
-                
-                // Also handle manual typing (for directions link auto-population)
+                    });
+                    
+                    console.log('Address autocomplete initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing address autocomplete:', error);
+                }
+            } else {
+                // API not loaded yet - retry after a short delay
+                console.log('Google Maps API not ready yet, retrying in 500ms...');
+                setTimeout(function() {
+                    window.initializeAddressAutocomplete();
+                }, 500);
+            }
+            
+            // Set up directions link auto-population (works with or without autocomplete)
+            if (!addressInputHandlersInitialized && directionsLinkInput) {
                 let debounceTimer;
+                
                 addressInput.addEventListener('input', function() {
                     const address = this.value.trim();
                     
@@ -6428,31 +6469,12 @@ function updateUnsavedChangesBadge() {
                         directionsLinkInput.value = googleMapsUrl;
                     }
                 });
-            } else if (addressInput && directionsLinkInput) {
-                // Fallback: If Google Maps API isn't loaded, use simple address input
-                addressInput.addEventListener('input', function() {
-                    const address = this.value.trim();
-                    if (address) {
-                        const encodedAddress = encodeURIComponent(address);
-                        const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                        if (!directionsLinkInput.value.trim()) {
-                            directionsLinkInput.value = googleMapsUrl;
-                        }
-                    }
-                });
                 
-                addressInput.addEventListener('blur', function() {
-                    const address = this.value.trim();
-                    if (address && !directionsLinkInput.value.trim()) {
-                        const encodedAddress = encodeURIComponent(address);
-                        const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                        directionsLinkInput.value = googleMapsUrl;
-                    }
-                });
+                addressInputHandlersInitialized = true;
             }
-        };
+        }
         
-        // If Google Maps API is already loaded, initialize immediately
+        // If Google Maps API is already loaded, mark it as ready
         if (typeof google !== 'undefined' && google.maps && google.maps.places) {
             window.initMap();
         }
