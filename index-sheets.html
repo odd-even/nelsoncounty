@@ -1356,15 +1356,8 @@
             // Also try on load
             window.addEventListener('load', showLoginOverlay);
             
-            // Continuously enforce (in case something tries to hide it)
-            setInterval(function() {
-                const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-                const adminEmail = sessionStorage.getItem('adminEmail');
-                if (!isLoggedIn || !adminEmail) {
-                    showLoginOverlay();
-                    document.body.classList.remove('logged-in');
-                }
-            }, 100);
+            // REMOVED: Old continuous enforcement - replaced by new server-validated monitoring below
+            // This old code was checking sessionStorage every 100ms and interfering with new auth system
         })();
     </script>
     
@@ -2298,35 +2291,91 @@
             // Continuous monitoring to prevent bypass (with server validation)
             setInterval(async function() {
                 if (ENABLE_EMAIL_OTP) {
-                    // Validate session with server periodically
-                    const session = await getAuthSession();
-                    const isLoggedIn = session !== null;
-                    const adminEmail = session ? session.email : null;
                     const overlay = document.getElementById('loginOverlay');
                     
-                    // Check if properly authenticated (server-validated)
+                    // Check multiple sources for session (with fallbacks)
+                    let isLoggedIn = false;
+                    let adminEmail = null;
+                    
+                    // 1. Try server-validated session first
+                    try {
+                        const session = await getAuthSession();
+                        if (session) {
+                            isLoggedIn = true;
+                            adminEmail = session.email;
+                        }
+                    } catch (e) {
+                        console.warn('Session validation error in monitoring:', e);
+                    }
+                    
+                    // 2. Fallback to sessionStorage if server validation failed
+                    if (!isLoggedIn) {
+                        const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                        const sessionStorageEmail = sessionStorage.getItem('adminEmail');
+                        if (sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
+                            console.log('⚠️ Monitoring: Using sessionStorage fallback');
+                            isLoggedIn = true;
+                            adminEmail = sessionStorageEmail;
+                        }
+                    }
+                    
+                    // 3. Fallback to localStorage session token if both above failed
+                    if (!isLoggedIn) {
+                        try {
+                            const sessionData = localStorage.getItem('adminAuthSession');
+                            if (sessionData) {
+                                const parsedSession = JSON.parse(sessionData);
+                                if (parsedSession.token && parsedSession.email && Date.now() < parsedSession.expires) {
+                                    console.log('⚠️ Monitoring: Using localStorage session token fallback');
+                                    isLoggedIn = true;
+                                    adminEmail = parsedSession.email;
+                                }
+                            }
+                        } catch (e) {
+                            // Ignore parse errors
+                        }
+                    }
+                    
+                    // Check if properly authenticated
                     const isValidAuth = isLoggedIn && 
                                        adminEmail && 
                                        AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase());
                     
                     // If valid, ensure overlay is hidden and logged-in class is set
-                    if (isValidAuth && overlay) {
-                        overlay.style.display = 'none';
+                    if (isValidAuth) {
+                        if (overlay) {
+                            overlay.style.display = 'none';
+                            overlay.setAttribute('style', 'display: none !important;');
+                        }
                         document.body.classList.add('logged-in');
-                    }
-                    
-                    if (!isValidAuth) {
-                        // Not properly authenticated - enforce login
-                        clearAuthSession();
-                        if (overlay) overlay.style.display = 'flex';
-                        document.body.classList.remove('logged-in');
-                        // Hide all admin content
-                        const header = document.querySelector('.header');
-                        const tabs = document.querySelector('.tabs');
-                        const tabContent = document.querySelectorAll('.tab-content');
-                        if (header) header.style.display = 'none';
-                        if (tabs) tabs.style.display = 'none';
-                        tabContent.forEach(function(tab) { tab.style.display = 'none'; });
+                        // Don't clear session - it's valid!
+                    } else {
+                        // Only show overlay if we're absolutely sure there's no valid session
+                        // Don't clear session on network errors - might still be valid
+                        const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                        const sessionData = localStorage.getItem('adminAuthSession');
+                        
+                        if (!sessionStorageLoggedIn && !sessionData) {
+                            // No session anywhere - show login
+                            console.log('⚠️ Monitoring: No session found anywhere - showing login');
+                            if (overlay) overlay.style.display = 'flex';
+                            document.body.classList.remove('logged-in');
+                            // Hide all admin content
+                            const header = document.querySelector('.header');
+                            const tabs = document.querySelector('.tabs');
+                            const tabContent = document.querySelectorAll('.tab-content');
+                            if (header) header.style.display = 'none';
+                            if (tabs) tabs.style.display = 'none';
+                            tabContent.forEach(function(tab) { tab.style.display = 'none'; });
+                        } else {
+                            // Session might exist but validation failed - keep overlay hidden
+                            console.log('⚠️ Monitoring: Session might exist but validation failed - keeping overlay hidden');
+                            if (overlay) {
+                                overlay.style.display = 'none';
+                                overlay.setAttribute('style', 'display: none !important;');
+                            }
+                            document.body.classList.add('logged-in');
+                        }
                     }
                 }
             }, 5000); // Check every 5 seconds (less frequent to reduce server load)
