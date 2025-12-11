@@ -1322,6 +1322,24 @@
     
     <!-- Authentication is handled by admin.js -->
     <!-- ENABLE_EMAIL_OTP setting in admin.js controls authentication -->
+    <script>
+        // Immediate check: Ensure login overlay is visible and clear stale auth state
+        // This runs before admin.js loads to prevent any bypass
+        (function() {
+            // Clear any stale localStorage auth flags
+            localStorage.removeItem('skipAuth');
+            localStorage.removeItem('adminLoggedIn');
+            
+            // Ensure body doesn't have logged-in class
+            document.body.classList.remove('logged-in');
+            
+            // Ensure login overlay is visible
+            const overlay = document.getElementById('loginOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        })();
+    </script>
     
     <!-- Critical CSS for login page and initial UI -->
     <style>
@@ -10645,6 +10663,9 @@ function updateUnsavedChangesBadge() {
     
     <!-- Flip Overlay -->
     <div id="flipOverlay"></div>
+
+    <!-- Load admin.js for authentication and admin functionality -->
+    <script src="admin.js"></script>
 
 </body>
 </html>
