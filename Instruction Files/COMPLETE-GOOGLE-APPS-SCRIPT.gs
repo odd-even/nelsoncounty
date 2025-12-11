@@ -146,6 +146,24 @@ function doOptions(e) {
 
 function doGet(e) {
   try {
+    // Handle OTP email sending via GET (to avoid CORS preflight)
+    if (e && e.parameter && e.parameter.action === 'sendOTP') {
+      const email = e.parameter.email;
+      const code = e.parameter.code;
+      if (!email || !code) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Missing email or code parameter'
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      const result = sendOTPEmail(email, code);
+      return ContentService
+        .createTextOutput(JSON.stringify(result))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
     // Handle ImageKit upload params
     if (e && e.parameter && e.parameter.action === 'getImageKitUploadParams') {
       return ContentService

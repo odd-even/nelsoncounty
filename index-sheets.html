@@ -1667,12 +1667,38 @@
                         otpStorage.requestHistory[email.toLowerCase()] = [];
                     }
                     otpStorage.requestHistory[email.toLowerCase()].push(Date.now());
-                    const response = await fetch(getGoogleAppsScriptURL(), {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'sendOTP', email: email, code: otpCode })
+                    // Use GET request to avoid CORS preflight issues
+                    // GET requests don't trigger OPTIONS preflight
+                    const scriptUrl = getGoogleAppsScriptURL();
+                    const params = new URLSearchParams({
+                        action: 'sendOTP',
+                        email: email,
+                        code: otpCode
                     });
-                    const result = await response.json();
+                    
+                    let response;
+                    let result;
+                    
+                    try {
+                        // Use GET to avoid CORS preflight
+                        response = await fetch(scriptUrl + '?' + params.toString(), {
+                            method: 'GET',
+                            mode: 'cors'
+                        });
+                        
+                        if (!response.ok) {
+                            throw new Error('Response not OK: ' + response.status);
+                        }
+                        
+                        const responseText = await response.text();
+                        result = responseText ? JSON.parse(responseText) : { success: false, error: 'No response from server' };
+                    } catch (fetchError) {
+                        console.error('Fetch error:', fetchError);
+                        result = { 
+                            success: false, 
+                            error: 'Unable to connect to email service. Please check your Google Apps Script is deployed and accessible.' 
+                        };
+                    }
                     if (result.success) {
                         return { success: true };
                     } else {
