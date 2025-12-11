@@ -107,27 +107,73 @@ If you did not request this code, please ignore this email.
 Nelson County Admin Panel
     `.trim();
     
-    // Send email using Gmail service
-    GmailApp.sendEmail(
-      email,
-      subject,
-      body,
-      {
-        name: 'Nelson County Admin Panel',
-        noReply: true
-      }
-    );
+    // Use MailApp - requires script.send_mail permission
+    // This will trigger authorization dialog on first run
+    MailApp.sendEmail({
+      to: email,
+      subject: subject,
+      body: body,
+      name: 'Nelson County Admin Panel'
+    });
     
     Logger.log('OTP email sent to: ' + email);
     return {
       success: true
     };
   } catch (error) {
-    Logger.log('Error sending OTP email: ' + error.toString());
+    const errorMsg = error.toString();
+    Logger.log('Error sending OTP email: ' + errorMsg);
+    
+    // Provide helpful error message for permission issues
+    if (errorMsg.includes('permission') || errorMsg.includes('Required permissions')) {
+      return {
+        success: false,
+        error: 'Email permission not authorized. Please run the testAuthorizeEmail() function in the Apps Script editor to authorize email sending.'
+      };
+    }
+    
     return {
       success: false,
-      error: error.toString()
+      error: errorMsg
     };
+  }
+}
+
+/**
+ * TEST FUNCTION: Run this to authorize email sending permissions
+ * 
+ * INSTRUCTIONS:
+ * 1. In Google Apps Script editor, select this function from the dropdown
+ * 2. Click the "Run" button (▶️)
+ * 3. You'll see an "Authorization required" dialog
+ * 4. Click "Review permissions"
+ * 5. Select your Google account
+ * 6. Click "Advanced" → "Go to [Your Project Name] (unsafe)"
+ * 7. Click "Allow"
+ * 8. The test email should be sent successfully
+ * 
+ * After authorization, the sendOTPEmail function will work.
+ */
+function testAuthorizeEmail() {
+  try {
+    // Try to send a test email to yourself
+    const testEmail = Session.getActiveUser().getEmail();
+    const testSubject = 'Nelson County Admin - Email Authorization Test';
+    const testBody = 'This is a test email to verify email sending permissions are working correctly.';
+    
+    MailApp.sendEmail({
+      to: testEmail,
+      subject: testSubject,
+      body: testBody,
+      name: 'Nelson County Admin Panel'
+    });
+    
+    Logger.log('✅ Test email sent successfully to: ' + testEmail);
+    Logger.log('✅ Email permissions are authorized!');
+    return 'SUCCESS: Test email sent to ' + testEmail;
+  } catch (error) {
+    Logger.log('❌ Error: ' + error.toString());
+    throw error; // Re-throw to trigger authorization dialog
   }
 }
 

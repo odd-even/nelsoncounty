@@ -67,6 +67,34 @@ Nelson County Admin Panel
 }
 ```
 
+### Step 1.5: ⚠️ AUTHORIZE EMAIL PERMISSIONS (REQUIRED)
+
+**This is critical!** The script needs permission to send emails. Follow these steps:
+
+1. **In your Google Apps Script editor:**
+   - Look for the function dropdown at the top (it should say "Select function")
+   - Select `testAuthorizeEmail` from the dropdown
+   - Click the **Run** button (▶️ play icon)
+
+2. **Authorization dialog will appear:**
+   - Click **"Review permissions"**
+   - Select your Google account
+   - You may see a warning: **"Google hasn't verified this app"**
+   - Click **"Advanced"** → **"Go to [Your Project Name] (unsafe)"**
+   - Click **"Allow"**
+
+3. **Verify it worked:**
+   - Check your email inbox - you should receive a test email
+   - Check the Apps Script execution log (View → Execution log)
+   - You should see: `✅ Test email sent successfully`
+
+4. **If you get an error:**
+   - Make sure you're running `testAuthorizeEmail` (not `sendOTPEmail`)
+   - The authorization dialog must be completed
+   - Try running it again if it fails the first time
+
+**Once authorized, the `sendOTPEmail` function will work automatically!**
+
 3. **Update your doPost function**
    - Find your existing `doPost` function
    - Add this case to handle OTP requests:
@@ -230,8 +258,9 @@ const ENABLE_EMAIL_OTP = false; // 👈 Disable authentication
 ## ✅ Checklist
 
 - [ ] Added `sendOTPEmail()` function to Apps Script
+- [ ] **Ran `testAuthorizeEmail()` to authorize email permissions** ⚠️ REQUIRED
 - [ ] Updated `doPost()` to handle `sendOTP` action
-- [ ] Authorized Gmail permissions
+- [ ] Updated `doGet()` to handle `sendOTP` action (for GET requests)
 - [ ] Added authorized emails to `AUTHORIZED_EMAILS` array
 - [ ] Tested email delivery
 - [ ] Tested OTP verification
