@@ -3924,6 +3924,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         // and fetch it via an API call instead of storing it in the client code.
         const AUTHORIZED_EMAILS = [
             'ernest@oddplusevenstudio.com',
+            'ernest@oddpluseven.com',
             // Add more authorized emails here (one per line, comma-separated)
             // Example: 'admin@example.com',
             // Example: 'user@example.com',
@@ -4373,7 +4374,18 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             
             // Check if properly logged in with valid session
             const overlay = document.getElementById('loginOverlay');
-            if (isLoggedIn && adminEmail) {
+            
+            // Check if email is authorized
+            const isAuthorized = adminEmail && AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase());
+            
+            console.log('🔍 admin.js checkAuthStatus:', {
+                isLoggedIn: isLoggedIn,
+                adminEmail: adminEmail,
+                isAuthorized: isAuthorized,
+                authorizedEmails: AUTHORIZED_EMAILS
+            });
+            
+            if (isLoggedIn && adminEmail && isAuthorized) {
                 // Valid session - hide login overlay
                 console.log('✅ Valid session found for:', adminEmail);
                 if (overlay) {
@@ -4386,6 +4398,18 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     sessionStorage.setItem('adminLoggedIn', 'true');
                     sessionStorage.setItem('adminEmail', adminEmail);
                     sessionStorage.setItem('adminName', adminEmail.split('@')[0]);
+                }
+                
+                // Show admin content
+                const header = document.querySelector('.header');
+                const tabs = document.querySelector('.tabs');
+                if (header) {
+                    header.style.display = '';
+                    console.log('✅ Header shown');
+                }
+                if (tabs) {
+                    tabs.style.display = '';
+                    console.log('✅ Tabs shown');
                 }
             } else {
                 // Not logged in - show login overlay and initialize

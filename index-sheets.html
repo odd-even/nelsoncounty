@@ -1598,6 +1598,7 @@
             
             const AUTHORIZED_EMAILS = [
                 'ernest@oddplusevenstudio.com',
+                'ernest@oddpluseven.com',
             ];
             
             const OTP_CONFIG = {
@@ -1875,11 +1876,14 @@
                     if (result.success) {
                         // Set persistent session (1 day expiration)
                         setAuthSession(email);
+                        console.log('✅ OTP verified successfully for:', email);
+                        console.log('✅ Session saved to localStorage');
                         
                         // Also set sessionStorage for backward compatibility
                         sessionStorage.setItem('adminLoggedIn', 'true');
                         sessionStorage.setItem('adminEmail', email);
                         sessionStorage.setItem('adminName', email.split('@')[0]);
+                        console.log('✅ Session also saved to sessionStorage');
                         
                         // Show success message briefly, then reload
                         errorText.textContent = '✅ Login successful! Loading admin panel...';
@@ -1888,6 +1892,7 @@
                         
                         // Reload page to initialize admin.js with authenticated session
                         setTimeout(function() {
+                            console.log('🔄 Reloading page with authenticated session...');
                             location.reload();
                         }, 500);
                     } else {
@@ -1959,13 +1964,31 @@
                 const adminEmail = session ? session.email : null;
                 const isLoggedIn = session !== null;
                 
+                console.log('🔍 enforceAuth check:', {
+                    session: session,
+                    adminEmail: adminEmail,
+                    isLoggedIn: isLoggedIn
+                });
+                
                 // Also check sessionStorage for backward compatibility
                 const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
                 const sessionStorageEmail = sessionStorage.getItem('adminEmail');
                 
+                console.log('🔍 sessionStorage check:', {
+                    sessionStorageLoggedIn: sessionStorageLoggedIn,
+                    sessionStorageEmail: sessionStorageEmail
+                });
+                
                 // Use persistent session if available, otherwise fall back to sessionStorage
                 const finalIsLoggedIn = isLoggedIn || (sessionStorageLoggedIn === 'true' && sessionStorageEmail);
                 const finalAdminEmail = adminEmail || sessionStorageEmail;
+                
+                console.log('🔍 Final auth check:', {
+                    finalIsLoggedIn: finalIsLoggedIn,
+                    finalAdminEmail: finalAdminEmail,
+                    inAuthorizedList: finalAdminEmail ? AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase()) : false,
+                    authorizedEmails: AUTHORIZED_EMAILS
+                });
                 
                 const overlay = document.getElementById('loginOverlay');
                 
@@ -1975,6 +1998,7 @@
                 // 3. AND the email is in the authorized list
                 if (finalIsLoggedIn && finalAdminEmail && AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase())) {
                     // Valid authenticated session
+                    console.log('✅ Valid authenticated session - showing admin panel');
                     if (overlay) overlay.style.display = 'none';
                     document.body.classList.add('logged-in');
                     
@@ -1989,11 +2013,18 @@
                     const header = document.querySelector('.header');
                     const tabs = document.querySelector('.tabs');
                     const tabContent = document.querySelectorAll('.tab-content');
-                    if (header) header.style.display = '';
-                    if (tabs) tabs.style.display = '';
+                    if (header) {
+                        header.style.display = '';
+                        console.log('✅ Header shown');
+                    }
+                    if (tabs) {
+                        tabs.style.display = '';
+                        console.log('✅ Tabs shown');
+                    }
                     // Don't force hide tab content - let admin.js handle it
                 } else {
                     // NOT logged in - clear everything and show login
+                    console.log('❌ Not authenticated - showing login overlay');
                     clearAuthSession();
                     if (overlay) overlay.style.display = 'flex';
                     document.body.classList.remove('logged-in');
