@@ -1978,7 +1978,7 @@
                                         <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
                                     </svg>
                                 </span>
-                                <span style="font-weight: 600;">Generate AI Text</span>
+                                <span style="font-weight: 600;">generate ALT text</span>
                             </button>
                         </div>
                     </div>
@@ -1999,7 +1999,7 @@
                                         <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
                                     </svg>
                                 </span>
-                                <span style="font-weight: 600;">Generate AI Text</span>
+                                <span style="font-weight: 600;">generate ALT text</span>
                             </button>
                         </div>
                     </div>
@@ -2019,7 +2019,7 @@
                                         <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
                                     </svg>
                                 </span>
-                                <span style="font-weight: 600;">Generate AI Text</span>
+                                <span style="font-weight: 600;">generate ALT text</span>
                             </button>
                         </div>
                     </div>
@@ -2045,7 +2045,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Author Name</label>
-                        <input type="text" id="listingAuthorName" placeholder="e.g., Ernest Darrow" />
+                        <input type="text" id="listingAuthorName" placeholder="e.g., Sam Smith" />
                     </div>
                 </div>
 
@@ -6367,33 +6367,94 @@ function updateUnsavedChangesBadge() {
             }
         });
         
-        // Auto-populate Google Maps directions link when address changes
-        const addressInput = document.getElementById('listingAddress');
-        const directionsLinkInput = document.getElementById('listingDirectionsLink');
+        // Initialize Google Places Autocomplete for address field
+        let autocomplete = null;
         
-        if (addressInput && directionsLinkInput) {
-            addressInput.addEventListener('input', function() {
-                const address = this.value.trim();
-                if (address) {
-                    // Generate Google Maps directions link
-                    const encodedAddress = encodeURIComponent(address);
-                    const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                    // Only auto-populate if directions field is empty
-                    if (!directionsLinkInput.value.trim()) {
+        // Function to initialize Places Autocomplete (called when Google Maps API loads)
+        window.initMap = function() {
+            const addressInput = document.getElementById('listingAddress');
+            const directionsLinkInput = document.getElementById('listingDirectionsLink');
+            
+            if (addressInput && typeof google !== 'undefined' && google.maps && google.maps.places) {
+                // Initialize Autocomplete with optimizations
+                // Note: The classic Autocomplete widget handles session tokens automatically
+                autocomplete = new google.maps.places.Autocomplete(addressInput, {
+                    fields: ['formatted_address', 'address_components', 'geometry', 'place_id'],
+                    types: ['address'], // Restrict to addresses only
+                    componentRestrictions: { country: 'us' } // Restrict to US addresses
+                });
+                
+                // When user selects an address from autocomplete
+                autocomplete.addListener('place_changed', function() {
+                    const place = autocomplete.getPlace();
+                    
+                    if (place && place.formatted_address) {
+                        // Set the formatted address
+                        addressInput.value = place.formatted_address;
+                        
+                        // Auto-populate directions link if empty
+                        if (directionsLinkInput && !directionsLinkInput.value.trim()) {
+                            const encodedAddress = encodeURIComponent(place.formatted_address);
+                            const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+                            directionsLinkInput.value = googleMapsUrl;
+                        }
+                    }
+                });
+                
+                // Also handle manual typing (for directions link auto-population)
+                let debounceTimer;
+                addressInput.addEventListener('input', function() {
+                    const address = this.value.trim();
+                    
+                    // Clear previous timer
+                    clearTimeout(debounceTimer);
+                    
+                    // Debounce the directions link update (wait 500ms after user stops typing)
+                    debounceTimer = setTimeout(function() {
+                        if (address && directionsLinkInput && !directionsLinkInput.value.trim()) {
+                            const encodedAddress = encodeURIComponent(address);
+                            const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+                            directionsLinkInput.value = googleMapsUrl;
+                        }
+                    }, 500);
+                });
+                
+                // Also populate on blur if address exists but directions link is empty
+                addressInput.addEventListener('blur', function() {
+                    const address = this.value.trim();
+                    if (address && directionsLinkInput && !directionsLinkInput.value.trim()) {
+                        const encodedAddress = encodeURIComponent(address);
+                        const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
                         directionsLinkInput.value = googleMapsUrl;
                     }
-                }
-            });
-            
-            // Also populate on blur if address exists but directions link is empty
-            addressInput.addEventListener('blur', function() {
-                const address = this.value.trim();
-                if (address && !directionsLinkInput.value.trim()) {
-                    const encodedAddress = encodeURIComponent(address);
-                    const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                    directionsLinkInput.value = googleMapsUrl;
-                }
-            });
+                });
+            } else if (addressInput && directionsLinkInput) {
+                // Fallback: If Google Maps API isn't loaded, use simple address input
+                addressInput.addEventListener('input', function() {
+                    const address = this.value.trim();
+                    if (address) {
+                        const encodedAddress = encodeURIComponent(address);
+                        const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+                        if (!directionsLinkInput.value.trim()) {
+                            directionsLinkInput.value = googleMapsUrl;
+                        }
+                    }
+                });
+                
+                addressInput.addEventListener('blur', function() {
+                    const address = this.value.trim();
+                    if (address && !directionsLinkInput.value.trim()) {
+                        const encodedAddress = encodeURIComponent(address);
+                        const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+                        directionsLinkInput.value = googleMapsUrl;
+                    }
+                });
+            }
+        };
+        
+        // If Google Maps API is already loaded, initialize immediately
+        if (typeof google !== 'undefined' && google.maps && google.maps.places) {
+            window.initMap();
         }
         
         // Auto-generate and display slug when listing name changes
