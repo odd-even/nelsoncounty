@@ -1794,16 +1794,25 @@
             }
             
             window.handleEmailSubmit = async function handleEmailSubmit() {
-                const emailInput = document.getElementById('emailInput');
-                const errorDiv = document.getElementById('loginError');
-                const errorText = document.getElementById('loginErrorText');
-                const emailForm = document.getElementById('emailForm');
-                const otpForm = document.getElementById('otpForm');
-                if (!emailInput || !emailInput.value) {
-                    errorText.textContent = 'Please enter your email address.';
-                    errorDiv.style.display = 'block';
-                    return;
-                }
+                try {
+                    console.log('📧 handleEmailSubmit called');
+                    const emailInput = document.getElementById('emailInput');
+                    const errorDiv = document.getElementById('loginError');
+                    const errorText = document.getElementById('loginErrorText');
+                    const emailForm = document.getElementById('emailForm');
+                    const otpForm = document.getElementById('otpForm');
+                    
+                    if (!emailInput) {
+                        console.error('❌ emailInput not found');
+                        alert('Email input field not found. Please refresh the page.');
+                        return;
+                    }
+                    
+                    if (!emailInput.value) {
+                        if (errorText) errorText.textContent = 'Please enter your email address.';
+                        if (errorDiv) errorDiv.style.display = 'block';
+                        return;
+                    }
                 const email = emailInput.value.trim().toLowerCase();
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 if (!emailRegex.test(email)) {
@@ -1839,11 +1848,16 @@
                         submitBtn.textContent = originalBtnText;
                     }
                 } catch (error) {
-                    errorText.textContent = 'An error occurred. Please try again.';
-                    errorText.style.color = '#dc3545';
-                    errorDiv.style.display = 'block';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
+                    console.error('❌ Error in handleEmailSubmit:', error);
+                    if (errorText) {
+                        errorText.textContent = 'An error occurred: ' + (error.message || 'Please try again.');
+                        errorText.style.color = '#dc3545';
+                    }
+                    if (errorDiv) errorDiv.style.display = 'block';
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
                 }
             };
             
@@ -1947,20 +1961,21 @@
             
             // CRITICAL: Enforce authentication immediately
             function enforceAuth() {
-                if (!ENABLE_EMAIL_OTP) {
-                    localStorage.setItem('skipAuth', 'true');
-                    document.body.classList.add('logged-in');
-                    const overlay = document.getElementById('loginOverlay');
-                    if (overlay) overlay.style.display = 'none';
-                    return;
-                }
-                
-                // ALWAYS clear old auth data first
-                localStorage.removeItem('skipAuth');
-                localStorage.removeItem('adminLoggedIn');
-                
-                // Check for valid session (check localStorage first for persistence)
-                const session = getAuthSession();
+                try {
+                    if (!ENABLE_EMAIL_OTP) {
+                        localStorage.setItem('skipAuth', 'true');
+                        document.body.classList.add('logged-in');
+                        const overlay = document.getElementById('loginOverlay');
+                        if (overlay) overlay.style.display = 'none';
+                        return;
+                    }
+                    
+                    // ALWAYS clear old auth data first
+                    localStorage.removeItem('skipAuth');
+                    localStorage.removeItem('adminLoggedIn');
+                    
+                    // Check for valid session (check localStorage first for persistence)
+                    const session = getAuthSession();
                 const adminEmail = session ? session.email : null;
                 const isLoggedIn = session !== null;
                 
@@ -2037,6 +2052,13 @@
                     if (tabs) tabs.style.display = 'none';
                     tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                 }
+                } catch (error) {
+                    console.error('❌ Error in enforceAuth:', error);
+                    // On error, show login overlay to be safe
+                    const overlay = document.getElementById('loginOverlay');
+                    if (overlay) overlay.style.display = 'flex';
+                    document.body.classList.remove('logged-in');
+                }
             }
             
             // Run immediately
@@ -2046,6 +2068,17 @@
                 enforceAuth();
             }
             window.addEventListener('load', enforceAuth);
+            
+            // Verify functions are accessible
+            console.log('🔍 Authentication functions loaded:', {
+                handleEmailSubmit: typeof window.handleEmailSubmit,
+                handleOTPSubmit: typeof window.handleOTPSubmit,
+                resendOTP: typeof window.resendOTP,
+                logout: typeof window.logout,
+                getAuthSession: typeof getAuthSession,
+                setAuthSession: typeof setAuthSession,
+                clearAuthSession: typeof clearAuthSession
+            });
             
             // Continuous monitoring to prevent bypass
             setInterval(function() {
