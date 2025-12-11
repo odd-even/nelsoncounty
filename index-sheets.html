@@ -1650,24 +1650,33 @@
                     }
                     
                     // CRITICAL: Validate session token with server (non-blocking)
-                    if (session.token && typeof validateSessionWithServer === 'function') {
-                        try {
-                            const validation = await validateSessionWithServer(session.token);
-                            if (!validation.valid) {
-                                // Server says token is invalid - clear it
-                                localStorage.removeItem('adminAuthSession');
-                                sessionStorage.clear();
-                                return null;
+                    if (session.token) {
+                        if (typeof validateSessionWithServer === 'function') {
+                            try {
+                                const validation = await validateSessionWithServer(session.token);
+                                if (!validation.valid) {
+                                    // Server explicitly says token is invalid - clear it
+                                    console.warn('Server rejected session token, clearing session');
+                                    localStorage.removeItem('adminAuthSession');
+                                    sessionStorage.clear();
+                                    return null;
+                                }
+                                // Server validated - update email from server response
+                                session.email = validation.email || session.email;
+                                console.log('✅ Session validated by server');
+                            } catch (validationError) {
+                                // Network error - allow session through but log error
+                                console.warn('Session validation failed (network error), allowing session through:', validationError);
+                                // Don't clear session on network error - allow through
+                                // Session is still valid, just couldn't verify with server
                             }
-                            // Server validated - update email from server response
-                            session.email = validation.email || session.email;
-                        } catch (validationError) {
-                            // Network error - allow session through but log error
-                            console.warn('Session validation failed (network error), allowing session:', validationError);
-                            // Don't clear session on network error - allow through
+                        } else {
+                            // validateSessionWithServer not available - allow session through
+                            console.warn('validateSessionWithServer not available, allowing session through');
                         }
-                    } else if (!session.token) {
+                    } else {
                         // Old session without token - invalidate it
+                        console.warn('Session has no token, invalidating');
                         localStorage.removeItem('adminAuthSession');
                         return null;
                     }
@@ -2031,14 +2040,20 @@
                     localStorage.removeItem('adminLoggedIn');
                     
                     // Check for valid session (SERVER-VALIDATED)
+                    console.log('🔍 Checking for session in localStorage...');
+                    const sessionData = localStorage.getItem('adminAuthSession');
+                    console.log('🔍 Raw sessionData from localStorage:', sessionData ? 'exists' : 'null');
+                    
                     const session = await getAuthSession();
                     const adminEmail = session ? session.email : null;
                     const isLoggedIn = session !== null;
                 
                 console.log('🔍 enforceAuth check:', {
                     session: session,
+                    sessionToken: session ? (session.token ? 'exists' : 'missing') : 'no session',
                     adminEmail: adminEmail,
-                    isLoggedIn: isLoggedIn
+                    isLoggedIn: isLoggedIn,
+                    sessionExpired: session ? (Date.now() > session.expires) : 'N/A'
                 });
                 
                 // Also check sessionStorage for backward compatibility (but server validation is primary)
@@ -2051,9 +2066,17 @@
                 });
                 
                 // Server-validated session takes priority
-                // Only use sessionStorage if server session exists (for backward compatibility)
-                const finalIsLoggedIn = isLoggedIn; // Server-validated only
-                const finalAdminEmail = adminEmail; // Server-validated only
+                // Fallback to sessionStorage if server validation failed but sessionStorage exists
+                let finalIsLoggedIn = isLoggedIn;
+                let finalAdminEmail = adminEmail;
+                
+                // If server validation didn't find a session, but sessionStorage has one, use it
+                // This handles cases where server validation fails due to network issues
+                if (!finalIsLoggedIn && sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
+                    console.log('⚠️ Server validation failed, but sessionStorage has session - using it');
+                    finalIsLoggedIn = true;
+                    finalAdminEmail = sessionStorageEmail;
+                }
                 
                 console.log('🔍 Final auth check:', {
                     finalIsLoggedIn: finalIsLoggedIn,
@@ -2071,14 +2094,24 @@
                 if (finalIsLoggedIn && finalAdminEmail && AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase())) {
                     // Valid authenticated session
                     console.log('✅ Valid authenticated session - showing admin panel');
-                    if (overlay) overlay.style.display = 'none';
+                    console.log('✅ Hiding login overlay and showing admin content');
+                    
+                    // Hide overlay FIRST
+                    if (overlay) {
+                        overlay.style.display = 'none';
+                        console.log('✅ Login overlay hidden');
+                    }
+                    
+                    // Add logged-in class
                     document.body.classList.add('logged-in');
+                    console.log('✅ Added logged-in class to body');
                     
                     // Ensure sessionStorage is also set for backward compatibility
                     if (!sessionStorageLoggedIn) {
                         sessionStorage.setItem('adminLoggedIn', 'true');
                         sessionStorage.setItem('adminEmail', finalAdminEmail);
                         sessionStorage.setItem('adminName', finalAdminEmail.split('@')[0]);
+                        console.log('✅ SessionStorage updated');
                     }
                     
                     // Show admin content
@@ -2095,10 +2128,33 @@
                     }
                     // Don't force hide tab content - let admin.js handle it
                 } else {
-                    // NOT logged in - clear everything and show login
+                    // NOT logged in - show login overlay
                     console.log('❌ Not authenticated - showing login overlay');
-                    clearAuthSession();
-                    if (overlay) overlay.style.display = 'flex';
+                    console.log('❌ Auth check details:', {
+                        finalIsLoggedIn: finalIsLoggedIn,
+                        finalAdminEmail: finalAdminEmail,
+                        hasEmail: !!finalAdminEmail,
+                        inAuthorizedList: finalAdminEmail ? AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase()) : false,
+                        sessionExists: !!session,
+                        sessionStorageExists: sessionStorageLoggedIn === 'true',
+                        sessionStorageEmail: sessionStorageEmail
+                    });
+                    
+                    // Only clear session if we're absolutely sure there's no valid session
+                    // Don't clear on network errors - session might still be valid
+                    if (!sessionStorageLoggedIn && !session) {
+                        console.log('❌ No session found anywhere - clearing auth');
+                        clearAuthSession();
+                    } else {
+                        console.log('⚠️ Session might exist but validation failed - keeping session for retry');
+                    }
+                    
+                    if (overlay) {
+                        overlay.style.display = 'flex';
+                        console.log('✅ Login overlay shown');
+                    } else {
+                        console.error('❌ Login overlay element not found!');
+                    }
                     document.body.classList.remove('logged-in');
                     
                     // Hide all admin content
