@@ -1561,6 +1561,325 @@
         </div>
     </div>
     
+    <!-- CRITICAL: Authentication code embedded directly - runs immediately -->
+    <script>
+        (function() {
+            'use strict';
+            
+            // =========================================== EMAIL OTP AUTHENTICATION
+            const ENABLE_EMAIL_OTP = true; // Set to false to disable
+            
+            const AUTHORIZED_EMAILS = [
+                'ernest@oddplusevenstudio.com',
+            ];
+            
+            const OTP_CONFIG = {
+                length: 6,
+                expirationMinutes: 10,
+                maxAttempts: 5,
+                rateLimitRequests: 3,
+                rateLimitWindow: 15 * 60 * 1000
+            };
+            
+            let otpStorage = {
+                codes: {},
+                requestHistory: {}
+            };
+            
+            // Get GOOGLE_APPS_SCRIPT_URL from the page (defined later in script)
+            function getGoogleAppsScriptURL() {
+                if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
+                    return GOOGLE_APPS_SCRIPT_URL;
+                }
+                // Fallback - try to find it in the page
+                const scripts = document.getElementsByTagName('script');
+                for (let i = 0; i < scripts.length; i++) {
+                    const scriptText = scripts[i].textContent || scripts[i].innerHTML;
+                    const match = scriptText.match(/GOOGLE_APPS_SCRIPT_URL\s*=\s*['"]([^'"]+)['"]/);
+                    if (match) return match[1];
+                }
+                return 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
+            }
+            
+            function generateOTP() {
+                const min = 100000;
+                const max = 999999;
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                return (min + (array[0] % (max - min + 1))).toString();
+            }
+            
+            function checkRateLimit(email) {
+                const now = Date.now();
+                const history = otpStorage.requestHistory[email] || [];
+                const recentRequests = history.filter(function(timestamp) {
+                    return (now - timestamp) < OTP_CONFIG.rateLimitWindow;
+                });
+                otpStorage.requestHistory[email] = recentRequests;
+                if (recentRequests.length >= OTP_CONFIG.rateLimitRequests) {
+                    const oldestRequest = recentRequests[0];
+                    const waitTime = Math.ceil((OTP_CONFIG.rateLimitWindow - (now - oldestRequest)) / 1000 / 60);
+                    return { allowed: false, waitMinutes: waitTime };
+                }
+                return { allowed: true };
+            }
+            
+            async function sendOTP(email) {
+                try {
+                    if (!AUTHORIZED_EMAILS.includes(email.toLowerCase())) {
+                        return { success: false, error: 'This email is not authorized to access the admin panel.' };
+                    }
+                    const rateLimit = checkRateLimit(email);
+                    if (!rateLimit.allowed) {
+                        return { success: false, error: `Too many requests. Please wait ${rateLimit.waitMinutes} minute(s) before requesting another code.` };
+                    }
+                    const otpCode = generateOTP();
+                    const expiresAt = Date.now() + (OTP_CONFIG.expirationMinutes * 60 * 1000);
+                    otpStorage.codes[email.toLowerCase()] = { code: otpCode, expires: expiresAt, attempts: 0 };
+                    if (!otpStorage.requestHistory[email.toLowerCase()]) {
+                        otpStorage.requestHistory[email.toLowerCase()] = [];
+                    }
+                    otpStorage.requestHistory[email.toLowerCase()].push(Date.now());
+                    const response = await fetch(getGoogleAppsScriptURL(), {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'sendOTP', email: email, code: otpCode })
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        return { success: true };
+                    } else {
+                        delete otpStorage.codes[email.toLowerCase()];
+                        return { success: false, error: result.error || 'Failed to send OTP email. Please try again.' };
+                    }
+                } catch (error) {
+                    delete otpStorage.codes[email.toLowerCase()];
+                    return { success: false, error: 'Network error. Please check your connection and try again.' };
+                }
+            }
+            
+            function verifyOTP(email, code) {
+                const emailLower = email.toLowerCase();
+                const stored = otpStorage.codes[emailLower];
+                if (!stored) {
+                    return { success: false, error: 'No OTP code found. Please request a new code.' };
+                }
+                if (Date.now() > stored.expires) {
+                    delete otpStorage.codes[emailLower];
+                    return { success: false, error: 'OTP code has expired. Please request a new code.' };
+                }
+                stored.attempts++;
+                if (stored.attempts > OTP_CONFIG.maxAttempts) {
+                    delete otpStorage.codes[emailLower];
+                    return { success: false, error: 'Too many failed attempts. Please request a new code.' };
+                }
+                if (stored.code === code) {
+                    delete otpStorage.codes[emailLower];
+                    return { success: true };
+                } else {
+                    const remainingAttempts = OTP_CONFIG.maxAttempts - stored.attempts;
+                    return { success: false, error: `Invalid code. ${remainingAttempts} attempt(s) remaining.` };
+                }
+            }
+            
+            window.handleEmailSubmit = async function handleEmailSubmit() {
+                const emailInput = document.getElementById('emailInput');
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                const emailForm = document.getElementById('emailForm');
+                const otpForm = document.getElementById('otpForm');
+                if (!emailInput || !emailInput.value) {
+                    errorText.textContent = 'Please enter your email address.';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                const email = emailInput.value.trim().toLowerCase();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    errorText.textContent = 'Please enter a valid email address.';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                errorDiv.style.display = 'none';
+                const submitBtn = emailForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending code...';
+                try {
+                    const result = await sendOTP(email);
+                    if (result.success) {
+                        emailForm.style.display = 'none';
+                        otpForm.style.display = 'block';
+                        const emailDisplay = document.getElementById('emailDisplay');
+                        if (emailDisplay) emailDisplay.textContent = email;
+                        otpForm.dataset.email = email;
+                        const otpInput = document.getElementById('otpInput');
+                        if (otpInput) otpInput.focus();
+                        errorText.textContent = `Verification code sent to ${email}`;
+                        errorText.style.color = '#22c55e';
+                        errorDiv.style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    } else {
+                        errorText.textContent = result.error || 'Failed to send verification code.';
+                        errorText.style.color = '#dc3545';
+                        errorDiv.style.display = 'block';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
+                } catch (error) {
+                    errorText.textContent = 'An error occurred. Please try again.';
+                    errorText.style.color = '#dc3545';
+                    errorDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            };
+            
+            window.handleOTPSubmit = async function handleOTPSubmit() {
+                const otpInput = document.getElementById('otpInput');
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                const otpForm = document.getElementById('otpForm');
+                if (!otpInput || !otpInput.value) {
+                    errorText.textContent = 'Please enter the verification code.';
+                    errorText.style.color = '#dc3545';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                const code = otpInput.value.trim();
+                const email = otpForm.dataset.email;
+                if (!email) {
+                    errorText.textContent = 'Session expired. Please start over.';
+                    errorText.style.color = '#dc3545';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                errorDiv.style.display = 'none';
+                const submitBtn = otpForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Verifying...';
+                try {
+                    const result = verifyOTP(email, code);
+                    if (result.success) {
+                        const overlay = document.getElementById('loginOverlay');
+                        overlay.style.display = 'none';
+                        sessionStorage.setItem('adminLoggedIn', 'true');
+                        sessionStorage.setItem('adminEmail', email);
+                        sessionStorage.setItem('adminName', email.split('@')[0]);
+                        document.body.classList.add('logged-in');
+                    } else {
+                        errorText.textContent = result.error || 'Invalid verification code.';
+                        errorText.style.color = '#dc3545';
+                        errorDiv.style.display = 'block';
+                        otpInput.value = '';
+                        otpInput.focus();
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
+                } catch (error) {
+                    errorText.textContent = 'An error occurred. Please try again.';
+                    errorText.style.color = '#dc3545';
+                    errorDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
+            };
+            
+            window.resendOTP = async function resendOTP() {
+                const otpForm = document.getElementById('otpForm');
+                const email = otpForm.dataset.email;
+                if (!email) {
+                    alert('Session expired. Please start over.');
+                    return;
+                }
+                const result = await sendOTP(email);
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                if (result.success) {
+                    errorText.textContent = `New verification code sent to ${email}`;
+                    errorText.style.color = '#22c55e';
+                    errorDiv.style.display = 'block';
+                } else {
+                    errorText.textContent = result.error || 'Failed to resend code.';
+                    errorText.style.color = '#dc3545';
+                    errorDiv.style.display = 'block';
+                }
+            };
+            
+            window.logout = function logout() {
+                sessionStorage.clear();
+                localStorage.removeItem('adminLoggedIn');
+                localStorage.removeItem('skipAuth');
+                document.body.classList.remove('logged-in');
+                const overlay = document.getElementById('loginOverlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                }
+                location.reload();
+            };
+            
+            // CRITICAL: Enforce authentication immediately
+            function enforceAuth() {
+                if (!ENABLE_EMAIL_OTP) {
+                    localStorage.setItem('skipAuth', 'true');
+                    document.body.classList.add('logged-in');
+                    const overlay = document.getElementById('loginOverlay');
+                    if (overlay) overlay.style.display = 'none';
+                    return;
+                }
+                
+                localStorage.removeItem('skipAuth');
+                localStorage.removeItem('adminLoggedIn');
+                document.body.classList.remove('logged-in');
+                
+                const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                const adminEmail = sessionStorage.getItem('adminEmail');
+                
+                const overlay = document.getElementById('loginOverlay');
+                if (isLoggedIn === 'true' && adminEmail) {
+                    if (overlay) overlay.style.display = 'none';
+                    document.body.classList.add('logged-in');
+                } else {
+                    if (overlay) overlay.style.display = 'flex';
+                    document.body.classList.remove('logged-in');
+                    sessionStorage.clear();
+                }
+            }
+            
+            // Run immediately
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', enforceAuth);
+            } else {
+                enforceAuth();
+            }
+            window.addEventListener('load', enforceAuth);
+            
+            // Continuous monitoring to prevent bypass
+            setInterval(function() {
+                if (ENABLE_EMAIL_OTP) {
+                    const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                    const adminEmail = sessionStorage.getItem('adminEmail');
+                    const overlay = document.getElementById('loginOverlay');
+                    
+                    if (!isLoggedIn || !adminEmail) {
+                        // Not logged in - enforce login
+                        if (overlay) overlay.style.display = 'flex';
+                        document.body.classList.remove('logged-in');
+                        // Hide all admin content
+                        const header = document.querySelector('.header');
+                        const tabs = document.querySelector('.tabs');
+                        const tabContent = document.querySelectorAll('.tab-content');
+                        if (header) header.style.display = 'none';
+                        if (tabs) tabs.style.display = 'none';
+                        tabContent.forEach(function(tab) { tab.style.display = 'none'; });
+                    }
+                }
+            }, 500); // Check every 500ms
+        })();
+    </script>
+    
     <div class="header">
         <div class="header-content">
             <div>
