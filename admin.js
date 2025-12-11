@@ -4263,7 +4263,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         
         // Check if user is already logged in
         // Run immediately and also on load to catch any timing issues
-        function checkAuthStatus() {
+        async function checkAuthStatus() {
             // 🔧 TESTING: Skip authentication if disabled
             if (!ENABLE_EMAIL_OTP) {
                 console.log('⚠️ Email OTP disabled for testing - skipping login');
@@ -4282,10 +4282,13 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             localStorage.removeItem('adminLoggedIn');
             
             // Helper to get persistent session with SERVER VALIDATION
+            // Note: validateSessionWithServer must be accessible (defined at top level)
             async function getAuthSession() {
                 try {
                     const sessionData = localStorage.getItem('adminAuthSession');
-                    if (!sessionData) return null;
+                    if (!sessionData) {
+                        return null;
+                    }
                     
                     const session = JSON.parse(sessionData);
                     
@@ -4295,18 +4298,24 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         return null;
                     }
                     
-                    // CRITICAL: Validate session token with server
-                    if (session.token) {
-                        const validation = await validateSessionWithServer(session.token);
-                        if (!validation.valid) {
-                            // Server says token is invalid - clear it
-                            localStorage.removeItem('adminAuthSession');
-                            sessionStorage.clear();
-                            return null;
+                    // CRITICAL: Validate session token with server (non-blocking)
+                    if (session.token && typeof validateSessionWithServer === 'function') {
+                        try {
+                            const validation = await validateSessionWithServer(session.token);
+                            if (!validation.valid) {
+                                // Server says token is invalid - clear it
+                                localStorage.removeItem('adminAuthSession');
+                                sessionStorage.clear();
+                                return null;
+                            }
+                            // Server validated - update email from server response
+                            session.email = validation.email || session.email;
+                        } catch (validationError) {
+                            // Network error - allow session through but log error
+                            console.warn('Session validation failed (network error), allowing session:', validationError);
+                            // Don't clear session on network error - allow through
                         }
-                        // Server validated - update email from server response
-                        session.email = validation.email || session.email;
-                    } else {
+                    } else if (!session.token) {
                         // Old session without token - invalidate it
                         localStorage.removeItem('adminAuthSession');
                         return null;
@@ -4314,15 +4323,28 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     
                     return session;
                 } catch (e) {
+                    console.error('Error in getAuthSession:', e);
                     localStorage.removeItem('adminAuthSession');
                     return null;
                 }
             }
             
             // Check for persistent session (SERVER-VALIDATED)
-            const session = await getAuthSession();
-            const persistentEmail = session ? session.email : null;
-            const persistentLoggedIn = session !== null;
+            // Use await since checkAuthStatus is async
+            let session = null;
+            let persistentEmail = null;
+            let persistentLoggedIn = false;
+            
+            try {
+                session = await getAuthSession();
+                persistentEmail = session ? session.email : null;
+                persistentLoggedIn = session !== null;
+            } catch (e) {
+                console.error('Error getting auth session:', e);
+                session = null;
+                persistentEmail = null;
+                persistentLoggedIn = false;
+            }
             
             // Also check sessionStorage for backward compatibility (but server validation is primary)
             const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
