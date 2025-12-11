@@ -6413,6 +6413,18 @@ function updateUnsavedChangesBadge() {
         let addressInputHandlersInitialized = false;
         let selectedAutocompleteIndex = -1;
         
+        // Helper function to generate Google Maps URL from address (always reads current value)
+        function generateGoogleMapsUrlFromAddress() {
+            const addressInputElement = document.getElementById('listingAddress');
+            if (!addressInputElement) return '';
+            
+            const address = addressInputElement.value.trim();
+            if (!address || address.length < 5) return '';
+            
+            const encodedAddress = encodeURIComponent(address);
+            return 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
+        }
+        
         // Function to initialize autocomplete when modal opens
         window.initializeAddressAutocomplete = function initializeAddressAutocomplete() {
             const addressInput = document.getElementById('listingAddress');
@@ -6500,12 +6512,23 @@ function updateUnsavedChangesBadge() {
                     
                     // Only auto-populate on blur if address looks complete
                     addressInput.addEventListener('blur', function() {
-                        const address = this.value.trim();
-                        if (address && isAddressComplete(address) && !directionsLinkInput.value.trim()) {
-                            const encodedAddress = encodeURIComponent(address);
-                            const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                            directionsLinkInput.value = googleMapsUrl;
-                        }
+                        // Use setTimeout to ensure we read the value after any other handlers
+                        setTimeout(function() {
+                            // Always read the current value directly from the DOM element
+                            const addressInputElement = document.getElementById('listingAddress');
+                            if (!addressInputElement) return;
+                            
+                            const address = addressInputElement.value.trim();
+                            
+                            // Make sure we have a complete address and directions field is empty
+                            if (address && address.length > 5 && isAddressComplete(address) && !directionsLinkInput.value.trim()) {
+                                // Use helper function to generate URL from current address value
+                                const googleMapsUrl = generateGoogleMapsUrlFromAddress();
+                                if (googleMapsUrl) {
+                                    directionsLinkInput.value = googleMapsUrl;
+                                }
+                            }
+                        }, 100); // Small delay to ensure value is fully set
                     });
                 }
                 
@@ -6573,14 +6596,19 @@ function updateUnsavedChangesBadge() {
                         
                         itemDiv.addEventListener('click', function() {
                             // Set the full formatted address
-                            addressInput.value = fullAddress || displayName;
+                            const selectedAddress = fullAddress || displayName;
+                            addressInput.value = selectedAddress;
                             dropdown.classList.remove('show');
                             
                             // Auto-populate directions link if empty
                             if (directionsLinkInput && !directionsLinkInput.value.trim()) {
-                                const encodedAddress = encodeURIComponent(fullAddress || displayName);
-                                const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                                directionsLinkInput.value = googleMapsUrl;
+                                // Use helper function to generate URL - it will read the value we just set
+                                setTimeout(function() {
+                                    const googleMapsUrl = generateGoogleMapsUrlFromAddress();
+                                    if (googleMapsUrl) {
+                                        directionsLinkInput.value = googleMapsUrl;
+                                    }
+                                }, 50); // Small delay to ensure value is set
                             }
                             
                             // Focus back on input
