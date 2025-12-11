@@ -1320,42 +1320,8 @@
         }
     </style>
     
-    <!-- Quick check: If auth is disabled, hide login immediately -->
-    <script>
-        // Set skipAuth flag immediately (since admin.js has ENABLE_EMAIL_OTP = false)
-        // This will be cleared by admin.js if auth is re-enabled
-        localStorage.setItem('skipAuth', 'true');
-        
-        // Hide login overlay immediately
-        function hideLoginOverlay() {
-            const overlay = document.getElementById('loginOverlay');
-            if (overlay) {
-                overlay.style.display = 'none';
-                document.body.classList.add('logged-in');
-            }
-        }
-        
-        // Try immediately
-        if (document.body) {
-            hideLoginOverlay();
-        }
-        
-        // Also try when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', hideLoginOverlay);
-        } else {
-            hideLoginOverlay();
-        }
-        
-        // Use MutationObserver as backup
-        const observer = new MutationObserver(function(mutations) {
-            hideLoginOverlay();
-            observer.disconnect();
-        });
-        if (document.body) {
-            observer.observe(document.body, { childList: true, subtree: true });
-        }
-    </script>
+    <!-- Authentication is handled by admin.js -->
+    <!-- ENABLE_EMAIL_OTP setting in admin.js controls authentication -->
     
     <!-- Critical CSS for login page and initial UI -->
     <style>
