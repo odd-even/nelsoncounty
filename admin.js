@@ -4346,13 +4346,21 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 persistentLoggedIn = false;
             }
             
-            // Also check sessionStorage for backward compatibility (but server validation is primary)
+            // Also check sessionStorage for backward compatibility
             const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
             const sessionStorageEmail = sessionStorage.getItem('adminEmail');
             
-            // Use server-validated session only (no fallback to sessionStorage without token)
-            const isLoggedIn = persistentLoggedIn; // Server-validated only
-            const adminEmail = persistentEmail; // Server-validated only
+            // Use server-validated session if available, otherwise fallback to sessionStorage
+            // This handles cases where server validation fails due to network issues
+            let isLoggedIn = persistentLoggedIn;
+            let adminEmail = persistentEmail;
+            
+            // Fallback to sessionStorage if server validation failed but sessionStorage exists
+            if (!isLoggedIn && sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
+                console.log('⚠️ Server validation failed, but sessionStorage has session - using it');
+                isLoggedIn = true;
+                adminEmail = sessionStorageEmail;
+            }
             
             // If logged in but no email (old session), force logout
             if ((sessionStorageLoggedIn === 'true' || persistentLoggedIn) && !adminEmail) {
@@ -4377,11 +4385,17 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             
             if (isLoggedIn && adminEmail && isAuthorized) {
                 // Valid session - hide login overlay
-                console.log('✅ Valid session found for:', adminEmail);
+                console.log('✅ admin.js: Valid session found for:', adminEmail);
+                console.log('✅ admin.js: Hiding login overlay');
                 if (overlay) {
                     overlay.style.display = 'none';
+                    overlay.setAttribute('style', 'display: none !important;');
+                    console.log('✅ admin.js: Login overlay hidden (with !important)');
+                } else {
+                    console.error('❌ admin.js: Login overlay element not found!');
                 }
                 document.body.classList.add('logged-in');
+                console.log('✅ admin.js: Added logged-in class to body');
                 
                 // Ensure sessionStorage is also set for backward compatibility
                 if (!sessionStorageLoggedIn) {

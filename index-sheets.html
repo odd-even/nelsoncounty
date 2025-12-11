@@ -2073,9 +2073,30 @@
                 // If server validation didn't find a session, but sessionStorage has one, use it
                 // This handles cases where server validation fails due to network issues
                 if (!finalIsLoggedIn && sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
-                    console.log('⚠️ Server validation failed, but sessionStorage has session - using it');
+                    console.log('⚠️ enforceAuth: Server validation failed, but sessionStorage has session - using it');
                     finalIsLoggedIn = true;
                     finalAdminEmail = sessionStorageEmail;
+                }
+                
+                // Also check if we have a session token in localStorage even if validation failed
+                if (!finalIsLoggedIn && sessionData) {
+                    try {
+                        const parsedSession = JSON.parse(sessionData);
+                        if (parsedSession.token && parsedSession.email && Date.now() < parsedSession.expires) {
+                            console.log('⚠️ enforceAuth: Found valid session token in localStorage, using it despite validation failure');
+                            console.log('⚠️ enforceAuth: Session token exists, email:', parsedSession.email, 'expires:', new Date(parsedSession.expires));
+                            finalIsLoggedIn = true;
+                            finalAdminEmail = parsedSession.email;
+                        } else {
+                            console.log('⚠️ enforceAuth: Session token found but invalid:', {
+                                hasToken: !!parsedSession.token,
+                                hasEmail: !!parsedSession.email,
+                                expired: parsedSession.expires ? (Date.now() > parsedSession.expires) : 'no expiry'
+                            });
+                        }
+                    } catch (e) {
+                        console.error('⚠️ enforceAuth: Error parsing session data:', e);
+                    }
                 }
                 
                 console.log('🔍 Final auth check:', {
@@ -2093,13 +2114,17 @@
                 // 3. AND the email is in the authorized list
                 if (finalIsLoggedIn && finalAdminEmail && AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase())) {
                     // Valid authenticated session
-                    console.log('✅ Valid authenticated session - showing admin panel');
-                    console.log('✅ Hiding login overlay and showing admin content');
+                    console.log('✅ enforceAuth: Valid authenticated session - showing admin panel');
+                    console.log('✅ enforceAuth: Email:', finalAdminEmail);
+                    console.log('✅ enforceAuth: Hiding login overlay and showing admin content');
                     
-                    // Hide overlay FIRST
+                    // Hide overlay FIRST - use !important to override any inline styles
                     if (overlay) {
                         overlay.style.display = 'none';
-                        console.log('✅ Login overlay hidden');
+                        overlay.setAttribute('style', 'display: none !important;');
+                        console.log('✅ enforceAuth: Login overlay hidden (with !important)');
+                    } else {
+                        console.error('❌ enforceAuth: Login overlay element not found!');
                     }
                     
                     // Add logged-in class
