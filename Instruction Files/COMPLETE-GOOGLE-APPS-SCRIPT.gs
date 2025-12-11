@@ -82,6 +82,56 @@ function listSheetHeaders() {
 }
 
 // -----------------------------------------------------------------------------
+// Email OTP Authentication
+// -----------------------------------------------------------------------------
+
+/**
+ * Send OTP email for admin panel authentication
+ * Called from: admin.js -> sendOTP()
+ */
+function sendOTPEmail(email, code) {
+  try {
+    const subject = 'Nelson County Admin - Verification Code';
+    const body = `
+Hello,
+
+Your verification code for the Nelson County Admin Panel is:
+
+${code}
+
+This code will expire in 10 minutes.
+
+If you did not request this code, please ignore this email.
+
+---
+Nelson County Admin Panel
+    `.trim();
+    
+    // Send email using Gmail service
+    GmailApp.sendEmail(
+      email,
+      subject,
+      body,
+      {
+        name: 'Nelson County Admin Panel',
+        noReply: true
+      }
+    );
+    
+    Logger.log('OTP email sent to: ' + email);
+    return {
+      success: true
+    };
+  } catch (error) {
+    Logger.log('Error sending OTP email: ' + error.toString());
+    return {
+      success: false,
+      error: error.toString()
+    };
+  }
+}
+
+// -----------------------------------------------------------------------------
 // OPTIONS / GET handlers
 // -----------------------------------------------------------------------------
 
@@ -249,6 +299,23 @@ function doPost(e) {
       return ContentService
         .createTextOutput(response.getContent())
         .setMimeType(response.getMimeType())
+    }
+
+    // Handle email OTP sending
+    if (action === 'sendOTP') {
+      if (!data.email || !data.code) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Missing email or code'
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      
+      const result = sendOTPEmail(data.email, data.code);
+      return ContentService
+        .createTextOutput(JSON.stringify(result))
+        .setMimeType(ContentService.MimeType.JSON);
     }
 
     // Handle AI image description generation
@@ -2178,4 +2245,6 @@ function generateAllImageDescriptionsInSheet() {
   Logger.log(summary);
   SpreadsheetApp.getActive().toast(summary, 'AI Generation');
 }
+
+
 

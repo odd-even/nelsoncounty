@@ -3913,13 +3913,21 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             if (savedPath) document.getElementById('githubPath').value = savedPath;
         });
         
-        // ===========================================        // EMAIL OTP AUTHENTICATION
+        // ===========================================        // GOOGLE OAUTH AUTHENTICATION
         // ===========================================
-        // 🔧 TESTING: Set to false to disable email OTP temporarily
+        // 🔧 TESTING: Set to false to disable Google OAuth temporarily
         // Set to true to re-enable authentication
-        const ENABLE_EMAIL_OTP = true; // 👈 Change to false to skip login
+        const ENABLE_GOOGLE_AUTH = false; // 👈 Change to false to skip login
         
-        // 🔐 CONFIGURATION: Authorized emails for OTP authentication
+        // 🔐 CONFIGURATION: Google OAuth Client ID
+        // Get this from: https://console.cloud.google.com/apis/credentials
+        // 1. Create OAuth 2.0 Client ID
+        // 2. Application type: Web application
+        // 3. Authorized JavaScript origins: Add your domain (e.g., https://yourdomain.com)
+        // 4. Authorized redirect URIs: Add your domain
+        const GOOGLE_OAUTH_CLIENT_ID = '1087570888908-4g9jboc2hoi1dl9t9qs5hmnak6ct1t24.apps.googleusercontent.com';
+        
+        // 🔐 AUTHORIZED EMAILS: List of Google email addresses that can access the admin panel
         // SECURITY NOTE: For better security, move this list to your Google Apps Script
         // and fetch it via an API call instead of storing it in the client code.
         const AUTHORIZED_EMAILS = [
@@ -3930,321 +3938,56 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             // Example: 'team-member@example.com',
         ];
         
-        // OTP Configuration
-        const OTP_CONFIG = {
-            length: 6,              // 6-digit OTP code
-            expirationMinutes: 10,  // OTP expires after 10 minutes
-            maxAttempts: 5,         // Max failed attempts before lockout
-            rateLimitRequests: 3,   // Max OTP requests per 15 minutes
-            rateLimitWindow: 15 * 60 * 1000 // 15 minutes in milliseconds
-        };
-        
-        // Store OTP data (in production, this should be server-side)
-        let otpStorage = {
-            codes: {},           // email -> { code, expires, attempts }
-            requestHistory: {}   // email -> [timestamps of requests]
-        };
-        
-        // Generate a secure random OTP code
-        function generateOTP() {
-            // Generate 6-digit code using cryptographically secure method
-            const min = 100000;
-            const max = 999999;
-            const array = new Uint32Array(1);
-            window.crypto.getRandomValues(array);
-            return (min + (array[0] % (max - min + 1))).toString();
-        }
-        
-        // Check rate limiting for OTP requests
-        function checkRateLimit(email) {
-            const now = Date.now();
-            const history = otpStorage.requestHistory[email] || [];
-            
-            // Remove requests older than the rate limit window
-            const recentRequests = history.filter(function(timestamp) {
-                return (now - timestamp) < OTP_CONFIG.rateLimitWindow;
-            });
-            
-            // Update history
-            otpStorage.requestHistory[email] = recentRequests;
-            
-            // Check if limit exceeded
-            if (recentRequests.length >= OTP_CONFIG.rateLimitRequests) {
-                const oldestRequest = recentRequests[0];
-                const waitTime = Math.ceil((OTP_CONFIG.rateLimitWindow - (now - oldestRequest)) / 1000 / 60);
-                return {
-                    allowed: false,
-                    waitMinutes: waitTime
-                };
-            }
-            
-            return { allowed: true };
-        }
-        
-        // Send OTP via Google Apps Script
-        async function sendOTP(email) {
+        // Parse JWT token to get user info
+        function parseJwt(token) {
             try {
+                const base64Url = token.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+                return JSON.parse(jsonPayload);
+            } catch (e) {
+                console.error('Error parsing JWT:', e);
+                return null;
+            }
+        }
+        
+        // Handle Google OAuth callback
+        function handleCredentialResponse(response) {
+            const errorDiv = document.getElementById('loginError');
+            const errorText = document.getElementById('loginErrorText');
+            
+            try {
+                // Parse the JWT token
+                const payload = parseJwt(response.credential);
+                
+                if (!payload || !payload.email) {
+                    throw new Error('Invalid token - missing email');
+                }
+                
+                const userEmail = payload.email;
+                const userName = payload.name || userEmail;
+                
+                console.log('Google Sign-In successful:', userEmail);
+                
                 // Check if email is authorized
-                if (!AUTHORIZED_EMAILS.includes(email.toLowerCase())) {
-                    return {
-                        success: false,
-                        error: 'This email is not authorized to access the admin panel.'
-                    };
-                }
+                if (AUTHORIZED_EMAILS.includes(userEmail)) {
+                    // Authorized - hide login overlay
+                document.getElementById('loginOverlay').style.display = 'none';
                 
-                // Check rate limiting
-                const rateLimit = checkRateLimit(email);
-                if (!rateLimit.allowed) {
-                    return {
-                        success: false,
-                        error: `Too many requests. Please wait ${rateLimit.waitMinutes} minute(s) before requesting another code.`
-                    };
-                }
-                
-                // Generate OTP
-                const otpCode = generateOTP();
-                const expiresAt = Date.now() + (OTP_CONFIG.expirationMinutes * 60 * 1000);
-                
-                // Store OTP (in production, this should be server-side)
-                otpStorage.codes[email.toLowerCase()] = {
-                    code: otpCode,
-                    expires: expiresAt,
-                    attempts: 0
-                };
-                
-                // Record this request
-                if (!otpStorage.requestHistory[email.toLowerCase()]) {
-                    otpStorage.requestHistory[email.toLowerCase()] = [];
-                }
-                otpStorage.requestHistory[email.toLowerCase()].push(Date.now());
-                
-                // Send email via Google Apps Script
-                const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        action: 'sendOTP',
-                        email: email,
-                        code: otpCode
-                    })
-                });
-                
-                const result = await response.json();
-                
-                if (result.success) {
-                    console.log('OTP sent successfully to:', email);
-                    return { success: true };
-                } else {
-                    console.error('Failed to send OTP:', result.error);
-                    // Remove stored OTP if email failed
-                    delete otpStorage.codes[email.toLowerCase()];
-                    return {
-                        success: false,
-                        error: result.error || 'Failed to send OTP email. Please try again.'
-                    };
-                }
-            } catch (error) {
-                console.error('Error sending OTP:', error);
-                // Remove stored OTP on error
-                delete otpStorage.codes[email.toLowerCase()];
-                return {
-                    success: false,
-                    error: 'Network error. Please check your connection and try again.'
-                };
-            }
-        }
-        
-        // Verify OTP code
-        function verifyOTP(email, code) {
-            const emailLower = email.toLowerCase();
-            const stored = otpStorage.codes[emailLower];
-            
-            if (!stored) {
-                return {
-                    success: false,
-                    error: 'No OTP code found. Please request a new code.'
-                };
-            }
-            
-            // Check expiration
-            if (Date.now() > stored.expires) {
-                delete otpStorage.codes[emailLower];
-                return {
-                    success: false,
-                    error: 'OTP code has expired. Please request a new code.'
-                };
-            }
-            
-            // Check attempts
-            stored.attempts++;
-            if (stored.attempts > OTP_CONFIG.maxAttempts) {
-                delete otpStorage.codes[emailLower];
-                return {
-                    success: false,
-                    error: 'Too many failed attempts. Please request a new code.'
-                };
-            }
-            
-            // Verify code
-            if (stored.code === code) {
-                // Success - clear OTP
-                delete otpStorage.codes[emailLower];
-                return { success: true };
-            } else {
-                const remainingAttempts = OTP_CONFIG.maxAttempts - stored.attempts;
-                return {
-                    success: false,
-                    error: `Invalid code. ${remainingAttempts} attempt(s) remaining.`
-                };
-            }
-        }
-        
-        // Initialize email OTP login form
-        function initializeEmailOTP() {
-            console.log('✅ Email OTP authentication initialized');
-            
-            // Hide loading message if it exists
-            const loadingMessage = document.getElementById('loadingMessage');
-            if (loadingMessage) {
-                loadingMessage.style.display = 'none';
-            }
-        }
-        
-        // Handle email submission and OTP sending
-        window.handleEmailSubmit = async function handleEmailSubmit() {
-            const emailInput = document.getElementById('emailInput');
-            const errorDiv = document.getElementById('loginError');
-            const errorText = document.getElementById('loginErrorText');
-            const emailForm = document.getElementById('emailForm');
-            const otpForm = document.getElementById('otpForm');
-            
-            if (!emailInput || !emailInput.value) {
-                errorText.textContent = 'Please enter your email address.';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            const email = emailInput.value.trim().toLowerCase();
-            
-            // Basic email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorText.textContent = 'Please enter a valid email address.';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            // Hide error
-            errorDiv.style.display = 'none';
-            
-            // Show loading state
-            const submitBtn = emailForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending code...';
-            
-            try {
-                const result = await sendOTP(email);
-                
-                if (result.success) {
-                    // Hide email form, show OTP form
-                    emailForm.style.display = 'none';
-                    otpForm.style.display = 'block';
-                    
-                    // Set email in OTP form
-                    const emailDisplay = document.getElementById('emailDisplay');
-                    if (emailDisplay) {
-                        emailDisplay.textContent = email;
-                    }
-                    
-                    // Store email for verification
-                    otpForm.dataset.email = email;
-                    
-                    // Focus OTP input
-                    const otpInput = document.getElementById('otpInput');
-                    if (otpInput) {
-                        otpInput.focus();
-                    }
-                    
-                    // Show success message
-                    errorText.textContent = `Verification code sent to ${email}`;
-                    errorText.style.color = '#22c55e';
-                    errorDiv.style.display = 'block';
-                    
-                    // Reset button
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
-                } else {
-                    errorText.textContent = result.error || 'Failed to send verification code.';
-                    errorText.style.color = '#dc3545';
-                    errorDiv.style.display = 'block';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
-                }
-            } catch (error) {
-                console.error('Error sending OTP:', error);
-                errorText.textContent = 'An error occurred. Please try again.';
-                errorText.style.color = '#dc3545';
-                errorDiv.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
-            }
-        };
-        
-        // Handle OTP verification
-        window.handleOTPSubmit = async function handleOTPSubmit() {
-            const otpInput = document.getElementById('otpInput');
-            const errorDiv = document.getElementById('loginError');
-            const errorText = document.getElementById('loginErrorText');
-            const otpForm = document.getElementById('otpForm');
-            
-            if (!otpInput || !otpInput.value) {
-                errorText.textContent = 'Please enter the verification code.';
-                errorText.style.color = '#dc3545';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            const code = otpInput.value.trim();
-            const email = otpForm.dataset.email;
-            
-            if (!email) {
-                errorText.textContent = 'Session expired. Please start over.';
-                errorText.style.color = '#dc3545';
-                errorDiv.style.display = 'block';
-                return;
-            }
-            
-            // Hide error
-            errorDiv.style.display = 'none';
-            
-            // Show loading state
-            const submitBtn = otpForm.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Verifying...';
-            
-            try {
-                const result = verifyOTP(email, code);
-                
-                if (result.success) {
-                    // Success - hide login overlay
-                    const overlay = document.getElementById('loginOverlay');
-                    overlay.style.display = 'none';
-                    
                     // Store session info
-                    sessionStorage.setItem('adminLoggedIn', 'true');
-                    sessionStorage.setItem('adminEmail', email);
-                    sessionStorage.setItem('adminName', email.split('@')[0]);
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminEmail', userEmail);
+                    sessionStorage.setItem('adminName', userName);
                     
                     // Show success message briefly
-                    const overlayContent = overlay.querySelector('.login-container');
+                    const overlay = document.getElementById('loginOverlay');
+                    const overlayContent = overlay.querySelector('div');
                     overlayContent.innerHTML = `
                         <div style="text-align: center; padding: 40px;">
                             <div style="color: #22c55e; font-size: 48px; margin-bottom: 20px;">✓</div>
-                            <h2 style="color: #4E6B52; margin: 0 0 10px 0;">Welcome!</h2>
+                            <h2 style="color: #4E6B52; margin: 0 0 10px 0;">Welcome, ${userName}!</h2>
                             <p style="color: #6c757d; margin: 0;">Loading admin panel...</p>
                         </div>
                     `;
@@ -4252,64 +3995,260 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     setTimeout(() => {
                         overlay.style.display = 'none';
                     }, 1000);
-                } else {
-                    errorText.textContent = result.error || 'Invalid verification code.';
-                    errorText.style.color = '#dc3545';
-                    errorDiv.style.display = 'block';
+                
+            } else {
+                    // Not authorized
+                    errorText.textContent = `Access denied. ${userEmail} is not authorized to access this admin panel.`;
+                errorDiv.style.display = 'block';
+                
+                // Shake animation
+                const overlay = document.getElementById('loginOverlay');
+                overlay.style.animation = 'shake 0.5s';
+                setTimeout(() => { overlay.style.animation = ''; }, 500);
                     
-                    // Clear OTP input
-                    otpInput.value = '';
-                    otpInput.focus();
-                    
-                    // Shake animation
-                    const overlay = document.getElementById('loginOverlay');
-                    overlay.style.animation = 'shake 0.5s';
-                    setTimeout(() => { overlay.style.animation = ''; }, 500);
-                    
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = originalBtnText;
+                    // Log the unauthorized attempt
+                    console.warn('Unauthorized access attempt:', userEmail);
                 }
             } catch (error) {
-                console.error('Error verifying OTP:', error);
-                errorText.textContent = 'An error occurred. Please try again.';
-                errorText.style.color = '#dc3545';
+                console.error('Error processing Google Sign-In:', error);
+                errorText.textContent = 'Authentication failed. Please try again.';
                 errorDiv.style.display = 'block';
-                submitBtn.disabled = false;
-                submitBtn.textContent = originalBtnText;
             }
-        };
+        }
         
-        // Resend OTP code
-        window.resendOTP = async function resendOTP() {
-            const otpForm = document.getElementById('otpForm');
-            const email = otpForm.dataset.email;
+        // Initialize Google Sign-In
+        let initAttempts = 0;
+        const MAX_INIT_ATTEMPTS = 50; // 5 seconds max wait
+        
+        function initializeGoogleSignIn() {
+            initAttempts++;
+            const loadingMessage = document.getElementById('loadingMessage');
+            const errorDiv = document.getElementById('loginError');
+            const errorText = document.getElementById('loginErrorText');
+            const buttonContainer = document.getElementById('googleSignInContainer');
+            const fallbackContainer = document.getElementById('fallbackButtonContainer');
             
-            if (!email) {
-                alert('Session expired. Please start over.');
+            console.log('Initializing Google Sign-In, attempt:', initAttempts);
+            console.log('Client ID:', GOOGLE_OAUTH_CLIENT_ID);
+            console.log('Google object:', typeof google !== 'undefined' ? 'exists' : 'missing');
+            
+            // Check if Client ID is configured (check for undefined, empty, or placeholder)
+            if (!GOOGLE_OAUTH_CLIENT_ID || 
+                GOOGLE_OAUTH_CLIENT_ID === 'YOUR_CLIENT_ID.apps.googleusercontent.com' ||
+                GOOGLE_OAUTH_CLIENT_ID.trim() === '') {
+                if (loadingMessage) loadingMessage.style.display = 'none';
+                errorText.innerHTML = `
+                    <strong>⚠️ Configuration Required:</strong><br>
+                    Google OAuth Client ID is not configured or is invalid.<br>
+                    <small>See line ~5393 in index-sheets.html<br>
+                    Replace 'YOUR_CLIENT_ID.apps.googleusercontent.com' with your actual Client ID from Google Cloud Console</small>
+                `;
+                errorDiv.style.display = 'block';
+                // Show fallback button
+                if (fallbackContainer) {
+                    fallbackContainer.style.display = 'block';
+                }
                 return;
             }
             
-            const result = await sendOTP(email);
-            
-            const errorDiv = document.getElementById('loginError');
-            const errorText = document.getElementById('loginErrorText');
-            
-            if (result.success) {
-                errorText.textContent = `New verification code sent to ${email}`;
-                errorText.style.color = '#22c55e';
-                errorDiv.style.display = 'block';
+            // Wait for Google Identity Services to load
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                try {
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                    
+                    console.log('✅ Google Identity Services loaded, initializing...');
+                    console.log('📍 Current origin:', window.location.origin);
+                    console.log('🔑 Client ID:', GOOGLE_OAUTH_CLIENT_ID);
+                    
+                    // Validate Client ID format before calling Google API
+                    if (!GOOGLE_OAUTH_CLIENT_ID.includes('.apps.googleusercontent.com')) {
+                        throw new Error('Invalid Client ID format. Must end with .apps.googleusercontent.com');
+                    }
+                    
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_OAUTH_CLIENT_ID,
+                        callback: handleCredentialResponse,
+                        auto_select: false,
+                        cancel_on_tap_outside: true
+                    });
+                    
+                    console.log('✅ Google Sign-In initialized successfully');
+                    console.log('🎨 Rendering button...');
+                    
+                    // Clear container first
+                    buttonContainer.innerHTML = '';
+                    
+                    // Render the sign-in button
+                    google.accounts.id.renderButton(
+                        buttonContainer,
+                        {
+                            theme: 'filled_blue',
+                            size: 'large',
+                            width: 300,
+                            text: 'signin_with',
+                            type: 'standard'
+                        }
+                    );
+                    
+                    console.log('✅ Google Sign-In button rendered successfully!');
+                    console.log('✅ Everything looks good! The button should be visible now.');
+                    
+                    // Hide fallback button and loading message
+                    if (fallbackContainer) fallbackContainer.style.display = 'none';
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                    
+                } catch (error) {
+                    console.error('❌ Error rendering Google Sign-In button:', error);
+                    console.error('Error details:', {
+                        message: error.message,
+                        name: error.name,
+                        stack: error.stack,
+                        origin: window.location.origin,
+                        clientId: GOOGLE_OAUTH_CLIENT_ID
+                    });
+                    
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                    
+                    // Show fallback button
+                    if (fallbackContainer) {
+                        fallbackContainer.style.display = 'block';
+                        errorText.innerHTML = `
+                            <strong>⚠️ Error loading Google button:</strong><br>
+                            ${error.message || 'Unknown error'}<br>
+                            <small>This usually means your domain isn't authorized yet or Google hasn't updated (can take 1-5 minutes).<br>
+                            Check the browser console (F12) for more details.<br>
+                            Click the button below to try manual sign-in.</small>
+                        `;
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorText.innerHTML = `
+                            <strong>❌ Error loading Google Sign-In:</strong><br>
+                            ${error.message || 'Unknown error'}<br>
+                            <small>Check your browser console for more details.</small>
+                        `;
+                        errorDiv.style.display = 'block';
+                    }
+                }
             } else {
-                errorText.textContent = result.error || 'Failed to resend code.';
-                errorText.style.color = '#dc3545';
-                errorDiv.style.display = 'block';
+                // Retry after a short delay if Google Identity Services hasn't loaded yet
+                if (initAttempts < MAX_INIT_ATTEMPTS) {
+                    if (loadingMessage) {
+                        loadingMessage.textContent = `Loading sign-in button... (${initAttempts}/${MAX_INIT_ATTEMPTS})`;
+                    }
+                    setTimeout(initializeGoogleSignIn, 100);
+                } else {
+                    // Timeout - Google script failed to load, show fallback
+                    console.error('Google Identity Services failed to load after', MAX_INIT_ATTEMPTS, 'attempts');
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                    
+                    // Always show fallback button if Google's button doesn't load
+                    if (fallbackContainer) {
+                        fallbackContainer.style.display = 'block';
+                        const currentOrigin = window.location.origin;
+                        errorText.innerHTML = `
+                            <strong>⚠️ Google Sign-In script didn't load:</strong><br>
+                            <strong>Your current domain:</strong> <code style="background: #f8f9fa; padding: 2px 6px; border-radius: 3px;">${currentOrigin}</code><br>
+                            <br>
+                            <strong>To fix:</strong><br>
+                            1. Go to: <a href="https://console.cloud.google.com/apis/credentials" target="_blank" style="color: #4285f4;">Google Cloud Console → Credentials</a><br>
+                            2. Click your OAuth 2.0 Client ID<br>
+                            3. Under "Authorized JavaScript origins", click "+ ADD URI"<br>
+                            4. Add: <code style="background: #f8f9fa; padding: 2px 6px; border-radius: 3px;">${currentOrigin}</code><br>
+                            5. Also add: <code style="background: #f8f9fa; padding: 2px 6px; border-radius: 3px;">http://localhost</code> (for local testing)<br>
+                            6. Under "Authorized redirect URIs", add the same URLs<br>
+                            7. Click "SAVE"<br>
+                            8. Wait 1-2 minutes, then refresh this page<br>
+                            <br>
+                            <strong>Click the button below to try manual sign-in:</strong>
+                        `;
+                        errorDiv.style.display = 'block';
+                    } else {
+                        errorText.innerHTML = `
+                            <strong>❌ Failed to load Google Sign-In:</strong><br>
+                            Google Identity Services script did not load.<br>
+                            <small>Please check your internet connection and try refreshing the page.</small>
+                        `;
+                        errorDiv.style.display = 'block';
+                    }
+                }
+            }
+        }
+        
+        // Fallback function to trigger Google Sign-In manually
+        // Make it globally accessible for onclick handlers
+        window.triggerGoogleSignIn = function triggerGoogleSignIn() {
+            console.log('Triggering manual Google Sign-In');
+            console.log('Client ID:', GOOGLE_OAUTH_CLIENT_ID);
+            console.log('Google object:', typeof google !== 'undefined' ? 'exists' : 'missing');
+            
+            // Check if Client ID is configured
+            if (!GOOGLE_OAUTH_CLIENT_ID || GOOGLE_OAUTH_CLIENT_ID === 'YOUR_CLIENT_ID.apps.googleusercontent.com') {
+                alert('❌ Google OAuth Client ID is not configured.\n\nPlease set GOOGLE_OAUTH_CLIENT_ID in the code.');
+                return;
+            }
+            
+            // Try to use the One Tap prompt if available
+            if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+                try {
+                    // First, ensure Google is initialized with our Client ID
+                    google.accounts.id.initialize({
+                        client_id: GOOGLE_OAUTH_CLIENT_ID,
+                        callback: handleCredentialResponse,
+                        auto_select: false,
+                        cancel_on_tap_outside: true
+                    });
+                    
+                    // Try to show One Tap prompt
+                    google.accounts.id.prompt((notification) => {
+                        console.log('One Tap notification:', notification);
+                        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+                            // One Tap failed, try popup using renderButton
+                            const buttonContainer = document.getElementById('googleSignInContainer');
+                            if (buttonContainer) {
+                                buttonContainer.innerHTML = '';
+                                google.accounts.id.renderButton(
+                                    buttonContainer,
+                                    {
+                                        theme: 'filled_blue',
+                                        size: 'large',
+                                        width: '100%',
+                                        text: 'signin_with',
+                                        type: 'standard',
+                                        click_listener: function() {
+                                            // This will trigger the callback
+                                        }
+                                    }
+                                );
+                                // Click the button programmatically
+                                const button = buttonContainer.querySelector('div[role="button"]');
+                                if (button) {
+                                    button.click();
+                                } else {
+                                    // Fallback: redirect to OAuth
+                                    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_OAUTH_CLIENT_ID}&redirect_uri=${encodeURIComponent(window.location.origin + window.location.pathname)}&response_type=token&scope=openid%20profile%20email&nonce=${Date.now()}`;
+                                }
+                            } else {
+                                // Fallback: redirect to OAuth
+                                window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_OAUTH_CLIENT_ID}&redirect_uri=${encodeURIComponent(window.location.origin + window.location.pathname)}&response_type=token&scope=openid%20profile%20email&nonce=${Date.now()}`;
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error with One Tap:', error);
+                    // Fallback: redirect to OAuth popup
+                    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_OAUTH_CLIENT_ID}&redirect_uri=${encodeURIComponent(window.location.origin + window.location.pathname)}&response_type=token&scope=openid%20profile%20email&nonce=${Date.now()}`;
+                }
+            } else {
+                const currentOrigin = window.location.origin;
+                alert('❌ Google OAuth Client ID is not configured.\n\nPlease set GOOGLE_OAUTH_CLIENT_ID in the code.');
             }
         };
         
         // Check if user is already logged in
         window.addEventListener('load', function() {
             // 🔧 TESTING: Skip authentication if disabled
-            if (!ENABLE_EMAIL_OTP) {
-                console.log('⚠️ Email OTP disabled for testing - skipping login');
+            if (!ENABLE_GOOGLE_AUTH) {
+                console.log('⚠️ Google OAuth disabled for testing - skipping login');
                 // Set flag in localStorage for immediate hiding on next page load
                 localStorage.setItem('skipAuth', 'true');
                 const overlay = document.getElementById('loginOverlay');
@@ -4326,22 +4265,61 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
             const adminEmail = sessionStorage.getItem('adminEmail');
             
-            // If logged in but no email (old session), force logout
+            // Check if running from file:// protocol (won't work with Google OAuth)
+            const isFileProtocol = window.location.protocol === 'file:';
+            
+            // Get current origin for helpful error messages
+            const currentOrigin = window.location.origin;
+            const currentHost = window.location.host;
+            
+            if (isFileProtocol) {
+                const errorDiv = document.getElementById('loginError');
+                const errorText = document.getElementById('loginErrorText');
+                const loadingMessage = document.getElementById('loadingMessage');
+                const fallbackContainer = document.getElementById('fallbackButtonContainer');
+                
+                if (loadingMessage) loadingMessage.style.display = 'none';
+                errorText.innerHTML = `
+                    <strong>⚠️ File Protocol Detected:</strong><br>
+                    Google OAuth doesn't work with file:// protocol.<br>
+                    <strong>Solution:</strong> Run a local web server:<br>
+                    <code style="background: #f8f9fa; padding: 4px 8px; border-radius: 4px; display: block; margin: 10px 0;">
+                        python3 -m http.server 8000
+                    </code>
+                    Then open: <code>http://localhost:8000/index-sheets.html</code>
+                `;
+                errorDiv.style.display = 'block';
+                
+                // Show fallback button that explains the issue
+                if (fallbackContainer) {
+                    fallbackContainer.innerHTML = `
+                        <button disabled style="width: 100%; background: #ccc; color: #666; border: none; padding: 12px 24px; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: not-allowed;">
+                            Sign in with Google (Not Available - Use Local Server)
+                        </button>
+                    `;
+                    fallbackContainer.style.display = 'block';
+                }
+                return;
+            }
+            
+            // If logged in but no email (old password-based login), force logout
             if (isLoggedIn === 'true' && !adminEmail) {
-                console.log('Detected old session. Forcing logout for email OTP.');
+                console.log('Detected old password-based session. Forcing logout for Google OAuth.');
                 sessionStorage.clear();
                 localStorage.removeItem('adminLoggedIn');
                 // Fall through to show login
             }
             
-            // Check if properly logged in
+            // Check if properly logged in with Google OAuth
             if (isLoggedIn === 'true' && adminEmail) {
                 document.getElementById('loginOverlay').style.display = 'none';
             } else {
-                // Initialize email OTP when page loads
+                // Initialize Google Sign-In when page loads
                 // Wait a bit for the page to fully render
                 setTimeout(function() {
-                    initializeEmailOTP();
+                    initializeGoogleSignIn();
+                    // Update diagnostics after a moment
+                    setTimeout(updateDiagnostics, 1000);
                 }, 500);
             }
         });
