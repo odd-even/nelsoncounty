@@ -3925,6 +3925,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         const AUTHORIZED_EMAILS = [
             'ernest@oddplusevenstudio.com',
             'ernest@oddpluseven.com',
+            'adam@oddpluseven.com',
+            'rj@oddpluseven.com',
+            'bniemeyer@nelsoncounty.org',
+            'makelley@nelsoncounty.org',
+            'esther@oddpluseven.com',
             // Add more authorized emails here (one per line, comma-separated)
             // Example: 'admin@example.com',
             // Example: 'user@example.com',
