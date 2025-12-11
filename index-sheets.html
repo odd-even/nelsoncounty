@@ -1320,24 +1320,51 @@
         }
     </style>
     
-    <!-- Authentication is handled by admin.js -->
-    <!-- ENABLE_EMAIL_OTP setting in admin.js controls authentication -->
+    <!-- CRITICAL: Authentication enforcement - runs immediately -->
     <script>
-        // Immediate check: Ensure login overlay is visible and clear stale auth state
-        // This runs before admin.js loads to prevent any bypass
+        // IMMEDIATE: Clear ALL auth data before anything else runs
+        // This prevents any bypass attempts
         (function() {
-            // Clear any stale localStorage auth flags
+            'use strict';
+            // Clear ALL authentication data
+            sessionStorage.clear();
             localStorage.removeItem('skipAuth');
             localStorage.removeItem('adminLoggedIn');
             
-            // Ensure body doesn't have logged-in class
-            document.body.classList.remove('logged-in');
-            
-            // Ensure login overlay is visible
-            const overlay = document.getElementById('loginOverlay');
-            if (overlay) {
-                overlay.style.display = 'flex';
+            // Force body to not have logged-in class
+            if (document.body) {
+                document.body.classList.remove('logged-in');
             }
+            
+            // Force login overlay to be visible
+            function showLoginOverlay() {
+                const overlay = document.getElementById('loginOverlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                    overlay.style.zIndex = '10000';
+                }
+            }
+            
+            // Try immediately
+            showLoginOverlay();
+            
+            // Also try when DOM is ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', showLoginOverlay);
+            }
+            
+            // Also try on load
+            window.addEventListener('load', showLoginOverlay);
+            
+            // Continuously enforce (in case something tries to hide it)
+            setInterval(function() {
+                const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                const adminEmail = sessionStorage.getItem('adminEmail');
+                if (!isLoggedIn || !adminEmail) {
+                    showLoginOverlay();
+                    document.body.classList.remove('logged-in');
+                }
+            }, 100);
         })();
     </script>
     
@@ -1830,21 +1857,37 @@
                     return;
                 }
                 
+                // ALWAYS clear old auth data first
                 localStorage.removeItem('skipAuth');
                 localStorage.removeItem('adminLoggedIn');
-                document.body.classList.remove('logged-in');
                 
+                // Check for valid session
                 const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
                 const adminEmail = sessionStorage.getItem('adminEmail');
                 
                 const overlay = document.getElementById('loginOverlay');
-                if (isLoggedIn === 'true' && adminEmail) {
+                
+                // ONLY allow login if BOTH conditions are met:
+                // 1. sessionStorage says logged in
+                // 2. AND there's a valid email
+                // 3. AND the email is in the authorized list
+                if (isLoggedIn === 'true' && adminEmail && AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase())) {
+                    // Valid authenticated session
                     if (overlay) overlay.style.display = 'none';
                     document.body.classList.add('logged-in');
                 } else {
+                    // NOT logged in - clear everything and show login
+                    sessionStorage.clear();
                     if (overlay) overlay.style.display = 'flex';
                     document.body.classList.remove('logged-in');
-                    sessionStorage.clear();
+                    
+                    // Hide all admin content
+                    const header = document.querySelector('.header');
+                    const tabs = document.querySelector('.tabs');
+                    const tabContent = document.querySelectorAll('.tab-content');
+                    if (header) header.style.display = 'none';
+                    if (tabs) tabs.style.display = 'none';
+                    tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                 }
             }
             
@@ -1863,8 +1906,14 @@
                     const adminEmail = sessionStorage.getItem('adminEmail');
                     const overlay = document.getElementById('loginOverlay');
                     
-                    if (!isLoggedIn || !adminEmail) {
-                        // Not logged in - enforce login
+                    // Check if properly authenticated
+                    const isValidAuth = isLoggedIn === 'true' && 
+                                       adminEmail && 
+                                       AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase());
+                    
+                    if (!isValidAuth) {
+                        // Not properly authenticated - enforce login
+                        sessionStorage.clear();
                         if (overlay) overlay.style.display = 'flex';
                         document.body.classList.remove('logged-in');
                         // Hide all admin content
@@ -10388,24 +10437,16 @@ function updateUnsavedChangesBadge() {
             }
         };
         
-        // Check if user is already logged in
+        // OLD GOOGLE OAUTH CODE - DISABLED
+        // Email OTP authentication is now handled by the embedded code above
+        // This section is kept for reference but does not run
         window.addEventListener('load', function() {
-            // 🔧 TESTING: Skip authentication if disabled
-            if (!ENABLE_GOOGLE_AUTH) {
-                console.log('⚠️ Google OAuth disabled for testing - skipping login');
-                // Set flag in localStorage for immediate hiding on next page load
-                localStorage.setItem('skipAuth', 'true');
-                const overlay = document.getElementById('loginOverlay');
-                if (overlay) {
-                    overlay.style.display = 'none';
-                }
-                document.body.classList.add('logged-in');
-                return; // Skip all auth checks
-            } else {
-                // Auth is enabled, clear the skip flag
-                localStorage.removeItem('skipAuth');
-            }
+            // Email OTP authentication is handled by the code embedded earlier in the page
+            // This old Google OAuth code is disabled
+            return;
             
+            // OLD CODE BELOW - NOT EXECUTED
+            if (false) { // Never executes
             const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
             const adminEmail = sessionStorage.getItem('adminEmail');
             
@@ -10446,26 +10487,18 @@ function updateUnsavedChangesBadge() {
                 return;
             }
             
-            // If logged in but no email (old password-based login), force logout
-            if (isLoggedIn === 'true' && !adminEmail) {
-                console.log('Detected old password-based session. Forcing logout for Google OAuth.');
-                sessionStorage.clear();
-                localStorage.removeItem('adminLoggedIn');
-                // Fall through to show login
-            }
+            // OLD GOOGLE OAUTH CODE REMOVED - Using Email OTP instead
+            // This code is disabled - authentication is now handled by Email OTP code above
+            // Clear any old session data
+            sessionStorage.clear();
+            localStorage.removeItem('adminLoggedIn');
             
-            // Check if properly logged in with Google OAuth
-            if (isLoggedIn === 'true' && adminEmail) {
-                document.getElementById('loginOverlay').style.display = 'none';
-            } else {
-                // Initialize Google Sign-In when page loads
-                // Wait a bit for the page to fully render
-                setTimeout(function() {
-                    initializeGoogleSignIn();
-                    // Update diagnostics after a moment
-                    setTimeout(updateDiagnostics, 1000);
-                }, 500);
+            // Show login overlay - Email OTP will handle authentication
+            const overlay = document.getElementById('loginOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
             }
+            document.body.classList.remove('logged-in');
         });
         
         // Test and diagnostic functions
