@@ -2115,29 +2115,41 @@
                 const otpForm = document.getElementById('otpForm');
                 
                 if (emailForm) {
-                    emailForm.addEventListener('submit', function(e) {
+                    // Remove any existing listeners first
+                    const newEmailForm = emailForm.cloneNode(true);
+                    emailForm.parentNode.replaceChild(newEmailForm, emailForm);
+                    
+                    newEmailForm.addEventListener('submit', function(e) {
                         e.preventDefault();
-                        if (window.handleEmailSubmit) {
+                        e.stopPropagation();
+                        console.log('📧 Form submitted, calling handleEmailSubmit');
+                        if (window.handleEmailSubmit && typeof window.handleEmailSubmit === 'function') {
                             window.handleEmailSubmit();
                         } else {
-                            console.error('handleEmailSubmit not available');
+                            console.error('❌ handleEmailSubmit not available:', typeof window.handleEmailSubmit);
                             alert('Authentication system is loading. Please wait a moment and try again.');
                         }
                     });
-                    console.log('✅ Email form listener attached');
+                    console.log('✅ Email form listener attached to:', newEmailForm);
                 }
                 
                 if (otpForm) {
-                    otpForm.addEventListener('submit', function(e) {
+                    // Remove any existing listeners first
+                    const newOtpForm = otpForm.cloneNode(true);
+                    otpForm.parentNode.replaceChild(newOtpForm, otpForm);
+                    
+                    newOtpForm.addEventListener('submit', function(e) {
                         e.preventDefault();
-                        if (window.handleOTPSubmit) {
+                        e.stopPropagation();
+                        console.log('🔐 OTP form submitted, calling handleOTPSubmit');
+                        if (window.handleOTPSubmit && typeof window.handleOTPSubmit === 'function') {
                             window.handleOTPSubmit();
                         } else {
-                            console.error('handleOTPSubmit not available');
+                            console.error('❌ handleOTPSubmit not available:', typeof window.handleOTPSubmit);
                             alert('Authentication system is loading. Please wait a moment and try again.');
                         }
                     });
-                    console.log('✅ OTP form listener attached');
+                    console.log('✅ OTP form listener attached to:', newOtpForm);
                 }
             }
             
@@ -3281,8 +3293,9 @@ function saveIconMappingsToStorage(iconMappings) {
 
 // Default icon mappings - comprehensive list (merged from admin and front page)
 // Only declare if not already defined (admin.js might have it)
-if (typeof DEFAULT_ICON_MAPPINGS === 'undefined') {
-    var DEFAULT_ICON_MAPPINGS = {
+// Use window object to avoid duplicate variable errors
+if (typeof window.DEFAULT_ICON_MAPPINGS === 'undefined' && typeof DEFAULT_ICON_MAPPINGS === 'undefined') {
+    window.DEFAULT_ICON_MAPPINGS = {
     'Wine': 'icon-wine',
     'Winery': 'icon-wine',
     'Beer': 'icon-beer',
@@ -3384,7 +3397,7 @@ if (typeof DEFAULT_ICON_MAPPINGS === 'undefined') {
 // Initialize icon mappings from storage or defaults
 let ICON_MAPPINGS = loadIconMappingsFromStorage();
 if (!ICON_MAPPINGS || Object.keys(ICON_MAPPINGS).length === 0) {
-    ICON_MAPPINGS = DEFAULT_ICON_MAPPINGS;
+    ICON_MAPPINGS = (typeof window.DEFAULT_ICON_MAPPINGS !== 'undefined' ? window.DEFAULT_ICON_MAPPINGS : (typeof DEFAULT_ICON_MAPPINGS !== 'undefined' ? DEFAULT_ICON_MAPPINGS : {}));
     saveIconMappingsToStorage(ICON_MAPPINGS);
 }
 
@@ -8214,7 +8227,7 @@ function updateUnsavedChangesBadge() {
                                     'Click OK to reset\n' +
                                     'Click Cancel to keep current mappings');
             if (confirmed) {
-                ICON_MAPPINGS = JSON.parse(JSON.stringify(DEFAULT_ICON_MAPPINGS));
+                ICON_MAPPINGS = JSON.parse(JSON.stringify(window.DEFAULT_ICON_MAPPINGS || DEFAULT_ICON_MAPPINGS));
                 saveIconMappingsToStorage(ICON_MAPPINGS);
                 renderIconMappings();
                 
