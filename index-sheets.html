@@ -1833,12 +1833,20 @@
                 try {
                     const result = verifyOTP(email, code);
                     if (result.success) {
-                        const overlay = document.getElementById('loginOverlay');
-                        overlay.style.display = 'none';
+                        // Set session data before reload
                         sessionStorage.setItem('adminLoggedIn', 'true');
                         sessionStorage.setItem('adminEmail', email);
                         sessionStorage.setItem('adminName', email.split('@')[0]);
-                        document.body.classList.add('logged-in');
+                        
+                        // Show success message briefly, then reload
+                        errorText.textContent = '✅ Login successful! Loading admin panel...';
+                        errorText.style.color = '#22c55e';
+                        errorDiv.style.display = 'block';
+                        
+                        // Reload page to initialize admin.js with authenticated session
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
                     } else {
                         errorText.textContent = result.error || 'Invalid verification code.';
                         errorText.style.color = '#dc3545';
@@ -1918,6 +1926,14 @@
                     // Valid authenticated session
                     if (overlay) overlay.style.display = 'none';
                     document.body.classList.add('logged-in');
+                    
+                    // Show admin content
+                    const header = document.querySelector('.header');
+                    const tabs = document.querySelector('.tabs');
+                    const tabContent = document.querySelectorAll('.tab-content');
+                    if (header) header.style.display = '';
+                    if (tabs) tabs.style.display = '';
+                    // Don't force hide tab content - let admin.js handle it
                 } else {
                     // NOT logged in - clear everything and show login
                     sessionStorage.clear();
