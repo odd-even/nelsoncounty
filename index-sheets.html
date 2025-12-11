@@ -6481,25 +6481,27 @@ function updateUnsavedChangesBadge() {
                     }
                 });
                 
-                // Set up directions link auto-population
+                // Set up directions link auto-population (only when address is complete)
                 if (directionsLinkInput) {
-                    addressInput.addEventListener('input', function() {
-                        const address = this.value.trim();
+                    // Helper function to check if address looks complete
+                    function isAddressComplete(address) {
+                        if (!address || address.length < 10) return false; // Too short
                         
-                        clearTimeout(debounceTimer);
+                        // Check if it has multiple parts (likely complete address)
+                        const parts = address.split(',').map(function(p) { return p.trim(); }).filter(Boolean);
+                        if (parts.length >= 2) return true; // Has at least street and city
                         
-                        debounceTimer = setTimeout(function() {
-                            if (address && !directionsLinkInput.value.trim()) {
-                                const encodedAddress = encodeURIComponent(address);
-                                const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
-                                directionsLinkInput.value = googleMapsUrl;
-                            }
-                        }, 500);
-                    });
+                        // Check for common address patterns (zip code, state abbreviation, etc.)
+                        const hasZip = /\b\d{5}(-\d{4})?\b/.test(address); // 5-digit zip
+                        const hasState = /\b(AL|AK|AZ|AR|CA|CO|CT|DE|FL|GA|HI|ID|IL|IN|IA|KS|KY|LA|ME|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|OH|OK|OR|PA|RI|SC|SD|TN|TX|UT|VT|VA|WA|WV|WI|WY)\b/i.test(address);
+                        
+                        return hasZip || hasState || address.length > 30; // Has zip/state or is long enough
+                    }
                     
+                    // Only auto-populate on blur if address looks complete
                     addressInput.addEventListener('blur', function() {
                         const address = this.value.trim();
-                        if (address && !directionsLinkInput.value.trim()) {
+                        if (address && isAddressComplete(address) && !directionsLinkInput.value.trim()) {
                             const encodedAddress = encodeURIComponent(address);
                             const googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
                             directionsLinkInput.value = googleMapsUrl;
