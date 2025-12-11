@@ -5917,6 +5917,22 @@ function updateUnsavedChangesBadge() {
             const amenityFilter = document.getElementById('adminAmenityFilter').value;
             
             const filtered = data.listings.filter(function(listing) {
+                // Special handling for "featured" search
+                if (searchTerm === 'featured') {
+                    // Show all featured listings OR listings containing "featured" in content
+                    const isFeatured = listing.featured === true || listing.featured === 'true' || listing.featured === 'TRUE';
+                    const hasFeaturedInContent = [
+                        listing.name || '',
+                        listing.description || '',
+                        listing.detailedDescription || '',
+                        listing.customHtml || ''
+                    ].join(' ').toLowerCase().indexOf('featured') > -1;
+                    
+                    if (!isFeatured && !hasFeaturedInContent) {
+                        return false; // Doesn't match featured search
+                    }
+                }
+                
                 // Build comprehensive searchable text from all listing fields
                 const searchableText = [
                     listing.name || '',
@@ -5939,7 +5955,9 @@ function updateUnsavedChangesBadge() {
                     listing.image1Desc || '',
                     listing.image2Desc || '',
                     listing.image3Desc || '',
-                    Array.isArray(listing.amenities) ? listing.amenities.join(' ') : (listing.amenities || '')
+                    Array.isArray(listing.amenities) ? listing.amenities.join(' ') : (listing.amenities || ''),
+                    // Include featured status in searchable text
+                    (listing.featured === true || listing.featured === 'true' || listing.featured === 'TRUE') ? 'featured' : ''
                 ].join(' ').toLowerCase();
                 
                 const matchesSearch = !searchTerm || searchableText.indexOf(searchTerm) > -1;
@@ -6725,8 +6743,9 @@ function updateUnsavedChangesBadge() {
                         showUnsavedChangesBadge();
                             
                             // Refresh the display immediately with updated local data
+                            // Use filterListings() to preserve current filter/search state
                             applyFilterOptionCleanup();
-                            renderListings();
+                            filterListings();
                             
                             // Show success message
                             alert('✅ "' + listing.name + '" has been deleted from Google Sheets.');
@@ -6751,8 +6770,9 @@ function updateUnsavedChangesBadge() {
                         
                         // Do NOT remove from local data - keep it in sync with Google Sheets
                         // Refresh the display to show the listing is still there
+                        // Use filterListings() to preserve current filter/search state
                         applyFilterOptionCleanup();
-                        renderListings();
+                        filterListings();
                     }
                 } else {
                     // No Google Sheets configured - delete locally only
@@ -6760,9 +6780,9 @@ function updateUnsavedChangesBadge() {
                     updateSyncStatus(false, '⚠️ Deleted locally only (Google Sheets not configured)');
                     alert('Deleted "' + listing.name + '" (Local only - configure Google Sheets to sync)');
                     
-                    // Refresh the display
+                    // Refresh the display (preserve filter state)
                     applyFilterOptionCleanup();
-                    renderListings();
+                    filterListings();
                 }
                 
             } else {
@@ -6772,13 +6792,13 @@ function updateUnsavedChangesBadge() {
                 // Clear any existing timeout
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
                 
-                // Re-render to update button text
-                renderListings();
+                // Re-render to update button text (preserve filter state)
+                filterListings();
                 
                 // Reset after 3 seconds
                 deleteConfirmTimeout = setTimeout(function() {
                     deleteConfirmId = null;
-                    renderListings();
+                    filterListings();
                 }, 3000);
             }
         }

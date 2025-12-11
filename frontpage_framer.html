@@ -7054,6 +7054,21 @@ function filterPreview() {
             if (searchTerms.length > 0) {
                 // Check if listing matches ANY of the search terms (OR logic)
                 matchesSearch = searchTerms.some(function(term) {
+                    // Special handling for "featured" search term
+                    if (term === 'featured') {
+                        // Show all featured listings OR listings containing "featured" in content
+                        const isFeatured = listing.featured === true || listing.featured === 'true' || listing.featured === 'TRUE';
+                        const hasFeaturedInContent = [
+                            listing.name || '',
+                            listing.description || '',
+                            listing.detailedDescription || '',
+                            listing.customHtml || ''
+                        ].join(' ').toLowerCase().includes('featured');
+                        
+                        return isFeatured || hasFeaturedInContent;
+                    }
+                    
+                    // Regular search - check all fields
                     return listing.name.toLowerCase().includes(term) ||
                         listing.type.toLowerCase().includes(term) ||
                         listing.area.toLowerCase().includes(term) ||
