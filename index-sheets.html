@@ -1608,6 +1608,46 @@
                 rateLimitWindow: 15 * 60 * 1000
             };
             
+            // Session expiration: 1 day (24 hours)
+            const SESSION_EXPIRATION_MS = 24 * 60 * 60 * 1000;
+            
+            // Helper functions for persistent session storage with expiration
+            function setAuthSession(email) {
+                const sessionData = {
+                    email: email,
+                    name: email.split('@')[0],
+                    expires: Date.now() + SESSION_EXPIRATION_MS
+                };
+                localStorage.setItem('adminAuthSession', JSON.stringify(sessionData));
+            }
+            
+            function getAuthSession() {
+                try {
+                    const sessionData = localStorage.getItem('adminAuthSession');
+                    if (!sessionData) return null;
+                    
+                    const session = JSON.parse(sessionData);
+                    
+                    // Check if expired
+                    if (Date.now() > session.expires) {
+                        localStorage.removeItem('adminAuthSession');
+                        return null;
+                    }
+                    
+                    return session;
+                } catch (e) {
+                    localStorage.removeItem('adminAuthSession');
+                    return null;
+                }
+            }
+            
+            function clearAuthSession() {
+                localStorage.removeItem('adminAuthSession');
+                sessionStorage.removeItem('adminLoggedIn');
+                sessionStorage.removeItem('adminEmail');
+                sessionStorage.removeItem('adminName');
+            }
+            
             let otpStorage = {
                 codes: {},
                 requestHistory: {}
@@ -1833,7 +1873,10 @@
                 try {
                     const result = verifyOTP(email, code);
                     if (result.success) {
-                        // Set session data before reload
+                        // Set persistent session (1 day expiration)
+                        setAuthSession(email);
+                        
+                        // Also set sessionStorage for backward compatibility
                         sessionStorage.setItem('adminLoggedIn', 'true');
                         sessionStorage.setItem('adminEmail', email);
                         sessionStorage.setItem('adminName', email.split('@')[0]);
@@ -1887,8 +1930,7 @@
             };
             
             window.logout = function logout() {
-                sessionStorage.clear();
-                localStorage.removeItem('adminLoggedIn');
+                clearAuthSession();
                 localStorage.removeItem('skipAuth');
                 document.body.classList.remove('logged-in');
                 const overlay = document.getElementById('loginOverlay');
@@ -1912,20 +1954,36 @@
                 localStorage.removeItem('skipAuth');
                 localStorage.removeItem('adminLoggedIn');
                 
-                // Check for valid session
-                const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-                const adminEmail = sessionStorage.getItem('adminEmail');
+                // Check for valid session (check localStorage first for persistence)
+                const session = getAuthSession();
+                const adminEmail = session ? session.email : null;
+                const isLoggedIn = session !== null;
+                
+                // Also check sessionStorage for backward compatibility
+                const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                const sessionStorageEmail = sessionStorage.getItem('adminEmail');
+                
+                // Use persistent session if available, otherwise fall back to sessionStorage
+                const finalIsLoggedIn = isLoggedIn || (sessionStorageLoggedIn === 'true' && sessionStorageEmail);
+                const finalAdminEmail = adminEmail || sessionStorageEmail;
                 
                 const overlay = document.getElementById('loginOverlay');
                 
                 // ONLY allow login if BOTH conditions are met:
-                // 1. sessionStorage says logged in
+                // 1. Valid session (localStorage or sessionStorage)
                 // 2. AND there's a valid email
                 // 3. AND the email is in the authorized list
-                if (isLoggedIn === 'true' && adminEmail && AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase())) {
+                if (finalIsLoggedIn && finalAdminEmail && AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase())) {
                     // Valid authenticated session
                     if (overlay) overlay.style.display = 'none';
                     document.body.classList.add('logged-in');
+                    
+                    // Ensure sessionStorage is also set for backward compatibility
+                    if (!sessionStorageLoggedIn) {
+                        sessionStorage.setItem('adminLoggedIn', 'true');
+                        sessionStorage.setItem('adminEmail', finalAdminEmail);
+                        sessionStorage.setItem('adminName', finalAdminEmail.split('@')[0]);
+                    }
                     
                     // Show admin content
                     const header = document.querySelector('.header');
@@ -1936,7 +1994,7 @@
                     // Don't force hide tab content - let admin.js handle it
                 } else {
                     // NOT logged in - clear everything and show login
-                    sessionStorage.clear();
+                    clearAuthSession();
                     if (overlay) overlay.style.display = 'flex';
                     document.body.classList.remove('logged-in');
                     
@@ -1961,18 +2019,31 @@
             // Continuous monitoring to prevent bypass
             setInterval(function() {
                 if (ENABLE_EMAIL_OTP) {
-                    const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-                    const adminEmail = sessionStorage.getItem('adminEmail');
+                    const session = getAuthSession();
+                    const isLoggedIn = session !== null;
+                    const adminEmail = session ? session.email : null;
                     const overlay = document.getElementById('loginOverlay');
                     
+                    // Also check sessionStorage for backward compatibility
+                    const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                    const sessionStorageEmail = sessionStorage.getItem('adminEmail');
+                    const finalIsLoggedIn = isLoggedIn || (sessionStorageLoggedIn === 'true' && sessionStorageEmail);
+                    const finalAdminEmail = adminEmail || sessionStorageEmail;
+                    
                     // Check if properly authenticated
-                    const isValidAuth = isLoggedIn === 'true' && 
-                                       adminEmail && 
-                                       AUTHORIZED_EMAILS.includes(adminEmail.toLowerCase());
+                    const isValidAuth = finalIsLoggedIn && 
+                                       finalAdminEmail && 
+                                       AUTHORIZED_EMAILS.includes(finalAdminEmail.toLowerCase());
+                    
+                    // If valid, ensure overlay is hidden and logged-in class is set
+                    if (isValidAuth && overlay) {
+                        overlay.style.display = 'none';
+                        document.body.classList.add('logged-in');
+                    }
                     
                     if (!isValidAuth) {
                         // Not properly authenticated - enforce login
-                        sessionStorage.clear();
+                        clearAuthSession();
                         if (overlay) overlay.style.display = 'flex';
                         document.body.classList.remove('logged-in');
                         // Hide all admin content
@@ -1983,6 +2054,8 @@
                         if (tabs) tabs.style.display = 'none';
                         tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                     }
+                }
+            }, 1000); // Check every second
                 }
             }, 500); // Check every 500ms
         })();

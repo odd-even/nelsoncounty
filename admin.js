@@ -4329,26 +4329,64 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             localStorage.removeItem('skipAuth');
             localStorage.removeItem('adminLoggedIn');
             
-            // Check session storage for valid login
-            const isLoggedIn = sessionStorage.getItem('adminLoggedIn');
-            const adminEmail = sessionStorage.getItem('adminEmail');
+            // Helper to get persistent session (same as in index-sheets.html)
+            function getAuthSession() {
+                try {
+                    const sessionData = localStorage.getItem('adminAuthSession');
+                    if (!sessionData) return null;
+                    
+                    const session = JSON.parse(sessionData);
+                    
+                    // Check if expired (1 day)
+                    if (Date.now() > session.expires) {
+                        localStorage.removeItem('adminAuthSession');
+                        return null;
+                    }
+                    
+                    return session;
+                } catch (e) {
+                    localStorage.removeItem('adminAuthSession');
+                    return null;
+                }
+            }
+            
+            // Check for persistent session first (1 day expiration)
+            const session = getAuthSession();
+            const persistentEmail = session ? session.email : null;
+            const persistentLoggedIn = session !== null;
+            
+            // Also check sessionStorage for backward compatibility
+            const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+            const sessionStorageEmail = sessionStorage.getItem('adminEmail');
+            
+            // Use persistent session if available, otherwise fall back to sessionStorage
+            const isLoggedIn = persistentLoggedIn || (sessionStorageLoggedIn === 'true' && sessionStorageEmail);
+            const adminEmail = persistentEmail || sessionStorageEmail;
             
             // If logged in but no email (old session), force logout
-            if (isLoggedIn === 'true' && !adminEmail) {
+            if ((sessionStorageLoggedIn === 'true' || persistentLoggedIn) && !adminEmail) {
                 console.log('Detected old session. Forcing logout for email OTP.');
                 sessionStorage.clear();
+                localStorage.removeItem('adminAuthSession');
                 // Fall through to show login
             }
             
             // Check if properly logged in with valid session
             const overlay = document.getElementById('loginOverlay');
-            if (isLoggedIn === 'true' && adminEmail) {
+            if (isLoggedIn && adminEmail) {
                 // Valid session - hide login overlay
                 console.log('✅ Valid session found for:', adminEmail);
                 if (overlay) {
                     overlay.style.display = 'none';
                 }
                 document.body.classList.add('logged-in');
+                
+                // Ensure sessionStorage is also set for backward compatibility
+                if (!sessionStorageLoggedIn) {
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminEmail', adminEmail);
+                    sessionStorage.setItem('adminName', adminEmail.split('@')[0]);
+                }
             } else {
                 // Not logged in - show login overlay and initialize
                 console.log('🔒 No valid session - showing login overlay');
@@ -4359,6 +4397,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 // Clear any stale session data
                 sessionStorage.clear();
+                localStorage.removeItem('adminAuthSession');
                 
                 // Initialize email OTP when page loads
                 // Wait a bit for the page to fully render
