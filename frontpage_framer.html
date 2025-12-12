@@ -9728,19 +9728,23 @@ function updateMapMarkers(listings) {
                                     return;
                                 }
                                 
-                                // Ensure bounds have minimum size to prevent excessive zoom-out
-                                // If bounds are too small (e.g., single point or very close points), extend them
+                                // Calculate bounds size to detect if markers are close together
                                 var ne = bounds.getNorthEast();
                                 var sw = bounds.getSouthWest();
                                 var latDiff = ne.lat() - sw.lat();
                                 var lngDiff = ne.lng() - sw.lng();
                                 
+                                // Check if markers are close together (small bounds area)
+                                // Threshold: ~0.02 degrees (roughly 1-2 miles) indicates close markers
+                                var areMarkersClose = latDiff < 0.02 && lngDiff < 0.02;
+                                
                                 // Minimum bounds size: ~0.05 degrees (roughly 3-5 miles)
+                                // Only extend if markers are not close together (we want to zoom in on close markers)
                                 var minLatDiff = 0.05;
                                 var minLngDiff = 0.05;
                                 
-                                if (latDiff < minLatDiff || lngDiff < minLngDiff) {
-                                    // Extend bounds to ensure minimum size
+                                if (!areMarkersClose && (latDiff < minLatDiff || lngDiff < minLngDiff)) {
+                                    // Extend bounds to ensure minimum size only if markers aren't close
                                     var centerLat = (ne.lat() + sw.lat()) / 2;
                                     var centerLng = (ne.lng() + sw.lng()) / 2;
                                     
@@ -9754,17 +9758,23 @@ function updateMapMarkers(listings) {
                                     });
                                 }
                                 
-                                // Add padding to bounds to prevent excessive zoom when few listings are visible
-                                // More padding = less zoom = wider view
-                                var padding = 100; // pixels of padding on all sides
+                                // Add padding to bounds - less padding = more zoom
+                                // When markers are close or single item, use minimal padding to zoom in more
+                                var padding = 100; // Default padding for many listings
                                 
-                                // If there are very few listings, add much more padding to keep wider view
+                                // Single item: zoom in much more
                                 if (markers.length === 1) {
-                                    padding = 400; // Maximum padding for single listing - keep very wide view
-                                } else if (markers.length === 2) {
-                                    padding = 300; // Large padding for two listings
+                                    padding = 50; // Minimal padding for single listing - zoom in close
+                                } 
+                                // Close markers: zoom in more
+                                else if (areMarkersClose) {
+                                    padding = 50; // Minimal padding when markers are close together
+                                } 
+                                // Few listings
+                                else if (markers.length === 2) {
+                                    padding = 75; // Reduced padding for two listings
                                 } else if (markers.length <= 3) {
-                                    padding = 250; // More padding for very few listings
+                                    padding = 100; // Standard padding for very few listings
                                 } else if (markers.length <= 10) {
                                     padding = 150; // Medium padding for small number of listings
                                 }
@@ -9784,14 +9794,23 @@ function updateMapMarkers(listings) {
                                     // Set minimum zoom to prevent zooming out too far (showing entire US)
                                     var minZoom = 9; // Minimum zoom level (shows roughly county/region level)
                                     
-                                    // Set maximum zoom based on number of listings
+                                    // Set maximum zoom based on number of listings and proximity
+                                    // Higher maxZoom = allows more zoom in
                                     var maxZoom = 14; // Default max zoom
+                                    
+                                    // Single item: allow maximum zoom
                                     if (markers.length === 1) {
-                                        maxZoom = 11; // Single listing: maximum zoom of 11 to show surrounding area
-                                    } else if (markers.length === 2) {
-                                        maxZoom = 12; // Two listings: maximum zoom of 12
+                                        maxZoom = 16; // Single listing: allow zooming in very close
+                                    } 
+                                    // Close markers: allow more zoom
+                                    else if (areMarkersClose) {
+                                        maxZoom = 15; // Close markers: allow zooming in close
+                                    } 
+                                    // Few listings
+                                    else if (markers.length === 2) {
+                                        maxZoom = 14; // Two listings: allow good zoom
                                     } else if (markers.length <= 5) {
-                                        maxZoom = 13; // Few listings: maximum zoom of 13
+                                        maxZoom = 13; // Few listings: moderate zoom
                                     }
                                     
                                     // Apply zoom limits
