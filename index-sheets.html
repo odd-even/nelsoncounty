@@ -1618,7 +1618,8 @@
             }
             
             // Initialize AUTHORIZED_EMAILS from localStorage
-            let AUTHORIZED_EMAILS = loadAuthorizedEmails();
+            let AUTHORIZED_EMAILS = window.loadAuthorizedEmails();
+            console.log('🔐 Initialized AUTHORIZED_EMAILS on page load:', AUTHORIZED_EMAILS);
             
             // Make it accessible globally and update it when emails change
             window.AUTHORIZED_EMAILS = AUTHORIZED_EMAILS;
@@ -7699,12 +7700,29 @@ function updateUnsavedChangesBadge() {
                 alert('Error: At least one email address must remain in the allowed list.');
                 return false;
             }
-            localStorage.setItem('adminAllowedEmails', JSON.stringify(emails));
-            // Update the global AUTHORIZED_EMAILS
-            if (typeof window.AUTHORIZED_EMAILS !== 'undefined') {
-                window.AUTHORIZED_EMAILS = emails;
+            
+            try {
+                const emailsJson = JSON.stringify(emails);
+                localStorage.setItem('adminAllowedEmails', emailsJson);
+                console.log('💾 Saved to localStorage:', emailsJson);
+                
+                // Verify it was saved
+                const verify = localStorage.getItem('adminAllowedEmails');
+                if (verify !== emailsJson) {
+                    console.error('❌ localStorage verification failed!');
+                    return false;
+                }
+                console.log('✅ localStorage verified successfully');
+                
+                // Update the global AUTHORIZED_EMAILS
+                if (typeof window.AUTHORIZED_EMAILS !== 'undefined') {
+                    window.AUTHORIZED_EMAILS = emails;
+                }
+                return true;
+            } catch (error) {
+                console.error('❌ Error saving to localStorage:', error);
+                return false;
             }
-            return true;
         }
         
         // Render the allowed emails list
@@ -7713,6 +7731,7 @@ function updateUnsavedChangesBadge() {
             if (!container) return;
             
             const emails = window.loadAuthorizedEmails();
+            console.log('📋 Rendering emails list:', emails);
             
             if (emails.length === 0) {
                 container.innerHTML = '<p style="color: #6c757d; font-style: italic;">No emails configured</p>';
@@ -7840,15 +7859,36 @@ function updateUnsavedChangesBadge() {
                 if (result.success) {
                     // Add new email to list
                     const emails = window.loadAuthorizedEmails();
-                    emails.push(newEmail);
-                    if (saveAllowedEmails(emails)) {
+                    console.log('📧 Current emails before adding:', emails);
+                    console.log('📧 Adding new email:', newEmail);
+                    
+                    // Check if email already exists
+                    if (emails.includes(newEmail.toLowerCase())) {
+                        alert('This email is already in the allowed list.');
+                        return;
+                    }
+                    
+                    emails.push(newEmail.toLowerCase());
+                    console.log('📧 Emails after adding:', emails);
+                    
+                    // Save to localStorage
+                    const saveResult = saveAllowedEmails(emails);
+                    console.log('💾 Save result:', saveResult);
+                    
+                    // Verify it was saved
+                    const verifySaved = window.loadAuthorizedEmails();
+                    console.log('✅ Verified saved emails:', verifySaved);
+                    
+                    if (saveResult) {
                         // Update AUTHORIZED_EMAILS for current session
                         if (typeof window.AUTHORIZED_EMAILS !== 'undefined') {
                             window.AUTHORIZED_EMAILS = emails;
                         }
                         
                         // Try to sync with server
+                        console.log('🔄 Attempting to sync to server...');
                         const syncSuccess = await syncAuthorizedEmailsToServer(emails);
+                        console.log('🔄 Sync result:', syncSuccess);
                         
                         // Refresh the list
                         renderAllowedEmailsList();
@@ -7868,6 +7908,9 @@ function updateUnsavedChangesBadge() {
                         if (warningDiv && !syncSuccess) {
                             warningDiv.style.display = 'block';
                         }
+                    } else {
+                        console.error('❌ Failed to save emails to localStorage');
+                        alert('Error: Failed to save email address. Please check the browser console for details.');
                     }
                 } else {
                     alert('Verification failed: ' + (result.error || 'Invalid code'));
