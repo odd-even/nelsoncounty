@@ -1598,15 +1598,20 @@
             // Load authorized emails from localStorage or use defaults
             window.loadAuthorizedEmails = function loadAuthorizedEmails() {
                 const stored = localStorage.getItem('adminAllowedEmails');
+                console.log('📥 Loading emails from localStorage. Raw value:', stored);
                 if (stored) {
                     try {
-                        return JSON.parse(stored);
+                        const parsed = JSON.parse(stored);
+                        console.log('✅ Successfully parsed emails from localStorage:', parsed);
+                        return parsed;
                     } catch (e) {
-                        console.error('Error parsing stored emails:', e);
+                        console.error('❌ Error parsing stored emails:', e);
                     }
+                } else {
+                    console.log('⚠️ No emails found in localStorage, using defaults');
                 }
                 // Default emails (fallback)
-                return [
+                const defaults = [
                 'ernest@oddplusevenstudio.com',
                 'ernest@oddpluseven.com',
                 'adam@oddpluseven.com',
@@ -1615,11 +1620,19 @@
                 'makelley@nelsoncounty.org',
                 'esther@oddpluseven.com',
             ];
+                console.log('📋 Returning default emails:', defaults);
+                return defaults;
             }
             
             // Initialize AUTHORIZED_EMAILS from localStorage
+            // Debug: Check localStorage on initialization
+            console.log('🔍 Page load: Checking localStorage...');
+            console.log('🔍 localStorage.getItem("adminAllowedEmails"):', localStorage.getItem('adminAllowedEmails'));
+            console.log('🔍 All localStorage keys:', Object.keys(localStorage));
+            
             let AUTHORIZED_EMAILS = window.loadAuthorizedEmails();
             console.log('🔐 Initialized AUTHORIZED_EMAILS on page load:', AUTHORIZED_EMAILS);
+            console.log('🔐 Number of emails loaded:', AUTHORIZED_EMAILS.length);
             
             // Make it accessible globally and update it when emails change
             window.AUTHORIZED_EMAILS = AUTHORIZED_EMAILS;
@@ -2803,7 +2816,11 @@
                     <div id="allowedEmailsList" style="margin-bottom: 15px; max-height: 300px; overflow-y: auto;">
                         <!-- Allowed emails will be rendered here -->
                     </div>
-                    <button onclick="showAddEmailModal()" class="btn btn-success" style="padding: 8px 16px;">Add Email Address</button>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button onclick="showAddEmailModal()" class="btn btn-success" style="padding: 8px 16px;">Add Email Address</button>
+                        <button onclick="window.manualSyncEmails()" class="btn btn-secondary" style="padding: 8px 16px; background: #6c757d;">Sync to Server</button>
+                        <button onclick="window.checkServerEmails()" class="btn btn-secondary" style="padding: 8px 16px; background: #17a2b8;">Check Server</button>
+                    </div>
                 </div>
             </div>
             
@@ -7686,6 +7703,19 @@ function updateUnsavedChangesBadge() {
             renderAreasList();
             renderAmenitiesList();
             renderCategoriesList();
+            
+            // Debug: Check what's in localStorage when rendering
+            const storedRaw = localStorage.getItem('adminAllowedEmails');
+            console.log('🔍 renderSettings: Raw localStorage value:', storedRaw);
+            if (storedRaw) {
+                try {
+                    const parsed = JSON.parse(storedRaw);
+                    console.log('🔍 renderSettings: Parsed emails:', parsed);
+                } catch (e) {
+                    console.error('🔍 renderSettings: Parse error:', e);
+                }
+            }
+            
             renderAllowedEmailsList();
         }
         
@@ -7959,43 +7989,108 @@ function updateUnsavedChangesBadge() {
                         scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
                     }
                     
+                    console.log('🔄 Sync: Using script URL:', scriptUrl);
+                    console.log('🔄 Sync: Emails to sync:', emails);
+                    
                     const params = new URLSearchParams({
                         action: 'updateAuthorizedEmails',
                         emails: JSON.stringify(emails)
                     });
                     
-                    fetch(scriptUrl + '?' + params.toString(), {
+                    const fullUrl = scriptUrl + '?' + params.toString();
+                    console.log('🔄 Sync: Full URL:', fullUrl);
+                    
+                    fetch(fullUrl, {
                         method: 'GET',
                         mode: 'cors'
                     }).then(function(response) {
+                        console.log('🔄 Sync: Response status:', response.status, response.statusText);
                         if (response.ok) {
                             return response.text();
+                        } else {
+                            console.error('🔄 Sync: Response not OK:', response.status, response.statusText);
+                            return response.text().then(function(text) {
+                                console.error('🔄 Sync: Response body:', text);
+                                return null;
+                            });
                         }
-                        return null;
                     }).then(function(responseText) {
+                        console.log('🔄 Sync: Response text:', responseText);
                         if (responseText) {
                             try {
                                 const result = JSON.parse(responseText);
+                                console.log('🔄 Sync: Parsed result:', result);
                                 if (result.success) {
-                                    console.log('✅ Authorized emails synced to server');
+                                    console.log('✅ Authorized emails synced to server successfully');
                                     resolve(true);
                                     return;
+                                } else {
+                                    console.error('❌ Sync failed:', result.error);
                                 }
                             } catch (e) {
-                                console.warn('Error parsing sync response:', e);
+                                console.error('❌ Error parsing sync response:', e, 'Response:', responseText);
                             }
                         }
                         resolve(false);
                     }).catch(function(error) {
-                        console.warn('⚠️ Could not sync emails to server. The Google Apps Script may need to be updated to support this action:', error);
+                        console.error('❌ Sync fetch error:', error);
+                        console.error('❌ Error details:', error.message, error.stack);
                         resolve(false);
                     });
                 } catch (error) {
-                    console.warn('⚠️ Could not sync emails to server:', error);
+                    console.error('❌ Sync error:', error);
                     resolve(false);
                 }
             });
         }
+        
+        // Manual sync function (for testing/debugging)
+        window.manualSyncEmails = async function manualSyncEmails() {
+            const emails = window.loadAuthorizedEmails();
+            console.log('🔄 Manual sync: Starting sync for', emails.length, 'emails');
+            const result = await syncAuthorizedEmailsToServer(emails);
+            if (result) {
+                alert('✅ Emails synced to server successfully!');
+            } else {
+                alert('❌ Failed to sync emails to server. Check the browser console for details.');
+            }
+            return result;
+        };
+        
+        // Check what's stored on the server
+        window.checkServerEmails = async function checkServerEmails() {
+            try {
+                let scriptUrl;
+                if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
+                    scriptUrl = GOOGLE_APPS_SCRIPT_URL;
+                } else if (typeof window.getGoogleAppsScriptURL === 'function') {
+                    scriptUrl = window.getGoogleAppsScriptURL();
+                } else {
+                    scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
+                }
+                
+                const url = scriptUrl + '?action=getAuthorizedEmails';
+                console.log('🔍 Checking server emails:', url);
+                
+                const response = await fetch(url, { method: 'GET', mode: 'cors' });
+                const text = await response.text();
+                console.log('🔍 Server response:', text);
+                
+                if (text) {
+                    const result = JSON.parse(text);
+                    if (result.success) {
+                        console.log('📧 Emails on server:', result.emails);
+                        alert('Server has ' + result.emails.length + ' emails:\n' + result.emails.join('\n'));
+                    } else {
+                        console.error('❌ Server error:', result.error);
+                        alert('Error: ' + result.error);
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Error checking server:', error);
+                alert('Error checking server: ' + error.message);
+            }
+        };
         
         // Remove allowed email
         window.removeAllowedEmail = async function removeAllowedEmail(email) {
