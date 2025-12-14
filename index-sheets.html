@@ -1607,14 +1607,14 @@
                 }
                 // Default emails (fallback)
                 return [
-                    'ernest@oddplusevenstudio.com',
-                    'ernest@oddpluseven.com',
-                    'adam@oddpluseven.com',
-                    'rj@oddpluseven.com',
-                    'bniemeyer@nelsoncounty.org',
-                    'makelley@nelsoncounty.org',
-                    'esther@oddpluseven.com',
-                ];
+                'ernest@oddplusevenstudio.com',
+                'ernest@oddpluseven.com',
+                'adam@oddpluseven.com',
+                'rj@oddpluseven.com',
+                'bniemeyer@nelsoncounty.org',
+                'makelley@nelsoncounty.org',
+                'esther@oddpluseven.com',
+            ];
             }
             
             // Initialize AUTHORIZED_EMAILS from localStorage
@@ -7848,7 +7848,7 @@ function updateUnsavedChangesBadge() {
                         }
                         
                         // Try to sync with server
-                        await syncAuthorizedEmailsToServer(emails);
+                        const syncSuccess = await syncAuthorizedEmailsToServer(emails);
                         
                         // Refresh the list
                         renderAllowedEmailsList();
@@ -7857,7 +7857,6 @@ function updateUnsavedChangesBadge() {
                         closeAddEmailModal();
                         
                         // Show success message with instructions
-                        const syncSuccess = await syncAuthorizedEmailsToServer(emails);
                         if (!syncSuccess) {
                             alert('Email address added to local list, but server sync failed.\n\n⚠️ IMPORTANT: The new email will NOT be able to log in until you manually update the Google Apps Script.\n\nTo fix this:\n1. Open your Google Apps Script editor\n2. Find the AUTHORIZED_EMAILS array\n3. Add the new email: "' + newEmail + '"\n4. Save and redeploy the script\n\nUntil then, the new email will see "This email is not authorized" error.');
                         } else {
@@ -7903,45 +7902,60 @@ function updateUnsavedChangesBadge() {
         };
         
         // Sync authorized emails to Google Apps Script
-        async function syncAuthorizedEmailsToServer(emails) {
-            try {
-                // Get the Google Apps Script URL
-                let scriptUrl;
-                if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
-                    scriptUrl = GOOGLE_APPS_SCRIPT_URL;
-                } else if (typeof window.getGoogleAppsScriptURL === 'function') {
-                    scriptUrl = window.getGoogleAppsScriptURL();
-                } else {
-                    // Fallback URL
-                    scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
-                }
-                
-                const params = new URLSearchParams({
-                    action: 'updateAuthorizedEmails',
-                    emails: JSON.stringify(emails)
-                });
-                
-                const response = await fetch(scriptUrl + '?' + params.toString(), {
-                    method: 'GET',
-                    mode: 'cors'
-                });
-                
-                if (response.ok) {
-                    const responseText = await response.text();
-                    const result = responseText ? JSON.parse(responseText) : { success: false };
-                    if (result.success) {
-                        console.log('✅ Authorized emails synced to server');
-                        return true;
+        function syncAuthorizedEmailsToServer(emails) {
+            return new Promise(function(resolve) {
+                try {
+                    // Get the Google Apps Script URL
+                    let scriptUrl;
+                    if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
+                        scriptUrl = GOOGLE_APPS_SCRIPT_URL;
+                    } else if (typeof window.getGoogleAppsScriptURL === 'function') {
+                        scriptUrl = window.getGoogleAppsScriptURL();
+                    } else {
+                        // Fallback URL
+                        scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
                     }
+                    
+                    const params = new URLSearchParams({
+                        action: 'updateAuthorizedEmails',
+                        emails: JSON.stringify(emails)
+                    });
+                    
+                    fetch(scriptUrl + '?' + params.toString(), {
+                        method: 'GET',
+                        mode: 'cors'
+                    }).then(function(response) {
+                        if (response.ok) {
+                            return response.text();
+                        }
+                        return null;
+                    }).then(function(responseText) {
+                        if (responseText) {
+                            try {
+                                const result = JSON.parse(responseText);
+                                if (result.success) {
+                                    console.log('✅ Authorized emails synced to server');
+                                    resolve(true);
+                                    return;
+                                }
+                            } catch (e) {
+                                console.warn('Error parsing sync response:', e);
+                            }
+                        }
+                        resolve(false);
+                    }).catch(function(error) {
+                        console.warn('⚠️ Could not sync emails to server. The Google Apps Script may need to be updated to support this action:', error);
+                        resolve(false);
+                    });
+                } catch (error) {
+                    console.warn('⚠️ Could not sync emails to server:', error);
+                    resolve(false);
                 }
-            } catch (error) {
-                console.warn('⚠️ Could not sync emails to server. The Google Apps Script may need to be updated to support this action:', error);
-            }
-            return false;
+            });
         }
         
         // Remove allowed email
-        window.removeAllowedEmail = function removeAllowedEmail(email) {
+        window.removeAllowedEmail = async function removeAllowedEmail(email) {
             const emails = window.loadAuthorizedEmails();
             
             // Safety check: prevent removing the last email
