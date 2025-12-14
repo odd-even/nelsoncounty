@@ -1596,7 +1596,7 @@
             const ENABLE_EMAIL_OTP = true; // Set to false to disable
             
             // Load authorized emails from localStorage or use defaults
-            function loadAuthorizedEmails() {
+            window.loadAuthorizedEmails = function loadAuthorizedEmails() {
                 const stored = localStorage.getItem('adminAllowedEmails');
                 if (stored) {
                     try {
@@ -1727,7 +1727,7 @@
             }
             
             // SERVER-SIDE OTP: Request OTP from server (no client-side generation)
-            async function sendOTP(email) {
+            window.sendOTP = async function sendOTP(email) {
                 try {
                     // Client-side check first (quick rejection, but server validates too)
                     // Reload emails in case they were updated
@@ -1788,7 +1788,7 @@
             }
             
             // SERVER-SIDE OTP: Verify OTP with server and get session token
-            async function verifyOTP(email, code) {
+            window.verifyOTP = async function verifyOTP(email, code) {
                 try {
                     const scriptUrl = getGoogleAppsScriptURL();
                     const params = new URLSearchParams({
@@ -7685,28 +7685,6 @@ function updateUnsavedChangesBadge() {
         // ALLOWED EMAILS MANAGEMENT FUNCTIONS
         // ===========================================
         
-        // Load allowed emails from localStorage or use default
-        function loadAllowedEmails() {
-            const stored = localStorage.getItem('adminAllowedEmails');
-            if (stored) {
-                try {
-                    return JSON.parse(stored);
-                } catch (e) {
-                    console.error('Error parsing stored emails:', e);
-                }
-            }
-            // Default emails (fallback)
-            return [
-                'ernest@oddplusevenstudio.com',
-                'ernest@oddpluseven.com',
-                'adam@oddpluseven.com',
-                'rj@oddpluseven.com',
-                'bniemeyer@nelsoncounty.org',
-                'makelley@nelsoncounty.org',
-                'esther@oddpluseven.com',
-            ];
-        }
-        
         // Save allowed emails to localStorage
         function saveAllowedEmails(emails) {
             // Ensure at least one email remains
@@ -7715,18 +7693,11 @@ function updateUnsavedChangesBadge() {
                 return false;
             }
             localStorage.setItem('adminAllowedEmails', JSON.stringify(emails));
+            // Update the global AUTHORIZED_EMAILS
+            if (typeof window.AUTHORIZED_EMAILS !== 'undefined') {
+                window.AUTHORIZED_EMAILS = emails;
+            }
             return true;
-        }
-        
-        // Get current allowed emails (for use in login check)
-        function getAllowedEmails() {
-            return loadAllowedEmails();
-        }
-        
-        // Check if email is allowed
-        function isEmailAllowed(email) {
-            const allowed = getAllowedEmails();
-            return allowed.includes(email.toLowerCase());
         }
         
         // Render the allowed emails list
@@ -7734,7 +7705,7 @@ function updateUnsavedChangesBadge() {
             const container = document.getElementById('allowedEmailsList');
             if (!container) return;
             
-            const emails = loadAllowedEmails();
+            const emails = window.loadAuthorizedEmails();
             
             if (emails.length === 0) {
                 container.innerHTML = '<p style="color: #6c757d; font-style: italic;">No emails configured</p>';
@@ -7766,7 +7737,7 @@ function updateUnsavedChangesBadge() {
             document.getElementById('addEmailOTPInput').value = '';
             
             // Populate verify email dropdown with existing emails
-            const emails = loadAllowedEmails();
+            const emails = window.loadAuthorizedEmails();
             verifySelect.innerHTML = '<option value="">Select an email to verify with...</option>' +
                 emails.map(function(email) {
                     return '<option value="' + escapeHtml(email) + '">' + escapeHtml(email) + '</option>';
@@ -7811,7 +7782,7 @@ function updateUnsavedChangesBadge() {
             }
             
             // Check if email already exists
-            const existingEmails = loadAllowedEmails();
+            const existingEmails = window.loadAuthorizedEmails();
             if (existingEmails.includes(newEmail)) {
                 alert('This email address is already in the allowed list.');
                 return;
@@ -7819,7 +7790,7 @@ function updateUnsavedChangesBadge() {
             
             // Send OTP to verification email
             try {
-                const result = await sendOTP(verifyEmail);
+                const result = await window.sendOTP(verifyEmail);
                 if (result.success) {
                     // Show OTP form
                     document.getElementById('addEmailForm').style.display = 'none';
@@ -7858,10 +7829,10 @@ function updateUnsavedChangesBadge() {
             }
             
             try {
-                const result = await verifyOTP(verifyEmail, code);
+                const result = await window.verifyOTP(verifyEmail, code);
                 if (result.success) {
                     // Add new email to list
-                    const emails = loadAllowedEmails();
+                    const emails = window.loadAuthorizedEmails();
                     emails.push(newEmail);
                     if (saveAllowedEmails(emails)) {
                         // Update AUTHORIZED_EMAILS for current session
@@ -7898,7 +7869,7 @@ function updateUnsavedChangesBadge() {
             }
             
             try {
-                const result = await sendOTP(verifyEmail);
+                const result = await window.sendOTP(verifyEmail);
                 if (result.success) {
                     alert('Verification code resent successfully!');
                 } else {
@@ -7912,7 +7883,7 @@ function updateUnsavedChangesBadge() {
         
         // Remove allowed email
         window.removeAllowedEmail = function removeAllowedEmail(email) {
-            const emails = loadAllowedEmails();
+            const emails = window.loadAuthorizedEmails();
             
             // Safety check: prevent removing the last email
             if (emails.length <= 1) {
