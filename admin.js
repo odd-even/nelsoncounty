@@ -800,7 +800,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         
         // Step 2: Your Google Apps Script Web App URL (REQUIRED for read/write)
         // This URL is already configured and working!
-        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwNH8P5P8iorzRTTx3FpVbYPFNBo1qUWIU630v7ymLJWypvJpSEfPZC5nfxJpjjwjF-Jg/exec';
+        const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
         const IMAGEKIT_PUBLIC_KEY = 'public_bEXbACd1Av+LMd7EASiu/x25f4o=';
         const IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/OE';
         const IMAGEKIT_AUTH_ACTION = 'getImageKitUploadParams';
