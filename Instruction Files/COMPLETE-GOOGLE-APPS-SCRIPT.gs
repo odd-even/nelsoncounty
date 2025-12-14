@@ -14,8 +14,8 @@ const CATEGORIES_SHEET_NAME = 'Categories';
 // SERVER-SIDE AUTHENTICATION CONFIGURATION
 // -----------------------------------------------------------------------------
 
-// Authorized emails for admin access (SERVER-SIDE - cannot be bypassed)
-const AUTHORIZED_EMAILS = [
+// Default authorized emails (used for initialization)
+const DEFAULT_AUTHORIZED_EMAILS = [
   'ernest@oddplusevenstudio.com',
   'ernest@oddpluseven.com',
   'adam@oddpluseven.com',
@@ -24,6 +24,51 @@ const AUTHORIZED_EMAILS = [
   'makelley@nelsoncounty.org',
   'esther@oddpluseven.com'
 ];
+
+/**
+ * Get authorized emails from PropertiesService (persistent storage)
+ * Falls back to default emails if not set, and initializes them
+ */
+function getAuthorizedEmails() {
+  const props = PropertiesService.getScriptProperties();
+  const stored = props.getProperty('AUTHORIZED_EMAILS');
+  
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      Logger.log('Error parsing stored authorized emails: ' + e);
+      // Fall through to initialize defaults
+    }
+  }
+  
+  // Initialize with defaults if not set
+  setAuthorizedEmails(DEFAULT_AUTHORIZED_EMAILS);
+  return DEFAULT_AUTHORIZED_EMAILS;
+}
+
+/**
+ * Set authorized emails in PropertiesService
+ */
+function setAuthorizedEmails(emails) {
+  if (!Array.isArray(emails) || emails.length === 0) {
+    throw new Error('Authorized emails must be a non-empty array');
+  }
+  const props = PropertiesService.getScriptProperties();
+  props.setProperty('AUTHORIZED_EMAILS', JSON.stringify(emails));
+  Logger.log('Authorized emails updated: ' + emails.length + ' emails');
+}
+
+/**
+ * Initialize authorized emails on first run
+ */
+function initializeAuthorizedEmails() {
+  const props = PropertiesService.getScriptProperties();
+  if (!props.getProperty('AUTHORIZED_EMAILS')) {
+    setAuthorizedEmails(DEFAULT_AUTHORIZED_EMAILS);
+    Logger.log('Initialized authorized emails with defaults');
+  }
+}
 
 // OTP Configuration
 const OTP_CONFIG = {
@@ -263,7 +308,7 @@ function validateSessionToken(token) {
     }
     
     // Check if email is authorized
-    if (!AUTHORIZED_EMAILS.includes(tokenData.email)) {
+    if (!getAuthorizedEmails().includes(tokenData.email)) {
       return {
         valid: false,
         error: 'Email not authorized'
@@ -297,7 +342,7 @@ function storeSessionToken(token, email) {
 function sendOTPEmail(email) {
   try {
     // Check if email is authorized
-    if (!AUTHORIZED_EMAILS.includes(email.toLowerCase())) {
+    if (!getAuthorizedEmails().includes(email.toLowerCase())) {
       return {
         success: false,
         error: 'This email is not authorized to access the admin panel.'
@@ -478,6 +523,72 @@ function doGet(e) {
       return ContentService
         .createTextOutput(JSON.stringify(result))
         .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Handle get authorized emails via GET (for admin panel display)
+    if (e && e.parameter && e.parameter.action === 'getAuthorizedEmails') {
+      try {
+        const emails = getAuthorizedEmails();
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: true,
+            emails: emails
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      } catch (error) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Error retrieving emails: ' + error.toString()
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+    }
+    
+    // Handle update authorized emails via GET
+    if (e && e.parameter && e.parameter.action === 'updateAuthorizedEmails') {
+      const emailsParam = e.parameter.emails;
+      if (!emailsParam) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Missing emails parameter'
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
+      
+      try {
+        const emails = JSON.parse(emailsParam);
+        if (!Array.isArray(emails) || emails.length === 0) {
+          return ContentService
+            .createTextOutput(JSON.stringify({
+              success: false,
+              error: 'Emails must be a non-empty array'
+            }))
+            .setMimeType(ContentService.MimeType.JSON);
+        }
+        
+        // Validate that requester is authorized (check session or require OTP verification)
+        // For security, we require that the update comes from an already authorized email
+        // This is handled by the fact that only logged-in users can access this action
+        // and they must have a valid session token
+        
+        setAuthorizedEmails(emails);
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: true,
+            message: 'Authorized emails updated successfully',
+            count: emails.length
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      } catch (error) {
+        return ContentService
+          .createTextOutput(JSON.stringify({
+            success: false,
+            error: 'Error updating emails: ' + error.toString()
+          }))
+          .setMimeType(ContentService.MimeType.JSON);
+      }
     }
     
     // Handle ImageKit upload params

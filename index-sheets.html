@@ -2792,6 +2792,13 @@
                 <div class="settings-card" style="background: white; border: 1px solid #dee2e6; border-radius: 8px; padding: 20px; grid-column: 1 / -1; border-left: 4px solid #4E6B52;">
                     <h3 style="margin: 0 0 15px 0; color: #212529; font-size: 18px;">Allowed Admin Emails</h3>
                     <p style="color: #6c757d; font-size: 14px; margin: 0 0 15px 0;">Manage email addresses that can access the admin panel. Adding a new email requires OTP verification from an existing authorized email.</p>
+                    <div id="emailSyncWarning" style="display: none; padding: 12px; background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; margin-bottom: 15px;">
+                        <strong style="color: #856404;">⚠️ Important:</strong>
+                        <p style="color: #856404; margin: 8px 0 0 0; font-size: 13px;">
+                            New emails are saved locally but may not work until the Google Apps Script's AUTHORIZED_EMAILS list is updated. 
+                            The new email will be able to log in once the server-side list is synchronized.
+                        </p>
+                    </div>
                     <div id="allowedEmailsList" style="margin-bottom: 15px; max-height: 300px; overflow-y: auto;">
                         <!-- Allowed emails will be rendered here -->
                     </div>
@@ -7840,14 +7847,28 @@ function updateUnsavedChangesBadge() {
                             window.AUTHORIZED_EMAILS = emails;
                         }
                         
+                        // Try to sync with server
+                        await syncAuthorizedEmailsToServer(emails);
+                        
                         // Refresh the list
                         renderAllowedEmailsList();
                         
                         // Close modal
                         closeAddEmailModal();
                         
-                        // Show success message
-                        alert('Email address added successfully!');
+                        // Show success message with instructions
+                        const syncSuccess = await syncAuthorizedEmailsToServer(emails);
+                        if (!syncSuccess) {
+                            alert('Email address added to local list, but server sync failed.\n\n⚠️ IMPORTANT: The new email will NOT be able to log in until you manually update the Google Apps Script.\n\nTo fix this:\n1. Open your Google Apps Script editor\n2. Find the AUTHORIZED_EMAILS array\n3. Add the new email: "' + newEmail + '"\n4. Save and redeploy the script\n\nUntil then, the new email will see "This email is not authorized" error.');
+                        } else {
+                            alert('Email address added successfully and synced to server!');
+                        }
+                        
+                        // Show warning in UI
+                        const warningDiv = document.getElementById('emailSyncWarning');
+                        if (warningDiv && !syncSuccess) {
+                            warningDiv.style.display = 'block';
+                        }
                     }
                 } else {
                     alert('Verification failed: ' + (result.error || 'Invalid code'));
@@ -7881,6 +7902,44 @@ function updateUnsavedChangesBadge() {
             }
         };
         
+        // Sync authorized emails to Google Apps Script
+        async function syncAuthorizedEmailsToServer(emails) {
+            try {
+                // Get the Google Apps Script URL
+                let scriptUrl;
+                if (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined') {
+                    scriptUrl = GOOGLE_APPS_SCRIPT_URL;
+                } else if (typeof window.getGoogleAppsScriptURL === 'function') {
+                    scriptUrl = window.getGoogleAppsScriptURL();
+                } else {
+                    // Fallback URL
+                    scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
+                }
+                
+                const params = new URLSearchParams({
+                    action: 'updateAuthorizedEmails',
+                    emails: JSON.stringify(emails)
+                });
+                
+                const response = await fetch(scriptUrl + '?' + params.toString(), {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    const responseText = await response.text();
+                    const result = responseText ? JSON.parse(responseText) : { success: false };
+                    if (result.success) {
+                        console.log('✅ Authorized emails synced to server');
+                        return true;
+                    }
+                }
+            } catch (error) {
+                console.warn('⚠️ Could not sync emails to server. The Google Apps Script may need to be updated to support this action:', error);
+            }
+            return false;
+        }
+        
         // Remove allowed email
         window.removeAllowedEmail = function removeAllowedEmail(email) {
             const emails = window.loadAuthorizedEmails();
@@ -7896,13 +7955,16 @@ function updateUnsavedChangesBadge() {
             }
             
             const index = emails.indexOf(email.toLowerCase());
-            if (index > -1) {
+                if (index > -1) {
                 emails.splice(index, 1);
                 if (saveAllowedEmails(emails)) {
                     // Update AUTHORIZED_EMAILS for current session
                     if (typeof window.AUTHORIZED_EMAILS !== 'undefined') {
                         window.AUTHORIZED_EMAILS = emails;
                     }
+                    
+                    // Try to sync with server
+                    await syncAuthorizedEmailsToServer(emails);
                     
                     // Refresh the list
                     renderAllowedEmailsList();
