@@ -1378,18 +1378,36 @@
             transform: translateY(1px);
         }
         .category-submenu .submenu-icon {
-            width: 18px;
-            height: 18px;
+            width: 28px;
+            height: 28px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             flex: 0 0 auto;
+            border-radius: 8px; /* small rounded square */
+            background: #111827; /* default fallback */
         }
         .category-submenu .submenu-icon img,
         .category-submenu .submenu-icon svg {
             width: 18px;
             height: 18px;
             display: block;
+            /* Make any colored SVG render as white */
+            filter: brightness(0) invert(1);
+        }
+
+        /* Per-subfilter colors */
+        .category-submenu .submenu-item[data-subfilter="breweries_cideries"] .submenu-icon {
+            background: #F59E0B; /* amber */
+        }
+        .category-submenu .submenu-item[data-subfilter="distilleries"] .submenu-icon {
+            background: #8B5CF6; /* purple */
+        }
+        .category-submenu .submenu-item[data-subfilter="vineyards_wineries"] .submenu-icon {
+            background: #D65052; /* wine red */
+        }
+        .category-submenu .submenu-item[data-subfilter="restaurants"] .submenu-icon {
+            background: #57D1AE; /* taste teal */
         }
         :root.dark-mode .category-submenu .submenu-item {
             background: rgba(255, 255, 255, 0.08);
