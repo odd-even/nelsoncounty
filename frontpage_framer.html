@@ -5353,8 +5353,32 @@ function ensureTasteSubmenuPreview(container) {
             container.insertBefore(submenu, tasteBtn.nextSibling);
         }
 
-        // Show when Taste is active, hide otherwise
-        submenu.style.display = tasteBtn.classList.contains('active') ? 'block' : 'none';
+        // Show when Taste is active OR when an external link applies a Taste-related filter (category=taste or taste-ish type)
+        const normalizedCategory = (currentCategoryFilter || '').toString().trim().toLowerCase();
+        const hasTasteCategoryActive = normalizedCategory === 'taste';
+        const tasteTypeKey = (function deriveTasteSubKey() {
+            // If category=taste is active, don't auto-highlight a subfilter (category mode includes many types)
+            if (hasTasteCategoryActive) return null;
+            if (!Array.isArray(currentTypeFilter) || currentTypeFilter.length === 0) return null;
+            const types = currentTypeFilter.map(normalizeTypeValue);
+            if (types.some(t => t.includes('brew') || t.includes('cider'))) return 'breweries_cideries';
+            if (types.some(t => t.includes('distill') || t.includes('spirit'))) return 'distilleries';
+            if (types.some(t => t.includes('wine') || t.includes('vineyard'))) return 'vineyards_wineries';
+            if (types.some(t => t.includes('restaurant') || t.includes('dining'))) return 'restaurants';
+            return null;
+        })();
+        const hasTasteTypeActive = !!tasteTypeKey;
+        const shouldShow = tasteBtn.classList.contains('active') || hasTasteCategoryActive || hasTasteTypeActive;
+        submenu.style.display = shouldShow ? 'block' : 'none';
+
+        // Highlight submenu item when a Taste-related *type* filter is active (e.g., from a link)
+        if (shouldShow) {
+            const keyToHighlight = tasteTypeKey;
+            submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
+                const k = btn.getAttribute('data-subfilter');
+                btn.classList.toggle('active', !!keyToHighlight && k === keyToHighlight);
+            });
+        }
 
         // Keep it in sync when any category button is clicked
         if (!container.dataset.tasteSubmenuBound) {
@@ -7539,6 +7563,15 @@ function filterPreview() {
     }
     
     renderPreview(); // renderPreview will use allFilteredListings and pagination
+
+    // Ensure the Taste submenu opens when filters are applied via external links (URL params / postMessage),
+    // not just when the user clicks the Taste button directly.
+    try {
+        const container = document.querySelector('.type-quick-filters');
+        if (container) ensureTasteSubmenuPreview(container);
+    } catch (e) {
+        // ignore
+    }
     
     // Send scroll-to-top message to parent (Framer component)
     // Use postMessage directly without checking window.parent/top to avoid CORS errors
