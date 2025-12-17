@@ -5314,6 +5314,7 @@ function resolveTasteSubfilter(subfilterKey) {
             'Restaurant', 'Restaurants', 'Dining',
             'Coffee Shop', 'Coffee Shops', 'Coffee', 'Café', 'Cafe',
             'Deli', 'Delis', 'Sandwiches', 'Sandwich Shop',
+            'Market', 'Markets', 'Food Market', 'Farmers Market', 'Farmers Markets', 'Grocery', 'Grocer',
             'Ice Cream', 'Ice Cream Shop', 'Ice Cream Shops',
             'Bakery', 'Bakeries', 'Dessert', 'Desserts', 'Sweet Treats',
             'Chocolate', 'Chocolatier', 'Donut Shop', 'Donuts',
@@ -5327,6 +5328,7 @@ function resolveTasteSubfilter(subfilterKey) {
             'restaurant', 'dining', 'eat', 'eats',
             'coffee', 'cafe', 'café', 'espresso',
             'deli', 'sandwich',
+            'market', 'farmers market', 'farmers', 'grocery',
             'ice cream', 'icecream', 'gelato',
             'bakery', 'dessert', 'sweet', 'treat', 'donut', 'chocolate', 'candy'
         ]);
@@ -5458,6 +5460,7 @@ function ensureTasteSubmenuPreview(container) {
                 t.includes('restaurant') || t.includes('dining') || t.includes('eat') ||
                 t.includes('coffee') || t.includes('cafe') || t.includes('café') || t.includes('espresso') ||
                 t.includes('deli') || t.includes('sandwich') ||
+                t.includes('market') || t.includes('farmers') || t.includes('grocery') ||
                 t.includes('ice cream') || t.includes('icecream') || t.includes('gelato') ||
                 t.includes('bakery') || t.includes('dessert') || t.includes('sweet') || t.includes('treat') ||
                 t.includes('donut') || t.includes('chocolate') || t.includes('candy')
@@ -5513,6 +5516,7 @@ function ensureMobileTasteSubmenu() {
                 t.includes('restaurant') || t.includes('dining') || t.includes('eat') ||
                 t.includes('coffee') || t.includes('cafe') || t.includes('café') || t.includes('espresso') ||
                 t.includes('deli') || t.includes('sandwich') ||
+                t.includes('market') || t.includes('farmers') || t.includes('grocery') ||
                 t.includes('ice cream') || t.includes('icecream') || t.includes('gelato') ||
                 t.includes('bakery') || t.includes('dessert') || t.includes('sweet') || t.includes('treat') ||
                 t.includes('donut') || t.includes('chocolate') || t.includes('candy')
