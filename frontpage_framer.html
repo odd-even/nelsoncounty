@@ -2224,6 +2224,7 @@
             .mobile-taste-submenu-preview {
                 width: 100%;
                 padding: 6px 10px 0 10px;
+                display: none !important; /* disabled: use category dropdown instead */
             }
             .mobile-submenu-chips {
                 display: flex;
@@ -5499,6 +5500,8 @@ function ensureTasteSubmenuPreview(container) {
 }
 
 function ensureMobileTasteSubmenu() {
+    // Disabled: mobile Taste subfilters now live inside the mobile category dropdown.
+    return;
     try {
         const wrapper = document.querySelector('.mobile-taste-submenu-preview');
         if (!wrapper) return;
@@ -7729,8 +7732,7 @@ function filterPreview() {
     } catch (e) {
         // ignore
     }
-    // Mobile Taste submenu (open when Taste filters are active)
-    try { ensureMobileTasteSubmenu(); } catch (e) {}
+    // Mobile Taste submenu removed (subfilters are now in the category dropdown)
     
     // Send scroll-to-top message to parent (Framer component)
     // Use postMessage directly without checking window.parent/top to avoid CORS errors
@@ -9628,6 +9630,31 @@ function handleMobileCategoryFilter() {
     
     // Update icon based on selected category
     updateMobileCategoryIcon(value);
+
+    // Special case: Taste subfilters are included as extra options in the category dropdown (mobile only)
+    // Values are encoded as: "taste:<subfilterKey>"
+    if (value && typeof value === 'string' && value.toLowerCase().startsWith('taste:')) {
+        const subfilterKey = value.split(':').slice(1).join(':'); // keep anything after first colon
+        const resolved = resolveTasteSubfilter(subfilterKey);
+
+        currentCategoryFilter = 'taste';
+        currentTypeFilter = (resolved && Array.isArray(resolved.types)) ? resolved.types.slice() : [];
+
+        // Clear type filter dropdown (submenu can represent multiple types)
+        const mobileTypeFilter = document.getElementById('mobileTypeFilter');
+        if (mobileTypeFilter) mobileTypeFilter.value = '';
+
+        // Update sidebar buttons
+        document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+            if (btn.dataset.category === currentCategoryFilter) {
+                btn.classList.add('active');
+            }
+        });
+
+        filterPreview();
+        return;
+    }
     
     if (value) {
         // Set category filter
@@ -9667,6 +9694,8 @@ function handleMobileCategoryFilter() {
 function populateMobileCategoryFilter() {
     const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
     if (!mobileCategoryFilter) return;
+
+    const previousValue = mobileCategoryFilter.value || '';
     
     // Clear existing options except "All"
     mobileCategoryFilter.innerHTML = '<option value="">All</option>';
@@ -9690,12 +9719,49 @@ function populateMobileCategoryFilter() {
         option.textContent = category.name;
         mobileCategoryFilter.appendChild(option);
     });
+
+    // Insert Taste sub-options directly under Taste in the same dropdown
+    // (Replaces the old mobile chip UI)
+    const tasteSubOptions = [
+        { value: 'taste:breweries_cideries', label: 'Taste: Breweries & Cideries' },
+        { value: 'taste:distilleries', label: 'Taste: Distilleries' },
+        { value: 'taste:vineyards_wineries', label: 'Taste: Vineyards & Wineries' },
+        { value: 'taste:eateries', label: 'Taste: Eateries' },
+    ];
+
+    const tasteOptionIndex = Array.from(mobileCategoryFilter.options).findIndex(function(opt) {
+        return (opt.value || '').toLowerCase() === 'taste';
+    });
+    if (tasteOptionIndex !== -1) {
+        // Insert in order right after the Taste option
+        for (let i = tasteSubOptions.length - 1; i >= 0; i--) {
+            const sub = tasteSubOptions[i];
+            const opt = document.createElement('option');
+            opt.value = sub.value;
+            opt.textContent = sub.label;
+            mobileCategoryFilter.insertBefore(opt, mobileCategoryFilter.options[tasteOptionIndex + 1] || null);
+        }
+    } else {
+        // If Taste isn't present for some reason, append them at the end
+        tasteSubOptions.forEach(function(sub) {
+            const opt = document.createElement('option');
+            opt.value = sub.value;
+            opt.textContent = sub.label;
+            mobileCategoryFilter.appendChild(opt);
+        });
+    }
     
     // Update icon if a category is already selected
-    if (currentCategoryFilter) {
-        mobileCategoryFilter.value = currentCategoryFilter;
-        updateMobileCategoryIcon(currentCategoryFilter);
+    const preferredValue = previousValue || (currentCategoryFilter || '');
+    if (preferredValue) {
+        // Only set if it exists in the list (covers taste:<subfilterKey> options)
+        const hasOption = Array.from(mobileCategoryFilter.options).some(function(opt) {
+            return opt.value === preferredValue;
+        });
+        mobileCategoryFilter.value = hasOption ? preferredValue : (currentCategoryFilter || '');
+        updateMobileCategoryIcon(mobileCategoryFilter.value);
     } else {
+        mobileCategoryFilter.value = '';
         updateMobileCategoryIcon('');
     }
 }
@@ -9704,16 +9770,18 @@ function updateMobileCategoryIcon(categoryKey) {
     const categoryGroup = document.querySelector('.mobile-category-filter-group');
     const categorySelect = document.getElementById('mobileCategoryFilter');
     if (!categoryGroup || !categorySelect) return;
-    
-    const iconUrl = categoryKey ? `icons/${categoryKey.toLowerCase()}.svg` : 'icons/all-types.svg';
+
+    // Support mobile Taste sub-options encoded as "taste:<subfilterKey>"
+    const baseKey = categoryKey ? (categoryKey.toString().toLowerCase().split(':')[0]) : '';
+    const iconUrl = baseKey ? `icons/${baseKey}.svg` : 'icons/all-types.svg';
     
     // Remove all category classes from both select and group
     categorySelect.classList.remove('category-outdoor', 'category-stay', 'category-taste', 'category-culture', 'category-experience', 'category-community');
     categoryGroup.classList.remove('category-outdoor', 'category-stay', 'category-taste', 'category-culture', 'category-experience', 'category-community');
     
     // Add class based on selected category to both elements
-    if (categoryKey) {
-        const categoryClass = 'category-' + categoryKey.toLowerCase();
+    if (baseKey) {
+        const categoryClass = 'category-' + baseKey;
         categorySelect.classList.add(categoryClass);
         categoryGroup.classList.add(categoryClass);
     }
