@@ -1413,7 +1413,7 @@
             justify-content: center;
             flex: 0 0 auto;
             border-radius: 8px; /* small rounded square */
-            background: #111827; /* default fallback */
+            background: #57d1ae; /* Taste SVG color */
         }
         .category-submenu .submenu-icon img,
         .category-submenu .submenu-icon svg {
@@ -1423,20 +1423,7 @@
             /* Make any colored SVG render as white */
             filter: brightness(0) invert(1);
         }
-
-        /* Per-subfilter colors */
-        .category-submenu .submenu-item[data-subfilter="breweries_cideries"] .submenu-icon {
-            background: #F59E0B; /* amber */
-        }
-        .category-submenu .submenu-item[data-subfilter="distilleries"] .submenu-icon {
-            background: #8B5CF6; /* purple */
-        }
-        .category-submenu .submenu-item[data-subfilter="vineyards_wineries"] .submenu-icon {
-            background: #D65052; /* wine red */
-        }
-        .category-submenu .submenu-item[data-subfilter="restaurants"] .submenu-icon {
-            background: #57D1AE; /* taste teal */
-        }
+        /* All Taste submenu icons share the Taste SVG color */
         :root.dark-mode .category-submenu .submenu-item {
             background: rgba(255, 255, 255, 0.08);
             color: #ffffff;
@@ -2274,6 +2261,7 @@
                 align-items: center;
                 justify-content: center;
                 flex: 0 0 auto;
+                background: #57d1ae; /* Taste SVG color */
             }
             .mobile-submenu-icon img {
                 width: 14px;
@@ -2281,11 +2269,7 @@
                 display: block;
                 filter: brightness(0) invert(1);
             }
-            /* Per-subfilter colors (match desktop) */
-            .mobile-submenu-chip[data-subfilter="breweries_cideries"] .mobile-submenu-icon { background: #F59E0B; }
-            .mobile-submenu-chip[data-subfilter="distilleries"] .mobile-submenu-icon { background: #8B5CF6; }
-            .mobile-submenu-chip[data-subfilter="vineyards_wineries"] .mobile-submenu-icon { background: #D65052; }
-            .mobile-submenu-chip[data-subfilter="restaurants"] .mobile-submenu-icon { background: #57D1AE; }
+            /* All Taste submenu icons share the Taste SVG color */
             :root.dark-mode .mobile-submenu-chip {
                 background: rgba(255,255,255,0.10);
                 border-color: rgba(255,255,255,0.18);
