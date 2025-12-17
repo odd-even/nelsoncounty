@@ -1413,15 +1413,15 @@
             justify-content: center;
             flex: 0 0 auto;
             border-radius: 8px; /* small rounded square */
-            background: #57d1ae; /* Taste SVG color */
+            background: #ffffff; /* White background behind icons */
         }
         .category-submenu .submenu-icon img,
         .category-submenu .submenu-icon svg {
             width: 16px;
             height: 16px;
             display: block;
-            /* Make any colored SVG render as white */
-            filter: brightness(0) invert(1);
+            /* Let the SVG render in its own (Taste) color */
+            filter: none;
         }
         /* All Taste submenu icons share the Taste SVG color */
         :root.dark-mode .category-submenu .submenu-item {
@@ -2261,13 +2261,14 @@
                 align-items: center;
                 justify-content: center;
                 flex: 0 0 auto;
-                background: #57d1ae; /* Taste SVG color */
+                background: #ffffff; /* White background behind icons */
             }
             .mobile-submenu-icon img {
                 width: 14px;
                 height: 14px;
                 display: block;
-                filter: brightness(0) invert(1);
+                /* Let the SVG render in its own (Taste) color */
+                filter: none;
             }
             /* All Taste submenu icons share the Taste SVG color */
             :root.dark-mode .mobile-submenu-chip {
