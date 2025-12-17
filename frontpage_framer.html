@@ -2256,13 +2256,43 @@
                 padding: 8px 12px;
                 font-size: 13px;
                 font-weight: 600;
-                cursor: default;
+                cursor: pointer;
                 white-space: nowrap;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
             }
+            .mobile-submenu-chip.active {
+                border-color: rgba(0,0,0,0.18);
+                background: rgba(255,255,255,1);
+            }
+            .mobile-submenu-icon {
+                width: 22px;
+                height: 22px;
+                border-radius: 8px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 auto;
+            }
+            .mobile-submenu-icon img {
+                width: 14px;
+                height: 14px;
+                display: block;
+                filter: brightness(0) invert(1);
+            }
+            /* Per-subfilter colors (match desktop) */
+            .mobile-submenu-chip[data-subfilter="breweries_cideries"] .mobile-submenu-icon { background: #F59E0B; }
+            .mobile-submenu-chip[data-subfilter="distilleries"] .mobile-submenu-icon { background: #8B5CF6; }
+            .mobile-submenu-chip[data-subfilter="vineyards_wineries"] .mobile-submenu-icon { background: #D65052; }
+            .mobile-submenu-chip[data-subfilter="restaurants"] .mobile-submenu-icon { background: #57D1AE; }
             :root.dark-mode .mobile-submenu-chip {
                 background: rgba(255,255,255,0.10);
                 border-color: rgba(255,255,255,0.18);
                 color: #ffffff;
+            }
+            :root.dark-mode .mobile-submenu-chip.active {
+                background: rgba(255,255,255,0.14);
             }
             
             
@@ -3860,15 +3890,25 @@
                                 <option value="">All</option>
                             </select>
                         </div>
-                        <!-- Preview-only: Taste submenu scaffolding for mobile (wired later if you like the UI) -->
+                        <!-- Taste submenu for mobile -->
                         <div class="mobile-taste-submenu-preview" style="display: none;">
                             <div class="mobile-submenu-chips">
-                                <button type="button" class="mobile-submenu-chip" disabled>Restaurants</button>
-                                <button type="button" class="mobile-submenu-chip" disabled>Breweries</button>
-                                <button type="button" class="mobile-submenu-chip" disabled>Wineries</button>
-                                <button type="button" class="mobile-submenu-chip" disabled>Cideries</button>
-                                <button type="button" class="mobile-submenu-chip" disabled>Distilleries</button>
-                                <button type="button" class="mobile-submenu-chip" disabled>Bars</button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="breweries_cideries">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-breweries-cideries.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Breweries</span>
+                                </button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="distilleries">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-distilleries.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Distilleries</span>
+                                </button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="vineyards_wineries">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-vineyards-wineries.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Wineries</span>
+                                </button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="restaurants">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-restaurants.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Restaurants</span>
+                                </button>
                             </div>
                         </div>
                         <div class="mobile-filters-wrapper">
@@ -5173,182 +5213,168 @@ function renderTypeFilterButtons(listings, containerSelector, maxVisible) {
 }
 
 // ------------------------------------------------------------
-// Taste submenu (preview-only scaffolding)
+// Taste submenu (desktop + mobile)
 // ------------------------------------------------------------
+function getAvailableTypesFromDropdownOrData() {
+    try {
+        if (data && data.filterOptions && Array.isArray(data.filterOptions.types) && data.filterOptions.types.length > 0) {
+            return data.filterOptions.types.slice();
+        }
+    } catch (e) {}
+    const typeSelect = document.getElementById('previewTypeFilter');
+    if (typeSelect && typeSelect.options) {
+        return Array.from(typeSelect.options)
+            .slice(1) // skip "All Types"
+            .map(function(opt) { return opt.value; })
+            .filter(function(v) { return !!v; });
+    }
+    return [];
+}
+
+function normalizeTypeValue(v) {
+    return (v || '').toString().trim().toLowerCase();
+}
+
+function findAvailableType(available, candidate) {
+    const needle = normalizeTypeValue(candidate);
+    if (!needle) return null;
+    for (let i = 0; i < available.length; i++) {
+        if (normalizeTypeValue(available[i]) === needle) return available[i];
+    }
+    return null;
+}
+
+function resolveAny(available, candidates) {
+    for (let i = 0; i < candidates.length; i++) {
+        const found = findAvailableType(available, candidates[i]);
+        if (found) return found;
+    }
+    return null;
+}
+
+function resolveByKeywords(available, keywords) {
+    const out = [];
+    for (let i = 0; i < available.length; i++) {
+        const a = normalizeTypeValue(available[i]);
+        if (keywords.some(function(k) { return a.includes(k); })) out.push(available[i]);
+    }
+    return out;
+}
+
+function resolveTasteSubfilter(subfilterKey) {
+    const available = getAvailableTypesFromDropdownOrData();
+
+    if (subfilterKey === 'breweries_cideries') {
+        const grouped = resolveAny(available, [
+            'Breweries & Cideries',
+            'Brewery & Cidery',
+            'Brewery/Cidery',
+            'Breweries and Cideries',
+            'Brewery and Cidery'
+        ]);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+        const brewery = resolveAny(available, ['Brewery', 'Breweries']);
+        const cidery = resolveAny(available, ['Cidery', 'Cideries']);
+        const types = [brewery, cidery].filter(Boolean);
+        if (types.length > 0) return { types: types, dropdownValue: brewery || cidery || types[0] };
+
+        const byKeywords = resolveByKeywords(available, ['brew', 'cider']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
+    if (subfilterKey === 'distilleries') {
+        const grouped = resolveAny(available, ['Distilleries']);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+        const distillery = resolveAny(available, ['Distillery']);
+        if (distillery) return { types: [distillery], dropdownValue: distillery };
+        const byKeywords = resolveByKeywords(available, ['distill', 'spirit']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
+    if (subfilterKey === 'vineyards_wineries') {
+        const grouped = resolveAny(available, [
+            'Vineyards & Wineries',
+            'Vineyard & Winery',
+            'Vineyard/Winery',
+            'Vineyards and Wineries',
+            'Vineyard and Winery'
+        ]);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+        const vineyard = resolveAny(available, ['Vineyard', 'Vineyards']);
+        const winery = resolveAny(available, ['Winery', 'Wineries']);
+        const types = [vineyard, winery].filter(Boolean);
+        if (types.length > 0) return { types: types, dropdownValue: winery || vineyard || types[0] };
+
+        const byKeywords = resolveByKeywords(available, ['wine', 'vineyard']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
+    if (subfilterKey === 'restaurants') {
+        const grouped = resolveAny(available, ['Restaurants']);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+        const restaurant = resolveAny(available, ['Restaurant']);
+        if (restaurant) return { types: [restaurant], dropdownValue: restaurant };
+        const byKeywords = resolveByKeywords(available, ['restaurant', 'dining', 'eat']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
+    return { types: [], dropdownValue: '' };
+}
+
+function applyTypesFilterFromTasteSubmenu(typesToApply, dropdownValue) {
+    // User is explicitly setting a filter - clear the "explicitly cleared" flag FIRST
+    filtersExplicitlyCleared = false;
+    try {
+        sessionStorage.removeItem('filtersExplicitlyCleared');
+    } catch (e) {}
+
+    // If Taste was previously applied as a category (via URL param), clear it so it can't override submenu filters
+    try {
+        if (receivedUrlParams && receivedUrlParams.category !== undefined) {
+            delete receivedUrlParams.category;
+            lastProcessedParamsHash = null;
+        }
+    } catch (e) {}
+    try { updateUrlWithCategory(null); } catch (e) {}
+
+    currentCategoryFilter = null;
+    currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
+
+    const typeSelect = document.getElementById('previewTypeFilter');
+    const mobileTypeSelect = document.getElementById('mobileTypeFilter');
+    const valueForDropdown = dropdownValue || (currentTypeFilter[0] || '');
+
+    if (valueForDropdown) {
+        if (typeSelect) {
+            ensureDropdownOption(typeSelect, valueForDropdown, valueForDropdown);
+            typeSelect.value = valueForDropdown;
+        }
+        if (mobileTypeSelect) {
+            ensureDropdownOption(mobileTypeSelect, valueForDropdown, valueForDropdown);
+            mobileTypeSelect.value = valueForDropdown;
+        }
+    } else {
+        if (typeSelect) typeSelect.value = '';
+        if (mobileTypeSelect) mobileTypeSelect.value = '';
+    }
+
+    // Keep category dropdown cleared (submenu is a type-mode filter)
+    const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
+    if (mobileCategoryFilter) {
+        mobileCategoryFilter.value = '';
+        try { updateMobileCategoryIcon(''); } catch (e) {}
+    }
+
+    filterPreview();
+}
 function ensureTasteSubmenuPreview(container) {
     try {
         if (!container) return;
 
         const tasteBtn = container.querySelector('.category-filter-btn[data-category="taste"]');
         if (!tasteBtn) return;
-
-        function getAvailableTypesFromDropdownOrData() {
-            try {
-                if (data && data.filterOptions && Array.isArray(data.filterOptions.types) && data.filterOptions.types.length > 0) {
-                    return data.filterOptions.types.slice();
-                }
-            } catch (e) {}
-            const typeSelect = document.getElementById('previewTypeFilter');
-            if (typeSelect && typeSelect.options) {
-                return Array.from(typeSelect.options)
-                    .slice(1) // skip "All Types"
-                    .map(function(opt) { return opt.value; })
-                    .filter(function(v) { return !!v; });
-            }
-            return [];
-        }
-
-        function normalizeTypeValue(v) {
-            return (v || '').toString().trim().toLowerCase();
-        }
-
-        function findAvailableType(available, candidate) {
-            const needle = normalizeTypeValue(candidate);
-            if (!needle) return null;
-            // Exact match (case-insensitive)
-            for (let i = 0; i < available.length; i++) {
-                if (normalizeTypeValue(available[i]) === needle) return available[i];
-            }
-            return null;
-        }
-
-        function resolveAny(available, candidates) {
-            for (let i = 0; i < candidates.length; i++) {
-                const found = findAvailableType(available, candidates[i]);
-                if (found) return found;
-            }
-            return null;
-        }
-
-        function resolveTasteSubfilter(key) {
-            const available = getAvailableTypesFromDropdownOrData();
-
-            // Helper: fallback by keyword contains (last resort)
-            function resolveByKeywords(keywords) {
-                const out = [];
-                for (let i = 0; i < available.length; i++) {
-                    const a = normalizeTypeValue(available[i]);
-                    if (keywords.some(function(k) { return a.includes(k); })) out.push(available[i]);
-                }
-                return out;
-            }
-
-            if (key === 'breweries_cideries') {
-                // Prefer a single "group" type if your data uses it
-                const grouped = resolveAny(available, [
-                    'Breweries & Cideries',
-                    'Brewery & Cidery',
-                    'Brewery/Cidery',
-                    'Breweries and Cideries',
-                    'Brewery and Cidery'
-                ]);
-                if (grouped) return { types: [grouped], dropdownValue: grouped };
-
-                // Otherwise, try to match the real type options individually
-                const brewery = resolveAny(available, ['Brewery', 'Breweries']);
-                const cidery = resolveAny(available, ['Cidery', 'Cideries']);
-                const types = [brewery, cidery].filter(Boolean);
-                if (types.length > 0) return { types: types, dropdownValue: brewery || cidery || types[0] };
-
-                // Last resort: keyword match
-                const byKeywords = resolveByKeywords(['brew', 'cider']);
-                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
-            }
-
-            if (key === 'distilleries') {
-                const grouped = resolveAny(available, ['Distilleries']);
-                if (grouped) return { types: [grouped], dropdownValue: grouped };
-                const distillery = resolveAny(available, ['Distillery']);
-                if (distillery) return { types: [distillery], dropdownValue: distillery };
-                const byKeywords = resolveByKeywords(['distill', 'spirit']);
-                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
-            }
-
-            if (key === 'vineyards_wineries') {
-                const grouped = resolveAny(available, [
-                    'Vineyards & Wineries',
-                    'Vineyard & Winery',
-                    'Vineyard/Winery',
-                    'Vineyards and Wineries',
-                    'Vineyard and Winery'
-                ]);
-                if (grouped) return { types: [grouped], dropdownValue: grouped };
-
-                const vineyard = resolveAny(available, ['Vineyard', 'Vineyards']);
-                const winery = resolveAny(available, ['Winery', 'Wineries']);
-                const types = [vineyard, winery].filter(Boolean);
-                if (types.length > 0) return { types: types, dropdownValue: winery || vineyard || types[0] };
-
-                const byKeywords = resolveByKeywords(['wine', 'vineyard']);
-                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
-            }
-
-            if (key === 'restaurants') {
-                const grouped = resolveAny(available, ['Restaurants']);
-                if (grouped) return { types: [grouped], dropdownValue: grouped };
-                const restaurant = resolveAny(available, ['Restaurant']);
-                if (restaurant) return { types: [restaurant], dropdownValue: restaurant };
-                const byKeywords = resolveByKeywords(['restaurant', 'dining', 'eat']);
-                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
-            }
-
-            // Unknown key
-            return { types: [], dropdownValue: '' };
-        }
-
-        function applyTypesFromTasteSubmenu(typesToApply, dropdownValue) {
-            // User is explicitly setting a filter - clear the "explicitly cleared" flag FIRST
-            filtersExplicitlyCleared = false;
-            try {
-                sessionStorage.removeItem('filtersExplicitlyCleared');
-            } catch (e) {
-                // sessionStorage might not be available
-            }
-
-            // If Taste was previously applied as a category (via URL param), clear it so it can't override submenu filters
-            try {
-                if (receivedUrlParams && receivedUrlParams.category !== undefined) {
-                    delete receivedUrlParams.category;
-                    lastProcessedParamsHash = null;
-                }
-            } catch (e) {}
-            try {
-                updateUrlWithCategory(null); // remove ?category= from iframe URL
-            } catch (e) {}
-
-            // Clear category mode so we filter by type(s)
-            currentCategoryFilter = null;
-            currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
-
-            // Update dropdown(s) to reflect the selection (reuse existing dropdown UI)
-            const typeSelect = document.getElementById('previewTypeFilter');
-            const mobileTypeSelect = document.getElementById('mobileTypeFilter');
-            const valueForDropdown = dropdownValue || (currentTypeFilter[0] || '');
-
-            if (valueForDropdown) {
-                if (typeSelect) {
-                    ensureDropdownOption(typeSelect, valueForDropdown, valueForDropdown);
-                    typeSelect.value = valueForDropdown;
-                }
-                if (mobileTypeSelect) {
-                    ensureDropdownOption(mobileTypeSelect, valueForDropdown, valueForDropdown);
-                    mobileTypeSelect.value = valueForDropdown;
-                }
-            } else {
-                if (typeSelect) typeSelect.value = '';
-                if (mobileTypeSelect) mobileTypeSelect.value = '';
-            }
-
-            // Keep category dropdown cleared (submenu is a type-mode filter)
-            const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
-            if (mobileCategoryFilter) {
-                mobileCategoryFilter.value = '';
-                try { updateMobileCategoryIcon(''); } catch (e) {}
-            }
-
-            // Run the normal render/filter pipeline
-            filterPreview();
-        }
 
         // Create (or reuse) submenu element
         let submenu = container.querySelector('.category-submenu.taste-submenu');
@@ -5391,7 +5417,7 @@ function ensureTasteSubmenuPreview(container) {
                 }
 
                 console.log('🍽️ Taste submenu filter:', subfilterKey, '→', resolved.types);
-                applyTypesFromTasteSubmenu(resolved.types, resolved.dropdownValue);
+                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
 
                 submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
                     btn.classList.toggle('active', btn === item);
@@ -5445,6 +5471,54 @@ function ensureTasteSubmenuPreview(container) {
         }
     } catch (e) {
         console.warn('Taste submenu preview error:', e);
+    }
+}
+
+function ensureMobileTasteSubmenu() {
+    try {
+        const wrapper = document.querySelector('.mobile-taste-submenu-preview');
+        if (!wrapper) return;
+
+        const normalizedCategory = (currentCategoryFilter || '').toString().trim().toLowerCase();
+        const hasTasteCategoryActive = normalizedCategory === 'taste';
+
+        const tasteTypeKey = (function deriveTasteSubKey() {
+            if (hasTasteCategoryActive) return null;
+            if (!Array.isArray(currentTypeFilter) || currentTypeFilter.length === 0) return null;
+            const types = currentTypeFilter.map(normalizeTypeValue);
+            if (types.some(t => t.includes('brew') || t.includes('cider'))) return 'breweries_cideries';
+            if (types.some(t => t.includes('distill') || t.includes('spirit'))) return 'distilleries';
+            if (types.some(t => t.includes('wine') || t.includes('vineyard'))) return 'vineyards_wineries';
+            if (types.some(t => t.includes('restaurant') || t.includes('dining'))) return 'restaurants';
+            return null;
+        })();
+
+        const shouldShow = hasTasteCategoryActive || !!tasteTypeKey;
+        wrapper.style.display = shouldShow ? 'block' : 'none';
+
+        // bind once
+        if (!wrapper.dataset.bound) {
+            wrapper.dataset.bound = 'true';
+            wrapper.addEventListener('click', function(e) {
+                const btn = e.target && e.target.closest ? e.target.closest('.mobile-submenu-chip') : null;
+                if (!btn) return;
+                const key = btn.getAttribute('data-subfilter') || '';
+                const resolved = resolveTasteSubfilter(key);
+                if (!resolved || !resolved.types || resolved.types.length === 0) return;
+                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
+                wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(b) {
+                    b.classList.toggle('active', b === btn);
+                });
+            });
+        }
+
+        // reflect active
+        wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(btn) {
+            const k = btn.getAttribute('data-subfilter');
+            btn.classList.toggle('active', !!tasteTypeKey && k === tasteTypeKey);
+        });
+    } catch (e) {
+        console.warn('Mobile Taste submenu error:', e);
     }
 }
 
@@ -7623,6 +7697,8 @@ function filterPreview() {
     } catch (e) {
         // ignore
     }
+    // Mobile Taste submenu (open when Taste filters are active)
+    try { ensureMobileTasteSubmenu(); } catch (e) {}
     
     // Send scroll-to-top message to parent (Framer component)
     // Use postMessage directly without checking window.parent/top to avoid CORS errors
