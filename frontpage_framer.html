@@ -5129,6 +5129,120 @@ function ensureTasteSubmenuPreview(container) {
         const tasteBtn = container.querySelector('.category-filter-btn[data-category="taste"]');
         if (!tasteBtn) return;
 
+        function getAvailableTypesFromDropdownOrData() {
+            try {
+                if (data && data.filterOptions && Array.isArray(data.filterOptions.types) && data.filterOptions.types.length > 0) {
+                    return data.filterOptions.types.slice();
+                }
+            } catch (e) {}
+            const typeSelect = document.getElementById('previewTypeFilter');
+            if (typeSelect && typeSelect.options) {
+                return Array.from(typeSelect.options)
+                    .slice(1) // skip "All Types"
+                    .map(function(opt) { return opt.value; })
+                    .filter(function(v) { return !!v; });
+            }
+            return [];
+        }
+
+        function normalizeTypeValue(v) {
+            return (v || '').toString().trim().toLowerCase();
+        }
+
+        function findAvailableType(available, candidate) {
+            const needle = normalizeTypeValue(candidate);
+            if (!needle) return null;
+            // Exact match (case-insensitive)
+            for (let i = 0; i < available.length; i++) {
+                if (normalizeTypeValue(available[i]) === needle) return available[i];
+            }
+            return null;
+        }
+
+        function resolveAny(available, candidates) {
+            for (let i = 0; i < candidates.length; i++) {
+                const found = findAvailableType(available, candidates[i]);
+                if (found) return found;
+            }
+            return null;
+        }
+
+        function resolveTasteSubfilter(key) {
+            const available = getAvailableTypesFromDropdownOrData();
+
+            // Helper: fallback by keyword contains (last resort)
+            function resolveByKeywords(keywords) {
+                const out = [];
+                for (let i = 0; i < available.length; i++) {
+                    const a = normalizeTypeValue(available[i]);
+                    if (keywords.some(function(k) { return a.includes(k); })) out.push(available[i]);
+                }
+                return out;
+            }
+
+            if (key === 'breweries_cideries') {
+                // Prefer a single "group" type if your data uses it
+                const grouped = resolveAny(available, [
+                    'Breweries & Cideries',
+                    'Brewery & Cidery',
+                    'Brewery/Cidery',
+                    'Breweries and Cideries',
+                    'Brewery and Cidery'
+                ]);
+                if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+                // Otherwise, try to match the real type options individually
+                const brewery = resolveAny(available, ['Brewery', 'Breweries']);
+                const cidery = resolveAny(available, ['Cidery', 'Cideries']);
+                const types = [brewery, cidery].filter(Boolean);
+                if (types.length > 0) return { types: types, dropdownValue: brewery || cidery || types[0] };
+
+                // Last resort: keyword match
+                const byKeywords = resolveByKeywords(['brew', 'cider']);
+                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+            }
+
+            if (key === 'distilleries') {
+                const grouped = resolveAny(available, ['Distilleries']);
+                if (grouped) return { types: [grouped], dropdownValue: grouped };
+                const distillery = resolveAny(available, ['Distillery']);
+                if (distillery) return { types: [distillery], dropdownValue: distillery };
+                const byKeywords = resolveByKeywords(['distill', 'spirit']);
+                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+            }
+
+            if (key === 'vineyards_wineries') {
+                const grouped = resolveAny(available, [
+                    'Vineyards & Wineries',
+                    'Vineyard & Winery',
+                    'Vineyard/Winery',
+                    'Vineyards and Wineries',
+                    'Vineyard and Winery'
+                ]);
+                if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+                const vineyard = resolveAny(available, ['Vineyard', 'Vineyards']);
+                const winery = resolveAny(available, ['Winery', 'Wineries']);
+                const types = [vineyard, winery].filter(Boolean);
+                if (types.length > 0) return { types: types, dropdownValue: winery || vineyard || types[0] };
+
+                const byKeywords = resolveByKeywords(['wine', 'vineyard']);
+                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+            }
+
+            if (key === 'restaurants') {
+                const grouped = resolveAny(available, ['Restaurants']);
+                if (grouped) return { types: [grouped], dropdownValue: grouped };
+                const restaurant = resolveAny(available, ['Restaurant']);
+                if (restaurant) return { types: [restaurant], dropdownValue: restaurant };
+                const byKeywords = resolveByKeywords(['restaurant', 'dining', 'eat']);
+                if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+            }
+
+            // Unknown key
+            return { types: [], dropdownValue: '' };
+        }
+
         function applyTypesFromTasteSubmenu(typesToApply, dropdownValue) {
             // User is explicitly setting a filter - clear the "explicitly cleared" flag FIRST
             filtersExplicitlyCleared = false;
@@ -5190,19 +5304,19 @@ function ensureTasteSubmenuPreview(container) {
             submenu.className = 'category-submenu taste-submenu';
             submenu.setAttribute('data-preview', 'true');
             submenu.innerHTML =
-                '<button class="submenu-item" type="button" data-set-types="Brewery,Cidery" data-dropdown-value="Brewery">' +
+                '<button class="submenu-item" type="button" data-subfilter="breweries_cideries">' +
                     '<span class="submenu-dot"></span>' +
                     '<span>Breweries &amp; Cideries</span>' +
                 '</button>' +
-                '<button class="submenu-item" type="button" data-set-types="Distillery" data-dropdown-value="Distillery">' +
+                '<button class="submenu-item" type="button" data-subfilter="distilleries">' +
                     '<span class="submenu-dot"></span>' +
                     '<span>Distilleries</span>' +
                 '</button>' +
-                '<button class="submenu-item" type="button" data-set-types="Winery" data-dropdown-value="Winery">' +
+                '<button class="submenu-item" type="button" data-subfilter="vineyards_wineries">' +
                     '<span class="submenu-dot"></span>' +
                     '<span>Vineyards &amp; Wineries</span>' +
                 '</button>' +
-                '<button class="submenu-item" type="button" data-set-types="Restaurant" data-dropdown-value="Restaurant">' +
+                '<button class="submenu-item" type="button" data-subfilter="restaurants">' +
                     '<span class="submenu-dot"></span>' +
                     '<span>Restaurants</span>' +
                 '</button>' +
@@ -5215,15 +5329,18 @@ function ensureTasteSubmenuPreview(container) {
                 const item = e.target && e.target.closest ? e.target.closest('.submenu-item') : null;
                 if (!item) return;
 
-                const typesAttr = item.getAttribute('data-set-types') || '';
-                const dropdownValue = item.getAttribute('data-dropdown-value') || '';
-                const typesToApply = typesAttr
-                    .split(',')
-                    .map(function(s) { return s.trim(); })
-                    .filter(function(s) { return s.length > 0; });
-                if (typesToApply.length === 0) return;
+                const subfilterKey = item.getAttribute('data-subfilter') || '';
+                const resolved = resolveTasteSubfilter(subfilterKey);
 
-                applyTypesFromTasteSubmenu(typesToApply, dropdownValue);
+                if (!resolved || !resolved.types || resolved.types.length === 0) {
+                    console.warn('⚠️ Taste submenu: no matching types found for', subfilterKey, {
+                        availableTypes: getAvailableTypesFromDropdownOrData().slice(0, 40)
+                    });
+                    return;
+                }
+
+                console.log('🍽️ Taste submenu filter:', subfilterKey, '→', resolved.types);
+                applyTypesFromTasteSubmenu(resolved.types, resolved.dropdownValue);
 
                 submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
                     btn.classList.toggle('active', btn === item);
