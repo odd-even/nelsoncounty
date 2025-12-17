@@ -5130,6 +5130,25 @@ function ensureTasteSubmenuPreview(container) {
         if (!tasteBtn) return;
 
         function applyTypesFromTasteSubmenu(typesToApply, dropdownValue) {
+            // User is explicitly setting a filter - clear the "explicitly cleared" flag FIRST
+            filtersExplicitlyCleared = false;
+            try {
+                sessionStorage.removeItem('filtersExplicitlyCleared');
+            } catch (e) {
+                // sessionStorage might not be available
+            }
+
+            // If Taste was previously applied as a category (via URL param), clear it so it can't override submenu filters
+            try {
+                if (receivedUrlParams && receivedUrlParams.category !== undefined) {
+                    delete receivedUrlParams.category;
+                    lastProcessedParamsHash = null;
+                }
+            } catch (e) {}
+            try {
+                updateUrlWithCategory(null); // remove ?category= from iframe URL
+            } catch (e) {}
+
             // Clear category mode so we filter by type(s)
             currentCategoryFilter = null;
             currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
@@ -5151,6 +5170,13 @@ function ensureTasteSubmenuPreview(container) {
             } else {
                 if (typeSelect) typeSelect.value = '';
                 if (mobileTypeSelect) mobileTypeSelect.value = '';
+            }
+
+            // Keep category dropdown cleared (submenu is a type-mode filter)
+            const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
+            if (mobileCategoryFilter) {
+                mobileCategoryFilter.value = '';
+                try { updateMobileCategoryIcon(''); } catch (e) {}
             }
 
             // Run the normal render/filter pipeline
