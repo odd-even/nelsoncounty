@@ -2164,20 +2164,20 @@
             }
             
             .mobile-filter-bar > .mobile-category-filter-group.category-stay {
-                background-color: #e5675c !important; /* Red/coral - stay SVG color */
+                background-color: #57d1ae !important; /* Swapped: use Taste background color */
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-stay select {
-                background-color: #e5675c !important; /* Red/coral - stay SVG color */
+                background-color: #57d1ae !important; /* Swapped: use Taste background color */
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-stay::before {
                 filter: brightness(0) invert(1); /* Make icon white */
             }
             
             .mobile-filter-bar > .mobile-category-filter-group.category-taste {
-                background-color: #57d1ae !important; /* Teal/green - taste SVG color */
+                background-color: #e5675c !important; /* Swapped: use Stay background color */
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-taste select {
-                background-color: #57d1ae !important; /* Teal/green - taste SVG color */
+                background-color: #e5675c !important; /* Swapped: use Stay background color */
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-taste::before {
                 filter: brightness(0) invert(1); /* Make icon white */
@@ -2220,65 +2220,80 @@
                 padding-left: 8px;
             }
 
-            /* Mobile Taste submenu preview (hidden by default; wired later) */
-            .mobile-taste-submenu-preview {
+            /* ------------------------------------------------------------
+               Mobile Taste compact sub-menu bar (shows only when Taste active)
+               ------------------------------------------------------------ */
+            .mobile-filter-bar > .mobile-taste-submenu-preview {
+                order: 4;
+                flex: 0 0 100%;
                 width: 100%;
-                padding: 6px 10px 0 10px;
-                display: none !important; /* disabled: use category dropdown instead */
+                padding: 0;
+                margin: 0;
+                display: none; /* toggled via JS */
+                border-top: 1px solid #e5e7eb;
+                background: #ffffff;
             }
-            .mobile-submenu-chips {
+            .mobile-taste-submenu-preview .mobile-submenu-chips {
                 display: flex;
-                gap: 8px;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding-bottom: 6px;
+                width: 100%;
+                gap: 0;
             }
-            .mobile-submenu-chips::-webkit-scrollbar { height: 4px; }
-            .mobile-submenu-chips::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 99px; }
-            .mobile-submenu-chip {
-                flex: 0 0 auto;
-                border: 1px solid rgba(0,0,0,0.08);
-                background: rgba(255,255,255,0.9);
+            .mobile-taste-submenu-preview .mobile-submenu-chip {
+                flex: 1 1 25%;
+                width: 25%;
+                border: none;
+                border-radius: 0;
+                background: transparent;
                 color: #111827;
-                border-radius: 999px;
-                padding: 8px 12px;
-                font-size: 13px;
-                font-weight: 600;
+                padding: 8px 6px;
+                font-size: 11px;
+                font-weight: 700;
                 cursor: pointer;
-                white-space: nowrap;
                 display: inline-flex;
                 align-items: center;
-                gap: 8px;
+                justify-content: center;
+                gap: 6px;
+                white-space: nowrap;
             }
-            .mobile-submenu-chip.active {
-                border-color: rgba(0,0,0,0.18);
-                background: rgba(255,255,255,1);
+            .mobile-taste-submenu-preview .mobile-submenu-chip + .mobile-submenu-chip {
+                border-left: 1px solid #e5e7eb;
             }
-            .mobile-submenu-icon {
-                width: 22px;
-                height: 22px;
-                border-radius: 8px;
+            .mobile-taste-submenu-preview .mobile-submenu-chip.active {
+                background: rgba(229, 103, 92, 0.10); /* Taste tint */
+            }
+            .mobile-taste-submenu-preview .mobile-submenu-icon {
+                width: 18px;
+                height: 18px;
+                border-radius: 6px;
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
                 flex: 0 0 auto;
-                background: #ffffff; /* White background behind icons */
+                background: #ffffff;
+                border: 1px solid rgba(0,0,0,0.08);
             }
-            .mobile-submenu-icon img {
-                width: 14px;
-                height: 14px;
+            .mobile-taste-submenu-preview .mobile-submenu-icon img {
+                width: 12px;
+                height: 12px;
                 display: block;
-                /* Let the SVG render in its own (Taste) color */
-                filter: none;
+                filter: none; /* render SVG in its own color */
             }
-            /* All Taste submenu icons share the Taste SVG color */
-            :root.dark-mode .mobile-submenu-chip {
-                background: rgba(255,255,255,0.10);
-                border-color: rgba(255,255,255,0.18);
+            :root.dark-mode .mobile-filter-bar > .mobile-taste-submenu-preview {
+                background: #0b0b0b;
+                border-top-color: #404040;
+            }
+            :root.dark-mode .mobile-taste-submenu-preview .mobile-submenu-chip {
                 color: #ffffff;
             }
-            :root.dark-mode .mobile-submenu-chip.active {
-                background: rgba(255,255,255,0.14);
+            :root.dark-mode .mobile-taste-submenu-preview .mobile-submenu-chip + .mobile-submenu-chip {
+                border-left-color: #404040;
+            }
+            :root.dark-mode .mobile-taste-submenu-preview .mobile-submenu-chip.active {
+                background: rgba(229, 103, 92, 0.22);
+            }
+            :root.dark-mode .mobile-taste-submenu-preview .mobile-submenu-icon {
+                background: rgba(255,255,255,0.06);
+                border-color: rgba(255,255,255,0.18);
             }
             
             
@@ -3876,8 +3891,8 @@
                                 <option value="">All</option>
                             </select>
                         </div>
-                        <!-- Taste submenu for mobile -->
-                        <div class="mobile-taste-submenu-preview" style="display: none;">
+                        <!-- Taste compact sub-menu bar (mobile only) -->
+                        <div class="mobile-taste-submenu-preview">
                             <div class="mobile-submenu-chips">
                                 <button type="button" class="mobile-submenu-chip" data-subfilter="breweries_cideries">
                                     <span class="mobile-submenu-icon"><img src="icons/taste-breweries-cideries.svg" alt="" aria-hidden="true" /></span>
@@ -3885,11 +3900,11 @@
                                 </button>
                                 <button type="button" class="mobile-submenu-chip" data-subfilter="distilleries">
                                     <span class="mobile-submenu-icon"><img src="icons/taste-distilleries.svg" alt="" aria-hidden="true" /></span>
-                                    <span>Distilleries</span>
+                                    <span>Spirits</span>
                                 </button>
                                 <button type="button" class="mobile-submenu-chip" data-subfilter="vineyards_wineries">
                                     <span class="mobile-submenu-icon"><img src="icons/taste-vineyards-wineries.svg" alt="" aria-hidden="true" /></span>
-                                    <span>Wineries</span>
+                                    <span>Wine</span>
                                 </button>
                                 <button type="button" class="mobile-submenu-chip" data-subfilter="eateries">
                                     <span class="mobile-submenu-icon"><img src="icons/taste-restaurants.svg" alt="" aria-hidden="true" /></span>
@@ -5500,8 +5515,6 @@ function ensureTasteSubmenuPreview(container) {
 }
 
 function ensureMobileTasteSubmenu() {
-    // Disabled: mobile Taste subfilters now live inside the mobile category dropdown.
-    return;
     try {
         const wrapper = document.querySelector('.mobile-taste-submenu-preview');
         if (!wrapper) return;
@@ -5509,8 +5522,8 @@ function ensureMobileTasteSubmenu() {
         const normalizedCategory = (currentCategoryFilter || '').toString().trim().toLowerCase();
         const hasTasteCategoryActive = normalizedCategory === 'taste';
 
+        // Determine which Taste subfilter should be highlighted (when a Taste-related type is active)
         const tasteTypeKey = (function deriveTasteSubKey() {
-            if (hasTasteCategoryActive) return null;
             if (!Array.isArray(currentTypeFilter) || currentTypeFilter.length === 0) return null;
             const types = currentTypeFilter.map(normalizeTypeValue);
             if (types.some(t => t.includes('brew') || t.includes('cider'))) return 'breweries_cideries';
@@ -5528,8 +5541,9 @@ function ensureMobileTasteSubmenu() {
             return null;
         })();
 
-        const shouldShow = hasTasteCategoryActive || !!tasteTypeKey;
-        wrapper.style.display = shouldShow ? 'block' : 'none';
+        // Show ONLY when Taste category is active (per request)
+        const shouldShow = hasTasteCategoryActive;
+        wrapper.style.display = shouldShow ? 'flex' : 'none';
 
         // bind once
         if (!wrapper.dataset.bound) {
@@ -5540,10 +5554,32 @@ function ensureMobileTasteSubmenu() {
                 const key = btn.getAttribute('data-subfilter') || '';
                 const resolved = resolveTasteSubfilter(key);
                 if (!resolved || !resolved.types || resolved.types.length === 0) return;
-                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
+
+                // Clear the "explicitly cleared" flag FIRST
+                filtersExplicitlyCleared = false;
+                try { sessionStorage.removeItem('filtersExplicitlyCleared'); } catch (e) {}
+
+                // Keep category as Taste on mobile, but apply the subfilter types
+                currentCategoryFilter = 'taste';
+                currentTypeFilter = resolved.types.slice();
+
+                // Keep the category dropdown on Taste
+                const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
+                if (mobileCategoryFilter) {
+                    mobileCategoryFilter.value = 'taste';
+                    updateMobileCategoryIcon('taste');
+                }
+
+                // Clear type dropdown (subfilter may represent multiple types)
+                const mobileTypeFilter = document.getElementById('mobileTypeFilter');
+                if (mobileTypeFilter) mobileTypeFilter.value = '';
+
+                // Mark active chip
                 wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(b) {
                     b.classList.toggle('active', b === btn);
                 });
+
+                filterPreview();
             });
         }
 
@@ -7732,7 +7768,8 @@ function filterPreview() {
     } catch (e) {
         // ignore
     }
-    // Mobile Taste submenu removed (subfilters are now in the category dropdown)
+    // Mobile Taste compact sub-menu bar (shows when Taste is active)
+    try { ensureMobileTasteSubmenu(); } catch (e) {}
     
     // Send scroll-to-top message to parent (Framer component)
     // Use postMessage directly without checking window.parent/top to avoid CORS errors
@@ -9631,30 +9668,7 @@ function handleMobileCategoryFilter() {
     // Update icon based on selected category
     updateMobileCategoryIcon(value);
 
-    // Special case: Taste subfilters are included as extra options in the category dropdown (mobile only)
-    // Values are encoded as: "taste:<subfilterKey>"
-    if (value && typeof value === 'string' && value.toLowerCase().startsWith('taste:')) {
-        const subfilterKey = value.split(':').slice(1).join(':'); // keep anything after first colon
-        const resolved = resolveTasteSubfilter(subfilterKey);
-
-        currentCategoryFilter = 'taste';
-        currentTypeFilter = (resolved && Array.isArray(resolved.types)) ? resolved.types.slice() : [];
-
-        // Clear type filter dropdown (submenu can represent multiple types)
-        const mobileTypeFilter = document.getElementById('mobileTypeFilter');
-        if (mobileTypeFilter) mobileTypeFilter.value = '';
-
-        // Update sidebar buttons
-        document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
-            btn.classList.remove('active');
-            if (btn.dataset.category === currentCategoryFilter) {
-                btn.classList.add('active');
-            }
-        });
-
-        filterPreview();
-        return;
-    }
+    // (Taste mobile subfilters removed)
     
     if (value) {
         // Set category filter
@@ -9720,41 +9734,12 @@ function populateMobileCategoryFilter() {
         mobileCategoryFilter.appendChild(option);
     });
 
-    // Insert Taste sub-options directly under Taste in the same dropdown
-    // (Replaces the old mobile chip UI)
-    const tasteSubOptions = [
-        { value: 'taste:breweries_cideries', label: 'Taste: Breweries & Cideries' },
-        { value: 'taste:distilleries', label: 'Taste: Distilleries' },
-        { value: 'taste:vineyards_wineries', label: 'Taste: Vineyards & Wineries' },
-        { value: 'taste:eateries', label: 'Taste: Eateries' },
-    ];
-
-    const tasteOptionIndex = Array.from(mobileCategoryFilter.options).findIndex(function(opt) {
-        return (opt.value || '').toLowerCase() === 'taste';
-    });
-    if (tasteOptionIndex !== -1) {
-        // Insert in order right after the Taste option
-        for (let i = tasteSubOptions.length - 1; i >= 0; i--) {
-            const sub = tasteSubOptions[i];
-            const opt = document.createElement('option');
-            opt.value = sub.value;
-            opt.textContent = sub.label;
-            mobileCategoryFilter.insertBefore(opt, mobileCategoryFilter.options[tasteOptionIndex + 1] || null);
-        }
-    } else {
-        // If Taste isn't present for some reason, append them at the end
-        tasteSubOptions.forEach(function(sub) {
-            const opt = document.createElement('option');
-            opt.value = sub.value;
-            opt.textContent = sub.label;
-            mobileCategoryFilter.appendChild(opt);
-        });
-    }
-    
     // Update icon if a category is already selected
-    const preferredValue = previousValue || (currentCategoryFilter || '');
+    // If a previous value was a removed Taste subfilter, fall back to "taste"
+    const sanitizedPreviousValue = (previousValue && previousValue.indexOf(':') !== -1) ? previousValue.split(':')[0] : previousValue;
+    const preferredValue = sanitizedPreviousValue || (currentCategoryFilter || '');
     if (preferredValue) {
-        // Only set if it exists in the list (covers taste:<subfilterKey> options)
+        // Only set if it exists in the list
         const hasOption = Array.from(mobileCategoryFilter.options).some(function(opt) {
             return opt.value === preferredValue;
         });
