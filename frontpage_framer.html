@@ -1164,6 +1164,12 @@
         :root.dark-mode .filter-content::-webkit-scrollbar-thumb:hover { background: #5a5a5a; }
         
         .filter-section { padding: 15px 20px 15px 0px; }
+        /* Align the dropdown stack (Type/Area/Amenities/Clear) with the category text column */
+        .sidebar-dropdown-section { padding: 15px 20px 15px 52px; }
+        .sidebar-dropdown-section .preview-filter-group,
+        .sidebar-dropdown-section #clearFiltersBtn {
+            max-width: 100%;
+        }
         .filter-section.search-section { 
             background: var(--card-bg); 
             border-bottom: 2px solid var(--border-color); 
@@ -1332,6 +1338,58 @@
             flex: 1;
             font-weight: 500;
             margin-left: 52px; /* 0px (left) + 40px (circle width) + 12px (spacing) = 52px */
+        }
+
+        /* ------------------------------------------------------------
+           Taste submenu (preview UI only — behavior wired lightly in JS)
+           ------------------------------------------------------------ */
+        .category-submenu {
+            margin-left: 52px; /* Align under category text (not under icon circle) */
+            margin-top: -2px;
+            margin-bottom: 10px;
+            padding: 6px 0 0 0;
+            display: none; /* Shown when Taste category is active */
+        }
+        .category-submenu .submenu-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(241, 246, 247, 0.9);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.08s ease;
+            margin-bottom: 6px;
+        }
+        .category-submenu .submenu-item:hover {
+            background: rgba(241, 246, 247, 1);
+        }
+        .category-submenu .submenu-item.active {
+            background: rgba(241, 246, 247, 1);
+            border: 1px solid rgba(0,0,0,0.10);
+        }
+        .category-submenu .submenu-item:active {
+            transform: translateY(1px);
+        }
+        .category-submenu .submenu-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 3px;
+            background: #57d1ae; /* Taste accent */
+            flex: 0 0 auto;
+        }
+        :root.dark-mode .category-submenu .submenu-item {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+        :root.dark-mode .category-submenu .submenu-item:hover {
+            background: rgba(255, 255, 255, 0.12);
         }
         /* Circular background behind icon for category buttons on hover/active */
         .category-filter-btn::before {
@@ -2120,6 +2178,38 @@
                 text-indent: 0; /* Show text in dropdown */
                 color: #000; /* Make text visible in dropdown */
                 padding-left: 8px;
+            }
+
+            /* Mobile Taste submenu preview (hidden by default; wired later) */
+            .mobile-taste-submenu-preview {
+                width: 100%;
+                padding: 6px 10px 0 10px;
+            }
+            .mobile-submenu-chips {
+                display: flex;
+                gap: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 6px;
+            }
+            .mobile-submenu-chips::-webkit-scrollbar { height: 4px; }
+            .mobile-submenu-chips::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 99px; }
+            .mobile-submenu-chip {
+                flex: 0 0 auto;
+                border: 1px solid rgba(0,0,0,0.08);
+                background: rgba(255,255,255,0.9);
+                color: #111827;
+                border-radius: 999px;
+                padding: 8px 12px;
+                font-size: 13px;
+                font-weight: 600;
+                cursor: default;
+                white-space: nowrap;
+            }
+            :root.dark-mode .mobile-submenu-chip {
+                background: rgba(255,255,255,0.10);
+                border-color: rgba(255,255,255,0.18);
+                color: #ffffff;
             }
             
             
@@ -3653,7 +3743,7 @@
                                 </div>
                             </div>
 
-                            <div class="filter-section">
+                            <div class="filter-section sidebar-dropdown-section">
                                 <div class="preview-filter-group">
                                     <select id="previewTypeFilter" onchange="handleTypeFilter()">
                                         <option value="">All Types</option>
@@ -3716,6 +3806,17 @@
                             <select id="mobileCategoryFilter" onchange="handleMobileCategoryFilter()">
                                 <option value="">All</option>
                             </select>
+                        </div>
+                        <!-- Preview-only: Taste submenu scaffolding for mobile (wired later if you like the UI) -->
+                        <div class="mobile-taste-submenu-preview" style="display: none;">
+                            <div class="mobile-submenu-chips">
+                                <button type="button" class="mobile-submenu-chip" disabled>Restaurants</button>
+                                <button type="button" class="mobile-submenu-chip" disabled>Breweries</button>
+                                <button type="button" class="mobile-submenu-chip" disabled>Wineries</button>
+                                <button type="button" class="mobile-submenu-chip" disabled>Cideries</button>
+                                <button type="button" class="mobile-submenu-chip" disabled>Distilleries</button>
+                                <button type="button" class="mobile-submenu-chip" disabled>Bars</button>
+                            </div>
                         </div>
                         <div class="mobile-filters-wrapper">
                         <div class="mobile-filter-group">
@@ -5011,6 +5112,121 @@ function renderTypeFilterButtons(listings, containerSelector, maxVisible) {
         };
         seeMoreBtn.innerHTML = '<span class="see-more-text">See More</span><span class="see-less-text" style="display: none;">See Less</span>';
         container.appendChild(seeMoreBtn);
+    }
+
+    // Preview: ensure the Taste submenu element exists and sits right under the Taste button
+    // (No filtering behavior for submenu items yet — just UI/placement + show/hide)
+    ensureTasteSubmenuPreview(container);
+}
+
+// ------------------------------------------------------------
+// Taste submenu (preview-only scaffolding)
+// ------------------------------------------------------------
+function ensureTasteSubmenuPreview(container) {
+    try {
+        if (!container) return;
+
+        const tasteBtn = container.querySelector('.category-filter-btn[data-category="taste"]');
+        if (!tasteBtn) return;
+
+        function applyTypesFromTasteSubmenu(typesToApply, dropdownValue) {
+            // Clear category mode so we filter by type(s)
+            currentCategoryFilter = null;
+            currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
+
+            // Update dropdown(s) to reflect the selection (reuse existing dropdown UI)
+            const typeSelect = document.getElementById('previewTypeFilter');
+            const mobileTypeSelect = document.getElementById('mobileTypeFilter');
+            const valueForDropdown = dropdownValue || (currentTypeFilter[0] || '');
+
+            if (valueForDropdown) {
+                if (typeSelect) {
+                    ensureDropdownOption(typeSelect, valueForDropdown, valueForDropdown);
+                    typeSelect.value = valueForDropdown;
+                }
+                if (mobileTypeSelect) {
+                    ensureDropdownOption(mobileTypeSelect, valueForDropdown, valueForDropdown);
+                    mobileTypeSelect.value = valueForDropdown;
+                }
+            } else {
+                if (typeSelect) typeSelect.value = '';
+                if (mobileTypeSelect) mobileTypeSelect.value = '';
+            }
+
+            // Run the normal render/filter pipeline
+            filterPreview();
+        }
+
+        // Create (or reuse) submenu element
+        let submenu = container.querySelector('.category-submenu.taste-submenu');
+        if (!submenu) {
+            submenu = document.createElement('div');
+            submenu.className = 'category-submenu taste-submenu';
+            submenu.setAttribute('data-preview', 'true');
+            submenu.innerHTML =
+                '<button class="submenu-item" type="button" data-set-types="Brewery,Cidery" data-dropdown-value="Brewery">' +
+                    '<span class="submenu-dot"></span>' +
+                    '<span>Breweries &amp; Cideries</span>' +
+                '</button>' +
+                '<button class="submenu-item" type="button" data-set-types="Distillery" data-dropdown-value="Distillery">' +
+                    '<span class="submenu-dot"></span>' +
+                    '<span>Distilleries</span>' +
+                '</button>' +
+                '<button class="submenu-item" type="button" data-set-types="Winery" data-dropdown-value="Winery">' +
+                    '<span class="submenu-dot"></span>' +
+                    '<span>Vineyards &amp; Wineries</span>' +
+                '</button>' +
+                '<button class="submenu-item" type="button" data-set-types="Restaurant" data-dropdown-value="Restaurant">' +
+                    '<span class="submenu-dot"></span>' +
+                    '<span>Restaurants</span>' +
+                '</button>' +
+                '<div style="font-size: 12px; color: var(--text-secondary); margin: 6px 0 0 2px;">' +
+                    'These set the main “Types” dropdown.' +
+                '</div>';
+
+            // Wire clicks to the existing Types dropdown filter (simple + consistent)
+            submenu.addEventListener('click', function(e) {
+                const item = e.target && e.target.closest ? e.target.closest('.submenu-item') : null;
+                if (!item) return;
+
+                const typesAttr = item.getAttribute('data-set-types') || '';
+                const dropdownValue = item.getAttribute('data-dropdown-value') || '';
+                const typesToApply = typesAttr
+                    .split(',')
+                    .map(function(s) { return s.trim(); })
+                    .filter(function(s) { return s.length > 0; });
+                if (typesToApply.length === 0) return;
+
+                applyTypesFromTasteSubmenu(typesToApply, dropdownValue);
+
+                submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
+                    btn.classList.toggle('active', btn === item);
+                });
+            });
+        }
+
+        // Insert directly after the Taste button
+        if (tasteBtn.nextSibling !== submenu) {
+            container.insertBefore(submenu, tasteBtn.nextSibling);
+        }
+
+        // Show when Taste is active, hide otherwise
+        submenu.style.display = tasteBtn.classList.contains('active') ? 'block' : 'none';
+
+        // Keep it in sync when any category button is clicked
+        if (!container.dataset.tasteSubmenuBound) {
+            container.dataset.tasteSubmenuBound = 'true';
+            container.addEventListener('click', function(e) {
+                const btn = e.target && e.target.closest ? e.target.closest('.category-filter-btn') : null;
+                if (!btn) return;
+                // Let existing handlers run first (they toggle .active)
+                setTimeout(function() {
+                    ensureTasteSubmenuPreview(container);
+                }, 0);
+            });
+        }
+    } catch (e) {
+        console.warn('Taste submenu preview error:', e);
     }
 }
 
