@@ -1350,6 +1350,17 @@
             padding: 6px 0 0 0; /* left padding 0 */
             display: none; /* Shown when Taste category is active */
         }
+        /* Container look for Taste submenu (border + inner dividers) */
+        .category-submenu.taste-submenu {
+            padding: 0; /* container handles spacing via rows */
+            border: 1px solid #dddddd;
+            border-radius: 14px;
+            background: var(--card-bg);
+            overflow: hidden; /* keep dividers/hover within rounded corners */
+        }
+        :root.dark-mode .category-submenu.taste-submenu {
+            border-color: #404040;
+        }
         .category-submenu .submenu-item {
             width: 100%;
             display: flex;
@@ -1367,12 +1378,29 @@
             transition: background-color 0.2s ease, transform 0.08s ease;
             margin-bottom: 6px;
         }
+        /* When inside the Taste submenu container, make rows full-width with divider lines */
+        .category-submenu.taste-submenu .submenu-item {
+            margin: 0;
+            border-radius: 0;
+            background: transparent;
+            padding: 12px 12px;
+        }
+        .category-submenu.taste-submenu .submenu-item + .submenu-item {
+            border-top: 1px solid var(--border-color);
+        }
+        :root.dark-mode .category-submenu.taste-submenu .submenu-item + .submenu-item {
+            border-top-color: #404040;
+        }
         .category-submenu .submenu-item:hover {
             background: rgba(241, 246, 247, 1);
         }
         .category-submenu .submenu-item.active {
             background: rgba(241, 246, 247, 1);
             border: 1px solid rgba(0,0,0,0.10);
+        }
+        .category-submenu.taste-submenu .submenu-item.active {
+            background: rgba(241, 246, 247, 0.9);
+            border: none; /* avoid breaking the divider lines */
         }
         .category-submenu .submenu-item:active {
             transform: translateY(1px);
