@@ -1165,7 +1165,7 @@
         
         .filter-section { padding: 15px 20px 15px 0px; }
         /* Align the dropdown stack (Type/Area/Amenities/Clear) with the category text column */
-        .sidebar-dropdown-section { padding: 15px 20px 15px 52px; }
+        .sidebar-dropdown-section { padding: 15px 20px 15px 0px; }
         .sidebar-dropdown-section .preview-filter-group,
         .sidebar-dropdown-section #clearFiltersBtn {
             max-width: 100%;
@@ -1377,12 +1377,19 @@
         .category-submenu .submenu-item:active {
             transform: translateY(1px);
         }
-        .category-submenu .submenu-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 3px;
-            background: #57d1ae; /* Taste accent */
+        .category-submenu .submenu-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             flex: 0 0 auto;
+        }
+        .category-submenu .submenu-icon img,
+        .category-submenu .submenu-icon svg {
+            width: 18px;
+            height: 18px;
+            display: block;
         }
         :root.dark-mode .category-submenu .submenu-item {
             background: rgba(255, 255, 255, 0.08);
@@ -5305,24 +5312,22 @@ function ensureTasteSubmenuPreview(container) {
             submenu.setAttribute('data-preview', 'true');
             submenu.innerHTML =
                 '<button class="submenu-item" type="button" data-subfilter="breweries_cideries">' +
-                    '<span class="submenu-dot"></span>' +
+                    '<span class="submenu-icon"><img src="icons/taste-breweries-cideries.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Breweries &amp; Cideries</span>' +
                 '</button>' +
                 '<button class="submenu-item" type="button" data-subfilter="distilleries">' +
-                    '<span class="submenu-dot"></span>' +
+                    '<span class="submenu-icon"><img src="icons/taste-distilleries.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Distilleries</span>' +
                 '</button>' +
                 '<button class="submenu-item" type="button" data-subfilter="vineyards_wineries">' +
-                    '<span class="submenu-dot"></span>' +
+                    '<span class="submenu-icon"><img src="icons/taste-vineyards-wineries.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Vineyards &amp; Wineries</span>' +
                 '</button>' +
                 '<button class="submenu-item" type="button" data-subfilter="restaurants">' +
-                    '<span class="submenu-dot"></span>' +
+                    '<span class="submenu-icon"><img src="icons/taste-restaurants.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Restaurants</span>' +
                 '</button>' +
-                '<div style="font-size: 12px; color: var(--text-secondary); margin: 6px 0 0 2px;">' +
-                    'These set the main “Types” dropdown.' +
-                '</div>';
+                '';
 
             // Wire clicks to the existing Types dropdown filter (simple + consistent)
             submenu.addEventListener('click', function(e) {
