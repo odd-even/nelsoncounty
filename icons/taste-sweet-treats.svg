@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .st0 { fill: #e5675c; }
+    </style>
+  </defs>
+  <!-- Simple cupcake icon -->
+  <path class="st0" d="M8 11c0-2.2 1.8-4 4-4s4 1.8 4 4H8z"/>
+  <path class="st0" d="M7 12h10l-1.1 8H8.1L7 12z"/>
+  <path class="st0" d="M9 14h6l-.2 1H9.2L9 14z"/>
+</svg>

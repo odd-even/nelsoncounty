@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .st0 { fill: #e5675c; }
+    </style>
+  </defs>
+  <!-- Simple coffee cup icon -->
+  <path class="st0" d="M6 8h11v6c0 2.2-1.8 4-4 4H10c-2.2 0-4-1.8-4-4V8z"/>
+  <path class="st0" d="M17 9h1.5c1.4 0 2.5 1.1 2.5 2.5S19.9 14 18.5 14H17V9zm1.5 1H18v3h.5c.8 0 1.5-.7 1.5-1.5S19.3 10 18.5 10z"/>
+  <path class="st0" d="M7 20h10v2H7z"/>
+</svg>

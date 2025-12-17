@@ -3894,6 +3894,14 @@
                                     <span class="mobile-submenu-icon"><img src="icons/taste-restaurants.svg" alt="" aria-hidden="true" /></span>
                                     <span>Restaurants</span>
                                 </button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="coffee_shops">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-coffee-shops.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Coffee</span>
+                                </button>
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="sweet_treats">
+                                    <span class="mobile-submenu-icon"><img src="icons/taste-sweet-treats.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Sweet Treats</span>
+                                </button>
                             </div>
                         </div>
                         <div class="mobile-filters-wrapper">
@@ -5305,6 +5313,38 @@ function resolveTasteSubfilter(subfilterKey) {
         if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
     }
 
+    if (subfilterKey === 'coffee_shops') {
+        const grouped = resolveAny(available, ['Coffee Shops', 'Coffee Shop']);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+        const coffee = resolveAny(available, ['Coffee', 'Café', 'Cafe', 'Coffee & Tea', 'Coffee and Tea']);
+        if (coffee) return { types: [coffee], dropdownValue: coffee };
+
+        const byKeywords = resolveByKeywords(available, ['coffee', 'cafe', 'café', 'espresso']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
+    if (subfilterKey === 'sweet_treats') {
+        const grouped = resolveAny(available, ['Sweet Treats', 'Desserts', 'Dessert']);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+
+        const sweetType = resolveAny(available, [
+            'Bakery',
+            'Bakeries',
+            'Patisserie',
+            'Pastry',
+            'Donuts',
+            'Donut Shop',
+            'Ice Cream',
+            'Chocolate',
+            'Chocolatier'
+        ]);
+        if (sweetType) return { types: [sweetType], dropdownValue: sweetType };
+
+        const byKeywords = resolveByKeywords(available, ['bakery', 'dessert', 'ice cream', 'icecream', 'chocolate', 'pastry', 'donut', 'sweet', 'candy']);
+        if (byKeywords.length > 0) return { types: byKeywords, dropdownValue: byKeywords[0] };
+    }
+
     return { types: [], dropdownValue: '' };
 }
 
@@ -5384,6 +5424,14 @@ function ensureTasteSubmenuPreview(container) {
                     '<span class="submenu-icon"><img src="icons/taste-restaurants.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Restaurants</span>' +
                 '</button>' +
+                '<button class="submenu-item" type="button" data-subfilter="coffee_shops">' +
+                    '<span class="submenu-icon"><img src="icons/taste-coffee-shops.svg" alt="" aria-hidden="true" /></span>' +
+                    '<span>Coffee Shops</span>' +
+                '</button>' +
+                '<button class="submenu-item" type="button" data-subfilter="sweet_treats">' +
+                    '<span class="submenu-icon"><img src="icons/taste-sweet-treats.svg" alt="" aria-hidden="true" /></span>' +
+                    '<span>Sweet Treats</span>' +
+                '</button>' +
                 '';
 
             // Wire clicks to the existing Types dropdown filter (simple + consistent)
@@ -5427,6 +5475,8 @@ function ensureTasteSubmenuPreview(container) {
             if (types.some(t => t.includes('distill') || t.includes('spirit'))) return 'distilleries';
             if (types.some(t => t.includes('wine') || t.includes('vineyard'))) return 'vineyards_wineries';
             if (types.some(t => t.includes('restaurant') || t.includes('dining'))) return 'restaurants';
+            if (types.some(t => t.includes('coffee') || t.includes('cafe') || t.includes('café') || t.includes('espresso'))) return 'coffee_shops';
+            if (types.some(t => t.includes('bakery') || t.includes('dessert') || t.includes('ice cream') || t.includes('icecream') || t.includes('chocolate') || t.includes('pastry') || t.includes('donut') || t.includes('sweet'))) return 'sweet_treats';
             return null;
         })();
         const hasTasteTypeActive = !!tasteTypeKey;
@@ -5475,6 +5525,8 @@ function ensureMobileTasteSubmenu() {
             if (types.some(t => t.includes('distill') || t.includes('spirit'))) return 'distilleries';
             if (types.some(t => t.includes('wine') || t.includes('vineyard'))) return 'vineyards_wineries';
             if (types.some(t => t.includes('restaurant') || t.includes('dining'))) return 'restaurants';
+            if (types.some(t => t.includes('coffee') || t.includes('cafe') || t.includes('café') || t.includes('espresso'))) return 'coffee_shops';
+            if (types.some(t => t.includes('bakery') || t.includes('dessert') || t.includes('ice cream') || t.includes('icecream') || t.includes('chocolate') || t.includes('pastry') || t.includes('donut') || t.includes('sweet'))) return 'sweet_treats';
             return null;
         })();
 
