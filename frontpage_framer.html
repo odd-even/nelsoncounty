@@ -5462,9 +5462,15 @@ function ensureTasteSubmenuPreview(container) {
             container.insertBefore(submenu, tasteBtn.nextSibling);
         }
 
-        // Show when Taste is active OR when an external link applies a Taste-related filter (category=taste or taste-ish type)
+        // Show Taste submenu when:
+        // 1. Taste category is explicitly selected (currentCategoryFilter === 'taste')
+        // 2. OR no category is selected (currentCategoryFilter === null) AND a taste-related type is active (for direct links like ?type=breweries)
+        // Do NOT show when another category (like Culture, Activities) is selected
         const normalizedCategory = (currentCategoryFilter || '').toString().trim().toLowerCase();
         const hasTasteCategoryActive = normalizedCategory === 'taste';
+        const noCategorySelected = !currentCategoryFilter || currentCategoryFilter === null || normalizedCategory === '';
+        
+        // Determine which subfilter to highlight (check types even if Taste category isn't active, for direct type links)
         const tasteTypeKey = (function deriveTasteSubKey() {
             // If category=taste is active, don't auto-highlight a subfilter (category mode includes many types)
             if (hasTasteCategoryActive) return null;
@@ -5485,7 +5491,9 @@ function ensureTasteSubmenuPreview(container) {
             return null;
         })();
         const hasTasteTypeActive = !!tasteTypeKey;
-        const shouldShow = hasTasteCategoryActive || hasTasteTypeActive;
+        
+        // Show submenu only when Taste category is active, OR when no category is selected and a taste-related type is active
+        const shouldShow = hasTasteCategoryActive || (noCategorySelected && hasTasteTypeActive);
         submenu.style.display = shouldShow ? 'block' : 'none';
 
         // Highlight submenu item when a Taste-related *type* filter is active (e.g., from a link)
