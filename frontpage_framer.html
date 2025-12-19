@@ -5485,7 +5485,7 @@ function ensureTasteSubmenuPreview(container) {
             return null;
         })();
         const hasTasteTypeActive = !!tasteTypeKey;
-        const shouldShow = tasteBtn.classList.contains('active') || hasTasteCategoryActive || hasTasteTypeActive;
+        const shouldShow = hasTasteCategoryActive || hasTasteTypeActive;
         submenu.style.display = shouldShow ? 'block' : 'none';
 
         // Highlight submenu item when a Taste-related *type* filter is active (e.g., from a link)
