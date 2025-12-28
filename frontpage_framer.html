@@ -5562,9 +5562,19 @@ function ensureMobileTasteSubmenu() {
             wrapper.addEventListener('click', function(e) {
                 const btn = e.target && e.target.closest ? e.target.closest('.mobile-submenu-chip') : null;
                 if (!btn) return;
+                
+                // Stop event propagation to prevent other handlers from interfering
+                e.stopPropagation();
+                e.preventDefault();
+                
                 const key = btn.getAttribute('data-subfilter') || '';
                 const resolved = resolveTasteSubfilter(key);
-                if (!resolved || !resolved.types || resolved.types.length === 0) return;
+                if (!resolved || !resolved.types || resolved.types.length === 0) {
+                    console.warn('⚠️ Mobile Taste submenu: no matching types found for', key);
+                    return;
+                }
+
+                console.log('🍽️ Mobile Taste submenu filter:', key, '→', resolved.types);
 
                 // Clear the "explicitly cleared" flag FIRST
                 filtersExplicitlyCleared = false;
@@ -6799,6 +6809,9 @@ loadDataFromGoogleSheets()
         
             // Populate mobile category dropdown
             populateMobileCategoryFilter();
+            
+            // Ensure mobile taste submenu is initialized
+            try { ensureMobileTasteSubmenu(); } catch (e) {}
             
             // Restore active state on filter buttons after re-rendering
             // This preserves the active highlight when buttons are recreated after categories load
@@ -9683,7 +9696,8 @@ function handleMobileCategoryFilter() {
     // Update icon based on selected category
     updateMobileCategoryIcon(value);
 
-    // (Taste mobile subfilters removed)
+    // Ensure mobile taste submenu is set up and shown/hidden correctly
+    try { ensureMobileTasteSubmenu(); } catch (e) {}
     
     if (value) {
         // Set category filter
