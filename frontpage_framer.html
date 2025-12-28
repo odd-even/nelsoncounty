@@ -2231,7 +2231,7 @@
                 margin: 0;
                 display: none; /* toggled via JS */
                 border-top: 1px solid #e5e7eb;
-                background: #ffffff;
+                background: transparent;
             }
             .mobile-taste-submenu-preview .mobile-submenu-chips {
                 display: flex;
@@ -2279,7 +2279,7 @@
                 filter: none; /* render SVG in its own color */
             }
             :root.dark-mode .mobile-filter-bar > .mobile-taste-submenu-preview {
-                background: #0b0b0b;
+                background: transparent;
                 border-top-color: #404040;
             }
             :root.dark-mode .mobile-taste-submenu-preview .mobile-submenu-chip {
@@ -5552,8 +5552,10 @@ function ensureMobileTasteSubmenu() {
             return null;
         })();
 
-        // Show ONLY when Taste category is active (per request)
-        const shouldShow = hasTasteCategoryActive;
+        // Show when Taste category is active OR when taste-related types are active (for submenu filtering)
+        const noCategorySelected = !currentCategoryFilter || currentCategoryFilter === null || normalizedCategory === '';
+        const hasTasteTypeActive = !!tasteTypeKey;
+        const shouldShow = hasTasteCategoryActive || (noCategorySelected && hasTasteTypeActive);
         wrapper.style.display = shouldShow ? 'flex' : 'none';
 
         // bind once
@@ -5576,31 +5578,18 @@ function ensureMobileTasteSubmenu() {
 
                 console.log('🍽️ Mobile Taste submenu filter:', key, '→', resolved.types);
 
-                // Clear the "explicitly cleared" flag FIRST
-                filtersExplicitlyCleared = false;
-                try { sessionStorage.removeItem('filtersExplicitlyCleared'); } catch (e) {}
+                // Use the same function as desktop to apply type filters (clears category filter)
+                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
 
-                // Keep category as Taste on mobile, but apply the subfilter types
-                currentCategoryFilter = 'taste';
-                currentTypeFilter = resolved.types.slice();
-
-                // Keep the category dropdown on Taste
-                const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
-                if (mobileCategoryFilter) {
-                    mobileCategoryFilter.value = 'taste';
-                    updateMobileCategoryIcon('taste');
-                }
-
-                // Clear type dropdown (subfilter may represent multiple types)
-                const mobileTypeFilter = document.getElementById('mobileTypeFilter');
-                if (mobileTypeFilter) mobileTypeFilter.value = '';
-
-                // Mark active chip
+                // Mark active chip after filter is applied
                 wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(b) {
                     b.classList.toggle('active', b === btn);
                 });
-
-                filterPreview();
+                
+                // Ensure mobile taste submenu is refreshed after filtering
+                setTimeout(function() {
+                    try { ensureMobileTasteSubmenu(); } catch (e) {}
+                }, 0);
             });
         }
 
