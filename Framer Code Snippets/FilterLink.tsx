@@ -14,7 +14,7 @@
 // - When clicked, it will navigate to /find-your-adventure with those filters applied
 
 import { addPropertyControls, ControlType } from "framer"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 
 type Props = {
     children?: React.ReactNode
@@ -67,6 +67,7 @@ export default function FilterLink(props: Props) {
 
     // Get font from Framer document body
     const [bodyFontFamily, setBodyFontFamily] = useState<string>('')
+    const containerRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (typeof window !== 'undefined' && document.body) {
@@ -77,6 +78,13 @@ export default function FilterLink(props: Props) {
             }
         }
     }, [])
+
+    // Force color override using direct DOM manipulation to ensure it takes precedence
+    useEffect(() => {
+        if (containerRef.current && typeof window !== 'undefined') {
+            containerRef.current.style.setProperty('color', textColor, 'important')
+        }
+    }, [textColor])
 
     // Use prop fontFamily if provided, otherwise use body font, otherwise fallback
     const fontFamily = fontFamilyProp && fontFamilyProp !== 'inherit' 
@@ -211,6 +219,7 @@ export default function FilterLink(props: Props) {
     // Wrap children in a clickable div
     return (
         <div
+            ref={containerRef}
             onClick={handleClick}
             style={{
                 cursor: 'pointer',
@@ -221,7 +230,7 @@ export default function FilterLink(props: Props) {
                 borderRadius: borderRadius,
                 padding: padding,
                 boxSizing: 'border-box',
-                color: textColor,
+                color: textColor, // Will be overridden with !important via useEffect
                 fontSize: typeof fontSize === 'number' ? `${fontSize}px` : fontSize,
                 fontWeight: typeof fontWeight === 'number' ? fontWeight : fontWeight,
                 textAlign: textAlign as any,

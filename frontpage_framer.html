@@ -176,7 +176,7 @@
             scroll-padding-top: 0;
         }
         body { 
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            font-family: inherit; /* Inherit from parent Framer site */
             background: var(--bg-primary); 
             color: var(--text-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -3311,7 +3311,7 @@
         /* Card front title - responsive to card width using container queries */
         .flip-card-front h3 {
             font-size: 16px !important;
-            font-weight: 700 !important;
+            font-weight: 400 !important; /* Changed from 700 (bold) to 400 (normal) */
             margin-bottom: 10px !important;
             color: var(--text-primary) !important;
             line-height: 1.2 !important;
@@ -9016,7 +9016,7 @@ function renderPreview(filteredListings, appendMode) {
             '<span class="badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + escapeHtml(listing.type) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'type\', \'' + escapeHtml(listing.type) + '\'); return false;">' + escapeHtml(fixedType) + '</span>' +
             '<span class="badge-area" data-area="' + escapeHtml(listing.area) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'area\', \'' + escapeHtml(listing.area) + '\'); return false;">' + escapeHtml(fixedArea) + '</span>';
         contentDiv.innerHTML = 
-            '<h3 style="font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--text-primary); line-height: 1.2;">' + escapeHtml(fixedName) + '</h3>' +
+            '<h3 style="font-size: 18px; font-weight: 400; margin-bottom: 10px; color: var(--text-primary); line-height: 1.2;">' + escapeHtml(fixedName) + '</h3>' +
             '<div style="display: flex; gap: 8px; margin-bottom: 10px; align-items: center;">' +
             badgesHtml +
             '</div>' +
@@ -10898,6 +10898,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Disable browser scroll restoration to prevent unwanted scrolling on navigation
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
+    }
+    
+    // Try to inherit font-family from parent Framer site (if in iframe)
+    try {
+        if (window.parent && window.parent !== window && window.parent.document) {
+            var parentBody = window.parent.document.body;
+            if (parentBody) {
+                var parentFont = window.getComputedStyle(parentBody).getPropertyValue('font-family');
+                if (parentFont && parentFont.trim()) {
+                    document.body.style.fontFamily = parentFont;
+                    console.log('✅ Inherited font-family from parent Framer site:', parentFont);
+                }
+            }
+        }
+    } catch (e) {
+        // Cross-origin restriction - can't access parent, use inherit fallback
+        console.log('ℹ️ Cannot access parent window font (cross-origin), using inherit');
     }
     
     // Global link click handler: preserve parameters only for /find-your-adventure links
