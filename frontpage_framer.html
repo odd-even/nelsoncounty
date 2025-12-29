@@ -7374,13 +7374,19 @@ function updateStructuredData(listings) {
 function getIconClass(type, listing) {
     if (!type) return 'icon-default';
     
-    // Get the category for this type
+    // First, check ICON_MAPPINGS for a specific type mapping
+    // This allows types like "Breweries & Cideries" to map to icon-beer
+    if (ICON_MAPPINGS && ICON_MAPPINGS[type]) {
+        return ICON_MAPPINGS[type];
+    }
+    
+    // Fallback to category icon if no specific mapping exists
     const categoryKey = getCategoryForType(type, listing);
     if (categoryKey && TYPE_CATEGORIES[categoryKey] && TYPE_CATEGORIES[categoryKey].icon) {
         return TYPE_CATEGORIES[categoryKey].icon;
     }
     
-    // Fallback to default icon
+    // Final fallback to default icon
     return 'icon-default';
 }
 
