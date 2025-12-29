@@ -9839,18 +9839,20 @@ function handleMobileTypeFilter() {
     // Mobile dropdown is single-select, so set as single-item array or empty
     currentTypeFilter = value ? [value] : [];
     
-    // Determine which category this type belongs to
+    // When filtering by a specific type, clear category filter (same as desktop behavior)
+    // This ensures type filtering works independently and shows only exact type matches
     if (value) {
-        const categoryForType = getCategoryForType(value, null);
-        currentCategoryFilter = categoryForType;
+        // Clear category filter so type filter works independently (matches desktop behavior)
+        currentCategoryFilter = null;
         
-        // Update category dropdown to match
+        // Clear category dropdown to match
         const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
-        if (mobileCategoryFilter && currentCategoryFilter) {
-            mobileCategoryFilter.value = currentCategoryFilter;
-            updateMobileCategoryIcon(currentCategoryFilter);
+        if (mobileCategoryFilter) {
+            mobileCategoryFilter.value = '';
+            updateMobileCategoryIcon('');
         }
     } else {
+        // No type selected - clear all filters
         currentCategoryFilter = null;
         // Clear category dropdown
         const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
@@ -9860,12 +9862,11 @@ function handleMobileTypeFilter() {
         }
     }
     
-    // Update sidebar buttons - activate the category button if it exists, or "All Types" if no category
+    // Update sidebar buttons - activate "All Types" button when filtering by specific type
+    // (same behavior as desktop)
     document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
         btn.classList.remove('active');
-        if (value && currentCategoryFilter && btn.dataset.category === currentCategoryFilter) {
-            btn.classList.add('active');
-        } else if (!value && btn.dataset.type === '' && !btn.dataset.category) {
+        if (btn.dataset.type === '' && !btn.dataset.category) {
             btn.classList.add('active');
         }
     });
