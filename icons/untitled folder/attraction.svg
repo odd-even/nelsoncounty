@@ -5,15 +5,12 @@
     <style>
       .st0 {
         fill: none;
-        stroke: #de6152;
+        stroke: #fbb040;
         stroke-linecap: round;
         stroke-linejoin: round;
         stroke-width: 2px;
       }
     </style>
   </defs>
-  <path class="st0" d="M8,22h8"/>
-  <path class="st0" d="M7,10h10"/>
-  <path class="st0" d="M12,15v7"/>
-  <path class="st0" d="M12,15c2.8,0,5-2.2,5-5s-.5-4-2-8h-6c-1.5,4-2,6-2,8s2.2,5,5,5Z"/>
+  <polygon class="st0" points="12 2 15.1 8.3 22 9.3 17 14.1 18.2 21 12 17.8 5.8 21 7 14.1 2 9.3 8.9 8.3 12 2"/>
 </svg>
