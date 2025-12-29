@@ -146,6 +146,31 @@
             --icon-attraction: url("icons/activities/attraction.svg");
             --icon-farm: url("icons/activities/Farms-Orchards.svg");
             --icon-default: url("icons/activities/default.svg");
+            --icon-activities: url("icons/activities/Activities.svg");
+            --icon-art-artisans: url("icons/activities/Art-Artisans.svg");
+            --icon-bed-breakfast: url("icons/activities/Bed-Breakfast.svg");
+            --icon-biking: url("icons/activities/Biking.svg");
+            --icon-breweries-cideries: url("icons/activities/Breweries-Cideries.svg");
+            --icon-cabins-cottages: url("icons/activities/Cabins-Cottages.svg");
+            --icon-campgrounds-glamping: url("icons/activities/Campgrounds-Glamping.svg");
+            --icon-canoeing: url("icons/activities/Canoeing.svg");
+            --icon-coffeeshops: url("icons/activities/CoffeeShops.svg");
+            --icon-distilleries: url("icons/activities/Distilleries.svg");
+            --icon-farms-orchards: url("icons/activities/Farms-Orchards.svg");
+            --icon-fishing: url("icons/activities/Fishing.svg");
+            --icon-golf: url("icons/activities/Golf.svg");
+            --icon-guidedtours: url("icons/activities/GuidedTours.svg");
+            --icon-hikes-trails: url("icons/activities/Hikes-Trails.svg");
+            --icon-horsebackriding: url("icons/activities/HorsebackRiding.svg");
+            --icon-markets-delis: url("icons/activities/Markets-Delis.svg");
+            --icon-motels-inns: url("icons/activities/Motels-Inns.svg");
+            --icon-museums-heritage: url("icons/activities/Museums-Heritage.svg");
+            --icon-restaurants: url("icons/activities/Restaurants.svg");
+            --icon-swimming: url("icons/activities/Swimming.svg");
+            --icon-vacationrentals: url("icons/activities/VacationRentals.svg");
+            --icon-vineyards-wineries: url("icons/activities/Vineyards-Wineries.svg");
+            --icon-wholehouserentals: url("icons/activities/WholeHouseRentals.svg");
+
         }
         
         
@@ -737,7 +762,32 @@
         :root.dark-mode body .filter-content::-webkit-scrollbar-thumb:hover { background: #4b5563; }
         
         
-        /* Apply icons from centralized library */
+        
+        .badge-type.icon-activities::before { background-image: var(--icon-activities); }
+        .badge-type.icon-art-artisans::before { background-image: var(--icon-art-artisans); }
+        .badge-type.icon-bed-breakfast::before { background-image: var(--icon-bed-breakfast); }
+        .badge-type.icon-biking::before { background-image: var(--icon-biking); }
+        .badge-type.icon-breweries-cideries::before { background-image: var(--icon-breweries-cideries); }
+        .badge-type.icon-cabins-cottages::before { background-image: var(--icon-cabins-cottages); }
+        .badge-type.icon-campgrounds-glamping::before { background-image: var(--icon-campgrounds-glamping); }
+        .badge-type.icon-canoeing::before { background-image: var(--icon-canoeing); }
+        .badge-type.icon-coffeeshops::before { background-image: var(--icon-coffeeshops); }
+        .badge-type.icon-distilleries::before { background-image: var(--icon-distilleries); }
+        .badge-type.icon-farms-orchards::before { background-image: var(--icon-farms-orchards); }
+        .badge-type.icon-fishing::before { background-image: var(--icon-fishing); }
+        .badge-type.icon-golf::before { background-image: var(--icon-golf); }
+        .badge-type.icon-guidedtours::before { background-image: var(--icon-guidedtours); }
+        .badge-type.icon-hikes-trails::before { background-image: var(--icon-hikes-trails); }
+        .badge-type.icon-horsebackriding::before { background-image: var(--icon-horsebackriding); }
+        .badge-type.icon-markets-delis::before { background-image: var(--icon-markets-delis); }
+        .badge-type.icon-motels-inns::before { background-image: var(--icon-motels-inns); }
+        .badge-type.icon-museums-heritage::before { background-image: var(--icon-museums-heritage); }
+        .badge-type.icon-restaurants::before { background-image: var(--icon-restaurants); }
+        .badge-type.icon-swimming::before { background-image: var(--icon-swimming); }
+        .badge-type.icon-vacationrentals::before { background-image: var(--icon-vacationrentals); }
+        .badge-type.icon-vineyards-wineries::before { background-image: var(--icon-vineyards-wineries); }
+        .badge-type.icon-wholehouserentals::before { background-image: var(--icon-wholehouserentals); }
+/* Apply icons from centralized library */
         .badge-type.icon-wine::before { background-image: var(--icon-wine); }
         .badge-type.icon-beer::before { background-image: var(--icon-beer); }
         .badge-type.icon-spirits::before { background-image: var(--icon-spirits); }
@@ -4628,130 +4678,69 @@ function loadIconMappingsFromStorage() {
 // Default icon mappings - comprehensive list (merged from admin and front page)
 // Updated to match actual type labels from CSV data
 const DEFAULT_ICON_MAPPINGS = {
-    // Taste category
-    'Wine': 'icon-wine',
-    'Winery': 'icon-wine',
-    'Vineyards & Wineries': 'icon-wine',
-    'Beer': 'icon-beer',
-    'Brewery': 'icon-beer',
-    'Breweries & Cideries': 'icon-beer',
-    'Spirits': 'icon-spirits',
-    'Distillery': 'icon-spirits',
-    'Distilleries': 'icon-spirits',
-    'Cocktails': 'icon-cocktail',
-    'Cocktail Bar': 'icon-cocktail',
-    'Coffee': 'icon-coffee',
-    'Coffee Shop': 'icon-coffee',
-    'Coffee Shops': 'icon-coffee',
-    'Café': 'icon-coffee',
-    'Tea': 'icon-tea',
-    'Tea Room': 'icon-tea',
-    'Restaurant': 'icon-restaurant',
-    'Restaurants': 'icon-restaurant',
-    'Dining': 'icon-restaurant',
-    'Bakery': 'icon-bakery',
-    'Patisserie': 'icon-bakery',
-    'Cheese': 'icon-cheese',
-    'Fromagerie': 'icon-cheese',
-    'Chocolate': 'icon-chocolate',
-    'Chocolatier': 'icon-chocolate',
-    'Markets & Delis': 'icon-market',
-    'Market': 'icon-market',
-    'Farmers Market': 'icon-market',
-    // Culture category
-    'Museum': 'icon-museum',
-    'Museums & Heritage': 'icon-museum',
-    'Art': 'icon-art',
-    'Art & Artisans': 'icon-art',
-    'Art Gallery': 'icon-gallery',
-    'Gallery': 'icon-gallery',
-    'Concert': 'icon-concert',
-    'Music': 'icon-concert',
-    'Theater': 'icon-theater',
-    'Theatre': 'icon-theater',
-    'Cinema': 'icon-cinema',
-    'Movie': 'icon-cinema',
-    'Film': 'icon-cinema',
-    'Festival': 'icon-festival',
-    'Event': 'icon-festival',
-    // Outdoor/Activities category
-    'Hiking': 'icon-hiking',
-    'Hike': 'icon-hiking',
-    'Trail': 'icon-hiking',
-    'Hikes & Trails': 'icon-hiking',
-    'Cycling': 'icon-cycling',
-    'Bike': 'icon-cycling',
-    'Biking': 'icon-cycling',
-    'Activity': 'icon-activity',
-    'Activities': 'icon-activity',
-    'Outdoor': 'icon-activity',
-    'Outdoor Activity': 'icon-activity',
-    'Kayaking': 'icon-kayaking',
-    'Kayak': 'icon-kayaking',
-    'Canoeing': 'icon-kayaking',
-    'Fishing': 'icon-activity',
-    'Golf': 'icon-activity',
-    'Horseback Riding': 'icon-activity',
-    'Swimming': 'icon-activity',
-    'Spa': 'icon-spa',
-    'Wellness': 'icon-wellness',
-    'Health': 'icon-wellness',
-    'Shopping': 'icon-shopping',
-    'Shop': 'icon-shopping',
-    // Stay category
-    'Hotel': 'icon-lodging',
-    'Lodging': 'icon-lodging',
-    'Bed and Breakfast': 'icon-lodging',
-    'Bed & Breakfast': 'icon-lodging',
-    'B&B': 'icon-lodging',
-    'BnB': 'icon-lodging',
-    'Inn': 'icon-lodging',
-    'Motels & Inns': 'icon-lodging',
-    'Cabin': 'icon-lodging',
-    'Cabins & Cottages': 'icon-lodging',
-    'Camping': 'icon-lodging',
-    'Campgrounds & Glamping': 'icon-lodging',
-    'Vacation Rentals': 'icon-lodging',
-    'Whole House Rentals': 'icon-lodging',
-    // Other
-    'Transport': 'icon-transport',
-    'Transportation': 'icon-transport',
-    'Train': 'icon-train',
-    'Railway': 'icon-train',
-    'Boat': 'icon-boat',
-    'Ferry': 'icon-boat',
-    'Scenic': 'icon-scenic',
-    'Viewpoint': 'icon-viewpoint',
-    'Lookout': 'icon-viewpoint',
-    'Park': 'icon-park',
-    'Garden': 'icon-garden',
-    'Beach': 'icon-beach',
-    'History': 'icon-history',
-    'Historical': 'icon-history',
-    'Heritage': 'icon-history',
-    'Culture': 'icon-culture',
-    'Cultural': 'icon-culture',
-    'Architecture': 'icon-architecture',
-    'Building': 'icon-architecture',
-    'Local': 'icon-local',
-    'Tour': 'icon-tour',
-    'Guided Tour': 'icon-tour',
-    'Guided Tours': 'icon-tour',
-    'Workshop': 'icon-workshop',
-    'Class': 'icon-class',
-    'Course': 'icon-class',
-    'Food': 'icon-food',
-    'Cuisine': 'icon-food',
-    'Cidery': 'icon-cidery',
-    'Cider': 'icon-cidery',
-    'Indoor Activity': 'icon-indoor',
-    'Indoor': 'icon-indoor',
-    'Attraction': 'icon-attraction',
-    'Attractions': 'icon-attraction',
-    'Farm & Orchard': 'icon-farm',
-    'Farms & Orchards': 'icon-farm',
-    'Farm': 'icon-farm',
-    'Orchard': 'icon-farm'
+    // Type-specific mappings - matches exact CSV type names
+    'Activities': 'icon-activities',
+    'Art & Artisans': 'icon-art-artisans',
+    'Bed and Breakfast': 'icon-bed-breakfast',
+    'Biking': 'icon-biking',
+    'Breweries & Cideries': 'icon-breweries-cideries',
+    'Cabins & Cottages': 'icon-cabins-cottages',
+    'Campgrounds & Glamping': 'icon-campgrounds-glamping',
+    'Canoeing': 'icon-canoeing',
+    'Coffee Shops': 'icon-coffeeshops',
+    'Distilleries': 'icon-distilleries',
+    'Farms & Orchards': 'icon-farms-orchards',
+    'Fishing': 'icon-fishing',
+    'Golf': 'icon-golf',
+    'Guided Tours': 'icon-guidedtours',
+    'Hikes & Trails': 'icon-hikes-trails',
+    'Horseback Riding': 'icon-horsebackriding',
+    'Markets & Delis': 'icon-markets-delis',
+    'Motels & Inns': 'icon-motels-inns',
+    'Museums & Heritage': 'icon-museums-heritage',
+    'Restaurants': 'icon-restaurants',
+    'Swimming': 'icon-swimming',
+    'Vacation Rentals': 'icon-vacationrentals',
+    'Vineyards & Wineries': 'icon-vineyards-wineries',
+    'Whole House Rentals': 'icon-wholehouserentals',
+
+    // Legacy mappings for backward compatibility
+    'Wine': 'icon-vineyards-wineries',
+    'Winery': 'icon-vineyards-wineries',
+    'Beer': 'icon-breweries-cideries',
+    'Brewery': 'icon-breweries-cideries',
+    'Spirits': 'icon-distilleries',
+    'Distillery': 'icon-distilleries',
+    'Coffee': 'icon-coffeeshops',
+    'Coffee Shop': 'icon-coffeeshops',
+    'Restaurant': 'icon-restaurants',
+    'Dining': 'icon-restaurants',
+    'Hiking': 'icon-hikes-trails',
+    'Hike': 'icon-hikes-trails',
+    'Trail': 'icon-hikes-trails',
+    'Cycling': 'icon-biking',
+    'Bike': 'icon-biking',
+    'Kayaking': 'icon-canoeing',
+    'Kayak': 'icon-canoeing',
+    'Hotel': 'icon-bed-breakfast',
+    'Lodging': 'icon-bed-breakfast',
+    'B&B': 'icon-bed-breakfast',
+    'BnB': 'icon-bed-breakfast',
+    'Inn': 'icon-bed-breakfast',
+    'Cabin': 'icon-cabins-cottages',
+    'Camping': 'icon-campgrounds-glamping',
+    'Museum': 'icon-museums-heritage',
+    'Art': 'icon-art-artisans',
+    'Market': 'icon-markets-delis',
+    'Farmers Market': 'icon-markets-delis',
+    'Farm': 'icon-farms-orchards',
+    'Orchard': 'icon-farms-orchards',
+    'Tour': 'icon-guidedtours',
+    'Guided Tour': 'icon-guidedtours',
+    'Vacation Rental': 'icon-vacationrentals',
+    'Activity': 'icon-activities',
+    'Outdoor': 'icon-activities',
+    'Outdoor Activity': 'icon-activities',
 };
 
 // Initialize icon mappings from storage or defaults
