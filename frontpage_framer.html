@@ -98,33 +98,33 @@
     --icon-featured: url("icons/activities/featured.svg");
             
             /* SVG Icon Definitions - All icons with stroke='currentColor' */
-            --icon-wine: url("icons/activities/wine.svg");
-            --icon-beer: url("icons/activities/beer.svg");
-            --icon-spirits: url("icons/activities/spirits.svg");
+            --icon-wine: url("icons/activities/Vineyards-Wineries.svg");
+            --icon-beer: url("icons/activities/Breweries-Cideries.svg");
+            --icon-spirits: url("icons/activities/Distilleries.svg");
             --icon-cocktail: url("icons/activities/cocktail.svg");
-            --icon-coffee: url("icons/activities/coffee.svg");
+            --icon-coffee: url("icons/activities/CoffeeShops.svg");
             --icon-tea: url("icons/activities/tea.svg");
-            --icon-restaurant: url("icons/activities/restaurant.svg");
+            --icon-restaurant: url("icons/activities/Restaurants.svg");
             --icon-bakery: url("icons/activities/bakery.svg");
             --icon-cheese: url("icons/activities/cheese.svg");
             --icon-chocolate: url("icons/activities/chocolate.svg");
-            --icon-museum: url("icons/activities/museum.svg");
-            --icon-art: url("icons/activities/art.svg");
+            --icon-museum: url("icons/activities/Museums-Heritage.svg");
+            --icon-art: url("icons/activities/Art-Artisans.svg");
             --icon-gallery: url("icons/activities/gallery.svg");
-            --icon-hiking: url("icons/activities/hiking.svg");
-            --icon-cycling: url("icons/activities/cycling.svg");
-            --icon-activity: url("icons/activities/activity.svg");
-            --icon-kayaking: url("icons/activities/kayaking.svg");
+            --icon-hiking: url("icons/activities/Hikes-Trails.svg");
+            --icon-cycling: url("icons/activities/Biking.svg");
+            --icon-activity: url("icons/activities/Activities.svg");
+            --icon-kayaking: url("icons/activities/Canoeing.svg");
             --icon-spa: url("icons/activities/spa.svg");
             --icon-wellness: url("icons/activities/wellness.svg");
             --icon-shopping: url("icons/activities/shopping.svg");
-            --icon-market: url("icons/activities/market.svg");
+            --icon-market: url("icons/activities/Markets-Delis.svg");
             --icon-concert: url("icons/activities/concert.svg");
             --icon-theater: url("icons/activities/theater.svg");
             --icon-cinema: url("icons/activities/cinema.svg");
             --icon-festival: url("icons/activities/festival.svg");
             --icon-hotel: url("icons/activities/hotel.svg");
-            --icon-lodging: url("icons/activities/lodging.svg");
+            --icon-lodging: url("icons/activities/Bed-Breakfast.svg");
             --icon-transport: url("icons/activities/transport.svg");
             --icon-train: url("icons/activities/train.svg");
             --icon-boat: url("icons/activities/boat.svg");
@@ -137,14 +137,14 @@
             --icon-culture: url("icons/activities/culture.svg");
             --icon-architecture: url("icons/activities/architecture.svg");
             --icon-local: url("icons/activities/local.svg");
-            --icon-tour: url("icons/activities/tour.svg");
+            --icon-tour: url("icons/activities/GuidedTours.svg");
             --icon-workshop: url("icons/activities/workshop.svg");
             --icon-class: url("icons/activities/class.svg");
             --icon-food: url("icons/activities/food.svg");
             --icon-cidery: url("icons/activities/cidery.svg");
             --icon-indoor: url("icons/activities/indoor.svg");
             --icon-attraction: url("icons/activities/attraction.svg");
-            --icon-farm: url("icons/activities/farm.svg");
+            --icon-farm: url("icons/activities/Farms-Orchards.svg");
             --icon-default: url("icons/activities/default.svg");
         }
         
@@ -256,15 +256,16 @@
            Icons adapt automatically to theme
         ======================================== */
         
-        /* Light Mode - Make badge type icons soft grey */
+        /* Light Mode - Icons now use colors from SVG files directly */
         .badge-type::before {
-            /* Convert black SVG icons to soft grey */
-            filter: brightness(0) saturate(0%) invert(45%);
+            /* SVG colors are now defined in the SVG files themselves */
+            filter: none;
         }
         
-        /* Light Mode - Filter buttons default to soft grey icons (but not category buttons) */
+        /* Light Mode - Filter buttons use SVG colors directly */
         .type-filter-btn:not(.category-filter-btn)::before {
-            filter: brightness(0) saturate(0%) invert(45%);
+            /* SVG colors are now defined in the SVG files themselves */
+            filter: none;
         }
         /* Category buttons don't use filters - they use colored backgrounds */
         .category-filter-btn::before {
@@ -275,7 +276,7 @@
         /* Hiking - Purple */
         .badge-type.icon-hiking::before,
         .type-filter-btn[data-type="Hiking"]::before {
-            filter: brightness(0) saturate(100%) invert(25%) sepia(95%) saturate(2000%) hue-rotate(260deg) brightness(70%) contrast(130%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Hiking"]:hover::before,
         .type-filter-btn[data-type="Hiking"].active::before {
@@ -292,7 +293,7 @@
         .badge-type.icon-wine::before,
         .type-filter-btn[data-type="Wine"]::before,
         .type-filter-btn[data-type="Winery"]::before {
-            filter: brightness(0) saturate(100%) invert(15%) sepia(95%) saturate(5000%) hue-rotate(340deg) brightness(65%) contrast(130%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Wine"]:hover::before,
         .type-filter-btn[data-type="Wine"].active::before,
@@ -313,7 +314,7 @@
         .badge-type.icon-beer::before,
         .type-filter-btn[data-type="Beer"]::before,
         .type-filter-btn[data-type="Brewery"]::before {
-            filter: brightness(0) saturate(100%) invert(45%) sepia(95%) saturate(800%) hue-rotate(20deg) brightness(85%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Beer"]:hover::before,
         .type-filter-btn[data-type="Beer"].active::before,
@@ -333,7 +334,7 @@
         /* Restaurant - Orange/Red */
         .badge-type.icon-restaurant::before,
         .type-filter-btn[data-type="Restaurant"]::before {
-            filter: brightness(0) saturate(100%) invert(40%) sepia(95%) saturate(2000%) hue-rotate(350deg) brightness(80%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Restaurant"]:hover::before,
         .type-filter-btn[data-type="Restaurant"].active::before {
@@ -351,7 +352,7 @@
         .badge-type.icon-hotel::before,
         .type-filter-btn[data-type="Lodging"]::before,
         .type-filter-btn[data-type="Hotel"]::before {
-            filter: brightness(0) saturate(100%) invert(30%) sepia(95%) saturate(2000%) hue-rotate(200deg) brightness(85%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Lodging"]:hover::before,
         .type-filter-btn[data-type="Lodging"].active::before {
@@ -380,7 +381,7 @@
         .type-filter-btn[data-type="Outdoor"]::before,
         .type-filter-btn[data-type="Activity"]::before,
         .type-filter-btn[data-type="Activities"]::before {
-            filter: brightness(0) saturate(0%) invert(45%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Outdoor"]:hover::before,
         .type-filter-btn[data-type="Outdoor"].active::before,
@@ -404,7 +405,7 @@
         /* Coffee - Brown */
         .badge-type.icon-coffee::before,
         .type-filter-btn[data-type="Coffee"]::before {
-            filter: brightness(0) saturate(100%) invert(35%) sepia(95%) saturate(500%) hue-rotate(15deg) brightness(75%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Coffee"]:hover::before,
         .type-filter-btn[data-type="Coffee"].active::before {
@@ -420,7 +421,7 @@
         /* Cidery - Amber */
         .badge-type.icon-cidery::before,
         .type-filter-btn[data-type="Cidery"]::before {
-            filter: brightness(0) saturate(100%) invert(50%) sepia(95%) saturate(800%) hue-rotate(25deg) brightness(85%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Cidery"]:hover::before,
         .type-filter-btn[data-type="Cidery"].active::before {
@@ -436,7 +437,7 @@
         /* Indoor Activity - Gray/Blue */
         .badge-type.icon-indoor::before,
         .type-filter-btn[data-type="Indoor Activity"]::before {
-            filter: brightness(0) saturate(100%) invert(35%) sepia(10%) saturate(500%) hue-rotate(200deg) brightness(75%) contrast(110%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Indoor Activity"]:hover::before,
         .type-filter-btn[data-type="Indoor Activity"].active::before {
@@ -452,7 +453,7 @@
         /* Attraction - Orange/Yellow */
         .badge-type.icon-attraction::before,
         .type-filter-btn[data-type="Attraction"]::before {
-            filter: brightness(0) saturate(100%) invert(55%) sepia(95%) saturate(2000%) hue-rotate(10deg) brightness(85%) contrast(120%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Attraction"]:hover::before,
         .type-filter-btn[data-type="Attraction"].active::before {
@@ -468,7 +469,7 @@
         /* Farm & Orchard - Green/Brown */
         .badge-type.icon-farm::before,
         .type-filter-btn[data-type="Farm & Orchard"]::before {
-            filter: brightness(0) saturate(100%) invert(45%) sepia(50%) saturate(600%) hue-rotate(60deg) brightness(75%) contrast(110%);
+            filter: none; /* SVG colors used directly */
         }
         .type-filter-btn[data-type="Farm & Orchard"]:hover::before,
         .type-filter-btn[data-type="Farm & Orchard"].active::before {
@@ -4625,21 +4626,28 @@ function loadIconMappingsFromStorage() {
 }
 
 // Default icon mappings - comprehensive list (merged from admin and front page)
+// Updated to match actual type labels from CSV data
 const DEFAULT_ICON_MAPPINGS = {
+    // Taste category
     'Wine': 'icon-wine',
     'Winery': 'icon-wine',
+    'Vineyards & Wineries': 'icon-wine',
     'Beer': 'icon-beer',
     'Brewery': 'icon-beer',
+    'Breweries & Cideries': 'icon-beer',
     'Spirits': 'icon-spirits',
     'Distillery': 'icon-spirits',
+    'Distilleries': 'icon-spirits',
     'Cocktails': 'icon-cocktail',
     'Cocktail Bar': 'icon-cocktail',
     'Coffee': 'icon-coffee',
     'Coffee Shop': 'icon-coffee',
+    'Coffee Shops': 'icon-coffee',
     'Café': 'icon-coffee',
     'Tea': 'icon-tea',
     'Tea Room': 'icon-tea',
     'Restaurant': 'icon-restaurant',
+    'Restaurants': 'icon-restaurant',
     'Dining': 'icon-restaurant',
     'Bakery': 'icon-bakery',
     'Patisserie': 'icon-bakery',
@@ -4647,28 +4655,16 @@ const DEFAULT_ICON_MAPPINGS = {
     'Fromagerie': 'icon-cheese',
     'Chocolate': 'icon-chocolate',
     'Chocolatier': 'icon-chocolate',
-    'Museum': 'icon-museum',
-    'Art': 'icon-art',
-    'Art Gallery': 'icon-gallery',
-    'Gallery': 'icon-gallery',
-    'Hiking': 'icon-hiking',
-    'Hike': 'icon-hiking',
-    'Trail': 'icon-hiking',
-    'Cycling': 'icon-cycling',
-    'Bike': 'icon-cycling',
-    'Activity': 'icon-activity',
-    'Activities': 'icon-activity',
-    'Outdoor': 'icon-outdoor',
-    'Outdoor Activity': 'icon-outdoor',
-    'Kayaking': 'icon-kayaking',
-    'Kayak': 'icon-kayaking',
-    'Spa': 'icon-spa',
-    'Wellness': 'icon-wellness',
-    'Health': 'icon-wellness',
-    'Shopping': 'icon-shopping',
-    'Shop': 'icon-shopping',
+    'Markets & Delis': 'icon-market',
     'Market': 'icon-market',
     'Farmers Market': 'icon-market',
+    // Culture category
+    'Museum': 'icon-museum',
+    'Museums & Heritage': 'icon-museum',
+    'Art': 'icon-art',
+    'Art & Artisans': 'icon-art',
+    'Art Gallery': 'icon-gallery',
+    'Gallery': 'icon-gallery',
     'Concert': 'icon-concert',
     'Music': 'icon-concert',
     'Theater': 'icon-theater',
@@ -4678,13 +4674,46 @@ const DEFAULT_ICON_MAPPINGS = {
     'Film': 'icon-cinema',
     'Festival': 'icon-festival',
     'Event': 'icon-festival',
+    // Outdoor/Activities category
+    'Hiking': 'icon-hiking',
+    'Hike': 'icon-hiking',
+    'Trail': 'icon-hiking',
+    'Hikes & Trails': 'icon-hiking',
+    'Cycling': 'icon-cycling',
+    'Bike': 'icon-cycling',
+    'Biking': 'icon-cycling',
+    'Activity': 'icon-activity',
+    'Activities': 'icon-activity',
+    'Outdoor': 'icon-activity',
+    'Outdoor Activity': 'icon-activity',
+    'Kayaking': 'icon-kayaking',
+    'Kayak': 'icon-kayaking',
+    'Canoeing': 'icon-kayaking',
+    'Fishing': 'icon-activity',
+    'Golf': 'icon-activity',
+    'Horseback Riding': 'icon-activity',
+    'Swimming': 'icon-activity',
+    'Spa': 'icon-spa',
+    'Wellness': 'icon-wellness',
+    'Health': 'icon-wellness',
+    'Shopping': 'icon-shopping',
+    'Shop': 'icon-shopping',
+    // Stay category
     'Hotel': 'icon-lodging',
     'Lodging': 'icon-lodging',
+    'Bed and Breakfast': 'icon-lodging',
+    'Bed & Breakfast': 'icon-lodging',
     'B&B': 'icon-lodging',
     'BnB': 'icon-lodging',
     'Inn': 'icon-lodging',
+    'Motels & Inns': 'icon-lodging',
     'Cabin': 'icon-lodging',
+    'Cabins & Cottages': 'icon-lodging',
     'Camping': 'icon-lodging',
+    'Campgrounds & Glamping': 'icon-lodging',
+    'Vacation Rentals': 'icon-lodging',
+    'Whole House Rentals': 'icon-lodging',
+    // Other
     'Transport': 'icon-transport',
     'Transportation': 'icon-transport',
     'Train': 'icon-train',
@@ -4707,6 +4736,7 @@ const DEFAULT_ICON_MAPPINGS = {
     'Local': 'icon-local',
     'Tour': 'icon-tour',
     'Guided Tour': 'icon-tour',
+    'Guided Tours': 'icon-tour',
     'Workshop': 'icon-workshop',
     'Class': 'icon-class',
     'Course': 'icon-class',
@@ -4719,6 +4749,7 @@ const DEFAULT_ICON_MAPPINGS = {
     'Attraction': 'icon-attraction',
     'Attractions': 'icon-attraction',
     'Farm & Orchard': 'icon-farm',
+    'Farms & Orchards': 'icon-farm',
     'Farm': 'icon-farm',
     'Orchard': 'icon-farm'
 };
