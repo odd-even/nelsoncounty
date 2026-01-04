@@ -832,6 +832,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
         function parseCSV(csvText) {
             if (!csvText) return { headers: [], dataRows: [] };
             
+            // Use a more robust CSV parsing approach
+            // Split by newlines first, but handle quoted fields that span lines
             const rows = [];
             let currentRow = '';
             let inQuotes = false;
@@ -842,21 +844,31 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 if (char === '"') {
                     if (inQuotes && nextChar === '"') {
+                        // Escaped quote
                         currentRow += '"';
                         i++;
                     } else {
+                        // Toggle quote state
                         inQuotes = !inQuotes;
                         currentRow += char;
                     }
-                } else if ((char === '\n' || char === '\r') && !inQuotes) {
-                    if (char === '\r' && nextChar === '\n') i++;
-                    if (currentRow.length > 0) rows.push(currentRow);
+                } else if ((char === '\n' || (char === '\r' && nextChar !== '\n')) && !inQuotes) {
+                    // End of row (only if not in quotes)
+                    if (char === '\r' && nextChar === '\n') {
+                        i++; // Skip the \n after \r
+                    }
+                    if (currentRow.trim().length > 0) {
+                        rows.push(currentRow);
+                    }
                     currentRow = '';
                 } else {
                     currentRow += char;
                 }
             }
-            if (currentRow.length > 0) rows.push(currentRow);
+            // Push the last row
+            if (currentRow.trim().length > 0) {
+                rows.push(currentRow);
+            }
             
             const filteredRows = rows.filter(row => row.trim().length > 0);
             if (filteredRows.length === 0) return { headers: [], dataRows: [] };
@@ -872,21 +884,36 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     
                     if (char === '"') {
                         if (inQuotes && nextChar === '"') {
+                            // Escaped quote inside quoted field
                             current += '"';
-                            i++;
+                            i++; // Skip next quote
                         } else {
+                            // Toggle quote state - don't add quote to current
                             inQuotes = !inQuotes;
                         }
                     } else if (char === ',' && !inQuotes) {
+                        // Only split on comma if NOT inside quotes
                         values.push(current);
                         current = '';
                     } else {
+                        // Add character to current value
                         current += char;
                     }
                 }
+                // Push the last value (after final comma or end of line)
                 values.push(current);
                 
-                return values.map(value => value.trim().replace(/^"|"$/g, '').replace(/""/g, '"'));
+                // Clean up values: trim whitespace and remove surrounding quotes
+                return values.map(value => {
+                    value = value.trim();
+                    // Remove surrounding quotes if present
+                    if (value.length >= 2 && value[0] === '"' && value[value.length - 1] === '"') {
+                        value = value.slice(1, -1);
+                    }
+                    // Replace escaped quotes (double quotes become single)
+                    value = value.replace(/""/g, '"');
+                    return value;
+                });
             };
             
             const headers = parseCSVLine(filteredRows[0]).filter(Boolean);
