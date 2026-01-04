@@ -997,6 +997,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     accordionPanel1Content: row.accordionPanel1Content?.substring(0, 50) || '(not found)',
                     customHtml: row.customHtml?.substring(0, 50) || '(not found)'
                 });
+                console.log('🔍 Checking normalizedRow for accordion keys:');
+                console.log('   accordionpanel1title exists?', 'accordionpanel1title' in normalizedRow);
+                console.log('   accordionpanel1title value:', normalizedRow['accordionpanel1title']?.substring(0, 50) || '(not found)');
+                console.log('   accordionpanel1content exists?', 'accordionpanel1content' in normalizedRow);
+                console.log('   accordionpanel1content value:', normalizedRow['accordionpanel1content']?.substring(0, 50) || '(not found)');
                 window._csvDebugLogged = true;
             }
             
@@ -1070,14 +1075,25 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 image3Desc: getField('Image3Desc', ['image3Desc', 'Image 3 Desc', 'Image3 Description', 'image3 description']),
                 image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
                 googleMapsUrl: googleMapsUrlField || '',
-                accordionPanel1Title: getField('AccordionPanel1Title', ['accordionPanel1Title', 'Accordion Panel 1 Title']),
-                accordionPanel1Content: getField('AccordionPanel1Content', ['accordionPanel1Content', 'Accordion Panel 1 Content']),
-                accordionPanel2Title: getField('AccordionPanel2Title', ['accordionPanel2Title', 'Accordion Panel 2 Title']),
-                accordionPanel2Content: getField('AccordionPanel2Content', ['accordionPanel2Content', 'Accordion Panel 2 Content']),
-                accordionPanel3Title: getField('AccordionPanel3Title', ['accordionPanel3Title', 'Accordion Panel 3 Title']),
-                accordionPanel3Content: getField('AccordionPanel3Content', ['accordionPanel3Content', 'Accordion Panel 3 Content']),
-                accordionPanel4Title: getField('AccordionPanel4Title', ['accordionPanel4Title', 'Accordion Panel 4 Title']),
-                accordionPanel4Content: getField('AccordionPanel4Content', ['accordionPanel4Content', 'Accordion Panel 4 Content'])
+                accordionPanel1Title: (() => {
+                    const val = getField('accordionPanel1Title', ['AccordionPanel1Title', 'Accordion Panel 1 Title', 'accordion panel 1 title']);
+                    if (row && row.name && !window._accordionDebugLogged) {
+                        console.log('🎯 accordionPanel1Title mapping:', {
+                            'row.accordionPanel1Title': row.accordionPanel1Title?.substring(0, 50) || '(not found)',
+                            'normalizedRow.accordionpanel1title': normalizedRow['accordionpanel1title']?.substring(0, 50) || '(not found)',
+                            'getField result': val?.substring(0, 50) || '(empty)'
+                        });
+                        window._accordionDebugLogged = true;
+                    }
+                    return val;
+                })(),
+                accordionPanel1Content: getField('accordionPanel1Content', ['AccordionPanel1Content', 'Accordion Panel 1 Content', 'accordion panel 1 content']),
+                accordionPanel2Title: getField('accordionPanel2Title', ['AccordionPanel2Title', 'Accordion Panel 2 Title', 'accordion panel 2 title']),
+                accordionPanel2Content: getField('accordionPanel2Content', ['AccordionPanel2Content', 'Accordion Panel 2 Content', 'accordion panel 2 content']),
+                accordionPanel3Title: getField('accordionPanel3Title', ['AccordionPanel3Title', 'Accordion Panel 3 Title', 'accordion panel 3 title']),
+                accordionPanel3Content: getField('accordionPanel3Content', ['AccordionPanel3Content', 'Accordion Panel 3 Content', 'accordion panel 3 content']),
+                accordionPanel4Title: getField('accordionPanel4Title', ['AccordionPanel4Title', 'Accordion Panel 4 Title', 'accordion panel 4 title']),
+                accordionPanel4Content: getField('accordionPanel4Content', ['AccordionPanel4Content', 'Accordion Panel 4 Content', 'accordion panel 4 content'])
             };
             
             if (!listing.slug && listing.name) {
