@@ -892,14 +892,47 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const headers = parseCSVLine(filteredRows[0]).filter(Boolean);
             const dataRows = [];
             
+            // Debug: Log header count and key columns
+            console.log('📊 CSV Parse - Headers:', headers.length);
+            console.log('   Key columns:', {
+                customHtml: headers.indexOf('customHtml'),
+                accordionPanel1Title: headers.indexOf('accordionPanel1Title'),
+                accordionPanel1Content: headers.indexOf('accordionPanel1Content')
+            });
+            
             for (let i = 1; i < filteredRows.length; i++) {
                 const values = parseCSVLine(filteredRows[i]);
+                
+                // CRITICAL: Validate column count matches
+                if (values.length !== headers.length) {
+                    console.error('❌ CRITICAL: Column count mismatch in row', i + 1, ':', {
+                        expected: headers.length,
+                        got: values.length,
+                        difference: values.length - headers.length,
+                        'This will cause column misalignment!': 'FIX NEEDED'
+                    });
+                    // Skip this row to prevent data corruption
+                    console.warn('⚠️ Skipping row', i + 1, 'due to column mismatch');
+                    continue;
+                }
+                
                 if (!values.some(v => v && v.trim())) continue;
                 
                 const row = {};
                 headers.forEach((header, index) => {
                     row[header] = (values[index] !== undefined) ? values[index] : '';
                 });
+                
+                // Debug: Log first row's key fields
+                if (i === 1 && row.name) {
+                    console.log('🔍 First data row sample:', {
+                        name: row.name,
+                        customHtml: row.customHtml?.substring(0, 50) || '(empty)',
+                        accordionPanel1Title: row.accordionPanel1Title?.substring(0, 50) || '(empty)',
+                        accordionPanel1Content: row.accordionPanel1Content?.substring(0, 50) || '(empty)'
+                    });
+                }
+                
                 dataRows.push(row);
             }
             
@@ -926,6 +959,18 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         normalizedRow[normalizedKey] = row[key];
                     }
                 });
+            }
+            
+            // Debug: Log raw row keys for first listing
+            if (row && row.name && !window._csvDebugLogged) {
+                console.log('🔍 First listing raw row keys:', Object.keys(row));
+                console.log('🔍 Normalized keys sample:', Object.keys(normalizedRow).slice(0, 10));
+                console.log('🔍 Accordion fields in row:', {
+                    accordionPanel1Title: row.accordionPanel1Title?.substring(0, 50) || '(not found)',
+                    accordionPanel1Content: row.accordionPanel1Content?.substring(0, 50) || '(not found)',
+                    customHtml: row.customHtml?.substring(0, 50) || '(not found)'
+                });
+                window._csvDebugLogged = true;
             }
             
             const getField = (fieldName, altNames = []) => {
