@@ -3375,7 +3375,24 @@ const initialData =
 }
 ;
 
-// REMOVED_LISTING_FIELDS is defined in admin.js - removed duplicate here to prevent SyntaxError
+const REMOVED_LISTING_FIELDS = [
+    'imageGallery',
+    'amenitiesTags',
+    'wordpressUrl',
+    'authorEmail',
+    'authorUsername',
+    'authorId',
+    'status',
+    'commentStatus',
+    'pingStatus',
+    'originalCategories',
+    'originalAttributes',
+    'dataConfidence',
+    'notes',
+    'descriptionSource',
+    'amenitiesGuessed',
+    'missingFields'
+];
 
 const ADMIN_IMAGE_TRANSFORM_WIDTH = 400;
 
@@ -3713,7 +3730,9 @@ if (!ICON_MAPPINGS || Object.keys(ICON_MAPPINGS).length === 0) {
 }
 
 // Default category definitions - comprehensive list based on user requirements
-const DEFAULT_TYPE_CATEGORIES = {
+// Only define if not already defined (e.g., from admin.js)
+if (typeof DEFAULT_TYPE_CATEGORIES === 'undefined') {
+    var DEFAULT_TYPE_CATEGORIES = {
     'taste': {
         emoji: '☕',
         name: 'Taste',
@@ -3757,6 +3776,7 @@ const DEFAULT_TYPE_CATEGORIES = {
         types: ['Community', 'Community Project', 'Volunteer Work', 'Local Profile', 'Maker', 'Story', 'Collective']
     }
 };
+}
 
 // Initialize TYPE_CATEGORIES from localStorage or defaults
 let loadedCategories = loadCategoriesFromStorage();
@@ -7720,7 +7740,9 @@ function updateUnsavedChangesBadge() {
             });
         }
         
-        window.switchTab = function switchTab(tab) {
+        // Define switchTab early so it's available for onclick handlers
+        if (typeof window.switchTab === 'undefined') {
+            window.switchTab = function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
             document.querySelectorAll('.tab-content').forEach(function(content) { content.classList.remove('active'); });
             
@@ -7741,6 +7763,7 @@ function updateUnsavedChangesBadge() {
                 header.style.display = 'block';
                 renderSettings();
             }
+            };
         }
         
         // ===========================================
