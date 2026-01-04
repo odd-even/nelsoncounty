@@ -989,7 +989,23 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 authorName: getField('authorName', ['Author Name', 'Author', 'author', 'contributor', 'contributor name']),
                 publishedDate: getField('publishedDate', ['Published Date', 'Created Date', 'createdDate', 'Date Created', 'publishDate', 'created on']),
                 modifiedDate: getField('modifiedDate', ['Modified Date', 'Updated Date', 'updatedDate', 'Date Updated', 'editedDate', 'Edited Date', 'last updated', 'last modified']),
-                directionsLink: directionsLinkField || googleMapsUrlField || ''
+                directionsLink: directionsLinkField || googleMapsUrlField || '',
+                customHtml: getField('Custom HTML', ['customHtml', 'Custom HTML', 'custom html', 'CustomHtml']),
+                image1Desc: getField('Image1Desc', ['image1Desc', 'Image 1 Desc', 'Image1 Description', 'image1 description']),
+                image1FileId: getField('Image1FileId', ['image1FileId', 'Image 1 File ID', 'Image1 File ID', 'image1 file id']),
+                image2Desc: getField('Image2Desc', ['image2Desc', 'Image 2 Desc', 'Image2 Description', 'image2 description']),
+                image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
+                image3Desc: getField('Image3Desc', ['image3Desc', 'Image 3 Desc', 'Image3 Description', 'image3 description']),
+                image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
+                googleMapsUrl: googleMapsUrlField || '',
+                accordionPanel1Title: getField('AccordionPanel1Title', ['accordionPanel1Title', 'Accordion Panel 1 Title']),
+                accordionPanel1Content: getField('AccordionPanel1Content', ['accordionPanel1Content', 'Accordion Panel 1 Content']),
+                accordionPanel2Title: getField('AccordionPanel2Title', ['accordionPanel2Title', 'Accordion Panel 2 Title']),
+                accordionPanel2Content: getField('AccordionPanel2Content', ['accordionPanel2Content', 'Accordion Panel 2 Content']),
+                accordionPanel3Title: getField('AccordionPanel3Title', ['accordionPanel3Title', 'Accordion Panel 3 Title']),
+                accordionPanel3Content: getField('AccordionPanel3Content', ['accordionPanel3Content', 'Accordion Panel 3 Content']),
+                accordionPanel4Title: getField('AccordionPanel4Title', ['accordionPanel4Title', 'Accordion Panel 4 Title']),
+                accordionPanel4Content: getField('AccordionPanel4Content', ['accordionPanel4Content', 'Accordion Panel 4 Content'])
             };
             
             if (!listing.slug && listing.name) {
@@ -3476,13 +3492,17 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
+                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
                     '<td class="cell-customHtml"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image1Desc || '') + '" data-field="image1Desc" placeholder="Image 1 Description" /></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image1FileId || '') + '" data-field="image1FileId" placeholder="Image 1 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image2Desc || '') + '" data-field="image2Desc" placeholder="Image 2 Description" /></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image2FileId || '') + '" data-field="image2FileId" placeholder="Image 2 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image3Desc || '') + '" data-field="image3Desc" placeholder="Image 3 Description" /></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image3FileId || '') + '" data-field="image3FileId" placeholder="Image 3 File ID" /></td>' +
                     '<td class="cell-website"><input type="url" value="' + safe(listing.website) + '" data-field="website" /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
@@ -3492,6 +3512,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
+                    '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
                     '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel2Title || '') + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
@@ -3619,7 +3640,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 const headers = [
                     'id', 'name', 'slug', 'type', 'category', 'area', 'description',
-                    'image1', 'image2', 'image3', 'website', 'phone', 'address',
+                    'detailedDescription', 'customHtml',
+                    'image1', 'image1Desc', 'image1FileId',
+                    'image2', 'image2Desc', 'image2FileId',
+                    'image3', 'image3Desc', 'image3FileId',
+                    'website', 'phone', 'address',
                     'authorName', 'publishedDate', 'modifiedDate', 'directionsLink',
                     'amenities', 'featured', 'googleMapsUrl',
                     'accordionPanel1Title', 'accordionPanel1Content',
@@ -3637,9 +3662,17 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         listing.category || '', // Category field
                         listing.area || '',
                         escapeCsv(listing.description || ''),
+                        escapeCsv(listing.detailedDescription || ''),
+                        escapeCsv(listing.customHtml || ''),
                         escapeCsv(listing.image1 || ''),
+                        escapeCsv(listing.image1Desc || ''),
+                        escapeCsv(listing.image1FileId || ''),
                         escapeCsv(listing.image2 || ''),
+                        escapeCsv(listing.image2Desc || ''),
+                        escapeCsv(listing.image2FileId || ''),
                         escapeCsv(listing.image3 || ''),
+                        escapeCsv(listing.image3Desc || ''),
+                        escapeCsv(listing.image3FileId || ''),
                         listing.website || '',
                         listing.phone || '',
                         escapeCsv(listing.address || ''),
