@@ -3375,24 +3375,7 @@ const initialData =
 }
 ;
 
-const REMOVED_LISTING_FIELDS = [
-    'imageGallery',
-    'amenitiesTags',
-    'wordpressUrl',
-    'authorEmail',
-    'authorUsername',
-    'authorId',
-    'status',
-    'commentStatus',
-    'pingStatus',
-    'originalCategories',
-    'originalAttributes',
-    'dataConfidence',
-    'notes',
-    'descriptionSource',
-    'amenitiesGuessed',
-    'missingFields'
-];
+// REMOVED_LISTING_FIELDS is defined in admin.js - removed duplicate here to prevent SyntaxError
 
 const ADMIN_IMAGE_TRANSFORM_WIDTH = 400;
 
@@ -4559,7 +4542,19 @@ function updateUnsavedChangesBadge() {
                     const date = getField('modifiedDate', ['Modified Date', 'Updated Date', 'updatedDate', 'Date Updated', 'editedDate', 'Edited Date', 'last updated', 'last modified'], true);
                     return date ? normalizeDate(date) : date;
                 })(),
-                directionsLink: directionsLinkField || googleMapsUrlField || ''
+                directionsLink: directionsLinkField || googleMapsUrlField || '',
+                image1FileId: getField('Image1FileId', ['image1FileId', 'Image 1 File ID', 'Image1 File ID', 'image1 file id']),
+                image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
+                image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
+                googleMapsUrl: googleMapsUrlField || '',
+                accordionPanel1Title: getField('accordionPanel1Title', ['AccordionPanel1Title', 'Accordion Panel 1 Title', 'accordion panel 1 title']),
+                accordionPanel1Content: getField('accordionPanel1Content', ['AccordionPanel1Content', 'Accordion Panel 1 Content', 'accordion panel 1 content']),
+                accordionPanel2Title: getField('accordionPanel2Title', ['AccordionPanel2Title', 'Accordion Panel 2 Title', 'accordion panel 2 title']),
+                accordionPanel2Content: getField('accordionPanel2Content', ['AccordionPanel2Content', 'Accordion Panel 2 Content', 'accordion panel 2 content']),
+                accordionPanel3Title: getField('accordionPanel3Title', ['AccordionPanel3Title', 'Accordion Panel 3 Title', 'accordion panel 3 title']),
+                accordionPanel3Content: getField('accordionPanel3Content', ['AccordionPanel3Content', 'Accordion Panel 3 Content', 'accordion panel 3 content']),
+                accordionPanel4Title: getField('accordionPanel4Title', ['AccordionPanel4Title', 'Accordion Panel 4 Title', 'accordion panel 4 title']),
+                accordionPanel4Content: getField('accordionPanel4Content', ['AccordionPanel4Content', 'Accordion Panel 4 Content', 'accordion panel 4 content'])
             };
             
             if (!listing.slug && listing.name) {
