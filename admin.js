@@ -2052,6 +2052,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingDescription').value = listing.description;
             const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
             if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
+            const customHtmlInput = document.getElementById('listingCustomHtml');
+            if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
             if (slugInput) slugInput.value = listing.slug || '';
             
@@ -2061,9 +2063,15 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 categoryInput.value = listing.category || '';
             }
             document.getElementById('listingImage1').value = listing.image1;
+            const image1DescInput = document.getElementById('listingImage1Desc');
+            if (image1DescInput) image1DescInput.value = listing.image1Desc || '';
             document.getElementById('listingImage2').value = listing.image2 || '';
+            const image2DescInput = document.getElementById('listingImage2Desc');
+            if (image2DescInput) image2DescInput.value = listing.image2Desc || '';
             const image3Input = document.getElementById('listingImage3');
             if (image3Input) image3Input.value = listing.image3 || '';
+            const image3DescInput = document.getElementById('listingImage3Desc');
+            if (image3DescInput) image3DescInput.value = listing.image3Desc || '';
             document.getElementById('listingWebsite').value = listing.website;
             document.getElementById('listingPhone').value = listing.phone || '';
             document.getElementById('listingAddress').value = listing.address;
@@ -2076,6 +2084,24 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const directionsInput = document.getElementById('listingDirectionsLink');
             if (directionsInput) directionsInput.value = listing.directionsLink || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
+            
+            // Set accordion fields
+            const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
+            if (accordionPanel1TitleInput) accordionPanel1TitleInput.value = listing.accordionPanel1Title || '';
+            const accordionPanel1ContentInput = document.getElementById('listingAccordionPanel1Content');
+            if (accordionPanel1ContentInput) accordionPanel1ContentInput.value = listing.accordionPanel1Content || '';
+            const accordionPanel2TitleInput = document.getElementById('listingAccordionPanel2Title');
+            if (accordionPanel2TitleInput) accordionPanel2TitleInput.value = listing.accordionPanel2Title || '';
+            const accordionPanel2ContentInput = document.getElementById('listingAccordionPanel2Content');
+            if (accordionPanel2ContentInput) accordionPanel2ContentInput.value = listing.accordionPanel2Content || '';
+            const accordionPanel3TitleInput = document.getElementById('listingAccordionPanel3Title');
+            if (accordionPanel3TitleInput) accordionPanel3TitleInput.value = listing.accordionPanel3Title || '';
+            const accordionPanel3ContentInput = document.getElementById('listingAccordionPanel3Content');
+            if (accordionPanel3ContentInput) accordionPanel3ContentInput.value = listing.accordionPanel3Content || '';
+            const accordionPanel4TitleInput = document.getElementById('listingAccordionPanel4Title');
+            if (accordionPanel4TitleInput) accordionPanel4TitleInput.value = listing.accordionPanel4Title || '';
+            const accordionPanel4ContentInput = document.getElementById('listingAccordionPanel4Content');
+            if (accordionPanel4ContentInput) accordionPanel4ContentInput.value = listing.accordionPanel4Content || '';
             
             const checkboxes = document.querySelectorAll('#amenitiesCheckboxes input[type="checkbox"]');
             checkboxes.forEach(function(checkbox) {
@@ -2220,8 +2246,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 description: getValue('listingDescription'),
                 detailedDescription: getValue('listingDetailedDescription'),
                 image1: getValue('listingImage1'),
+                image1Desc: getValue('listingImage1Desc'),
                 image2: getValue('listingImage2'),
+                image2Desc: getValue('listingImage2Desc'),
                 image3: getValue('listingImage3'),
+                image3Desc: getValue('listingImage3Desc'),
                 website: getValue('listingWebsite'),
                 phone: getValue('listingPhone'),
                 address: getValue('listingAddress'),
@@ -2232,7 +2261,15 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 modifiedDate: getValue('listingModifiedDate'),
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
-                category: categoryOverride || undefined // Only save if explicitly set
+                category: categoryOverride || undefined, // Only save if explicitly set
+                accordionPanel1Title: getValue('listingAccordionPanel1Title'),
+                accordionPanel1Content: getValue('listingAccordionPanel1Content'),
+                accordionPanel2Title: getValue('listingAccordionPanel2Title'),
+                accordionPanel2Content: getValue('listingAccordionPanel2Content'),
+                accordionPanel3Title: getValue('listingAccordionPanel3Title'),
+                accordionPanel3Content: getValue('listingAccordionPanel3Content'),
+                accordionPanel4Title: getValue('listingAccordionPanel4Title'),
+                accordionPanel4Content: getValue('listingAccordionPanel4Content')
             };
             
             const listing = sanitizeListing(Object.assign({}, existingListing || {}, listingUpdates));
