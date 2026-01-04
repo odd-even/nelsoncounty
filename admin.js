@@ -1277,9 +1277,30 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     const csvText = await response.text();
                     const parsed = parseCSV(csvText);
                     
+                    // Debug: Verify CSV parsing
+                    if (parsed.headers && parsed.dataRows && parsed.dataRows.length > 0) {
+                        console.log('📊 CSV Parsed:', {
+                            headers: parsed.headers.length,
+                            rows: parsed.dataRows.length,
+                            firstRowKeys: Object.keys(parsed.dataRows[0]).length,
+                            sampleHeaders: parsed.headers.slice(0, 10),
+                            hasAccordion: parsed.headers.includes('accordionPanel1Title')
+                        });
+                    }
+                    
                     if (parsed.dataRows && parsed.dataRows.length > 0) {
                             const listings = parsed.dataRows
-                                .map(row => mapCSVRowToListing(row))
+                                .map(row => {
+                                    const listing = mapCSVRowToListing(row);
+                                    // Debug: Log if accordion data is found
+                                    if (listing.name && listing.accordionPanel1Title) {
+                                        console.log('✅ Accordion data mapped for:', listing.name, {
+                                            title: listing.accordionPanel1Title.substring(0, 50),
+                                            hasContent: !!listing.accordionPanel1Content
+                                        });
+                                    }
+                                    return listing;
+                                })
                             .filter(listing => listing.name); // Only keep listings with names
                         
                         // Extract filter options from listings

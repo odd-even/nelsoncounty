@@ -10877,6 +10877,16 @@ function updateUnsavedChangesBadge() {
                         const newListings = parsed.dataRows
                             .map(function(row, index) {
                                 const listing = mapCSVRowToListing(row);
+                                // Debug: Log accordion data for first few rows
+                                if (index < 3 && listing.name) {
+                                    console.log('🔍 Row', index + 2, '-', listing.name, {
+                                        hasAccordionTitle: !!listing.accordionPanel1Title,
+                                        accordionTitle: listing.accordionPanel1Title?.substring(0, 50) || '(empty)',
+                                        hasAccordionContent: !!listing.accordionPanel1Content,
+                                        customHtml: listing.customHtml?.substring(0, 50) || '(empty)',
+                                        rawRowKeys: Object.keys(row).slice(0, 10)
+                                    });
+                                }
                                 if (!listing.name && !listing.id) {
                                     console.warn('Skipping row', index + 2, '- missing required name/id field', row);
                                     return null;
