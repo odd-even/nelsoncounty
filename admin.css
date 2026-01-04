@@ -602,6 +602,10 @@
         .data-table .cell-amenities { min-width: 200px; max-width: 300px; font-size: 12px; }
         .data-table .cell-amenities textarea { min-height: 50px; }
         .data-table .cell-featured { text-align: center; }
+        .data-table .cell-accordion-title { min-width: 150px; max-width: 200px; }
+        .data-table .cell-accordion-title input { font-size: 12px; }
+        .data-table .cell-accordion-content { min-width: 250px; max-width: 350px; }
+        .data-table .cell-accordion-content textarea { min-height: 80px; white-space: pre-wrap; font-size: 12px; resize: vertical; }
         .data-table .cell-actions { white-space: nowrap; }
         .data-table .btn-table-save { background: #007AFF; color: white; padding: 6px 12px; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; margin-right: 5px; }
         .data-table .btn-table-save:hover { background: #0051D5; }

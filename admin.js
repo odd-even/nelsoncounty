@@ -3439,7 +3439,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription) + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
@@ -3452,6 +3451,14 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel2Title || '') + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel2Content" placeholder="Panel 2 Content">' + safe(listing.accordionPanel2Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel3Title || '') + '" data-field="accordionPanel3Title" placeholder="Panel 3 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel3Content" placeholder="Panel 3 Content">' + safe(listing.accordionPanel3Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
                     '<td class="cell-actions">' +
                         '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.id ? '#dc2626' : '#E3795C') + ';">' +
                         (deleteConfirmId === listing.id ? 'Confirm?' : 'Delete') +
@@ -3570,10 +3577,14 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 };
                 
                 const headers = [
-                    'id', 'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription',
+                    'id', 'name', 'slug', 'type', 'category', 'area', 'description',
                     'image1', 'image2', 'image3', 'website', 'phone', 'address',
                     'authorName', 'publishedDate', 'modifiedDate', 'directionsLink',
-                    'amenities', 'featured', 'googleMapsUrl'
+                    'amenities', 'featured', 'googleMapsUrl',
+                    'accordionPanel1Title', 'accordionPanel1Content',
+                    'accordionPanel2Title', 'accordionPanel2Content',
+                    'accordionPanel3Title', 'accordionPanel3Content',
+                    'accordionPanel4Title', 'accordionPanel4Content'
                 ];
                 
                 const rows = data.listings.map(function(listing) {
@@ -3585,7 +3596,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         listing.category || '', // Category field
                         listing.area || '',
                         escapeCsv(listing.description || ''),
-                        escapeCsv(listing.detailedDescription || ''),
                         escapeCsv(listing.image1 || ''),
                         escapeCsv(listing.image2 || ''),
                         escapeCsv(listing.image3 || ''),
@@ -3598,7 +3608,15 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         listing.directionsLink || '',
                         escapeCsv(joinList(listing.amenities || [])),
                         listing.featured ? 'true' : 'false',
-                        listing.googleMapsUrl || listing.directionsLink || ''
+                        listing.googleMapsUrl || listing.directionsLink || '',
+                        escapeCsv(listing.accordionPanel1Title || ''),
+                        escapeCsv(listing.accordionPanel1Content || ''),
+                        escapeCsv(listing.accordionPanel2Title || ''),
+                        escapeCsv(listing.accordionPanel2Content || ''),
+                        escapeCsv(listing.accordionPanel3Title || ''),
+                        escapeCsv(listing.accordionPanel3Content || ''),
+                        escapeCsv(listing.accordionPanel4Title || ''),
+                        escapeCsv(listing.accordionPanel4Content || '')
                     ].join(',');
                 });
                 
