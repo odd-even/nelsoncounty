@@ -3439,9 +3439,13 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
+                    '<td class="cell-customHtml"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
+                    '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image1Desc || '') + '" data-field="image1Desc" placeholder="Image 1 Description" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
+                    '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image2Desc || '') + '" data-field="image2Desc" placeholder="Image 2 Description" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
+                    '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image3Desc || '') + '" data-field="image3Desc" placeholder="Image 3 Description" /></td>' +
                     '<td class="cell-website"><input type="url" value="' + safe(listing.website) + '" data-field="website" /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
