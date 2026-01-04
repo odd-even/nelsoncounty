@@ -1554,6 +1554,18 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             try {
                 // Send all listings at once with a "replaceAll" action
                 // This tells the Apps Script to clear the sheet and replace with these listings
+                // Debug: Log what we're sending to Google Sheets
+                if (data.listings && data.listings.length > 0) {
+                    const firstListing = data.listings[0];
+                    console.log('📤 Sending to Google Sheets - First listing sample:', {
+                        name: firstListing.name,
+                        hasAccordionTitle: !!firstListing.accordionPanel1Title,
+                        accordionTitle: firstListing.accordionPanel1Title?.substring(0, 50) || '(missing)',
+                        hasAccordionContent: !!firstListing.accordionPanel1Content,
+                        allKeys: Object.keys(firstListing).filter(k => k.includes('accordion')).join(', ') || '(none)'
+                    });
+                }
+                
                 const postData = JSON.stringify({
                     action: 'replaceAllListings',
                     listings: data.listings

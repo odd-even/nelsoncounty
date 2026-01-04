@@ -927,6 +927,36 @@ function getData(sheet) {
         } else if (headerLower === 'featured') {
           const featuredVal = String(value || '').toLowerCase();
           listing.featured = featuredVal === 'true' || featuredVal === 'yes' || featuredVal === '1';
+        } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
+          listing.customHtml = String(value || '');
+        } else if (['category'].includes(headerLower)) {
+          listing.category = String(value || '');
+        } else if (['authorname', 'author name', 'author'].includes(headerLower)) {
+          listing.authorName = String(value || '');
+        } else if (['publisheddate', 'published date', 'created date'].includes(headerLower)) {
+          listing.publishedDate = String(value || '');
+        } else if (['modifieddate', 'modified date', 'updated date'].includes(headerLower)) {
+          listing.modifiedDate = String(value || '');
+        } else if (['directionslink', 'directions link', 'directions url'].includes(headerLower)) {
+          listing.directionsLink = String(value || '');
+        } else if (['googlemapsurl', 'google maps url', 'google map url'].includes(headerLower)) {
+          listing.googleMapsUrl = String(value || '');
+        } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
+          listing.accordionPanel1Title = String(value || '');
+        } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
+          listing.accordionPanel1Content = String(value || '');
+        } else if (['accordionpanel2title', 'accordion panel 2 title'].includes(headerLower)) {
+          listing.accordionPanel2Title = String(value || '');
+        } else if (['accordionpanel2content', 'accordion panel 2 content'].includes(headerLower)) {
+          listing.accordionPanel2Content = String(value || '');
+        } else if (['accordionpanel3title', 'accordion panel 3 title'].includes(headerLower)) {
+          listing.accordionPanel3Title = String(value || '');
+        } else if (['accordionpanel3content', 'accordion panel 3 content'].includes(headerLower)) {
+          listing.accordionPanel3Content = String(value || '');
+        } else if (['accordionpanel4title', 'accordion panel 4 title'].includes(headerLower)) {
+          listing.accordionPanel4Title = String(value || '');
+        } else if (['accordionpanel4content', 'accordion panel 4 content'].includes(headerLower)) {
+          listing.accordionPanel4Content = String(value || '');
         } else {
           // Fallback: set field directly, but also check for image file ID fields by header name
           const headerStr = String(header || '').trim();
@@ -1148,6 +1178,32 @@ function saveListing(sheet, listing) {
         rowData.push(Array.isArray(listing.amenities) ? listing.amenities.join(', ') : (listing.amenities || ''));
       } else if (headerLower === 'featured') {
         rowData.push(listing.featured ? 'TRUE' : 'FALSE');
+      } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
+        rowData.push(listing.customHtml || '');
+      } else if (['category'].includes(headerLower)) {
+        rowData.push(listing.category || '');
+      } else if (['authorname', 'author name', 'author'].includes(headerLower)) {
+        rowData.push(listing.authorName || '');
+      } else if (['directionslink', 'directions link', 'directions url'].includes(headerLower)) {
+        rowData.push(listing.directionsLink || '');
+      } else if (['googlemapsurl', 'google maps url', 'google map url'].includes(headerLower)) {
+        rowData.push(listing.googleMapsUrl || '');
+      } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel1Title || '');
+      } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel1Content || '');
+      } else if (['accordionpanel2title', 'accordion panel 2 title'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel2Title || '');
+      } else if (['accordionpanel2content', 'accordion panel 2 content'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel2Content || '');
+      } else if (['accordionpanel3title', 'accordion panel 3 title'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel3Title || '');
+      } else if (['accordionpanel3content', 'accordion panel 3 content'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel3Content || '');
+      } else if (['accordionpanel4title', 'accordion panel 4 title'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel4Title || '');
+      } else if (['accordionpanel4content', 'accordion panel 4 content'].includes(headerLower)) {
+        rowData.push(listing.accordionPanel4Content || '');
       } else if (['publisheddate', 'published date', 'publish date', 'created date'].includes(headerLower)) {
         // Preserve existing date if incoming value is empty
         const incomingValue = listing.publishedDate || listing.publisheddate || '';
@@ -1239,7 +1295,15 @@ const CANONICAL_LISTING_HEADERS = [
   'directionsLink',
   'amenities',
   'featured',
-  'googleMapsUrl'
+  'googleMapsUrl',
+  'accordionPanel1Title',
+  'accordionPanel1Content',
+  'accordionPanel2Title',
+  'accordionPanel2Content',
+  'accordionPanel3Title',
+  'accordionPanel3Content',
+  'accordionPanel4Title',
+  'accordionPanel4Content'
 ];
 
 // Helper function to convert date string (YYYY-MM-DD) to Date object
@@ -1312,7 +1376,7 @@ function replaceAllListings(sheet, listings) {
       return value || '';
     };
 
-    const rows = listings.map(listing => {
+    const rows = listings.map((listing, listingIndex) => {
       return headers.map(header => {
         const normalizedKey = String(header || '').trim();
         const lowerKey = normalizedKey.toLowerCase();
@@ -1320,11 +1384,18 @@ function replaceAllListings(sheet, listings) {
           .replace(/([A-Z])/g, '_$1')
           .toLowerCase();
 
+        // Try multiple key variations to find the value
         let value =
           listing[normalizedKey] ??
           listing[lowerKey] ??
           listing[snakeKey] ??
           '';
+        
+        // Debug: Log missing accordion data for first listing
+        if (listingIndex === 0 && normalizedKey.startsWith('accordion') && !value) {
+          Logger.log('⚠️ Missing accordion field: ' + normalizedKey + ' in listing: ' + (listing.name || 'unknown'));
+          Logger.log('   Available keys: ' + Object.keys(listing).filter(k => k.toLowerCase().includes('accordion')).join(', '));
+        }
 
         return toCsvValue(value, normalizedKey);
       });
