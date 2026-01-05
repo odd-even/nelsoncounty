@@ -10517,6 +10517,15 @@ function updateUnsavedChangesBadge() {
                     console.log('📋 Adding custom category to table dropdown:', listingCategory, 'for listing:', listing.name);
                 }
                 
+                // Debug: Log accordion data for first listing when rendering table
+                if (index === 0 && listing.name && !window._tableAccordionDebugLogged) {
+                    console.log('🎯 renderDataTable (index-sheets.html) - First listing accordion data:', listing.name);
+                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
+                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
+                    console.log('   All accordion keys in listing:', Object.keys(listing).filter(k => k.includes('accordion')));
+                    window._tableAccordionDebugLogged = true;
+                }
+                
                 row.innerHTML = 
                     '<td class="cell-id"><input type="text" value="' + safe(listing.id) + '" data-field="id" /></td>' +
                     '<td class="cell-name"><input type="text" value="' + safe(listing.name) + '" data-field="name" /></td>' +
@@ -10529,14 +10538,17 @@ function updateUnsavedChangesBadge() {
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription) + '</textarea></td>' +
-                    '<td class="cell-custom-html"><textarea data-field="customHtml" style="font-family: \'SFMono-Regular\', Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace;">' + safe(listing.customHtml) + '</textarea></td>' +
+                    '<td class="cell-description-detailed" style="display: none;"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
+                    '<td class="cell-custom-html"><textarea data-field="customHtml" style="font-family: \'SFMono-Regular\', Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace;">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image1Desc) + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image1Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image1FileId || '') + '" data-field="image1FileId" placeholder="Image 1 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image2Desc) + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image2Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image2FileId || '') + '" data-field="image2FileId" placeholder="Image 2 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image3Desc) + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image3Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image3FileId || '') + '" data-field="image3FileId" placeholder="Image 3 File ID" /></td>' +
                     '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
@@ -10546,6 +10558,15 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
+                    '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel2Title || '') + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel2Content" placeholder="Panel 2 Content">' + safe(listing.accordionPanel2Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel3Title || '') + '" data-field="accordionPanel3Title" placeholder="Panel 3 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel3Content" placeholder="Panel 3 Content">' + safe(listing.accordionPanel3Content || '') + '</textarea></td>' +
+                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
+                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
                     '<td class="cell-actions">' +
                         '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.id ? '#dc2626' : '#E3795C') + ';">' +
                         (deleteConfirmId === listing.id ? 'Confirm?' : 'Delete') +

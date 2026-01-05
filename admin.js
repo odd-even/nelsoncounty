@@ -1245,6 +1245,16 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     const result = await response.json();
                     
                     if (result.success && result.listings && result.listings.length > 0) {
+                        // Debug: Check first listing for accordion data
+                        if (result.listings.length > 0 && !window._sheetsAccordionDebugLogged) {
+                            const firstListing = result.listings[0];
+                            console.log('🎯 loadDataFromGoogleSheets - First listing from Google Sheets:', firstListing.name);
+                            console.log('   accordionPanel1Title:', firstListing.accordionPanel1Title?.substring(0, 50) || '(not found)');
+                            console.log('   accordionPanel1Content:', firstListing.accordionPanel1Content?.substring(0, 50) || '(not found)');
+                            console.log('   All keys containing "accordion":', Object.keys(firstListing).filter(k => k.includes('accordion')));
+                            window._sheetsAccordionDebugLogged = true;
+                        }
+                        
                         const listings = result.listings.map(function(listing) {
                             return sanitizeListing(Object.assign({}, listing));
                         });
@@ -2224,7 +2234,17 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             
             // Set accordion fields
             const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
-            if (accordionPanel1TitleInput) accordionPanel1TitleInput.value = listing.accordionPanel1Title || '';
+            if (accordionPanel1TitleInput) {
+                accordionPanel1TitleInput.value = listing.accordionPanel1Title || '';
+                // Debug: Log accordion data when editing
+                if (listing.accordionPanel1Title && !window._editAccordionDebugLogged) {
+                    console.log('🎯 editListing - Accordion data for:', listing.name);
+                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
+                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
+                    console.log('   Setting input value to:', accordionPanel1TitleInput.value?.substring(0, 50) || '(empty)');
+                    window._editAccordionDebugLogged = true;
+                }
+            }
             const accordionPanel1ContentInput = document.getElementById('listingAccordionPanel1Content');
             if (accordionPanel1ContentInput) accordionPanel1ContentInput.value = listing.accordionPanel1Content || '';
             const accordionPanel2TitleInput = document.getElementById('listingAccordionPanel2Title');
@@ -3600,6 +3620,15 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         const isSelected = safe(listing.category) === categoryKey;
                         return '<option value="' + categoryKey + '" ' + (isSelected ? 'selected' : '') + '>' + category.emoji + ' ' + category.name + '</option>';
                     }).join('');
+                
+                // Debug: Log accordion data for first listing when rendering table
+                if (index === 0 && listing.name && !window._tableAccordionDebugLogged) {
+                    console.log('🎯 renderDataTable - First listing accordion data:', listing.name);
+                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
+                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
+                    console.log('   All accordion keys in listing:', Object.keys(listing).filter(k => k.includes('accordion')));
+                    window._tableAccordionDebugLogged = true;
+                }
                 
                 row.innerHTML = 
                     '<td class="cell-id"><input type="text" value="' + safe(listing.id) + '" data-field="id" /></td>' +
