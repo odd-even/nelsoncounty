@@ -3761,7 +3761,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 const headers = [
                     'id', 'name', 'slug', 'type', 'category', 'area', 'description',
-                    'detailedDescription', 'customHtml',
+                    'customHtml',
                     'image1', 'image1Desc', 'image1FileId',
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
