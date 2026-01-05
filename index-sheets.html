@@ -6992,6 +6992,38 @@ function updateUnsavedChangesBadge() {
             }
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
+            // Set accordion fields
+            const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
+            if (accordionPanel1TitleInput) {
+                accordionPanel1TitleInput.value = listing.accordionPanel1Title || '';
+                // Debug: Log accordion data when editing
+                if (listing.accordionPanel1Title && !window._editAccordionDebugLogged) {
+                    console.log('🎯 editListing (index-sheets.html) - Accordion data for:', listing.name);
+                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
+                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
+                    console.log('   Setting input value to:', accordionPanel1TitleInput.value?.substring(0, 50) || '(empty)');
+                    window._editAccordionDebugLogged = true;
+                }
+            }
+            const accordionPanel1ContentInput = document.getElementById('listingAccordionPanel1Content');
+            if (accordionPanel1ContentInput) accordionPanel1ContentInput.value = listing.accordionPanel1Content || '';
+            const accordionPanel2TitleInput = document.getElementById('listingAccordionPanel2Title');
+            if (accordionPanel2TitleInput) accordionPanel2TitleInput.value = listing.accordionPanel2Title || '';
+            const accordionPanel2ContentInput = document.getElementById('listingAccordionPanel2Content');
+            if (accordionPanel2ContentInput) accordionPanel2ContentInput.value = listing.accordionPanel2Content || '';
+            const accordionPanel3TitleInput = document.getElementById('listingAccordionPanel3Title');
+            if (accordionPanel3TitleInput) accordionPanel3TitleInput.value = listing.accordionPanel3Title || '';
+            const accordionPanel3ContentInput = document.getElementById('listingAccordionPanel3Content');
+            if (accordionPanel3ContentInput) accordionPanel3ContentInput.value = listing.accordionPanel3Content || '';
+            const accordionPanel4TitleInput = document.getElementById('listingAccordionPanel4Title');
+            if (accordionPanel4TitleInput) accordionPanel4TitleInput.value = listing.accordionPanel4Title || '';
+            const accordionPanel4ContentInput = document.getElementById('listingAccordionPanel4Content');
+            if (accordionPanel4ContentInput) accordionPanel4ContentInput.value = listing.accordionPanel4Content || '';
+            
+            // Set googleMapsUrl if it exists
+            const googleMapsUrlInput = document.getElementById('listingGoogleMapsUrl');
+            if (googleMapsUrlInput) googleMapsUrlInput.value = listing.googleMapsUrl || '';
+            
             const checkboxes = document.querySelectorAll('#amenitiesCheckboxes input[type="checkbox"]');
             checkboxes.forEach(function(checkbox) {
                 checkbox.checked = listing.amenities.indexOf(checkbox.value) > -1;
@@ -7278,7 +7310,15 @@ function updateUnsavedChangesBadge() {
                 modifiedDate: getValue('listingModifiedDate'),
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
-                category: categoryValue // Always has a value (validated above)
+                category: categoryValue, // Always has a value (validated above)
+                accordionPanel1Title: getValue('listingAccordionPanel1Title'),
+                accordionPanel1Content: getValue('listingAccordionPanel1Content'),
+                accordionPanel2Title: getValue('listingAccordionPanel2Title'),
+                accordionPanel2Content: getValue('listingAccordionPanel2Content'),
+                accordionPanel3Title: getValue('listingAccordionPanel3Title'),
+                accordionPanel3Content: getValue('listingAccordionPanel3Content'),
+                accordionPanel4Title: getValue('listingAccordionPanel4Title'),
+                accordionPanel4Content: getValue('listingAccordionPanel4Content')
             };
             
             const listing = sanitizeListing(Object.assign({}, existingListing || {}, listingUpdates));
