@@ -94,16 +94,42 @@ function injectSchemaImmediately(props: SimpleSEOProps) {
       }
     }
   } else {
+    // Directory or type page - clean up values and remove undefined/placeholder text
+    const pageName = (props.name && !props.name.match(/^\{\{.*\}\}$/)) 
+      ? props.name 
+      : (props.metaTitle && !props.metaTitle.match(/^\{\{.*\}\}$/)) 
+        ? props.metaTitle 
+        : "Nelson County Directory"
+    
+    const pageDescription = (props.description && !props.description.match(/^\{\{.*\}\}$/)) 
+      ? props.description 
+      : undefined
+    
+    const pageUrl = (props.canonicalUrl && !props.canonicalUrl.match(/^\{\{.*\}\}$/)) 
+      ? props.canonicalUrl 
+      : undefined
+    
     schema = {
       "@context": "https://schema.org",
       "@type": props.pageType === "type" ? "CollectionPage" : "TouristDestination",
-      name: props.name || "Nelson County Directory",
-      description: props.description || "",
-      url: props.canonicalUrl || ""
+      name: pageName
+    }
+    
+    // Only add optional fields if they have real values (not placeholders)
+    if (pageDescription) schema.description = pageDescription
+    if (pageUrl) {
+      schema.url = pageUrl
+    } else {
+      // Generate a default URL if canonicalUrl is missing
+      const slug = pageName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
+      schema.url = `https://www.nelsoncounty-va.gov/${slug}`
     }
   }
   
   if (!schema) return
+  
+  // Remove undefined values before stringifying (important for directory pages)
+  const cleanSchema = JSON.parse(JSON.stringify(schema))
   
   // Inject immediately - before React even renders
   const scriptId = "framer-seo-schema-0"
@@ -125,7 +151,7 @@ function injectSchemaImmediately(props: SimpleSEOProps) {
     }
   }
   
-  const schemaJson = JSON.stringify(schema, null, 2)
+  const schemaJson = JSON.stringify(cleanSchema, null, 2)
   script.textContent = schemaJson
   
   // Also try to ensure it's in the DOM by checking immediately
@@ -138,20 +164,33 @@ function injectSchemaImmediately(props: SimpleSEOProps) {
   script.setAttribute("data-schema-injected", "true")
 }
 
-export default function SEOSchemaSimple(props: SimpleSEOProps) {
+export default function SEOSchemaSimple(props: SimpleSEOProps = {}) {
+  // Ensure props is always an object
+  const safeProps = props || {}
+  
   console.log("🚀 SEO Component: Starting", { 
-    pageType: props.pageType,
-    hasName: !!props.name,
-    hasPageTitle: !!props.metaTitle
+    pageType: safeProps.pageType,
+    hasName: !!safeProps.name,
+    hasPageTitle: !!safeProps.metaTitle
   })
   
   // Inject schema IMMEDIATELY (synchronous) - before useEffect
   // Try multiple times to catch it as early as possible
-  injectSchemaImmediately(props)
+  try {
+    injectSchemaImmediately(safeProps)
+  } catch (error) {
+    console.error("❌ Error in injectSchemaImmediately:", error)
+  }
   
   // Also try on next tick (in case DOM isn't ready)
   if (typeof window !== "undefined") {
-    setTimeout(() => injectSchemaImmediately(props), 0)
+    setTimeout(() => {
+      try {
+        injectSchemaImmediately(safeProps)
+      } catch (error) {
+        console.error("❌ Error in delayed injectSchemaImmediately:", error)
+      }
+    }, 0)
   }
   
   useEffect(() => {
@@ -168,70 +207,97 @@ export default function SEOSchemaSimple(props: SimpleSEOProps) {
     // Generate simple schema
     let schema: any = null
     
-    if (props.pageType === "listing" && props.name) {
-      // Determine schema type
-      let schemaType = "LocalBusiness"
-      const typeLower = (props.type || "").toLowerCase()
-      if (typeLower.includes("winery") || typeLower.includes("vineyard")) schemaType = "Winery"
-      else if (typeLower.includes("brewery") || typeLower.includes("cider")) schemaType = "Brewery"
-      else if (typeLower.includes("distillery")) schemaType = "Distillery"
-      else if (typeLower.includes("restaurant")) schemaType = "Restaurant"
-      else if (typeLower.includes("coffee") || typeLower.includes("café") || typeLower.includes("cafe")) schemaType = "CafeOrCoffeeShop"
-      else if (typeLower.includes("hotel") || typeLower.includes("resort")) schemaType = "Hotel"
-      else if (typeLower.includes("hiking") || typeLower.includes("trail")) schemaType = "TouristAttraction"
-      
-      // Parse address
-      let addressObj: any = null
-      if (props.address) {
-        const parts = props.address.split(",").map(p => p.trim())
-        const streetAddress = parts[0] || ""
-        const locality = parts.length > 1 ? parts[parts.length - 2] : ""
-        const stateZip = parts.length > 0 ? parts[parts.length - 1] : ""
-        const stateZipMatch = stateZip.match(/([A-Z]{2})\s*(\d{5}(?:-\d{4})?)/)
-        const state = stateZipMatch ? stateZipMatch[1] : "VA"
-        const postalCode = stateZipMatch ? stateZipMatch[2] : ""
+    try {
+      if (safeProps.pageType === "listing" && safeProps.name) {
+        // Determine schema type
+        let schemaType = "LocalBusiness"
+        const typeLower = (safeProps.type || "").toLowerCase()
+        if (typeLower.includes("winery") || typeLower.includes("vineyard")) schemaType = "Winery"
+        else if (typeLower.includes("brewery") || typeLower.includes("cider")) schemaType = "Brewery"
+        else if (typeLower.includes("distillery")) schemaType = "Distillery"
+        else if (typeLower.includes("restaurant")) schemaType = "Restaurant"
+        else if (typeLower.includes("coffee") || typeLower.includes("café") || typeLower.includes("cafe")) schemaType = "CafeOrCoffeeShop"
+        else if (typeLower.includes("hotel") || typeLower.includes("resort")) schemaType = "Hotel"
+        else if (typeLower.includes("hiking") || typeLower.includes("trail")) schemaType = "TouristAttraction"
         
-        addressObj = {
-          "@type": "PostalAddress",
-          streetAddress: streetAddress,
-          addressLocality: locality || "",
-          addressRegion: state,
-          postalCode: postalCode,
-          addressCountry: "US"
+        // Parse address
+        let addressObj: any = null
+        if (safeProps.address) {
+          const parts = safeProps.address.split(",").map(p => p.trim())
+          const streetAddress = parts[0] || ""
+          const locality = parts.length > 1 ? parts[parts.length - 2] : ""
+          const stateZip = parts.length > 0 ? parts[parts.length - 1] : ""
+          const stateZipMatch = stateZip.match(/([A-Z]{2})\s*(\d{5}(?:-\d{4})?)/)
+          const state = stateZipMatch ? stateZipMatch[1] : "VA"
+          const postalCode = stateZipMatch ? stateZipMatch[2] : ""
+          
+          addressObj = {
+            "@type": "PostalAddress",
+            streetAddress: streetAddress,
+            addressLocality: locality || "",
+            addressRegion: state,
+            postalCode: postalCode,
+            addressCountry: "US"
+          }
+        }
+        
+        schema = {
+          "@context": "https://schema.org",
+          "@type": schemaType,
+          name: safeProps.name || "Business",
+          description: safeProps.description || "",
+          url: safeProps.website || safeProps.canonicalUrl || "",
+          image: safeProps.image1 || undefined,
+          telephone: safeProps.phone || undefined,
+          address: addressObj
+        }
+        
+        // Add amenities
+        if (safeProps.amenities) {
+          const amenityList = safeProps.amenities.split(";").map(a => a.trim()).filter(a => a)
+          if (amenityList.length > 0) {
+            schema.additionalProperty = amenityList.map((amenity: string) => ({
+              "@type": "PropertyValue",
+              name: "Amenity",
+              value: amenity
+            }))
+          }
+        }
+      } else {
+        // Directory or type page - clean up values and remove undefined/placeholder text
+        const pageName = (safeProps.name && !safeProps.name.match(/^\{\{.*\}\}$/)) 
+          ? safeProps.name 
+          : (safeProps.metaTitle && !safeProps.metaTitle.match(/^\{\{.*\}\}$/)) 
+            ? safeProps.metaTitle 
+            : "Nelson County Directory"
+        
+        const pageDescription = (safeProps.description && !safeProps.description.match(/^\{\{.*\}\}$/)) 
+          ? safeProps.description 
+          : undefined
+        
+        const pageUrl = (safeProps.canonicalUrl && !safeProps.canonicalUrl.match(/^\{\{.*\}\}$/)) 
+          ? safeProps.canonicalUrl 
+          : undefined
+        
+        schema = {
+          "@context": "https://schema.org",
+          "@type": safeProps.pageType === "type" ? "CollectionPage" : "TouristDestination",
+          name: pageName
+        }
+        
+        // Only add optional fields if they have real values (not placeholders)
+        if (pageDescription) schema.description = pageDescription
+        if (pageUrl) {
+          schema.url = pageUrl
+        } else {
+          // Generate a default URL if canonicalUrl is missing
+          const slug = pageName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")
+          schema.url = `https://www.nelsoncounty-va.gov/${slug}`
         }
       }
-      
-      schema = {
-        "@context": "https://schema.org",
-        "@type": schemaType,
-        name: props.name || "Business",
-        description: props.description || "",
-        url: props.website || props.canonicalUrl || "",
-        image: props.image1 || undefined,
-        telephone: props.phone || undefined,
-        address: addressObj
-      }
-      
-      // Add amenities
-      if (props.amenities) {
-        const amenityList = props.amenities.split(";").map(a => a.trim()).filter(a => a)
-        if (amenityList.length > 0) {
-          schema.additionalProperty = amenityList.map((amenity: string) => ({
-            "@type": "PropertyValue",
-            name: "Amenity",
-            value: amenity
-          }))
-        }
-      }
-    } else {
-      // Directory or type page
-      schema = {
-        "@context": "https://schema.org",
-        "@type": props.pageType === "type" ? "CollectionPage" : "TouristDestination",
-        name: props.name || "Nelson County Directory",
-        description: props.description || "",
-        url: props.canonicalUrl || ""
-      }
+    } catch (error) {
+      console.error("❌ Error generating schema:", error)
+      return
     }
     
     if (!schema) {
@@ -257,7 +323,9 @@ export default function SEOSchemaSimple(props: SimpleSEOProps) {
       console.log("📌 Created schema script element (useEffect)")
     }
     
-    const schemaJson = JSON.stringify(schema, null, 2)
+    // Remove undefined values before stringifying (important for directory pages)
+    const cleanSchema = JSON.parse(JSON.stringify(schema))
+    const schemaJson = JSON.stringify(cleanSchema, null, 2)
     script.textContent = schemaJson
     
     // Ensure script is in head and visible
@@ -279,90 +347,94 @@ export default function SEOSchemaSimple(props: SimpleSEOProps) {
     }
     
     // Update meta tags
-    if (props.metaTitle) {
-      let ogTitle = document.querySelector('meta[property="og:title"]') as HTMLMetaElement | null
-      if (!ogTitle) {
-        ogTitle = document.createElement("meta")
-        ogTitle.setAttribute("property", "og:title")
-        head.appendChild(ogTitle)
+    try {
+      if (safeProps.metaTitle) {
+        let ogTitle = document.querySelector('meta[property="og:title"]') as HTMLMetaElement | null
+        if (!ogTitle) {
+          ogTitle = document.createElement("meta")
+          ogTitle.setAttribute("property", "og:title")
+          head.appendChild(ogTitle)
+        }
+        ogTitle.setAttribute("content", safeProps.metaTitle)
+        
+        if (document.title !== safeProps.metaTitle) {
+          document.title = safeProps.metaTitle
+        }
       }
-      ogTitle.setAttribute("content", props.metaTitle)
       
-      if (document.title !== props.metaTitle) {
-        document.title = props.metaTitle
+      if (safeProps.metaDescription) {
+        let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement | null
+        if (!desc) {
+          desc = document.createElement("meta")
+          desc.setAttribute("name", "description")
+          head.appendChild(desc)
+        }
+        desc.setAttribute("content", safeProps.metaDescription)
+        
+        let ogDesc = document.querySelector('meta[property="og:description"]') as HTMLMetaElement | null
+        if (!ogDesc) {
+          ogDesc = document.createElement("meta")
+          ogDesc.setAttribute("property", "og:description")
+          head.appendChild(ogDesc)
+        }
+        ogDesc.setAttribute("content", safeProps.metaDescription)
       }
-    }
-    
-    if (props.metaDescription) {
-      let desc = document.querySelector('meta[name="description"]') as HTMLMetaElement | null
-      if (!desc) {
-        desc = document.createElement("meta")
-        desc.setAttribute("name", "description")
-        head.appendChild(desc)
-      }
-      desc.setAttribute("content", props.metaDescription)
       
-      let ogDesc = document.querySelector('meta[property="og:description"]') as HTMLMetaElement | null
-      if (!ogDesc) {
-        ogDesc = document.createElement("meta")
-        ogDesc.setAttribute("property", "og:description")
-        head.appendChild(ogDesc)
+      if (safeProps.canonicalUrl) {
+        let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
+        if (!canonical) {
+          canonical = document.createElement("link")
+          canonical.setAttribute("rel", "canonical")
+          head.appendChild(canonical)
+        }
+        canonical.setAttribute("href", safeProps.canonicalUrl)
       }
-      ogDesc.setAttribute("content", props.metaDescription)
+      
+      // Re-apply after delays to override Framer defaults
+      setTimeout(() => {
+        if (safeProps.metaTitle) {
+          const og = document.querySelector('meta[property="og:title"]') as HTMLMetaElement
+          if (og) og.setAttribute("content", safeProps.metaTitle)
+          if (document.title !== safeProps.metaTitle) document.title = safeProps.metaTitle
+        }
+        if (safeProps.metaDescription) {
+          const desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
+          if (desc) desc.setAttribute("content", safeProps.metaDescription)
+          const og = document.querySelector('meta[property="og:description"]') as HTMLMetaElement
+          if (og) og.setAttribute("content", safeProps.metaDescription)
+        }
+      }, 500)
+      
+      setTimeout(() => {
+        if (safeProps.metaTitle) {
+          const og = document.querySelector('meta[property="og:title"]') as HTMLMetaElement
+          if (og) og.setAttribute("content", safeProps.metaTitle)
+          if (document.title !== safeProps.metaTitle) document.title = safeProps.metaTitle
+        }
+        if (safeProps.metaDescription) {
+          const desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
+          if (desc) desc.setAttribute("content", safeProps.metaDescription)
+          const og = document.querySelector('meta[property="og:description"]') as HTMLMetaElement
+          if (og) og.setAttribute("content", safeProps.metaDescription)
+        }
+      }, 1000)
+    } catch (error) {
+      console.error("❌ Error updating meta tags:", error)
     }
-    
-    if (props.canonicalUrl) {
-      let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null
-      if (!canonical) {
-        canonical = document.createElement("link")
-        canonical.setAttribute("rel", "canonical")
-        head.appendChild(canonical)
-      }
-      canonical.setAttribute("href", props.canonicalUrl)
-    }
-    
-    // Re-apply after delays to override Framer defaults
-    setTimeout(() => {
-      if (props.metaTitle) {
-        const og = document.querySelector('meta[property="og:title"]') as HTMLMetaElement
-        if (og) og.setAttribute("content", props.metaTitle)
-        if (document.title !== props.metaTitle) document.title = props.metaTitle
-      }
-      if (props.metaDescription) {
-        const desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
-        if (desc) desc.setAttribute("content", props.metaDescription)
-        const og = document.querySelector('meta[property="og:description"]') as HTMLMetaElement
-        if (og) og.setAttribute("content", props.metaDescription)
-      }
-    }, 500)
-    
-    setTimeout(() => {
-      if (props.metaTitle) {
-        const og = document.querySelector('meta[property="og:title"]') as HTMLMetaElement
-        if (og) og.setAttribute("content", props.metaTitle)
-        if (document.title !== props.metaTitle) document.title = props.metaTitle
-      }
-      if (props.metaDescription) {
-        const desc = document.querySelector('meta[name="description"]') as HTMLMetaElement
-        if (desc) desc.setAttribute("content", props.metaDescription)
-        const og = document.querySelector('meta[property="og:description"]') as HTMLMetaElement
-        if (og) og.setAttribute("content", props.metaDescription)
-      }
-    }, 1000)
     
   }, [
-    props.pageType,
-    props.name,
-    props.type,
-    props.description,
-    props.image1,
-    props.website,
-    props.phone,
-    props.address,
-    props.amenities,
-    props.canonicalUrl,
-    props.metaTitle,
-    props.metaDescription
+    safeProps.pageType,
+    safeProps.name,
+    safeProps.type,
+    safeProps.description,
+    safeProps.image1,
+    safeProps.website,
+    safeProps.phone,
+    safeProps.address,
+    safeProps.amenities,
+    safeProps.canonicalUrl,
+    safeProps.metaTitle,
+    safeProps.metaDescription
   ])
   
   return <div style={{ display: "none" }} aria-hidden="true" data-seo-component="true" />

@@ -59,13 +59,14 @@ export default function AmenityPills(props: Props) {
     } = props
 
     // Split text by commas and/or newlines, then filter out empty strings
+    // If no commas/newlines, treat entire text as single amenity
     const parts = text
         .split(/[,\n\r]+/) // Split by commas, newlines, or carriage returns
         .map(part => part.trim())
         .filter(part => part.length > 0)
 
-    // If only one part (no separators), return as-is
-    if (parts.length <= 1) {
+    // If no valid parts, show placeholder
+    if (parts.length === 0) {
         return (
             <div style={{ display: 'inline-block' }}>
                 {text || 'No text provided'}

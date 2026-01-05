@@ -13,12 +13,38 @@ export default function ActivityIcon({
     category,
     size,
     color,
+    strokeWidth,
     cultureIcon,
     communityIcon,
     tasteIcon,
     experienceIcon,
     outdoorIcon,
     stayIcon,
+    // Activity type icons
+    activitiesIcon,
+    artArtisansIcon,
+    bedAndBreakfastIcon,
+    bikingIcon,
+    breweriesCideriesIcon,
+    cabinsCottagesIcon,
+    campgroundsGlampingIcon,
+    canoeingIcon,
+    coffeeShopsIcon,
+    distilleriesIcon,
+    farmsOrchardsIcon,
+    fishingIcon,
+    golfIcon,
+    guidedToursIcon,
+    hikesTrailsIcon,
+    horsebackRidingIcon,
+    marketsDelisIcon,
+    motelsInnsIcon,
+    museumsHeritageIcon,
+    restaurantsIcon,
+    swimmingIcon,
+    vacationRentalsIcon,
+    vineyardsWineriesIcon,
+    wholeHouseRentalsIcon,
     customCategories,
     showPreview,
 }) {
@@ -29,9 +55,31 @@ export default function ActivityIcon({
         // Try to load lucide-react dynamically
         import("lucide-react")
             .then((Lucide) => {
-                if (Lucide && Lucide.Beer) {
+                if (Lucide && Lucide.Star) {
                     setLucideIcons({
+                        // Activity type icons from your mapping
+                        Star: Lucide.Star,
+                        Anvil: Lucide.Anvil,
+                        BedDouble: Lucide.BedDouble,
+                        Bike: Lucide.Bike,
                         Beer: Lucide.Beer,
+                        House: Lucide.House,
+                        FlameKindling: Lucide.FlameKindling,
+                        Sailboat: Lucide.Sailboat,
+                        Coffee: Lucide.Coffee,
+                        BottleWine: Lucide.BottleWine || Lucide.Wine,
+                        Fish: Lucide.Fish,
+                        TreeDeciduous: Lucide.TreeDeciduous,
+                        Wallpaper: Lucide.Wallpaper,
+                        MountainSnow: Lucide.MountainSnow,
+                        CircleStar: Lucide.CircleStar,
+                        ShoppingBasket: Lucide.ShoppingBasket,
+                        Bed: Lucide.Bed,
+                        ChefHat: Lucide.ChefHat,
+                        Waves: Lucide.Waves,
+                        Wine: Lucide.Wine,
+                        HouseHeart: Lucide.HouseHeart,
+                        // Legacy icons (keep for backward compatibility)
                         Kayak: Lucide.Kayak,
                         Backpack: Lucide.Backpack,
                         Mountain: Lucide.Mountain,
@@ -62,40 +110,25 @@ export default function ActivityIcon({
 
     // Map dropdown values → actual icon components
     const iconMap = {
+        // Phosphor icons
         globe: P.Globe,
         users: P.Users,
         forkknife: P.ForkKnife,
         sparkle: P.Sparkle,
         mountains: P.Mountains,
-        house: P.House,
         mappin: P.MapPin,
-        wine: P.Wine,
-        beermug: "lucide-beer", // Uses Lucide Beer icon (beer mug)
+        beermug: P.BeerStein || P.Beer,
         barrel: P.Cylinder,
         brewery: P.Factory,
-        bike: P.Bicycle,
         heart: P.Heart,
-        coffee: P.Coffee,
         camera: P.Camera,
         musicnote: P.MusicNote,
         campfire: P.Campfire,
         tent: P.Tent,
-        // Lucide icons - better alternatives
-        kayak: P.Waves, // Different from kayaking
-        backpack: "lucide-backpack",
-        mountain: "lucide-mountain",
-        utensils: P.ForkKnife, // Different from restaurant
-        hotel: "lucide-hotel",
-        landmark: P.Building, // Different from museum
-        theater: "lucide-theater",
-        caravan: "lucide-caravan",
-        lifebuoy: "lucide-lifebuoy",
-        vegan: "lucide-vegan",
         car: P.Car,
         tree: P.Tree,
         sun: P.Sun,
         moon: P.Moon,
-        star: P.Star,
         bookmark: P.Bookmark,
         shoppingbag: P.ShoppingBag,
         ticket: P.Ticket,
@@ -105,14 +138,11 @@ export default function ActivityIcon({
         swimming: P.SwimmingPool,
         golf: P.Golf,
         skiing: P.Snowflake,
-        kayaking: "lucide-kayak", // Use Lucide Kayak
-        climbing: P.Tree, // Different from mountains
+        climbing: P.Tree,
         // Food & Drink
-        restaurant: "lucide-utensils", // Use Lucide Utensils
         bakery: P.Cookie,
         distillery: P.BeerBottle,
         // Activities
-        museum: "lucide-landmark", // Use Lucide Landmark
         gallery: P.PaintBrush,
         festival: P.Confetti,
         // Nature & Places
@@ -129,14 +159,59 @@ export default function ActivityIcon({
         tour: P.NavigationArrow,
         event: P.Calendar,
         shop: P.Storefront,
+        // Lucide icons - exact names from your image (these override Phosphor icons with same names)
+        star: "lucide-star",
+        anvil: "lucide-anvil",
+        beddouble: "lucide-beddouble",
+        bike: "lucide-bike",
+        beer: "lucide-beer",
+        house: "lucide-house",
+        flamekindling: "lucide-flamekindling",
+        sailboat: "lucide-sailboat",
+        coffee: "lucide-coffee",
+        bottlewine: "lucide-bottlewine",
+        fish: "lucide-fish",
+        treedeciduous: "lucide-treedeciduous",
+        wallpaper: "lucide-wallpaper",
+        mountainsnow: "lucide-mountainsnow",
+        circlestar: "lucide-circlestar",
+        shoppingbasket: "lucide-shoppingbasket",
+        bed: "lucide-bed",
+        chefhat: "lucide-chefhat",
+        waves: "lucide-waves",
+        wine: "lucide-wine",
+        househeart: "lucide-househeart",
+        // Legacy Lucide icons
+        kayak: "lucide-kayak",
+        backpack: "lucide-backpack",
+        mountain: "lucide-mountain",
+        utensils: "lucide-utensils",
+        hotel: "lucide-hotel",
+        landmark: "lucide-landmark",
+        theater: "lucide-theater",
+        caravan: "lucide-caravan",
+        lifebuoy: "lucide-lifebuoy",
+        vegan: "lucide-vegan",
+        kayaking: "lucide-kayak",
+        restaurant: "lucide-utensils",
+        museum: "lucide-landmark",
     }
 
     // Build category map - start with default categories
     const categoryMap = {}
     
-    // Helper to get icon value (handles Lucide marker)
+    // Helper to extract icon key from formatted string (e.g., "anvil - Art & Artisans" → "anvil")
+    const extractIconKey = (iconKey) => {
+        if (!iconKey) return null
+        // If it's formatted as "iconname - Activity Name", extract just the icon name
+        const match = iconKey.match(/^([^-]+?)(?:\s*-\s*|$)/)
+        return match ? match[1].trim() : iconKey.trim()
+    }
+    
+    // Helper to get icon value (handles Lucide marker and formatted strings)
     const getIconValue = (iconKey) => {
-        return iconMap[iconKey] || null
+        const cleanKey = extractIconKey(iconKey)
+        return iconMap[cleanKey] || null
     }
     
     categoryMap.culture = getIconValue(cultureIcon) || P.Globe
@@ -145,6 +220,32 @@ export default function ActivityIcon({
     categoryMap.experience = getIconValue(experienceIcon) || P.Sparkle
     categoryMap.outdoor = getIconValue(outdoorIcon) || P.Mountains
     categoryMap.stay = getIconValue(stayIcon) || P.House
+    
+    // Activity type mappings
+    categoryMap.activities = getIconValue(activitiesIcon) || getIconValue("star - Activities") || P.Star
+    categoryMap["artartisans"] = getIconValue(artArtisansIcon) || getIconValue("anvil - Art & Artisans") || P.Hammer
+    categoryMap["bedandbreakfast"] = getIconValue(bedAndBreakfastIcon) || getIconValue("beddouble - Bed and Breakfast") || P.Bed
+    categoryMap.biking = getIconValue(bikingIcon) || getIconValue("bike - Biking") || P.Bicycle
+    categoryMap["breweriescideries"] = getIconValue(breweriesCideriesIcon) || getIconValue("beer - Breweries & Cideries") || P.Beer
+    categoryMap["cabinscottages"] = getIconValue(cabinsCottagesIcon) || getIconValue("house - Cabins & Cottages") || P.House
+    categoryMap["campgroundsglamping"] = getIconValue(campgroundsGlampingIcon) || getIconValue("flamekindling - Campgrounds & Glamping") || P.Campfire
+    categoryMap.canoeing = getIconValue(canoeingIcon) || getIconValue("sailboat - Canoeing") || P.Waves
+    categoryMap["coffeeshops"] = getIconValue(coffeeShopsIcon) || getIconValue("coffee - Coffee Shops") || P.Coffee
+    categoryMap.distilleries = getIconValue(distilleriesIcon) || getIconValue("bottlewine - Distilleries") || P.Wine
+    categoryMap["farmsorchards"] = getIconValue(farmsOrchardsIcon) || getIconValue("beer - Farms & Orchards") || P.Beer
+    categoryMap.fishing = getIconValue(fishingIcon) || getIconValue("fish - Fishing") || P.Fish
+    categoryMap.golf = getIconValue(golfIcon) || getIconValue("treedeciduous - Golf") || P.Tree
+    categoryMap["guidedtours"] = getIconValue(guidedToursIcon) || getIconValue("wallpaper - Guided Tours") || P.Image
+    categoryMap["hikestrails"] = getIconValue(hikesTrailsIcon) || getIconValue("mountainsnow - Hikes & Trails") || P.Mountains
+    categoryMap["horsebackriding"] = getIconValue(horsebackRidingIcon) || getIconValue("circlestar - Horseback Riding") || P.Star
+    categoryMap["marketsdelis"] = getIconValue(marketsDelisIcon) || getIconValue("shoppingbasket - Markets & Delis") || P.ShoppingBag
+    categoryMap["motelsinns"] = getIconValue(motelsInnsIcon) || getIconValue("bed - Motels & Inns") || P.Bed
+    categoryMap["museumsheritage"] = getIconValue(museumsHeritageIcon) || getIconValue("star - Museums & Heritage") || P.Star
+    categoryMap.restaurants = getIconValue(restaurantsIcon) || getIconValue("chefhat - Restaurants") || P.ForkKnife
+    categoryMap.swimming = getIconValue(swimmingIcon) || getIconValue("waves - Swimming") || P.Waves
+    categoryMap["vacationrentals"] = getIconValue(vacationRentalsIcon) || getIconValue("househeart - Vacation Rentals") || P.House
+    categoryMap["vineyardswineries"] = getIconValue(vineyardsWineriesIcon) || getIconValue("wine - Vineyards & Wineries") || P.Wine
+    categoryMap["wholehouserentals"] = getIconValue(wholeHouseRentalsIcon) || getIconValue("househeart - Whole House Rentals") || P.House
     
     // Add custom categories if provided
     if (customCategories && Array.isArray(customCategories)) {
@@ -161,7 +262,29 @@ export default function ActivityIcon({
 
     // Map Lucide icon markers to actual components (with fallbacks if not available)
     const lucideIconMap = {
+        // Lucide icons - exact names from your image
+        "lucide-star": lucideIcons?.Star || P.Star,
+        "lucide-anvil": lucideIcons?.Anvil || P.Hammer,
+        "lucide-beddouble": lucideIcons?.BedDouble || P.Bed,
+        "lucide-bike": lucideIcons?.Bike || P.Bicycle,
         "lucide-beer": lucideIcons?.Beer || P.BeerStein || P.Beer,
+        "lucide-house": lucideIcons?.House || P.House,
+        "lucide-flamekindling": lucideIcons?.FlameKindling || P.Campfire,
+        "lucide-sailboat": lucideIcons?.Sailboat || P.Sailboat || P.Waves,
+        "lucide-coffee": lucideIcons?.Coffee || P.Coffee,
+        "lucide-bottlewine": lucideIcons?.BottleWine || lucideIcons?.Wine || P.Wine,
+        "lucide-fish": lucideIcons?.Fish || P.Fish,
+        "lucide-treedeciduous": lucideIcons?.TreeDeciduous || P.Tree,
+        "lucide-wallpaper": lucideIcons?.Wallpaper || P.Image,
+        "lucide-mountainsnow": lucideIcons?.MountainSnow || P.Mountains,
+        "lucide-circlestar": lucideIcons?.CircleStar || P.Star,
+        "lucide-shoppingbasket": lucideIcons?.ShoppingBasket || P.ShoppingBag,
+        "lucide-bed": lucideIcons?.Bed || P.Bed,
+        "lucide-chefhat": lucideIcons?.ChefHat || P.ForkKnife,
+        "lucide-waves": lucideIcons?.Waves || P.Waves,
+        "lucide-wine": lucideIcons?.Wine || P.Wine,
+        "lucide-househeart": lucideIcons?.HouseHeart || P.House,
+        // Legacy Lucide icons (keep for backward compatibility)
         "lucide-kayak": lucideIcons?.Kayak || P.Waves,
         "lucide-backpack": lucideIcons?.Backpack || P.Bag,
         "lucide-mountain": lucideIcons?.Mountain || P.Mountains,
@@ -182,24 +305,27 @@ export default function ActivityIcon({
     const cleanCategory = cleanName(category)
     
     // Check if Lucide is available
-    const hasLucide = lucideIcons !== null && lucideIcons.Beer !== undefined
+    const hasLucide = lucideIcons !== null && lucideIcons.Star !== undefined
+
+    // Helper to check if an icon is actually a Lucide icon (not a Phosphor fallback)
+    const isLucideIconComponent = (iconComponent) => {
+        if (!hasLucide || !iconComponent || typeof iconComponent !== 'function') {
+            return false
+        }
+        // Check if it's one of our loaded Lucide icons by comparing to the lucideIcons object
+        if (lucideIcons) {
+            const lucideIconValues = Object.values(lucideIcons)
+            return lucideIconValues.includes(iconComponent)
+        }
+        return false
+    }
 
     // Priority 1: Check if type matches a category in the map
     if (cleanType && categoryMap[cleanType]) {
         const iconValue = categoryMap[cleanType]
         if (typeof iconValue === 'string' && iconValue.startsWith('lucide-')) {
             Icon = lucideIconMap[iconValue] || P.Sun
-            // Check if we actually got a Lucide icon (not a fallback)
-            const isLucideIcon = hasLucide && Icon && 
-                                 typeof Icon === 'function' && 
-                                 Icon !== P.Sun && Icon !== P.Waves && 
-                                 Icon !== P.Drop && Icon !== P.Bag && Icon !== P.ShoppingBag && 
-                                 Icon !== P.Mountains && Icon !== P.ForkKnife && Icon !== P.Bed && 
-                                 Icon !== P.House && Icon !== P.Building && Icon !== P.Mask && 
-                                 Icon !== P.Users && Icon !== P.Car && Icon !== P.Circle && 
-                                 Icon !== P.Leaf && Icon !== P.Tree && Icon !== P.BeerStein && 
-                                 Icon !== P.Beer && Icon !== P.BeerBottle
-            useLucide = isLucideIcon
+            useLucide = isLucideIconComponent(Icon)
         } else if (typeof iconValue === 'function' || React.isValidElement(iconValue)) {
             // Handle React components
             Icon = iconValue
@@ -212,22 +338,39 @@ export default function ActivityIcon({
         const iconValue = categoryMap[cleanCategory]
         if (typeof iconValue === 'string' && iconValue.startsWith('lucide-')) {
             Icon = lucideIconMap[iconValue] || P.Sun
-            // Check if we actually got a Lucide icon (not a fallback)
-            const isLucideIcon = hasLucide && Icon && 
-                                 typeof Icon === 'function' && 
-                                 Icon !== P.Sun && Icon !== P.Waves && 
-                                 Icon !== P.Drop && Icon !== P.Bag && Icon !== P.ShoppingBag && 
-                                 Icon !== P.Mountains && Icon !== P.ForkKnife && Icon !== P.Bed && 
-                                 Icon !== P.House && Icon !== P.Building && Icon !== P.Mask && 
-                                 Icon !== P.Users && Icon !== P.Car && Icon !== P.Circle && 
-                                 Icon !== P.Leaf && Icon !== P.Tree && Icon !== P.BeerStein && 
-                                 Icon !== P.Beer && Icon !== P.BeerBottle
-            useLucide = isLucideIcon
+            useLucide = isLucideIconComponent(Icon)
         } else if (typeof iconValue === 'function' || React.isValidElement(iconValue)) {
             // Handle React components
             Icon = iconValue
         } else {
             Icon = iconValue
+        }
+    }
+    // Priority 3: If no type/category match, try to use the first available category icon as fallback
+    // This helps when testing icons in preview mode or when type/category aren't set
+    if (Icon === P.Sun && (!cleanType || !categoryMap[cleanType]) && (!cleanCategory || !categoryMap[cleanCategory])) {
+        // Use the first category icon that's set (for preview purposes)
+        const categoryIcons = [
+            { key: cultureIcon, name: 'culture' },
+            { key: communityIcon, name: 'community' },
+            { key: tasteIcon, name: 'taste' },
+            { key: experienceIcon, name: 'experience' },
+            { key: outdoorIcon, name: 'outdoor' },
+            { key: stayIcon, name: 'stay' }
+        ]
+        
+        for (const { key } of categoryIcons) {
+            if (key) {
+                const iconValue = getIconValue(key)
+                if (typeof iconValue === 'string' && iconValue.startsWith('lucide-')) {
+                    Icon = lucideIconMap[iconValue] || P.Sun
+                    useLucide = isLucideIconComponent(Icon)
+                    if (Icon !== P.Sun) break
+                } else if (iconValue && (typeof iconValue === 'function' || React.isValidElement(iconValue))) {
+                    Icon = iconValue
+                    if (Icon !== P.Sun) break
+                }
+            }
         }
     }
 
@@ -245,6 +388,16 @@ export default function ActivityIcon({
                     break
                 }
             }
+            // Also check iconOptions for formatted strings
+            if (previewIconKey === "sun") {
+                for (const option of iconOptions) {
+                    const optionKey = extractIconKey(option)
+                    if (optionKey === previewIconKey || getIconValue(option) === categoryMap[cleanType]) {
+                        previewIconKey = option
+                        break
+                    }
+                }
+            }
         } else if (cleanCategory && categoryMap[cleanCategory]) {
             for (const [key, value] of Object.entries(iconMap)) {
                 if (value === categoryMap[cleanCategory] || 
@@ -252,6 +405,16 @@ export default function ActivityIcon({
                      lucideIconMap[value] === categoryMap[cleanCategory])) {
                     previewIconKey = key
                     break
+                }
+            }
+            // Also check iconOptions for formatted strings
+            if (previewIconKey === "sun") {
+                for (const option of iconOptions) {
+                    const optionKey = extractIconKey(option)
+                    if (optionKey === previewIconKey || getIconValue(option) === categoryMap[cleanCategory]) {
+                        previewIconKey = option
+                        break
+                    }
                 }
             }
         }
@@ -280,7 +443,7 @@ export default function ActivityIcon({
                     Preview: {previewIconKey}
                 </div>
                 {useLucide ? (
-                    <Icon size={size * 1.5} color={color} />
+                    <Icon size={size * 1.5} color={color} strokeWidth={strokeWidth || 2} />
                 ) : (
                     <Icon size={size * 1.5} color={color} weight="regular" />
                 )}
@@ -297,7 +460,7 @@ export default function ActivityIcon({
             }}
         >
             {useLucide ? (
-                <Icon size={size} color={color} />
+                <Icon size={size} color={color} strokeWidth={strokeWidth || 2} />
             ) : (
                 <Icon size={size} color={color} weight="regular" />
             )}
@@ -306,20 +469,56 @@ export default function ActivityIcon({
 }
 
 const iconOptions = [
+    // Lucide Icons - Activity Mapping (from your image)
+    "star - Activities",
+    "anvil - Art & Artisans",
+    "beddouble - Bed and Breakfast",
+    "bike - Biking",
+    "beer - Breweries & Cideries",
+    "house - Cabins & Cottages",
+    "flamekindling - Campgrounds & Glamping",
+    "sailboat - Canoeing",
+    "coffee - Coffee Shops",
+    "bottlewine - Distilleries",
+    "beer - Farms & Orchards",
+    "fish - Fishing",
+    "treedeciduous - Golf",
+    "wallpaper - Guided Tours",
+    "mountainsnow - Hikes & Trails",
+    "circlestar - Horseback Riding",
+    "shoppingbasket - Markets & Delis",
+    "bed - Motels & Inns",
+    "star - Museums & Heritage",
+    "chefhat - Restaurants",
+    "waves - Swimming",
+    "househeart - Vacation Rentals",
+    "wine - Vineyards & Wineries",
+    "househeart - Whole House Rentals",
+    // Legacy Lucide icons
+    "kayak",
+    "kayaking",
+    "backpack",
+    "mountain",
+    "utensils",
+    "hotel",
+    "landmark",
+    "museum",
+    "theater",
+    "caravan",
+    "lifebuoy",
+    "vegan",
+    "restaurant",
+    // Phosphor icons
     "globe",
     "users",
     "forkknife",
     "sparkle",
     "mountains",
-    "house",
-        "mappin",
-        "wine",
-        "beermug",
-        "barrel",
-        "brewery",
-        "bike",
+    "mappin",
+    "beermug",
+    "barrel",
+    "brewery",
     "heart",
-    "coffee",
     "camera",
     "musicnote",
     "campfire",
@@ -328,7 +527,6 @@ const iconOptions = [
     "tree",
     "sun",
     "moon",
-    "star",
     "bookmark",
     "shoppingbag",
     "ticket",
@@ -338,23 +536,12 @@ const iconOptions = [
     "swimming",
     "golf",
     "skiing",
-    "kayaking",
-    "kayak",
-    "backpack",
-    "mountain",
     "climbing",
-    "lifebuoy",
     // Food & Drink
-    "restaurant",
-    "utensils",
     "bakery",
     "distillery",
-    "vegan",
     // Activities
-    "museum",
-    "landmark",
     "gallery",
-    "theater",
     "festival",
     // Nature & Places
     "park",
@@ -365,8 +552,6 @@ const iconOptions = [
     "sports",
     "tennis",
     // Misc
-    "hotel",
-    "caravan",
     "resort",
     "attraction",
     "tour",
@@ -395,47 +580,196 @@ addPropertyControls(ActivityIcon, {
         title: "Color",
         defaultValue: "#000",
     },
+    strokeWidth: {
+        type: ControlType.Number,
+        title: "Stroke Width",
+        description: "Stroke thickness for Lucide icons (1-5)",
+        defaultValue: 2,
+        min: 1,
+        max: 5,
+        step: 0.5,
+        displayStepper: true,
+    },
     cultureIcon: {
         type: ControlType.Enum,
         title: "Culture",
         options: iconOptions,
         defaultValue: "globe",
-        description: "💡 The icon previews automatically in the component above",
     },
     communityIcon: {
         type: ControlType.Enum,
         title: "Community",
         options: iconOptions,
         defaultValue: "users",
-        description: "💡 The icon previews automatically in the component above",
     },
     tasteIcon: {
         type: ControlType.Enum,
         title: "Taste",
         options: iconOptions,
         defaultValue: "forkknife",
-        description: "💡 The icon previews automatically in the component above",
     },
     experienceIcon: {
         type: ControlType.Enum,
         title: "Experience",
         options: iconOptions,
         defaultValue: "sparkle",
-        description: "💡 The icon previews automatically in the component above",
     },
     outdoorIcon: {
         type: ControlType.Enum,
         title: "Outdoor",
         options: iconOptions,
         defaultValue: "mountains",
-        description: "💡 The icon previews automatically in the component above",
     },
     stayIcon: {
         type: ControlType.Enum,
         title: "Stay",
         options: iconOptions,
         defaultValue: "house",
-        description: "💡 The icon previews automatically in the component above",
+    },
+    // Activity Type Icons
+    activitiesIcon: {
+        type: ControlType.Enum,
+        title: "Activities",
+        options: iconOptions,
+        defaultValue: "star - Activities",
+    },
+    artArtisansIcon: {
+        type: ControlType.Enum,
+        title: "Art & Artisans",
+        options: iconOptions,
+        defaultValue: "anvil - Art & Artisans",
+    },
+    bedAndBreakfastIcon: {
+        type: ControlType.Enum,
+        title: "Bed and Breakfast",
+        options: iconOptions,
+        defaultValue: "beddouble - Bed and Breakfast",
+    },
+    bikingIcon: {
+        type: ControlType.Enum,
+        title: "Biking",
+        options: iconOptions,
+        defaultValue: "bike - Biking",
+    },
+    breweriesCideriesIcon: {
+        type: ControlType.Enum,
+        title: "Breweries & Cideries",
+        options: iconOptions,
+        defaultValue: "beer - Breweries & Cideries",
+    },
+    cabinsCottagesIcon: {
+        type: ControlType.Enum,
+        title: "Cabins & Cottages",
+        options: iconOptions,
+        defaultValue: "house - Cabins & Cottages",
+    },
+    campgroundsGlampingIcon: {
+        type: ControlType.Enum,
+        title: "Campgrounds & Glamping",
+        options: iconOptions,
+        defaultValue: "flamekindling - Campgrounds & Glamping",
+    },
+    canoeingIcon: {
+        type: ControlType.Enum,
+        title: "Canoeing",
+        options: iconOptions,
+        defaultValue: "sailboat - Canoeing",
+    },
+    coffeeShopsIcon: {
+        type: ControlType.Enum,
+        title: "Coffee Shops",
+        options: iconOptions,
+        defaultValue: "coffee - Coffee Shops",
+    },
+    distilleriesIcon: {
+        type: ControlType.Enum,
+        title: "Distilleries",
+        options: iconOptions,
+        defaultValue: "bottlewine - Distilleries",
+    },
+    farmsOrchardsIcon: {
+        type: ControlType.Enum,
+        title: "Farms & Orchards",
+        options: iconOptions,
+        defaultValue: "beer - Farms & Orchards",
+    },
+    fishingIcon: {
+        type: ControlType.Enum,
+        title: "Fishing",
+        options: iconOptions,
+        defaultValue: "fish - Fishing",
+    },
+    golfIcon: {
+        type: ControlType.Enum,
+        title: "Golf",
+        options: iconOptions,
+        defaultValue: "treedeciduous - Golf",
+    },
+    guidedToursIcon: {
+        type: ControlType.Enum,
+        title: "Guided Tours",
+        options: iconOptions,
+        defaultValue: "wallpaper - Guided Tours",
+    },
+    hikesTrailsIcon: {
+        type: ControlType.Enum,
+        title: "Hikes & Trails",
+        options: iconOptions,
+        defaultValue: "mountainsnow - Hikes & Trails",
+    },
+    horsebackRidingIcon: {
+        type: ControlType.Enum,
+        title: "Horseback Riding",
+        options: iconOptions,
+        defaultValue: "circlestar - Horseback Riding",
+    },
+    marketsDelisIcon: {
+        type: ControlType.Enum,
+        title: "Markets & Delis",
+        options: iconOptions,
+        defaultValue: "shoppingbasket - Markets & Delis",
+    },
+    motelsInnsIcon: {
+        type: ControlType.Enum,
+        title: "Motels & Inns",
+        options: iconOptions,
+        defaultValue: "bed - Motels & Inns",
+    },
+    museumsHeritageIcon: {
+        type: ControlType.Enum,
+        title: "Museums & Heritage",
+        options: iconOptions,
+        defaultValue: "star - Museums & Heritage",
+    },
+    restaurantsIcon: {
+        type: ControlType.Enum,
+        title: "Restaurants",
+        options: iconOptions,
+        defaultValue: "chefhat - Restaurants",
+    },
+    swimmingIcon: {
+        type: ControlType.Enum,
+        title: "Swimming",
+        options: iconOptions,
+        defaultValue: "waves - Swimming",
+    },
+    vacationRentalsIcon: {
+        type: ControlType.Enum,
+        title: "Vacation Rentals",
+        options: iconOptions,
+        defaultValue: "househeart - Vacation Rentals",
+    },
+    vineyardsWineriesIcon: {
+        type: ControlType.Enum,
+        title: "Vineyards & Wineries",
+        options: iconOptions,
+        defaultValue: "wine - Vineyards & Wineries",
+    },
+    wholeHouseRentalsIcon: {
+        type: ControlType.Enum,
+        title: "Whole House Rentals",
+        options: iconOptions,
+        defaultValue: "househeart - Whole House Rentals",
     },
     showPreview: {
         type: ControlType.Boolean,

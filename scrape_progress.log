@@ -1,0 +1,1759 @@
+/Users/ernest/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+
+[2] Sweet Bliss Bakery (sweet-bliss-bakery)
+  - Already has customHtml, skipping
+
+[3] Terrace Café (terrace-cafe-at-wintergreen-resort)
+  - Already has customHtml, skipping
+
+[4] Trager Brothers Coffee 1.0 (trager-brothers-coffee-1-0)
+  - Already has customHtml, skipping
+
+[5] Trager Brothers Coffee 2.0 (trager-brothers-coffee-2-0)
+  - Already has customHtml, skipping
+
+[6] Afton Market (afton-market)
+  - Already has customHtml, skipping
+
+[7] Ashley's Market (ashleys-market)
+  - Already has customHtml, skipping
+
+[8] Chicken Coop (chicken-coop)
+  - Already has customHtml, skipping
+
+[9] Colleen Deli (colleen-deli)
+  - Already has customHtml, skipping
+
+[10] Corner Market (corner-market)
+  - Already has customHtml, skipping
+
+[11] Graves Grocery & Deli (graves-grocery-deli)
+  - Already has customHtml, skipping
+
+[12] Hickman's Exxon Grocery (hickmans-exxon-grocery)
+  - Already has customHtml, skipping
+
+[13] IGA Blue Ridge Grocery (iga-blue-ridge-grocery)
+  - Already has customHtml, skipping
+
+[14] Ike's Market & Deli (ikes-market-deli)
+  - Already has customHtml, skipping
+
+[15] Indian Oven (indian-oven)
+  - Already has customHtml, skipping
+
+[16] Mac's Country Store (macs-country-store)
+  - Already has customHtml, skipping
+
+[17] Subway (subway)
+  - Already has customHtml, skipping
+
+[18] The Market at Wintergreen (the-market-at-wintergreen)
+  - Already has customHtml, skipping
+
+[19] Williams Grocery (williams-grocery)
+  - Already has customHtml, skipping
+
+[20] Ann's Family Restaurant (anns-family-restaurant)
+  - Already has customHtml, skipping
+
+[21] Basic Necessities (basic-necessities)
+  - Already has customHtml, skipping
+
+[22] Blue Mountain Brewery (blue-mountain-brewery)
+  - Already has customHtml, skipping
+
+[23] Blue Ridge Pig (blue-ridge-pig)
+  - Already has customHtml, skipping
+
+[24] Bold Kitchen at Bold Rock (bold-kitchen-at-bold-rock)
+  Trying https://nelsoncounty.com/bold-kitchen-at-bold-rock/...
+  Trying https://nelsoncounty.com/explore/bold-kitchen-at-bold-rock/...
+  - No additional content found
+
+[25] Chen's Restaurant (chens-restaurant)
+  - Already has customHtml, skipping
+
+[26] Chirio's Pizza (chirios-pizza)
+  - Already has customHtml, skipping
+
+[27] Coquito Kitchen (coquito-kitchen)
+  - Already has customHtml, skipping
+
+[28] Devils Backbone Brewing (devils-backbone-brewing)
+  - Already has customHtml, skipping
+
+[29] El Mariachi Mexican Food (el-mariachi-mexican-food)
+  - Already has customHtml, skipping
+
+[30] Fire & Frost Wood Fired Bakehouse (fire-frost-wood-fired-bakehouse)
+  - Already has customHtml, skipping
+
+[31] Iron and Ale (iron-and-ale)
+  - Already has customHtml, skipping
+
+[32] McDonald's (mcdonalds)
+  - Already has customHtml, skipping
+
+[33] Montebello Country Store & Cafe (montebello-country-store-cafe)
+  - Already has customHtml, skipping
+
+[34] Paulie's Pig Out (paulies-pig-out)
+  - Already has customHtml, skipping
+
+[35] Smokin' Barrel Restaurant (smokin-barrel-restaurant)
+  - Already has customHtml, skipping
+
+[36] The Copper Mine Bistro (the-copper-mine-bistro)
+  - Already has customHtml, skipping
+
+[37] The Edge (the-edge)
+  - Already has customHtml, skipping
+
+[38] The Farmhouse at Veritas (the-farmhouse-at-veritas)
+  - Already has customHtml, skipping
+
+[39] Vito's Pizza & Italian Grill (vitos-pizza-italian-grill)
+  - Already has customHtml, skipping
+
+[40] Black Bear Creamery (black-bear-creamery)
+  - Already has customHtml, skipping
+
+[41] Dickie Brothers Orchard (dickie-brothers-orchard)
+  - Already has customHtml, skipping
+
+[42] Drumheller's Orchard (drumhellers-orchard)
+  - Already has customHtml, skipping
+
+[43] Saunders Brothers Farm Market (saunders-brothers-farm-market)
+  - Already has customHtml, skipping
+
+[44] Blue Mountain Barrel House (blue-mountain-barrel-house)
+  - Already has customHtml, skipping
+
+[45] Blue Toad Hard Cider (blue-toad-hard-cider)
+  - Already has customHtml, skipping
+
+[46] Bold Rock Hard Cider (bold-rock-hard-cider)
+  - Already has customHtml, skipping
+
+[47] Brewing Tree Beer Company (brewing-tree-beer-company)
+  - Already has customHtml, skipping
+
+[48] Bryant's Cider & Brewery (bryants-cider-brewery)
+  - Already has customHtml, skipping
+
+[49] Devils Backbone Brewing Company (devils-backbone-brewing-company)
+  - Already has customHtml, skipping
+
+[50] Outback Brew House (outback-brew-house)
+  - Already has customHtml, skipping
+
+[51] Three Notch'd Brewery, Distillery & Craft Kitchen (three-notchd-brewery-distillery-craft-kitchen-nelson-county)
+  - Already has customHtml, skipping
+
+[52] Wild Man Dan Brewery (wild-man-dan-brewery)
+  - Already has customHtml, skipping
+
+[53] Wood Ridge Farm Brewery (wood-ridge-farm-brewery)
+  - Already has customHtml, skipping
+
+[54] Devils Backbone Distilling Co. (devils-backbone-distilling-co)
+  - Already has customHtml, skipping
+
+[55] Silverback Distillery (silverback-distillery)
+  - Already has customHtml, skipping
+
+[56] Virginia Distillery Co. (virginia-distillery-co)
+  - Already has customHtml, skipping
+
+[57] Allen Creek Nature Preserve (allen-creek-nature-preserve)
+  Trying https://nelsoncounty.com/allen-creek-nature-preserve/...
+  - No additional sections found
+  - No additional content found
+
+[58] Appalachian Trail from Rt 56 to Harpers Creek (appalachian-trail-from-rt-56-to-harpers-creek)
+  Trying https://nelsoncounty.com/appalachian-trail-from-rt-56-to-harpers-creek/...
+  - No additional sections found
+  - No additional content found
+
+[59] Blackrock Trail (blackrock-trail)
+  Trying https://nelsoncounty.com/blackrock-trail/...
+  - No additional sections found
+  - No additional content found
+
+[60] Blue Ridge Tunnel (blue-ridge-tunnel)
+  - Already has customHtml, skipping
+
+[61] Brimstone Trail (brimstone-trail)
+  Trying https://nelsoncounty.com/brimstone-trail/...
+  - No additional sections found
+  - No additional content found
+
+[62] Cedar Ciffs North Trail (cedar-ciffs-north-trail)
+  Trying https://nelsoncounty.com/cedar-ciffs-north-trail/...
+  - No additional sections found
+  - No additional content found
+
+[63] Chestnut Springs Trail (chestnut-springs-trail)
+  Trying https://nelsoncounty.com/chestnut-springs-trail/...
+  - No additional sections found
+  - No additional content found
+
+[64] Crabtree Falls (crabtree-falls)
+  - Already has customHtml, skipping
+
+[65] Devils Knob Trail (devils-knob-trail)
+  Trying https://nelsoncounty.com/devils-knob-trail/...
+  - No additional sections found
+  - No additional content found
+
+[66] Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+  Trying https://nelsoncounty.com/fortunes-cove-nature-preserve/...
+  - No additional sections found
+  - No additional content found
+
+[67] Fortune's Ridge Trail (fortunes-ridge-trail)
+  Trying https://nelsoncounty.com/fortunes-ridge-trail/...
+  - No additional sections found
+  - No additional content found
+
+[68] Hemlock Springs Loop (hemlock-springs-loop)
+  Trying https://nelsoncounty.com/hemlock-springs-loop/...
+  - No additional sections found
+  - No additional content found
+
+[69] Highlands Leisure Trail (highlands-leisure-trail)
+  Trying https://nelsoncounty.com/highlands-leisure-trail/...
+  - No additional sections found
+  - No additional content found
+
+[70] Humpback Rocks (humpback-rocks)
+  Trying https://nelsoncounty.com/humpback-rocks/...
+  - No additional sections found
+  - No additional content found
+
+[71] James River State Park (james-river-state-park)
+  Trying https://nelsoncounty.com/james-river-state-park/...
+  - No additional sections found
+  - No additional content found
+
+[72] Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+  Trying https://nelsoncounty.com/kids-in-parks-virginia-blue-ridge-railway-trail/...
+  - No additional sections found
+  - No additional content found
+
+[73] Laurel Ridge Loop (laurel-ridge-loop)
+  Trying https://nelsoncounty.com/laurel-ridge-loop/...
+  - No additional sections found
+  - No additional content found
+
+[74] Lower Shamokin Falls Trail (lower-shamokin-falls-trail)
+  Trying https://nelsoncounty.com/lower-shamokin-falls-trail/...
+  - No additional sections found
+  - No additional content found
+
+[75] Mau-Har Trail (mau-har-trail)
+  Trying https://nelsoncounty.com/mau-har-trail/...
+  - No additional sections found
+  - No additional content found
+
+[76] Montebello Nature Trail (montebello-nature-trail)
+  Trying https://nelsoncounty.com/montebello-nature-trail/...
+  - No additional sections found
+  - No additional content found
+
+[77] Nelson County Wilderness Area (nelson-county-wilderness-area)
+  Trying https://nelsoncounty.com/nelson-county-wilderness-area/...
+  - No additional sections found
+  - No additional content found
+
+[78] North Fork of the Piney River (north-fork-of-the-piney-river)
+  Trying https://nelsoncounty.com/north-fork-of-the-piney-river/...
+  - No additional sections found
+  - No additional content found
+
+[79] Old Appalachian Trail (old-appalachian-trail)
+  Trying https://nelsoncounty.com/old-appalachian-trail/...
+  - No additional sections found
+  - No additional content found
+
+[80] Paul's Creek Trail (pauls-creek-trail)
+  Trying https://nelsoncounty.com/pauls-creek-trail/...
+  - No additional sections found
+  - No additional content found
+
+[81] Pedlars Edge Trail (pedlars-edge-trail)
+  Trying https://nelsoncounty.com/pedlars-edge-trail/...
+  - No additional sections found
+  - No additional content found
+
+[82] Pond Hollow Trail (pond-hollow-trail)
+  Trying https://nelsoncounty.com/pond-hollow-trail/...
+  - No additional sections found
+  - No additional content found
+
+[83] Ravens Roost Park (ravens-roost-park)
+  Trying https://nelsoncounty.com/ravens-roost-park/...
+  - No additional sections found
+  - No additional content found
+
+[84] Shamokin Springs Nature Preserve (shamokin-springs-nature-preserve)
+  Trying https://nelsoncounty.com/shamokin-springs-nature-preserve/...
+  - No additional sections found
+  - No additional content found
+
+[85] The Plunge (the-plunge)
+  Trying https://nelsoncounty.com/the-plunge/...
+  - No additional sections found
+  - No additional content found
+
+[86] Trillium Field (trillium-field)
+  Trying https://nelsoncounty.com/trillium-field/...
+  - No additional sections found
+  - No additional content found
+
+[87] Upper Shamokin Falls Trail (upper-shamokin-falls-trail)
+  Trying https://nelsoncounty.com/upper-shamokin-falls-trail/...
+  - No additional sections found
+  - No additional content found
+
+[88] Upper Shamokin Gorge Trail (upper-shamokin-gorge-trail)
+  Trying https://nelsoncounty.com/upper-shamokin-gorge-trail/...
+  - No additional sections found
+  - No additional content found
+
+[89] White Oak Trail (white-oak-trail)
+  Trying https://nelsoncounty.com/white-oak-trail/...
+  - No additional sections found
+  - No additional content found
+
+[90] White Rock Falls (white-rock-falls)
+  Trying https://nelsoncounty.com/white-rock-falls/...
+  - No additional sections found
+  - No additional content found
+
+[91] Three Ridges (three-ridges)
+  Trying https://nelsoncounty.com/three-ridges/...
+  - No additional sections found
+  - No additional content found
+
+[92] Stoney Creek Park (stoney-creek-park)
+  Trying https://nelsoncounty.com/stoney-creek-park/...
+  - No additional sections found
+  - No additional content found
+
+[93] Spy Rock (spy-rock)
+  Trying https://nelsoncounty.com/spy-rock/...
+  - No additional sections found
+  - No additional content found
+
+[94] Spruce Creek Park (spruce-creek-park)
+  Trying https://nelsoncounty.com/spruce-creek-park/...
+  - No additional sections found
+  - No additional content found
+
+[95] Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+  Trying https://nelsoncounty.com/rockfish-valley-loop-trails/...
+  - No additional sections found
+  - No additional content found
+
+[96] Blue Ridge Parkway Loops (blue-ridge-parkway-loops)
+  Trying https://nelsoncounty.com/blue-ridge-parkway-loops/...
+  - No additional sections found
+  - No additional content found
+
+[97] Oak Ridge Loop (oak-ridge-loop)
+  Trying https://nelsoncounty.com/oak-ridge-loop/...
+  - No additional sections found
+  - No additional content found
+
+[98] Woodson's Mill Loop (woodsons-mill-loop)
+  Trying https://nelsoncounty.com/woodsons-mill-loop/...
+  - No additional sections found
+  - No additional content found
+
+[99] Walton's Mountain Museum Loop (waltons-mountain-museum-loop)
+  Trying https://nelsoncounty.com/waltons-mountain-museum-loop/...
+  - No additional sections found
+  - No additional content found
+
+[100] Virginia Blue Ridge Railway Trail (virginia-blue-ridge-railway-trail)
+  Trying https://nelsoncounty.com/virginia-blue-ridge-railway-trail/...
+  - No additional sections found
+  - No additional content found
+
+[101] Nelson Scenic Loop (nelson-scenic-loop)
+  Trying https://nelsoncounty.com/nelson-scenic-loop/...
+  - No additional sections found
+  - No additional content found
+
+[102] Tye River (tye-river)
+  Trying https://nelsoncounty.com/tye-river/...
+  - No additional sections found
+  - No additional content found
+
+[103] James River (james-river)
+  Trying https://nelsoncounty.com/james-river/...
+  - No additional sections found
+  - No additional content found
+
+[104] Rockfish River (rockfish-river)
+  Trying https://nelsoncounty.com/rockfish-river/...
+  - No additional sections found
+  - No additional content found
+
+[105] Lake Nelson (lake-nelson)
+  Trying https://nelsoncounty.com/lake-nelson/...
+  - No additional sections found
+  - No additional content found
+
+[106] Fishing the Tye River (fishing-the-tye-river)
+  Trying https://nelsoncounty.com/fishing-the-tye-river/...
+  - No additional sections found
+  - No additional content found
+
+[107] Fishing the James River (fishing-the-james-river)
+  Trying https://nelsoncounty.com/fishing-the-james-river/...
+  - No additional sections found
+  - No additional content found
+
+[108] Fishing the Little Piney River (fishing-the-little-piney-river)
+  Trying https://nelsoncounty.com/fishing-the-little-piney-river/...
+  - No additional sections found
+  - No additional content found
+
+[109] Fishing the South Rockfish River (fishing-the-south-rockfish-river)
+  Trying https://nelsoncounty.com/fishing-the-south-rockfish-river/...
+  - No additional sections found
+  - No additional content found
+
+[110] Fishing at Montebello (fishing-at-montebello)
+  Trying https://nelsoncounty.com/fishing-at-montebello/...
+  - No additional sections found
+  - No additional content found
+
+[111] Fishing at Lake Monocan Park (fishing-at-lake-monacan-park)
+  Trying https://nelsoncounty.com/fishing-at-lake-monacan-park/...
+  - No additional sections found
+  - No additional content found
+
+[112] Fishing at Lake Nelson (fishing-at-lake-nelson)
+  Trying https://nelsoncounty.com/fishing-at-lake-nelson/...
+  - No additional sections found
+  - No additional content found
+
+[113] Wintergreen Resort Fishing (wintergreen-resort-fishing)
+  Trying https://nelsoncounty.com/wintergreen-resort-fishing/...
+  - No additional sections found
+  - No additional content found
+
+[114] Devils Knob Golf Course (devils-knob-golf-course)
+  Trying https://nelsoncounty.com/devils-knob-golf-course/...
+  - No additional sections found
+  - No additional content found
+
+[115] Stoney Creek Golf Course (stoney-creek-golf-course)
+  Trying https://nelsoncounty.com/stoney-creek-golf-course/...
+  - No additional sections found
+  - No additional content found
+
+[116] Soaring (soaring)
+  Trying https://nelsoncounty.com/soaring/...
+  - No additional sections found
+  - No additional content found
+
+[117] Skiing & Snowboarding (skiing-snowboarding)
+  Trying https://nelsoncounty.com/skiing-snowboarding/...
+  - No additional sections found
+  - No additional content found
+
+[118] Tennis (tennis)
+  Trying https://nelsoncounty.com/tennis/...
+  - No additional sections found
+  - No additional content found
+
+[119] Swimming (swimming)
+  Trying https://nelsoncounty.com/swimming/...
+  - No additional sections found
+  - No additional content found
+
+[120] Afton Mountain Vineyards (afton-mountain-vineyards)
+  - Already has customHtml, skipping
+
+[121] Brent Manor Vineyards (brent-manor-vineyards)
+  - Already has customHtml, skipping
+
+[122] Caihailian Vineyard (caihailian-vineyard)
+  - Already has customHtml, skipping
+
+[123] Cardinal Point Winery (cardinal-point-winery)
+  - Already has customHtml, skipping
+
+[124] Flying Fox Vineyards (flying-fox-vineyards)
+  - Already has customHtml, skipping
+
+[125] Hill Top Winery & Meadery (hill-top-winery-meadery)
+  - Already has customHtml, skipping
+
+[126] Lovingston Winery (lovingston-winery)
+  - Already has customHtml, skipping
+
+[127] Mountain and Vine Winery (mountain-and-vine-winery)
+  - Already has customHtml, skipping
+
+[128] Mountain Cove Vineyards & Winery (mountain-cove-vineyards-winery)
+  Trying https://nelsoncounty.com/mountain-cove-vineyards-winery/...
+  Trying https://nelsoncounty.com/explore/mountain-cove-vineyards-winery/...
+  - No additional content found
+
+[129] Valley Road Vineyards (valley-road-vineyards)
+  - Already has customHtml, skipping
+
+[130] Veritas Vineyards & Winery (veritas-vineyards-winery)
+  - Already has customHtml, skipping
+
+[131] Quarry Gardens at Schuyler (quarry-gardens-at-schuyler)
+  - Already has customHtml, skipping
+
+[132] Montebello Fish Hatchery (montebello-fish-hatchery)
+  - Already has customHtml, skipping
+
+[133] Walton's Mountain Museum (waltons-mountain-museum)
+  - Already has customHtml, skipping
+
+[134] Big Arms Farm (big-arms-farm)
+  Trying https://nelsoncounty.com/big-arms-farm/...
+  - No additional sections found
+  - No additional content found
+
+[135] Caldwell Farms (caldwell-farms)
+  - Already has customHtml, skipping
+
+[136] Davis Creek Farm (davis-creek-farm)
+  - Already has customHtml, skipping
+
+[137] Deer Creek Farm (deer-creek-farm)
+  - Already has customHtml, skipping
+
+[138] Edible Landscaping (edible-landscaping)
+  - Already has customHtml, skipping
+
+[139] Fitzgerald Farms (fitzgerald-farms)
+  - Already has customHtml, skipping
+
+[140] Fitzgerald's Orchard (fitzgeralds-orchard)
+  - Already has customHtml, skipping
+
+[141] HeartRock Retreat & Homestead (heartrockretreat)
+  - Already has customHtml, skipping
+
+[142] Hungry Hill Farm (hungry-hill-farm)
+  - Already has customHtml, skipping
+
+[143] Inglewood Fine Meats (inglewood-fine-meats)
+  - Already has customHtml, skipping
+
+[144] Lost Point Farm (lost-point-farm)
+  - Already has customHtml, skipping
+
+[145] One Forest (one-forest)
+  Trying https://nelsoncounty.com/one-forest/...
+  Trying https://nelsoncounty.com/explore/one-forest/...
+  - No additional content found
+
+[146] Pharsalia (pharsalia)
+  - Already has customHtml, skipping
+
+[147] Robinia Institute (robinia-institute)
+  - Already has customHtml, skipping
+
+[148] Rose Isle Farm (rose-isle-farm)
+  - Already has customHtml, skipping
+
+[149] Seamans' Orchard (seamans-orchard)
+  - Already has customHtml, skipping
+
+[150] Silver Creek and Seamans' Orchards (silver-creek-and-seamans-orchards)
+  - Already has customHtml, skipping
+
+[151] Silver Creek Orchards (silver-creek-orchards)
+  - Already has customHtml, skipping
+
+[152] Silver Fox Lavender Farm (silver-fox-lavender-farm)
+  - Already has customHtml, skipping
+
+[153] The Apple Shed (the-apple-shed)
+  - Already has customHtml, skipping
+
+[154] Tinkerland Farm (tinkerland-farm)
+  - Already has customHtml, skipping
+
+[155] Turnip the Beets Farm (turnip-the-beets-farm)
+  - Already has customHtml, skipping
+
+[156] Virginia Chestnuts (virginia-chestnuts)
+  - Already has customHtml, skipping
+
+[157] Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+  Trying https://nelsoncounty.com/kids-in-parks-rockfish-river-trailhead/...
+  - No additional sections found
+  - No additional content found
+
+[158] Appalachian Horse Adventures (appalachian-horse-adventures)
+  - Already has customHtml, skipping
+
+[159] Rebel's Run at Afton Mountain (rebels-run-at-afton-mountain)
+  - Already has customHtml, skipping
+
+[160] Oakland Museum (oakland-museum)
+  - Already has customHtml, skipping
+
+[161] Oak Ridge Estate (oak-ridge-estate)
+  - Already has customHtml, skipping
+
+[162] Swannanoa (swannanoa)
+  - Already has customHtml, skipping
+
+[163] Woodson's Mill (woodsons-mill)
+  - Already has customHtml, skipping
+
+[164] Brew Ridge Trail (brew-ridge-trail)
+  Trying https://nelsoncounty.com/brew-ridge-trail/...
+  - No additional sections found
+  - No additional content found
+
+[165] Nelson 151 (nelson-151)
+  Trying https://nelsoncounty.com/nelson-151/...
+  - No additional sections found
+  - No additional content found
+
+[166] Nelson 29 (nelson-29)
+  Trying https://nelsoncounty.com/nelson-29/...
+  - No additional sections found
+  - No additional content found
+
+[167] Blue Ridge Fruit Loop (blue-ridge-fruit-loop)
+  Trying https://nelsoncounty.com/blue-ridge-fruit-loop/...
+  - No additional sections found
+  - No additional content found
+
+[168] Virginia Spirits Trail (virginia-spirits-trail)
+  Trying https://nelsoncounty.com/virginia-spirits-trail/...
+  - No additional sections found
+  - No additional content found
+
+[169] Rockfish Valley Natural History Center (rockfish-valley-natural-history-center)
+  - Already has customHtml, skipping
+
+[170] Indian Summer Guide Service (indian-summer-guide-service)
+  - Already has customHtml, skipping
+
+[171] Nelson Scoops (nelsonscoops)
+  - Already has customHtml, skipping
+
+[172] Mars Knob Farm (marsknob)
+  - Already has customHtml, skipping
+
+[173] Crestvue Cottage (crestvue-cottage)
+  Trying https://nelsoncounty.com/crestvue-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[174] Sentosa Cabin (sentosa-cabin)
+  Trying https://nelsoncounty.com/sentosa-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[175] Roudy's Retreat (roudys-retreat)
+  Trying https://nelsoncounty.com/roudys-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[176] Pachi's Ridge (pachis-ridge)
+  Trying https://nelsoncounty.com/pachis-ridge/...
+  - No additional sections found
+  - No additional content found
+
+[177] Boogie Nights Manor (boogie-nights-manor)
+  Trying https://nelsoncounty.com/boogie-nights-manor/...
+  - No additional sections found
+  - No additional content found
+
+[178] The Big Tiny House (the-big-tiny-house)
+  Trying https://nelsoncounty.com/the-big-tiny-house/...
+  Trying https://nelsoncounty.com/explore/the-big-tiny-house/...
+  - No additional sections found
+  - No additional content found
+
+[179] Rusty's Retreat (rustys-retreat)
+  Trying https://nelsoncounty.com/rustys-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[180] Village Inn (village-inn)
+  Trying https://nelsoncounty.com/village-inn/...
+  - No additional sections found
+  - No additional content found
+
+[181] Cozy Mountain Cottage (cozy-mountain-cottage)
+  Trying https://nelsoncounty.com/cozy-mountain-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[182] Piedmont Grove Lodging (piedmont-grove-lodging)
+  Trying https://nelsoncounty.com/piedmont-grove-lodging/...
+  - No additional sections found
+  - No additional content found
+
+[183] Beech Grove Farmhouse (beech-grove-farmhouse)
+  Trying https://nelsoncounty.com/beech-grove-farmhouse/...
+  - No additional sections found
+  - No additional content found
+
+[184] Straw Bale House (straw-bale-house)
+  Trying https://nelsoncounty.com/straw-bale-house/...
+  - No additional sections found
+  - No additional content found
+
+[185] Blue Ridge Bliss (blue-ridge-bliss)
+  Trying https://nelsoncounty.com/blue-ridge-bliss/...
+  - No additional sections found
+  - No additional content found
+
+[186] Stays at Lovingston Winery (stays-at-lovingston-winery)
+  Trying https://nelsoncounty.com/stays-at-lovingston-winery/...
+  - No additional sections found
+  - No additional content found
+
+[187] The Cottage at Pines End (the-cottage-at-pines-end)
+  Trying https://nelsoncounty.com/the-cottage-at-pines-end/...
+  Trying https://nelsoncounty.com/explore/the-cottage-at-pines-end/...
+  - No additional sections found
+  - No additional content found
+
+[188] Woodson's Mill House (woodsons-mill-house)
+  Trying https://nelsoncounty.com/woodsons-mill-house/...
+  - No additional sections found
+  - No additional content found
+
+[189] Harmony Hill Bed & Breakfast (harmony-hill-bed-and-breakfast)
+  Trying https://nelsoncounty.com/harmony-hill-bed-and-breakfast/...
+  - No additional sections found
+  - No additional content found
+
+[190] Spyrock Lodge (spyrock-lodge)
+  Trying https://nelsoncounty.com/spyrock-lodge/...
+  - No additional sections found
+  - No additional content found
+
+[191] The Retreat at Crabtree Falls (the-retreat-at-crabtree-falls)
+  Trying https://nelsoncounty.com/the-retreat-at-crabtree-falls/...
+  Trying https://nelsoncounty.com/explore/the-retreat-at-crabtree-falls/...
+  - No additional sections found
+  - No additional content found
+
+[192] Point of View (point-of-view)
+  Trying https://nelsoncounty.com/point-of-view/...
+  - No additional sections found
+  - No additional content found
+
+[193] The Inn at Blue Mountain Brewery (the-inn-at-blue-mountain-brewery)
+  Trying https://nelsoncounty.com/the-inn-at-blue-mountain-brewery/...
+  Trying https://nelsoncounty.com/explore/the-inn-at-blue-mountain-brewery/...
+  - No additional sections found
+  - No additional content found
+
+[194] Gracewood (gracewood)
+  Trying https://nelsoncounty.com/gracewood/...
+  - No additional sections found
+  - No additional content found
+
+[195] The Chimneys (the-chimneys)
+  Trying https://nelsoncounty.com/the-chimneys/...
+  - No additional sections found
+  - No additional content found
+
+[196] The Carriage House at Stagebridge Farm (the-carriage-house-at-stagebridge-farm)
+  Trying https://nelsoncounty.com/the-carriage-house-at-stagebridge-farm/...
+  Trying https://nelsoncounty.com/explore/the-carriage-house-at-stagebridge-farm/...
+  - No additional sections found
+  - No additional content found
+
+[197] Indigo House Bed & Breakfast (indigo-house-bed-and-breakfast)
+  Trying https://nelsoncounty.com/indigo-house-bed-and-breakfast/...
+  - No additional sections found
+  - No additional content found
+
+[198] Papa's Cottage (papas-cottage)
+  Trying https://nelsoncounty.com/papas-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[199] Meme's Cottage (memes-cottage)
+  Trying https://nelsoncounty.com/memes-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[200] Cheval Circle (cheval-circle)
+  Trying https://nelsoncounty.com/cheval-circle/...
+  - No additional sections found
+  - No additional content found
+
+[201] The Wine Cottage (the-wine-cottage)
+  Trying https://nelsoncounty.com/the-wine-cottage/...
+  Trying https://nelsoncounty.com/explore/the-wine-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[202] Carter's Cottage (carters-cottage)
+  Trying https://nelsoncounty.com/carters-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[203] Beech Grove Cottage (beech-grove-cottage)
+  Trying https://nelsoncounty.com/beech-grove-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[204] Montebello Resort (montebello-resort)
+  Trying https://nelsoncounty.com/montebello-resort/...
+  - No additional sections found
+  - No additional content found
+
+[205] Freshwater Field Cabin (freshwater-field-cabin)
+  Trying https://nelsoncounty.com/freshwater-field-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[206] Four Elements Farm (four-elements-farm)
+  Trying https://nelsoncounty.com/four-elements-farm/...
+  - No additional sections found
+  - No additional content found
+
+[207] Time to Wine Down (time-to-wine-down)
+  Trying https://nelsoncounty.com/time-to-wine-down/...
+  - No additional sections found
+  - No additional content found
+
+[208] Love Afton Cabin (love-afton-cabin)
+  Trying https://nelsoncounty.com/love-afton-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[209] Meili Mountain (meili-mountain)
+  Trying https://nelsoncounty.com/meili-mountain/...
+  - No additional sections found
+  - No additional content found
+
+[210] Adventure Awaits (adventure-awaits)
+  Trying https://nelsoncounty.com/adventure-awaits/...
+  - No additional sections found
+  - No additional content found
+
+[211] Wintergreen Ridge Retreat (wintergreen-ridge-retreat)
+  Trying https://nelsoncounty.com/wintergreen-ridge-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[212] Maren Estate (maren-estate)
+  Trying https://nelsoncounty.com/maren-estate/...
+  - No additional sections found
+  - No additional content found
+
+[213] The Blue Ridge Farm and Wedding Venue (the-blue-ridge-farm-and-wedding-venue)
+  Trying https://nelsoncounty.com/the-blue-ridge-farm-and-wedding-venue/...
+  Trying https://nelsoncounty.com/explore/the-blue-ridge-farm-and-wedding-venue/...
+  - No additional sections found
+  - No additional content found
+
+[214] Acorn Inn, Inc (Cottage, B&B and Group Retreat) (acorn-inn-inc-cottage-bb-and-group-retreat)
+  Trying https://nelsoncounty.com/acorn-inn-inc-cottage-bb-and-group-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[215] Cottage at Old Stoney Creek (cottage-at-old-stoney-creek)
+  Trying https://nelsoncounty.com/cottage-at-old-stoney-creek/...
+  - No additional sections found
+  - No additional content found
+
+[216] Blue Ridge Heaven (blue-ridge-heaven)
+  Trying https://nelsoncounty.com/blue-ridge-heaven/...
+  - No additional sections found
+  - No additional content found
+
+[217] Dancing Bear Lodge (dancing-bear-lodge)
+  Trying https://nelsoncounty.com/dancing-bear-lodge/...
+  - No additional sections found
+  - No additional content found
+
+[218] Windy Knoll (windy-knoll)
+  Trying https://nelsoncounty.com/windy-knoll/...
+  - No additional sections found
+  - No additional content found
+
+[219] Creekside (creekside)
+  Trying https://nelsoncounty.com/creekside/...
+  - No additional sections found
+  - No additional content found
+
+[220] Cottage on Route 151 (cottage-on-route-151)
+  Trying https://nelsoncounty.com/cottage-on-route-151/...
+  - No additional sections found
+  - No additional content found
+
+[221] Farmhouse on Route 151 (farmhouse-on-route-151)
+  Trying https://nelsoncounty.com/farmhouse-on-route-151/...
+  - No additional sections found
+  - No additional content found
+
+[222] The Castor Cabin (the-castor-cabin)
+  Trying https://nelsoncounty.com/the-castor-cabin/...
+  Trying https://nelsoncounty.com/explore/the-castor-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[223] Rocky Run Landing (rocky-run-landing)
+  Trying https://nelsoncounty.com/rocky-run-landing/...
+  - No additional sections found
+  - No additional content found
+
+[224] Cottage on the Knoll (cottage-on-the-knoll)
+  Trying https://nelsoncounty.com/cottage-on-the-knoll/...
+  - No additional sections found
+  - No additional content found
+
+[225] High Lonesome Cabin (high-lonesome-cabin)
+  Trying https://nelsoncounty.com/high-lonesome-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[226] The Lewis Catherine House (the-lewis-catherine-house)
+  Trying https://nelsoncounty.com/the-lewis-catherine-house/...
+  Trying https://nelsoncounty.com/explore/the-lewis-catherine-house/...
+  - No additional sections found
+  - No additional content found
+
+[227] Glenbrae (glenbrae)
+  Trying https://nelsoncounty.com/glenbrae/...
+  - No additional sections found
+  - No additional content found
+
+[228] Elk Mountain Overlook (elk-mountain-overlook)
+  Trying https://nelsoncounty.com/elk-mountain-overlook/...
+  - No additional sections found
+  - No additional content found
+
+[229] Ethan's Den (ethans-den)
+  Trying https://nelsoncounty.com/ethans-den/...
+  - No additional sections found
+  - No additional content found
+
+[230] The Mountain House INN (the-mountain-house-inn)
+  Trying https://nelsoncounty.com/the-mountain-house-inn/...
+  Trying https://nelsoncounty.com/explore/the-mountain-house-inn/...
+  - No additional sections found
+  - No additional content found
+
+[231] Sweet Afton (sweet-afton)
+  Trying https://nelsoncounty.com/sweet-afton/...
+  - No additional sections found
+  - No additional content found
+
+[232] Three Sisters Pre-Civil War Log Cabin (three-sisters-pre-civil-war-log-cabin)
+  Trying https://nelsoncounty.com/three-sisters-pre-civil-war-log-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[233] Nine Ridges Retreat (nine-ridges-retreat)
+  Trying https://nelsoncounty.com/nine-ridges-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[234] Grace's Place Petite Retreats (graces-place-petite-retreats)
+  Trying https://nelsoncounty.com/graces-place-petite-retreats/...
+  - No additional sections found
+  - No additional content found
+
+[235] Cottage on the Trail (cottage-on-the-trail)
+  Trying https://nelsoncounty.com/cottage-on-the-trail/...
+  - No additional sections found
+  - No additional content found
+
+[236] Rockfish Farmhouse (rockfish-farmhouse)
+  Trying https://nelsoncounty.com/rockfish-farmhouse/...
+  - No additional sections found
+  - No additional content found
+
+[237] Fulton Belle Vue (fulton-belle-vue)
+  Trying https://nelsoncounty.com/fulton-belle-vue/...
+  - No additional sections found
+  - No additional content found
+
+[238] Spindle Hill Farm (spindle-hill-farm)
+  Trying https://nelsoncounty.com/spindle-hill-farm/...
+  - No additional sections found
+  - No additional content found
+
+[239] Beech Grove Cabins (beech-grove-cabins)
+  Trying https://nelsoncounty.com/beech-grove-cabins/...
+  - No additional sections found
+  - No additional content found
+
+[240] Slipper Slope (slipper-slope)
+  Trying https://nelsoncounty.com/slipper-slope/...
+  - No additional sections found
+  - No additional content found
+
+[241] Wintergreen Resort (wintergreen-resort-2)
+  Trying https://nelsoncounty.com/wintergreen-resort-2/...
+  - No additional sections found
+  - No additional content found
+
+[242] Camp Blue Ridge (camp-blue-ridge)
+  Trying https://nelsoncounty.com/camp-blue-ridge/...
+  - No additional sections found
+  - No additional content found
+
+[243] Devils Backbone Camp (devils-backbone-camp)
+  Trying https://nelsoncounty.com/devils-backbone-camp/...
+  - No additional sections found
+  - No additional content found
+
+[244] The Haven at Devils Backbone Camp (the-haven-at-devils-backbone-camp)
+  Trying https://nelsoncounty.com/the-haven-at-devils-backbone-camp/...
+  Trying https://nelsoncounty.com/explore/the-haven-at-devils-backbone-camp/...
+  - No additional sections found
+  - No additional content found
+
+[245] Relaxing 3 bedroom Mountain Cabin (relaxing-3-bedroom-mountain-cabin)
+  Trying https://nelsoncounty.com/relaxing-3-bedroom-mountain-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[246] Mountain Dacha (mountain-dacha)
+  Trying https://nelsoncounty.com/mountain-dacha/...
+  - No additional sections found
+  - No additional content found
+
+[247] Panoramic Peak - Vistas 1559, Wintergreen (panoramic-peak-vistas-1559-wintergreen)
+  Trying https://nelsoncounty.com/panoramic-peak-vistas-1559-wintergreen/...
+  - No additional sections found
+  - No additional content found
+
+[248] Skis and Trees (skis-and-trees)
+  Trying https://nelsoncounty.com/skis-and-trees/...
+  - No additional sections found
+  - No additional content found
+
+[249] Mountain Dreams Condo (mountain-dreams-condo)
+  Trying https://nelsoncounty.com/mountain-dreams-condo/...
+  - No additional sections found
+  - No additional content found
+
+[250] Wintergreen Vistas (wintergreen-vistas)
+  Trying https://nelsoncounty.com/wintergreen-vistas/...
+  - No additional sections found
+  - No additional content found
+
+[251] Clonmel Acres (clonmel-acres)
+  Trying https://nelsoncounty.com/clonmel-acres/...
+  - No additional sections found
+  - No additional content found
+
+[252] Cabin at Clonmel (cabin-at-clonmel)
+  Trying https://nelsoncounty.com/cabin-at-clonmel/...
+  - No additional sections found
+  - No additional content found
+
+[253] Sleepy Hollow Retreat Enjoy Your Stay (sleepy-hollow-retreat-enjoy-your-stay)
+  Trying https://nelsoncounty.com/sleepy-hollow-retreat-enjoy-your-stay/...
+  - No additional sections found
+  - No additional content found
+
+[254] Eagles Court Ski In/Ski Out Condo (eagles-court-ski-in-ski-out-condo)
+  Trying https://nelsoncounty.com/eagles-court-ski-in-ski-out-condo/...
+  - No additional sections found
+  - No additional content found
+
+[255] Wren House (wren-house)
+  Trying https://nelsoncounty.com/wren-house/...
+  - No additional sections found
+  - No additional content found
+
+[256] WildManDan B&B (Beer centric) (wildmandan-bb-beer-centric)
+  Trying https://nelsoncounty.com/wildmandan-bb-beer-centric/...
+  - No additional sections found
+  - No additional content found
+
+[257] Fenton Inn (fenton-inn)
+  Trying https://nelsoncounty.com/fenton-inn/...
+  - No additional sections found
+  - No additional content found
+
+[258] Marley's Cabin (marleys-cabin)
+  Trying https://nelsoncounty.com/marleys-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[259] Cozy & Clean Wintergreen Condo (Tanners Ridge) (cozy-clean-wintergreen-condo-tanners-ridge)
+  Trying https://nelsoncounty.com/cozy-clean-wintergreen-condo-tanners-ridge/...
+  - No additional sections found
+  - No additional content found
+
+[260] Remodeled 3BR/2BA Ski Chalet off Tyro Slope (remodeled-3br-2ba-ski-chalet-off-tyro-slope)
+  Trying https://nelsoncounty.com/remodeled-3br-2ba-ski-chalet-off-tyro-slope/...
+  - No additional sections found
+  - No additional content found
+
+[261] Three Springs Myndus (three-springs-myndus)
+  Trying https://nelsoncounty.com/three-springs-myndus/...
+  - No additional sections found
+  - No additional content found
+
+[262] Lovingston Get-Away (lovingston-get-away)
+  Trying https://nelsoncounty.com/lovingston-get-away/...
+  - No additional sections found
+  - No additional content found
+
+[263] Rock-n-Creek Cabin (rock-n-creek-cabin)
+  Trying https://nelsoncounty.com/rock-n-creek-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[264] The Branch at Afton Mountain Retreat (the-branch-at-afton-mountain-retreat)
+  Trying https://nelsoncounty.com/the-branch-at-afton-mountain-retreat/...
+  Trying https://nelsoncounty.com/explore/the-branch-at-afton-mountain-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[265] The Bungalow at Afton Mountain Retreat (the-bungalow-at-afton-mountain-retreat)
+  Trying https://nelsoncounty.com/the-bungalow-at-afton-mountain-retreat/...
+  Trying https://nelsoncounty.com/explore/the-bungalow-at-afton-mountain-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[266] Avon Hill (avon-hill)
+  Trying https://nelsoncounty.com/avon-hill/...
+  - No additional sections found
+  - No additional content found
+
+[267] A Nellysford Nest (a-nellysford-nest)
+  Trying https://nelsoncounty.com/a-nellysford-nest/...
+  - No additional sections found
+  - No additional content found
+
+[268] Love Ridge Mountain Lodging (love-ridge-mountain-lodging)
+  Trying https://nelsoncounty.com/love-ridge-mountain-lodging/...
+  - No additional sections found
+  - No additional content found
+
+[269] Open Heart Inn (open-heart-inn)
+  Trying https://nelsoncounty.com/open-heart-inn/...
+  - No additional sections found
+  - No additional content found
+
+[270] Hillside Hideaway (hillside-hideaway)
+  Trying https://nelsoncounty.com/hillside-hideaway/...
+  - No additional sections found
+  - No additional content found
+
+[271] Saddleback Sanctuary (saddleback-sanctuary)
+  Trying https://nelsoncounty.com/saddleback-sanctuary/...
+  - No additional sections found
+  - No additional content found
+
+[272] Eventide Farm (eventidefarm)
+  - Already has customHtml, skipping
+
+[273] Nonny Cottage (nonny-cottage)
+  Trying https://nelsoncounty.com/nonny-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[274] Deep Sea Pete's Creekside Farm (deep-sea-petes-creekside-farm)
+  - Already has customHtml, skipping
+
+[275] Basecamp 151 (basecamp-151)
+  Trying https://nelsoncounty.com/basecamp-151/...
+  - No additional sections found
+  - No additional content found
+
+[276] Oak Ledge (oak-ledge)
+  Trying https://nelsoncounty.com/oak-ledge/...
+  - No additional sections found
+  - No additional content found
+
+[277] Gathered Threads (gathered)
+  - Already has customHtml, skipping
+
+[278] Wintergreen Getaway for Families (wintergreen-getaway-for-families)
+  Trying https://nelsoncounty.com/wintergreen-getaway-for-families/...
+  - No additional sections found
+  - No additional content found
+
+[279] Wintergreen Resort Cabin (wintergreen-resort-cabin)
+  Trying https://nelsoncounty.com/wintergreen-resort-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[280] Bluebird Cottage (bluebird-cottage)
+  Trying https://nelsoncounty.com/bluebird-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[281] Bear Tracks Cottage (bear-tracks-cottage)
+  Trying https://nelsoncounty.com/bear-tracks-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[282] Faber Farmhouse (faber-farmhouse)
+  Trying https://nelsoncounty.com/faber-farmhouse/...
+  - No additional sections found
+  - No additional content found
+
+[283] Wintergreen - Fairway Woods (wintergreen-fairway-woods)
+  Trying https://nelsoncounty.com/wintergreen-fairway-woods/...
+  - No additional sections found
+  - No additional content found
+
+[284] Galleywinter Farm (galleywinter)
+  Trying https://nelsoncounty.com/galleywinter/...
+  - No additional sections found
+  - No additional content found
+
+[285] Peaktime (peaktime)
+  Trying https://nelsoncounty.com/peaktime/...
+  - No additional sections found
+  - No additional content found
+
+[286] Hawthorne (hawthorne)
+  Trying https://nelsoncounty.com/hawthorne/...
+  - No additional sections found
+  - No additional content found
+
+[287] Rockfish Tiny Home (rockfish-tiny-home)
+  Trying https://nelsoncounty.com/rockfish-tiny-home/...
+  - No additional sections found
+  - No additional content found
+
+[288] Tupelo (tupelo)
+  Trying https://nelsoncounty.com/tupelo/...
+  - No additional sections found
+  - No additional content found
+
+[289] The Vu, Afton (the-vu-afton)
+  Trying https://nelsoncounty.com/the-vu-afton/...
+  - No additional sections found
+  - No additional content found
+
+[290] Serenity Summit (serenity-summit)
+  Trying https://nelsoncounty.com/serenity-summit/...
+  - No additional sections found
+  - No additional content found
+
+[291] The Wooder House (the-wooder-house)
+  Trying https://nelsoncounty.com/the-wooder-house/...
+  Trying https://nelsoncounty.com/explore/the-wooder-house/...
+  - No additional sections found
+  - No additional content found
+
+[292] The Ash House at Holland Hill (the-ash-house-at-holland-hill)
+  Trying https://nelsoncounty.com/the-ash-house-at-holland-hill/...
+  Trying https://nelsoncounty.com/explore/the-ash-house-at-holland-hill/...
+  - No additional sections found
+  - No additional content found
+
+[293] D & D's Mountain Home (d-ds-mountain-home)
+  Trying https://nelsoncounty.com/d-ds-mountain-home/...
+  - No additional sections found
+  - No additional content found
+
+[294] Bear Creek Inn (bear-creek-inn)
+  Trying https://nelsoncounty.com/bear-creek-inn/...
+  - No additional sections found
+  - No additional content found
+
+[295] Cookie's Place, LLC (cookies-place-llc)
+  Trying https://nelsoncounty.com/cookies-place-llc/...
+  - No additional sections found
+  - No additional content found
+
+[296] Bearfeet Retreat (bearfeet-retreat)
+  Trying https://nelsoncounty.com/bearfeet-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[297] Peaceful Mountain Getaway (peaceful-mountain-getaway)
+  Trying https://nelsoncounty.com/peaceful-mountain-getaway/...
+  - No additional sections found
+  - No additional content found
+
+[298] The Afton House (the-afton-house)
+  Trying https://nelsoncounty.com/the-afton-house/...
+  Trying https://nelsoncounty.com/explore/the-afton-house/...
+  - No additional sections found
+  - No additional content found
+
+[299] THE LITTLE FARMHOUSE (thelittlefarmhouse)
+  Trying https://nelsoncounty.com/thelittlefarmhouse/...
+  Trying https://nelsoncounty.com/explore/thelittlefarmhouse/...
+  - No additional sections found
+  - No additional content found
+
+[300] Mountaintop Overlook (mountaintop-overlook)
+  Trying https://nelsoncounty.com/mountaintop-overlook/...
+  - No additional sections found
+  - No additional content found
+
+[301] Blue Ridge Mountain Retreat (blue-ridge-mountain-retreat)
+  Trying https://nelsoncounty.com/blue-ridge-mountain-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[302] Mountain & Vine Farmhouse (mountain-vine-farmhouse)
+  Trying https://nelsoncounty.com/mountain-vine-farmhouse/...
+  - No additional sections found
+  - No additional content found
+
+[303] Mountain & Vine Vineyards Log Cabin (mountain-vine-vineyards-log-cabin)
+  Trying https://nelsoncounty.com/mountain-vine-vineyards-log-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[304] The Fairway Chalet (the-fairway-chalet)
+  Trying https://nelsoncounty.com/the-fairway-chalet/...
+  Trying https://nelsoncounty.com/explore/the-fairway-chalet/...
+  - No additional sections found
+  - No additional content found
+
+[305] Spruce Creek Garden Cottage (spruce-creek-garden-cottage)
+  Trying https://nelsoncounty.com/spruce-creek-garden-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[306] Parrs Camp, Mountain Hollow (parrs-camp-mountain-hollow)
+  Trying https://nelsoncounty.com/parrs-camp-mountain-hollow/...
+  - No additional sections found
+  - No additional content found
+
+[307] Parr's Camp (parrs-camp)
+  Trying https://nelsoncounty.com/parrs-camp/...
+  - No additional sections found
+  - No additional content found
+
+[308] Bella Vista (bella-vista)
+  Trying https://nelsoncounty.com/bella-vista/...
+  - No additional sections found
+  - No additional content found
+
+[309] Red, White and Wintergreen (red-white-and-wintergreen)
+  Trying https://nelsoncounty.com/red-white-and-wintergreen/...
+  - No additional sections found
+  - No additional content found
+
+[310] Mountain View Vista (mountain-view-vista)
+  Trying https://nelsoncounty.com/mountain-view-vista/...
+  - No additional sections found
+  - No additional content found
+
+[311] Art & Soul Guesthouse (art-soul-guesthouse)
+  Trying https://nelsoncounty.com/art-soul-guesthouse/...
+  - No additional sections found
+  - No additional content found
+
+[312] Art & Soul Main House (art-soul-main-house)
+  Trying https://nelsoncounty.com/art-soul-main-house/...
+  - No additional sections found
+  - No additional content found
+
+[313] The Cottage at River Circle Farm (the-cottage-at-river-circle-farm)
+  Trying https://nelsoncounty.com/the-cottage-at-river-circle-farm/...
+  Trying https://nelsoncounty.com/explore/the-cottage-at-river-circle-farm/...
+  - No additional sections found
+  - No additional content found
+
+[314] Berry Hill Lake (berry-hill-lake)
+  Trying https://nelsoncounty.com/berry-hill-lake/...
+  - No additional sections found
+  - No additional content found
+
+[315] Afton Awaits (afton-awaits)
+  Trying https://nelsoncounty.com/afton-awaits/...
+  - No additional sections found
+  - No additional content found
+
+[316] Pilotview Hollow (pilotview-hollow)
+  Trying https://nelsoncounty.com/pilotview-hollow/...
+  - No additional sections found
+  - No additional content found
+
+[317] Nelson Cozy Cabin (nelson-cozy-cabin)
+  Trying https://nelsoncounty.com/nelson-cozy-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[318] Kneeling Shepherd (kneeling-shepherd)
+  Trying https://nelsoncounty.com/kneeling-shepherd/...
+  - No additional sections found
+  - No additional content found
+
+[319] Kremer Cabin (kremer-cabin)
+  Trying https://nelsoncounty.com/kremer-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[320] Stewart's Place (stewarts-place)
+  Trying https://nelsoncounty.com/stewarts-place/...
+  - No additional sections found
+  - No additional content found
+
+[321] Boho Cliff House Retreat (boho-cliff-house-retreat)
+  Trying https://nelsoncounty.com/boho-cliff-house-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[322] Airkey Boutique Rentals (airkey)
+  Trying https://nelsoncounty.com/airkey/...
+  - No additional sections found
+  - No additional content found
+
+[323] Three Ridge Retreat (three-ridge-retreat)
+  Trying https://nelsoncounty.com/three-ridge-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[324] Sunset Vista Villa (sunset-vista-villa)
+  Trying https://nelsoncounty.com/sunset-vista-villa/...
+  - No additional sections found
+  - No additional content found
+
+[325] Arrowwood Lane (arrowwood-lane)
+  Trying https://nelsoncounty.com/arrowwood-lane/...
+  - No additional sections found
+  - No additional content found
+
+[326] Winterhaven (winterhaven)
+  Trying https://nelsoncounty.com/winterhaven/...
+  - No additional sections found
+  - No additional content found
+
+[327] 779 Blue Ridge Drive (779-blue-ridge-drive)
+  Trying https://nelsoncounty.com/779-blue-ridge-drive/...
+  - No additional sections found
+  - No additional content found
+
+[328] Belties (belties)
+  - Already has customHtml, skipping
+
+[329] Ski in Style At Sapphire Squirrel (ski-in-style-at-sapphire-squirrel)
+  Trying https://nelsoncounty.com/ski-in-style-at-sapphire-squirrel/...
+  - No additional sections found
+  - No additional content found
+
+[330] The Retreat at Three Ridges (the-retreat-at-three-ridges)
+  Trying https://nelsoncounty.com/the-retreat-at-three-ridges/...
+  Trying https://nelsoncounty.com/explore/the-retreat-at-three-ridges/...
+  - No additional sections found
+  - No additional content found
+
+[331] Wintergreen Condo 1437 Highlands (wintergreen-condo-1437-highlands)
+  Trying https://nelsoncounty.com/wintergreen-condo-1437-highlands/...
+  - No additional sections found
+  - No additional content found
+
+[332] Time Out (time-out)
+  Trying https://nelsoncounty.com/time-out/...
+  - No additional sections found
+  - No additional content found
+
+[333] Cub Creek Cabin (cub-creek-cabin)
+  Trying https://nelsoncounty.com/cub-creek-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[334] Tyebello Cabins (tyebello-cabins)
+  Trying https://nelsoncounty.com/tyebello-cabins/...
+  - No additional sections found
+  - No additional content found
+
+[335] Glass & Pine (glass-pine)
+  Trying https://nelsoncounty.com/glass-pine/...
+  - No additional sections found
+  - No additional content found
+
+[336] Wintergreen 19 Ivy Glen Lane (wintergreen-19-ivy-glen-lane)
+  Trying https://nelsoncounty.com/wintergreen-19-ivy-glen-lane/...
+  - No additional sections found
+  - No additional content found
+
+[337] The Brown Bear Lodge (the-brown-bear-lodge)
+  Trying https://nelsoncounty.com/the-brown-bear-lodge/...
+  Trying https://nelsoncounty.com/explore/the-brown-bear-lodge/...
+  - No additional sections found
+  - No additional content found
+
+[338] Mountain Home in Nelson County (mountain-home-in-nelson-county)
+  Trying https://nelsoncounty.com/mountain-home-in-nelson-county/...
+  - No additional sections found
+  - No additional content found
+
+[339] Spy Run Hideaway (spy-run-hideaway)
+  Trying https://nelsoncounty.com/spy-run-hideaway/...
+  - No additional sections found
+  - No additional content found
+
+[340] Love of Mountains Oh Fill My Cup (love-of-mountains-oh-fill-my-cup)
+  Trying https://nelsoncounty.com/love-of-mountains-oh-fill-my-cup/...
+  - No additional sections found
+  - No additional content found
+
+[341] Marigold on the Mountain (marigold-on-the-mountain)
+  Trying https://nelsoncounty.com/marigold-on-the-mountain/...
+  - No additional sections found
+  - No additional content found
+
+[342] Top of The Mountain Hideaway (top-of-the-mountain-hideaway)
+  Trying https://nelsoncounty.com/top-of-the-mountain-hideaway/...
+  - No additional sections found
+  - No additional content found
+
+[343] On The Rocks (on-the-rocks)
+  Trying https://nelsoncounty.com/on-the-rocks/...
+  - No additional sections found
+  - No additional content found
+
+[344] Our Mountain Getaway (our-mountain-getaway)
+  Trying https://nelsoncounty.com/our-mountain-getaway/...
+  - No additional sections found
+  - No additional content found
+
+[345] Rockfish Cabin (rockfish-cabin)
+  Trying https://nelsoncounty.com/rockfish-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[346] Blue Ridge Cabin (blue-ridge-cabin)
+  Trying https://nelsoncounty.com/blue-ridge-cabin/...
+  - No additional sections found
+  - No additional content found
+
+[347] Wintergreen Duplex (wintergreen-duplex)
+  Trying https://nelsoncounty.com/wintergreen-duplex/...
+  - No additional sections found
+  - No additional content found
+
+[348] Sunrise on the Trail (sunrise-on-the-trail)
+  Trying https://nelsoncounty.com/sunrise-on-the-trail/...
+  - No additional sections found
+  - No additional content found
+
+[349] Mima's Mountain House (mimas-mountain-house)
+  Trying https://nelsoncounty.com/mimas-mountain-house/...
+  - No additional sections found
+  - No additional content found
+
+[350] Village Antiques (villageantiques)
+  - Already has customHtml, skipping
+
+[351] Cliffs Edge (cliffs-edge)
+  Trying https://nelsoncounty.com/cliffs-edge/...
+  - No additional sections found
+  - No additional content found
+
+[352] Slopes At Tyro (slopes-at-tyro)
+  Trying https://nelsoncounty.com/slopes-at-tyro/...
+  - No additional sections found
+  - No additional content found
+
+[353] Home on the Ridge (home-on-the-ridge)
+  Trying https://nelsoncounty.com/home-on-the-ridge/...
+  - No additional sections found
+  - No additional content found
+
+[354] Peppers Mountain Pad (peppers-mountain-pad)
+  Trying https://nelsoncounty.com/peppers-mountain-pad/...
+  - No additional sections found
+  - No additional content found
+
+[355] Rockfish Valley Retreat (rockfish-valley-retreat)
+  Trying https://nelsoncounty.com/rockfish-valley-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[356] Dobie Condo 323 at Wintergreen (dobie-condo-323-at-wintergreen)
+  Trying https://nelsoncounty.com/dobie-condo-323-at-wintergreen/...
+  - No additional sections found
+  - No additional content found
+
+[357] Highlands 1426 Condo (highlands-1426-condo)
+  Trying https://nelsoncounty.com/highlands-1426-condo/...
+  - No additional sections found
+  - No additional content found
+
+[358] Gumtree Drive 134 (gumtree-drive-134)
+  Trying https://nelsoncounty.com/gumtree-drive-134/...
+  - No additional sections found
+  - No additional content found
+
+[359] Wake In The Clouds (wake-in-the-clouds)
+  Trying https://nelsoncounty.com/wake-in-the-clouds/...
+  - No additional sections found
+  - No additional content found
+
+[360] Nectar Landing (nectar-landing)
+  Trying https://nelsoncounty.com/nectar-landing/...
+  - No additional sections found
+  - No additional content found
+
+[361] Nelson 151 Views and Brews (nelson-151-views-and-brews)
+  Trying https://nelsoncounty.com/nelson-151-views-and-brews/...
+  - No additional sections found
+  - No additional content found
+
+[362] Woodland Hideaway (woodland-hideaway)
+  Trying https://nelsoncounty.com/woodland-hideaway/...
+  - No additional sections found
+  - No additional content found
+
+[363] Cuatro Climas At 130 Pedlars Point (cuatro-climas-at-130-pedlars-point)
+  Trying https://nelsoncounty.com/cuatro-climas-at-130-pedlars-point/...
+  - No additional sections found
+  - No additional content found
+
+[364] Rockfish River Ranch Guest House (rockfish-river-ranch-guest-house)
+  Trying https://nelsoncounty.com/rockfish-river-ranch-guest-house/...
+  - No additional sections found
+  - No additional content found
+
+[365] The Treetops Lodge (the-treetops-lodge)
+  Trying https://nelsoncounty.com/the-treetops-lodge/...
+  Trying https://nelsoncounty.com/explore/the-treetops-lodge/...
+  - No additional sections found
+  - No additional content found
+
+[366] Cabin on Eagles Ridge Road (cabin-on-eagles-ridge-road)
+  Trying https://nelsoncounty.com/cabin-on-eagles-ridge-road/...
+  - No additional sections found
+  - No additional content found
+
+[367] 1639 Overlook (1639-overlook)
+  Trying https://nelsoncounty.com/1639-overlook/...
+  - No additional sections found
+  - No additional content found
+
+[368] Foxfire Cottage (foxfire-cottage)
+  Trying https://nelsoncounty.com/foxfire-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[369] The Ski House (the-ski-house)
+  Trying https://nelsoncounty.com/the-ski-house/...
+  Trying https://nelsoncounty.com/explore/the-ski-house/...
+  - No additional sections found
+  - No additional content found
+
+[370] 1566 Vistas Condo (1566-vistas-condo)
+  Trying https://nelsoncounty.com/1566-vistas-condo/...
+  - No additional sections found
+  - No additional content found
+
+[371] Afton Mountain Inn (afton-mountain-inn)
+  Trying https://nelsoncounty.com/afton-mountain-inn/...
+  - No additional sections found
+  - No additional content found
+
+[372] M 260 (m-260)
+  Trying https://nelsoncounty.com/m-260/...
+  - No additional sections found
+  - No additional content found
+
+[373] Sanctuary Retreat Center (sanctuaryretreatcenter)
+  Trying https://nelsoncounty.com/sanctuaryretreatcenter/...
+  - No additional sections found
+  - No additional content found
+
+[374] Trinacria Restaurant & Pizzeria (trinacria)
+  - Already has customHtml, skipping
+
+[375] Rockfish Valley Farm Guest House (rockfish-valley-farm-guest-house)
+  Trying https://nelsoncounty.com/rockfish-valley-farm-guest-house/...
+  - No additional sections found
+  - No additional content found
+
+[376] Shenandoah Ridge 11 (shenandoah-ridge-11)
+  Trying https://nelsoncounty.com/shenandoah-ridge-11/...
+  - No additional sections found
+  - No additional content found
+
+[377] Inn at the Woods (inn-at-the-woods)
+  Trying https://nelsoncounty.com/inn-at-the-woods/...
+  - No additional sections found
+  - No additional content found
+
+[378] Country Cottage (country-cottage)
+  Trying https://nelsoncounty.com/country-cottage/...
+  - No additional sections found
+  - No additional content found
+
+[379] The View at Crawfords Edge (the-view-at-crawfords-edge)
+  - Already has customHtml, skipping
+
+[380] Altitude Adjustment (altitude-adjustment)
+  Trying https://nelsoncounty.com/altitude-adjustment/...
+  - No additional sections found
+  - No additional content found
+
+[381] Chateau Greenstone (chateau-greenstone)
+  Trying https://nelsoncounty.com/chateau-greenstone/...
+  - No additional sections found
+  - No additional content found
+
+[382] Blue Sky Retreat (blue-sky-retreat)
+  Trying https://nelsoncounty.com/blue-sky-retreat/...
+  - No additional sections found
+  - No additional content found
+
+[383] The Treehouse (thetreehouse)
+  Trying https://nelsoncounty.com/thetreehouse/...
+  - No additional sections found
+  - No additional content found
+
+[384] Queen Oaks Farm (queenoaksfarm)
+  Trying https://nelsoncounty.com/queenoaksfarm/...
+  - No additional sections found
+  - No additional content found
+
+[385] Three Trees Farm (threetreesfarm)
+  - Already has customHtml, skipping
+
+[386] The Goldfinch (the-goldfinch)
+  Trying https://nelsoncounty.com/the-goldfinch/...
+  Trying https://nelsoncounty.com/explore/the-goldfinch/...
+  - No additional sections found
+  - No additional content found
+
+[387] Glass Hollow Studio & Gallery (glasshollow)
+  Trying https://nelsoncounty.com/glasshollow/...
+  - No additional sections found
+  - No additional content found
+
+[388] Rockwell Ridge Inn (rockwellridgeinn)
+  Trying https://nelsoncounty.com/rockwellridgeinn/...
+  - No additional sections found
+  - No additional content found
+
+[389] Everett Estate (everettestate)
+  Trying https://nelsoncounty.com/everettestate/...
+  Trying https://nelsoncounty.com/explore/everettestate/...
+  - No additional content found
+
+[390] Don Lupe Mexican Restaurant (donlupe)
+  - Already has customHtml, skipping
+
+[391] 12 Ridges Vineyard (12-ridges-vineyard)
+  - Already has customHtml, skipping
+
+✅ Processed 390 rows
+✅ Updated 0 listings with accordion HTML
