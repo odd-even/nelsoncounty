@@ -4567,7 +4567,18 @@ function updateUnsavedChangesBadge() {
                 image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
                 image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
                 googleMapsUrl: googleMapsUrlField || '',
-                accordionPanel1Title: getField('accordionPanel1Title', ['AccordionPanel1Title', 'Accordion Panel 1 Title', 'accordion panel 1 title']),
+                accordionPanel1Title: (function() {
+                    const val = getField('accordionPanel1Title', ['AccordionPanel1Title', 'Accordion Panel 1 Title', 'accordion panel 1 title']);
+                    if (row && row.name && !window._accordionDebugLogged) {
+                        console.log('🎯 Accordion mapping debug for:', row.name);
+                        console.log('   Raw row keys (first 15):', Object.keys(row).slice(0, 15));
+                        console.log('   normalizedRow keys containing "accordion":', Object.keys(normalizedRow).filter(k => k.includes('accordion')));
+                        console.log('   normalizedRow[\"accordionpanel1title\"]:', normalizedRow['accordionpanel1title']?.substring(0, 50) || '(not found)');
+                        console.log('   getField result:', val?.substring(0, 50) || '(empty)');
+                        window._accordionDebugLogged = true;
+                    }
+                    return val;
+                })(),
                 accordionPanel1Content: getField('accordionPanel1Content', ['AccordionPanel1Content', 'Accordion Panel 1 Content', 'accordion panel 1 content']),
                 accordionPanel2Title: getField('accordionPanel2Title', ['AccordionPanel2Title', 'Accordion Panel 2 Title', 'accordion panel 2 title']),
                 accordionPanel2Content: getField('accordionPanel2Content', ['AccordionPanel2Content', 'Accordion Panel 2 Content', 'accordion panel 2 content']),
