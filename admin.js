@@ -2197,8 +2197,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
-            const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
-            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -2401,7 +2399,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 type: getValue('listingType'),
                 area: getValue('listingArea'),
                 description: getValue('listingDescription'),
-                detailedDescription: getValue('listingDetailedDescription'),
+                detailedDescription: '', // Field removed from UI, keep empty for backward compatibility
                 image1: getValue('listingImage1'),
                 image1Desc: getValue('listingImage1Desc'),
                 image2: getValue('listingImage2'),

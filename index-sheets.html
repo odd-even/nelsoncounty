@@ -2906,12 +2906,6 @@
                     <label>Description *</label>
                     <textarea id="listingDescription" required></textarea>
                 </div>
-                
-                <div class="form-group">
-                    <label>Detailed Description</label>
-                    <textarea id="listingDetailedDescription" placeholder="Long-form copy for brochures, long reads, etc. Line breaks and paragraphs will be preserved." style="min-height: 150px;"></textarea>
-                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Use line breaks (Enter) for new lines and double line breaks for paragraph spacing. This text appears on the back of cards when flipped.</small>
-                </div>
 
                 <div class="form-group">
                     <label>Custom HTML (Framer Only)</label>
@@ -6897,8 +6891,6 @@ function updateUnsavedChangesBadge() {
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
-            const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
-            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -7288,7 +7280,7 @@ function updateUnsavedChangesBadge() {
                 type: getValue('listingType'), // Simple, direct - no normalization
                 area: getValue('listingArea'),
                 description: getValue('listingDescription'),
-                detailedDescription: getValue('listingDetailedDescription'),
+                detailedDescription: '', // Field removed from UI, keep empty for backward compatibility
                 customHtml: getValue('listingCustomHtml'),
                 image1: getValue('listingImage1'),
                 image2: getValue('listingImage2'),

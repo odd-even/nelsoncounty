@@ -1,0 +1,3791 @@
+/Users/ernest/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+================================================================================
+Building comprehensive source lookup...
+================================================================================
+Loading Portfolio export...
+Loading Pages export...
+Loaded 233 unique entries (51 from Pages export)
+
+Reading consolidated CSV...
+Processing 388 listings with comprehensive line-by-line review...
+
+================================================================================
+
+[1/388] Trager Brothers Coffee 1.0
+  Type: Coffee Shops | Slug: trager-brothers-coffee-1-0
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (267 chars)
+    "TBC is family-owned and operated, small-batch, and completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. The c..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[2/388] Trager Brothers Coffee 2.0
+  Type: Coffee Shops | Slug: trager-brothers-coffee-2-0
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (299 chars)
+    "Organic coffeehouse at the Rockfish Valley School campus with freshly roasted beans, espresso drinks, and grab-and-go service from Trager Brothers Cof..."
+  ✓ Accordion 1: Menu & Offerings (498 chars)
+  ✓ Accordion 2: Events & Activities (435 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[3/388] Afton Market
+  Type: Markets & Delis | Slug: afton-market
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (281 chars)
+    "Afton Market is a locally owned convenience stop offering fuel plus a short-order deli that fries up chicken, biscuits, and hot lunch plates. Locally ..."
+  ✓ Accordion 1: Additional Information (130 chars)
+  ✓ Accordion 2: Events & Activities (355 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[4/388] Ashley's Market
+  Type: Markets & Delis | Slug: ashleys-market
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (260 chars)
+    "Family-run convenience and gas stop with a deli serving breakfast biscuits, lunch sandwiches, fried chicken, and deli salads. Ashley's Market pairs ga..."
+  ✓ Accordion 1: Additional Information (140 chars)
+  ✓ Accordion 2: Events & Activities (355 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[5/388] Chicken Coop
+  Type: Markets & Delis | Slug: chicken-coop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (262 chars)
+    "Inside the Nelson Food Mart Exxon, Chicken Coop turns out crispy fried chicken, smoked barbecue, burgers, and hearty sandwiches plus sides like mac an..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[6/388] Colleen Deli
+  Type: Markets & Delis | Slug: colleen-deli
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (265 chars)
+    "Exxon deli serving all-day breakfast, daily lunch specials, sandwiches, wraps, and homemade baked goods with a summertime salad bar. Exxon deli servin..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[7/388] Corner Market
+  Type: Markets & Delis | Slug: corner-market
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (201 chars)
+    "Neighborhood convenience store and gas station with a short-order deli serving breakfast biscuits and hot lunch items. Those who travel to Schuyler ar..."
+  ✓ Accordion 1: Information (113 chars)
+  ✓ Accordion 2: Menu & Offerings (500 chars)
+  ✓ Accordion 3: About (400 chars)
+  ✓ Accordion 4: Stay in the Loop (338 chars)
+
+[8/388] Graves Grocery & Deli
+  Type: Markets & Delis | Slug: graves-grocery-deli
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (268 chars)
+    "Graves Grocery & Deli is a long-running Route 151 fixture where travelers top off the tank, grab breakfast sandwiches, and order made-to-order lunches..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[9/388] Hickman's Exxon Grocery
+  Type: Markets & Delis | Slug: hickmans-exxon-grocery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (258 chars)
+    "Hickman's Exxon Grocery near Beech Grove supplies fuel, hunting gear, and a hot breakfast-and-lunch deli favored by Wintergreen visitors. The store al..."
+  ✓ Accordion 1: Additional Information (101 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[10/388] IGA Blue Ridge Grocery
+  Type: Markets & Delis | Slug: iga-blue-ridge-grocery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (113 chars)
+    "Community supermarket providing full groceries, everyday essentials, and friendly service in the Rockfish Valley...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[11/388] Ike's Market & Deli
+  Type: Markets & Delis | Slug: ikes-market-deli
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (254 chars)
+    "Ike's Market & Deli on Rockfish River Road stocks convenience essentials, fishing supplies, and a deli counter with rotating daily specials. Riverside..."
+  ✓ Accordion 1: About (400 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[12/388] Indian Oven
+  Type: Restaurants | Slug: indian-oven
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (147 chars)
+    "Family-run Indian restaurant serving curries, tandoori favorites, and coconut-forward dishes crafted with fresh ingredients in a welcoming setting...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[13/388] Mac's Country Store
+  Type: Markets & Delis | Slug: macs-country-store
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (271 chars)
+    "Country store at the crossroads of Routes 151 and 56 with breakfast, lunch, dinner plates, famous fried chicken, and antiques for sale. Country store ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[14/388] Subway
+  Type: Markets & Delis | Slug: subway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (155 chars)
+    "Subway franchise in Annie Land Plaza making customizable sandwiches, salads, and wraps seven days a week. (open later on Fridays, earlier-closing Sund..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[15/388] The Market at Wintergreen
+  Type: Markets & Delis | Slug: the-market-at-wintergreen
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (202 chars)
+    "The resort is found on the Sunrise Side of the Blue Ridge Mountains and is conveniently located close to Charlottesville, Staunton, Lynchburg, and Way..."
+  ✓ Accordion 1: Information (384 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[16/388] Williams Grocery
+  Type: Markets & Delis | Slug: williams-grocery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (192 chars)
+    "Rural grocery and gas station carrying local honey, bait, and fishing supplies alongside everyday essentials. Those who travel to Schuyler are encoura..."
+  ✓ Accordion 1: What to Expect (117 chars)
+  ✓ Accordion 2: Information (113 chars)
+  ✓ Accordion 3: Menu & Offerings (500 chars)
+  ✓ Accordion 4: About (400 chars)
+
+[17/388] Ann's Family Restaurant
+  Type: Restaurants | Slug: anns-family-restaurant
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (221 chars)
+    "The homestyle spot closes Saturdays but keeps loyal regulars coming back for dependable Southern comfort food. The homestyle spot closes Saturdays but..."
+  ✓ Accordion 1: Additional Information (83 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[18/388] Basic Necessities
+  Type: Restaurants | Slug: basic-necessities
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (293 chars)
+    "Basic Necessities is a European-inspired café, wine, and cheese shop in the Rockfish Valley serving soups, salads, seasonal dinners with live music, a..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[19/388] Blue Mountain Brewery
+  Type: Breweries & Cideries | Slug: blue-mountain-brewery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (235 chars)
+    "Route 151 brewpub pouring flagship and seasonal ales alongside a from-scratch kitchen with sweeping Blue Ridge views. Route 151 brewpub pouring flagsh..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[20/388] Blue Ridge Pig
+  Type: Restaurants | Slug: blue-ridge-pig
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (341 chars)
+    "Blue Ridge Pig is a roadside smokehouse known for Strawberry Goodwin's on-site smoked meats, from classic pulled pork with slaw to Turkey Croissants w..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[21/388] Bold Kitchen at Bold Rock
+  Type: Restaurants | Slug: bold-kitchen-at-bold-rock
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  - No additional content found online
+  - Description unchanged
+  - No accordions (no valuable non-redundant info found)
+
+[22/388] Chen's Restaurant
+  Type: Restaurants | Slug: chens-restaurant
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[23/388] Chirio's Pizza
+  Type: Restaurants | Slug: chirios-pizza
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (368 chars)
+    "Chirio's Pizza is Nelson County's longest-running pizzeria, serving New York-style pies, subs, salads, and ice cream with eat-in, takeout, and deliver..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[24/388] Coquito Kitchen
+  Type: Restaurants | Slug: coquito-kitchen
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[25/388] Devils Backbone Brewing
+  Type: Restaurants | Slug: devils-backbone-brewing
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Devils Backbone Basecamp pairs a wood-fired kitchen with 16 taps of house beer, coffee bar mornings, and meadow seating for concerts and events. Devil..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 25/388 listings processed...
+
+
+[26/388] El Mariachi Mexican Food
+  Type: Restaurants | Slug: el-mariachi-mexican-food
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[27/388] Fire & Frost Wood Fired Bakehouse
+  Type: Restaurants | Slug: fire-frost-wood-fired-bakehouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (345 chars)
+    "Fire & Frost Wood Fired Bakehouse at Wintergreen slings blistered Neapolitan-style pizzas, antipasti, and cocktails from a cozy alpine dining room, gi..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[28/388] Iron and Ale
+  Type: Restaurants | Slug: iron-and-ale
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[29/388] McDonald's
+  Type: Restaurants | Slug: mcdonalds
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (255 chars)
+    "Daily (midnight on weekends) with drive-thru staples, Mc Café drinks, and late-night snacks steps from hotels and gas stations. Daily (midnight on wee..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[30/388] Montebello Country Store & Cafe
+  Type: Restaurants | Slug: montebello-country-store-cafe
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (164 chars)
+    "Montebello Country Store & Cafe is a fifth-generation general store near Crabtree Falls with groceries, camping supplies, and a cafe serving chili and..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[31/388] Paulie's Pig Out
+  Type: Restaurants | Slug: paulies-pig-out
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (387 chars)
+    "Paulie's Pig Out smokes pork and chicken for over-stuffed sandwiches, plus homestyle sides and desserts, making it an easy Nelson 151 detour when you ..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[32/388] Smokin' Barrel Restaurant
+  Type: Restaurants | Slug: smokin-barrel-restaurant
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Smokin' Barrel Restaurant operates inside Blue Mountain Barrel House with pub fare, BBQ plates, burgers, soups, and desserts for taproom guests. Smoki..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[33/388] The Copper Mine Bistro
+  Type: Restaurants | Slug: the-copper-mine-bistro
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[34/388] The Edge
+  Type: Restaurants | Slug: the-edge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (139 chars)
+    "The Edge is Wintergreen's casual slope-side restaurant with mountain views, hearty comfort food, and a lively bar with seasonal live music...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[35/388] The Farmhouse at Veritas
+  Type: Restaurants | Slug: the-farmhouse-at-veritas
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (383 chars)
+    "The Farmhouse at Veritas is part luxury inn, part wine country dining room, delivering four-course, wine-paired Farmhouse Dinners Wednesday through Su..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[36/388] Vito's Pizza & Italian Grill
+  Type: Restaurants | Slug: vitos-pizza-italian-grill
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[37/388] Black Bear Creamery
+  Type: Restaurants | Slug: black-bear-creamery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (105 chars)
+    "Black Bear Creamery scoops homemade ice cream, shakes, and sundaes for locals and visitors in Nellysford...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[38/388] Soaring
+  Type: Activities | Slug: soaring
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (375 chars)
+    "Shenandoah Valley Soaring operates from a gliderport in Nellysford, inviting visitors to watch—or join—weekend flights over the Blue Ridge with a 50-m..."
+  ✓ Accordion 1: What to Expect (436 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[39/388] Skiing & Snowboarding
+  Type: Activities | Slug: skiing-snowboarding
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (129 chars)
+    "Twice named “Best Ski Resort” by the readers of Washington Post. Twice named “Best Ski Resort” by the readers of Washington Post...."
+  ✓ Accordion 1: Menu & Offerings (417 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[40/388] Tennis
+  Type: Activities | Slug: tennis
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 3 sections from website
+  ✓ Description rewritten (134 chars)
+    "Wintergreen Tennis programs spanning 19 outdoor clay and three indoor Deco Turf courts with year-round clinics for families and teams...."
+  ✓ Accordion 1: Nelson County High School (169 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[41/388] Blue Mountain Barrel House
+  Type: Breweries & Cideries | Slug: blue-mountain-barrel-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (325 chars)
+    "Production-focused Blue Mountain facility with one of the East Coast's largest barrel-aging programs, a year-round tasting room, and sweeping Nelson C..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[42/388] Blue Toad Hard Cider
+  Type: Breweries & Cideries | Slug: blue-toad-hard-cider
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (263 chars)
+    "Farm-based cidery crafting approachable Blue Ridge blends with a taproom at the base of Wintergreen and patio views of the orchard. Farm-based cidery ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[43/388] Bold Rock Hard Cider
+  Type: Breweries & Cideries | Slug: bold-rock-hard-cider
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (128 chars)
+    "Nellysford's riverside cidery offering tours, tastings, and cider cocktails from Bold Rock's orchard-to-glass production campus...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[44/388] Brewing Tree Beer Company
+  Type: Breweries & Cideries | Slug: brewing-tree-beer-company
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (223 chars)
+    "Husband-and-wife brewery with a scratch kitchen, creekside beer garden, and rotating small-batch Virginia ales. Husband-and-wife brewery with a scratc..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[45/388] Bryant's Cider & Brewery
+  Type: Breweries & Cideries | Slug: bryants-cider-brewery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (281 chars)
+    "Bryant's pours heritage apple ciders and farm-brewed beers with a focus on natural ingredients, outdoor lawn games, and seasonal gatherings. Bryant's ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[46/388] Devils Backbone Brewing Company
+  Type: Breweries & Cideries | Slug: devils-backbone-brewing-company
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (148 chars)
+    "Mountain basecamp brewery pouring award-winning lagers, cocktails, and distillery releases with expansive meadows and adventure-forward programming...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[47/388] Outback Brew House
+  Type: Breweries & Cideries | Slug: outback-brew-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[48/388] Three Notch'd Brewery, Distillery & Craft Kitchen
+  Type: Breweries & Cideries | Slug: three-notchd-brewery-distillery-craft-kitchen-nelson-county
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[49/388] Wild Man Dan Brewery
+  Type: Breweries & Cideries | Slug: wild-man-dan-brewery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (344 chars)
+    "Barn brewery pouring award-winning micro batches and offering homebrew workshops with Dan and his mountain porch hospitality. Wild Man Dan Brewery is ..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[50/388] Wood Ridge Farm Brewery
+  Type: Breweries & Cideries | Slug: wood-ridge-farm-brewery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 50/388 listings processed...
+
+
+[51/388] Devils Backbone Distilling Co.
+  Type: Distilleries | Slug: devils-backbone-distilling-co
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (173 chars)
+    "On-site craft distillery at Devils Backbone Basecamp serving small-batch gin, rum, and brandy cocktails in a lounge and covered patio setting. Devils ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[52/388] Silverback Distillery
+  Type: Distilleries | Slug: silverback-distillery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (413 chars)
+    "Silverback Distillery is a mother-daughter team crafting award-winning spirits with local grains and mountain water, pouring cocktail flights and barr..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[53/388] Virginia Distillery Co.
+  Type: Distilleries | Slug: virginia-distillery-co
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (64 chars)
+    "Virginia Distillery Co. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[54/388] Montebello Fish Hatchery
+  Type: Activities | Slug: montebello-fish-hatchery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (231 chars)
+    "In addition to trout, there is a nature trail and pollinator plots located on the property. State trout hatchery near Crabtree Falls offering educatio..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[55/388] One Forest
+  Type: Activities | Slug: one-forest
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  - No additional content found online
+  - Description unchanged
+  - No accordions (no valuable non-redundant info found)
+
+[56/388] Oak Ridge Estate
+  Type: Activities | Slug: oak-ridge-estate
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (377 chars)
+    "The mansion on this 5,000-acre plantation estate was first built in 1802 and acquired at the turn of the 20th century by Thomas Fortune Ryan, a Nelson..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[57/388] Swannanoa
+  Type: Activities | Slug: swannanoa
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (281 chars)
+    "Swannanoa, the 1911 marble villa atop Afton Mountain, opens select weekends for public tours showcasing Italianate architecture and gardens. Swannanoa..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[58/388] Blue Ridge Fruit Loop
+  Type: Activities | Slug: blue-ridge-fruit-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (269 chars)
+    "Blue Ridge Fruit Loop passport covering 11 orchards and farms across Nelson and Amherst counties for pick-your-own fruit May–December. Blue Ridge Frui..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[59/388] Glass Hollow Studio & Gallery
+  Type: Art & Artisans | Slug: glasshollow
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 3 sections from website
+  ✓ Description rewritten (323 chars)
+    "Glass Hollow Studio & Gallery in the Rockfish Valley offers glassblowing demonstrations, handcrafted glass art, and 'Make Your Own Glass Pumpkin' work..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Events & Activities (505 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[60/388] Blue Ridge Parkway Loops
+  Type: Biking | Slug: blue-ridge-parkway-loops
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 3 sections from website
+  ✓ Description rewritten (164 chars)
+    "Scenic 22- or 40-mile Blue Ridge Parkway cycling loop starting near Love, Virginia, with sweeping Shenandoah Valley overlooks, Parkway climbs, and Rou..."
+  ✓ Accordion 1: Additional Information (167 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[61/388] Oak Ridge Loop
+  Type: Biking | Slug: oak-ridge-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[62/388] Woodson's Mill Loop
+  Type: Biking | Slug: woodsons-mill-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[63/388] Walton's Mountain Museum Loop
+  Type: Biking | Slug: waltons-mountain-museum-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (135 chars)
+    "31-mile Schuyler countryside loop from Walton's Mountain Museum past the James River and Esmont farms with plenty of quiet ridge lines...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[64/388] Virginia Blue Ridge Railway Trail
+  Type: Biking | Slug: virginia-blue-ridge-railway-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (259 chars)
+    "7-mile crushed-stone rail trail along the Piney and Tye rivers with dual trailheads, equestrian access, and seasonal wildflowers. 7-mile crushed-stone..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[65/388] Nelson Scenic Loop
+  Type: Biking | Slug: nelson-scenic-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[66/388] Tye River
+  Type: Canoeing | Slug: tye-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 5 sections from website
+  ✓ Description rewritten (131 chars)
+    "34-mile Blue Ridge stream offering Class I–II+ whitewater, mountain views, and seasonal paddling windows for experienced canoeists...."
+  ✓ Accordion 1: Additional Information (198 chars)
+  ✓ Accordion 2: Additional Information (363 chars)
+  ✓ Accordion 3: Additional Information (293 chars)
+  ✓ Accordion 4: Additional Information (330 chars)
+
+[67/388] James River
+  Type: Canoeing | Slug: james-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 3 sections from website
+  ✓ Description rewritten (361 chars)
+    "The James River forms Nelson County's southeastern border, offering endless canoe and kayak launches, johnboat access, and fishing for smallmouth, lar..."
+  ✓ Accordion 1: Accessibility & Facilities (258 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[68/388] Rockfish River
+  Type: Canoeing | Slug: rockfish-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (360 chars)
+    "Rockfish River paddling routes tracing the confluence of its forks with gentle Class I–II water, winter flows, and Route 6 takeouts. The Rockfish Rive..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[69/388] Lake Nelson
+  Type: Canoeing | Slug: lake-nelson
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[70/388] Dickie Brothers Orchard
+  Type: Farms & Orchards | Slug: dickie-brothers-orchard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (378 chars)
+    "Dickie Brothers Orchard—one of Virginia's Century Farms—offers pick-your-own berries and apples, fresh-pressed cider, pumpkins, and farm goods, with v..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[71/388] Drumheller's Orchard
+  Type: Farms & Orchards | Slug: drumhellers-orchard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (313 chars)
+    "Family orchard and bakery showcasing classic Virginia apple varieties, house cider, and fall festivals with hayrides, baked goods, and pet-friendly gr..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[72/388] Saunders Brothers Farm Market
+  Type: Farms & Orchards | Slug: saunders-brothers-farm-market
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (337 chars)
+    "Saunders Brothers' farm market pairs homegrown peaches, apples, and nursery stock with a country shop featuring meats, baked goods, peach ice cream, a..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[73/388] Big Arms Farm
+  Type: Farms & Orchards | Slug: big-arms-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (382 chars)
+    "Educating consumers, turning them on to new foods and giving them the opportunity to connect and contribute not only to our local economy, but to glob..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[74/388] Caldwell Farms
+  Type: Farms & Orchards | Slug: caldwell-farms
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (227 chars)
+    "Appointment-only U-pick flower farm in Stagebridge offering curated seasonal blooms with private design sessions. Appointment-only U-pick flower farm ..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[75/388] Davis Creek Farm
+  Type: Farms & Orchards | Slug: davis-creek-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (255 chars)
+    "Holistic Davis Creek Farm raises heritage livestock on 60 mountain acres with farm stays, workshops, and by-appointment experiences. Davis Creek Farm ..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 75/388 listings processed...
+
+
+[76/388] Deer Creek Farm
+  Type: Farms & Orchards | Slug: deer-creek-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[77/388] Edible Landscaping
+  Type: Farms & Orchards | Slug: edible-landscaping
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (318 chars)
+    "Located high in the foothills of the Blue Ridge Mountains, you'll find plants and trees that produce edible food – berries, nuts, fruits, herbs; items..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[78/388] Fitzgerald Farms
+  Type: Farms & Orchards | Slug: fitzgerald-farms
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (209 chars)
+    "Fitzgerald Farms roadside stand offering summer sweet corn, fall pumpkin picking, and wholesale produce from the Rockfish Valley. Pick-Your-Own Pumpki..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[79/388] Fitzgerald's Orchard
+  Type: Farms & Orchards | Slug: fitzgeralds-orchard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (249 chars)
+    "Family orchard near Tyro selling bushels of classic Virginia apples including Fuji, Rome, and Pink Lady each harvest season. Family orchard near Tyro ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[80/388] Hungry Hill Farm
+  Type: Farms & Orchards | Slug: hungry-hill-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (169 chars)
+    "Our farm is open year around for visitors and groups. Honey-centric Hungry Hill Farm offering raw honey, bee supplies, mushroom workshops, and farm to..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[81/388] Lost Point Farm
+  Type: Farms & Orchards | Slug: lost-point-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (130 chars)
+    "Small herb and produce farm perched over the Tye River supplying chemical-free harvests to the Arrington community by appointment...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[82/388] Pharsalia
+  Type: Farms & Orchards | Slug: pharsalia
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (331 chars)
+    "Historic 1814 Pharsalia estate hosting weddings, group tours, and floral workshops amid working orchards at the foot of de Priest Mountain. Built in 1..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[83/388] Robinia Institute
+  Type: Farms & Orchards | Slug: robinia-institute
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 2 sections from website
+  ✓ Description rewritten (148 chars)
+    "Robinia Institute at Timshel Wildland offers regenerative agriculture education, grazing intensives, and consulting on a 400-acre conservation site...."
+  ✓ Accordion 1: FROM THE SOUL TO THE SOIL (298 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[84/388] Rose Isle Farm
+  Type: Farms & Orchards | Slug: rose-isle-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (329 chars)
+    "Rose Isle Farm partners with Blue Mountain Barrel House to raise 'beer-fed' beef on pasture, offering direct sales by appointment. The cattle at Rose ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[85/388] Seamans' Orchard
+  Type: Farms & Orchards | Slug: seamans-orchard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (194 chars)
+    "Nestled at the foot of the Blue Ridge Mountains, Seamans' Orchard is a fourth generation farm. The farm grows the finest apples, blueberries, cherries..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[86/388] Silver Creek and Seamans' Orchards
+  Type: Farms & Orchards | Slug: silver-creek-and-seamans-orchards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (272 chars)
+    "The packing shed offers Empire, Gala, Jonathan, Red and Golden Delicious, York, Winesap, Red Rome, Stayman, Pippin, Jonagold and Pink Lady apples. Sil..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[87/388] Silver Creek Orchards
+  Type: Farms & Orchards | Slug: silver-creek-orchards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (290 chars)
+    "Silver Creek Orchards is a seventh generation family owned farm that offers over 20 varieties of apples, as well as wine grapes and beef cattle. Seven..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[88/388] Silver Fox Lavender Farm
+  Type: Farms & Orchards | Slug: silver-fox-lavender-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (225 chars)
+    "Our annual Lavender Festival will be held in June when our lavender field is in full bloom! Silver Fox Lavender Farm hosts June lavender festival week..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[89/388] The Apple Shed
+  Type: Farms & Orchards | Slug: the-apple-shed
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (75 chars)
+    "Get fresh, local apples and pumpkins. Get fresh, local apples and pumpkins...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[90/388] Tinkerland Farm
+  Type: Farms & Orchards | Slug: tinkerland-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (109 chars)
+    "Tinkerland Farm is a family farm located across the road from Bryant Ln on Rt 151 in Nelson County, Virginia...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[91/388] Turnip the Beets Farm
+  Type: Farms & Orchards | Slug: turnip-the-beets-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (208 chars)
+    "Our small farm business is owned and operated by Shane and Beverly Spanninger. Turnip the Beets Farm grows chemical-free flowers and produce, offering..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[92/388] Virginia Chestnuts
+  Type: Farms & Orchards | Slug: virginia-chestnuts
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (139 chars)
+    "We're providers of quality, Virginia-grown chestnuts, located in beautiful Nelson County. Our orchard is maturing and so is our production...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[93/388] Mars Knob Farm
+  Type: Farms & Orchards | Slug: marsknob
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (120 chars)
+    "Mars Knob Farm produces small-batch, chemical-free pantry goods and apothecary items from a historic Roseland homestead...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[94/388] Eventide Farm
+  Type: Farms & Orchards | Slug: eventidefarm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (253 chars)
+    "Eventide Farm operates a farm stand in Afton offering seasonal flowers, produce, baked goods, eggs, herbs, soaps, and candles. Eventide Farm operates ..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[95/388] Deep Sea Pete's Creekside Farm
+  Type: Farms & Orchards | Slug: deep-sea-petes-creekside-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (268 chars)
+    "Schedule a farm visit with Deep Sea Pete to see how log inoculation, shade houses, and raised beds turn oak bolts into fresh culinary mushrooms. Order..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[96/388] Gathered Threads
+  Type: Farms & Orchards | Slug: gathered
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (264 chars)
+    "Gathered Threads is a six-acre family farm growing sustainably raised flowers and botanicals without pesticides, supplying markets and workshops in Ne..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[97/388] Galleywinter Farm
+  Type: Farms & Orchards | Slug: galleywinter
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (346 chars)
+    "Nutrition, fitness, stress management, communication and relationship-building, body-wise approaches to alignment, sovereignty and empowerment; horse-..."
+  ✓ Accordion 1: About (282 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[98/388] Queen Oaks Farm
+  Type: Farms & Orchards | Slug: queenoaksfarm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (72 chars)
+    "Thanks for visiting us here at L&B Farms. S during the Great Depression...."
+  ✓ Accordion 1: About (400 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[99/388] Three Trees Farm
+  Type: Farms & Orchards | Slug: threetreesfarm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (221 chars)
+    "Our story is deeply rooted in our love for nature and sustainable farming practices. The county is conveniently located between Lynchburg and Charlott..."
+  ✓ Accordion 1: Menu & Offerings (492 chars)
+  ✓ Accordion 2: About (478 chars)
+  ✓ Accordion 3: Events & Activities (123 chars)
+  ✓ Accordion 4: Stay in the Loop (338 chars)
+
+[100/388] Fishing the Tye River
+  Type: Fishing | Slug: fishing-the-tye-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (364 chars)
+    "Tye River fishery stocked with trout and home to smallmouth bass, offering roadside access along Route 56 and scenic Blue Ridge runs. Fishing the Tye ..."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Additional Information (495 chars)
+  ✓ Accordion 3: Accessibility & Facilities (313 chars)
+  ✓ Accordion 4: What to Expect (194 chars)
+
+  ⏳ Progress: 100/388 listings processed...
+
+
+[101/388] Fishing the James River
+  Type: Fishing | Slug: fishing-the-james-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 4 sections from website
+  ✓ Description rewritten (263 chars)
+    "Fishing the James River means chasing smallmouth bass, flathead and channel catfish, and panfish from Botetourt County through Nelson's border, with b..."
+  ✓ Accordion 1: Additional Information (495 chars)
+  ✓ Accordion 2: Accessibility & Facilities (313 chars)
+  ✓ Accordion 3: What to Expect (194 chars)
+  ✓ Accordion 4: James River (Upper and Middle) (1253 chars)
+
+[102/388] Fishing the Little Piney River
+  Type: Fishing | Slug: fishing-the-little-piney-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (97 chars)
+    "Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt...."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Additional Information (495 chars)
+  ✓ Accordion 3: Accessibility & Facilities (313 chars)
+  ✓ Accordion 4: What to Expect (194 chars)
+
+[103/388] Fishing the South Rockfish River
+  Type: Fishing | Slug: fishing-the-south-rockfish-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (125 chars)
+    "South Fork Rockfish River stocked trout waters with Route 6 put-in, Rt. 29 take-out, and fall-through-spring fishing windows...."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Additional Information (495 chars)
+  ✓ Accordion 3: Accessibility & Facilities (313 chars)
+  ✓ Accordion 4: What to Expect (194 chars)
+
+[104/388] Fishing at Montebello
+  Type: Fishing | Slug: fishing-at-montebello
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (97 chars)
+    "Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt...."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Accessibility & Facilities (313 chars)
+  ✓ Accordion 3: What to Expect (194 chars)
+  ✓ Accordion 4: Stay in the Loop (338 chars)
+
+[105/388] Fishing at Lake Monocan Park
+  Type: Fishing | Slug: fishing-at-lake-monacan-park
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (174 chars)
+    "20-acre Lake Monocan at Wintergreen with seasonal public access, rentals, beach amenities, and stocked fishing opportunities. Midway Concrete Ramp (In..."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Additional Information (495 chars)
+  ✓ Accordion 3: Accessibility & Facilities (313 chars)
+  ✓ Accordion 4: What to Expect (194 chars)
+
+[106/388] Fishing at Lake Nelson
+  Type: Fishing | Slug: fishing-at-lake-nelson
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (341 chars)
+    "State-managed 40-acre lake offering largemouth, catfish, and crappie with 24-hour shoreline access and electric-only boating. Lake Nelson's fishing ac..."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Accessibility & Facilities (313 chars)
+  ✓ Accordion 3: What to Expect (194 chars)
+  ✓ Accordion 4: Stay in the Loop (338 chars)
+
+[107/388] Wintergreen Resort Fishing
+  Type: Fishing | Slug: wintergreen-resort-fishing
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (97 chars)
+    "Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt...."
+  ✓ Accordion 1: Accessibility & Facilities (428 chars)
+  ✓ Accordion 2: Additional Information (495 chars)
+  ✓ Accordion 3: Accessibility & Facilities (313 chars)
+  ✓ Accordion 4: What to Expect (194 chars)
+
+[108/388] Devils Knob Golf Course
+  Type: Golf | Slug: devils-knob-golf-course
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (130 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[109/388] Stoney Creek Golf Course
+  Type: Golf | Slug: stoney-creek-golf-course
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (130 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[110/388] Indian Summer Guide Service
+  Type: Horseback Riding | Slug: indian-summer-guide-service
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (285 chars)
+    "Indian Summer Guide Service leads private vineyard horseback rides with post-ride tastings at Veritas and other Charlottesville-area wineries. Indian ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[111/388] Allen Creek Nature Preserve
+  Type: Hikes & Trails | Slug: allen-creek-nature-preserve
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (394 chars)
+    "Allen Creek Nature Preserve is a 0.7-mile, family-friendly Wintergreen loop through a rare high-elevation wetland, complete with interpretive guides d..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[112/388] Appalachian Trail from Rt 56 to Harpers Creek
+  Type: Hikes & Trails | Slug: appalachian-trail-from-rt-56-to-harpers-creek
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (327 chars)
+    "2.6-mile Appalachian Trail segment from VA Route 56 over the Tye River swinging bridge to Harpers Creek Shelter with laurel, rhododendron, and creeksi..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[113/388] Blackrock Trail
+  Type: Hikes & Trails | Slug: blackrock-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[114/388] Blue Ridge Tunnel
+  Type: Hikes & Trails | Slug: blue-ridge-tunnel
+--------------------------------------------------------------------------------
+  ✓ Found 2 sections from both CSV
+  Researching on nelsoncounty.com...
+  ✓ Found 14 sections from website
+  ✓ Description rewritten (371 chars)
+    "Walk the restored 1850s Blue Ridge Railroad tunnel on a 2.25-mile crushed-gravel path with dramatic stone portals linking Afton and the Rockfish Valle..."
+  ✓ Accordion 1: History & Background (450 chars)
+  ✓ Accordion 2: Rules & Guidelines (483 chars)
+  ✓ Accordion 3: What to Bring (460 chars)
+  ✓ Accordion 4: Frequently Asked Questions (499 chars)
+
+[115/388] Brimstone Trail
+  Type: Hikes & Trails | Slug: brimstone-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (250 chars)
+    "Steep 0.8-mile red-blazed climb skirting rocky cliffs with sweeping Three Ridges views, laurel thickets, and fern-covered 'rock gardens.' Brimstone Tr..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[116/388] Cedar Ciffs North Trail
+  Type: Hikes & Trails | Slug: cedar-ciffs-north-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Cool, damp 0.7-mile north-facing spur paralleling Cedar Cliffs with mossy boulders, ferny slopes, and connections to the primary overlook trail. Cool,..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[117/388] Afton Mountain Vineyards
+  Type: Vineyards & Wineries | Slug: afton-mountain-vineyards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (346 chars)
+    "One of Virginia's pioneer farm wineries with vines dating to 1978, crafting estate-grown vinifera on the sunrise side of Afton Mountain. Afton Mountai..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[118/388] Brent Manor Vineyards
+  Type: Vineyards & Wineries | Slug: brent-manor-vineyards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Boutique hillside winery south of Charlottesville blending Virginia-grown wines with rotating Portuguese selections in an intimate tasting room. Bouti..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[119/388] Caihailian Vineyard
+  Type: Vineyards & Wineries | Slug: caihailian-vineyard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (223 chars)
+    "Family-run micro-vineyard along the road to Wintergreen producing Monticello AVA wines from 2.5 hillside acres. Family-run micro-vineyard along the ro..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[120/388] Cardinal Point Winery
+  Type: Vineyards & Wineries | Slug: cardinal-point-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (200 chars)
+    "Welcoming tasting room offers tours, Blue Ridge views, and seasonal events alongside expressive wines. Family-owned winery in the foothills of Afton M..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[121/388] Flying Fox Vineyards
+  Type: Vineyards & Wineries | Slug: flying-fox-vineyards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (231 chars)
+    "Small-lot producer known for inventive wines and the Sly Fox vermouth line, letting each varietal speak for itself. Small-lot producer known for inven..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[122/388] Hill Top Winery & Meadery
+  Type: Vineyards & Wineries | Slug: hill-top-winery-meadery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (389 chars)
+    "Hill Top Winery & Meadery has specialized in non-grape wines since 1998, crafting fruit-forward bottles and traditional honey meads that echo ancient ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[123/388] Lovingston Winery
+  Type: Vineyards & Wineries | Slug: lovingston-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (213 chars)
+    "Gravity-flow, small-batch estate winery on Josie's Knoll focusing on Bordeaux and South African varietals. Gravity-flow, small-batch estate winery on ..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[124/388] Mountain and Vine Winery
+  Type: Vineyards & Wineries | Slug: mountain-and-vine-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (224 chars)
+    "Mountain and Vine Vineyards & Winery is located in the Monticello AVA wine region. The location is exquisite, hugged between the hills, but with the e..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[125/388] Mountain Cove Vineyards & Winery
+  Type: Vineyards & Wineries | Slug: mountain-cove-vineyards-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  - No additional content found online
+  ✓ Description rewritten (189 chars)
+    "Rustic tasting areas and picnic grounds invite relaxed afternoons in the Blue Ridge foothills. Rustic tasting areas and picnic grounds invite relaxed ..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+
+  ⏳ Progress: 125/388 listings processed...
+
+
+[126/388] Valley Road Vineyards
+  Type: Vineyards & Wineries | Slug: valley-road-vineyards
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (326 chars)
+    "Route 151 gateway winery founded by friends in 2015, featuring lawn seating, an events pavilion, and Rockfish Valley views. Founded in 2015, Valley Ro..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[127/388] Veritas Vineyards & Winery
+  Type: Vineyards & Wineries | Slug: veritas-vineyards-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (439 chars)
+    "Our philosophy is to make wine with the classic, old-world principles of viticulture and vinification, at the same time using state of the art technol..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[128/388] Chestnut Springs Trail
+  Type: Hikes & Trails | Slug: chestnut-springs-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (277 chars)
+    "1.1-mile yellow-red loop leaving Shamokin Gorge to traverse oak-hickory ridges, spring wildflowers, and stream crossings near Wintergreen. 1.1-mile ye..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[129/388] Crabtree Falls
+  Type: Hikes & Trails | Slug: crabtree-falls
+--------------------------------------------------------------------------------
+  ✓ Found 1 sections from both CSV
+  Researching on nelsoncounty.com...
+  ✓ Found 5 sections from website
+  ✓ Description rewritten (402 chars)
+    "Crabtree Falls features five major cascades dropping 1,200 feet—the highest vertical-drop waterfall east of the Mississippi—with paved lower overlook ..."
+  ✓ Accordion 1: Additional Information (116 chars)
+  ✓ Accordion 2: What to Expect (486 chars)
+  ✓ Accordion 3: Events & Activities (170 chars)
+  ✓ Accordion 4: Menu & Offerings (500 chars)
+
+[130/388] Devils Knob Trail
+  Type: Hikes & Trails | Slug: devils-knob-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (277 chars)
+    "0.6-mile stroll from the Blue Ridge Overlook across catoctin greenstone ledges with rock 'gardens,' birding, and views toward Pond Hollow. 0.6-mile st..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[131/388] Fortune's Cove Nature Preserve
+  Type: Hikes & Trails | Slug: fortunes-cove-nature-preserve
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (361 chars)
+    "Fortune's Cove Nature Preserve challenges hikers with a 5.3-mile loop that gains 1,500 feet before rewarding them with rocky glade vistas, rare plant ..."
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: What to Expect (459 chars)
+  ✓ Accordion 3: Additional Information (458 chars)
+  ✓ Accordion 4: Information (451 chars)
+
+[132/388] Fortune's Ridge Trail
+  Type: Hikes & Trails | Slug: fortunes-ridge-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (295 chars)
+    "1.1-mile red-blazed path following Fortunes Ridge stream with cascades, laurel blooms, and access points from Fortunes Ridge and Wintergreen Drive. 1...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[133/388] Hemlock Springs Loop
+  Type: Hikes & Trails | Slug: hemlock-springs-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (341 chars)
+    "Hemlock Springs Loop is a 0.8-mile route known for pink and yellow lady's slippers and an old-growth hemlock stand impacted by woolly adelgid—offering..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[134/388] Highlands Leisure Trail
+  Type: Hikes & Trails | Slug: highlands-leisure-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (358 chars)
+    "Highlands Leisure Trail connects Wintergreen's Blackrock Village to the Wintergarden via a 0.5-mile yellow-blazed path that dips through older-growth ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[135/388] Humpback Rocks
+  Type: Hikes & Trails | Slug: humpback-rocks
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (316 chars)
+    "Humpback Rocks rewards a short but steep 2-mile loop climb with 360-degree Blue Ridge panoramas; start from the visitor center near Parkway milepost 5..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[136/388] James River State Park
+  Type: Hikes & Trails | Slug: james-river-state-park
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (287 chars)
+    "State park along the James River with 15+ miles of multiuse trails, riverfront overlooks, boat launches, cabins, and full-service canoe livery. State ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[137/388] Kids in Parks: Virginia Blue Ridge Railway Trail
+  Type: Hikes & Trails | Slug: kids-in-parks-virginia-blue-ridge-railway-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (143 chars)
+    "Family-friendly TRACK Trail at Piney River Depot with self-guided nature activities, flat rail-trail mileage, and prizes through Kids in Parks...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[138/388] HeartRock Retreat & Homestead
+  Type: Whole House Rentals | Slug: heartrockretreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (168 chars)
+    "Located in Nelson County, Virginia, our fifteen acre homestead offers both rustic charm and modern comfort. Click on the badges below to explore optio..."
+  ✓ Accordion 1: What to Expect (102 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[139/388] Laurel Ridge Loop
+  Type: Hikes & Trails | Slug: laurel-ridge-loop
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (263 chars)
+    "1.6-mile yellow loop sampling mountain laurel, birch, and oak-hickory forest with rocky footing and parking at Wintergreen's Lot F. 1.6-mile yellow lo..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[140/388] Inglewood Fine Meats
+  Type: Restaurants | Slug: inglewood-fine-meats
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (190 chars)
+    "We take pride in the fact that our Beef and Lamb is not only Verified All Natural, but our animals live a quality life in the foothills of the blue ri..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[141/388] Lower Shamokin Falls Trail
+  Type: Hikes & Trails | Slug: lower-shamokin-falls-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (283 chars)
+    "1.7-mile blue-blazed trek ending at Lower Shamokin Falls, weaving through dense forest after a jeep-road approach from Old Stoney Creek Road. 1.7-mile..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[142/388] Mau-Har Trail
+  Type: Hikes & Trails | Slug: mau-har-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Three-mile Mau-Har connector through the Three Ridges Wilderness linking with the Appalachian Trail past cascades, rock scrambles, and shelters. Three..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[143/388] Montebello Nature Trail
+  Type: Hikes & Trails | Slug: montebello-nature-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[144/388] Nelson County Wilderness Area
+  Type: Hikes & Trails | Slug: nelson-county-wilderness-area
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (297 chars)
+    "Protected wilderness spanning The Priest and Three Ridges with rugged Appalachian Trail miles, dramatic elevation changes, and backcountry solitude. P..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[145/388] North Fork of the Piney River
+  Type: Hikes & Trails | Slug: north-fork-of-the-piney-river
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (249 chars)
+    "Follow Route 666 past Dickie Brothers Orchard and into George Washington National Forest for shady picnics beside the river. Follow Route 666 past Dic..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[146/388] Old Appalachian Trail
+  Type: Hikes & Trails | Slug: old-appalachian-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (250 chars)
+    "Moderate-to-difficult grades reward hikers with Shenandoah Valley vistas and quiet, historic tread. 3.3-mile former Appalachian Trail alignment with g..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[147/388] Paul's Creek Trail
+  Type: Hikes & Trails | Slug: pauls-creek-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (268 chars)
+    "Paul's Creek Trail is a 0.6-mile blue-blazed family favorite that follows a lush valley to smooth rock chutes and a series of cascading waterfalls nea..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[148/388] Pedlars Edge Trail
+  Type: Hikes & Trails | Slug: pedlars-edge-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (279 chars)
+    "1.6-mile difficult red trail paralleling Blackrock with pedlar formation geology, open powerline birding, and wildflower-rich edge habitat. 1.6-mile d..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[149/388] Pond Hollow Trail
+  Type: Hikes & Trails | Slug: pond-hollow-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (279 chars)
+    "One-mile red-blazed route along a geologic fault line with displaced boulders, varied plant communities, and bobcat-friendly habitat. Pond Hollow Trai..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[150/388] Ravens Roost Park
+  Type: Hikes & Trails | Slug: ravens-roost-park
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (292 chars)
+    "0.5-mile yellow loop through mixed forest with wildflower displays, solitude, and access from White Oak Drive or Wintergreen Drive. Ravens Roost Park ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 150/388 listings processed...
+
+
+[151/388] Shamokin Springs Nature Preserve
+  Type: Hikes & Trails | Slug: shamokin-springs-nature-preserve
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (267 chars)
+    "0.3-mile preserve loop protecting high-elevation wetlands with braided streams, northern plant species, and easy access for families. 0.3-mile preserv..."
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: What to Expect (459 chars)
+  ✓ Accordion 3: Additional Information (458 chars)
+  ✓ Accordion 4: Information (451 chars)
+
+[152/388] The Plunge
+  Type: Hikes & Trails | Slug: the-plunge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (297 chars)
+    "Short yellow access spur to Blackrock featuring steep pedlar gneiss formations, panoramic overlooks, and a signature family photo spot. The Plunge is ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[153/388] Trillium Field
+  Type: Hikes & Trails | Slug: trillium-field
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (310 chars)
+    "Trillium Field is a pocket-sized 0.1-mile stroll where thousands of white and pink trillium bloom in early May on the corner of Wintergreen Drive and ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[154/388] Upper Shamokin Falls Trail
+  Type: Hikes & Trails | Slug: upper-shamokin-falls-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (259 chars)
+    "Upper Shamokin Falls Trail is a gentle 0.4-mile walk that follows the sound of tumbling water to fern-draped cascades—perfect for all ages. Stay on th..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[155/388] Upper Shamokin Gorge Trail
+  Type: Hikes & Trails | Slug: upper-shamokin-gorge-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (269 chars)
+    "Challenging 0.8-mile red trail in the Upper Shamokin Gorge with stream crossings, lush understory, and links to the Appalachian Trail. Challenging 0.8..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[156/388] White Oak Trail
+  Type: Hikes & Trails | Slug: white-oak-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (280 chars)
+    "White Oak Trail serves up a half-mile of shady solitude, spring wildflowers, and birdwatching between White Oak Drive and Wintergreen Drive. 0.5-mile ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[157/388] White Rock Falls
+  Type: Hikes & Trails | Slug: white-rock-falls
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (332 chars)
+    "White Rock Falls is a 2.5-mile moderate hike along the Blue Ridge Parkway that showcases an impressive gorge, a wading-friendly waterfall, and northea..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[158/388] Three Ridges
+  Type: Hikes & Trails | Slug: three-ridges
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (284 chars)
+    "The 13.3-mile Three Ridges loop is one of Virginia's premier backpacking routes, delivering waterfalls, rocky knife-edge climbs, and big Appalachian v..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[159/388] Stoney Creek Park
+  Type: Hikes & Trails | Slug: stoney-creek-park
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (249 chars)
+    "Community linear park in Stoney Creek with creekside walking path, new picnic areas, benches, and easy terrain for families. Community linear park in ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[160/388] Spy Rock
+  Type: Hikes & Trails | Slug: spy-rock
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (282 chars)
+    "Spy Rock's soaring granite dome remains open via a 6.5-mile round-trip hike from Meadows Lane (SR 826) after the fish hatchery lot closure. Alternativ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[161/388] Spruce Creek Park
+  Type: Hikes & Trails | Slug: spruce-creek-park
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (241 chars)
+    "Spruce Creek Park anchors the Rockfish Valley Loop Trail system at Route 151, offering sunrise-to-sunset access to TRACK trails, a native plant garden..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[162/388] Rockfish Valley Loop Trails
+  Type: Hikes & Trails | Slug: rockfish-valley-loop-trails
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (319 chars)
+    "Flat four-mile network skirting the Rockfish River and Reid's Creek with birding hotspots, interpretive signage, and farm-country views. Rockfish Vall..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[163/388] Quarry Gardens at Schuyler
+  Type: Hikes & Trails | Slug: quarry-gardens-at-schuyler
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "Restored soapstone quarries transformed into 40-acre native plant gardens with two miles of trails, habitat galleries, and guided ecology tours. Resto..."
+  ✓ Accordion 1: Information (113 chars)
+  ✓ Accordion 2: Menu & Offerings (500 chars)
+  ✓ Accordion 3: About (400 chars)
+  ✓ Accordion 4: What to Expect (427 chars)
+
+[164/388] Kids in Parks: Rockfish River Trailhead
+  Type: Hikes & Trails | Slug: kids-in-parks-rockfish-river-trailhead
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (311 chars)
+    "Kids in Parks TRACK Trail loop along the Rockfish River featuring story walk signage, riparian habitats, and a flat one-mile family route. This is ano..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[165/388] Brew Ridge Trail
+  Type: Hikes & Trails | Slug: brew-ridge-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (181 chars)
+    "The Brew Ridge Trail is a self-guided tour featuring six of the nation's best craft breweries. With everything from lagers to stouts, there's somethin..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[166/388] Nelson 151
+  Type: Hikes & Trails | Slug: nelson-151
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (159 chars)
+    "This northern part of Nelson County is home to 5 wineries, 3 breweries, 1 cidery, cozy Bed & Breakfasts, friendly farmers, spectacular views, and so m..."
+  ✓ Accordion 1: Additional Information (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[167/388] Nelson 29
+  Type: Hikes & Trails | Slug: nelson-29
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (122 chars)
+    "29 connecting breweries, wineries, and distilleries between Arrington and Faber. Nelson 29 craft beverage route along U.S...."
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: What to Expect (459 chars)
+  ✓ Accordion 3: Additional Information (458 chars)
+  ✓ Accordion 4: Information (451 chars)
+
+[168/388] Nelson Scoops
+  Type: Restaurants | Slug: nelsonscoops
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (211 chars)
+    "As a family-founded establishment, we have a passion for creating delectable treats that bring joy to our local community. At Nelson Scoops, we offer ..."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[169/388] Virginia Spirits Trail
+  Type: Hikes & Trails | Slug: virginia-spirits-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (236 chars)
+    "Here in Virginia, we take great pride in putting our souls into every bottle of distilled spirits because we know that small batches take time, heart,..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[170/388] Crestvue Cottage
+  Type: Cabins & Cottages | Slug: crestvue-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (305 chars)
+    "Crestvue Cottage is a renovated 340 sq ft farm guest house with hiking trails, stargazing deck, and full kitchenette minutes from Route 29 wineries. W..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[171/388] Sentosa Cabin
+  Type: Cabins & Cottages | Slug: sentosa-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (308 chars)
+    "Sentosa Cabin is a one-bedroom woodland retreat with mountain views, Wi-Fi, full kitchen, and two miles of private trails to the Rockfish River. Two m..."
+  ✓ Accordion 1: What to Expect (143 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[172/388] Roudy's Retreat
+  Type: Whole House Rentals | Slug: roudys-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (229 chars)
+    "Inside, the open kitchen and multiple sleep spaces comfortably host up to ten guests for winery weekends or fishing-focused family reunions. Escape to..."
+  ✓ Accordion 1: What to Expect (494 chars)
+  ✓ Accordion 2: Menu & Offerings (434 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[173/388] Pachi's Ridge
+  Type: Cabins & Cottages | Slug: pachis-ridge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (319 chars)
+    "Pachi's Ridge is a modern three-bedroom cabin on 40 acres with Blue Ridge views, upgraded kitchen, and access to hiking trails and the Rockfish River...."
+  ✓ Accordion 1: What to Expect (408 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[174/388] Boogie Nights Manor
+  Type: Cabins & Cottages | Slug: boogie-nights-manor
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (81 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[175/388] The Big Tiny House
+  Type: Cabins & Cottages | Slug: the-big-tiny-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (279 chars)
+    "The Big Tiny House is a luxury Escape Traveler XL tiny home with full kitchen, soaking tub, loft, and Brew Ridge Trail access. The Big Tiny House marr..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 175/388 listings processed...
+
+
+[176/388] Rusty's Retreat
+  Type: Cabins & Cottages | Slug: rustys-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (280 chars)
+    "Rusty's Retreat is a Brew Ridge Trail micro-cabin with queen bed, kitchenette, private fire pit, and donation support for animal rescue. Rusty's Retre..."
+  ✓ Accordion 1: Menu & Offerings (440 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[177/388] Village Inn
+  Type: Motels & Inns | Slug: village-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (72 chars)
+    "Village Inn is a 23-room motel on U.S. Village Inn sits directly on U.S...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[178/388] Cozy Mountain Cottage
+  Type: Cabins & Cottages | Slug: cozy-mountain-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (318 chars)
+    "Cozy Mountain Cottage is a family-friendly rental near Route 151 with wraparound views, porch seating, and proximity to Wintergreen and breweries. Coz..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[179/388] Piedmont Grove Lodging
+  Type: Motels & Inns | Slug: piedmont-grove-lodging
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (299 chars)
+    "Piedmont Grove Lodging offers ten hotel-style suites near Route 151 with nightly stays, Dream Cloud mattresses, and professional cleanings. Exceptiona..."
+  ✓ Accordion 1: Menu & Offerings (415 chars)
+  ✓ Accordion 2: What to Expect (500 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[180/388] Beech Grove Farmhouse
+  Type: Cabins & Cottages | Slug: beech-grove-farmhouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (260 chars)
+    "Beech Grove Farmhouse is a historic three-bedroom home across from Devils Backbone with modern updates, fire pit, and mountain views. The Beech Grove ..."
+  ✓ Accordion 1: What to Expect (264 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[181/388] Straw Bale House
+  Type: Whole House Rentals | Slug: straw-bale-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (271 chars)
+    "Straw Bale House is an eco-friendly custom home on 70 acres near breweries with farm animals, fresh eggs, and private hiking. The hand-built Straw Bal..."
+  ✓ Accordion 1: What to Expect (192 chars)
+  ✓ Accordion 2: Menu & Offerings (81 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[182/388] Blue Ridge Bliss
+  Type: Whole House Rentals | Slug: blue-ridge-bliss
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (197 chars)
+    "Updated, well appointed and received consistent fiive star ratings. Use it as a launch pad for skiing, mountain biking, or Nelson 151 tasting tours be..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[183/388] Stays at Lovingston Winery
+  Type: Cabins & Cottages | Slug: stays-at-lovingston-winery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (249 chars)
+    "Vineyard sunsets, barrel room tours, and catered pairings turn a simple overnight into an immersive wine-country experience. Vineyard sunsets, barrel ..."
+  ✓ Accordion 1: Information (263 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[184/388] The Cottage at Pines End
+  Type: Cabins & Cottages | Slug: the-cottage-at-pines-end
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (325 chars)
+    "The Cottage at Pines End is a hot-tub-equipped cabin with wraparound deck, gas fireplace, and trails to the Tye River and Blue Ridge Railway Trail. Th..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[185/388] Woodson's Mill House
+  Type: Whole House Rentals | Slug: woodsons-mill-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (306 chars)
+    "Woodson's Mill House is a craftsman retreat beside historic Woodson's Mill with lake access, wooded acreage, and convenient access to Charlottesville ..."
+  ✓ Accordion 1: Menu & Offerings (468 chars)
+  ✓ Accordion 2: What to Expect (382 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[186/388] Harmony Hill Bed & Breakfast
+  Type: Bed and Breakfast | Slug: harmony-hill-bed-and-breakfast
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (327 chars)
+    "Harmony Hill Bed & Breakfast offers six themed guest rooms with private baths, fireplaces, and country breakfasts near Route 29 wineries. Harmony Hill..."
+  ✓ Accordion 1: What to Expect (104 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[187/388] Spyrock Lodge
+  Type: Cabins & Cottages | Slug: spyrock-lodge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (248 chars)
+    "Spyrock Lodge is a secluded two-bedroom cabin on 11 acres bordering the Appalachian Trail with Wi-Fi, heat/AC, and optional micro cabin. Fully furnish..."
+  ✓ Accordion 1: What to Expect (84 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[188/388] The Retreat at Crabtree Falls
+  Type: Cabins & Cottages | Slug: the-retreat-at-crabtree-falls
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (380 chars)
+    "Each accommodation provides bedrooms, full kitchens, and generous living rooms for families and groups, while onsite trails connect directly to Crabtr..."
+  ✓ Accordion 1: Additional Information (116 chars)
+  ✓ Accordion 2: What to Expect (486 chars)
+  ✓ Accordion 3: Events & Activities (170 chars)
+  ✓ Accordion 4: Menu & Offerings (500 chars)
+
+[189/388] Point of View
+  Type: Cabins & Cottages | Slug: point-of-view
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (160 chars)
+    "Point of View is a five-bedroom, 5.5-bath Wintergreen resort home with panoramic mountain views, dual entertaining levels, hot tub, game room, and che..."
+  ✓ Accordion 1: Additional Information (429 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[190/388] The Inn at Blue Mountain Brewery
+  Type: Cabins & Cottages | Slug: the-inn-at-blue-mountain-brewery
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (157 chars)
+    "The Inn at Blue Mountain Brewery is a 4,000 sq ft Cape Cod home beside the brewery with wraparound porch, hot tub, fire pit, and private path to the t..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[191/388] Gracewood
+  Type: Cabins & Cottages | Slug: gracewood
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (299 chars)
+    "Gracewood is a modernized cottage tucked off Route 151 with two miles of private trails, quiet setting, and easy access to wineries and breweries. Gra..."
+  ✓ Accordion 1: About (88 chars)
+  ✓ Accordion 2: What to Expect (112 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[192/388] The Chimneys
+  Type: Cabins & Cottages | Slug: the-chimneys
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (289 chars)
+    "The Chimneys is an 1800s hand-hewn log cabin for unplugged stays, ideal for guests seeking a rustic, off-grid Nelson County experience. Stays at The C..."
+  ✓ Accordion 1: What to Expect (129 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[193/388] The Carriage House at Stagebridge Farm
+  Type: Bed and Breakfast | Slug: the-carriage-house-at-stagebridge-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[194/388] Indigo House Bed & Breakfast
+  Type: Bed and Breakfast | Slug: indigo-house-bed-and-breakfast
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (399 chars)
+    "Indigo House treats guests to four artfully curated, dog-friendly rooms plus chef-prepped breakfasts before they set off for Skyline Drive, Shenandoah..."
+  ✓ Accordion 1: Information (439 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[195/388] Papa's Cottage
+  Type: Cabins & Cottages | Slug: papas-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (305 chars)
+    "Papa's Cottage is a mid-century two-bedroom bungalow with private hot tub, updated interiors, and valley views minutes from Route 151 wine country. Pa..."
+  ✓ Accordion 1: What to Expect (447 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[196/388] Meme's Cottage
+  Type: Cabins & Cottages | Slug: memes-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (309 chars)
+    "Meme's Cottage is an updated mid-century getaway for two couples, tucked into woods near Route 151 with modern finishes and quiet deck space. Meme's C..."
+  ✓ Accordion 1: What to Expect (82 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[197/388] Cheval Circle
+  Type: Cabins & Cottages | Slug: cheval-circle
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (233 chars)
+    "Cheval Circle is a rustic three-bedroom home on a meadow beside a horse farm, offering mountain views and easy drives to Afton attractions. The house ..."
+  ✓ Accordion 1: What to Expect (334 chars)
+  ✓ Accordion 2: Menu & Offerings (155 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[198/388] The Wine Cottage
+  Type: Cabins & Cottages | Slug: the-wine-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (311 chars)
+    "The Wine Cottage is a mid-century ranch with updated interiors, mountain views, and a private fire pit minutes from Nelson 151 tasting rooms. The Wine..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[199/388] Carter's Cottage
+  Type: Cabins & Cottages | Slug: carters-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (219 chars)
+    "Also just a short drive from many of Nelson County’s most popular destinations, including Devil’s Backbone, Bold Rock Cidery, and Wintergreen Visitors..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[200/388] Beech Grove Cottage
+  Type: Cabins & Cottages | Slug: beech-grove-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (313 chars)
+    "Beech Grove Cottage is a renovated 1920s bungalow across from Devils Backbone with fiber internet, huge yard, and fire pit for six guests. Beech Grove..."
+  ✓ Accordion 1: What to Expect (469 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 200/388 listings processed...
+
+
+[201/388] Montebello Resort
+  Type: Cabins & Cottages | Slug: montebello-resort
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (120 chars)
+    "Lake, trout pond, and unique country store all on site; close to historical sites and hiking; relax, unplug, and unwind...."
+  ✓ Accordion 1: What to Expect (120 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[202/388] Freshwater Field Cabin
+  Type: Cabins & Cottages | Slug: freshwater-field-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (143 chars)
+    "Freshwater Field Cabin sits on a private farm hollow near Lovingston with hiking trails, horse pastures, and easy drives to Nelson attractions...."
+  ✓ Accordion 1: What to Expect (344 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[203/388] Four Elements Farm
+  Type: Whole House Rentals | Slug: four-elements-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (331 chars)
+    "Four Elements Farm is a 116-acre retreat with farmhouse lodging, hot tub, pond, friendly goats, and proximity to Devils Backbone and Wintergreen. Four..."
+  ✓ Accordion 1: What to Expect (227 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[204/388] Time to Wine Down
+  Type: Whole House Rentals | Slug: time-to-wine-down
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (377 chars)
+    "Time to Wine Down is a five-bedroom Afton retreat on two acres with dual living rooms, basement game space, air hockey, expansive fire pit, and string..."
+  ✓ Accordion 1: Menu & Offerings (462 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[205/388] Love Afton Cabin
+  Type: Cabins & Cottages | Slug: love-afton-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (433 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[206/388] Meili Mountain
+  Type: Whole House Rentals | Slug: meili-mountain
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (121 chars)
+    "Meili Mountain offers rustic creekside camping on private land for quiet, leave-no-trace stays near Nelson County trails...."
+  - No accordions (no valuable non-redundant info found)
+
+[207/388] Adventure Awaits
+  Type: Whole House Rentals | Slug: adventure-awaits
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (315 chars)
+    "Adventure Awaits is a pet-friendly Wintergreen home two minutes from the slopes with hot tub, fire pit, multiple living areas, and five smart TVs. Adv..."
+  ✓ Accordion 1: About (362 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[208/388] Wintergreen Ridge Retreat
+  Type: Whole House Rentals | Slug: wintergreen-ridge-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (322 chars)
+    "Wintergreen Ridge Retreat is a four-bedroom mountain home sleeping ten with expansive decks, hot tub, and easy access to Wintergreen lifts and trails...."
+  ✓ Accordion 1: Menu & Offerings (353 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[209/388] Maren Estate
+  Type: Cabins & Cottages | Slug: maren-estate
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (305 chars)
+    "Maren Estate is a 7,200-square-foot luxury home on a 50-acre farm with seasonal pool, year-round hot tub, bocce court, and beer garden. Maren Estate i..."
+  ✓ Accordion 1: What to Expect (94 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[210/388] The Blue Ridge Farm and Wedding Venue
+  Type: Cabins & Cottages | Slug: the-blue-ridge-farm-and-wedding-venue
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (343 chars)
+    "The Blue Ridge Farm & Farmhouse doubles as a wedding-ready venue and a renovated lodging hub, offering vineyard vistas, six acres of event space, and ..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[211/388] Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+  Type: Bed and Breakfast | Slug: acorn-inn-inc-cottage-bb-and-group-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (335 chars)
+    "Acorn Inn operates an inn, cottage, and farmhouse retreat with shared gathering spaces, kitchenettes, and wraparound porches for groups and cyclists. ..."
+  ✓ Accordion 1: What to Expect (238 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[212/388] Cottage at Old Stoney Creek
+  Type: Cabins & Cottages | Slug: cottage-at-old-stoney-creek
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (266 chars)
+    "Cottage at Old Stoney Creek blends hot tub soaks, creekside vistas, and deck-side fire pits into a two-bedroom retreat perfectly positioned for Route ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[213/388] Blue Ridge Heaven
+  Type: Cabins & Cottages | Slug: blue-ridge-heaven
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (320 chars)
+    "Blue Ridge Heaven is a 3,200-square-foot Wintergreen home at 3,800 feet with three decks, renovated interiors, and sweeping southern views. Blue Ridge..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[214/388] Dancing Bear Lodge
+  Type: Cabins & Cottages | Slug: dancing-bear-lodge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Information (428 chars)
+  ✓ Accordion 2: Menu & Offerings (337 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[215/388] Windy Knoll
+  Type: Cabins & Cottages | Slug: windy-knoll
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (291 chars)
+    "Windy Knoll is a light-filled mountain home on 3.5 acres with large decks, full kitchen, and loft suite overlooking Afton greenery. Windy Knoll's ligh..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[216/388] Creekside
+  Type: Cabins & Cottages | Slug: creekside
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (282 chars)
+    "Creekside is a modern cabin near Route 151 with private hot tub, EV charger, fire pit, and memory-foam beds for Blue Ridge getaways. Creekside caters ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[217/388] Cottage on Route 151
+  Type: Cabins & Cottages | Slug: cottage-on-route-151
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (325 chars)
+    "Cottage on Route 151—also known as Towler Cottage—is a one-bedroom getaway with hot tub, fire pit, and mountain views minutes from breweries and hikes..."
+  ✓ Accordion 1: What to Expect (495 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[218/388] Farmhouse on Route 151
+  Type: Cabins & Cottages | Slug: farmhouse-on-route-151
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (305 chars)
+    "Farmhouse on Route 151 is a 1904 three-bedroom home with high-speed Wi-Fi, gas fireplace, two-acre yard, and stone fire pit near wine trail stops. Far..."
+  ✓ Accordion 1: What to Expect (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[219/388] The Castor Cabin
+  Type: Cabins & Cottages | Slug: the-castor-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[220/388] Rocky Run Landing
+  Type: Cabins & Cottages | Slug: rocky-run-landing
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (282 chars)
+    "Rocky Run Landing is a cozy riverside cabin on the Tye River offering fishing, paddling, and simple comforts for unplugged stays. Rocky Run Landing pl..."
+  ✓ Accordion 1: What to Expect (108 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[221/388] Cottage on the Knoll
+  Type: Cabins & Cottages | Slug: cottage-on-the-knoll
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (206 chars)
+    "Cottage on the Knoll is a three-bedroom, two-bath home centrally located between Nelson 29 and 151 with updated kitchen and spacious living area. Whol..."
+  ✓ Accordion 1: What to Expect (276 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[222/388] High Lonesome Cabin
+  Type: Cabins & Cottages | Slug: high-lonesome-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (365 chars)
+    "This rustic cabin sits on 20 secluded acres high on a steep finger of the Priest Mountain near the Appalachian Trail in Tyro Va The main attraction of..."
+  ✓ Accordion 1: What to Expect (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[223/388] The Lewis Catherine House
+  Type: Cabins & Cottages | Slug: the-lewis-catherine-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[224/388] Glenbrae
+  Type: Cabins & Cottages | Slug: glenbrae
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (225 chars)
+    "Glenbrae is a designer five-bedroom home just off Route 151 with Peloton-equipped office, fenced yard, mountain views, and fire pit. Glenbrae is locat..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[225/388] Elk Mountain Overlook
+  Type: Whole House Rentals | Slug: elk-mountain-overlook
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Additional Information (497 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 225/388 listings processed...
+
+
+[226/388] Ethan's Den
+  Type: Whole House Rentals | Slug: ethans-den
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (215 chars)
+    "Ethan's Den is a stylish one-bedroom suite with live-edge breakfast bar, heated floors, fireplace, and luxe finishes for couples getaways. Ethan's Den..."
+  ✓ Accordion 1: Menu & Offerings (327 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[227/388] The Mountain House INN
+  Type: Whole House Rentals | Slug: the-mountain-house-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[228/388] Sweet Afton
+  Type: Cabins & Cottages | Slug: sweet-afton
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[229/388] Three Sisters Pre-Civil War Log Cabin
+  Type: Cabins & Cottages | Slug: three-sisters-pre-civil-war-log-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[230/388] Nine Ridges Retreat
+  Type: Whole House Rentals | Slug: nine-ridges-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (440 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[231/388] Grace's Place Petite Retreats
+  Type: Whole House Rentals | Slug: graces-place-petite-retreats
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (206 chars)
+    "Grace's Place Petite Retreats offers four well-appointed tiny homes exclusively for registered guests, each with curated amenities for a boutique stay..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[232/388] Cottage on the Trail
+  Type: Cabins & Cottages | Slug: cottage-on-the-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (251 chars)
+    "Cottage on the Trail is a poolside suite on a private estate along the Rockfish River with pergola seating, fire pit, and easy Route 151 access. Wake ..."
+  ✓ Accordion 1: What to Expect (484 chars)
+  ✓ Accordion 2: Additional Information (434 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[233/388] Rockfish Farmhouse
+  Type: Cabins & Cottages | Slug: rockfish-farmhouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (174 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[234/388] Fulton Belle Vue
+  Type: Cabins & Cottages | Slug: fulton-belle-vue
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (148 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[235/388] Spindle Hill Farm
+  Type: Bed and Breakfast | Slug: spindle-hill-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (420 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[236/388] Beech Grove Cabins
+  Type: Cabins & Cottages | Slug: beech-grove-cabins
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (284 chars)
+    "Beech Grove Cabins offers four two-bedroom log cabins with full kitchens, gas fireplaces, Adirondack porches, and communal fire pit near Wintergreen. ..."
+  ✓ Accordion 1: What to Expect (470 chars)
+  ✓ Accordion 2: Menu & Offerings (500 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[237/388] Slipper Slope
+  Type: Vacation Rentals | Slug: slipper-slope
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (85 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[238/388] Wintergreen Resort
+  Type: Whole House Rentals | Slug: wintergreen-resort-2
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (184 chars)
+    "Wintergreen Resort offers professionally managed studios, condos, and private homes with exclusive guest access to Aquatics, Devils Knob golf, racquet..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[239/388] Camp Blue Ridge
+  Type: Campgrounds & Glamping | Slug: camp-blue-ridge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (313 chars)
+  ✓ Accordion 2: Information (155 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[240/388] Devils Backbone Camp
+  Type: Campgrounds & Glamping | Slug: devils-backbone-camp
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (319 chars)
+    "Devils Backbone Camp pairs RV and tent sites with craft beverage venues, live music, and easy access to hiking, Blue Ridge Parkway, and Nelson 151 att..."
+  ✓ Accordion 1: Information (258 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[241/388] The Haven at Devils Backbone Camp
+  Type: Cabins & Cottages | Slug: the-haven-at-devils-backbone-camp
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[242/388] Relaxing 3 bedroom Mountain Cabin
+  Type: Cabins & Cottages | Slug: relaxing-3-bedroom-mountain-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (187 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[243/388] Mountain Dacha
+  Type: Whole House Rentals | Slug: mountain-dacha
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[244/388] Panoramic Peak - Vistas 1559, Wintergreen
+  Type: Whole House Rentals | Slug: panoramic-peak-vistas-1559-wintergreen
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (146 chars)
+    "Panoramic Peak is a renovated one-bedroom, two-bath Wintergreen condo with sweeping valley views, sleeper sofa, and summer access to resort pools...."
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[245/388] Skis and Trees
+  Type: Whole House Rentals | Slug: skis-and-trees
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Additional Information (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[246/388] Mountain Dreams Condo
+  Type: Whole House Rentals | Slug: mountain-dreams-condo
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Information (157 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[247/388] Wintergreen Vistas
+  Type: Whole House Rentals | Slug: wintergreen-vistas
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (377 chars)
+    "Wintergreen Vistas comprises two ridge-line condos—one two-bedroom, one three-bedroom—each with full kitchens, decks, and standout Blue Ridge views. O..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[248/388] Clonmel Acres
+  Type: Cabins & Cottages | Slug: clonmel-acres
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Information (143 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[249/388] Cabin at Clonmel
+  Type: Cabins & Cottages | Slug: cabin-at-clonmel
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (263 chars)
+    "Cabin at Clonmel is a restored 1700s log cabin available for 31+ day stays with loft bedroom, modern comforts, and mountain views on the Clonmel estat..."
+  ✓ Accordion 1: Additional Information (448 chars)
+  ✓ Accordion 2: What to Expect (110 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[250/388] Sleepy Hollow Retreat Enjoy Your Stay
+  Type: Whole House Rentals | Slug: sleepy-hollow-retreat-enjoy-your-stay
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (220 chars)
+    "Sleepy Hollow Retreat is an 1800s farmhouse along Nelson 151 with covered porch, large yard, and two-bedroom layout close to trails, rivers, and winer..."
+  ✓ Accordion 1: What to Expect (433 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 250/388 listings processed...
+
+
+[251/388] Eagles Court Ski In/Ski Out Condo
+  Type: Vacation Rentals | Slug: eagles-court-ski-in-ski-out-condo
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (291 chars)
+    "Eagles Court Ski In/Ski Out Condo sits directly on Eagle's Swoop with designated parking, renovated kitchen, ski closet, and dog-friendly policy. Eagl..."
+  ✓ Accordion 1: Information (465 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[252/388] Wren House
+  Type: Cabins & Cottages | Slug: wren-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (144 chars)
+    "Wren House is a five-bedroom country home on nearly five acres with hot tub, fire pit, remodeled kitchen, and sweeping pasture and sunset views...."
+  ✓ Accordion 1: What to Expect (303 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[253/388] WildManDan B&B (Beer centric)
+  Type: Bed and Breakfast | Slug: wildmandan-bb-beer-centric
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (477 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[254/388] Fenton Inn
+  Type: Bed and Breakfast | Slug: fenton-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (226 chars)
+    "Fenton Inn is a handcrafted European-style village inn with artisan architecture, bakery breakfast buffet, and direct access to Blue Ridge Parkway adv..."
+  ✓ Accordion 1: About (436 chars)
+  ✓ Accordion 2: What to Expect (441 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[255/388] Marley's Cabin
+  Type: Cabins & Cottages | Slug: marleys-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[256/388] Cozy & Clean Wintergreen Condo (Tanners Ridge)
+  Type: Vacation Rentals | Slug: cozy-clean-wintergreen-condo-tanners-ridge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (204 chars)
+    "Cozy & Clean Wintergreen Condo features a new king bed, plush linens, fireplace, smart TVs, and dog-friendly patio one mile from the resort core. This..."
+  ✓ Accordion 1: What to Expect (192 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[257/388] Remodeled 3BR/2BA Ski Chalet off Tyro Slope
+  Type: Whole House Rentals | Slug: remodeled-3br-2ba-ski-chalet-off-tyro-slope
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (241 chars)
+    "Remodeled 3BR/2BA Ski Chalet off Tyro Slope offers ski-in/out access, gourmet kitchen, heated bathroom floors, wraparound deck, and parking for three...."
+  ✓ Accordion 1: What to Expect (500 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[258/388] Three Springs Myndus
+  Type: Cabins & Cottages | Slug: three-springs-myndus
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (242 chars)
+    "Three Springs Myndus is a three-bedroom mountain home on a 100-acre property with high-speed internet, whirlpool tub, wildlife viewing, and EV chargin..."
+  ✓ Accordion 1: What to Expect (266 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[259/388] Lovingston Get-Away
+  Type: Cabins & Cottages | Slug: lovingston-get-away
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (81 chars)
+    "The original 30 acres was donated by Mr. The original 30 acres was donated by Mr...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[260/388] Rock-n-Creek Cabin
+  Type: Cabins & Cottages | Slug: rock-n-creek-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (247 chars)
+    "Rock-n-Creek Cabin is a spacious log lodge atop Whetstone Ridge with multiple porches, stone fire pit, three bedrooms plus loft, and scenic river bran..."
+  ✓ Accordion 1: Additional Information (472 chars)
+  ✓ Accordion 2: What to Expect (466 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[261/388] The Branch at Afton Mountain Retreat
+  Type: Whole House Rentals | Slug: the-branch-at-afton-mountain-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (180 chars)
+    "The Branch at Afton Mountain Retreat is a remodeled three-bedroom home with screened porch fireplace, pet-friendly policy for hypoallergenic dogs, and..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[262/388] The Bungalow at Afton Mountain Retreat
+  Type: Whole House Rentals | Slug: the-bungalow-at-afton-mountain-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (164 chars)
+    "The Bungalow at Afton Mountain Retreat is a renovated 1930s Sears Roebuck home with open concept living, marble bath, kid playroom, and mountain views..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[263/388] Avon Hill
+  Type: Whole House Rentals | Slug: avon-hill
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[264/388] A Nellysford Nest
+  Type: Cabins & Cottages | Slug: a-nellysford-nest
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (143 chars)
+    "For the 3 upstairs bedrooms: the first features a king bed, the second features 2 queen beds, and the third features a twin-over-full bunk bed...."
+  ✓ Accordion 1: What to Expect (492 chars)
+  ✓ Accordion 2: About (442 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[265/388] Love Ridge Mountain Lodging
+  Type: Cabins & Cottages | Slug: love-ridge-mountain-lodging
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (384 chars)
+  ✓ Accordion 2: Information (433 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[266/388] Open Heart Inn
+  Type: Cabins & Cottages | Slug: open-heart-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (330 chars)
+    "Open Heart Inn is an 1840 farmhouse on ten acres offering whole-house or suite rentals, yoga studio, decks, and nature path minutes from Route 151 att..."
+  ✓ Accordion 1: Additional Information (296 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[267/388] Hillside Hideaway
+  Type: Cabins & Cottages | Slug: hillside-hideaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (250 chars)
+    "Hillside Hideaway is a three-bedroom Wintergreen cabin within walking distance of lifts featuring wraparound deck, fire pit, gas grill, and mountain s..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[268/388] Saddleback Sanctuary
+  Type: Cabins & Cottages | Slug: saddleback-sanctuary
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[269/388] Appalachian Horse Adventures
+  Type: Horseback Riding | Slug: appalachian-horse-adventures
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (113 chars)
+    "Appalachian Horse Adventures in Montebello guides Blue Ridge trail rides and river crossings for ages six and up...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[270/388] Nonny Cottage
+  Type: Cabins & Cottages | Slug: nonny-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[271/388] Rebel's Run at Afton Mountain
+  Type: Horseback Riding | Slug: rebels-run-at-afton-mountain
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (192 chars)
+    "Rebel's Run at Afton Mountain offers vineyard and mountain horseback rides plus English and Western lessons and kids' camps. Offering trail rides, Eng..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[272/388] Basecamp 151
+  Type: Motels & Inns | Slug: basecamp-151
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (162 chars)
+    "Basecamp 151 is a boutique motel on Route 151 with seven individual suites plus a three-bedroom house, offering memory foam beds, smart TVs, and high-..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[273/388] Oak Ledge
+  Type: Cabins & Cottages | Slug: oak-ledge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[274/388] Walton's Mountain Museum
+  Type: Museums & Heritage | Slug: waltons-mountain-museum
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (104 chars)
+    "The Walton's Mountain Museum showcases the television show of the 1960s, 'The Waltons'. Earl Hamner, Jr...."
+  ✓ Accordion 1: About (400 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[275/388] Wintergreen Getaway for Families
+  Type: Whole House Rentals | Slug: wintergreen-getaway-for-families
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (337 chars)
+    "Wintergreen Getaway for Families is a pet-friendly mountain home with two outdoor seating areas, indoor fireplace, and pool/tennis access located minu..."
+  ✓ Accordion 1: Information (464 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 275/388 listings processed...
+
+
+[276/388] Wintergreen Resort Cabin
+  Type: Cabins & Cottages | Slug: wintergreen-resort-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (277 chars)
+    "5-bath cabin nestled in the woods Tucked towards to back of the Resort Close to Shamokin Springs Trailhead Close to Chestnut Springs Pool. 5-bath cabi..."
+  ✓ Accordion 1: What to Expect (104 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[277/388] Bluebird Cottage
+  Type: Cabins & Cottages | Slug: bluebird-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (255 chars)
+    "Bluebird Cottage is a cozy home less than a mile from Devils Backbone and Wintergreen's base, offering easy access to Route 151 wineries and hiking. T..."
+  ✓ Accordion 1: What to Expect (307 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[278/388] Bear Tracks Cottage
+  Type: Cabins & Cottages | Slug: bear-tracks-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (408 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[279/388] Faber Farmhouse
+  Type: Cabins & Cottages | Slug: faber-farmhouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[280/388] Wintergreen - Fairway Woods
+  Type: Vacation Rentals | Slug: wintergreen-fairway-woods
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (301 chars)
+    "Wintergreen – Fairway Woods is a two-bedroom resort condo with cozy fireplace, balcony seating, and electric grill overlooking the Blue Ridge. The res..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[281/388] Oakland Museum
+  Type: Museums & Heritage | Slug: oakland-museum
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[282/388] Peaktime
+  Type: Whole House Rentals | Slug: peaktime
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[283/388] Hawthorne
+  Type: Cabins & Cottages | Slug: hawthorne
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (172 chars)
+    "Hawthorne is a private guest cabin with wood-burning fireplace, outdoor hearth, and deck overlooking wooded acreage near Afton wineries. Entire small ..."
+  ✓ Accordion 1: What to Expect (184 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[284/388] Rockfish Tiny Home
+  Type: Whole House Rentals | Slug: rockfish-tiny-home
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (197 chars)
+    "Rockfish Tiny Home is a modern tiny retreat with hot tub, fire pit, hanging swing, and spacious interior central to Nelson 151 wineries. Click on the ..."
+  ✓ Accordion 1: What to Expect (102 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[285/388] Tupelo
+  Type: Whole House Rentals | Slug: tupelo
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (266 chars)
+    "Tupelo is a charming 1900 square foot Blue Ridge Bungalow nestled on one acre in the enchanting Rockfish River Valley. Tupelo is newly remodeled, feat..."
+  ✓ Accordion 1: Menu & Offerings (475 chars)
+  ✓ Accordion 2: What to Expect (489 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[286/388] The Vu, Afton
+  Type: Cabins & Cottages | Slug: the-vu-afton
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (282 chars)
+    "This spacious bright and airy home was just renovated to take full advantage of the jaw-dropping 360º views surrounding the property. Perched atop a g..."
+  ✓ Accordion 1: Additional Information (462 chars)
+  ✓ Accordion 2: What to Expect (496 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[287/388] Serenity Summit
+  Type: Whole House Rentals | Slug: serenity-summit
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (155 chars)
+    "Serenity Summit is a three-bedroom, 3.5-bath Wintergreen home sleeping eight with modern amenities, family-friendly layout, and serene wooded surround..."
+  ✓ Accordion 1: Additional Information (241 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[288/388] The Wooder House
+  Type: Cabins & Cottages | Slug: the-wooder-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[289/388] The Ash House at Holland Hill
+  Type: Cabins & Cottages | Slug: the-ash-house-at-holland-hill
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[290/388] D & D's Mountain Home
+  Type: Whole House Rentals | Slug: d-ds-mountain-home
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (133 chars)
+    "D & D's Mountain Home is a renovated two-bedroom Stone Ridge condo with gas fireplace, patio, and views over Devils Knob Golf Course...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[291/388] Bear Creek Inn
+  Type: Cabins & Cottages | Slug: bear-creek-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (212 chars)
+    "Bear Creek Inn is a pet-friendly two- to three-bedroom cottage with fenced yard, trout stream, and proximity to Nelson 151, Crabtree Falls, and Winter..."
+  ✓ Accordion 1: What to Expect (155 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[292/388] Cookie's Place, LLC
+  Type: Cabins & Cottages | Slug: cookies-place-llc
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (295 chars)
+    "Cookie's Place is a three-bedroom, two-bath home with private pool, mountain views, and convenient access to hiking, skiing, and Route 151 venues. Poo..."
+  ✓ Accordion 1: What to Expect (148 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[293/388] Bearfeet Retreat
+  Type: Cabins & Cottages | Slug: bearfeet-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (250 chars)
+    "Bearfeet Retreat is a quiet cul-de-sac cabin with cathedral ceilings that sleeps eight (king, queen, two bunk rooms) and features a wraparound deck, f..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[294/388] Peaceful Mountain Getaway
+  Type: Whole House Rentals | Slug: peaceful-mountain-getaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (229 chars)
+    "Peaceful Mountain Getaway is a pet-friendly Wintergreen retreat with calming décor and hosts available to assist, perfect for families seeking quiet e..."
+  ✓ Accordion 1: What to Expect (173 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[295/388] The Afton House
+  Type: Whole House Rentals | Slug: the-afton-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (134 chars)
+    "The Afton House is a luxury mountain home with sweeping views, multiple gathering spaces, and accommodations for up to sixteen guests...."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[296/388] THE LITTLE FARMHOUSE
+  Type: Cabins & Cottages | Slug: thelittlefarmhouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (153 chars)
+    "The Little Farmhouse, also known as Cheval Circle, is a rustic-modern home with multiple seating areas, dining for 10, large porch, and horse farm vie..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[297/388] Mountaintop Overlook
+  Type: Whole House Rentals | Slug: mountaintop-overlook
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (243 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[298/388] Blue Ridge Mountain Retreat
+  Type: Whole House Rentals | Slug: blue-ridge-mountain-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[299/388] Mountain & Vine Farmhouse
+  Type: Whole House Rentals | Slug: mountain-vine-farmhouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (170 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[300/388] Mountain & Vine Vineyards Log Cabin
+  Type: Cabins & Cottages | Slug: mountain-vine-vineyards-log-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (231 chars)
+    "Mountain & Vine Vineyards Log Cabin is a historic hilltop cabin with loft bedroom, panoramic vineyard vistas, and private tastings available nearby. T..."
+  ✓ Accordion 1: What to Expect (498 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 300/388 listings processed...
+
+
+[301/388] The Fairway Chalet
+  Type: Whole House Rentals | Slug: the-fairway-chalet
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[302/388] Spruce Creek Garden Cottage
+  Type: Cabins & Cottages | Slug: spruce-creek-garden-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (191 chars)
+    "Maximum occupants - 4 people Located 1-3 miles from Bold Rock, Three Notch'd, Devils Backbone and Blue Toad breweries and cideries. 950 square foot ho..."
+  ✓ Accordion 1: What to Expect (178 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[303/388] Parrs Camp, Mountain Hollow
+  Type: Cabins & Cottages | Slug: parrs-camp-mountain-hollow
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (336 chars)
+    "Parrs Camp, Mountain Hollow is a craftsman-built ADU above a garage on a 70-acre Tye River property with king and double bedrooms, outdoor shower, foo..."
+  ✓ Accordion 1: About (435 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[304/388] Parr's Camp
+  Type: Cabins & Cottages | Slug: parrs-camp
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (315 chars)
+    "Parr's Camp is a historic 1940s fishing cabin restored with original paneling, screened porch, pond, and space for seven guests on a 70-acre riverfron..."
+  ✓ Accordion 1: About (434 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[305/388] Bella Vista
+  Type: Cabins & Cottages | Slug: bella-vista
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (112 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[306/388] Red, White and Wintergreen
+  Type: Whole House Rentals | Slug: red-white-and-wintergreen
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (270 chars)
+    "Red, White and Wintergreen is a five-bedroom Wintergreen property with large deck, porch hot tub, valley views, and office space for remote-friendly s..."
+  ✓ Accordion 1: What to Expect (96 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[307/388] Mountain View Vista
+  Type: Whole House Rentals | Slug: mountain-view-vista
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[308/388] Art & Soul Guesthouse
+  Type: Whole House Rentals | Slug: art-soul-guesthouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Information (307 chars)
+  ✓ Accordion 2: Menu & Offerings (260 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[309/388] Art & Soul Main House
+  Type: Whole House Rentals | Slug: art-soul-main-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (196 chars)
+    "Art & Soul Main House offers three en-suite bedrooms plus loft sleeping, gourmet kitchen, saltwater hot tub, dry sauna, and extensive decks for groups..."
+  ✓ Accordion 1: Information (307 chars)
+  ✓ Accordion 2: About (472 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[310/388] The Cottage at River Circle Farm
+  Type: Cabins & Cottages | Slug: the-cottage-at-river-circle-farm
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[311/388] Berry Hill Lake
+  Type: Cabins & Cottages | Slug: berry-hill-lake
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (378 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[312/388] Afton Awaits
+  Type: Cabins & Cottages | Slug: afton-awaits
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (305 chars)
+    "Afton Awaits is a luxury modern farmhouse with three bedrooms, pool, hot tub, and sweeping mountain views minutes from Nelson 151 wineries and Winterg..."
+  ✓ Accordion 1: Menu & Offerings (273 chars)
+  ✓ Accordion 2: What to Expect (305 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[313/388] Pilotview Hollow
+  Type: Whole House Rentals | Slug: pilotview-hollow
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (261 chars)
+    "Pilotview Hollow is a five-bedroom, 4.5-bath estate on 42 acres with hot tub, dual primary suites, game room, outdoor fire pit, and proximity to Route..."
+  ✓ Accordion 1: What to Expect (133 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[314/388] Nelson Cozy Cabin
+  Type: Cabins & Cottages | Slug: nelson-cozy-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (242 chars)
+    "Nelson Cozy Cabin is a renovated three-bedroom, two-bath cabin on four wooded acres in Stoney Creek with deck, fire pit, and access to Wintergreen POA..."
+  ✓ Accordion 1: What to Expect (155 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[315/388] Kneeling Shepherd
+  Type: Cabins & Cottages | Slug: kneeling-shepherd
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (257 chars)
+    "Kneeling Shepherd is a new-construction farmhouse on 12 acres with hot tub, fire pit, mountain views, and easy access to the Tye River, Wintergreen, a..."
+  ✓ Accordion 1: What to Expect (288 chars)
+  ✓ Accordion 2: Menu & Offerings (463 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[316/388] Kremer Cabin
+  Type: Cabins & Cottages | Slug: kremer-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (196 chars)
+    "Kremer Cabin is a Cape Cod on six acres with screened porch swings, two porch swings, and room for up to 12 guests surrounded by mountain views. Lovel..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[317/388] Stewart's Place
+  Type: Whole House Rentals | Slug: stewarts-place
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[318/388] Boho Cliff House Retreat
+  Type: Whole House Rentals | Slug: boho-cliff-house-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[319/388] Airkey Boutique Rentals
+  Type: Cabins & Cottages | Slug: airkey
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (195 chars)
+    "Airkey Boutique Rentals curates charming nature-centric stays near Nelson 151 breweries, wineries, and hiking trails—visit myairkey.com for available ..."
+  ✓ Accordion 1: What to Expect (222 chars)
+  ✓ Accordion 2: Menu & Offerings (316 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[320/388] Three Ridge Retreat
+  Type: Vacation Rentals | Slug: three-ridge-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (151 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[321/388] Sunset Vista Villa
+  Type: Whole House Rentals | Slug: sunset-vista-villa
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Menu & Offerings (211 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[322/388] Arrowwood Lane
+  Type: Whole House Rentals | Slug: arrowwood-lane
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[323/388] Winterhaven
+  Type: Whole House Rentals | Slug: winterhaven
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[324/388] 779 Blue Ridge Drive
+  Type: Whole House Rentals | Slug: 779-blue-ridge-drive
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (111 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[325/388] Belties
+  Type: Coffee Shops | Slug: belties
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (266 chars)
+    "Belties is a farmhouse café pouring handcrafted coffee, 18-layer scratch biscuits, and seasonal fare with Blue Ridge views and grazing Belted Galloway..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 325/388 listings processed...
+
+
+[326/388] Ski in Style At Sapphire Squirrel
+  Type: Whole House Rentals | Slug: ski-in-style-at-sapphire-squirrel
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (365 chars)
+    "Ski in Style at Sapphire Squirrel is a three-bedroom Wintergreen home steps from the slopes with fully equipped kitchen, dedicated workspace, deck, an..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[327/388] The Retreat at Three Ridges
+  Type: Whole House Rentals | Slug: the-retreat-at-three-ridges
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[328/388] Wintergreen Condo 1437 Highlands
+  Type: Whole House Rentals | Slug: wintergreen-condo-1437-highlands
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (332 chars)
+    "Wintergreen Condo 1437 Highlands is a ski-in/ski-out Highlands building condo showcasing incredible views and modern finishes steps from resort amenit..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[329/388] Time Out
+  Type: Whole House Rentals | Slug: time-out
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (258 chars)
+    "Time Out is a pet-friendly Wintergreen escape sleeping seven with hot tub, fast Wi-Fi, smart TVs, and three queen bedrooms plus single sofa bed. Activ..."
+  ✓ Accordion 1: What to Expect (253 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[330/388] Cub Creek Cabin
+  Type: Cabins & Cottages | Slug: cub-creek-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (94 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[331/388] Tyebello Cabins
+  Type: Cabins & Cottages | Slug: tyebello-cabins
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (299 chars)
+    "Tyebello Cabins offer pet-friendly lodging with kitchen, free Wi-Fi, and air conditioning for Blue Ridge travelers seeking simple comforts near Tyro. ..."
+  ✓ Accordion 1: Information (400 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[332/388] Glass & Pine
+  Type: Cabins & Cottages | Slug: glass-pine
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (111 chars)
+    "The house is located on 5 acres in a neighborhood with homes spaciously set apart from another and very wooded...."
+  ✓ Accordion 1: About (120 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[333/388] Wintergreen 19 Ivy Glen Lane
+  Type: Vacation Rentals | Slug: wintergreen-19-ivy-glen-lane
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (337 chars)
+    "Wintergreen 19 Ivy Glen Lane is a four-bedroom, 3.5-bath end-unit townhouse with two-car garage, steps from shuttle stop, spa, pools, golf, tennis, an..."
+  ✓ Accordion 1: What to Expect (108 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[334/388] The Brown Bear Lodge
+  Type: Whole House Rentals | Slug: the-brown-bear-lodge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[335/388] Mountain Home in Nelson County
+  Type: Cabins & Cottages | Slug: mountain-home-in-nelson-county
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (339 chars)
+    "Mountain Home in Nelson County offers quiet mountain views 10 minutes from Pippin Hill Winery and 30 minutes to Wintergreen, ideal for Charlottesville..."
+  ✓ Accordion 1: What to Expect (102 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[336/388] Spy Run Hideaway
+  Type: Cabins & Cottages | Slug: spy-run-hideaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (324 chars)
+    "Spy Run Hideaway is a secluded three-bedroom, two-bath cabin on 17 acres that sleeps eight, providing a quiet base for Blue Ridge exploration. Spy Run..."
+  ✓ Accordion 1: What to Expect (80 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[337/388] Love of Mountains Oh Fill My Cup
+  Type: Whole House Rentals | Slug: love-of-mountains-oh-fill-my-cup
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (237 chars)
+    "Love of Mountains Oh Fill My Cup is a modern third-floor two-bedroom condo with upgraded kitchen, private golf course views, and access to public/comm..."
+  ✓ Accordion 1: What to Expect (265 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[338/388] Marigold on the Mountain
+  Type: Whole House Rentals | Slug: marigold-on-the-mountain
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Additional Information (381 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[339/388] Top of The Mountain Hideaway
+  Type: Whole House Rentals | Slug: top-of-the-mountain-hideaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (241 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[340/388] On The Rocks
+  Type: Cabins & Cottages | Slug: on-the-rocks
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[341/388] Our Mountain Getaway
+  Type: Whole House Rentals | Slug: our-mountain-getaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (291 chars)
+    "Our Mountain Getaway is a six-bedroom, 5.5-bath Wintergreen home overlooking the 12th hole with expansive views, ideal for large groups. Our Mountain ..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[342/388] Rockfish Cabin
+  Type: Cabins & Cottages | Slug: rockfish-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (363 chars)
+    "Rockfish Cabin is a three-level post-and-beam retreat on 13 wooded acres with granite kitchen, wraparound porch, and a riverside clearing with Adirond..."
+  ✓ Accordion 1: Additional Information (492 chars)
+  ✓ Accordion 2: What to Expect (497 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[343/388] Blue Ridge Cabin
+  Type: Cabins & Cottages | Slug: blue-ridge-cabin
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (385 chars)
+    "Blue Ridge Cabin is a four-bedroom mountain escape on two private acres at the base of Route 151 with two kitchens, 2 king beds, and quick access to b..."
+  ✓ Accordion 1: What to Expect (350 chars)
+  ✓ Accordion 2: Information (342 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[344/388] Wintergreen Duplex
+  Type: Whole House Rentals | Slug: wintergreen-duplex
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: What to Expect (308 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[345/388] Sunrise on the Trail
+  Type: Cabins & Cottages | Slug: sunrise-on-the-trail
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (369 chars)
+    "Sunrise on the Trail is a renovated home with modern kitchen, coffee bar, smart HDTV, washer/dryer, fire pit, gazebo, and queen bedrooms with wireless..."
+  ✓ Accordion 1: Menu & Offerings (461 chars)
+  ✓ Accordion 2: What to Expect (324 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[346/388] Mima's Mountain House
+  Type: Whole House Rentals | Slug: mimas-mountain-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (337 chars)
+    "Mima's Mountain House is a five-bedroom, three-bath creekside retreat sleeping ten with porch views of The Priest and easy access to Route 56 adventur..."
+  ✓ Accordion 1: What to Expect (80 chars)
+  ✓ Accordion 2: Menu & Offerings (429 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[347/388] Village Antiques
+  Type: Restaurants | Slug: villageantiques
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (115 chars)
+    "Serving brunch and lunch, homemade quiche and sandwiches. Serving brunch and lunch, homemade quiche and sandwiches...."
+  ✓ Accordion 1: What to Expect (459 chars)
+  ✓ Accordion 2: Information (451 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[348/388] Cliffs Edge
+  Type: Whole House Rentals | Slug: cliffs-edge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (310 chars)
+    "Cliffs Edge is a Southern Living-featured contemporary mountain home with floor-to-ceiling windows, cantilevered decks, shoji screens, and dramatic Cr..."
+  ✓ Accordion 1: Additional Information (492 chars)
+  ✓ Accordion 2: Information (289 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[349/388] Slopes At Tyro
+  Type: Whole House Rentals | Slug: slopes-at-tyro
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (221 chars)
+    "Slopes at Tyro is a slope-side four-bedroom Wintergreen home with hot tub and wood-burning fireplace providing direct ski-in/ski-out access, including..."
+  ✓ Accordion 1: What to Expect (85 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[350/388] Home on the Ridge
+  Type: Whole House Rentals | Slug: home-on-the-ridge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (344 chars)
+    "Home on the Ridge is a two-bedroom, two-bath condo overlooking the 18th hole at Devils Knob with kitchen, balcony, and easy access to golf, tennis, an..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 350/388 listings processed...
+
+
+[351/388] Peppers Mountain Pad
+  Type: Vacation Rentals | Slug: peppers-mountain-pad
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (375 chars)
+    "Pepper's Mountain Pad is a two-bedroom Wintergreen condo walking distance to The Market, village, and Laurelwood pool with wood-burning fireplace, sma..."
+  ✓ Accordion 1: Menu & Offerings (495 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[352/388] Rockfish Valley Retreat
+  Type: Whole House Rentals | Slug: rockfish-valley-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (333 chars)
+    "Rockfish Valley Retreat is a three-bedroom, two-bath valley home sleeping nine with outdoor space, horse farm views, and short drives to trails, winer..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[353/388] Dobie Condo 323 at Wintergreen
+  Type: Whole House Rentals | Slug: dobie-condo-323-at-wintergreen
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (315 chars)
+    "Dobie Condo 323 is a two-bedroom, two-bath Wintergreen condo with fireplace and immediate access to resort entertainment for ski weekends or quiet ret..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[354/388] Highlands 1426 Condo
+  Type: Whole House Rentals | Slug: highlands-1426-condo
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (333 chars)
+    "Highlands 1426 Condo is a renovated two-bedroom, two-bath ski-front condo with sunrise vistas, easy entry, and property manager nearby for Wintergreen..."
+  ✓ Accordion 1: Additional Information (200 chars)
+  ✓ Accordion 2: What to Expect (154 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[355/388] Gumtree Drive 134
+  Type: Cabins & Cottages | Slug: gumtree-drive-134
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (321 chars)
+    "Gumtree Drive 134 is a four-bedroom, four-bath Wintergreen home with game room, hot tub, and direct access to Laurel Ridge hiking trail on the propert..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[356/388] Wake In The Clouds
+  Type: Whole House Rentals | Slug: wake-in-the-clouds
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (295 chars)
+    "Wake in the Clouds is a renovated one-bedroom, two-bath condo with spectacular sunrises, modern finishes, and resort convenience. Wake in the Clouds i..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[357/388] Nectar Landing
+  Type: Whole House Rentals | Slug: nectar-landing
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (343 chars)
+    "Nectar Landing is a three-bedroom, 2.5-bath ranch sleeping ten with game room, Wi-Fi, front porch, back deck hot tub, and open-concept kitchen perfect..."
+  ✓ Accordion 1: What to Expect (101 chars)
+  ✓ Accordion 2: Additional Information (367 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[358/388] Nelson 151 Views and Brews
+  Type: Whole House Rentals | Slug: nelson-151-views-and-brews
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (373 chars)
+    "Nelson 151 Views and Brews is a one-bedroom apartment with full kitchen and washer/dryer, offering Humpback Rock views and proximity to the Route 151 ..."
+  ✓ Accordion 1: What to Expect (249 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[359/388] Woodland Hideaway
+  Type: Whole House Rentals | Slug: woodland-hideaway
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[360/388] Cuatro Climas At 130 Pedlars Point
+  Type: Whole House Rentals | Slug: cuatro-climas-at-130-pedlars-point
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (334 chars)
+    "Cuatro Climas at 130 Pedlars Point is a four-bedroom, 3.5-bath Wintergreen house five minutes from resort amenities, with wood-burning fireplace, moun..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[361/388] Rockfish River Ranch Guest House
+  Type: Bed and Breakfast | Slug: rockfish-river-ranch-guest-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (342 chars)
+    "Rockfish River Ranch Guest House sits on a 100-acre ranch with private trails, creek, bunk beds, high chairs, and family-friendly amenities near brewe..."
+  ✓ Accordion 1: Additional Information (188 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[362/388] The Treetops Lodge
+  Type: Cabins & Cottages | Slug: the-treetops-lodge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (338 chars)
+    "The Treetops Lodge is a secluded luxury cabin sleeping ten with three stories of living space, bunk room, and ample indoor/outdoor seating near Nelson..."
+  ✓ Accordion 1: Menu & Offerings (500 chars)
+  ✓ Accordion 2: What to Expect (459 chars)
+  ✓ Accordion 3: Additional Information (458 chars)
+  ✓ Accordion 4: Information (451 chars)
+
+[363/388] Cabin on Eagles Ridge Road
+  Type: Cabins & Cottages | Slug: cabin-on-eagles-ridge-road
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (332 chars)
+    "Cabin on Eagles Ridge Road is a private cabin with two en-suite master bedrooms, wood-burning fireplace, bluestone fire pit, and walking distance to D..."
+  ✓ Accordion 1: What to Expect (83 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[364/388] 1639 Overlook
+  Type: Vacation Rentals | Slug: 1639-overlook
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[365/388] Foxfire Cottage
+  Type: Cabins & Cottages | Slug: foxfire-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (229 chars)
+    "Foxfire Cottage is a high-ceiling home with stone fireplace, updated kitchen, multiple decks with pergola, and mountain views near Wintergreen and Nel..."
+  ✓ Accordion 1: What to Expect (266 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[366/388] The Ski House
+  Type: Whole House Rentals | Slug: the-ski-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[367/388] 1566 Vistas Condo
+  Type: Whole House Rentals | Slug: 1566-vistas-condo
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (313 chars)
+    "1566 Vistas Condo is a renovated top-floor, three-bedroom, three-bath condo with skylights, ridgeline views, and quick access to Wintergreen spa and D..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[368/388] Afton Mountain Inn
+  Type: Bed and Breakfast | Slug: afton-mountain-inn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (420 chars)
+    "Afton Mountain Inn is an 1848 farmhouse turned boutique hotel with six suites and a premium villa offering premium bedding, Wi-Fi, robes, snack bar, t..."
+  ✓ Accordion 1: Menu & Offerings (398 chars)
+  ✓ Accordion 2: Additional Information (465 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[369/388] M 260
+  Type: Cabins & Cottages | Slug: m-260
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (301 chars)
+    "M 260 is a Stoney Creek mountain home with views, three bedrooms, three baths, hot tub, ping pong, foosball, deck seating, and seasonal waterfall walk..."
+  ✓ Accordion 1: What to Expect (178 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[370/388] Sanctuary Retreat Center
+  Type: Whole House Rentals | Slug: sanctuaryretreatcenter
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (231 chars)
+    "Sanctuary Retreat Center hosts 3–7-day holistic retreats on 120 forested acres with meditation, breathwork, lodging, and meals included—overnight stay..."
+  ✓ Accordion 1: Information (287 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[371/388] Trinacria Restaurant & Pizzeria
+  Type: Restaurants | Slug: trinacria
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[372/388] Rockfish Valley Farm Guest House
+  Type: Bed and Breakfast | Slug: rockfish-valley-farm-guest-house
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (344 chars)
+    "Rockfish Valley Farm Guest House is a four-bedroom ranch with mountain views, rockers on the porch, and donkeys on-site between Bold Rock and Devils B..."
+  ✓ Accordion 1: What to Expect (363 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[373/388] Shenandoah Ridge 11
+  Type: Whole House Rentals | Slug: shenandoah-ridge-11
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[374/388] Inn at the Woods
+  Type: Cabins & Cottages | Slug: inn-at-the-woods
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[375/388] Country Cottage
+  Type: Cabins & Cottages | Slug: country-cottage
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+  ⏳ Progress: 375/388 listings processed...
+
+
+[376/388] The View at Crawfords Edge
+  Type: Whole House Rentals | Slug: the-view-at-crawfords-edge
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  - Description unchanged
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[377/388] Altitude Adjustment
+  Type: Whole House Rentals | Slug: altitude-adjustment
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (230 chars)
+    "Altitude Adjustment is a five-bedroom, four-bath mountain retreat with large windows, multiple decks, high-flame fire pit, sauna, outdoor shower, game..."
+  ✓ Accordion 1: Menu & Offerings (471 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[378/388] Chateau Greenstone
+  Type: Whole House Rentals | Slug: chateau-greenstone
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (344 chars)
+    "Chateau Greenstone is a six-bedroom, four-bath Wintergreen retreat sleeping 18 with multiple game zones, 'zen den,' heated TV porch, hot tub, sauna, a..."
+  ✓ Accordion 1: Additional Information (500 chars)
+  ✓ Accordion 2: What to Expect (351 chars)
+  ✓ Accordion 3: Stay in the Loop (338 chars)
+
+[379/388] Blue Sky Retreat
+  Type: Whole House Rentals | Slug: blue-sky-retreat
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (335 chars)
+    "Blue Sky Retreat is a luxury 4,100+ sq ft designer home with six bedrooms, media and game rooms, sauna, cold plunge, hot tub, and golf course frontage..."
+  ✓ Accordion 1: What to Expect (486 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[380/388] The Treehouse
+  Type: Whole House Rentals | Slug: thetreehouse
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (394 chars)
+    "The Treehouse is a 3,200 sq ft modern home on ten acres with hot tub, outdoor shower, 10-person dining, fire pit, heated floors, and award-winning des..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[381/388] Woodson's Mill
+  Type: Museums & Heritage | Slug: woodsons-mill
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (277 chars)
+    "1794 Woodson's Mill still grinds Virginia-grown grains with original water-powered stones, offering stone-milled flour and heritage tours. 1794 Woodso..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[382/388] Rockfish Valley Natural History Center
+  Type: Museums & Heritage | Slug: rockfish-valley-natural-history-center
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (269 chars)
+    "Rockfish Valley Natural History Center showcases wildlife exhibits from the Virginia Museum of Natural History inside the old Wintergreen schoolhouse...."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[383/388] The Goldfinch
+  Type: Cabins & Cottages | Slug: the-goldfinch
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (335 chars)
+    "The Goldfinch is a two-bedroom, two-bath home with screened porch, garage, and central HVAC near Veritas Vineyards, Route 151, Blue Ridge Parkway, and..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[384/388] Swimming
+  Type: Swimming | Slug: swimming
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 3 sections from website
+  ✓ Description rewritten (130 chars)
+    "Indoor and outdoor swimming across Wintergreen Resort, including year-round Aquatics Center pools and Lake Monocan's summer beach...."
+  ✓ Accordion 1: River Swimming (366 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[385/388] Rockwell Ridge Inn
+  Type: Cabins & Cottages | Slug: rockwellridgeinn
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (395 chars)
+    "Rockwell Ridge Inn is a pet-friendly retreat on 20 acres in Afton with private trails, seasonal gardens, creeks, and accommodations including a 3-bedr..."
+  ✓ Accordion 1: Events & Activities (393 chars)
+  ✓ Accordion 2: Stay in the Loop (338 chars)
+
+[386/388] Everett Estate
+  Type: Whole House Rentals | Slug: everettestate
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  - No additional content found online
+  ✓ Description rewritten (157 chars)
+    "Everett Estate (duplicate entry)—verify active listing details before enriching. Ethan's Den has been decorated to compliment the beautiful setting it..."
+  ✓ Accordion 1: Menu & Offerings (327 chars)
+
+[387/388] Don Lupe Mexican Restaurant
+  Type: Restaurants | Slug: donlupe
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (252 chars)
+    "Don Lupe Mexican Restaurant serves authentic Mexican cuisine with high-quality ingredients and attentive service on Rockfish Valley Highway. At Don Lu..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+[388/388] 12 Ridges Vineyard
+  Type: Vineyards & Wineries | Slug: 12-ridges-vineyard
+--------------------------------------------------------------------------------
+  Researching on nelsoncounty.com...
+  ✓ Found 1 sections from website
+  ✓ Description rewritten (302 chars)
+    "A new vision has come to life at one of the most beautiful locations in all of Virginia. ​ 12 Ridges, a family-owned vineyard formerly known as Skylar..."
+  ✓ Accordion 1: Stay in the Loop (338 chars)
+
+================================================================================
+Writing results to CSV/A - to merge- listings-2026-01-02-rewritten.csv...
+================================================================================
+✅ Complete! Processed 388 listings
+✅ Output written to: CSV/A - to merge- listings-2026-01-02-rewritten.csv
