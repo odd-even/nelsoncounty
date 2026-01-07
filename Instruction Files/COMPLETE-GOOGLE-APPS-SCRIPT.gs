@@ -411,6 +411,104 @@ Nelson County Admin Panel
 }
 
 /**
+ * Send login notification email to admin
+ * Called when someone logs in (except ernest@oddpluseven.com)
+ */
+function sendLoginNotification(userEmail) {
+  try {
+    Logger.log('🔔 sendLoginNotification called for: ' + userEmail);
+    
+    // Validate email parameter
+    if (!userEmail || typeof userEmail !== 'string' || userEmail.trim() === '') {
+      Logger.log('❌ Invalid email parameter: ' + userEmail);
+      return { success: false, error: 'Invalid email parameter' };
+    }
+    
+    const email = userEmail.trim().toLowerCase();
+    
+    // Don't send notification for ernest@oddpluseven.com
+    if (email === 'ernest@oddpluseven.com' || 
+        email === 'ernest@oddplusevenstudio.com') {
+      Logger.log('⏭️  Skipping notification for: ' + email);
+      return { success: true, skipped: true };
+    }
+    
+    const adminEmail = 'ernest@oddpluseven.com';
+    const subject = 'Nelson County Admin - Login Notification';
+    const body = `
+Hello,
+
+Someone has logged into the Nelson County Admin Panel.
+
+Login Details:
+- Email: ${email}
+- Time: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })}
+
+If this was not you, please review your authorized users list.
+
+---
+Nelson County Admin Panel
+    `.trim();
+    
+    Logger.log('📧 Attempting to send notification to: ' + adminEmail);
+    MailApp.sendEmail({
+      to: adminEmail,
+      subject: subject,
+      body: body,
+      name: 'Nelson County Admin Panel'
+    });
+    
+    Logger.log('✅ Login notification sent successfully to: ' + adminEmail + ' for user: ' + email);
+    return {
+      success: true
+    };
+  } catch (error) {
+    const errorMsg = error.toString();
+    Logger.log('❌ Error sending login notification: ' + errorMsg);
+    
+    if (errorMsg.includes('permission') || errorMsg.includes('Required permissions')) {
+      Logger.log('⚠️  Email permission not authorized. Please run testLoginNotification() to authorize.');
+    }
+    
+    // Don't fail login if notification fails
+    return {
+      success: false,
+      error: errorMsg
+    };
+  }
+}
+
+/**
+ * TEST FUNCTION: Test login notification email
+ * 
+ * INSTRUCTIONS:
+ * 1. In Google Apps Script editor, select this function from the dropdown
+ * 2. Click the "Run" button (▶️)
+ * 3. You'll see an "Authorization required" dialog if needed
+ * 4. Click "Review permissions" → "Allow"
+ * 5. Check ernest@oddpluseven.com inbox for test notification
+ */
+function testLoginNotification() {
+  Logger.log('🧪 Testing login notification...');
+  
+  // Test with a sample email (not ernest@oddpluseven.com)
+  const testEmail = 'test@example.com';
+  const result = sendLoginNotification(testEmail);
+  
+  if (result.success && !result.skipped) {
+    Logger.log('✅ Test notification sent successfully!');
+    Logger.log('   Check ernest@oddpluseven.com inbox for the test email.');
+    return '✅ Test notification sent! Check your inbox.';
+  } else if (result.skipped) {
+    Logger.log('⏭️  Notification was skipped (expected for ernest@oddpluseven.com)');
+    return '⏭️  Notification skipped (this is expected for excluded emails)';
+  } else {
+    Logger.log('❌ Test failed: ' + (result.error || 'Unknown error'));
+    return '❌ Test failed: ' + (result.error || 'Unknown error');
+  }
+}
+
+/**
  * TEST FUNCTION: Run this to authorize email sending permissions
  * 
  * INSTRUCTIONS:
@@ -494,13 +592,33 @@ function doGet(e) {
           .setMimeType(ContentService.MimeType.JSON);
       }
       // Verify OTP server-side
+      Logger.log('🔍 doGet verifyOTP called for email: ' + email);
       const result = verifyOTP(email, code);
+      Logger.log('🔍 verifyOTP result: ' + JSON.stringify(result));
       
       // If successful, generate session token
       if (result.success) {
-        const sessionToken = generateSessionToken(email);
-        storeSessionToken(sessionToken, email);
-        result.sessionToken = sessionToken;
+        Logger.log('✅ OTP verification successful, generating session token...');
+        Logger.log('🔍 Email variable value: ' + email + ' (type: ' + typeof email + ')');
+        
+        // Ensure email is valid before proceeding
+        if (!email || typeof email !== 'string' || email.trim() === '') {
+          Logger.log('❌ Email is invalid or missing: ' + email);
+        } else {
+          const sessionToken = generateSessionToken(email);
+          storeSessionToken(sessionToken, email);
+          result.sessionToken = sessionToken;
+          
+          // Send login notification (except for ernest@oddpluseven.com)
+          Logger.log('🔔 Login successful for: ' + email + ', sending notification...');
+          const notificationResult = sendLoginNotification(email);
+          Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
+          if (!notificationResult.success && !notificationResult.skipped) {
+            Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+          }
+        }
+      } else {
+        Logger.log('❌ OTP verification failed: ' + (result.error || 'Unknown error'));
       }
       
       return ContentService
@@ -548,6 +666,8 @@ function doGet(e) {
     // Handle update authorized emails via GET
     if (e && e.parameter && e.parameter.action === 'updateAuthorizedEmails') {
       const emailsParam = e.parameter.emails;
+      const sessionToken = e.parameter.token || e.parameter.sessionToken;
+      
       if (!emailsParam) {
         return ContentService
           .createTextOutput(JSON.stringify({
@@ -568,12 +688,59 @@ function doGet(e) {
             .setMimeType(ContentService.MimeType.JSON);
         }
         
-        // Validate that requester is authorized (check session or require OTP verification)
-        // For security, we require that the update comes from an already authorized email
-        // This is handled by the fact that only logged-in users can access this action
-        // and they must have a valid session token
+        // Validate that requester is authorized
+        // Check session token if provided
+        let requesterEmail = null;
+        if (sessionToken) {
+          const tokenValidation = validateSessionToken(sessionToken);
+          if (tokenValidation.valid) {
+            requesterEmail = tokenValidation.email;
+          }
+        }
         
+        // If no valid session, check if at least one email in the list is already authorized
+        // This allows adding new emails if you're already logged in (fallback for when token isn't sent)
+        if (!requesterEmail) {
+          const currentEmails = getAuthorizedEmails();
+          Logger.log('🔍 updateAuthorizedEmails: No session token, checking email overlap');
+          Logger.log('🔍 Current authorized emails: ' + JSON.stringify(currentEmails));
+          Logger.log('🔍 New emails: ' + JSON.stringify(emails));
+          
+          const hasOverlap = emails.some(function(email) {
+            return currentEmails.includes(email.toLowerCase());
+          });
+          
+          if (!hasOverlap) {
+            Logger.log('⚠️  updateAuthorizedEmails: No valid session and no overlap with existing emails');
+            return ContentService
+              .createTextOutput(JSON.stringify({
+                success: false,
+                error: 'Unauthorized: Must be logged in with an authorized email to update the list. Please log in first, then try adding the email again.'
+              }))
+              .setMimeType(ContentService.MimeType.JSON);
+          } else {
+            Logger.log('✅ updateAuthorizedEmails: Email overlap found, allowing update');
+          }
+        } else {
+          // Verify requester is in current authorized list
+          const currentEmails = getAuthorizedEmails();
+          if (!currentEmails.includes(requesterEmail.toLowerCase())) {
+            Logger.log('⚠️  updateAuthorizedEmails: Requester not in authorized list: ' + requesterEmail);
+            return ContentService
+              .createTextOutput(JSON.stringify({
+                success: false,
+                error: 'Unauthorized: Your email is not in the authorized list'
+              }))
+              .setMimeType(ContentService.MimeType.JSON);
+          } else {
+            Logger.log('✅ updateAuthorizedEmails: Requester authorized: ' + requesterEmail);
+          }
+        }
+        
+        Logger.log('✅ updateAuthorizedEmails: Updating to ' + emails.length + ' emails');
+        Logger.log('📧 New emails: ' + JSON.stringify(emails));
         setAuthorizedEmails(emails);
+        
         return ContentService
           .createTextOutput(JSON.stringify({
             success: true,
@@ -582,6 +749,7 @@ function doGet(e) {
           }))
           .setMimeType(ContentService.MimeType.JSON);
       } catch (error) {
+        Logger.log('❌ Error updating authorized emails: ' + error.toString());
         return ContentService
           .createTextOutput(JSON.stringify({
             success: false,
@@ -775,13 +943,33 @@ function doPost(e) {
           .setMimeType(ContentService.MimeType.JSON);
       }
       // Verify OTP server-side
+      Logger.log('🔍 doPost verifyOTP called for email: ' + data.email);
       const result = verifyOTP(data.email, data.code);
+      Logger.log('🔍 verifyOTP result: ' + JSON.stringify(result));
       
       // If successful, generate session token
       if (result.success) {
-        const sessionToken = generateSessionToken(data.email);
-        storeSessionToken(sessionToken, data.email);
-        result.sessionToken = sessionToken;
+        Logger.log('✅ OTP verification successful, generating session token...');
+        Logger.log('🔍 Email variable value: ' + data.email + ' (type: ' + typeof data.email + ')');
+        
+        // Ensure email is valid before proceeding
+        if (!data.email || typeof data.email !== 'string' || data.email.trim() === '') {
+          Logger.log('❌ Email is invalid or missing: ' + data.email);
+        } else {
+          const sessionToken = generateSessionToken(data.email);
+          storeSessionToken(sessionToken, data.email);
+          result.sessionToken = sessionToken;
+          
+          // Send login notification (except for ernest@oddpluseven.com)
+          Logger.log('🔔 Login successful for: ' + data.email + ', sending notification...');
+          const notificationResult = sendLoginNotification(data.email);
+          Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
+          if (!notificationResult.success && !notificationResult.skipped) {
+            Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+          }
+        }
+      } else {
+        Logger.log('❌ OTP verification failed: ' + (result.error || 'Unknown error'));
       }
       
       return ContentService

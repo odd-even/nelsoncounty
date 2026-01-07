@@ -8106,10 +8106,33 @@ function updateUnsavedChangesBadge() {
                     console.log('🔄 Sync: Using script URL:', scriptUrl);
                     console.log('🔄 Sync: Emails to sync:', emails);
                     
+                    // Get session token if available (check localStorage for adminAuthSession)
+                    let sessionToken = null;
+                    try {
+                        const sessionData = localStorage.getItem('adminAuthSession');
+                        if (sessionData) {
+                            const session = JSON.parse(sessionData);
+                            sessionToken = session.token;
+                            console.log('🔄 Sync: Found session token from adminAuthSession');
+                        } else {
+                            console.log('⚠️  Sync: No adminAuthSession found in localStorage');
+                        }
+                    } catch (e) {
+                        console.warn('⚠️  Could not retrieve session token:', e);
+                    }
+                    
                     const params = new URLSearchParams({
                         action: 'updateAuthorizedEmails',
                         emails: JSON.stringify(emails)
                     });
+                    
+                    // Add session token if available
+                    if (sessionToken) {
+                        params.append('token', sessionToken);
+                        console.log('🔄 Sync: Including session token');
+                    } else {
+                        console.log('⚠️  Sync: No session token available - will rely on email overlap validation');
+                    }
                     
                     const fullUrl = scriptUrl + '?' + params.toString();
                     console.log('🔄 Sync: Full URL:', fullUrl);
