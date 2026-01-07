@@ -1679,22 +1679,33 @@
                     }
                     
                     // CRITICAL: Validate session token with server (non-blocking)
+                    // If validation fails due to network error, still allow session through
+                    // Only clear session if server explicitly says token is invalid
                     if (session.token) {
                         if (typeof validateSessionWithServer === 'function') {
                             try {
                                 const validation = await validateSessionWithServer(session.token);
-                                if (!validation.valid) {
-                                    // Server explicitly says token is invalid - clear it
-                                    console.warn('Server rejected session token, clearing session');
-                                    localStorage.removeItem('adminAuthSession');
-                                    sessionStorage.clear();
-                                    return null;
+                                if (validation.valid) {
+                                    // Server validated - update email from server response
+                                    session.email = validation.email || session.email;
+                                    console.log('✅ Session validated by server');
+                                } else {
+                                    // Server explicitly says token is invalid
+                                    // BUT: Only clear if it's not a network error
+                                    // Network errors return { valid: false, error: 'Network error' }
+                                    if (validation.error && validation.error === 'Network error') {
+                                        // Network error - allow session through (token is still valid, just couldn't verify)
+                                        console.warn('Session validation failed (network error), allowing session through');
+                                    } else {
+                                        // Server explicitly rejected token - clear it
+                                        console.warn('Server rejected session token, clearing session');
+                                        localStorage.removeItem('adminAuthSession');
+                                        sessionStorage.clear();
+                                        return null;
+                                    }
                                 }
-                                // Server validated - update email from server response
-                                session.email = validation.email || session.email;
-                                console.log('✅ Session validated by server');
                             } catch (validationError) {
-                                // Network error - allow session through but log error
+                                // Network error or other exception - allow session through but log error
                                 console.warn('Session validation failed (network error), allowing session through:', validationError);
                                 // Don't clear session on network error - allow through
                                 // Session is still valid, just couldn't verify with server
@@ -2011,17 +2022,20 @@
                         errorText.style.color = '#22c55e';
                         errorDiv.style.display = 'block';
                         
-                        // Immediately hide overlay (before reload)
+                        // Immediately hide overlay (before reload) and add class to body
                         const overlay = document.getElementById('loginOverlay');
                         if (overlay) {
                             overlay.style.display = 'none';
                             overlay.setAttribute('style', 'display: none !important;');
                             console.log('✅ Login overlay hidden immediately');
                         }
+                        document.body.classList.add('logged-in');
+                        console.log('✅ Added logged-in class to body before reload');
                         
                         // Reload page to initialize admin.js with authenticated session
                         setTimeout(function() {
                             console.log('🔄 Reloading page with authenticated session...');
+                            console.log('🔄 Session token before reload:', localStorage.getItem('adminAuthSession') ? 'exists' : 'missing');
                             location.reload();
                         }, 500);
                     } else {
@@ -2085,16 +2099,36 @@
                         return;
                     }
                     
-                    // ALWAYS clear old auth data first
+                    // ALWAYS clear old auth data first (but preserve adminAuthSession if it exists)
                     localStorage.removeItem('skipAuth');
                     localStorage.removeItem('adminLoggedIn');
+                    // DON'T clear adminAuthSession here - it contains the valid session token
                     
                     // Check for valid session (SERVER-VALIDATED)
                     console.log('🔍 Checking for session in localStorage...');
                     const sessionData = localStorage.getItem('adminAuthSession');
                     console.log('🔍 Raw sessionData from localStorage:', sessionData ? 'exists' : 'null');
                     
-                    const session = await getAuthSession();
+                    // Try to get session - this will validate with server if possible
+                    let session = null;
+                    try {
+                        session = await getAuthSession();
+                    } catch (e) {
+                        console.warn('⚠️ getAuthSession threw error, checking localStorage directly:', e);
+                        // If getAuthSession fails, check localStorage directly
+                        if (sessionData) {
+                            try {
+                                const parsedSession = JSON.parse(sessionData);
+                                if (parsedSession.token && parsedSession.email && Date.now() < parsedSession.expires) {
+                                    console.log('⚠️ Using session from localStorage directly (getAuthSession failed)');
+                                    session = parsedSession;
+                                }
+                            } catch (parseError) {
+                                console.error('Error parsing session data:', parseError);
+                            }
+                        }
+                    }
+                    
                     const adminEmail = session ? session.email : null;
                     const isLoggedIn = session !== null;
                 
