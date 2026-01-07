@@ -2,21 +2,21 @@
 
 ## ✅ What's Been Implemented
 
-The admin panel now sends email notifications to `ernest@oddpluseven.com` whenever someone logs in, **except** when `ernest@oddpluseven.com` or `ernest@oddplusevenstudio.com` logs in.
+The admin panel now sends email notifications to `ernest@oddpluseven.com` whenever someone logs in, **except** when `ernest@oddpluseven.com` logs in (notifications will be sent for `ernest@oddplusevenstudio.com` and all other emails).
 
 ## 📧 Notification Details
 
 - **Recipient:** `ernest@oddpluseven.com`
 - **Subject:** "Nelson County Admin - Login Notification"
 - **Content:** Includes the user's email and login time
-- **Excluded:** No notification sent for `ernest@oddpluseven.com` or `ernest@oddplusevenstudio.com`
+- **Excluded:** No notification sent for `ernest@oddpluseven.com` only
 
 ## 🔧 Implementation
 
 The notification is automatically sent from the Google Apps Script when:
 1. A user successfully verifies their OTP code
 2. A session token is generated
-3. The user's email is NOT `ernest@oddpluseven.com` or `ernest@oddplusevenstudio.com`
+3. The user's email is NOT `ernest@oddpluseven.com` (all other emails, including `ernest@oddplusevenstudio.com`, will trigger notifications)
 
 ## 📋 Setup Instructions
 
@@ -77,7 +77,7 @@ Nelson County Admin Panel
 5. Check the execution log (View → Logs) for detailed output
 
 ### Option 2: Real Login Test
-1. Log in with any authorized email (except `ernest@oddpluseven.com`)
+1. Log in with any authorized email (except `ernest@oddpluseven.com` - `ernest@oddplusevenstudio.com` will trigger notifications)
 2. Check `ernest@oddpluseven.com` inbox for the notification
 3. Verify the email contains the correct user email and timestamp
 4. Check Apps Script execution logs (View → Logs) to see if notification was sent
@@ -91,7 +91,7 @@ Nelson County Admin Panel
 - Verify the `sendLoginNotification()` function exists in your Apps Script
 
 **Step 2: Check what email you logged in with**
-- If you logged in with `ernest@oddpluseven.com` or `ernest@oddplusevenstudio.com`, no notification will be sent (this is by design)
+- If you logged in with `ernest@oddpluseven.com`, no notification will be sent (this is by design). `ernest@oddplusevenstudio.com` will trigger notifications.
 - Try logging in with a different authorized email (e.g., `adam@oddpluseven.com`)
 
 **Step 3: Check Apps Script execution logs**
@@ -115,7 +115,7 @@ Nelson County Admin Panel
 
 ### Notification sent for ernest@oddpluseven.com
 - This shouldn't happen - check the email address comparison logic in `sendLoginNotification()`
-- Verify the email is exactly `ernest@oddpluseven.com` (case-insensitive)
+- Verify the email is exactly `ernest@oddpluseven.com` (case-insensitive). Note: `ernest@oddplusevenstudio.com` will trigger notifications.
 
 ## 📚 Code Location
 

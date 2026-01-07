@@ -1743,12 +1743,9 @@
             // SERVER-SIDE OTP: Request OTP from server (no client-side generation)
             window.sendOTP = async function sendOTP(email) {
                 try {
-                    // Client-side check first (quick rejection, but server validates too)
-                    // Reload emails in case they were updated
-                    const allowedEmails = loadAuthorizedEmails();
-                    if (!allowedEmails.includes(email.toLowerCase())) {
-                        return { success: false, error: 'This email is not authorized to access the admin panel.' };
-                    }
+                    // Server is the source of truth for authorization
+                    // Let the server check authorization - it has the most up-to-date list
+                    // (Client-side check removed to avoid localStorage sync issues)
                     
                     // Request OTP from server (server generates, stores, and sends it)
                     const scriptUrl = getGoogleAppsScriptURL();

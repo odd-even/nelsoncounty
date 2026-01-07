@@ -28,35 +28,79 @@ const DEFAULT_AUTHORIZED_EMAILS = [
 /**
  * Get authorized emails from PropertiesService (persistent storage)
  * Falls back to default emails if not set, and initializes them
+ * Returns all emails in lowercase for consistent checking
  */
 function getAuthorizedEmails() {
   const props = PropertiesService.getScriptProperties();
   const stored = props.getProperty('AUTHORIZED_EMAILS');
   
+  Logger.log('🔍 getAuthorizedEmails: Checking PropertiesService...');
+  Logger.log('🔍 getAuthorizedEmails: Stored value exists: ' + (stored ? 'YES' : 'NO'));
+  
   if (stored) {
     try {
-      return JSON.parse(stored);
+      const emails = JSON.parse(stored);
+      Logger.log('🔍 getAuthorizedEmails: Parsed emails from storage: ' + JSON.stringify(emails));
+      
+      // Ensure all emails are lowercase (in case old data exists)
+      const normalized = emails.map(function(email) {
+        return String(email).trim().toLowerCase();
+      }).filter(function(email) {
+        return email.length > 0;
+      });
+      
+      Logger.log('🔍 getAuthorizedEmails: Normalized emails: ' + JSON.stringify(normalized));
+      
+      // If normalization changed anything, save it back
+      if (JSON.stringify(emails) !== JSON.stringify(normalized)) {
+        Logger.log('🔧 Normalizing stored emails to lowercase');
+        props.setProperty('AUTHORIZED_EMAILS', JSON.stringify(normalized));
+      }
+      
+      Logger.log('✅ getAuthorizedEmails: Returning ' + normalized.length + ' emails from PropertiesService');
+      return normalized;
     } catch (e) {
-      Logger.log('Error parsing stored authorized emails: ' + e);
+      Logger.log('❌ Error parsing stored authorized emails: ' + e);
+      Logger.log('❌ Stored value was: ' + stored);
       // Fall through to initialize defaults
     }
   }
   
-  // Initialize with defaults if not set
+  // Initialize with defaults if not set (ONLY on first run)
+  Logger.log('⚠️  getAuthorizedEmails: No stored emails found, initializing with defaults');
+  Logger.log('📧 Default emails: ' + JSON.stringify(DEFAULT_AUTHORIZED_EMAILS));
   setAuthorizedEmails(DEFAULT_AUTHORIZED_EMAILS);
-  return DEFAULT_AUTHORIZED_EMAILS;
+  const normalizedDefaults = DEFAULT_AUTHORIZED_EMAILS.map(function(email) {
+    return String(email).trim().toLowerCase();
+  });
+  Logger.log('✅ getAuthorizedEmails: Initialized and returning defaults: ' + JSON.stringify(normalizedDefaults));
+  return normalizedDefaults;
 }
 
 /**
  * Set authorized emails in PropertiesService
+ * Normalizes all emails to lowercase for consistent checking
  */
 function setAuthorizedEmails(emails) {
   if (!Array.isArray(emails) || emails.length === 0) {
     throw new Error('Authorized emails must be a non-empty array');
   }
+  
+  // Normalize all emails to lowercase and trim whitespace
+  const normalizedEmails = emails.map(function(email) {
+    return String(email).trim().toLowerCase();
+  }).filter(function(email) {
+    return email.length > 0; // Remove empty strings
+  });
+  
+  if (normalizedEmails.length === 0) {
+    throw new Error('No valid emails after normalization');
+  }
+  
   const props = PropertiesService.getScriptProperties();
-  props.setProperty('AUTHORIZED_EMAILS', JSON.stringify(emails));
-  Logger.log('Authorized emails updated: ' + emails.length + ' emails');
+  props.setProperty('AUTHORIZED_EMAILS', JSON.stringify(normalizedEmails));
+  Logger.log('Authorized emails updated: ' + normalizedEmails.length + ' emails');
+  Logger.log('📧 Stored emails: ' + JSON.stringify(normalizedEmails));
 }
 
 /**
@@ -307,19 +351,29 @@ function validateSessionToken(token) {
       };
     }
     
+    // Normalize email for checking (emails in PropertiesService are lowercase)
+    const normalizedEmail = String(tokenData.email).trim().toLowerCase();
+    const authorizedEmails = getAuthorizedEmails();
+    
+    Logger.log('🔍 validateSessionToken: Checking email: ' + normalizedEmail);
+    Logger.log('🔍 validateSessionToken: Authorized emails: ' + JSON.stringify(authorizedEmails));
+    
     // Check if email is authorized
-    if (!getAuthorizedEmails().includes(tokenData.email)) {
+    if (!authorizedEmails.includes(normalizedEmail)) {
+      Logger.log('❌ validateSessionToken: Email not authorized: ' + normalizedEmail);
       return {
         valid: false,
         error: 'Email not authorized'
       };
     }
     
+    Logger.log('✅ validateSessionToken: Email authorized: ' + normalizedEmail);
     return {
       valid: true,
-      email: tokenData.email
+      email: normalizedEmail
     };
   } catch (e) {
+    Logger.log('❌ validateSessionToken: Error: ' + e.toString());
     return {
       valid: false,
       error: 'Invalid session token'
@@ -341,13 +395,23 @@ function storeSessionToken(token, email) {
  */
 function sendOTPEmail(email) {
   try {
+    // Normalize email for checking
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const authorizedEmails = getAuthorizedEmails();
+    
+    Logger.log('🔍 sendOTPEmail: Checking authorization for: ' + normalizedEmail);
+    Logger.log('🔍 sendOTPEmail: Authorized emails: ' + JSON.stringify(authorizedEmails));
+    
     // Check if email is authorized
-    if (!getAuthorizedEmails().includes(email.toLowerCase())) {
+    if (!authorizedEmails.includes(normalizedEmail)) {
+      Logger.log('❌ sendOTPEmail: Email not authorized: ' + normalizedEmail);
       return {
         success: false,
         error: 'This email is not authorized to access the admin panel.'
       };
     }
+    
+    Logger.log('✅ sendOTPEmail: Email authorized: ' + normalizedEmail);
     
     // Check rate limiting
     const rateLimit = checkRateLimit(email);
@@ -426,10 +490,9 @@ function sendLoginNotification(userEmail) {
     
     const email = userEmail.trim().toLowerCase();
     
-    // Don't send notification for ernest@oddpluseven.com
-    if (email === 'ernest@oddpluseven.com' || 
-        email === 'ernest@oddplusevenstudio.com') {
-      Logger.log('⏭️  Skipping notification for: ' + email);
+    // Don't send notification for ernest@oddpluseven.com (but allow ernest@oddplusevenstudio.com)
+    if (email === 'ernest@oddpluseven.com') {
+      Logger.log('⏭️  Skipping notification for: ' + email + ' (excluded by design)');
       return { success: true, skipped: true };
     }
     
@@ -611,10 +674,20 @@ function doGet(e) {
           
           // Send login notification (except for ernest@oddpluseven.com)
           Logger.log('🔔 Login successful for: ' + email + ', sending notification...');
-          const notificationResult = sendLoginNotification(email);
-          Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
-          if (!notificationResult.success && !notificationResult.skipped) {
-            Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+          Logger.log('🔔 About to call sendLoginNotification with email: ' + email);
+          try {
+            const notificationResult = sendLoginNotification(email);
+            Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
+            if (notificationResult.skipped) {
+              Logger.log('⏭️  Notification skipped (expected for ernest@oddpluseven.com)');
+            } else if (!notificationResult.success) {
+              Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+            } else {
+              Logger.log('✅ Notification sent successfully!');
+            }
+          } catch (notifError) {
+            Logger.log('❌ Exception calling sendLoginNotification: ' + notifError.toString());
+            Logger.log('❌ Error stack: ' + (notifError.stack || 'No stack trace'));
           }
         }
       } else {
@@ -738,14 +811,22 @@ function doGet(e) {
         }
         
         Logger.log('✅ updateAuthorizedEmails: Updating to ' + emails.length + ' emails');
-        Logger.log('📧 New emails: ' + JSON.stringify(emails));
+        Logger.log('📧 New emails (before normalization): ' + JSON.stringify(emails));
+        
+        // Save the emails
         setAuthorizedEmails(emails);
+        
+        // Verify they were saved correctly
+        const savedEmails = getAuthorizedEmails();
+        Logger.log('✅ updateAuthorizedEmails: Verified saved emails: ' + JSON.stringify(savedEmails));
+        Logger.log('✅ updateAuthorizedEmails: Saved ' + savedEmails.length + ' emails successfully');
         
         return ContentService
           .createTextOutput(JSON.stringify({
             success: true,
             message: 'Authorized emails updated successfully',
-            count: emails.length
+            count: savedEmails.length,
+            emails: savedEmails
           }))
           .setMimeType(ContentService.MimeType.JSON);
       } catch (error) {
@@ -962,10 +1043,20 @@ function doPost(e) {
           
           // Send login notification (except for ernest@oddpluseven.com)
           Logger.log('🔔 Login successful for: ' + data.email + ', sending notification...');
-          const notificationResult = sendLoginNotification(data.email);
-          Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
-          if (!notificationResult.success && !notificationResult.skipped) {
-            Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+          Logger.log('🔔 About to call sendLoginNotification with email: ' + data.email);
+          try {
+            const notificationResult = sendLoginNotification(data.email);
+            Logger.log('🔔 Notification result: ' + JSON.stringify(notificationResult));
+            if (notificationResult.skipped) {
+              Logger.log('⏭️  Notification skipped (expected for ernest@oddpluseven.com)');
+            } else if (!notificationResult.success) {
+              Logger.log('⚠️  Notification failed but login succeeded: ' + (notificationResult.error || 'Unknown error'));
+            } else {
+              Logger.log('✅ Notification sent successfully!');
+            }
+          } catch (notifError) {
+            Logger.log('❌ Exception calling sendLoginNotification: ' + notifError.toString());
+            Logger.log('❌ Error stack: ' + (notifError.stack || 'No stack trace'));
           }
         }
       } else {
