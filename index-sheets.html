@@ -1990,12 +1990,15 @@
                 submitBtn.textContent = 'Verifying...';
                 try {
                     // Verify OTP with server (returns session token if successful)
+                    console.log('🔍 Verifying OTP code for:', email);
                     const result = await verifyOTP(email, code);
+                    console.log('🔍 verifyOTP result:', result);
+                    
                     if (result.success && result.sessionToken) {
                         // Set persistent session with SERVER-GENERATED token
                         setAuthSession(email, result.sessionToken);
                         console.log('✅ OTP verified successfully for:', email);
-                        console.log('✅ Server-validated session token saved');
+                        console.log('✅ Server-validated session token saved to localStorage');
                         
                         // Also set sessionStorage for backward compatibility
                         sessionStorage.setItem('adminLoggedIn', 'true');
@@ -2007,6 +2010,14 @@
                         errorText.textContent = '✅ Login successful! Loading admin panel...';
                         errorText.style.color = '#22c55e';
                         errorDiv.style.display = 'block';
+                        
+                        // Immediately hide overlay (before reload)
+                        const overlay = document.getElementById('loginOverlay');
+                        if (overlay) {
+                            overlay.style.display = 'none';
+                            overlay.setAttribute('style', 'display: none !important;');
+                            console.log('✅ Login overlay hidden immediately');
+                        }
                         
                         // Reload page to initialize admin.js with authenticated session
                         setTimeout(function() {
@@ -2138,23 +2149,23 @@
                     }
                 }
                 
-                // Reload emails in case they were updated
-                const currentAllowedEmails = loadAuthorizedEmails();
+                const overlay = document.getElementById('loginOverlay');
                 
+                // If user has a valid server-validated session token, that's proof of authorization
+                // Don't check against localStorage email list (it may be out of sync with server)
+                // Server already validated the email when it issued the session token
                 console.log('🔍 Final auth check:', {
                     finalIsLoggedIn: finalIsLoggedIn,
                     finalAdminEmail: finalAdminEmail,
-                    inAuthorizedList: finalAdminEmail ? currentAllowedEmails.includes(finalAdminEmail.toLowerCase()) : false,
-                    authorizedEmails: currentAllowedEmails
+                    hasSessionToken: session ? !!session.token : false,
+                    note: 'Server-validated session token is proof of authorization'
                 });
-                
-                const overlay = document.getElementById('loginOverlay');
                 
                 // ONLY allow login if BOTH conditions are met:
                 // 1. Valid session (localStorage or sessionStorage)
                 // 2. AND there's a valid email
-                // 3. AND the email is in the authorized list
-                if (finalIsLoggedIn && finalAdminEmail && currentAllowedEmails.includes(finalAdminEmail.toLowerCase())) {
+                // (Server-validated session token is proof of authorization - no need to check email list)
+                if (finalIsLoggedIn && finalAdminEmail) {
                     // Valid authenticated session
                     console.log('✅ enforceAuth: Valid authenticated session - showing admin panel');
                     console.log('✅ enforceAuth: Email:', finalAdminEmail);
@@ -2386,12 +2397,14 @@
                     }
                     
                     // Check if properly authenticated
-                    const isValidAuth = isLoggedIn && 
-                                       adminEmail && 
-                                       loadAuthorizedEmails().includes(adminEmail.toLowerCase());
+                    // If they have a valid session token from the server, that's proof of authorization
+                    // Don't check against localStorage email list (it may be out of sync)
+                    // Server-validated session token is the source of truth
+                    const isValidAuth = isLoggedIn && adminEmail;
                     
                     // If valid, ensure overlay is hidden and logged-in class is set
                     if (isValidAuth) {
+                        console.log('✅ Monitoring: Valid session found, hiding login overlay');
                         if (overlay) {
                             overlay.style.display = 'none';
                             overlay.setAttribute('style', 'display: none !important;');
@@ -2716,6 +2729,7 @@
                             <th class="sortable" data-sort="publishedDate" data-column-key="publishedDate">Published Date</th>
                             <th class="sortable" data-sort="modifiedDate" data-column-key="modifiedDate">Modified Date</th>
                             <th data-column-key="directionsLink">Directions Link</th>
+                            <th data-column-key="videoLink">Video Link</th>
                             <th data-column-key="amenities">Amenities</th>
                             <th class="sortable" data-sort="featured" data-column-key="featured">Featured</th>
                             <th data-column-key="googleMapsUrl">Google Maps URL</th>
@@ -2755,6 +2769,7 @@
                             <th><input type="text" class="filter-input" data-filter="publishedDate" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="modifiedDate" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="directionsLink" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="videoLink" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="amenities" placeholder="Filter..." /></th>
                             <th><select class="filter-select" data-filter="featured"><option value="">All</option><option value="true">Yes</option><option value="false">No</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="googleMapsUrl" placeholder="Filter..." /></th>
@@ -3030,6 +3045,12 @@
                 <div class="form-group">
                     <label>Directions Link</label>
                     <input type="url" id="listingDirectionsLink" placeholder="https://www.google.com/maps/..." />
+                </div>
+                
+                <div class="form-group">
+                    <label>Video Link</label>
+                    <input type="url" id="listingVideoLink" placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/..." />
+                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">YouTube or other video embed URL. Will be available in Framer CMS data.</small>
                 </div>
                 
                 <div class="form-group">
@@ -4532,6 +4553,7 @@ function updateUnsavedChangesBadge() {
             
             const googleMapsUrlField = getField('Google Maps URL', ['Google Map URL', 'Google Maps Link', 'Maps URL', 'Map URL', 'Google Maps', 'googleMapsUrl', 'google_maps_url', 'map url', 'maps link']);
             const directionsLinkField = getField('directionsLink', ['Directions Link', 'Directions URL', 'Map Link', 'map directions', 'directions url']);
+            const videoLinkField = getField('Video Link', ['videoLink', 'Video URL', 'video url', 'youtube', 'YouTube', 'youtube url', 'YouTube URL', 'youtube link', 'video']);
             
             // Handle category EXACTLY like type - simple and direct
             // Type: getField('Type', ['type']) - no normalization, no transformation
@@ -4569,6 +4591,7 @@ function updateUnsavedChangesBadge() {
                     return date ? normalizeDate(date) : date;
                 })(),
                 directionsLink: directionsLinkField || googleMapsUrlField || '',
+                videoLink: videoLinkField || '',
                 image1FileId: getField('Image1FileId', ['image1FileId', 'Image 1 File ID', 'Image1 File ID', 'image1 file id']),
                 image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
                 image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
@@ -5527,7 +5550,7 @@ function updateUnsavedChangesBadge() {
                 }
                 
                 // Check URLs for validity (basic format check)
-                const urlFields = ['website', 'image1', 'image2', 'image3', 'directionsLink', 'externalWebsite'];
+                const urlFields = ['website', 'image1', 'image2', 'image3', 'directionsLink', 'videoLink', 'externalWebsite'];
                 urlFields.forEach(function(field) {
                     if (listing[field] && listing[field].trim() !== '') {
                         const url = listing[field].trim();
@@ -6311,6 +6334,7 @@ function updateUnsavedChangesBadge() {
                     listing.publishedDate || '',
                     listing.modifiedDate || '',
                     listing.directionsLink || '',
+                    listing.videoLink || '',
                     listing.googleMapsUrl || '',
                     listing.image1Desc || '',
                     listing.image2Desc || '',
@@ -6994,6 +7018,8 @@ function updateUnsavedChangesBadge() {
                     directionsInput.value = '';
                 }
             }
+            const videoLinkInput = document.getElementById('listingVideoLink');
+            if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
             // Set accordion fields
@@ -7314,6 +7340,7 @@ function updateUnsavedChangesBadge() {
                 modifiedDate: getValue('listingModifiedDate'),
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
+                videoLink: getValue('listingVideoLink'),
                 category: categoryValue, // Always has a value (validated above)
                 accordionPanel1Title: getValue('listingAccordionPanel1Title'),
                 accordionPanel1Content: getValue('listingAccordionPanel1Content'),
@@ -10623,6 +10650,7 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-date"><input type="date" value="' + safe(listing.publishedDate) + '" data-field="publishedDate" /></td>' +
                     '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate) + '" data-field="modifiedDate" /></td>' +
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
+                    '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
@@ -10899,7 +10927,7 @@ function updateUnsavedChangesBadge() {
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
                     'website', 'phone', 'address',
-                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink',
+                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink',
                     'amenities', 'featured', 'googleMapsUrl'
                 ];
                 
@@ -10931,6 +10959,7 @@ function updateUnsavedChangesBadge() {
                         escapeCsv(listing.publishedDate || ''),
                         escapeCsv(listing.modifiedDate || ''),
                         escapeCsv(listing.directionsLink || ''),
+                        escapeCsv(listing.videoLink || ''),
                         escapeCsv(safeAmenities),
                         escapeCsv(listing.featured ? 'true' : 'false'),
                         escapeCsv(listing.googleMapsUrl || listing.directionsLink || '')

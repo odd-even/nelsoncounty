@@ -1220,6 +1220,8 @@ function getData(sheet) {
           listing.directionsLink = String(value || '');
         } else if (['googlemapsurl', 'google maps url', 'google map url'].includes(headerLower)) {
           listing.googleMapsUrl = String(value || '');
+        } else if (['videolink', 'video link', 'video url', 'youtube', 'youtube url'].includes(headerLower)) {
+          listing.videoLink = String(value || '');
         } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
           listing.accordionPanel1Title = String(value || '');
         } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1467,6 +1469,8 @@ function saveListing(sheet, listing) {
         rowData.push(listing.directionsLink || '');
       } else if (['googlemapsurl', 'google maps url', 'google map url'].includes(headerLower)) {
         rowData.push(listing.googleMapsUrl || '');
+      } else if (['videolink', 'video link', 'video url', 'youtube', 'youtube url'].includes(headerLower)) {
+        rowData.push(listing.videoLink || '');
       } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
         rowData.push(listing.accordionPanel1Title || '');
       } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1571,6 +1575,7 @@ const CANONICAL_LISTING_HEADERS = [
   'publishedDate',
   'modifiedDate',
   'directionsLink',
+  'videoLink',
   'amenities',
   'featured',
   'googleMapsUrl',
