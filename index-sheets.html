@@ -1596,21 +1596,24 @@
             const ENABLE_EMAIL_OTP = true; // Set to false to disable
             
             // Load authorized emails from localStorage or use defaults
+            // NOTE: This is ONLY for display purposes in the UI
+            // Actual authorization is checked by the SERVER when sendOTP() is called
             window.loadAuthorizedEmails = function loadAuthorizedEmails() {
                 const stored = localStorage.getItem('adminAllowedEmails');
-                console.log('📥 Loading emails from localStorage. Raw value:', stored);
+                console.log('📥 Loading emails from localStorage (for display only). Raw value:', stored);
                 if (stored) {
                     try {
                         const parsed = JSON.parse(stored);
-                        console.log('✅ Successfully parsed emails from localStorage:', parsed);
+                        console.log('✅ Successfully parsed emails from localStorage (for display):', parsed);
                         return parsed;
                     } catch (e) {
                         console.error('❌ Error parsing stored emails:', e);
                     }
                 } else {
-                    console.log('⚠️ No emails found in localStorage, using defaults');
+                    console.log('⚠️ No emails found in localStorage, using defaults (for display only)');
+                    console.log('ℹ️  NOTE: Server has the actual authorization list - localStorage is just for UI display');
                 }
-                // Default emails (fallback)
+                // Default emails (fallback for display only)
                 const defaults = [
                 'ernest@oddplusevenstudio.com',
                 'ernest@oddpluseven.com',
@@ -1620,7 +1623,8 @@
                 'makelley@nelsoncounty.org',
                 'esther@oddpluseven.com',
             ];
-                console.log('📋 Returning default emails:', defaults);
+                console.log('📋 Returning default emails (for display only):', defaults);
+                console.log('ℹ️  Server will check actual authorization when you try to log in');
                 return defaults;
             }
             
@@ -1746,6 +1750,8 @@
                     // Server is the source of truth for authorization
                     // Let the server check authorization - it has the most up-to-date list
                     // (Client-side check removed to avoid localStorage sync issues)
+                    console.log('📧 sendOTP: Requesting OTP for email:', email);
+                    console.log('📧 sendOTP: Server will check authorization (not using localStorage)');
                     
                     // Request OTP from server (server generates, stores, and sends it)
                     const scriptUrl = getGoogleAppsScriptURL();
@@ -1753,6 +1759,7 @@
                         action: 'sendOTP',
                         email: email
                     });
+                    console.log('📧 sendOTP: Calling server at:', scriptUrl);
                     
                     let response;
                     let result;
@@ -1792,6 +1799,14 @@
                     }
                     
                     // Server handles all validation - just return the result
+                    // Note: Server checks authorization using PropertiesService (most up-to-date list)
+                    // Client-side localStorage is only for display purposes, not for blocking login
+                    console.log('📧 sendOTP server response:', result);
+                    if (!result.success) {
+                        console.log('❌ Server rejected email:', result.error);
+                    } else {
+                        console.log('✅ Server accepted email, OTP sent');
+                    }
                     return result;
                 } catch (error) {
                     return { success: false, error: 'Network error. Please check your connection and try again.' };
