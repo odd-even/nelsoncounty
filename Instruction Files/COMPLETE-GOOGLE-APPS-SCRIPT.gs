@@ -1222,6 +1222,10 @@ function getData(sheet) {
           listing.googleMapsUrl = String(value || '');
         } else if (['videolink', 'video link', 'video url', 'youtube', 'youtube url'].includes(headerLower)) {
           listing.videoLink = String(value || '');
+        } else if (['document1', 'document 1', 'document1link', 'document 1 link'].includes(headerLower)) {
+          listing.document1 = String(value || '');
+        } else if (['document2', 'document 2', 'document2link', 'document 2 link'].includes(headerLower)) {
+          listing.document2 = String(value || '');
         } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
           listing.accordionPanel1Title = String(value || '');
         } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1471,6 +1475,10 @@ function saveListing(sheet, listing) {
         rowData.push(listing.googleMapsUrl || '');
       } else if (['videolink', 'video link', 'video url', 'youtube', 'youtube url'].includes(headerLower)) {
         rowData.push(listing.videoLink || '');
+      } else if (['document1', 'document 1', 'document1link', 'document 1 link'].includes(headerLower)) {
+        rowData.push(listing.document1 || '');
+      } else if (['document2', 'document 2', 'document2link', 'document 2 link'].includes(headerLower)) {
+        rowData.push(listing.document2 || '');
       } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
         rowData.push(listing.accordionPanel1Title || '');
       } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1576,6 +1584,8 @@ const CANONICAL_LISTING_HEADERS = [
   'modifiedDate',
   'directionsLink',
   'videoLink',
+  'document1',
+  'document2',
   'amenities',
   'featured',
   'googleMapsUrl',

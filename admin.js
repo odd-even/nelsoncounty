@@ -2230,6 +2230,10 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             if (directionsInput) directionsInput.value = listing.directionsLink || '';
             const videoLinkInput = document.getElementById('listingVideoLink');
             if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
+            const document1Input = document.getElementById('listingDocument1');
+            if (document1Input) document1Input.value = listing.document1 || '';
+            const document2Input = document.getElementById('listingDocument2');
+            if (document2Input) document2Input.value = listing.document2 || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
             // Set accordion fields

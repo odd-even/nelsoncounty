@@ -2764,6 +2764,8 @@
                             <th class="sortable" data-sort="modifiedDate" data-column-key="modifiedDate">Modified Date</th>
                             <th data-column-key="directionsLink">Directions Link</th>
                             <th data-column-key="videoLink">Video Link</th>
+                            <th data-column-key="document1">Document 1</th>
+                            <th data-column-key="document2">Document 2</th>
                             <th data-column-key="amenities">Amenities</th>
                             <th class="sortable" data-sort="featured" data-column-key="featured">Featured</th>
                             <th data-column-key="googleMapsUrl">Google Maps URL</th>
@@ -2804,6 +2806,8 @@
                             <th><input type="text" class="filter-input" data-filter="modifiedDate" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="directionsLink" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="videoLink" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="document1" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="document2" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="amenities" placeholder="Filter..." /></th>
                             <th><select class="filter-select" data-filter="featured"><option value="">All</option><option value="true">Yes</option><option value="false">No</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="googleMapsUrl" placeholder="Filter..." /></th>
@@ -3085,6 +3089,26 @@
                     <label>Video Link</label>
                     <input type="url" id="listingVideoLink" placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/..." />
                     <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">YouTube or other video embed URL. Will be available in Framer CMS data.</small>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Document 1</label>
+                        <div class="image-input-group">
+                            <input type="text" id="listingDocument1" placeholder="PDF URL or upload..." />
+                            <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument1">Upload PDF</button>
+                        </div>
+                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Document 2</label>
+                        <div class="image-input-group">
+                            <input type="text" id="listingDocument2" placeholder="PDF URL or upload..." />
+                            <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument2">Upload PDF</button>
+                        </div>
+                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit</small>
+                    </div>
                 </div>
                 
                 <div class="form-group">
@@ -4626,6 +4650,8 @@ function updateUnsavedChangesBadge() {
                 })(),
                 directionsLink: directionsLinkField || googleMapsUrlField || '',
                 videoLink: videoLinkField || '',
+                document1: getField('Document1', ['document1', 'Document 1', 'document1link', 'document 1 link']),
+                document2: getField('Document2', ['document2', 'Document 2', 'document2link', 'document 2 link']),
                 image1FileId: getField('Image1FileId', ['image1FileId', 'Image 1 File ID', 'Image1 File ID', 'image1 file id']),
                 image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
                 image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
@@ -6369,6 +6395,8 @@ function updateUnsavedChangesBadge() {
                     listing.modifiedDate || '',
                     listing.directionsLink || '',
                     listing.videoLink || '',
+                    listing.document1 || '',
+                    listing.document2 || '',
                     listing.googleMapsUrl || '',
                     listing.image1Desc || '',
                     listing.image2Desc || '',
@@ -6936,6 +6964,7 @@ function updateUnsavedChangesBadge() {
             // Initialize image upload buttons after modal is shown
             setTimeout(function() {
                 initImageUploadButtons();
+                initDocumentUploadButtons();
             }, 100);
             // Initialize address autocomplete after modal is shown
             setTimeout(function() {
@@ -7054,6 +7083,10 @@ function updateUnsavedChangesBadge() {
             }
             const videoLinkInput = document.getElementById('listingVideoLink');
             if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
+            const document1Input = document.getElementById('listingDocument1');
+            if (document1Input) document1Input.value = listing.document1 || '';
+            const document2Input = document.getElementById('listingDocument2');
+            if (document2Input) document2Input.value = listing.document2 || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
             // Set accordion fields
@@ -7375,6 +7408,8 @@ function updateUnsavedChangesBadge() {
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
                 videoLink: getValue('listingVideoLink'),
+                document1: getValue('listingDocument1'),
+                document2: getValue('listingDocument2'),
                 category: categoryValue, // Always has a value (validated above)
                 accordionPanel1Title: getValue('listingAccordionPanel1Title'),
                 accordionPanel1Content: getValue('listingAccordionPanel1Content'),
@@ -10053,6 +10088,121 @@ function updateUnsavedChangesBadge() {
                     }
                 });
             });
+        }
+        
+        // Initialize document upload buttons (for PDFs)
+        function initDocumentUploadButtons() {
+            document.querySelectorAll('.btn-upload-document').forEach(function(button) {
+                // Skip if already initialized
+                if (button.dataset.uploadInitialized === 'true') {
+                    return;
+                }
+                
+                // Mark as initialized
+                button.dataset.uploadInitialized = 'true';
+                
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const targetId = button.dataset.target;
+                    if (!targetId) {
+                        console.error('Upload button missing data-target attribute');
+                        alert('Error: Upload button configuration issue. Please refresh the page.');
+                        return;
+                    }
+                    
+                    const input = document.getElementById(targetId);
+                    if (!input) {
+                        console.error('Input field not found: ' + targetId);
+                        alert('Error: Cannot find target input field: ' + targetId);
+                        return;
+                    }
+
+                    const filePicker = document.createElement('input');
+                    filePicker.type = 'file';
+                    filePicker.accept = 'application/pdf';
+                    filePicker.style.display = 'none';
+                    
+                    // Append to body temporarily
+                    document.body.appendChild(filePicker);
+
+                    filePicker.onchange = async function(event) {
+                        console.log('File picker changed, files:', event.target.files);
+                        
+                        if (!filePicker.files || !filePicker.files.length || !filePicker.files[0]) {
+                            console.log('No file selected');
+                            document.body.removeChild(filePicker);
+                            return;
+                        }
+                        
+                        const file = filePicker.files[0];
+                        console.log('Selected file:', file.name, file.size, 'bytes');
+                        
+                        // Validate it's a PDF
+                        if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+                            alert('Please select a PDF file.');
+                            document.body.removeChild(filePicker);
+                            return;
+                        }
+
+                        button.disabled = true;
+                        const originalText = button.textContent;
+                        button.textContent = 'Uploading...';
+
+                        try {
+                            console.log('Starting PDF upload to ImageKit...');
+                            // Use the same upload function - ImageKit supports PDFs
+                            const result = await uploadImageToImageKit(file);
+                            console.log('Upload successful, result:', result);
+                            
+                            const documentUrl = result.url || result.filePath || '';
+                            if (documentUrl) {
+                                input.value = documentUrl;
+                                
+                                // Reset button text
+                                button.textContent = 'Upload PDF';
+                                
+                                // Upload successful
+                                alert('✅ PDF uploaded successfully!\n\nURL: ' + documentUrl);
+                            } else {
+                                throw new Error('No URL returned from upload');
+                            }
+                        } catch (error) {
+                            console.error('ImageKit upload error:', error);
+                            const errorMsg = error.message || 'Unknown error occurred';
+                            alert('PDF upload failed: ' + errorMsg + '\n\nPlease check the browser console for details.');
+                        } finally {
+                            button.disabled = false;
+                            button.textContent = originalText;
+                            // Clean up file picker
+                            if (filePicker.parentNode) {
+                                document.body.removeChild(filePicker);
+                            }
+                        }
+                    };
+
+                    // Handle cancel
+                    filePicker.oncancel = function() {
+                        console.log('File picker cancelled');
+                        setTimeout(function() {
+                            if (filePicker.parentNode) {
+                                document.body.removeChild(filePicker);
+                            }
+                        }, 100);
+                    };
+
+                    try {
+                        filePicker.click();
+                    } catch (clickError) {
+                        console.error('Error clicking file picker:', clickError);
+                        alert('Error opening file picker. Please try again.');
+                        if (filePicker.parentNode) {
+                            document.body.removeChild(filePicker);
+                        }
+                    }
+                });
+            });
             
             // Add event listeners for "Generate AI Description" buttons
             document.querySelectorAll('.btn-generate-desc').forEach(function(btn) {
@@ -10685,6 +10835,8 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate) + '" data-field="modifiedDate" /></td>' +
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
+                    '<td class="cell-document"><input type="url" value="' + safe(listing.document1 || '') + '" data-field="document1" placeholder="PDF URL..." /></td>' +
+                    '<td class="cell-document"><input type="url" value="' + safe(listing.document2 || '') + '" data-field="document2" placeholder="PDF URL..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
@@ -10961,7 +11113,7 @@ function updateUnsavedChangesBadge() {
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
                     'website', 'phone', 'address',
-                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink',
+                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 'document1', 'document2',
                     'amenities', 'featured', 'googleMapsUrl'
                 ];
                 
@@ -10994,6 +11146,8 @@ function updateUnsavedChangesBadge() {
                         escapeCsv(listing.modifiedDate || ''),
                         escapeCsv(listing.directionsLink || ''),
                         escapeCsv(listing.videoLink || ''),
+                        escapeCsv(listing.document1 || ''),
+                        escapeCsv(listing.document2 || ''),
                         escapeCsv(safeAmenities),
                         escapeCsv(listing.featured ? 'true' : 'false'),
                         escapeCsv(listing.googleMapsUrl || listing.directionsLink || '')
