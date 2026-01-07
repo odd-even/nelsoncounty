@@ -3796,60 +3796,66 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     return arr.join('; ');
                 };
                 
-                const headers = [
-                    'id', 'name', 'slug', 'type', 'category', 'area', 'description',
-                    'customHtml',
+                // Collect ALL unique fields from all listings to ensure nothing is missed
+                const allFields = new Set();
+                
+                // Add standard fields first (in preferred order)
+                const standardFields = [
+                    'id', 'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
                     'image1', 'image1Desc', 'image1FileId',
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
                     'website', 'phone', 'address',
-                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink',
-                    'amenities', 'featured', 'googleMapsUrl',
+                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 
+                    'document1', 'document1Name', 'document2', 'document2Name',
                     'accordionPanel1Title', 'accordionPanel1Content',
                     'accordionPanel2Title', 'accordionPanel2Content',
                     'accordionPanel3Title', 'accordionPanel3Content',
-                    'accordionPanel4Title', 'accordionPanel4Content'
+                    'accordionPanel4Title', 'accordionPanel4Content',
+                    'amenities', 'featured', 'googleMapsUrl'
                 ];
                 
+                standardFields.forEach(field => allFields.add(field));
+                
+                // Add any additional fields found in listings
+                if (data && data.listings && Array.isArray(data.listings)) {
+                    data.listings.forEach(function(listing) {
+                        if (listing && typeof listing === 'object') {
+                            Object.keys(listing).forEach(function(key) {
+                                if (key && typeof key === 'string') {
+                                    allFields.add(key);
+                                }
+                            });
+                        }
+                    });
+                }
+                
+                // Convert to array and sort (standard fields first, then others alphabetically)
+                const headers = Array.from(allFields);
+                headers.sort(function(a, b) {
+                    const aIndex = standardFields.indexOf(a);
+                    const bIndex = standardFields.indexOf(b);
+                    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+                    if (aIndex !== -1) return -1;
+                    if (bIndex !== -1) return 1;
+                    return a.localeCompare(b);
+                });
+                
                 const rows = data.listings.map(function(listing) {
-                    return [
-                        listing.id || '',
-                        escapeCsv(listing.name || ''),
-                        escapeCsv(listing.slug || ''),
-                        listing.type || '',
-                        listing.category || '', // Category field
-                        listing.area || '',
-                        escapeCsv(listing.description || ''),
-                        escapeCsv(listing.detailedDescription || ''),
-                        escapeCsv(listing.customHtml || ''),
-                        escapeCsv(listing.image1 || ''),
-                        escapeCsv(listing.image1Desc || ''),
-                        escapeCsv(listing.image1FileId || ''),
-                        escapeCsv(listing.image2 || ''),
-                        escapeCsv(listing.image2Desc || ''),
-                        escapeCsv(listing.image2FileId || ''),
-                        escapeCsv(listing.image3 || ''),
-                        escapeCsv(listing.image3Desc || ''),
-                        escapeCsv(listing.image3FileId || ''),
-                        listing.website || '',
-                        listing.phone || '',
-                        escapeCsv(listing.address || ''),
-                        listing.authorName || '',
-                        listing.publishedDate || '',
-                        listing.modifiedDate || '',
-                        listing.directionsLink || '',
-                        escapeCsv(joinList(listing.amenities || [])),
-                        listing.featured ? 'true' : 'false',
-                        listing.googleMapsUrl || listing.directionsLink || '',
-                        escapeCsv(listing.accordionPanel1Title || ''),
-                        escapeCsv(listing.accordionPanel1Content || ''),
-                        escapeCsv(listing.accordionPanel2Title || ''),
-                        escapeCsv(listing.accordionPanel2Content || ''),
-                        escapeCsv(listing.accordionPanel3Title || ''),
-                        escapeCsv(listing.accordionPanel3Content || ''),
-                        escapeCsv(listing.accordionPanel4Title || ''),
-                        escapeCsv(listing.accordionPanel4Content || '')
-                    ].join(',');
+                    // Build row dynamically using headers
+                    return headers.map(function(header) {
+                        if (header === 'amenities') {
+                            return escapeCsv(joinList(listing.amenities || []));
+                        } else if (header === 'featured') {
+                            return listing.featured ? 'true' : 'false';
+                        } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
+                            // Fallback to directionsLink if googleMapsUrl is empty
+                            return listing.directionsLink || '';
+                        } else {
+                            // Escape all other fields
+                            return escapeCsv(listing[header] || '');
+                        }
+                    }).join(',');
                 });
                 
                 const csv = [headers.join(',')].concat(rows).join('\n');

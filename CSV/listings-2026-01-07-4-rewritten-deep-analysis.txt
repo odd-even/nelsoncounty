@@ -1,0 +1,893 @@
+DEEP DUPLICATION & BLOATED CONTENT ANALYSIS
+================================================================================
+
+Total listings analyzed: 388
+Problematic descriptions: 63
+
+
+================================================================================
+Ashley's Market
+================================================================================
+Issues: 3
+
+Description:
+Family-run convenience and gas stop with a deli serving breakfast biscuits, lunch sandwiches, fried chicken, and deli salads. Ashley's Market pairs gas pumps with a home-style deli serving breakfast biscuits, subs, fried chicken, and deli salads made to order.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6589147286821705, 'sentence1': 'Family-run convenience and gas stop with a deli serving breakfast biscuits, lunch sandwiches, fried ', 'sentence2': "Ashley's Market pairs gas pumps with a home-style deli serving breakfast biscuits, subs, fried chick"}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'deli serving breakfast biscuits,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fried chicken, and deli', 'count': 2}
+
+================================================================================
+Chirio's Pizza
+================================================================================
+Issues: 4
+
+Description:
+Chirio's Pizza is Nelson County's longest-running pizzeria, serving New York-style pies, subs, salads, and ice cream with eat-in, takeout, and delivery options from Valley Green Shopping Center. Chirio's Pizza, the county's oldest pizzeria since 1989, slings hand-tossed New York–style pies plus subs, salads, ice cream, and delivery from Valley Green Shopping Center.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7431693989071039, 'sentence1': "Chirio's Pizza is Nelson County's longest-running pizzeria, serving New York-style pies, subs, salad", 'sentence2': "Chirio's Pizza, the county's oldest pizzeria since 1989, slings hand-tossed New York–style pies plus"}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'from valley green shopping', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'valley green shopping center.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'from valley green shopping center.', 'count': 2}
+
+================================================================================
+Fire & Frost Wood Fired Bakehouse
+================================================================================
+Issues: 4
+
+Description:
+Fire & Frost Wood Fired Bakehouse at Wintergreen slings blistered Neapolitan-style pizzas, antipasti, and cocktails from a cozy alpine dining room, giving skiers and leaf peepers a taste of Italy on the mountain. Fire & Frost Wood Fired Bakehouse brings wood-fired pizzas and Italian-inspired fare to Wintergreen Resort in a warm alpine setting.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'frost wood fired bakehouse', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fire & frost wood fired', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '& frost wood fired bakehouse', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fire & frost wood fired bakehouse', 'count': 2}
+
+================================================================================
+The Farmhouse at Veritas
+================================================================================
+Issues: 3
+
+Description:
+The Farmhouse at Veritas is part luxury inn, part wine country dining room, delivering four-course, wine-paired Farmhouse Dinners Wednesday through Sunday plus curated lodging surrounded by Blue Ridge vineyards and breweries. The Farmhouse at Veritas hosts four-course, wine-paired farm-to-table dinners Wednesday through Sunday in an intimate setting on the Veritas vineyard estate.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6351706036745407, 'sentence1': 'The Farmhouse at Veritas is part luxury inn, part wine country dining room, delivering four-course, ', 'sentence2': 'The Farmhouse at Veritas hosts four-course, wine-paired farm-to-table dinners Wednesday through Sund'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the farmhouse at veritas', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'dinners wednesday through sunday', 'count': 2}
+
+================================================================================
+Glass Hollow Studio & Gallery
+================================================================================
+Issues: 1
+
+Description:
+Glass Hollow Studio & Gallery in the Rockfish Valley offers glassblowing demonstrations, handcrafted glass art, and 'Make Your Own Glass Pumpkin' workshops every Saturday in September. Glass Hollow Studio and Gallery. Discover the art of glassmaking at Glass Hollow Studio and Gallery, nestled in the scenic Rockfish Valley.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'glass hollow studio and', 'count': 2}
+
+================================================================================
+Virginia Blue Ridge Railway Trail
+================================================================================
+Issues: 3
+
+Description:
+Discover the Virginia Blue Ridge Railway Trail, a scenic 7-mile crushed-stone path meandering alongside the picturesque Piney and Tye rivers. This inviting trail features dual trailheads and is perfect for biking, walking, and horseback riding, making it accessible for outdoor enthusiasts of all kinds. As you navigate the trail, enjoy seasonal wildflower displays that enhance the natural beauty of the landscape, creating a serene backdrop for your adventure. Whether you're seeking a leisurely ride or an invigorating outing, the Virginia Blue Ridge Railway Trail offers an unforgettable experience in nature.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the virginia blue ridge', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'virginia blue ridge railway', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the virginia blue ridge railway', 'count': 2}
+
+================================================================================
+Nelson Scenic Loop
+================================================================================
+Issues: 5
+
+Description:
+50-mile Nelson Scenic Loop combining Route 151, Route 664, the Blue Ridge Parkway, and Route 56 for mountain vistas, orchards, and craft beverages. The Nelson Scenic Loop strings together Routes 151, 664, the Blue Ridge Parkway, and 56 into a 50-mile auto or bike tour showcasing orchards, craft beverage stops, waterfalls, and mountaintop vistas from Piedmont foothills to ridge-top summits.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the blue ridge parkway,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'blue ridge parkway, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '664, the blue ridge parkway,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the blue ridge parkway, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '664, the blue ridge parkway, and', 'count': 2}
+
+================================================================================
+Drumheller's Orchard
+================================================================================
+Issues: 1
+
+Description:
+Nestled in the heart of Virginia, Drumheller's Orchard is a charming family-owned destination that invites you to savor the flavors of classic apple varieties and artisanal house-made cider. Experience the joy of fall with our vibrant festivals, featuring delightful hayrides, an array of freshly baked goods, and a welcoming atmosphere for pets and families alike. Whether you're picking apples or enjoying a leisurely afternoon in our scenic grounds, Drumheller's Orchard is a perfect getaway for all ages.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': "drumheller's orchard is a", 'count': 2}
+
+================================================================================
+Pharsalia
+================================================================================
+Issues: 2
+
+Description:
+Historic 1814 Pharsalia estate hosting weddings, group tours, and floral workshops amid working orchards at the foot of de Priest Mountain. Built in 1814 at the foot of de Priest Mountain in Nelson County, Virginia, by William Massie, Pharsalia commands stunning views and is surrounded by original outbuildings and lovely gardens.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the foot of de priest', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'at the foot of de priest', 'count': 2}
+
+================================================================================
+Rose Isle Farm
+================================================================================
+Issues: 1
+
+Description:
+Rose Isle Farm partners with Blue Mountain Barrel House to raise 'beer-fed' beef on pasture, offering direct sales by appointment. The cattle at Rose Isle Farm are fed spent mash from Blue Mountain Barrel House Brewery, a perfect marriage of recycling and animal husbandry for Rose Isle Farm and this local Nelson County brewery.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'blue mountain barrel house', 'count': 2}
+
+================================================================================
+The Apple Shed
+================================================================================
+Issues: 7
+
+Description:
+Get fresh, local apples and pumpkins. Get fresh, local apples and pumpkins.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.9863013698630136, 'sentence1': 'Get fresh, local apples and pumpkins', 'sentence2': 'Get fresh, local apples and pumpkins.'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'get fresh, local apples', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fresh, local apples and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'local apples and pumpkins.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'get fresh, local apples and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fresh, local apples and pumpkins.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'get fresh, local apples and pumpkins.', 'count': 2}
+
+================================================================================
+Gathered Threads
+================================================================================
+Issues: 1
+
+Description:
+Gathered Threads is a six-acre family farm growing sustainably raised flowers and botanicals without pesticides, supplying markets and workshops in Nelson County. Gathered Threads is a small family farm-based business located on 6 acres in Nelson County, Virginia.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'gathered threads is a', 'count': 2}
+
+================================================================================
+Fishing the Little Piney River
+================================================================================
+Issues: 15
+
+Description:
+Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.9894736842105263, 'sentence1': 'Midway Concrete Ramp (In James River WMA off Rt', 'sentence2': 'Midway Concrete Ramp (In James River WMA off Rt.'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off rt.', 'count': 2}
+
+================================================================================
+Fishing at Montebello
+================================================================================
+Issues: 15
+
+Description:
+Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.9894736842105263, 'sentence1': 'Midway Concrete Ramp (In James River WMA off Rt', 'sentence2': 'Midway Concrete Ramp (In James River WMA off Rt.'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off rt.', 'count': 2}
+
+================================================================================
+Wintergreen Resort Fishing
+================================================================================
+Issues: 15
+
+Description:
+Midway Concrete Ramp (In James River WMA off Rt. Midway Concrete Ramp (In James River WMA off Rt.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.9894736842105263, 'sentence1': 'Midway Concrete Ramp (In James River WMA off Rt', 'sentence2': 'Midway Concrete Ramp (In James River WMA off Rt.'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '(in james river wma off rt.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'midway concrete ramp (in james river wma', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'concrete ramp (in james river wma off', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ramp (in james river wma off rt.', 'count': 2}
+
+================================================================================
+Stoney Creek Golf Course
+================================================================================
+Issues: 2
+
+Description:
+Rees Jones-designed 27-hole Stoney Creek Golf Course in the Rockfish Valley mixing meandering streams, wetlands, and year-round play. Stoney Creek Golf Course is Rees Jones' 27-hole design in the Rockfish River valley, playable year-round amid meandering streams, wetlands, and wildlife—so you can ski Wintergreen in the morning and chase birdies that afternoon.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'stoney creek golf course', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'meandering streams, wetlands, and', 'count': 2}
+
+================================================================================
+Crabtree Falls
+================================================================================
+Issues: 1
+
+Description:
+Crabtree Falls features five major cascades dropping 1,200 feet—the highest vertical-drop waterfall east of the Mississippi—with paved lower overlook and a 3-mile trail to upper vistas. Crabtree Falls cascades 1,200 vertical feet across five major drops, with an accessible first overlook near the parking area and a 3-mile trail to additional viewpoints for hikers seeking panoramic Blue Ridge vistas.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'and a 3-mile trail to', 'count': 2}
+
+================================================================================
+Highlands Leisure Trail
+================================================================================
+Issues: 1
+
+Description:
+Highlands Leisure Trail connects Wintergreen's Blackrock Village to the Wintergarden via a 0.5-mile yellow-blazed path that dips through older-growth forest and includes an overlook of the Highlands ski slopes. Half-mile connector between Blackrock Village and the Wintergarden with short climbs, older-growth forest, and an overlook of Highlands ski slopes.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6910112359550562, 'sentence1': "Highlands Leisure Trail connects Wintergreen's Blackrock Village to the Wintergarden via a 0.5-mile ", 'sentence2': 'Half-mile connector between Blackrock Village and the Wintergarden with short climbs, older-growth f'}
+
+================================================================================
+Pond Hollow Trail
+================================================================================
+Issues: 1
+
+Description:
+One-mile red-blazed route along a geologic fault line with displaced boulders, varied plant communities, and bobcat-friendly habitat. Pond Hollow Trail is a demanding 1-mile route threaded through a geologic fault line littered with house-sized boulders and prime bobcat habitat.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'a geologic fault line', 'count': 2}
+
+================================================================================
+The Plunge
+================================================================================
+Issues: 1
+
+Description:
+Short yellow access spur to Blackrock featuring steep pedlar gneiss formations, panoramic overlooks, and a signature family photo spot. The Plunge is a short, steep 0.2-mile connector to Blackrock Trail that packs in pedlar gneiss rock formations, dramatic overlooks, and prime family photo spots.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6440677966101694, 'sentence1': 'Short yellow access spur to Blackrock featuring steep pedlar gneiss formations, panoramic overlooks,', 'sentence2': 'The Plunge is a short, steep 0.2-mile connector to Blackrock Trail that packs in pedlar gneiss rock '}
+
+================================================================================
+Trillium Field
+================================================================================
+Issues: 7
+
+Description:
+Trillium Field is a pocket-sized 0.1-mile stroll where thousands of white and pink trillium bloom in early May on the corner of Wintergreen Drive and Devils Knob Loop. Easy 0.1-mile stroll where thousands of trillium bloom each May along Wintergreen Drive and Devils Knob Loop, with wildflowers through summer.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6558441558441559, 'sentence1': 'Trillium Field is a pocket-sized 0.1-mile stroll where thousands of white and pink trillium bloom in', 'sentence2': 'Easy 0.1-mile stroll where thousands of trillium bloom each May along Wintergreen Drive and Devils K'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '0.1-mile stroll where thousands', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'stroll where thousands of', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'wintergreen drive and devils', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'drive and devils knob', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '0.1-mile stroll where thousands of', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'wintergreen drive and devils knob', 'count': 2}
+
+================================================================================
+Stoney Creek Park
+================================================================================
+Issues: 1
+
+Description:
+Discover the serene beauty of Stoney Creek Park, a community linear park perfect for families and nature enthusiasts alike. Enjoy a picturesque creekside walking path that meanders through lush landscapes, complemented by newly established picnic areas and comfortable benches for relaxation. With its gentle terrain, this inviting park offers an ideal setting for leisurely strolls, picnics, and quality time spent in nature. Embrace the tranquility and charm of Stoney Creek Park, where every visit promises a refreshing escape.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'of stoney creek park,', 'count': 2}
+
+================================================================================
+Rockfish Valley Loop Trails
+================================================================================
+Issues: 3
+
+Description:
+Flat four-mile network skirting the Rockfish River and Reid's Creek with birding hotspots, interpretive signage, and farm-country views. Rockfish Valley Loop Trails span about four flat miles of mowed paths that trace the Rockfish River and Reid's Creek, blend history with birding, and frame constant Blue Ridge views.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the rockfish river and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': "rockfish river and reid's", 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': "the rockfish river and reid's", 'count': 2}
+
+================================================================================
+Kids in Parks: Rockfish River Trailhead
+================================================================================
+Issues: 1
+
+Description:
+Kids in Parks TRACK Trail loop along the Rockfish River featuring story walk signage, riparian habitats, and a flat one-mile family route. This is another of the Blue Ridge Parkway Foundation's Kids in Parks Track Trail programs of self guided outdoor opportunities for kids and families to connect with nature.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'kids in parks track trail', 'count': 2}
+
+================================================================================
+The Big Tiny House
+================================================================================
+Issues: 2
+
+Description:
+The Big Tiny House is a luxury Escape Traveler XL tiny home with full kitchen, soaking tub, loft, and Brew Ridge Trail access. The Big Tiny House marries luxury finishes with the efficiency of an Escape Traveler XL: full kitchen, soaking tub, sleeping loft, and clever built-ins.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6425992779783394, 'sentence1': 'The Big Tiny House is a luxury Escape Traveler XL tiny home with full kitchen, soaking tub, loft, an', 'sentence2': 'The Big Tiny House marries luxury finishes with the efficiency of an Escape Traveler XL: full kitche'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'full kitchen, soaking tub,', 'count': 2}
+
+================================================================================
+Rusty's Retreat
+================================================================================
+Issues: 4
+
+Description:
+Rusty's Retreat is a Brew Ridge Trail micro-cabin with queen bed, kitchenette, private fire pit, and donation support for animal rescue. Rusty's Retreat keeps things intentionally small—a micro-cabin with queen bed, kitchenette, and private fire pit along the Brew Ridge corridor.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6330935251798561, 'sentence1': "Rusty's Retreat is a Brew Ridge Trail micro-cabin with queen bed, kitchenette, private fire pit, and", 'sentence2': "Rusty's Retreat keeps things intentionally small—a micro-cabin with queen bed, kitchenette, and priv"}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'micro-cabin with queen bed,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with queen bed, kitchenette,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'micro-cabin with queen bed, kitchenette,', 'count': 2}
+
+================================================================================
+Village Inn
+================================================================================
+Issues: 1
+
+Description:
+Village Inn is a 23-room motel on U.S. Village Inn sits directly on U.S.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7142857142857143, 'sentence1': 'Village Inn is a 23-room motel on U.S', 'sentence2': 'Village Inn sits directly on U.S.'}
+
+================================================================================
+Beech Grove Farmhouse
+================================================================================
+Issues: 1
+
+Description:
+Beech Grove Farmhouse is a historic three-bedroom home across from Devils Backbone with modern updates, fire pit, and mountain views. The Beech Grove Farmhouse is 3 bedroom, 2 bath, early century farmhouse situated in the foothills of the Blue Ridge mountains.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'beech grove farmhouse is', 'count': 2}
+
+================================================================================
+The Cottage at Pines End
+================================================================================
+Issues: 3
+
+Description:
+The Cottage at Pines End is a hot-tub-equipped cabin with wraparound deck, gas fireplace, and trails to the Tye River and Blue Ridge Railway Trail. The Cottage at Pines End wraps guests in mountain scenery via an elevated hot tub, wide decks, and wooded trails that lead toward the Tye River and the Blue Ridge Railway Trail.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6377708978328174, 'sentence1': 'The Cottage at Pines End is a hot-tub-equipped cabin with wraparound deck, gas fireplace, and trails', 'sentence2': 'The Cottage at Pines End wraps guests in mountain scenery via an elevated hot tub, wide decks, and w'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'blue ridge railway trail.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the cottage at pines end', 'count': 2}
+
+================================================================================
+Harmony Hill Bed & Breakfast
+================================================================================
+Issues: 2
+
+Description:
+Harmony Hill Bed & Breakfast offers six themed guest rooms with private baths, fireplaces, and country breakfasts near Route 29 wineries. Harmony Hill Bed & Breakfast blends six themed guest rooms—each with private bath and many with fireplaces—with hearty country breakfasts and porch swings overlooking Route 29 wine country.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7569230769230769, 'sentence1': 'Harmony Hill Bed & Breakfast offers six themed guest rooms with private baths, fireplaces, and count', 'sentence2': 'Harmony Hill Bed & Breakfast blends six themed guest rooms—each with private bath and many with fire'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'harmony hill bed & breakfast', 'count': 2}
+
+================================================================================
+Gracewood
+================================================================================
+Issues: 1
+
+Description:
+Gracewood is a modernized cottage tucked off Route 151 with two miles of private trails, quiet setting, and easy access to wineries and breweries. Gracewood hides just off Route 151, pairing a quiet modern cottage with two miles of private trails that drop you into wine-and-beer country in minutes.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with two miles of private', 'count': 2}
+
+================================================================================
+Papa's Cottage
+================================================================================
+Issues: 1
+
+Description:
+Papa's Cottage is a mid-century two-bedroom bungalow with private hot tub, updated interiors, and valley views minutes from Route 151 wine country. Papa's Cottage proves mid-century bones can still wow, thanks to a new hot tub, designer interiors, and valley vistas just a few minutes from the wine trail.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6666666666666666, 'sentence1': "Papa's Cottage is a mid-century two-bedroom bungalow with private hot tub, updated interiors, and va", 'sentence2': "Papa's Cottage proves mid-century bones can still wow, thanks to a new hot tub, designer interiors, "}
+
+================================================================================
+Beech Grove Cottage
+================================================================================
+Issues: 6
+
+Description:
+Beech Grove Cottage is a renovated 1920s bungalow across from Devils Backbone with fiber internet, huge yard, and fire pit for six guests. Beech Grove Cottage is a lovingly restored 1920s bungalow across from Devils Backbone, now sporting fiber internet, a spacious yard, and a fire pit that seats the whole crew.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7652733118971061, 'sentence1': 'Beech Grove Cottage is a renovated 1920s bungalow across from Devils Backbone with fiber internet, h', 'sentence2': 'Beech Grove Cottage is a lovingly restored 1920s bungalow across from Devils Backbone, now sporting '}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'beech grove cottage is', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '1920s bungalow across from', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bungalow across from devils', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'beech grove cottage is a', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': '1920s bungalow across from devils', 'count': 2}
+
+================================================================================
+Four Elements Farm
+================================================================================
+Issues: 2
+
+Description:
+Four Elements Farm is a 116-acre retreat with farmhouse lodging, hot tub, pond, friendly goats, and proximity to Devils Backbone and Wintergreen. Four Elements Farm stretches across 116 acres of pasture, pond, and woodland, offering farmhouse lodging, a hot tub, and friendly resident goats between Devils Backbone and Wintergreen.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7112462006079028, 'sentence1': 'Four Elements Farm is a 116-acre retreat with farmhouse lodging, hot tub, pond, friendly goats, and ', 'sentence2': 'Four Elements Farm stretches across 116 acres of pasture, pond, and woodland, offering farmhouse lod'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'devils backbone and wintergreen.', 'count': 2}
+
+================================================================================
+Wintergreen Ridge Retreat
+================================================================================
+Issues: 1
+
+Description:
+Wintergreen Ridge Retreat is a four-bedroom mountain home sleeping ten with expansive decks, hot tub, and easy access to Wintergreen lifts and trails. Wintergreen Ridge Retreat sleeps ten across four bedrooms, surrounding guests with wraparound decks, a bubbling hot tub, and instant access to resort lifts and trailheads.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.69375, 'sentence1': 'Wintergreen Ridge Retreat is a four-bedroom mountain home sleeping ten with expansive decks, hot tub', 'sentence2': 'Wintergreen Ridge Retreat sleeps ten across four bedrooms, surrounding guests with wraparound decks,'}
+
+================================================================================
+Maren Estate
+================================================================================
+Issues: 4
+
+Description:
+Maren Estate is a 7,200-square-foot luxury home on a 50-acre farm with seasonal pool, year-round hot tub, bocce court, and beer garden. Maren Estate is a 7,200-square-foot showstopper on a 50-acre farm—think seasonal swimming pool, all-season hot tub, bocce court, beer garden, and endless mountain views.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7458745874587459, 'sentence1': 'Maren Estate is a 7,200-square-foot luxury home on a 50-acre farm with seasonal pool, year-round hot', 'sentence2': 'Maren Estate is a 7,200-square-foot showstopper on a 50-acre farm—think seasonal swimming pool, all-'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'estate is a 7,200-square-foot', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, bocce court,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'maren estate is a 7,200-square-foot', 'count': 2}
+
+================================================================================
+The Blue Ridge Farm and Wedding Venue
+================================================================================
+Issues: 5
+
+Description:
+The Blue Ridge Farm & Farmhouse doubles as a wedding-ready venue and a renovated lodging hub, offering vineyard vistas, six acres of event space, and quick hops to the Brew Ridge Trail. The Blue Ridge Farm & Farmhouse combines a six-acre event-ready property with renovated farmhouse lodging, vineyard views, and proximity to Brew Ridge Trail.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6451612903225806, 'sentence1': 'The Blue Ridge Farm & Farmhouse doubles as a wedding-ready venue and a renovated lodging hub, offeri', 'sentence2': 'The Blue Ridge Farm & Farmhouse combines a six-acre event-ready property with renovated farmhouse lo'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'ridge farm & farmhouse', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the blue ridge farm &', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'blue ridge farm & farmhouse', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the blue ridge farm & farmhouse', 'count': 2}
+
+================================================================================
+Blue Ridge Heaven
+================================================================================
+Issues: 2
+
+Description:
+Blue Ridge Heaven is a 3,200-square-foot Wintergreen home at 3,800 feet with three decks, renovated interiors, and sweeping southern views. Blue Ridge Heaven rises to 3,200 square feet and 3,800 feet of elevation, gifting guests three expansive decks, refreshed interiors, and sweeping southern panoramas at Wintergreen.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.660377358490566, 'sentence1': 'Blue Ridge Heaven is a 3,200-square-foot Wintergreen home at 3,800 feet with three decks, renovated ', 'sentence2': 'Blue Ridge Heaven rises to 3,200 square feet and 3,800 feet of elevation, gifting guests three expan'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'interiors, and sweeping southern', 'count': 2}
+
+================================================================================
+Farmhouse on Route 151
+================================================================================
+Issues: 3
+
+Description:
+Farmhouse on Route 151 is a 1904 three-bedroom home with high-speed Wi-Fi, gas fireplace, two-acre yard, and stone fire pit near wine trail stops. Farmhouse on Route 151 dates to 1904 yet now features high-speed Wi-Fi, gas fireplace, and two acres of lawn with a stone fire pit for post-winery gatherings.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6996699669966997, 'sentence1': 'Farmhouse on Route 151 is a 1904 three-bedroom home with high-speed Wi-Fi, gas fireplace, two-acre y', 'sentence2': 'Farmhouse on Route 151 dates to 1904 yet now features high-speed Wi-Fi, gas fireplace, and two acres'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'farmhouse on route 151', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'high-speed wi-fi, gas fireplace,', 'count': 2}
+
+================================================================================
+High Lonesome Cabin
+================================================================================
+Issues: 3
+
+Description:
+This rustic cabin sits on 20 secluded acres high on a steep finger of the Priest Mountain near the Appalachian Trail in Tyro Va The main attraction of the High Lonesome is definitely outdoors, but the inside is pretty cool, too. High Lonesome Cabin sits on 20 secluded acres near Crabtree Falls with wraparound porch, woodstove, loft sleeping, and spiral staircase.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cabin sits on 20 secluded', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'sits on 20 secluded acres', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cabin sits on 20 secluded acres', 'count': 2}
+
+================================================================================
+Rebel's Run at Afton Mountain
+================================================================================
+Issues: 3
+
+Description:
+Rebel's Run at Afton Mountain offers vineyard and mountain horseback rides plus English and Western lessons and kids' camps. Offering trail rides, English and Western lessons and summer camps.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'english and western lessons', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'and western lessons and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'english and western lessons and', 'count': 2}
+
+================================================================================
+Bluebird Cottage
+================================================================================
+Issues: 1
+
+Description:
+Bluebird Cottage is a cozy home less than a mile from Devils Backbone and Wintergreen's base, offering easy access to Route 151 wineries and hiking. This house is less than a mile from Devil's Backbone Brewery; nestled at the bottom of Wintergreen Resort.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'less than a mile from', 'count': 2}
+
+================================================================================
+Oakland Museum
+================================================================================
+Issues: 1
+
+Description:
+Oakland Museum inside the historic 1800s tavern interprets rural electrification, Hurricane Camille, and Nelson County history. Oakland's exhibits were created to promote greater understanding of the county's history and of the connections between the county's history and that of the state of Virginia and the nation.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': "the county's history and", 'count': 2}
+
+================================================================================
+Nelson Cozy Cabin
+================================================================================
+Issues: 1
+
+Description:
+Nelson Cozy Cabin is a renovated three-bedroom, two-bath cabin on four wooded acres in Stoney Creek with deck, fire pit, and access to Wintergreen POA pools and fishing. Perfectly renovated cabin on 4 wooded acres in Stoney Creek/Wintergreen.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'wooded acres in stoney', 'count': 2}
+
+================================================================================
+The Brown Bear Lodge
+================================================================================
+Issues: 1
+
+Description:
+The Brown Bear Lodge is a renovated three-bedroom, 2.5-bath Wintergreen house within walking distance of resort core, featuring bunk room, original stone fireplace, gas fireplace, grill, and fire pit. The Brown Bear Lodge blends classic and contemporary with its original stone fireplace, bunk room, gas stove, and outdoor fire pit all within walking distance of the resort core.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'within walking distance of', 'count': 2}
+
+================================================================================
+Marigold on the Mountain
+================================================================================
+Issues: 26
+
+Description:
+Marigold on the Mountain is a five-bedroom, four-bath Wintergreen home sleeping 14 with hot tub, cedar barrel sauna, two-tier deck with fire pit, and separate game room. Marigold on the Mountain was built for big groups—five bedrooms, four baths, a hot tub, cedar barrel sauna, two-tier deck with fire pit, and a separate game room handle up to 14 guests in style.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7237569060773481, 'sentence1': 'Marigold on the Mountain is a five-bedroom, four-bath Wintergreen home sleeping 14 with hot tub, ced', 'sentence2': 'Marigold on the Mountain was built for big groups—five bedrooms, four baths, a hot tub, cedar barrel'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'marigold on the mountain', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, cedar barrel', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'tub, cedar barrel sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cedar barrel sauna, two-tier', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'barrel sauna, two-tier deck', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'sauna, two-tier deck with', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'two-tier deck with fire', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, cedar barrel sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'tub, cedar barrel sauna, two-tier', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cedar barrel sauna, two-tier deck', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'barrel sauna, two-tier deck with', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'sauna, two-tier deck with fire', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'two-tier deck with fire pit,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'deck with fire pit, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, cedar barrel sauna, two-tier', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'tub, cedar barrel sauna, two-tier deck', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cedar barrel sauna, two-tier deck with', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'barrel sauna, two-tier deck with fire', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'sauna, two-tier deck with fire pit,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'two-tier deck with fire pit, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, cedar barrel sauna, two-tier deck', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'tub, cedar barrel sauna, two-tier deck with', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cedar barrel sauna, two-tier deck with fire', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'barrel sauna, two-tier deck with fire pit,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'sauna, two-tier deck with fire pit, and', 'count': 2}
+
+================================================================================
+Top of The Mountain Hideaway
+================================================================================
+Issues: 3
+
+Description:
+Top of The Mountain Hideaway is a three-bedroom, three-bath Wintergreen home near the Mountain Inn featuring hot tub, shuffleboard table, and easy access to wineries and breweries. Top of The Mountain Hideaway places you near the Mountain Inn yet still feels private, thanks to a hot tub deck, shuffleboard lounge, and three bedrooms with en-suite baths.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'of the mountain hideaway', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'near the mountain inn', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'top of the mountain hideaway', 'count': 2}
+
+================================================================================
+On The Rocks
+================================================================================
+Issues: 1
+
+Description:
+On The Rocks is a three-bedroom, two-bath A-frame less than two miles from Wintergreen Ski Lodge with flat driveway access and dog-friendly policies. On The Rocks brings A-frame charm to the Wintergreen corridor, delivering dog-friendly stays, flat driveway access, and a location less than two miles from the ski lodge.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'less than two miles from', 'count': 2}
+
+================================================================================
+Rockfish Cabin
+================================================================================
+Issues: 1
+
+Description:
+Rockfish Cabin is a three-level post-and-beam retreat on 13 wooded acres with granite kitchen, wraparound porch, and a riverside clearing with Adirondack chairs and fire pit. Rockfish Cabin layers a granite chef's kitchen, wraparound porch, and riverside clearing with fire pit across 13 wooded acres—ideal for guests who want privacy without sacrificing comfort.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'kitchen, wraparound porch, and', 'count': 2}
+
+================================================================================
+Wintergreen Duplex
+================================================================================
+Issues: 2
+
+Description:
+Wintergreen Duplex is a three-floor, four-bedroom, 3.5-bath townhome with wood-burning fireplace, back deck, laundry, and shuttle access across from the spa. Across from the Wintergreen Spa, Wintergreen Duplex stacks three floors, four bedrooms, and 3.5 baths into a townhome with a wood-burning hearth, back deck, laundry, and front-door shuttle access.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6988636363636364, 'sentence1': 'Wintergreen Duplex is a three-floor, four-bedroom, 3.5-bath townhome with wood-burning fireplace, ba', 'sentence2': 'Across from the Wintergreen Spa, Wintergreen Duplex stacks three floors, four bedrooms, and 3.5 bath'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'back deck, laundry, and', 'count': 2}
+
+================================================================================
+Home on the Ridge
+================================================================================
+Issues: 5
+
+Description:
+Home on the Ridge is a two-bedroom, two-bath condo overlooking the 18th hole at Devils Knob with kitchen, balcony, and easy access to golf, tennis, and skiing. Home on the Ridge overlooks Devils Knob's 18th hole, giving condo guests a balcony for post-round drinks, full kitchen for easy meals, and immediate access to golf, tennis, and skiing.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'access to golf, tennis,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'golf, tennis, and skiing.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'access to golf, tennis, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'to golf, tennis, and skiing.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'access to golf, tennis, and skiing.', 'count': 2}
+
+================================================================================
+Wake In The Clouds
+================================================================================
+Issues: 3
+
+Description:
+Wake in the Clouds is a renovated one-bedroom, two-bath condo with spectacular sunrises, modern finishes, and resort convenience. Wake in the Clouds is aptly named—this renovated one-bedroom, two-bath condo faces the sunrise, offering modern finishes and instant access to Wintergreen amenities.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6962457337883959, 'sentence1': 'Wake in the Clouds is a renovated one-bedroom, two-bath condo with spectacular sunrises, modern fini', 'sentence2': 'Wake in the Clouds is aptly named—this renovated one-bedroom, two-bath condo faces the sunrise, offe'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'renovated one-bedroom, two-bath condo', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'wake in the clouds is', 'count': 2}
+
+================================================================================
+Woodland Hideaway
+================================================================================
+Issues: 1
+
+Description:
+Woodland Hideaway is a one-bedroom apartment with separate entrance, full kitchen, dining area, and access to forest trails and Dutch Creek on a secluded property. Woodland Hideaway gives guests their own private apartment—full kitchen, dining nook, and forest-trail access to Dutch Creek—tucked within a larger wooded property.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6196319018404908, 'sentence1': 'Woodland Hideaway is a one-bedroom apartment with separate entrance, full kitchen, dining area, and ', 'sentence2': 'Woodland Hideaway gives guests their own private apartment—full kitchen, dining nook, and forest-tra'}
+
+================================================================================
+Rockfish River Ranch Guest House
+================================================================================
+Issues: 7
+
+Description:
+Rockfish River Ranch Guest House sits on a 100-acre ranch with private trails, creek, bunk beds, high chairs, and family-friendly amenities near breweries and Wintergreen. Families love Rockfish River Ranch Guest House for its 100-acre setting—private trails, creek access, bunk beds, high chairs, and quick hops to breweries and Wintergreen.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7529411764705882, 'sentence1': 'Rockfish River Ranch Guest House sits on a 100-acre ranch with private trails, creek, bunk beds, hig', 'sentence2': 'Families love Rockfish River Ranch Guest House for its 100-acre setting—private trails, creek access'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'rockfish river ranch guest', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'river ranch guest house', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bunk beds, high chairs,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'beds, high chairs, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'rockfish river ranch guest house', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bunk beds, high chairs, and', 'count': 2}
+
+================================================================================
+Cabin on Eagles Ridge Road
+================================================================================
+Issues: 10
+
+Description:
+Cabin on Eagles Ridge Road is a private cabin with two en-suite master bedrooms, wood-burning fireplace, bluestone fire pit, and walking distance to Devils Backbone and Bold Rock. Cabin on Eagles Ridge Road balances rustic and convenient: twin master suites, bluestone fire pit, and walkable access to Devils Backbone and Bold Rock.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.703030303030303, 'sentence1': 'Cabin on Eagles Ridge Road is a private cabin with two en-suite master bedrooms, wood-burning firepl', 'sentence2': 'Cabin on Eagles Ridge Road balances rustic and convenient: twin master suites, bluestone fire pit, a'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cabin on eagles ridge', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bluestone fire pit, and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'to devils backbone and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'devils backbone and bold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'backbone and bold rock.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'cabin on eagles ridge road', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'to devils backbone and bold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'devils backbone and bold rock.', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'to devils backbone and bold rock.', 'count': 2}
+
+================================================================================
+The Ski House
+================================================================================
+Issues: 7
+
+Description:
+The Ski House is a fully renovated three-bedroom, two-bath ski-in/ski-out home perched over Eagle's Swoop at Wintergreen. The Ski House perches directly over Eagle's Swoop, delivering a fully renovated three-bedroom, two-bath ski-in/ski-out experience with unbeatable slope views.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6330935251798561, 'sentence1': "The Ski House is a fully renovated three-bedroom, two-bath ski-in/ski-out home perched over Eagle's ", 'sentence2': "The Ski House perches directly over Eagle's Swoop, delivering a fully renovated three-bedroom, two-b"}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'a fully renovated three-bedroom,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fully renovated three-bedroom, two-bath', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'renovated three-bedroom, two-bath ski-in/ski-out', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'a fully renovated three-bedroom, two-bath', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'fully renovated three-bedroom, two-bath ski-in/ski-out', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'a fully renovated three-bedroom, two-bath ski-in/ski-out', 'count': 2}
+
+================================================================================
+Trinacria Restaurant & Pizzeria
+================================================================================
+Issues: 1
+
+Description:
+Trinacria Restaurant & Pizzeria opens August 10, 2025, serving family-owned Italian fare on Rockfish Valley Highway. Trinacria Restaurant & Pizzeria brings family-owned Italian classics to Rockfish Valley Highway beginning August 10, 2025—think quiche, pizza, and homestyle plates in a cozy cafe.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'trinacria restaurant & pizzeria', 'count': 2}
+
+================================================================================
+Rockfish Valley Farm Guest House
+================================================================================
+Issues: 5
+
+Description:
+Rockfish Valley Farm Guest House is a four-bedroom ranch with mountain views, rockers on the porch, and donkeys on-site between Bold Rock and Devils Backbone. Rockfish Valley Farm Guest House sits between Bold Rock and Devils Backbone, offering a four-bedroom ranch where you can sip coffee with mountain views and wave to the resident donkeys.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'rockfish valley farm guest', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'valley farm guest house', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'between bold rock and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'rockfish valley farm guest house', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'between bold rock and devils', 'count': 2}
+
+================================================================================
+The View at Crawfords Edge
+================================================================================
+Issues: 3
+
+Description:
+The View at Crawfords Edge is a four-bedroom, four-ensuite Wintergreen retreat with multi-level outdoor living, fire table, pizza oven, vaulted ceilings, and dual living rooms. The View at Crawfords Edge layers four ensuite bedrooms, vaulted living spaces, a pizza oven, and tiered outdoor lounges so your group can toast sunsets high above Wintergreen.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the view at crawfords', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'view at crawfords edge', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the view at crawfords edge', 'count': 2}
+
+================================================================================
+Blue Sky Retreat
+================================================================================
+Issues: 23
+
+Description:
+Blue Sky Retreat is a luxury 4,100+ sq ft designer home with six bedrooms, media and game rooms, sauna, cold plunge, hot tub, and golf course frontage with mountain views. Blue Sky Retreat spans 4,100 designer square feet with six bedrooms, media and game rooms, sauna, cold plunge, and golf-course frontage that frames the Blue Ridge.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7747747747747747, 'sentence1': 'Blue Sky Retreat is a luxury 4,100+ sq ft designer home with six bedrooms, media and game rooms, sau', 'sentence2': 'Blue Sky Retreat spans 4,100 designer square feet with six bedrooms, media and game rooms, sauna, co'}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with six bedrooms, media', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'six bedrooms, media and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bedrooms, media and game', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'media and game rooms,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'and game rooms, sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'game rooms, sauna, cold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'rooms, sauna, cold plunge,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with six bedrooms, media and', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'six bedrooms, media and game', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bedrooms, media and game rooms,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'media and game rooms, sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'and game rooms, sauna, cold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'game rooms, sauna, cold plunge,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with six bedrooms, media and game', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'six bedrooms, media and game rooms,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bedrooms, media and game rooms, sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'media and game rooms, sauna, cold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'and game rooms, sauna, cold plunge,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'with six bedrooms, media and game rooms,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'six bedrooms, media and game rooms, sauna,', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'bedrooms, media and game rooms, sauna, cold', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'media and game rooms, sauna, cold plunge,', 'count': 2}
+
+================================================================================
+The Treehouse
+================================================================================
+Issues: 1
+
+Description:
+The Treehouse is a 3,200 sq ft modern home on ten acres with hot tub, outdoor shower, 10-person dining, fire pit, heated floors, and award-winning design minutes from breweries and Charlottesville. The Treehouse spreads across ten wooded acres, pairing award-winning architecture with heated floors, expansive dining space, hot tub, outdoor shower, and easy drives to Charlottesville breweries.
+
+Issues found:
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'hot tub, outdoor shower,', 'count': 2}
+
+================================================================================
+Rockfish Valley Natural History Center
+================================================================================
+Issues: 11
+
+Description:
+Rockfish Valley Natural History Center showcases wildlife exhibits from the Virginia Museum of Natural History inside the old Wintergreen schoolhouse. The Rockfish Valley Foundation's Natural History Center features exhibits from the Virginia Museum of Natural History.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.7116104868913857, 'sentence1': 'Rockfish Valley Natural History Center showcases wildlife exhibits from the Virginia Museum of Natur', 'sentence2': "The Rockfish Valley Foundation's Natural History Center features exhibits from the Virginia Museum o"}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'exhibits from the virginia', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'from the virginia museum', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the virginia museum of', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'virginia museum of natural', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'exhibits from the virginia museum', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'from the virginia museum of', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'the virginia museum of natural', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'exhibits from the virginia museum of', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'from the virginia museum of natural', 'count': 2}
+  - repeated_phrase: {'type': 'repeated_phrase', 'phrase': 'exhibits from the virginia museum of natural', 'count': 2}
+
+================================================================================
+Rockwell Ridge Inn
+================================================================================
+Issues: 1
+
+Description:
+Rockwell Ridge Inn is a pet-friendly retreat on 20 acres in Afton with private trails, seasonal gardens, creeks, and accommodations including a 3-bedroom inn, pet-friendly cottages, and nature immersion spaces. Rockwell Ridge Inn invites guests to roam 20 acres of Afton trails, gardens, and creeks while choosing between a three-bedroom inn or pet-friendly cottages for a true nature immersion.
+
+Issues found:
+  - partial_duplication: {'type': 'partial_duplication', 'similarity': 0.6717557251908397, 'sentence1': 'Rockwell Ridge Inn is a pet-friendly retreat on 20 acres in Afton with private trails, seasonal gard', 'sentence2': 'Rockwell Ridge Inn invites guests to roam 20 acres of Afton trails, gardens, and creeks while choosi'}
