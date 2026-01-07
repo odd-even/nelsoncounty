@@ -2232,8 +2232,12 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
             const document1Input = document.getElementById('listingDocument1');
             if (document1Input) document1Input.value = listing.document1 || '';
+            const document1NameInput = document.getElementById('listingDocument1Name');
+            if (document1NameInput) document1NameInput.value = listing.document1Name || '';
             const document2Input = document.getElementById('listingDocument2');
             if (document2Input) document2Input.value = listing.document2 || '';
+            const document2NameInput = document.getElementById('listingDocument2Name');
+            if (document2NameInput) document2NameInput.value = listing.document2Name || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
             // Set accordion fields

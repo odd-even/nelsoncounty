@@ -2764,8 +2764,10 @@
                             <th class="sortable" data-sort="modifiedDate" data-column-key="modifiedDate">Modified Date</th>
                             <th data-column-key="directionsLink">Directions Link</th>
                             <th data-column-key="videoLink">Video Link</th>
-                            <th data-column-key="document1">Document 1</th>
-                            <th data-column-key="document2">Document 2</th>
+                            <th data-column-key="document1">Document 1 URL</th>
+                            <th data-column-key="document1Name">Document 1 Name</th>
+                            <th data-column-key="document2">Document 2 URL</th>
+                            <th data-column-key="document2Name">Document 2 Name</th>
                             <th data-column-key="amenities">Amenities</th>
                             <th class="sortable" data-sort="featured" data-column-key="featured">Featured</th>
                             <th data-column-key="googleMapsUrl">Google Maps URL</th>
@@ -2807,7 +2809,9 @@
                             <th><input type="text" class="filter-input" data-filter="directionsLink" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="videoLink" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="document1" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="document1Name" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="document2" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="document2Name" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="amenities" placeholder="Filter..." /></th>
                             <th><select class="filter-select" data-filter="featured"><option value="">All</option><option value="true">Yes</option><option value="false">No</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="googleMapsUrl" placeholder="Filter..." /></th>
@@ -3094,20 +3098,22 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>Document 1</label>
+                        <input type="text" id="listingDocument1Name" placeholder="Document name (e.g., Menu, Brochure, Guide)" style="margin-bottom: 8px;" />
                         <div class="image-input-group">
                             <input type="text" id="listingDocument1" placeholder="PDF URL or upload..." />
                             <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument1">Upload PDF</button>
                         </div>
-                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit</small>
+                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit. Name will be used for button text.</small>
                     </div>
                     
                     <div class="form-group">
                         <label>Document 2</label>
+                        <input type="text" id="listingDocument2Name" placeholder="Document name (e.g., Menu, Brochure, Guide)" style="margin-bottom: 8px;" />
                         <div class="image-input-group">
                             <input type="text" id="listingDocument2" placeholder="PDF URL or upload..." />
                             <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument2">Upload PDF</button>
                         </div>
-                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit</small>
+                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit. Name will be used for button text.</small>
                     </div>
                 </div>
                 
@@ -4651,7 +4657,9 @@ function updateUnsavedChangesBadge() {
                 directionsLink: directionsLinkField || googleMapsUrlField || '',
                 videoLink: videoLinkField || '',
                 document1: getField('Document1', ['document1', 'Document 1', 'document1link', 'document 1 link']),
+                document1Name: getField('Document1Name', ['document1Name', 'Document 1 Name', 'document 1 name']),
                 document2: getField('Document2', ['document2', 'Document 2', 'document2link', 'document 2 link']),
+                document2Name: getField('Document2Name', ['document2Name', 'Document 2 Name', 'document 2 name']),
                 image1FileId: getField('Image1FileId', ['image1FileId', 'Image 1 File ID', 'Image1 File ID', 'image1 file id']),
                 image2FileId: getField('Image2FileId', ['image2FileId', 'Image 2 File ID', 'Image2 File ID', 'image2 file id']),
                 image3FileId: getField('Image3FileId', ['image3FileId', 'Image 3 File ID', 'Image3 File ID', 'image3 file id']),
@@ -6396,7 +6404,9 @@ function updateUnsavedChangesBadge() {
                     listing.directionsLink || '',
                     listing.videoLink || '',
                     listing.document1 || '',
+                    listing.document1Name || '',
                     listing.document2 || '',
+                    listing.document2Name || '',
                     listing.googleMapsUrl || '',
                     listing.image1Desc || '',
                     listing.image2Desc || '',
@@ -7085,8 +7095,12 @@ function updateUnsavedChangesBadge() {
             if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
             const document1Input = document.getElementById('listingDocument1');
             if (document1Input) document1Input.value = listing.document1 || '';
+            const document1NameInput = document.getElementById('listingDocument1Name');
+            if (document1NameInput) document1NameInput.value = listing.document1Name || '';
             const document2Input = document.getElementById('listingDocument2');
             if (document2Input) document2Input.value = listing.document2 || '';
+            const document2NameInput = document.getElementById('listingDocument2Name');
+            if (document2NameInput) document2NameInput.value = listing.document2Name || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
             
             // Set accordion fields
@@ -7130,6 +7144,7 @@ function updateUnsavedChangesBadge() {
             // Re-initialize image upload buttons after modal is shown
             setTimeout(function() {
                 initImageUploadButtons();
+                initDocumentUploadButtons();
             }, 100);
             // Initialize address autocomplete after modal is shown
             setTimeout(function() {
@@ -7409,7 +7424,9 @@ function updateUnsavedChangesBadge() {
                 googleMapsUrl: getValue('listingDirectionsLink'),
                 videoLink: getValue('listingVideoLink'),
                 document1: getValue('listingDocument1'),
+                document1Name: getValue('listingDocument1Name'),
                 document2: getValue('listingDocument2'),
+                document2Name: getValue('listingDocument2Name'),
                 category: categoryValue, // Always has a value (validated above)
                 accordionPanel1Title: getValue('listingAccordionPanel1Title'),
                 accordionPanel1Content: getValue('listingAccordionPanel1Content'),
@@ -10088,36 +10105,226 @@ function updateUnsavedChangesBadge() {
                     }
                 });
             });
+            
+            // Add event listeners for "Generate AI Description" buttons
+            document.querySelectorAll('.btn-generate-desc').forEach(function(btn) {
+                // Skip if already initialized
+                if (btn.dataset.generateInitialized === 'true') {
+                    return;
+                }
+                btn.dataset.generateInitialized = 'true';
+                
+                btn.addEventListener('click', async function() {
+                    const imageFieldId = btn.dataset.image;
+                    const descFieldId = btn.dataset.desc;
+                    
+                    const imageField = document.getElementById(imageFieldId);
+                    const descField = document.getElementById(descFieldId);
+                    
+                    if (!imageField || !descField) {
+                        alert('Error: Could not find image or description field.');
+                        return;
+                    }
+                    
+                    const imageUrl = imageField.value.trim();
+                    
+                    if (!imageUrl) {
+                        alert('Please upload an image first before generating a description.');
+                        return;
+                    }
+                    
+                    if (!imageUrl.includes('ik.imagekit.io')) {
+                        alert('Please upload an image to ImageKit first. External URLs are not supported for AI description generation.');
+                        return;
+                    }
+                    
+                    // Get stored fileId if available
+                    const fileId = imageField.dataset.imagekitFileId || null;
+                    
+                    // Disable button and show loading
+                    const originalText = btn.textContent;
+                    btn.disabled = true;
+                    btn.textContent = 'Generating...';
+                    btn.style.opacity = '0.6';
+                    
+                    try {
+                        console.log('Generating AI description for image:', imageUrl);
+                        const description = await generateImageDescription(imageUrl);
+                        console.log('Description generated:', description ? 'Yes (' + description.length + ' chars)' : 'No');
+                        
+                        if (description && description.trim()) {
+                            descField.value = description;
+                            console.log('Description saved to field:', descFieldId, 'Value length:', description.length);
+                            
+                            // Trigger input event to ensure form recognizes the change
+                            descField.dispatchEvent(new Event('input', { bubbles: true }));
+                            descField.dispatchEvent(new Event('change', { bubbles: true }));
+                            
+                            // Update ImageKit metadata with the description
+                            try {
+                                console.log('Updating ImageKit metadata with description...');
+                                if (fileId) {
+                                    await updateImageKitMetadata(imageUrl, description, fileId);
+                                } else {
+                                    await updateImageKitMetadata(imageUrl, description);
+                                }
+                                console.log('ImageKit metadata updated successfully');
+                            } catch (metadataError) {
+                                console.warn('Failed to update ImageKit metadata:', metadataError);
+                                // Don't fail if metadata update fails
+                            }
+                            
+                            // Focus the description field
+                            setTimeout(function() {
+                                descField.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                descField.focus();
+                            }, 100);
+                            
+                            alert('✅ Description generated and saved!\n\nLength: ' + description.length + ' characters');
+                        } else {
+                            console.warn('No description was generated (description is null/empty)');
+                            alert('⚠️ Could not generate description. Check console for details.\n\nMake sure GEMINI_API_KEY or OPENAI_API_KEY is configured in Google Apps Script.');
+                        }
+                    } catch (descError) {
+                        console.error('Failed to generate image description:', descError);
+                        console.error('Error details:', descError.message, descError.stack);
+                        alert('❌ Error generating description:\n\n' + descError.message + '\n\nCheck browser console for more details.');
+                    } finally {
+                        // Re-enable button
+                        btn.disabled = false;
+                        btn.textContent = originalText;
+                        btn.style.opacity = '1';
+                    }
+                });
+            });
+            
+            // Add event listeners for manual description input
+            // This will sync manual changes to ImageKit metadata
+            ['listingImage1Desc', 'listingImage2Desc', 'listingImage3Desc'].forEach(function(descFieldId) {
+                const descField = document.getElementById(descFieldId);
+                if (!descField) return;
+                
+                // Skip if already initialized
+                if (descField.dataset.metadataInitialized === 'true') {
+                    return;
+                }
+                descField.dataset.metadataInitialized = 'true';
+                
+                // Get the corresponding image input field ID
+                const imageFieldId = descFieldId.replace('Desc', '');
+                const imageField = document.getElementById(imageFieldId);
+                
+                if (!imageField) {
+                    console.warn('Could not find corresponding image field for:', descFieldId);
+                    return;
+                }
+                
+                // Update ImageKit metadata when description field loses focus (blur)
+                // This works for both new and existing listings - even days later!
+                descField.addEventListener('blur', async function() {
+                    const description = descField.value.trim();
+                    const imageUrl = imageField.value.trim();
+                    
+                    // Only update if both description and image URL are present
+                    if (description && imageUrl) {
+                        // Only update if the image URL is from ImageKit
+                        if (imageUrl.includes('ik.imagekit.io')) {
+                            console.log('📝 Updating ImageKit metadata for existing image:');
+                            console.log('  - Image URL:', imageUrl.substring(0, 60) + '...');
+                            console.log('  - Description length:', description.length);
+                            console.log('  - Description preview:', description.substring(0, 50) + '...');
+                            
+                            // Try to get fileId from the image input's data attribute (if stored during upload)
+                            // For existing listings loaded from Google Sheets, this might be null,
+                            // but updateImageKitMetadata will search by filePath instead
+                            const storedFileId = imageField.dataset.imagekitFileId || null;
+                            if (storedFileId) {
+                                console.log('  - Using stored fileId:', storedFileId);
+                            } else {
+                                console.log('  - No stored fileId - will search ImageKit by file path');
+                            }
+                            
+                            try {
+                                await updateImageKitMetadata(imageUrl, description, storedFileId);
+                                console.log('✅ ImageKit metadata updated successfully!');
+                                console.log('   The description has been saved to ImageKit and will persist.');
+                            } catch (error) {
+                                console.error('❌ Failed to update ImageKit metadata:', error);
+                                console.error('   This might happen if the image was deleted from ImageKit or the URL is incorrect.');
+                                // Don't show alert - just log it (user can check console if needed)
+                            }
+                        } else {
+                            console.log('⚠️ Image URL is not from ImageKit, skipping metadata update:', imageUrl);
+                        }
+                    } else if (imageUrl && !description) {
+                        // If image URL exists but description is empty, user might have deleted it
+                        // We could optionally clear the ImageKit description, but for now we'll skip
+                        console.log('ℹ️ Description field is empty - skipping ImageKit update');
+                    }
+                });
+            });
+            
+            // Add auto-upload functionality for URL images
+            ['listingImage1', 'listingImage2', 'listingImage3'].forEach(function(imageId) {
+                const input = document.getElementById(imageId);
+                if (input && !input.dataset.urlUploadInitialized) {
+                    input.dataset.urlUploadInitialized = 'true';
+                    
+                    // Auto-upload on blur (when user leaves the field)
+                    input.addEventListener('blur', async function(e) {
+                        const url = this.value.trim();
+                        if (url && (url.startsWith('http://') || url.startsWith('https://'))) {
+                            // Check if it's already ImageKit or base64
+                            if (!url.includes('ik.imagekit.io') && !url.includes('imagekit.io') && !url.startsWith('data:image/')) {
+                                // Ask user if they want to upload
+                                const shouldUpload = confirm('This appears to be an external image URL. Would you like to upload it to ImageKit and replace it with the ImageKit URL?');
+                                if (shouldUpload) {
+                                    await autoUploadImageUrl(imageId, url);
+                                }
+                            }
+                        }
+                    });
+                }
+            });
         }
         
         // Initialize document upload buttons (for PDFs)
         function initDocumentUploadButtons() {
-            document.querySelectorAll('.btn-upload-document').forEach(function(button) {
+            console.log('🔍 initDocumentUploadButtons: Looking for .btn-upload-document buttons...');
+            const buttons = document.querySelectorAll('.btn-upload-document');
+            console.log('🔍 Found', buttons.length, 'document upload buttons');
+            
+            buttons.forEach(function(button) {
                 // Skip if already initialized
                 if (button.dataset.uploadInitialized === 'true') {
+                    console.log('⏭️ Button already initialized, skipping:', button.dataset.target);
                     return;
                 }
                 
                 // Mark as initialized
                 button.dataset.uploadInitialized = 'true';
+                console.log('✅ Initializing document upload button for:', button.dataset.target);
                 
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log('🖱️ Document upload button clicked:', button.dataset.target);
                     
                     const targetId = button.dataset.target;
                     if (!targetId) {
-                        console.error('Upload button missing data-target attribute');
+                        console.error('❌ Upload button missing data-target attribute');
                         alert('Error: Upload button configuration issue. Please refresh the page.');
                         return;
                     }
                     
                     const input = document.getElementById(targetId);
                     if (!input) {
-                        console.error('Input field not found: ' + targetId);
+                        console.error('❌ Input field not found: ' + targetId);
                         alert('Error: Cannot find target input field: ' + targetId);
                         return;
                     }
+                    
+                    console.log('✅ Found input field:', targetId);
 
                     const filePicker = document.createElement('input');
                     filePicker.type = 'file';
@@ -10836,7 +11043,9 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
                     '<td class="cell-document"><input type="url" value="' + safe(listing.document1 || '') + '" data-field="document1" placeholder="PDF URL..." /></td>' +
+                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document1Name || '') + '" data-field="document1Name" placeholder="Document name..." /></td>' +
                     '<td class="cell-document"><input type="url" value="' + safe(listing.document2 || '') + '" data-field="document2" placeholder="PDF URL..." /></td>' +
+                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document2Name || '') + '" data-field="document2Name" placeholder="Document name..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
@@ -11113,7 +11322,7 @@ function updateUnsavedChangesBadge() {
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
                     'website', 'phone', 'address',
-                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 'document1', 'document2',
+                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 'document1', 'document1Name', 'document2', 'document2Name',
                     'amenities', 'featured', 'googleMapsUrl'
                 ];
                 
@@ -11147,7 +11356,9 @@ function updateUnsavedChangesBadge() {
                         escapeCsv(listing.directionsLink || ''),
                         escapeCsv(listing.videoLink || ''),
                         escapeCsv(listing.document1 || ''),
+                        escapeCsv(listing.document1Name || ''),
                         escapeCsv(listing.document2 || ''),
+                        escapeCsv(listing.document2Name || ''),
                         escapeCsv(safeAmenities),
                         escapeCsv(listing.featured ? 'true' : 'false'),
                         escapeCsv(listing.googleMapsUrl || listing.directionsLink || '')

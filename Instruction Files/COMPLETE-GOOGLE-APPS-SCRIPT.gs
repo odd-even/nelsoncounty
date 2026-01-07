@@ -1224,8 +1224,12 @@ function getData(sheet) {
           listing.videoLink = String(value || '');
         } else if (['document1', 'document 1', 'document1link', 'document 1 link'].includes(headerLower)) {
           listing.document1 = String(value || '');
+        } else if (['document1name', 'document 1 name', 'document1 name'].includes(headerLower)) {
+          listing.document1Name = String(value || '');
         } else if (['document2', 'document 2', 'document2link', 'document 2 link'].includes(headerLower)) {
           listing.document2 = String(value || '');
+        } else if (['document2name', 'document 2 name', 'document2 name'].includes(headerLower)) {
+          listing.document2Name = String(value || '');
         } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
           listing.accordionPanel1Title = String(value || '');
         } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1477,8 +1481,12 @@ function saveListing(sheet, listing) {
         rowData.push(listing.videoLink || '');
       } else if (['document1', 'document 1', 'document1link', 'document 1 link'].includes(headerLower)) {
         rowData.push(listing.document1 || '');
+      } else if (['document1name', 'document 1 name', 'document1 name'].includes(headerLower)) {
+        rowData.push(listing.document1Name || '');
       } else if (['document2', 'document 2', 'document2link', 'document 2 link'].includes(headerLower)) {
         rowData.push(listing.document2 || '');
+      } else if (['document2name', 'document 2 name', 'document2 name'].includes(headerLower)) {
+        rowData.push(listing.document2Name || '');
       } else if (['accordionpanel1title', 'accordion panel 1 title'].includes(headerLower)) {
         rowData.push(listing.accordionPanel1Title || '');
       } else if (['accordionpanel1content', 'accordion panel 1 content'].includes(headerLower)) {
@@ -1585,7 +1593,9 @@ const CANONICAL_LISTING_HEADERS = [
   'directionsLink',
   'videoLink',
   'document1',
+  'document1Name',
   'document2',
+  'document2Name',
   'amenities',
   'featured',
   'googleMapsUrl',
