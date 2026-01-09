@@ -3816,12 +3816,15 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 standardFields.forEach(field => allFields.add(field));
                 
-                // Add any additional fields found in listings
+                // Fields to exclude from CSV export (internal-only fields)
+                const excludedFields = new Set(['image1FileId', 'image2FileId', 'image3FileId']);
+                
+                // Add any additional fields found in listings (excluding internal-only fields)
                 if (data && data.listings && Array.isArray(data.listings)) {
                     data.listings.forEach(function(listing) {
                         if (listing && typeof listing === 'object') {
                             Object.keys(listing).forEach(function(key) {
-                                if (key && typeof key === 'string') {
+                                if (key && typeof key === 'string' && !excludedFields.has(key)) {
                                     allFields.add(key);
                                 }
                             });
