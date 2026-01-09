@@ -932,15 +932,26 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 // CRITICAL: Validate column count matches
                 if (values.length !== headers.length) {
+                    const rowName = values[1] || values[0] || 'Unknown';
                     console.error('❌ CRITICAL: Column count mismatch in row', i + 1, ':', {
+                        name: rowName,
                         expected: headers.length,
                         got: values.length,
                         difference: values.length - headers.length,
-                        'This will cause column misalignment!': 'FIX NEEDED'
+                        'This will cause column misalignment!': 'FIX NEEDED',
+                        'First few values': values.slice(0, 5)
                     });
-                    // Skip this row to prevent data corruption
-                    console.warn('⚠️ Skipping row', i + 1, 'due to column mismatch');
-                    continue;
+                    // Try to fix by padding with empty strings or truncating
+                    if (values.length < headers.length) {
+                        console.warn('⚠️ Row has too few columns - padding with empty strings');
+                        while (values.length < headers.length) {
+                            values.push('');
+                        }
+                    } else {
+                        console.warn('⚠️ Row has too many columns - truncating');
+                        values = values.slice(0, headers.length);
+                    }
+                    // Don't skip - try to fix it
                 }
                 
                 if (!values.some(v => v && v.trim())) continue;

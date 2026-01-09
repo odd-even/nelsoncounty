@@ -4632,6 +4632,30 @@ function updateUnsavedChangesBadge() {
                 const values = parseCSVLine(filteredRows[i]);
                 if (!values.some(v => v && v.trim())) continue;
                 
+                // CRITICAL: Validate column count matches
+                if (values.length !== headers.length) {
+                    const rowName = values[1] || values[0] || 'Unknown';
+                    console.error('❌ CRITICAL: Column count mismatch in row', i + 1, ':', {
+                        name: rowName,
+                        expected: headers.length,
+                        got: values.length,
+                        difference: values.length - headers.length,
+                        'This will cause column misalignment!': 'FIX NEEDED',
+                        'First few values': values.slice(0, 5)
+                    });
+                    // Try to fix by padding with empty strings or truncating
+                    if (values.length < headers.length) {
+                        console.warn('⚠️ Row has too few columns - padding with empty strings');
+                        while (values.length < headers.length) {
+                            values.push('');
+                        }
+                    } else {
+                        console.warn('⚠️ Row has too many columns - truncating');
+                        values = values.slice(0, headers.length);
+                    }
+                    // Don't skip - try to fix it
+                }
+                
                 const row = {};
                 headers.forEach((header, index) => {
                     row[header] = (values[index] !== undefined) ? values[index] : '';
@@ -4691,8 +4715,10 @@ function updateUnsavedChangesBadge() {
             
             const featuredStr = getField('Featured', ['featured']);
             const detailedDescriptionValue = getField('Detailed Description', [
+                'detailedDescription',
                 'detaileddescription',
                 'detailed description',
+                'DetailedDescription',
                 'long description',
                 'longdescription',
                 'full description',
@@ -11128,13 +11154,10 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-custom-html"><textarea data-field="customHtml" style="font-family: \'SFMono-Regular\', Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace;">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image1Desc || '') + '</textarea></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image1FileId || '') + '" data-field="image1FileId" placeholder="Image 1 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image2Desc || '') + '</textarea></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image2FileId || '') + '" data-field="image2FileId" placeholder="Image 2 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image3Desc || '') + '</textarea></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image3FileId || '') + '" data-field="image3FileId" placeholder="Image 3 File ID" /></td>' +
                     '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
