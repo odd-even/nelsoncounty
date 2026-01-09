@@ -3656,13 +3656,10 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<td class="cell-customHtml"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image1Desc || '') + '" data-field="image1Desc" placeholder="Image 1 Description" /></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image1FileId || '') + '" data-field="image1FileId" placeholder="Image 1 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image2Desc || '') + '" data-field="image2Desc" placeholder="Image 2 Description" /></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image2FileId || '') + '" data-field="image2FileId" placeholder="Image 2 File ID" /></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image3Desc || '') + '" data-field="image3Desc" placeholder="Image 3 Description" /></td>' +
-                    '<td class="cell-image-fileid"><input type="text" value="' + safe(listing.image3FileId || '') + '" data-field="image3FileId" placeholder="Image 3 File ID" /></td>' +
                     '<td class="cell-website"><input type="url" value="' + safe(listing.website) + '" data-field="website" /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
@@ -3804,9 +3801,9 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 // Add standard fields first (in preferred order)
                 const standardFields = [
                     'id', 'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
-                    'image1', 'image1Desc', 'image1FileId',
-                    'image2', 'image2Desc', 'image2FileId',
-                    'image3', 'image3Desc', 'image3FileId',
+                    'image1', 'image1Desc',
+                    'image2', 'image2Desc',
+                    'image3', 'image3Desc',
                     'website', 'phone', 'address',
                     'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 
                     'document1', 'document1Name', 'document2', 'document2Name',
