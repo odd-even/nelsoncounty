@@ -1322,38 +1322,83 @@
     
     <!-- CRITICAL: Authentication enforcement - runs immediately -->
     <script>
-        // IMMEDIATE: Clear ALL auth data before anything else runs
-        // This prevents any bypass attempts
+        // IMMEDIATE: Check for valid session before showing login overlay
+        // This allows sessions to persist across page reloads
         (function() {
             'use strict';
-            // Clear ALL authentication data
+            
+            // Check for valid session in localStorage FIRST
+            function hasValidSession() {
+                try {
+                    const sessionData = localStorage.getItem('adminAuthSession');
+                    if (!sessionData) {
+                        return false;
+                    }
+                    
+                    const session = JSON.parse(sessionData);
+                    
+                    // Check if session has required fields and is not expired
+                    if (session.token && session.email && session.expires) {
+                        if (Date.now() < session.expires) {
+                            // Session exists and is not expired
+                            return true;
+                        }
+                    }
+                } catch (e) {
+                    // If parsing fails, assume no valid session
+                }
+                return false;
+            }
+            
+            // Clear old auth data (but preserve adminAuthSession)
             sessionStorage.clear();
             localStorage.removeItem('skipAuth');
             localStorage.removeItem('adminLoggedIn');
+            // DON'T clear adminAuthSession - that's the persistent session!
             
-            // Force body to not have logged-in class
-            if (document.body) {
-                document.body.classList.remove('logged-in');
-            }
+            // Check if we have a valid session
+            const hasSession = hasValidSession();
             
-            // Force login overlay to be visible
+            // Only show login overlay if NO valid session exists
             function showLoginOverlay() {
-                const overlay = document.getElementById('loginOverlay');
-                if (overlay) {
-                    overlay.style.display = 'flex';
-                    overlay.style.zIndex = '10000';
+                // Re-check session in case it was just created
+                if (!hasValidSession()) {
+                    const overlay = document.getElementById('loginOverlay');
+                    if (overlay) {
+                        overlay.style.display = 'flex';
+                        overlay.style.zIndex = '10000';
+                    }
+                    
+                    // Force body to not have logged-in class
+                    if (document.body) {
+                        document.body.classList.remove('logged-in');
+                    }
+                } else {
+                    // Valid session exists - hide overlay and add logged-in class
+                    const overlay = document.getElementById('loginOverlay');
+                    if (overlay) {
+                        overlay.style.display = 'none';
+                        overlay.setAttribute('style', 'display: none !important;');
+                    }
+                    
+                    if (document.body) {
+                        document.body.classList.add('logged-in');
+                    }
                 }
             }
             
-            // Try immediately
+            // Check immediately
             showLoginOverlay();
             
-            // Also try when DOM is ready
+            // Also check when DOM is ready
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', showLoginOverlay);
+            } else {
+                // DOM already ready, check now
+                showLoginOverlay();
             }
             
-            // Also try on load
+            // Also check on load (in case session was created between DOMContentLoaded and load)
             window.addEventListener('load', showLoginOverlay);
             
             // REMOVED: Old continuous enforcement - replaced by new server-validated monitoring below
@@ -1690,23 +1735,34 @@
                                     session.email = validation.email || session.email;
                                     console.log('✅ Session validated by server');
                                 } else {
-                                    // Server explicitly says token is invalid
-                                    // BUT: Only clear if it's not a network error
-                                    // Network errors return { valid: false, error: 'Network error' }
-                                    if (validation.error && validation.error === 'Network error') {
-                                        // Network error - allow session through (token is still valid, just couldn't verify)
-                                        console.warn('Session validation failed (network error), allowing session through');
-                                    } else {
+                                    // Server says token is invalid
+                                    // BUT: Only clear if it's a specific "not authorized" or "expired" error
+                                    // Allow through on network errors, missing responses, or other temporary issues
+                                    const errorMsg = (validation.error || '').toLowerCase();
+                                    if (errorMsg.includes('network error') || 
+                                        errorMsg.includes('no response') || 
+                                        errorMsg.includes('session validation failed') ||
+                                        errorMsg === '') {
+                                        // Network error or ambiguous error - allow session through
+                                        // Token might still be valid, just couldn't verify
+                                        console.warn('Session validation failed (network/ambiguous error), allowing session through');
+                                    } else if (errorMsg.includes('not authorized') || 
+                                               errorMsg.includes('email not authorized') ||
+                                               errorMsg.includes('session expired') ||
+                                               errorMsg.includes('invalid session token')) {
                                         // Server explicitly rejected token - clear it
-                                        console.warn('Server rejected session token, clearing session');
+                                        console.warn('Server rejected session token (' + validation.error + '), clearing session');
                                         localStorage.removeItem('adminAuthSession');
                                         sessionStorage.clear();
                                         return null;
+                                    } else {
+                                        // Unknown error - be conservative and allow through
+                                        console.warn('Session validation returned unknown error, allowing session through:', validation.error);
                                     }
                                 }
                             } catch (validationError) {
                                 // Network error or other exception - allow session through but log error
-                                console.warn('Session validation failed (network error), allowing session through:', validationError);
+                                console.warn('Session validation failed (exception), allowing session through:', validationError);
                                 // Don't clear session on network error - allow through
                                 // Session is still valid, just couldn't verify with server
                             }
@@ -1860,26 +1916,54 @@
             async function validateSessionWithServer(token) {
                 try {
                     const scriptUrl = getGoogleAppsScriptURL();
+                    if (!scriptUrl || scriptUrl.includes('YOUR_SCRIPT_ID')) {
+                        // No valid script URL - can't validate, but don't fail
+                        console.warn('No valid Google Apps Script URL configured, skipping validation');
+                        return { valid: true }; // Allow through if no script URL
+                    }
+                    
                     const params = new URLSearchParams({
                         action: 'validateSession',
                         token: token
                     });
                     
-                    const response = await fetch(scriptUrl + '?' + params.toString(), {
-                        method: 'GET',
-                        mode: 'cors'
-                    });
+                    // Add timeout to prevent hanging
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
                     
-                    if (!response.ok) {
-                        return { valid: false, error: 'Session validation failed' };
+                    try {
+                        const response = await fetch(scriptUrl + '?' + params.toString(), {
+                            method: 'GET',
+                            mode: 'cors',
+                            signal: controller.signal
+                        });
+                        
+                        clearTimeout(timeoutId);
+                        
+                        if (!response.ok) {
+                            // HTTP error - treat as network/ambiguous error, not explicit rejection
+                            console.warn('Session validation HTTP error:', response.status);
+                            return { valid: false, error: 'Network error' };
+                        }
+                        
+                        const responseText = await response.text();
+                        if (!responseText) {
+                            return { valid: false, error: 'No response from server' };
+                        }
+                        
+                        const result = JSON.parse(responseText);
+                        return result;
+                    } catch (fetchError) {
+                        clearTimeout(timeoutId);
+                        if (fetchError.name === 'AbortError') {
+                            console.warn('Session validation timeout');
+                            return { valid: false, error: 'Network error' };
+                        }
+                        throw fetchError;
                     }
-                    
-                    const responseText = await response.text();
-                    const result = responseText ? JSON.parse(responseText) : { valid: false, error: 'No response from server' };
-                    
-                    return result;
                 } catch (error) {
                     console.error('Error validating session:', error);
+                    // Treat all errors as network errors - don't reject session
                     return { valid: false, error: 'Network error' };
                 }
             }
@@ -2436,6 +2520,11 @@
                     // Server-validated session token is the source of truth
                     const isValidAuth = isLoggedIn && adminEmail;
                     
+                    // Check if session exists in storage (even if validation hasn't completed)
+                    const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
+                    const sessionData = localStorage.getItem('adminAuthSession');
+                    const hasSessionData = sessionStorageLoggedIn || sessionData;
+                    
                     // If valid, ensure overlay is hidden and logged-in class is set
                     if (isValidAuth) {
                         console.log('✅ Monitoring: Valid session found, hiding login overlay');
@@ -2445,33 +2534,28 @@
                         }
                         document.body.classList.add('logged-in');
                         // Don't clear session - it's valid!
-                    } else {
-                        // Only show overlay if we're absolutely sure there's no valid session
-                        // Don't clear session on network errors - might still be valid
-                        const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
-                        const sessionData = localStorage.getItem('adminAuthSession');
-                        
-                        if (!sessionStorageLoggedIn && !sessionData) {
-                            // No session anywhere - show login
-                            console.log('⚠️ Monitoring: No session found anywhere - showing login');
-                            if (overlay) overlay.style.display = 'flex';
-                            document.body.classList.remove('logged-in');
-                            // Hide all admin content
-                            const header = document.querySelector('.header');
-                            const tabs = document.querySelector('.tabs');
-                            const tabContent = document.querySelectorAll('.tab-content');
-                            if (header) header.style.display = 'none';
-                            if (tabs) tabs.style.display = 'none';
-                            tabContent.forEach(function(tab) { tab.style.display = 'none'; });
-                        } else {
-                            // Session might exist but validation failed - keep overlay hidden
-                            console.log('⚠️ Monitoring: Session might exist but validation failed - keeping overlay hidden');
-                            if (overlay) {
-                                overlay.style.display = 'none';
-                                overlay.setAttribute('style', 'display: none !important;');
-                            }
-                            document.body.classList.add('logged-in');
+                    } else if (hasSessionData) {
+                        // Session data exists but validation might be in progress or failed
+                        // Be conservative - keep overlay hidden if session data exists
+                        // Only show overlay if session was explicitly cleared by validation
+                        console.log('⚠️ Monitoring: Session data exists, keeping overlay hidden (validation may be in progress)');
+                        if (overlay) {
+                            overlay.style.display = 'none';
+                            overlay.setAttribute('style', 'display: none !important;');
                         }
+                        document.body.classList.add('logged-in');
+                    } else {
+                        // No session anywhere - show login
+                        console.log('⚠️ Monitoring: No session found anywhere - showing login');
+                        if (overlay) overlay.style.display = 'flex';
+                        document.body.classList.remove('logged-in');
+                        // Hide all admin content
+                        const header = document.querySelector('.header');
+                        const tabs = document.querySelector('.tabs');
+                        const tabContent = document.querySelectorAll('.tab-content');
+                        if (header) header.style.display = 'none';
+                        if (tabs) tabs.style.display = 'none';
+                        tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                     }
                 }
             }, 5000); // Check every 5 seconds (less frequent to reduce server load)
