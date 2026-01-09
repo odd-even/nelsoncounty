@@ -7099,6 +7099,8 @@ function updateUnsavedChangesBadge() {
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
+            const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
+            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -7499,7 +7501,7 @@ function updateUnsavedChangesBadge() {
                 type: getValue('listingType'), // Simple, direct - no normalization
                 area: getValue('listingArea'),
                 description: getValue('listingDescription'),
-                detailedDescription: '', // Field removed from UI, keep empty for backward compatibility
+                detailedDescription: getValue('listingDetailedDescription'),
                 customHtml: getValue('listingCustomHtml'),
                 image1: getValue('listingImage1'),
                 image2: getValue('listingImage2'),
@@ -11122,7 +11124,7 @@ function updateUnsavedChangesBadge() {
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed" style="display: none;"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
+                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
                     '<td class="cell-custom-html"><textarea data-field="customHtml" style="font-family: \'SFMono-Regular\', Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace;">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image1Desc || '') + '</textarea></td>' +

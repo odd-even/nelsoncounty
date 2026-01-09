@@ -1027,8 +1027,10 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             
             const featuredStr = getField('Featured', ['featured']);
             const detailedDescriptionValue = getField('Detailed Description', [
+                'detailedDescription',
                 'detaileddescription',
                 'detailed description',
+                'DetailedDescription',
                 'long description',
                 'longdescription',
                 'full description',
@@ -2185,6 +2187,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const listing = data.listings.find(function(l) { return l.id === id; });
             if (!listing) return;
             
+            // Debug: Log detailedDescription to console
+            console.log('🔍 editListing - Listing:', listing.name);
+            console.log('   detailedDescription exists:', 'detailedDescription' in listing);
+            console.log('   detailedDescription value:', listing.detailedDescription ? listing.detailedDescription.substring(0, 50) + '...' : '(empty or undefined)');
+            
             // Ensure dropdowns are populated with current options
             updateTypeDropdown();
             updateAreaDropdown();
@@ -2198,7 +2205,13 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
             const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
-            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
+            if (detailedDescriptionInput) {
+                const value = listing.detailedDescription || '';
+                console.log('   Setting detailedDescription input to:', value ? value.substring(0, 50) + '...' : '(empty)');
+                detailedDescriptionInput.value = value;
+            } else {
+                console.error('   ❌ listingDetailedDescription input not found!');
+            }
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -3637,6 +3650,9 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
                     console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
                     console.log('   All accordion keys in listing:', Object.keys(listing).filter(k => k.includes('accordion')));
+                    console.log('   detailedDescription exists:', 'detailedDescription' in listing);
+                    console.log('   detailedDescription value:', listing.detailedDescription ? listing.detailedDescription.substring(0, 50) + '...' : '(empty or undefined)');
+                    console.log('   All listing keys:', Object.keys(listing).join(', '));
                     window._tableAccordionDebugLogged = true;
                 }
                 
