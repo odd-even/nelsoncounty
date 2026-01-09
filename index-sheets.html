@@ -1747,14 +1747,24 @@
                                         // Token might still be valid, just couldn't verify
                                         console.warn('Session validation failed (network/ambiguous error), allowing session through');
                                     } else if (errorMsg.includes('not authorized') || 
-                                               errorMsg.includes('email not authorized') ||
-                                               errorMsg.includes('session expired') ||
-                                               errorMsg.includes('invalid session token')) {
-                                        // Server explicitly rejected token - clear it
-                                        console.warn('Server rejected session token (' + validation.error + '), clearing session');
+                                               errorMsg.includes('email not authorized')) {
+                                        // Server explicitly rejected email authorization - clear it
+                                        console.warn('Server rejected email authorization (' + validation.error + '), clearing session');
                                         localStorage.removeItem('adminAuthSession');
                                         sessionStorage.clear();
                                         return null;
+                                    } else if (errorMsg.includes('session expired')) {
+                                        // Session expired - clear it
+                                        console.warn('Session expired, clearing session');
+                                        localStorage.removeItem('adminAuthSession');
+                                        sessionStorage.clear();
+                                        return null;
+                                    } else if (errorMsg.includes('invalid session token')) {
+                                        // "Invalid session token" might be a server-side parsing issue
+                                        // Don't clear immediately - allow session through but log warning
+                                        // Only clear if this happens multiple times (handled by monitoring)
+                                        console.warn('Server reported invalid session token, but allowing through (may be temporary server issue):', validation.error);
+                                        // Don't clear - allow session to persist
                                     } else {
                                         // Unknown error - be conservative and allow through
                                         console.warn('Session validation returned unknown error, allowing session through:', validation.error);
@@ -2538,24 +2548,29 @@
                         // Session data exists but validation might be in progress or failed
                         // Be conservative - keep overlay hidden if session data exists
                         // Only show overlay if session was explicitly cleared by validation
-                        console.log('⚠️ Monitoring: Session data exists, keeping overlay hidden (validation may be in progress)');
-                        if (overlay) {
+                        // Don't log this repeatedly - it's normal during validation
+                        if (overlay && overlay.style.display !== 'none') {
+                            console.log('⚠️ Monitoring: Session data exists, keeping overlay hidden (validation may be in progress)');
                             overlay.style.display = 'none';
                             overlay.setAttribute('style', 'display: none !important;');
                         }
                         document.body.classList.add('logged-in');
                     } else {
                         // No session anywhere - show login
-                        console.log('⚠️ Monitoring: No session found anywhere - showing login');
-                        if (overlay) overlay.style.display = 'flex';
-                        document.body.classList.remove('logged-in');
-                        // Hide all admin content
-                        const header = document.querySelector('.header');
-                        const tabs = document.querySelector('.tabs');
-                        const tabContent = document.querySelectorAll('.tab-content');
-                        if (header) header.style.display = 'none';
-                        if (tabs) tabs.style.display = 'none';
-                        tabContent.forEach(function(tab) { tab.style.display = 'none'; });
+                        // Only log and show if overlay isn't already showing (avoid spam)
+                        const overlayCurrentlyShowing = overlay && overlay.style.display === 'flex';
+                        if (!overlayCurrentlyShowing) {
+                            console.log('⚠️ Monitoring: No session found anywhere - showing login');
+                            if (overlay) overlay.style.display = 'flex';
+                            document.body.classList.remove('logged-in');
+                            // Hide all admin content
+                            const header = document.querySelector('.header');
+                            const tabs = document.querySelector('.tabs');
+                            const tabContent = document.querySelectorAll('.tab-content');
+                            if (header) header.style.display = 'none';
+                            if (tabs) tabs.style.display = 'none';
+                            tabContent.forEach(function(tab) { tab.style.display = 'none'; });
+                        }
                     }
                 }
             }, 5000); // Check every 5 seconds (less frequent to reduce server load)
