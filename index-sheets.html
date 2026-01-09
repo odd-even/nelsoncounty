@@ -2745,7 +2745,7 @@
                             <th class="sortable" data-sort="category" data-column-key="category">Category</th>
                             <th class="sortable" data-sort="area" data-column-key="area">Area</th>
                             <th data-column-key="description">Description</th>
-                            <th data-column-key="detailedDescription" style="display: none;">Detailed Description</th>
+                            <th data-column-key="detailedDescription">Detailed Description</th>
                             <th data-column-key="customHtml">Custom HTML</th>
                             <th data-column-key="image1">Image 1</th>
                             <th data-column-key="image1Desc">Image 1 Desc</th>
@@ -2789,7 +2789,7 @@
                             <th><select class="filter-select" data-filter="category"><option value="">All</option></select></th>
                             <th><select class="filter-select" data-filter="area"><option value="">All</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="description" placeholder="Filter..." /></th>
-                            <th style="display: none;"><input type="text" class="filter-input" data-filter="detailedDescription" placeholder="Filter..." /></th>
+                            <th><input type="text" class="filter-input" data-filter="detailedDescription" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="customHtml" placeholder="Filter... (type 'has' for non-empty)" /></th>
                             <th><input type="text" class="filter-input" data-filter="image1" placeholder="Filter... (type 'has' for non-empty)" /></th>
                             <th><input type="text" class="filter-input" data-filter="image1Desc" placeholder="Filter..." /></th>
@@ -2974,6 +2974,12 @@
                 <div class="form-group">
                     <label>Description *</label>
                     <textarea id="listingDescription" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Detailed Description</label>
+                    <textarea id="listingDetailedDescription" placeholder="Optional longer description with more details, history, context, etc." style="min-height: 150px;"></textarea>
+                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Optional extended description. Only shown if it provides significantly more information than the short description.</small>
                 </div>
 
                 <div class="form-group">

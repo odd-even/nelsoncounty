@@ -2197,6 +2197,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
+            const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
+            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -2409,7 +2411,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 type: getValue('listingType'),
                 area: getValue('listingArea'),
                 description: getValue('listingDescription'),
-                detailedDescription: '', // Field removed from UI, keep empty for backward compatibility
+                detailedDescription: getValue('listingDetailedDescription'),
                 image1: getValue('listingImage1'),
                 image1Desc: getValue('listingImage1Desc'),
                 image2: getValue('listingImage2'),
@@ -3650,7 +3652,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed" style="display: none;"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
+                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
                     '<td class="cell-customHtml"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
                     '<td class="cell-image-desc"><input type="text" value="' + safe(listing.image1Desc || '') + '" data-field="image1Desc" placeholder="Image 1 Description" /></td>' +

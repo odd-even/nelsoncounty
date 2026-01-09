@@ -1574,6 +1574,7 @@ const CANONICAL_LISTING_HEADERS = [
   'category',
   'area',
   'description',
+  'detailedDescription',
   'customHtml',
   'image1',
   'image1Desc',
