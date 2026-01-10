@@ -9026,17 +9026,14 @@ function renderPreview(filteredListings, appendMode) {
         const fixedType = fixEncoding(listing.type);
         const fixedArea = fixEncoding(listing.area);
         const fixedDescription = fixEncoding(listing.description);
-        // Use detailedDescription on back if available and not empty, otherwise fall back to description
-        const hasDetailedDescription = listing.detailedDescription && listing.detailedDescription.trim().length > 0;
         // Remove line breaks from description for card back display (but keep them in raw data for Framer CMS)
         const removeLineBreaksForDisplay = (text) => {
             if (!text) return '';
             // Replace all types of line breaks with spaces, then collapse multiple spaces
             return text.replace(/\r\n/g, ' ').replace(/\n/g, ' ').replace(/\r/g, ' ').replace(/\s+/g, ' ').trim();
         };
-        const backDescriptionText = hasDetailedDescription 
-            ? removeLineBreaksForDisplay(fixEncoding(listing.detailedDescription))
-            : removeLineBreaksForDisplay(fixedDescription);
+        // Always use description for the back of cards (same as front)
+        const backDescriptionText = removeLineBreaksForDisplay(fixedDescription);
         
         let badgesHtml = 
             '<span class="badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + escapeHtml(listing.type) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'type\', \'' + escapeHtml(listing.type) + '\'); return false;">' + escapeHtml(fixedType) + '</span>' +
@@ -9085,7 +9082,7 @@ function renderPreview(filteredListings, appendMode) {
         };
         backContent.appendChild(backTitle);
         
-        // Full description with fade-out gradient (use detailedDescription if available and not empty, otherwise fall back to description)
+        // Full description with fade-out gradient (uses description column, same as front of card)
         if (backDescriptionText) {
             const descWrapper = document.createElement('div');
             descWrapper.className = 'desc-wrapper';
