@@ -1,0 +1,251 @@
+================================================================================
+ADDRESS UPDATE REPORT
+================================================================================
+
+Total listings matched by slug: 362
+Total addresses updated: 40
+
+DETAILED CHANGES:
+--------------------------------------------------------------------------------
+
+1. Humpback Rocks (slug: humpback-rocks)
+   Donor Title: Humpback Rocks
+   OLD Address: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+   NEW Address: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+   STATUS: REVERTED TO ORIGINAL (original address was correct, shows right location in Google)
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=Humpback%20Gap%20Parking%20Area%2C%20Milepost%205.8%20Blue%20Ridge%20Parkway%2C%20Lyndhurst%2C%20VA%2022952
+
+2. Trager Brothers Coffee 1.0 (slug: trager-brothers-coffee-1-0)
+   Donor Title: Trager Brothers Coffee 1.0
+   OLD Address: 486 Front Street, Lovingston, VA 22949
+   NEW Address: 486 Front St Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=486%20Front%20St%20Lovingston%2C%20VA%2022949
+
+3. Afton Market (slug: afton-market)
+   Donor Title: Afton Market
+   OLD Address: 10185 Rockfish Valley Highway, Afton, VA
+   NEW Address: 10185 Rockfish Valley Highway Afton, VA 22920
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=10185%20Rockfish%20Valley%20Highway%20Afton%2C%20VA%2022920
+
+4. Chicken Coop (slug: chicken-coop)
+   Donor Title: Chicken Coop
+   OLD Address: 40 Front Street, Lovingston, VA 22949
+   NEW Address: 40 Front Street Afton, VA 22920
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=40%20Front%20Street%20Afton%2C%20VA%2022920
+
+5. Corner Market (slug: corner-market)
+   Donor Title: Corner Market
+   OLD Address: 11309 James River Road in Shipman, VA
+   NEW Address: 11309 James River Road Shipman, VA 22971
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=11309%20James%20River%20Road%20Shipman%2C%20VA%2022971
+
+6. Graves Grocery & Deli (slug: graves-grocery-deli)
+   Donor Title: Graves Grocery & Deli
+   OLD Address: 1779 Rockfish Valley Highway, Nellysford, VA 22958
+   NEW Address: 1779 Rockfish Valley Hwy. Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1779%20Rockfish%20Valley%20Hwy.%20Nellysford%2C%20VA%2022958
+
+7. IGA Blue Ridge Grocery (slug: iga-blue-ridge-grocery)
+   Donor Title: IGA Blue Ridge Grocery
+   OLD Address: 2797 Rockfish Valley Highway, Nellysford, VA
+   NEW Address: 2797 Rockfish Valley Highway Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=2797%20Rockfish%20Valley%20Highway%20Nellysford%2C%20VA%2022958
+
+8. Ike's Market & Deli (slug: ikes-market-deli)
+   Donor Title: Ike’s Market & Deli
+   OLD Address: 6597 Rockfish River Road in Schuyler, VA
+   NEW Address: 6597 Rockfish River Road Schuyler, VA 22969
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=6597%20Rockfish%20River%20Road%20Schuyler%2C%20VA%2022969
+
+9. Mac's Country Store (slug: macs-country-store)
+   Donor Title: Mac’s Country Store
+   OLD Address: 7023 Patrick Henry Highway, Roseland, VA 22967
+   NEW Address: 7023 Patrick Henry Hwy. Roseland, VA 22967
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=7023%20Patrick%20Henry%20Hwy.%20Roseland%2C%20VA%2022967
+
+10. Williams Grocery (slug: williams-grocery)
+   Donor Title: Williams Grocery
+   OLD Address: 439 Williamstown Road in Shipman or 6445 Rockfish Va
+   NEW Address: 439 Williamstown Road Shipman, VA 22971
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=439%20Williamstown%20Road%20Shipman%2C%20VA%2022971
+
+11. Ann's Family Restaurant (slug: anns-family-restaurant)
+   Donor Title: Ann’s Family Restaurant
+   OLD Address: 1170 Thomas Nelson Highway, Arrington, VA 22922
+   NEW Address: 1170 Thomas Nelson Hwy Arrington, VA 22922
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1170%20Thomas%20Nelson%20Hwy%20Arrington%2C%20VA%2022922
+
+12. Coquito Kitchen (slug: coquito-kitchen)
+   Donor Title: Coquito Kitchen
+   OLD Address: 190 Rockfish School Lane, Afton, VA 22920
+   NEW Address: 190 Rockfish School Ln Afton, VA 22920
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=190%20Rockfish%20School%20Ln%20Afton%2C%20VA%2022920
+
+13. Fire & Frost Wood Fired Bakehouse (slug: fire-frost-wood-fired-bakehouse)
+   Donor Title: Fire & Frost Wood Fired Bakehouse
+   OLD Address: 121 Blue Ridge Drive, Roseland, VA 22967
+   NEW Address: 121 Blue Ridge Dr Roseland, VA 22967
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=121%20Blue%20Ridge%20Dr%20Roseland%2C%20VA%2022967
+
+14. Paulie's Pig Out (slug: paulies-pig-out)
+   Donor Title: Paulie's Pig Out
+   OLD Address: 7376 Rockfish Valley Highway in Afton, VA
+   NEW Address: 7376 Rockfish Valley Highway Afton, VA 22920
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=7376%20Rockfish%20Valley%20Highway%20Afton%2C%20VA%2022920
+
+15. The Edge (slug: the-edge)
+   Donor Title: The Edge
+   OLD Address: 11 Grassy Ridge Road, Wintergreen, VA 22958
+   NEW Address: 11 Grassy Ridge Rd Wintergreen, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=11%20Grassy%20Ridge%20Rd%20Wintergreen%2C%20VA%2022958
+
+16. Vito's Pizza & Italian Grill (slug: vitos-pizza-italian-grill)
+   Donor Title: Vito’s Pizza & Italian Grill
+   OLD Address: 8181 Thomas Nelson Highway, Lovingston, VA 22949
+   NEW Address: 8181 Thomas Nelson Hwy Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=8181%20Thomas%20Nelson%20Hwy%20Lovingston%2C%20VA%2022949
+
+17. Wood Ridge Farm Brewery (slug: wood-ridge-farm-brewery)
+   Donor Title: Wood Ridge Farm Brewery
+   OLD Address: 165 Old Ridge Road, Lovingston, VA 22949
+   NEW Address: 165 Old Ridge Rd Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=165%20Old%20Ridge%20Rd%20Lovingston%2C%20VA%2022949
+
+18. Virginia Distillery Co. (slug: virginia-distillery-co)
+   Donor Title: Virginia Distillery Co.
+   OLD Address: 299 Eades Lane in Lovingston, VA
+   NEW Address: 299 Eades Lane Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=299%20Eades%20Lane%20Lovingston%2C%20VA%2022949
+
+19. Montebello Fish Hatchery (slug: montebello-fish-hatchery)
+   Donor Title: Montebello Fish Hatchery
+   OLD Address: 359 Fish Hatchery Lane, Montebello, VA 24464
+   NEW Address: 359 Fish Hatchery Road Montebello, VA 24464
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=359%20Fish%20Hatchery%20Road%20Montebello%2C%20VA%2024464
+
+20. One Forest (slug: one-forest)
+   Donor Title: One Forest
+   OLD Address: Nellysford, VA 22958
+   NEW Address: 1041 Spruce Creek Lane Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1041%20Spruce%20Creek%20Lane%20Nellysford%2C%20VA%2022958
+
+21. Lake Nelson (slug: lake-nelson)
+   Donor Title: Lake Nelson
+   OLD Address: 801 Lake Nelson LaneArrington VA 22922
+   NEW Address: 801 Lake Nelson Lane Arrington, VA 22922
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=801%20Lake%20Nelson%20Lane%20Arrington%2C%20VA%2022922
+
+22. Pharsalia (slug: pharsalia)
+   Donor Title: Pharsalia
+   OLD Address: 2333 Pharsalia Road, Tyro, VA 22976
+   NEW Address: 2333 Pharsalia Rd. Tyro, VA 22976
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=2333%20Pharsalia%20Rd.%20Tyro%2C%20VA%2022976
+
+23. Seamans' Orchard (slug: seamans-orchard)
+   Donor Title: Seamans’ Orchard
+   OLD Address: 415 Dark Hollow Road, Roseland, VA
+   NEW Address: 415 Dark Hollow Road Roseland, VA 22967
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=415%20Dark%20Hollow%20Road%20Roseland%2C%20VA%2022967
+
+24. Silver Creek and Seamans' Orchards (slug: silver-creek-and-seamans-orchards)
+   Donor Title: Silver Creek and Seamans’ Orchards
+   OLD Address: 5529 Crabtree Falls Highway in Tyro, VA
+   NEW Address: 5529 Crabtree Falls Highway Tyro, VA 22976
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=5529%20Crabtree%20Falls%20Highway%20Tyro%2C%20VA%2022976
+
+25. The Apple Shed (slug: the-apple-shed)
+   Donor Title: The Apple Shed
+   OLD Address: 14815 Thomas Nelson Highway, Lovingston, VA 22949
+   NEW Address: 14815 Thomas Nelson Hwy Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=14815%20Thomas%20Nelson%20Hwy%20Lovingston%2C%20VA%2022949
+
+26. Tinkerland Farm (slug: tinkerland-farm)
+   Donor Title: Tinkerland Farm
+   OLD Address: Bryant Lane & Route 151, Roseland, VA 22967
+   NEW Address: 151 Patrick Henry Highway Roseland, VA 22967
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=151%20Patrick%20Henry%20Highway%20Roseland%2C%20VA%2022967
+
+27. Virginia Chestnuts (slug: virginia-chestnuts)
+   Donor Title: Virginia Chestnuts
+   OLD Address: 5990 Wheeler Cove Road, Shipman, VA 22971
+   NEW Address: 5990 Wheeler Cove Rd Shipman, VA 22971
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=5990%20Wheeler%20Cove%20Rd%20Shipman%2C%20VA%2022971
+
+28. Eventide Farm (slug: eventidefarm)
+   Donor Title: Eventide Farm
+   OLD Address: 11254 Rockfish Valley Highway, Afton, VA 22920
+   NEW Address: 11254 Rockfish Valley Hwy Afton, VA 22920
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=11254%20Rockfish%20Valley%20Hwy%20Afton%2C%20VA%2022920
+
+29. Gathered Threads (slug: gathered)
+   Donor Title: Gathered Threads
+   OLD Address: 1127 Jennys Creek Road, Roseland, VA 22967
+   NEW Address: 1127 Jennys Creek Rd Roseland, VA 22967
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1127%20Jennys%20Creek%20Rd%20Roseland%2C%20VA%2022967
+
+30. Fishing the James River (slug: fishing-the-james-river)
+   Donor Title: Fishing the James River
+   OLD Address: Midway Boat Ramp, 106 Midway Lane, Wingina, VA 24599
+   NEW Address: 751 Park Road, Gladstone, VA 24553
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=751%20Park%20Road%2C%20Gladstone%2C%20VA%2024553
+
+31. Mountain and Vine Winery (slug: mountain-and-vine-winery)
+   Donor Title: Mountain and Vine Winery
+   OLD Address: 500 DelFosse Winery Lane, Faber, VA
+   NEW Address: 500 DelFosse Winery Lane Faber, VA 22938
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=500%20DelFosse%20Winery%20Lane%20Faber%2C%20VA%2022938
+
+32. Mountain Cove Vineyards & Winery (slug: mountain-cove-vineyards-winery)
+   Donor Title: Mountain Cove Vineyards & Winery
+   OLD Address: 1365 North Amherst Hwy, Lovingston, VA 22949
+   NEW Address: 1362 Fortunes Cove Lane Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1362%20Fortunes%20Cove%20Lane%20Lovingston%2C%20VA%2022949
+
+33. Inglewood Fine Meats (slug: inglewood-fine-meats)
+   Donor Title: Inglewood Fine Meats
+   OLD Address: 4638 Variety Mills Road, Arrington, VA
+   NEW Address: 4638 Variety Mills Road Arrington, VA 22922
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=4638%20Variety%20Mills%20Road%20Arrington%2C%20VA%2022922
+
+34. Montebello Nature Trail (slug: montebello-nature-trail)
+   Donor Title: Montebello Nature Trail
+   OLD Address: 359 Fish Hatchery Lane, Montebello, VA
+   NEW Address: 359 Fish Hatchery Lane Montebello, VA 24464
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=359%20Fish%20Hatchery%20Lane%20Montebello%2C%20VA%2024464
+
+35. Oakland Museum (slug: oakland-museum)
+   Donor Title: Oakland Museum
+   OLD Address: 5365 Thomas Nelson Highway, Arrington, VA
+   NEW Address: 5365 Thomas Nelson Highway Arrington, VA 22922
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=5365%20Thomas%20Nelson%20Highway%20Arrington%2C%20VA%2022922
+
+36. Belties (slug: belties)
+   Donor Title: Belties
+   OLD Address: 2884 Rockfish Valley Highway, Nellysford, VA
+   NEW Address: 2884 Rockfish Valley Highway Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=2884%20Rockfish%20Valley%20Highway%20Nellysford%2C%20VA%2022958
+
+37. Village Antiques (slug: villageantiques)
+   Donor Title: Village Antiques
+   OLD Address: 605 Front Street, Lovingston, VA 22949
+   NEW Address: 605 Front St. Lovingston, VA 22949
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=605%20Front%20St.%20Lovingston%2C%20VA%2022949
+
+38. Trinacria Restaurant & Pizzeria (slug: trinacria)
+   Donor Title: Trinacria Restaurant & Pizzeria
+   OLD Address: 2842 Rockfish Valley Highway, Nellysford, VA 22958
+   NEW Address: 2842 Rockfish Valley Hwy Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=2842%20Rockfish%20Valley%20Hwy%20Nellysford%2C%20VA%2022958
+
+39. Rockfish Valley Natural History Center (slug: rockfish-valley-natural-history-center)
+   Donor Title: Rockfish Valley Natural History Center
+   OLD Address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   NEW Address: 1368 Rockfish Valley Hwy Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=1368%20Rockfish%20Valley%20Hwy%20Nellysford%2C%20VA%2022958
+
+40. Don Lupe Mexican Restaurant (slug: donlupe)
+   Donor Title: Don Lupe Mexican Restaurant
+   OLD Address: 2815 Rockfish Valley Highway, Nellysford, VA 22958
+   NEW Address: 2815 Rockfish Valley Hwy Nellysford, VA 22958
+   Google Maps URL: https://www.google.com/maps/search/?api=1&query=2815%20Rockfish%20Valley%20Hwy%20Nellysford%2C%20VA%2022958
+

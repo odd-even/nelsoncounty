@@ -1206,6 +1206,9 @@ function getData(sheet) {
         } else if (headerLower === 'featured') {
           const featuredVal = String(value || '').toLowerCase();
           listing.featured = featuredVal === 'true' || featuredVal === 'yes' || featuredVal === '1';
+        } else if (headerLower === 'private') {
+          const privateVal = String(value || '').toLowerCase();
+          listing.private = privateVal === 'true' || privateVal === 'yes' || privateVal === '1';
         } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
           listing.customHtml = String(value || '');
         } else if (['category'].includes(headerLower)) {
@@ -1467,6 +1470,8 @@ function saveListing(sheet, listing) {
         rowData.push(Array.isArray(listing.amenities) ? listing.amenities.join(', ') : (listing.amenities || ''));
       } else if (headerLower === 'featured') {
         rowData.push(listing.featured ? 'TRUE' : 'FALSE');
+      } else if (headerLower === 'private') {
+        rowData.push(listing.private ? 'TRUE' : 'FALSE');
       } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
         rowData.push(listing.customHtml || '');
       } else if (['category'].includes(headerLower)) {
@@ -1599,6 +1604,7 @@ const CANONICAL_LISTING_HEADERS = [
   'document2Name',
   'amenities',
   'featured',
+  'private',
   'googleMapsUrl',
   'accordionPanel1Title',
   'accordionPanel1Content',
@@ -1668,6 +1674,9 @@ function replaceAllListings(sheet, listings) {
         return value || '';
       }
       if (headerKey === 'featured') {
+        return value ? 'TRUE' : 'FALSE';
+      }
+      if (headerKey === 'private') {
         return value ? 'TRUE' : 'FALSE';
       }
       // Convert date strings to Date objects for proper formatting

@@ -56,6 +56,8 @@
             --badge-area-color: #D65052;
             --badge-featured-bg: rgba(214, 80, 82, 0.9);
             --badge-featured-color: #ffffff;
+            --badge-private-bg: rgba(128, 128, 128, 0.9);
+            --badge-private-color: #ffffff;
             
             /* SVG Icon Definitions - All icons with stroke='currentColor' */
             --icon-wine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22h8'/%3E%3Cpath d='M7 10h10'/%3E%3Cpath d='M12 15v7'/%3E%3Cpath d='M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5z'/%3E%3C/svg%3E");
@@ -356,6 +358,7 @@
         .btn-delete:hover { background: #D65052; }
         
         .featured-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-featured-bg); color: var(--badge-featured-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
+        .private-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-private-bg); color: var(--badge-private-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(62,53,53,0.5); z-index: 1000; overflow-y: auto; }
         .modal.active { display: flex; align-items: center; justify-content: center; padding: 20px; }
@@ -844,6 +847,7 @@
         .data-table .cell-amenities { min-width: 200px; max-width: 300px; font-size: 12px; }
         .data-table .cell-amenities textarea { min-height: 50px; }
         .data-table .cell-featured { text-align: center; }
+        .data-table .cell-private { text-align: center; }
         .data-table .cell-actions { white-space: nowrap; }
         .data-table .btn-table-save { background: #007AFF; color: white; padding: 6px 12px; border: none; border-radius: 18px; font-size: 12px; cursor: pointer; margin-right: 5px; }
         .data-table .btn-table-save:hover { background: #0051D5; }
@@ -2866,6 +2870,7 @@
                             <th data-column-key="document2Name">Document 2 Name</th>
                             <th data-column-key="amenities">Amenities</th>
                             <th class="sortable" data-sort="featured" data-column-key="featured">Featured</th>
+                            <th class="sortable" data-sort="private" data-column-key="private">Private</th>
                             <th data-column-key="googleMapsUrl">Google Maps URL</th>
                             <th data-column-key="accordionPanel1Title">Accordion Panel 1 Title</th>
                             <th data-column-key="accordionPanel1Content">Accordion Panel 1 Content</th>
@@ -2907,6 +2912,7 @@
                             <th><input type="text" class="filter-input" data-filter="document2Name" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="amenities" placeholder="Filter..." /></th>
                             <th><select class="filter-select" data-filter="featured"><option value="">All</option><option value="true">Yes</option><option value="false">No</option></select></th>
+                            <th><select class="filter-select" data-filter="private"><option value="">All</option><option value="true">Yes</option><option value="false">No</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="googleMapsUrl" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="accordionPanel1Title" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="accordionPanel1Content" placeholder="Filter..." /></th>
@@ -3225,6 +3231,9 @@
                     <label style="display: flex; align-items: center; gap: 8px;">
                         <input type="checkbox" id="listingFeatured" style="width: auto;" />
                         Mark as Featured
+                        <br><br>
+                        <input type="checkbox" id="listingPrivate" style="width: auto;" />
+                        Mark as Private
                     </label>
                 </div>
                 
@@ -4714,6 +4723,7 @@ function updateUnsavedChangesBadge() {
             };
             
             const featuredStr = getField('Featured', ['featured']);
+            const privateStr = getField('Private', ['private']);
             const detailedDescriptionValue = getField('Detailed Description', [
                 'detailedDescription',
                 'detaileddescription',
@@ -4769,6 +4779,7 @@ function updateUnsavedChangesBadge() {
                 address: getField('Address', ['address', 'street address', 'business address', 'physical address', 'location']),
                 amenities: parseList(getField('Amenities', ['amenities', 'Amenity'])),
                 featured: featuredStr === 'TRUE' || featuredStr === 'true' || featuredStr === '1' || featuredStr === 'Yes' || featuredStr === 'yes',
+                private: privateStr === 'TRUE' || privateStr === 'true' || privateStr === '1' || privateStr === 'Yes' || privateStr === 'yes',
                 slug: getField('slug'),
                 authorName: getField('authorName', ['Author Name', 'Author', 'author', 'contributor', 'contributor name']),
                 publishedDate: (function() {
@@ -6231,6 +6242,15 @@ function updateUnsavedChangesBadge() {
                     front.appendChild(badge);
                 }
                 
+                // Private badge
+                if (listing.private) {
+                    const badge = document.createElement('div');
+                    badge.className = 'private-badge';
+                    badge.textContent = 'PRIVATE';
+                    badge.style.cssText = 'position: absolute; top: 10px; left: ' + (listing.featured ? '100px' : '10px') + '; z-index: 10;';
+                    front.appendChild(badge);
+                }
+                
                 // Card content - allow it to grow to show all content
                 const cardContent = document.createElement('div');
                 cardContent.style.cssText = 'padding: 20px 0px 0px 0px; display: flex; flex-direction: column; flex: 1 1 auto;';
@@ -6506,6 +6526,20 @@ function updateUnsavedChangesBadge() {
                     
                     if (!isFeatured && !hasFeaturedInContent) {
                         return false; // Doesn't match featured search
+                    }
+                }
+                if (searchTerm === 'private') {
+                    // Show all private listings OR listings containing "private" in content
+                    const isPrivate = listing.private === true || listing.private === 'true' || listing.private === 'TRUE';
+                    const hasPrivateInContent = [
+                        listing.name || '',
+                        listing.description || '',
+                        listing.detailedDescription || '',
+                        listing.customHtml || ''
+                    ].join(' ').toLowerCase().indexOf('private') > -1;
+                    
+                    if (!isPrivate && !hasPrivateInContent) {
+                        return false; // Doesn't match private search
                     }
                 }
                 
@@ -7229,6 +7263,8 @@ function updateUnsavedChangesBadge() {
             const document2NameInput = document.getElementById('listingDocument2Name');
             if (document2NameInput) document2NameInput.value = listing.document2Name || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
+            const privateInput = document.getElementById('listingPrivate');
+            if (privateInput) privateInput.checked = listing.private || false;
             
             // Set accordion fields
             const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
@@ -7544,6 +7580,7 @@ function updateUnsavedChangesBadge() {
                 address: getValue('listingAddress'),
                 amenities: selectedAmenities,
                 featured: getChecked('listingFeatured'),
+                private: getChecked('listingPrivate'),
                 authorName: getValue('listingAuthorName'),
                 publishedDate: getValue('listingPublishedDate'),
                 modifiedDate: getValue('listingModifiedDate'),
@@ -11034,6 +11071,9 @@ function updateUnsavedChangesBadge() {
                     if (field === 'featured') {
                         listingValue = String(listing.featured || false).toLowerCase();
                         if (filterValue !== listingValue) return false;
+                    } else if (field === 'private') {
+                        listingValue = String(listing.private || false).toLowerCase();
+                        if (filterValue !== listingValue) return false;
                     } else if (field === 'amenities') {
                         listingValue = (Array.isArray(listing.amenities) ? listing.amenities.join(', ') : '').toLowerCase();
                         if (listingValue.indexOf(filterValue) === -1) return false;
@@ -11085,6 +11125,9 @@ function updateUnsavedChangesBadge() {
                 
                 // Handle different data types
                 if (tableSortField === 'featured') {
+                    aValue = aValue ? 1 : 0;
+                    bValue = bValue ? 1 : 0;
+                } else if (tableSortField === 'private') {
                     aValue = aValue ? 1 : 0;
                     bValue = bValue ? 1 : 0;
                 } else if (tableSortField === 'amenities') {
@@ -11172,6 +11215,7 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-document-name"><input type="text" value="' + safe(listing.document2Name || '') + '" data-field="document2Name" placeholder="Document name..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
+                    '<td class="cell-private"><input type="checkbox" ' + (listing.private ? 'checked' : '') + ' data-field="private" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
                     '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
@@ -11494,6 +11538,8 @@ function updateUnsavedChangesBadge() {
                             return escapeCsv(safeAmenities);
                         } else if (header === 'featured') {
                             return escapeCsv(listing.featured ? 'true' : 'false');
+                        } else if (header === 'private') {
+                            return escapeCsv(listing.private ? 'true' : 'false');
                         } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
                             // Fallback to directionsLink if googleMapsUrl is empty
                             return escapeCsv(listing.directionsLink || '');

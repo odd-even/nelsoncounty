@@ -1037,6 +1037,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             };
             
             const featuredStr = getField('Featured', ['featured']);
+            const privateStr = getField('Private', ['private']);
             const detailedDescriptionValue = getField('Detailed Description', [
                 'detailedDescription',
                 'detaileddescription',
@@ -1075,6 +1076,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 address: getField('Address', ['address', 'street address', 'business address', 'physical address', 'location']),
                 amenities: parseList(getField('Amenities', ['amenities', 'Amenity'])),
                 featured: featuredStr === 'TRUE' || featuredStr === 'true' || featuredStr === '1' || featuredStr === 'Yes' || featuredStr === 'yes',
+                private: privateStr === 'TRUE' || privateStr === 'true' || privateStr === '1' || privateStr === 'Yes' || privateStr === 'yes',
                 slug: getField('slug'),
                 authorName: getField('authorName', ['Author Name', 'Author', 'author', 'contributor', 'contributor name']),
                 publishedDate: getField('publishedDate', ['Published Date', 'Created Date', 'createdDate', 'Date Created', 'publishDate', 'created on']),
@@ -2265,6 +2267,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const document2NameInput = document.getElementById('listingDocument2Name');
             if (document2NameInput) document2NameInput.value = listing.document2Name || '';
             document.getElementById('listingFeatured').checked = listing.featured || false;
+            const privateInput = document.getElementById('listingPrivate');
+            if (privateInput) privateInput.checked = listing.private || false;
             
             // Set accordion fields
             const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
@@ -2447,6 +2451,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 address: getValue('listingAddress'),
                 amenities: selectedAmenities,
                 featured: getChecked('listingFeatured'),
+                private: getChecked('listingPrivate'),
                 authorName: getValue('listingAuthorName'),
                 publishedDate: getValue('listingPublishedDate'),
                 modifiedDate: getValue('listingModifiedDate'),
@@ -3696,6 +3701,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
+                    '<td class="cell-private"><input type="checkbox" ' + (listing.private ? 'checked' : '') + ' data-field="private" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
                     '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
@@ -3838,7 +3844,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     'accordionPanel2Title', 'accordionPanel2Content',
                     'accordionPanel3Title', 'accordionPanel3Content',
                     'accordionPanel4Title', 'accordionPanel4Content',
-                    'amenities', 'featured', 'googleMapsUrl'
+                    'amenities', 'featured', 'private', 'googleMapsUrl'
                 ];
                 
                 standardFields.forEach(field => allFields.add(field));
@@ -3877,6 +3883,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                             return escapeCsv(joinList(listing.amenities || []));
                         } else if (header === 'featured') {
                             return listing.featured ? 'true' : 'false';
+                        } else if (header === 'private') {
+                            return listing.private ? 'true' : 'false';
                         } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
                             // Fallback to directionsLink if googleMapsUrl is empty
                             return listing.directionsLink || '';
