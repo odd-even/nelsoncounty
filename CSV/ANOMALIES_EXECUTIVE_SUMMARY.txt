@@ -1,0 +1,2004 @@
+================================================================================
+LISTING ANOMALIES - EXECUTIVE SUMMARY
+================================================================================
+
+Total listings analyzed: 407
+Date: 2026-01-12 15:38:38
+Addresses shared by multiple listings: 31 addresses
+
+ISSUES BY SEVERITY:
+--------------------------------------------------------------------------------
+
+CRITICAL - Shared addresses: 217 listings
+  - Devils Knob Trail (devils-knob-trail) - shared with: The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  - The Plunge (the-plunge) - shared with: Devils Knob Trail, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  - Highlands Leisure Trail (highlands-leisure-trail) - shared with: Devils Knob Trail, The Plunge, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  - Old Appalachian Trail (old-appalachian-trail) - shared with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  - Paul's Creek Trail (pauls-creek-trail) - shared with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  ... and 212 more
+
+CRITICAL - Nonsensical detailedDescription: 1 listings
+  - Celadon Acres Farm (celadonacresfarm)
+
+CRITICAL - Area is category not location: 5 listings
+  - Rapunzel’s Coffee & Books (rapunzels-coffee-books)
+  - Terrace Café (terrace-cafe-at-wintergreen-resort)
+  - Castor Cabin (castor-cabin)
+  - Wooder House (wooder-house)
+  - Ski House (ski-house)
+
+CRITICAL - Missing street address: 44 listings
+  - Corner Market (corner-market)
+  - Ike's Market & Deli (ikes-market-deli)
+  - Paulie's Pig Out (paulies-pig-out)
+  - Virginia Distillery Co. (virginia-distillery-co)
+  - One Forest (one-forest)
+  ... and 39 more
+
+HIGH - Slug format issues: 49 listings
+  - Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+  - Paul's Creek Trail (pauls-creek-trail)
+  - Fortune's Ridge Trail (fortunes-ridge-trail)
+  - Glass Hollow Studio & Gallery (glasshollow)
+  - Ashley's Market (ashleys-market)
+  ... and 44 more
+
+MEDIUM - URLs in description (no website): 33 listings
+  - The Plunge (the-plunge)
+  - Old Appalachian Trail (old-appalachian-trail)
+  - Chestnut Springs Trail (chestnut-springs-trail)
+  - Upper Shamokin Gorge Trail (upper-shamokin-gorge-trail)
+  - Mau-Har Trail (mau-har-trail)
+  ... and 28 more
+
+MEDIUM - Very long descriptions: 4 listings
+  - El Mariachi Mexican Food (el-mariachi-mexican-food)
+  - Vito's Pizza & Italian Grill (vitos-pizza-italian-grill)
+  - Outback Brew House (outback-brew-house)
+  - Wood Ridge Farm Brewery (wood-ridge-farm-brewery)
+
+LOW - Missing ZIP codes: 16 listings
+  - IGA Blue Ridge Grocery (iga-blue-ridge-grocery)
+  - Ike's Market & Deli (ikes-market-deli)
+  - The Market at Wintergreen (the-market-at-wintergreen)
+  - Paulie's Pig Out (paulies-pig-out)
+  - Virginia Distillery Co. (virginia-distillery-co)
+  ... and 11 more
+
+
+================================================================================
+SHARED ADDRESSES DETAILED BREAKDOWN
+================================================================================
+
+Address: Wintergreen Resort, Nellysford, VA 22967
+  Shared by 52 listings:
+    - Slipper Slope (slipper-slope) - Type: Vacation Rentals
+    - Panoramic Peak - Vistas 1559, Wintergreen (panoramic-peak-vistas-1559-wintergreen) - Type: Whole House Rentals
+    - Eagles Court Ski In/Ski Out Condo (eagles-court-ski-in-ski-out-condo) - Type: Vacation Rentals
+    - Marley's Cabin (marleys-cabin) - Type: Cabins & Cottages
+    - Remodeled 3BR/2BA Ski Chalet off Tyro Slope (remodeled-3br-2ba-ski-chalet-off-tyro-slope) - Type: Whole House Rentals
+    - Hillside Hideaway (hillside-hideaway) - Type: Cabins & Cottages
+    - Oak Ledge (oak-ledge) - Type: Cabins & Cottages
+    - Wintergreen Getaway for Families (wintergreen-getaway-for-families) - Type: Whole House Rentals
+    - Wintergreen Resort Cabin (wintergreen-resort-cabin) - Type: Cabins & Cottages
+    - Wintergreen - Fairway Woods (wintergreen-fairway-woods) - Type: Vacation Rentals
+    - Serenity Summit (serenity-summit) - Type: Whole House Rentals
+    - D & D's Mountain Home (d-ds-mountain-home) - Type: Whole House Rentals
+    - Bearfeet Retreat (bearfeet-retreat) - Type: Cabins & Cottages
+    - Mountaintop Overlook (mountaintop-overlook) - Type: Whole House Rentals
+    - Blue Ridge Mountain Retreat (blue-ridge-mountain-retreat) - Type: Whole House Rentals
+    - The Fairway Chalet (the-fairway-chalet) - Type: Whole House Rentals
+    - Bella Vista (bella-vista) - Type: Cabins & Cottages
+    - Red, White and Wintergreen (red-white-and-wintergreen) - Type: Whole House Rentals
+    - Mountain View Vista (mountain-view-vista) - Type: Whole House Rentals
+    - Three Ridge Retreat (three-ridge-retreat) - Type: Vacation Rentals
+    - Arrowwood Lane (arrowwood-lane) - Type: Whole House Rentals
+    - Winterhaven (winterhaven) - Type: Whole House Rentals
+    - 779 Blue Ridge Drive (779-blue-ridge-drive) - Type: Whole House Rentals
+    - Ski in Style At Sapphire Squirrel (ski-in-style-at-sapphire-squirrel) - Type: Whole House Rentals
+    - The Retreat at Three Ridges (retreat-at-three-ridges) - Type: Whole House Rentals
+    - Wintergreen Condo 1437 Highlands (wintergreen-condo-1437-highlands) - Type: Whole House Rentals
+    - Time Out (time-out) - Type: Whole House Rentals
+    - Wintergreen 19 Ivy Glen Lane (wintergreen-19-ivy-glen-lane) - Type: Vacation Rentals
+    - The Brown Bear Lodge (the-brown-bear-lodge) - Type: Whole House Rentals
+    - Love of Mountains Oh Fill My Cup (love-of-mountains-oh-fill-my-cup) - Type: Whole House Rentals
+    - Marigold on the Mountain (marigold-on-the-mountain) - Type: Whole House Rentals
+    - Top of The Mountain Hideaway (top-of-the-mountain-hideaway) - Type: Whole House Rentals
+    - On The Rocks (on-the-rocks) - Type: Cabins & Cottages
+    - Our Mountain Getaway (our-mountain-getaway) - Type: Whole House Rentals
+    - Wintergreen Duplex (wintergreen-duplex) - Type: Whole House Rentals
+    - Cliffs Edge (cliffs-edge) - Type: Whole House Rentals
+    - Slopes At Tyro (slopes-at-tyro) - Type: Whole House Rentals
+    - Home on the Ridge (home-on-the-ridge) - Type: Whole House Rentals
+    - Peppers Mountain Pad (peppers-mountain-pad) - Type: Vacation Rentals
+    - Dobie Condo 323 at Wintergreen (dobie-condo-323-at-wintergreen) - Type: Whole House Rentals
+    - Highlands 1426 Condo (highlands-1426-condo) - Type: Whole House Rentals
+    - Gumtree Drive 134 (gumtree-drive-134) - Type: Cabins & Cottages
+    - Wake In The Clouds (wake-in-the-clouds) - Type: Whole House Rentals
+    - Cuatro Climas At 130 Pedlars Point (cuatro-climas-at-130-pedlars-point) - Type: Whole House Rentals
+    - 1639 Overlook (1639-overlook) - Type: Vacation Rentals
+    - The Ski House (the-ski-house) - Type: Whole House Rentals
+    - 1566 Vistas Condo (1566-vistas-condo) - Type: Whole House Rentals
+    - Shenandoah Ridge 11 (shenandoah-ridge-11) - Type: Whole House Rentals
+    - The View at Crawfords Edge (view-at-crawfords-edge) - Type: Whole House Rentals
+    - Altitude Adjustment (altitude-adjustment) - Type: Whole House Rentals
+    - Chateau Greenstone (chateau-greenstone) - Type: Whole House Rentals
+    - Blue Sky Retreat (blue-sky-retreat) - Type: Whole House Rentals
+
+Address: Afton, VA 22920
+  Shared by 38 listings:
+    - Galleywinter Farm (galleywinter) - Type: Farms & Orchards
+    - Boogie Nights Manor (boogie-nights-manor) - Type: Cabins & Cottages
+    - The Big Tiny House (the-big-tiny-house) - Type: Cabins & Cottages
+    - Rusty's Retreat (rustys-retreat) - Type: Cabins & Cottages
+    - Papa's Cottage (papas-cottage) - Type: Cabins & Cottages
+    - Meme's Cottage (memes-cottage) - Type: Cabins & Cottages
+    - Cheval Circle (cheval-circle) - Type: Cabins & Cottages
+    - The Wine Cottage (the-wine-cottage) - Type: Cabins & Cottages
+    - Time to Wine Down (time-to-wine-down) - Type: Whole House Rentals
+    - Maren Estate (maren-estate) - Type: Cabins & Cottages
+    - The Blue Ridge Farm and Wedding Venue (blue-ridge-farm-and-wedding-venue) - Type: Cabins & Cottages
+    - Windy Knoll (windy-knoll) - Type: Cabins & Cottages
+    - Creekside (creekside) - Type: Cabins & Cottages
+    - Cottage on Route 151 (cottage-on-route-151) - Type: Cabins & Cottages
+    - Farmhouse on Route 151 (farmhouse-on-route-151) - Type: Cabins & Cottages
+    - Glenbrae (glenbrae) - Type: Cabins & Cottages
+    - Elk Mountain Overlook (elk-mountain-overlook) - Type: Whole House Rentals
+    - Sweet Afton (sweet-afton) - Type: Cabins & Cottages
+    - Rockfish Farmhouse (rockfish-farmhouse) - Type: Cabins & Cottages
+    - Fulton Belle Vue (fulton-belle-vue) - Type: Cabins & Cottages
+    - Clonmel Acres (clonmel-acres) - Type: Cabins & Cottages
+    - Cabin at Clonmel (cabin-at-clonmel) - Type: Cabins & Cottages
+    - Wren House (wren-house) - Type: Cabins & Cottages
+    - Saddleback Sanctuary (saddleback-sanctuary) - Type: Cabins & Cottages
+    - The Vu, Afton (the-vu-afton) - Type: Cabins & Cottages
+    - Cookie's Place, LLC (cookies-place-llc) - Type: Cabins & Cottages
+    - The Afton House (the-afton-house) - Type: Whole House Rentals
+    - THE LITTLE FARMHOUSE (thelittlefarmhouse) - Type: Cabins & Cottages
+    - Afton Awaits (afton-awaits) - Type: Cabins & Cottages
+    - Airkey Boutique Rentals (airkey) - Type: Cabins & Cottages
+    - Sunrise on the Trail (sunrise-on-the-trail) - Type: Cabins & Cottages
+    - Nelson 151 Views and Brews (nelson-151-views-and-brews) - Type: Whole House Rentals
+    - The Treehouse (thetreehouse) - Type: Whole House Rentals
+    - The Goldfinch (the-goldfinch) - Type: Cabins & Cottages
+    - Rockwell Ridge Inn (rockwellridgeinn) - Type: Cabins & Cottages
+    - Big Tiny House (big-tiny-house) - Type: Lodging
+    - Little Farmhouse (little-farmhouse) - Type: Lodging
+    - Afton Peak (aftonpeak) - Type: Lodging
+
+Address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  Shared by 20 listings:
+    - Devils Knob Trail (devils-knob-trail) - Type: Hikes & Trails
+    - The Plunge (the-plunge) - Type: Hikes & Trails
+    - Highlands Leisure Trail (highlands-leisure-trail) - Type: Hikes & Trails
+    - Old Appalachian Trail (old-appalachian-trail) - Type: Hikes & Trails
+    - Paul's Creek Trail (pauls-creek-trail) - Type: Hikes & Trails
+    - Laurel Ridge Loop (laurel-ridge-loop) - Type: Hikes & Trails
+    - Lower Shamokin Falls Trail (lower-shamokin-falls-trail) - Type: Hikes & Trails
+    - Brimstone Trail (brimstone-trail) - Type: Hikes & Trails
+    - Pedlars Edge Trail (pedlars-edge-trail) - Type: Hikes & Trails
+    - Chestnut Springs Trail (chestnut-springs-trail) - Type: Hikes & Trails
+    - Upper Shamokin Gorge Trail (upper-shamokin-gorge-trail) - Type: Hikes & Trails
+    - Ravens Roost Park (ravens-roost-park) - Type: Hikes & Trails
+    - Trillium Field (trillium-field) - Type: Hikes & Trails
+    - White Oak Trail (white-oak-trail) - Type: Hikes & Trails
+    - Pond Hollow Trail (pond-hollow-trail) - Type: Hikes & Trails
+    - Cedar Ciffs North Trail (cedar-ciffs-north-trail) - Type: Hikes & Trails
+    - Hemlock Springs Loop (hemlock-springs-loop) - Type: Hikes & Trails
+    - Blackrock Trail (blackrock-trail) - Type: Hikes & Trails
+    - Upper Shamokin Falls Trail (upper-shamokin-falls-trail) - Type: Hikes & Trails
+    - Fortune's Ridge Trail (fortunes-ridge-trail) - Type: Hikes & Trails
+
+Address: Nellysford, VA 22958
+  Shared by 15 listings:
+    - One Forest (one-forest) - Type: Activities
+    - Pachi's Ridge (pachis-ridge) - Type: Cabins & Cottages
+    - Cottage at Old Stoney Creek (cottage-at-old-stoney-creek) - Type: Cabins & Cottages
+    - Spindle Hill Farm (spindle-hill-farm) - Type: Bed and Breakfast
+    - A Nellysford Nest (a-nellysford-nest) - Type: Cabins & Cottages
+    - Spruce Creek Garden Cottage (spruce-creek-garden-cottage) - Type: Cabins & Cottages
+    - Pilotview Hollow (pilotview-hollow) - Type: Whole House Rentals
+    - Nelson Cozy Cabin (nelson-cozy-cabin) - Type: Cabins & Cottages
+    - Glass & Pine (glass-pine) - Type: Cabins & Cottages
+    - Rockfish Valley Retreat (rockfish-valley-retreat) - Type: Whole House Rentals
+    - Cabin on Eagles Ridge Road (cabin-on-eagles-ridge-road) - Type: Cabins & Cottages
+    - M 260 (m-260) - Type: Cabins & Cottages
+    - Sanctuary Retreat Center (sanctuaryretreatcenter) - Type: Whole House Rentals
+    - Rockfish Valley Farm Guest House (rockfish-valley-farm-guest-house) - Type: Bed and Breakfast
+    - Sweet Bliss Bakery (sweet-bliss-bakery) - Type: Attraction
+
+Address: Roseland, VA 22967
+  Shared by 12 listings:
+    - Mars Knob Farm (marsknob) - Type: Farms & Orchards
+    - Four Elements Farm (four-elements-farm) - Type: Whole House Rentals
+    - Dancing Bear Lodge (dancing-bear-lodge) - Type: Cabins & Cottages
+    - Beech Grove Cabins (beech-grove-cabins) - Type: Cabins & Cottages
+    - Sleepy Hollow Retreat Enjoy Your Stay (sleepy-hollow-retreat-enjoy-your-stay) - Type: Whole House Rentals
+    - Bluebird Cottage (bluebird-cottage) - Type: Cabins & Cottages
+    - Art & Soul Guesthouse (art-soul-guesthouse) - Type: Whole House Rentals
+    - Kneeling Shepherd (kneeling-shepherd) - Type: Cabins & Cottages
+    - Cub Creek Cabin (cub-creek-cabin) - Type: Cabins & Cottages
+    - Blue Ridge Cabin (blue-ridge-cabin) - Type: Cabins & Cottages
+    - Foxfire Cottage (foxfire-cottage) - Type: Cabins & Cottages
+    - Inn at the Woods (inn-at-the-woods) - Type: Cabins & Cottages
+
+Address: Nellysford, VA 22967
+  Shared by 9 listings:
+    - Cozy Mountain Cottage (cozy-mountain-cottage) - Type: Cabins & Cottages
+    - The Castor Cabin (the-castor-cabin) - Type: Cabins & Cottages
+    - Ethan's Den (ethans-den) - Type: Whole House Rentals
+    - Bear Tracks Cottage (bear-tracks-cottage) - Type: Cabins & Cottages
+    - The Wooder House (the-wooder-house) - Type: Cabins & Cottages
+    - Art & Soul Main House (art-soul-main-house) - Type: Whole House Rentals
+    - Berry Hill Lake (berry-hill-lake) - Type: Cabins & Cottages
+    - Boho Cliff House Retreat (boho-cliff-house-retreat) - Type: Whole House Rentals
+    - Spy Run Hideaway (spy-run-hideaway) - Type: Cabins & Cottages
+
+Address: Wintergreen Resort, Roseland, VA 22967
+  Shared by 9 listings:
+    - Point of View (point-of-view) - Type: Cabins & Cottages
+    - Adventure Awaits (adventure-awaits) - Type: Whole House Rentals
+    - Blue Ridge Heaven (blue-ridge-heaven) - Type: Cabins & Cottages
+    - Relaxing 3 bedroom Mountain Cabin (relaxing-3-bedroom-mountain-cabin) - Type: Cabins & Cottages
+    - Mountain Dacha (mountain-dacha) - Type: Whole House Rentals
+    - Skis and Trees (skis-and-trees) - Type: Whole House Rentals
+    - Wintergreen Vistas (wintergreen-vistas) - Type: Whole House Rentals
+    - Cozy & Clean Wintergreen Condo (Tanners Ridge) (cozy-clean-wintergreen-condo-tanners-ridge) - Type: Vacation Rentals
+    - Sunset Vista Villa (sunset-vista-villa) - Type: Whole House Rentals
+
+Address: Faber, VA 22938
+  Shared by 5 listings:
+    - Faber Farmhouse (faber-farmhouse) - Type: Cabins & Cottages
+    - Mountain & Vine Farmhouse (mountain-vine-farmhouse) - Type: Whole House Rentals
+    - Mountain & Vine Vineyards Log Cabin (mountain-vine-vineyards-log-cabin) - Type: Cabins & Cottages
+    - Kremer Cabin (kremer-cabin) - Type: Cabins & Cottages
+    - Stewart's Place (stewarts-place) - Type: Whole House Rentals
+
+Address: 200 Mosbys Run, Roseland, VA 22967
+  Shared by 4 listings:
+    - Devils Backbone Brewing (devils-backbone-brewing) - Type: Restaurants
+    - Beech Grove Cottage (beech-grove-cottage) - Type: Cabins & Cottages
+    - Devils Backbone Camp (devils-backbone-camp) - Type: Campgrounds & Glamping
+    - The Haven at Devils Backbone Camp (haven-at-devils-backbone-camp) - Type: Cabins & Cottages
+
+Address: Afton, VA 22958
+  Shared by 4 listings:
+    - Straw Bale House (straw-bale-house) - Type: Whole House Rentals
+    - Gracewood (gracewood) - Type: Cabins & Cottages
+    - Carter's Cottage (carters-cottage) - Type: Cabins & Cottages
+    - Cottage on the Trail (cottage-on-the-trail) - Type: Cabins & Cottages
+
+Address: Lovingston, VA 22949
+  Shared by 4 listings:
+    - Freshwater Field Cabin (freshwater-field-cabin) - Type: Cabins & Cottages
+    - Cottage on the Knoll (cottage-on-the-knoll) - Type: Cabins & Cottages
+    - Lovingston Get-Away (lovingston-get-away) - Type: Cabins & Cottages
+    - Treetops Lodge (treetops-lodge) - Type: Lodging
+
+Address: 3211 Lowesville Road, Roseland, VA 22967
+  Shared by 3 listings:
+    - Woodson's Mill Loop (woodsons-mill-loop) - Type: Biking
+    - Woodson's Mill House (woodsons-mill-house) - Type: Whole House Rentals
+    - Woodson's Mill (woodsons-mill) - Type: Museums & Heritage
+
+Address: Arrington, VA 22922
+  Shared by 3 listings:
+    - Lost Point Farm (lost-point-farm) - Type: Farms & Orchards
+    - Crestvue Cottage (crestvue-cottage) - Type: Cabins & Cottages
+    - The Cottage at Pines End (cottage-at-pines-end) - Type: Cabins & Cottages
+
+Address: Montebello, VA 22967
+  Shared by 3 listings:
+    - Roudy's Retreat (roudys-retreat) - Type: Whole House Rentals
+    - The Chimneys (the-chimneys) - Type: Cabins & Cottages
+    - Three Sisters Pre-Civil War Log Cabin (three-sisters-pre-civil-war-log-cabin) - Type: Cabins & Cottages
+
+Address: Montebello, VA 24464
+  Shared by 3 listings:
+    - Spyrock Lodge (spyrock-lodge) - Type: Cabins & Cottages
+    - The Mountain House INN (the-mountain-house-inn) - Type: Whole House Rentals
+    - Nine Ridges Retreat (nine-ridges-retreat) - Type: Whole House Rentals
+
+Address: Roseland, VA 22958
+  Shared by 3 listings:
+    - Grace's Place Petite Retreats (graces-place-petite-retreats) - Type: Whole House Rentals
+    - Tupelo (tupelo) - Type: Whole House Rentals
+    - Nectar Landing (nectar-landing) - Type: Whole House Rentals
+
+Address: 39 Mountain Inn Loop, Nellysford, VA 22967
+  Shared by 2 listings:
+    - Skiing & Snowboarding (skiing-snowboarding) - Type: Activities
+    - Wintergreen Resort (wintergreen-resort-2) - Type: Whole House Rentals
+
+Address: 3124 Patrick Henry Highway, Piney River, VA 22964
+  Shared by 2 listings:
+    - Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail) - Type: Hikes & Trails
+    - Virginia Blue Ridge Railway Trail (virginia-blue-ridge-railway-trail) - Type: Biking
+
+Address: 9519 Critzers Shop Road, Afton, VA 22920
+  Shared by 2 listings:
+    - Blue Mountain Brewery (blue-mountain-brewery) - Type: Breweries & Cideries
+    - The Inn at Blue Mountain Brewery (the-inn-at-blue-mountain-brewery) - Type: Cabins & Cottages
+
+Address: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+  Shared by 2 listings:
+    - Bold Kitchen at Bold Rock (bold-kitchen-at-bold-rock) - Type: Restaurants
+    - Bold Rock Hard Cider (bold-rock-hard-cider) - Type: Breweries & Cideries
+
+Address: 15072 Crabtree Falls Highway, Montebello, VA 15072
+  Shared by 2 listings:
+    - Montebello Country Store & Cafe (montebello-country-store-cafe) - Type: Restaurants
+    - Fishing at Montebello (fishing-at-montebello) - Type: Fishing
+
+Address: 495 Cooperative Way, Arrington, VA 22922
+  Shared by 2 listings:
+    - Smokin' Barrel Restaurant (smokin-barrel-restaurant) - Type: Restaurants
+    - Blue Mountain Barrel House (blue-mountain-barrel-house) - Type: Breweries & Cideries
+
+Address: 279 Avon Road, Afton, VA 22920
+  Shared by 2 listings:
+    - Wild Man Dan Brewery (wild-man-dan-brewery) - Type: Breweries & Cideries
+    - WildManDan B&B (Beer centric) (wildmandan-bb-beer-centric) - Type: Bed and Breakfast
+
+Address: 6484 Rockfish River Road, Schuyler, VA 22969
+  Shared by 2 listings:
+    - Walton's Mountain Museum Loop (waltons-mountain-museum-loop) - Type: Biking
+    - Walton's Mountain Museum (waltons-mountain-museum) - Type: Museums & Heritage
+
+Address: Schuyler, VA 22969
+  Shared by 2 listings:
+    - Queen Oaks Farm (queenoaksfarm) - Type: Farms & Orchards
+    - Rockfish Tiny Home (rockfish-tiny-home) - Type: Whole House Rentals
+
+Address: 151 Veritas Lane, Afton, VA 22920
+  Shared by 2 listings:
+    - Indian Summer Guide Service (indian-summer-guide-service) - Type: Horseback Riding
+    - Veritas Vineyards & Winery (veritas-vineyards-winery) - Type: Vineyards & Wineries
+
+Address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+  Shared by 2 listings:
+    - Spruce Creek Park (spruce-creek-park) - Type: Hikes & Trails
+    - Rockfish Valley Natural History Center (rockfish-valley-natural-history-center) - Type: Museums & Heritage
+
+Address: Wintergreen Resort, Nellysford, VA 22958
+  Shared by 2 listings:
+    - Wintergreen Ridge Retreat (wintergreen-ridge-retreat) - Type: Whole House Rentals
+    - Peaceful Mountain Getaway (peaceful-mountain-getaway) - Type: Whole House Rentals
+
+Address: Tyro, VA 22976
+  Shared by 2 listings:
+    - High Lonesome Cabin (high-lonesome-cabin) - Type: Cabins & Cottages
+    - Bear Creek Inn (bear-creek-inn) - Type: Cabins & Cottages
+
+Address: Nellysford, VA 22976
+  Shared by 2 listings:
+    - Parrs Camp, Mountain Hollow (parrs-camp-mountain-hollow) - Type: Cabins & Cottages
+    - Parr's Camp (parrs-camp) - Type: Cabins & Cottages
+
+Address: Faber, VA 22920
+  Shared by 2 listings:
+    - Rockfish Cabin (rockfish-cabin) - Type: Cabins & Cottages
+    - Country Cottage (country-cottage) - Type: Cabins & Cottages
+
+
+================================================================================
+DETAILED BREAKDOWN
+================================================================================
+
+
+CRITICAL - Shared addresses (217 listings):
+--------------------------------------------------------------------------------
+
+Devils Knob Trail (devils-knob-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+The Plunge (the-plunge):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Highlands Leisure Trail (highlands-leisure-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Old Appalachian Trail (old-appalachian-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Paul's Creek Trail (pauls-creek-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Laurel Ridge Loop (laurel-ridge-loop):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Lower Shamokin Falls Trail (lower-shamokin-falls-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Brimstone Trail (brimstone-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Pedlars Edge Trail (pedlars-edge-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Chestnut Springs Trail (chestnut-springs-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Upper Shamokin Gorge Trail (upper-shamokin-gorge-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Ravens Roost Park (ravens-roost-park):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Trillium Field (trillium-field):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+White Oak Trail (white-oak-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Pond Hollow Trail (pond-hollow-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Cedar Ciffs North Trail (cedar-ciffs-north-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Hemlock Springs Loop (hemlock-springs-loop):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Blackrock Trail, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Blackrock Trail (blackrock-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Upper Shamokin Falls Trail, Fortune's Ridge Trail
+  count: 20
+
+Upper Shamokin Falls Trail (upper-shamokin-falls-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Fortune's Ridge Trail
+  count: 20
+
+Fortune's Ridge Trail (fortunes-ridge-trail):
+  address: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+  shared_with: Devils Knob Trail, The Plunge, Highlands Leisure Trail, Old Appalachian Trail, Paul's Creek Trail, Laurel Ridge Loop, Lower Shamokin Falls Trail, Brimstone Trail, Pedlars Edge Trail, Chestnut Springs Trail, Upper Shamokin Gorge Trail, Ravens Roost Park, Trillium Field, White Oak Trail, Pond Hollow Trail, Cedar Ciffs North Trail, Hemlock Springs Loop, Blackrock Trail, Upper Shamokin Falls Trail
+  count: 20
+
+Skiing & Snowboarding (skiing-snowboarding):
+  address: 39 Mountain Inn Loop, Nellysford, VA 22967
+  shared_with: Wintergreen Resort
+  count: 2
+
+Wintergreen Resort (wintergreen-resort-2):
+  address: 39 Mountain Inn Loop, Nellysford, VA 22967
+  shared_with: Skiing & Snowboarding
+  count: 2
+
+Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail):
+  address: 3124 Patrick Henry Highway, Piney River, VA 22964
+  shared_with: Virginia Blue Ridge Railway Trail
+  count: 2
+
+Virginia Blue Ridge Railway Trail (virginia-blue-ridge-railway-trail):
+  address: 3124 Patrick Henry Highway, Piney River, VA 22964
+  shared_with: Kids in Parks: Virginia Blue Ridge Railway Trail
+  count: 2
+
+Blue Mountain Brewery (blue-mountain-brewery):
+  address: 9519 Critzers Shop Road, Afton, VA 22920
+  shared_with: The Inn at Blue Mountain Brewery
+  count: 2
+
+The Inn at Blue Mountain Brewery (the-inn-at-blue-mountain-brewery):
+  address: 9519 Critzers Shop Road, Afton, VA 22920
+  shared_with: Blue Mountain Brewery
+  count: 2
+
+Bold Kitchen at Bold Rock (bold-kitchen-at-bold-rock):
+  address: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+  shared_with: Bold Rock Hard Cider
+  count: 2
+
+Bold Rock Hard Cider (bold-rock-hard-cider):
+  address: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+  shared_with: Bold Kitchen at Bold Rock
+  count: 2
+
+Devils Backbone Brewing (devils-backbone-brewing):
+  address: 200 Mosbys Run, Roseland, VA 22967
+  shared_with: Beech Grove Cottage, Devils Backbone Camp, The Haven at Devils Backbone Camp
+  count: 4
+
+Beech Grove Cottage (beech-grove-cottage):
+  address: 200 Mosbys Run, Roseland, VA 22967
+  shared_with: Devils Backbone Brewing, Devils Backbone Camp, The Haven at Devils Backbone Camp
+  count: 4
+
+Devils Backbone Camp (devils-backbone-camp):
+  address: 200 Mosbys Run, Roseland, VA 22967
+  shared_with: Devils Backbone Brewing, Beech Grove Cottage, The Haven at Devils Backbone Camp
+  count: 4
+
+The Haven at Devils Backbone Camp (haven-at-devils-backbone-camp):
+  address: 200 Mosbys Run, Roseland, VA 22967
+  shared_with: Devils Backbone Brewing, Beech Grove Cottage, Devils Backbone Camp
+  count: 4
+
+Montebello Country Store & Cafe (montebello-country-store-cafe):
+  address: 15072 Crabtree Falls Highway, Montebello, VA 15072
+  shared_with: Fishing at Montebello
+  count: 2
+
+Fishing at Montebello (fishing-at-montebello):
+  address: 15072 Crabtree Falls Highway, Montebello, VA 15072
+  shared_with: Montebello Country Store & Cafe
+  count: 2
+
+Smokin' Barrel Restaurant (smokin-barrel-restaurant):
+  address: 495 Cooperative Way, Arrington, VA 22922
+  shared_with: Blue Mountain Barrel House
+  count: 2
+
+Blue Mountain Barrel House (blue-mountain-barrel-house):
+  address: 495 Cooperative Way, Arrington, VA 22922
+  shared_with: Smokin' Barrel Restaurant
+  count: 2
+
+Wild Man Dan Brewery (wild-man-dan-brewery):
+  address: 279 Avon Road, Afton, VA 22920
+  shared_with: WildManDan B&B (Beer centric)
+  count: 2
+
+WildManDan B&B (Beer centric) (wildmandan-bb-beer-centric):
+  address: 279 Avon Road, Afton, VA 22920
+  shared_with: Wild Man Dan Brewery
+  count: 2
+
+One Forest (one-forest):
+  address: Nellysford, VA 22958
+  shared_with: Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Pachi's Ridge (pachis-ridge):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Cottage at Old Stoney Creek (cottage-at-old-stoney-creek):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Spindle Hill Farm (spindle-hill-farm):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+A Nellysford Nest (a-nellysford-nest):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Spruce Creek Garden Cottage (spruce-creek-garden-cottage):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Pilotview Hollow (pilotview-hollow):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Nelson Cozy Cabin (nelson-cozy-cabin):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Glass & Pine (glass-pine):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Rockfish Valley Retreat (rockfish-valley-retreat):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Cabin on Eagles Ridge Road (cabin-on-eagles-ridge-road):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+M 260 (m-260):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, Sanctuary Retreat Center, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Sanctuary Retreat Center (sanctuaryretreatcenter):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Rockfish Valley Farm Guest House, Sweet Bliss Bakery
+  count: 15
+
+Rockfish Valley Farm Guest House (rockfish-valley-farm-guest-house):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Sweet Bliss Bakery
+  count: 15
+
+Sweet Bliss Bakery (sweet-bliss-bakery):
+  address: Nellysford, VA 22958
+  shared_with: One Forest, Pachi's Ridge, Cottage at Old Stoney Creek, Spindle Hill Farm, A Nellysford Nest, Spruce Creek Garden Cottage, Pilotview Hollow, Nelson Cozy Cabin, Glass & Pine, Rockfish Valley Retreat, Cabin on Eagles Ridge Road, M 260, Sanctuary Retreat Center, Rockfish Valley Farm Guest House
+  count: 15
+
+Woodson's Mill Loop (woodsons-mill-loop):
+  address: 3211 Lowesville Road, Roseland, VA 22967
+  shared_with: Woodson's Mill House, Woodson's Mill
+  count: 3
+
+Woodson's Mill House (woodsons-mill-house):
+  address: 3211 Lowesville Road, Roseland, VA 22967
+  shared_with: Woodson's Mill Loop, Woodson's Mill
+  count: 3
+
+Woodson's Mill (woodsons-mill):
+  address: 3211 Lowesville Road, Roseland, VA 22967
+  shared_with: Woodson's Mill Loop, Woodson's Mill House
+  count: 3
+
+Walton's Mountain Museum Loop (waltons-mountain-museum-loop):
+  address: 6484 Rockfish River Road, Schuyler, VA 22969
+  shared_with: Walton's Mountain Museum
+  count: 2
+
+Walton's Mountain Museum (waltons-mountain-museum):
+  address: 6484 Rockfish River Road, Schuyler, VA 22969
+  shared_with: Walton's Mountain Museum Loop
+  count: 2
+
+Lost Point Farm (lost-point-farm):
+  address: Arrington, VA 22922
+  shared_with: Crestvue Cottage, The Cottage at Pines End
+  count: 3
+
+Crestvue Cottage (crestvue-cottage):
+  address: Arrington, VA 22922
+  shared_with: Lost Point Farm, The Cottage at Pines End
+  count: 3
+
+The Cottage at Pines End (cottage-at-pines-end):
+  address: Arrington, VA 22922
+  shared_with: Lost Point Farm, Crestvue Cottage
+  count: 3
+
+Mars Knob Farm (marsknob):
+  address: Roseland, VA 22967
+  shared_with: Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Four Elements Farm (four-elements-farm):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Dancing Bear Lodge (dancing-bear-lodge):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Beech Grove Cabins (beech-grove-cabins):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Sleepy Hollow Retreat Enjoy Your Stay (sleepy-hollow-retreat-enjoy-your-stay):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Bluebird Cottage (bluebird-cottage):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Art & Soul Guesthouse (art-soul-guesthouse):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Kneeling Shepherd (kneeling-shepherd):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Cub Creek Cabin (cub-creek-cabin):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Blue Ridge Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Blue Ridge Cabin (blue-ridge-cabin):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Foxfire Cottage, Inn at the Woods
+  count: 12
+
+Foxfire Cottage (foxfire-cottage):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Inn at the Woods
+  count: 12
+
+Inn at the Woods (inn-at-the-woods):
+  address: Roseland, VA 22967
+  shared_with: Mars Knob Farm, Four Elements Farm, Dancing Bear Lodge, Beech Grove Cabins, Sleepy Hollow Retreat Enjoy Your Stay, Bluebird Cottage, Art & Soul Guesthouse, Kneeling Shepherd, Cub Creek Cabin, Blue Ridge Cabin, Foxfire Cottage
+  count: 12
+
+Galleywinter Farm (galleywinter):
+  address: Afton, VA 22920
+  shared_with: Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Boogie Nights Manor (boogie-nights-manor):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Big Tiny House (the-big-tiny-house):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Rusty's Retreat (rustys-retreat):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Papa's Cottage (papas-cottage):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Meme's Cottage (memes-cottage):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Cheval Circle (cheval-circle):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Wine Cottage (the-wine-cottage):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Time to Wine Down (time-to-wine-down):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Maren Estate (maren-estate):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Blue Ridge Farm and Wedding Venue (blue-ridge-farm-and-wedding-venue):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Windy Knoll (windy-knoll):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Creekside (creekside):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Cottage on Route 151 (cottage-on-route-151):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Farmhouse on Route 151 (farmhouse-on-route-151):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Glenbrae (glenbrae):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Elk Mountain Overlook (elk-mountain-overlook):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Sweet Afton (sweet-afton):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Rockfish Farmhouse (rockfish-farmhouse):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Fulton Belle Vue (fulton-belle-vue):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Clonmel Acres (clonmel-acres):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Cabin at Clonmel (cabin-at-clonmel):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Wren House (wren-house):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Saddleback Sanctuary (saddleback-sanctuary):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Vu, Afton (the-vu-afton):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Cookie's Place, LLC (cookies-place-llc):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Afton House (the-afton-house):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+THE LITTLE FARMHOUSE (thelittlefarmhouse):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Afton Awaits (afton-awaits):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Airkey Boutique Rentals (airkey):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Sunrise on the Trail (sunrise-on-the-trail):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Nelson 151 Views and Brews (nelson-151-views-and-brews):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Treehouse (thetreehouse):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+The Goldfinch (the-goldfinch):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Rockwell Ridge Inn (rockwellridgeinn):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Big Tiny House, Little Farmhouse, Afton Peak
+  count: 38
+
+Big Tiny House (big-tiny-house):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Little Farmhouse, Afton Peak
+  count: 38
+
+Little Farmhouse (little-farmhouse):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Afton Peak
+  count: 38
+
+Afton Peak (aftonpeak):
+  address: Afton, VA 22920
+  shared_with: Galleywinter Farm, Boogie Nights Manor, The Big Tiny House, Rusty's Retreat, Papa's Cottage, Meme's Cottage, Cheval Circle, The Wine Cottage, Time to Wine Down, Maren Estate, The Blue Ridge Farm and Wedding Venue, Windy Knoll, Creekside, Cottage on Route 151, Farmhouse on Route 151, Glenbrae, Elk Mountain Overlook, Sweet Afton, Rockfish Farmhouse, Fulton Belle Vue, Clonmel Acres, Cabin at Clonmel, Wren House, Saddleback Sanctuary, The Vu, Afton, Cookie's Place, LLC, The Afton House, THE LITTLE FARMHOUSE, Afton Awaits, Airkey Boutique Rentals, Sunrise on the Trail, Nelson 151 Views and Brews, The Treehouse, The Goldfinch, Rockwell Ridge Inn, Big Tiny House, Little Farmhouse
+  count: 38
+
+Queen Oaks Farm (queenoaksfarm):
+  address: Schuyler, VA 22969
+  shared_with: Rockfish Tiny Home
+  count: 2
+
+Rockfish Tiny Home (rockfish-tiny-home):
+  address: Schuyler, VA 22969
+  shared_with: Queen Oaks Farm
+  count: 2
+
+Indian Summer Guide Service (indian-summer-guide-service):
+  address: 151 Veritas Lane, Afton, VA 22920
+  shared_with: Veritas Vineyards & Winery
+  count: 2
+
+Veritas Vineyards & Winery (veritas-vineyards-winery):
+  address: 151 Veritas Lane, Afton, VA 22920
+  shared_with: Indian Summer Guide Service
+  count: 2
+
+Spruce Creek Park (spruce-creek-park):
+  address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+  shared_with: Rockfish Valley Natural History Center
+  count: 2
+
+Rockfish Valley Natural History Center (rockfish-valley-natural-history-center):
+  address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+  shared_with: Spruce Creek Park
+  count: 2
+
+Roudy's Retreat (roudys-retreat):
+  address: Montebello, VA 22967
+  shared_with: The Chimneys, Three Sisters Pre-Civil War Log Cabin
+  count: 3
+
+The Chimneys (the-chimneys):
+  address: Montebello, VA 22967
+  shared_with: Roudy's Retreat, Three Sisters Pre-Civil War Log Cabin
+  count: 3
+
+Three Sisters Pre-Civil War Log Cabin (three-sisters-pre-civil-war-log-cabin):
+  address: Montebello, VA 22967
+  shared_with: Roudy's Retreat, The Chimneys
+  count: 3
+
+Cozy Mountain Cottage (cozy-mountain-cottage):
+  address: Nellysford, VA 22967
+  shared_with: The Castor Cabin, Ethan's Den, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+The Castor Cabin (the-castor-cabin):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, Ethan's Den, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+Ethan's Den (ethans-den):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+Bear Tracks Cottage (bear-tracks-cottage):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, The Wooder House, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+The Wooder House (the-wooder-house):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, Bear Tracks Cottage, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+Art & Soul Main House (art-soul-main-house):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, Bear Tracks Cottage, The Wooder House, Berry Hill Lake, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+Berry Hill Lake (berry-hill-lake):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Boho Cliff House Retreat, Spy Run Hideaway
+  count: 9
+
+Boho Cliff House Retreat (boho-cliff-house-retreat):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Berry Hill Lake, Spy Run Hideaway
+  count: 9
+
+Spy Run Hideaway (spy-run-hideaway):
+  address: Nellysford, VA 22967
+  shared_with: Cozy Mountain Cottage, The Castor Cabin, Ethan's Den, Bear Tracks Cottage, The Wooder House, Art & Soul Main House, Berry Hill Lake, Boho Cliff House Retreat
+  count: 9
+
+Straw Bale House (straw-bale-house):
+  address: Afton, VA 22958
+  shared_with: Gracewood, Carter's Cottage, Cottage on the Trail
+  count: 4
+
+Gracewood (gracewood):
+  address: Afton, VA 22958
+  shared_with: Straw Bale House, Carter's Cottage, Cottage on the Trail
+  count: 4
+
+Carter's Cottage (carters-cottage):
+  address: Afton, VA 22958
+  shared_with: Straw Bale House, Gracewood, Cottage on the Trail
+  count: 4
+
+Cottage on the Trail (cottage-on-the-trail):
+  address: Afton, VA 22958
+  shared_with: Straw Bale House, Gracewood, Carter's Cottage
+  count: 4
+
+Spyrock Lodge (spyrock-lodge):
+  address: Montebello, VA 24464
+  shared_with: The Mountain House INN, Nine Ridges Retreat
+  count: 3
+
+The Mountain House INN (the-mountain-house-inn):
+  address: Montebello, VA 24464
+  shared_with: Spyrock Lodge, Nine Ridges Retreat
+  count: 3
+
+Nine Ridges Retreat (nine-ridges-retreat):
+  address: Montebello, VA 24464
+  shared_with: Spyrock Lodge, The Mountain House INN
+  count: 3
+
+Point of View (point-of-view):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Adventure Awaits (adventure-awaits):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Blue Ridge Heaven (blue-ridge-heaven):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Relaxing 3 bedroom Mountain Cabin (relaxing-3-bedroom-mountain-cabin):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Mountain Dacha (mountain-dacha):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Skis and Trees (skis-and-trees):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Wintergreen Vistas (wintergreen-vistas):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Cozy & Clean Wintergreen Condo (Tanners Ridge), Sunset Vista Villa
+  count: 9
+
+Cozy & Clean Wintergreen Condo (Tanners Ridge) (cozy-clean-wintergreen-condo-tanners-ridge):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Sunset Vista Villa
+  count: 9
+
+Sunset Vista Villa (sunset-vista-villa):
+  address: Wintergreen Resort, Roseland, VA 22967
+  shared_with: Point of View, Adventure Awaits, Blue Ridge Heaven, Relaxing 3 bedroom Mountain Cabin, Mountain Dacha, Skis and Trees, Wintergreen Vistas, Cozy & Clean Wintergreen Condo (Tanners Ridge)
+  count: 9
+
+Freshwater Field Cabin (freshwater-field-cabin):
+  address: Lovingston, VA 22949
+  shared_with: Cottage on the Knoll, Lovingston Get-Away, Treetops Lodge
+  count: 4
+
+Cottage on the Knoll (cottage-on-the-knoll):
+  address: Lovingston, VA 22949
+  shared_with: Freshwater Field Cabin, Lovingston Get-Away, Treetops Lodge
+  count: 4
+
+Lovingston Get-Away (lovingston-get-away):
+  address: Lovingston, VA 22949
+  shared_with: Freshwater Field Cabin, Cottage on the Knoll, Treetops Lodge
+  count: 4
+
+Treetops Lodge (treetops-lodge):
+  address: Lovingston, VA 22949
+  shared_with: Freshwater Field Cabin, Cottage on the Knoll, Lovingston Get-Away
+  count: 4
+
+Wintergreen Ridge Retreat (wintergreen-ridge-retreat):
+  address: Wintergreen Resort, Nellysford, VA 22958
+  shared_with: Peaceful Mountain Getaway
+  count: 2
+
+Peaceful Mountain Getaway (peaceful-mountain-getaway):
+  address: Wintergreen Resort, Nellysford, VA 22958
+  shared_with: Wintergreen Ridge Retreat
+  count: 2
+
+High Lonesome Cabin (high-lonesome-cabin):
+  address: Tyro, VA 22976
+  shared_with: Bear Creek Inn
+  count: 2
+
+Bear Creek Inn (bear-creek-inn):
+  address: Tyro, VA 22976
+  shared_with: High Lonesome Cabin
+  count: 2
+
+Grace's Place Petite Retreats (graces-place-petite-retreats):
+  address: Roseland, VA 22958
+  shared_with: Tupelo, Nectar Landing
+  count: 3
+
+Tupelo (tupelo):
+  address: Roseland, VA 22958
+  shared_with: Grace's Place Petite Retreats, Nectar Landing
+  count: 3
+
+Nectar Landing (nectar-landing):
+  address: Roseland, VA 22958
+  shared_with: Grace's Place Petite Retreats, Tupelo
+  count: 3
+
+Slipper Slope (slipper-slope):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Panoramic Peak - Vistas 1559, Wintergreen (panoramic-peak-vistas-1559-wintergreen):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Eagles Court Ski In/Ski Out Condo (eagles-court-ski-in-ski-out-condo):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Marley's Cabin (marleys-cabin):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Remodeled 3BR/2BA Ski Chalet off Tyro Slope (remodeled-3br-2ba-ski-chalet-off-tyro-slope):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Hillside Hideaway (hillside-hideaway):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Oak Ledge (oak-ledge):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen Getaway for Families (wintergreen-getaway-for-families):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen Resort Cabin (wintergreen-resort-cabin):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen - Fairway Woods (wintergreen-fairway-woods):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Serenity Summit (serenity-summit):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+D & D's Mountain Home (d-ds-mountain-home):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Bearfeet Retreat (bearfeet-retreat):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Mountaintop Overlook (mountaintop-overlook):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Blue Ridge Mountain Retreat (blue-ridge-mountain-retreat):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+The Fairway Chalet (the-fairway-chalet):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Bella Vista (bella-vista):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Red, White and Wintergreen (red-white-and-wintergreen):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Mountain View Vista (mountain-view-vista):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Three Ridge Retreat (three-ridge-retreat):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Arrowwood Lane (arrowwood-lane):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Winterhaven (winterhaven):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+779 Blue Ridge Drive (779-blue-ridge-drive):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Ski in Style At Sapphire Squirrel (ski-in-style-at-sapphire-squirrel):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+The Retreat at Three Ridges (retreat-at-three-ridges):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen Condo 1437 Highlands (wintergreen-condo-1437-highlands):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Time Out (time-out):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen 19 Ivy Glen Lane (wintergreen-19-ivy-glen-lane):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+The Brown Bear Lodge (the-brown-bear-lodge):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Love of Mountains Oh Fill My Cup (love-of-mountains-oh-fill-my-cup):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Marigold on the Mountain (marigold-on-the-mountain):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Top of The Mountain Hideaway (top-of-the-mountain-hideaway):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+On The Rocks (on-the-rocks):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Our Mountain Getaway (our-mountain-getaway):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wintergreen Duplex (wintergreen-duplex):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Cliffs Edge (cliffs-edge):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Slopes At Tyro (slopes-at-tyro):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Home on the Ridge (home-on-the-ridge):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Peppers Mountain Pad (peppers-mountain-pad):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Dobie Condo 323 at Wintergreen (dobie-condo-323-at-wintergreen):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Highlands 1426 Condo (highlands-1426-condo):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Gumtree Drive 134 (gumtree-drive-134):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Wake In The Clouds (wake-in-the-clouds):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Cuatro Climas At 130 Pedlars Point (cuatro-climas-at-130-pedlars-point):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+1639 Overlook (1639-overlook):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+The Ski House (the-ski-house):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+1566 Vistas Condo (1566-vistas-condo):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Shenandoah Ridge 11 (shenandoah-ridge-11):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+The View at Crawfords Edge (view-at-crawfords-edge):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, Altitude Adjustment, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Altitude Adjustment (altitude-adjustment):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Chateau Greenstone, Blue Sky Retreat
+  count: 52
+
+Chateau Greenstone (chateau-greenstone):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Blue Sky Retreat
+  count: 52
+
+Blue Sky Retreat (blue-sky-retreat):
+  address: Wintergreen Resort, Nellysford, VA 22967
+  shared_with: Slipper Slope, Panoramic Peak - Vistas 1559, Wintergreen, Eagles Court Ski In/Ski Out Condo, Marley's Cabin, Remodeled 3BR/2BA Ski Chalet off Tyro Slope, Hillside Hideaway, Oak Ledge, Wintergreen Getaway for Families, Wintergreen Resort Cabin, Wintergreen - Fairway Woods, Serenity Summit, D & D's Mountain Home, Bearfeet Retreat, Mountaintop Overlook, Blue Ridge Mountain Retreat, The Fairway Chalet, Bella Vista, Red, White and Wintergreen, Mountain View Vista, Three Ridge Retreat, Arrowwood Lane, Winterhaven, 779 Blue Ridge Drive, Ski in Style At Sapphire Squirrel, The Retreat at Three Ridges, Wintergreen Condo 1437 Highlands, Time Out, Wintergreen 19 Ivy Glen Lane, The Brown Bear Lodge, Love of Mountains Oh Fill My Cup, Marigold on the Mountain, Top of The Mountain Hideaway, On The Rocks, Our Mountain Getaway, Wintergreen Duplex, Cliffs Edge, Slopes At Tyro, Home on the Ridge, Peppers Mountain Pad, Dobie Condo 323 at Wintergreen, Highlands 1426 Condo, Gumtree Drive 134, Wake In The Clouds, Cuatro Climas At 130 Pedlars Point, 1639 Overlook, The Ski House, 1566 Vistas Condo, Shenandoah Ridge 11, The View at Crawfords Edge, Altitude Adjustment, Chateau Greenstone
+  count: 52
+
+Faber Farmhouse (faber-farmhouse):
+  address: Faber, VA 22938
+  shared_with: Mountain & Vine Farmhouse, Mountain & Vine Vineyards Log Cabin, Kremer Cabin, Stewart's Place
+  count: 5
+
+Mountain & Vine Farmhouse (mountain-vine-farmhouse):
+  address: Faber, VA 22938
+  shared_with: Faber Farmhouse, Mountain & Vine Vineyards Log Cabin, Kremer Cabin, Stewart's Place
+  count: 5
+
+Mountain & Vine Vineyards Log Cabin (mountain-vine-vineyards-log-cabin):
+  address: Faber, VA 22938
+  shared_with: Faber Farmhouse, Mountain & Vine Farmhouse, Kremer Cabin, Stewart's Place
+  count: 5
+
+Kremer Cabin (kremer-cabin):
+  address: Faber, VA 22938
+  shared_with: Faber Farmhouse, Mountain & Vine Farmhouse, Mountain & Vine Vineyards Log Cabin, Stewart's Place
+  count: 5
+
+Stewart's Place (stewarts-place):
+  address: Faber, VA 22938
+  shared_with: Faber Farmhouse, Mountain & Vine Farmhouse, Mountain & Vine Vineyards Log Cabin, Kremer Cabin
+  count: 5
+
+Parrs Camp, Mountain Hollow (parrs-camp-mountain-hollow):
+  address: Nellysford, VA 22976
+  shared_with: Parr's Camp
+  count: 2
+
+Parr's Camp (parrs-camp):
+  address: Nellysford, VA 22976
+  shared_with: Parrs Camp, Mountain Hollow
+  count: 2
+
+Rockfish Cabin (rockfish-cabin):
+  address: Faber, VA 22920
+  shared_with: Country Cottage
+  count: 2
+
+Country Cottage (country-cottage):
+  address: Faber, VA 22920
+  shared_with: Rockfish Cabin
+  count: 2
+
+
+CRITICAL - Nonsensical detailedDescription (1 listings):
+--------------------------------------------------------------------------------
+
+Celadon Acres Farm (celadonacresfarm):
+  detailed: Montebello Fish Hatchery Veritas Vineyards & Winery Mountain and Vine Winery Blue Mountain Brewery Basic Necessities.
+
+
+CRITICAL - Area is category not location (5 listings):
+--------------------------------------------------------------------------------
+
+Rapunzel’s Coffee & Books (rapunzels-coffee-books):
+  area: Coffee Shops
+
+Terrace Café (terrace-cafe-at-wintergreen-resort):
+  area: Coffee Shops
+
+Castor Cabin (castor-cabin):
+  area: Cabins
+
+Wooder House (wooder-house):
+  area: Cabins
+
+Ski House (ski-house):
+  area: Whole House Rentals
+
+
+CRITICAL - Missing street address (44 listings):
+--------------------------------------------------------------------------------
+
+Corner Market (corner-market):
+  address: Schuyler, VA 11309
+  type: Markets & Delis
+
+Ike's Market & Deli (ikes-market-deli):
+  address: Schuyler, VA
+  type: Markets & Delis
+
+Paulie's Pig Out (paulies-pig-out):
+  address: Afton, VA
+  type: Restaurants
+
+Virginia Distillery Co. (virginia-distillery-co):
+  address: Lovingston, VA
+  type: Distilleries
+
+One Forest (one-forest):
+  address: Nellysford, VA 22958
+  type: Activities
+
+Lost Point Farm (lost-point-farm):
+  address: Arrington, VA 22922
+  type: Farms & Orchards
+
+Silver Creek and Seamans' Orchards (silver-creek-and-seamans-orchards):
+  address: Roseland, VA
+  type: Farms & Orchards
+
+Mars Knob Farm (marsknob):
+  address: Roseland, VA 22967
+  type: Farms & Orchards
+
+Galleywinter Farm (galleywinter):
+  address: Afton, VA 22920
+  type: Farms & Orchards
+
+Queen Oaks Farm (queenoaksfarm):
+  address: Schuyler, VA 22969
+  type: Farms & Orchards
+
+North Fork of the Piney River (north-fork-of-the-piney-river):
+  address: Piney River, VA 22964
+  type: Hikes & Trails
+
+Virginia Spirits Trail (virginia-spirits-trail):
+  address: Spirits Trail, VA
+  type: Hikes & Trails
+
+Roudy's Retreat (roudys-retreat):
+  address: Montebello, VA 22967
+  type: Whole House Rentals
+
+Straw Bale House (straw-bale-house):
+  address: Afton, VA 22958
+  type: Whole House Rentals
+
+Four Elements Farm (four-elements-farm):
+  address: Roseland, VA 22967
+  type: Whole House Rentals
+
+Time to Wine Down (time-to-wine-down):
+  address: Afton, VA 22920
+  type: Whole House Rentals
+
+Meili Mountain (meili-mountain):
+  address: Nelson County, VA
+  type: Whole House Rentals
+
+Elk Mountain Overlook (elk-mountain-overlook):
+  address: Afton, VA 22920
+  type: Whole House Rentals
+
+Ethan's Den (ethans-den):
+  address: Nellysford, VA 22967
+  type: Whole House Rentals
+
+The Mountain House INN (the-mountain-house-inn):
+  address: Montebello, VA 24464
+  type: Whole House Rentals
+
+Nine Ridges Retreat (nine-ridges-retreat):
+  address: Montebello, VA 24464
+  type: Whole House Rentals
+
+Grace's Place Petite Retreats (graces-place-petite-retreats):
+  address: Roseland, VA 22958
+  type: Whole House Rentals
+
+Spindle Hill Farm (spindle-hill-farm):
+  address: Nellysford, VA 22958
+  type: Bed and Breakfast
+
+Sleepy Hollow Retreat Enjoy Your Stay (sleepy-hollow-retreat-enjoy-your-stay):
+  address: Roseland, VA 22967
+  type: Whole House Rentals
+
+Peaktime (peaktime):
+  address: Roseland, VA 22920
+  type: Whole House Rentals
+
+Rockfish Tiny Home (rockfish-tiny-home):
+  address: Schuyler, VA 22969
+  type: Whole House Rentals
+
+Tupelo (tupelo):
+  address: Roseland, VA 22958
+  type: Whole House Rentals
+
+The Afton House (the-afton-house):
+  address: Afton, VA 22920
+  type: Whole House Rentals
+
+Mountain & Vine Farmhouse (mountain-vine-farmhouse):
+  address: Faber, VA 22938
+  type: Whole House Rentals
+
+Art & Soul Guesthouse (art-soul-guesthouse):
+  address: Roseland, VA 22967
+  type: Whole House Rentals
+
+Art & Soul Main House (art-soul-main-house):
+  address: Nellysford, VA 22967
+  type: Whole House Rentals
+
+Pilotview Hollow (pilotview-hollow):
+  address: Nellysford, VA 22958
+  type: Whole House Rentals
+
+Stewart's Place (stewarts-place):
+  address: Faber, VA 22938
+  type: Whole House Rentals
+
+Boho Cliff House Retreat (boho-cliff-house-retreat):
+  address: Nellysford, VA 22967
+  type: Whole House Rentals
+
+Mima's Mountain House (mimas-mountain-house):
+  address: Massies Mill, VA 22943
+  type: Whole House Rentals
+
+Rockfish Valley Retreat (rockfish-valley-retreat):
+  address: Nellysford, VA 22958
+  type: Whole House Rentals
+
+Nectar Landing (nectar-landing):
+  address: Roseland, VA 22958
+  type: Whole House Rentals
+
+Nelson 151 Views and Brews (nelson-151-views-and-brews):
+  address: Afton, VA 22920
+  type: Whole House Rentals
+
+Woodland Hideaway (woodland-hideaway):
+  address: Shipman, VA 22920
+  type: Whole House Rentals
+
+Rockfish River Ranch Guest House (rockfish-river-ranch-guest-house):
+  address: Shipman, VA 22971
+  type: Bed and Breakfast
+
+Sanctuary Retreat Center (sanctuaryretreatcenter):
+  address: Nellysford, VA 22958
+  type: Whole House Rentals
+
+Rockfish Valley Farm Guest House (rockfish-valley-farm-guest-house):
+  address: Nellysford, VA 22958
+  type: Bed and Breakfast
+
+The Treehouse (thetreehouse):
+  address: Afton, VA 22920
+  type: Whole House Rentals
+
+Sweet Bliss Bakery (sweet-bliss-bakery):
+  address: Nellysford, VA 22958
+  type: Attraction
+
+
+HIGH - Slug format issues (49 listings):
+--------------------------------------------------------------------------------
+
+Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve):
+  expected: fortune-s-cove-nature-preserve
+
+Paul's Creek Trail (pauls-creek-trail):
+  expected: paul-s-creek-trail
+
+Fortune's Ridge Trail (fortunes-ridge-trail):
+  expected: fortune-s-ridge-trail
+
+Glass Hollow Studio & Gallery (glasshollow):
+  expected: glass-hollow-studio-gallery
+
+Ashley's Market (ashleys-market):
+  expected: ashley-s-market
+
+Hickman's Exxon Grocery (hickmans-exxon-grocery):
+  expected: hickman-s-exxon-grocery
+
+Ike's Market & Deli (ikes-market-deli):
+  expected: ike-s-market-deli
+
+Mac's Country Store (macs-country-store):
+  expected: mac-s-country-store
+
+Ann's Family Restaurant (anns-family-restaurant):
+  expected: ann-s-family-restaurant
+
+Chen's Restaurant (chens-restaurant):
+  expected: chen-s-restaurant
+
+Paulie's Pig Out (paulies-pig-out):
+  expected: paulie-s-pig-out
+
+Vito's Pizza & Italian Grill (vitos-pizza-italian-grill):
+  expected: vito-s-pizza-italian-grill
+
+Bryant's Cider & Brewery (bryants-cider-brewery):
+  expected: bryant-s-cider-brewery
+
+Three Notch'd Brewery, Distillery & Craft Kitchen (three-notchd-brewery-distillery-craft-kitchen-nelson-county):
+  expected: three-notch-d-brewery-distillery-craft-kitchen
+
+Woodson's Mill Loop (woodsons-mill-loop):
+  expected: woodson-s-mill-loop
+
+Walton's Mountain Museum Loop (waltons-mountain-museum-loop):
+  expected: walton-s-mountain-museum-loop
+
+Mars Knob Farm (marsknob):
+  expected: mars-knob-farm
+
+Deep Sea Pete's Creekside Farm (deep-sea-petes-creekside-farm):
+  expected: deep-sea-pete-s-creekside-farm
+
+Queen Oaks Farm (queenoaksfarm):
+  expected: queen-oaks-farm
+
+Three Trees Farm (threetreesfarm):
+  expected: three-trees-farm
+
+HeartRock Retreat & Homestead (heartrockretreat):
+  expected: heartrock-retreat-homestead
+
+Roudy's Retreat (roudys-retreat):
+  expected: roudy-s-retreat
+
+Pachi's Ridge (pachis-ridge):
+  expected: pachi-s-ridge
+
+Rusty's Retreat (rustys-retreat):
+  expected: rusty-s-retreat
+
+Woodson's Mill House (woodsons-mill-house):
+  expected: woodson-s-mill-house
+
+Papa's Cottage (papas-cottage):
+  expected: papa-s-cottage
+
+Meme's Cottage (memes-cottage):
+  expected: meme-s-cottage
+
+Carter's Cottage (carters-cottage):
+  expected: carter-s-cottage
+
+Ethan's Den (ethans-den):
+  expected: ethan-s-den
+
+Grace's Place Petite Retreats (graces-place-petite-retreats):
+  expected: grace-s-place-petite-retreats
+
+WildManDan B&B (Beer centric) (wildmandan-bb-beer-centric):
+  expected: wildmandan-b-b-beer-centric
+
+Marley's Cabin (marleys-cabin):
+  expected: marley-s-cabin
+
+Rebel's Run at Afton Mountain (rebels-run-at-afton-mountain):
+  expected: rebel-s-run-at-afton-mountain
+
+Walton's Mountain Museum (waltons-mountain-museum):
+  expected: walton-s-mountain-museum
+
+D & D's Mountain Home (d-ds-mountain-home):
+  expected: d-d-s-mountain-home
+
+Cookie's Place, LLC (cookies-place-llc):
+  expected: cookie-s-place-llc
+
+THE LITTLE FARMHOUSE (thelittlefarmhouse):
+  expected: the-little-farmhouse
+
+Parr's Camp (parrs-camp):
+  expected: parr-s-camp
+
+Stewart's Place (stewarts-place):
+  expected: stewart-s-place
+
+Mima's Mountain House (mimas-mountain-house):
+  expected: mima-s-mountain-house
+
+Village Antiques (villageantiques):
+  expected: village-antiques
+
+Sanctuary Retreat Center (sanctuaryretreatcenter):
+  expected: sanctuary-retreat-center
+
+The Treehouse (thetreehouse):
+  expected: the-treehouse
+
+Rockwell Ridge Inn (rockwellridgeinn):
+  expected: rockwell-ridge-inn
+
+Don Lupe Mexican Restaurant (donlupe):
+  expected: don-lupe-mexican-restaurant
+
+Rapunzel’s Coffee & Books (rapunzels-coffee-books):
+  expected: rapunzel-s-coffee-books
+
+Celadon Acres Farm (celadonacresfarm):
+  expected: celadon-acres-farm
+
+A. Bryant Family Farm (abryantfamilyfarm):
+  expected: a-bryant-family-farm
+
+Heart of Nelson (heartofnelson):
+  expected: heart-of-nelson
+
+
+MEDIUM - URLs in description (no website) (33 listings):
+--------------------------------------------------------------------------------
+
+The Plunge (the-plunge):
+  urls: ['https://goo.gl/maps/1p9jDyMyTjJqYpvo6']
+
+Old Appalachian Trail (old-appalachian-trail):
+  urls: ['https://goo.gl/maps/ANsHVLfkx6f3PNAaA']
+
+Chestnut Springs Trail (chestnut-springs-trail):
+  urls: ['https://goo.gl/maps/fpNe9zxvjvkMc2Ks9']
+
+Upper Shamokin Gorge Trail (upper-shamokin-gorge-trail):
+  urls: ['https://goo.gl/maps/worqnjvdmccjF1MJ9']
+
+Mau-Har Trail (mau-har-trail):
+  urls: ['https://en.wikipedia.org/wiki/Appalachian_Trail', 'https://en.wikipedia.org/wiki/Three_Ridges_Wilderness']
+
+Cedar Ciffs North Trail (cedar-ciffs-north-trail):
+  urls: ['https://goo.gl/maps/7WU3boDV7oaX85P79']
+
+Hemlock Springs Loop (hemlock-springs-loop):
+  urls: ['https://goo.gl/maps/worqnjvdmccjF1MJ9']
+
+Nelson County Wilderness Area (nelson-county-wilderness-area):
+  urls: ['http://www.wilderness.net/NWPS/wildView?WID=601', 'https://www.hikingupward.com/GWNF/ThePriest/']
+
+Shamokin Springs Nature Preserve (shamokin-springs-nature-preserve):
+  urls: ['https://www.tnfw.org/trilliumhouse']
+
+Upper Shamokin Falls Trail (upper-shamokin-falls-trail):
+  urls: ['https://goo.gl/maps/7nf9BFjD9zG5dzJS7']
+
+Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail):
+  urls: ['https://www.kidsinparks.com/virginia-blue-ridge-railway-trail']
+
+Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead):
+  urls: ['http://www.kidsinparks.com/', 'http://www.rockfishvalley.org/']
+
+The Copper Mine Bistro (the-copper-mine-bistro):
+  urls: ['https://www.wintergreenresort.com/the-wintergreen-weekly/']
+
+The Edge (the-edge):
+  urls: ['https://www.wintergreenresort.com/the-wintergreen-weekly/']
+
+Tennis (tennis):
+  urls: ['https://www.tennis.com/']
+
+Blue Ridge Parkway Loops (blue-ridge-parkway-loops):
+  urls: ['http://www.vacabins.com/']
+
+Oak Ridge Loop (oak-ridge-loop):
+  urls: ['https://www.oakridgeestate.com/']
+
+Woodson's Mill Loop (woodsons-mill-loop):
+  urls: ['https://www.woodsonsmill.com/']
+
+Walton's Mountain Museum Loop (waltons-mountain-museum-loop):
+  urls: ['http://walton-mountain.org/', 'http://www.waltonmuseum.org/']
+
+Nelson Scenic Loop (nelson-scenic-loop):
+  urls: ['https://www.nelsonscenicloop.com/']
+
+Robinia Institute (robinia-institute):
+  urls: ['http://wildtimshel.com/']
+
+Fishing the James River (fishing-the-james-river):
+  urls: ['https://www.dcr.virginia.gov/state-parks/james-river']
+
+Fishing the Little Piney River (fishing-the-little-piney-river):
+  urls: ['https://www.dgif.virginia.gov/', 'https://www.amazon.com/Virginia-whitewater-paddlers-guide-rivers/dp/B0006RGOWA']
+
+Fishing the South Rockfish River (fishing-the-south-rockfish-river):
+  urls: ['https://www.dgif.virginia.gov/fishing/trout-stocking-schedule/', 'https://www.amazon.com/Virginia-whitewater-paddlers-guide-rivers/dp/B0006RGOWA']
+
+Fishing at Lake Monocan Park (fishing-at-lake-monacan-park):
+  urls: ['http://www.wintergreenresort.com/lake-monocan/']
+
+Fishing at Lake Nelson (fishing-at-lake-nelson):
+  urls: ['https://www.dgif.virginia.gov/waterbody/lake-nelson/']
+
+Wintergreen Resort Fishing (wintergreen-resort-fishing):
+  urls: ['http://www.wintergreenresort.com/']
+
+Devils Knob Golf Course (devils-knob-golf-course):
+  urls: ['https://www.wintergreenresort.com/devils-knob/']
+
+Stoney Creek Golf Course (stoney-creek-golf-course):
+  urls: ['https://www.wintergreenresort.com/Stoney-Creek/']
+
+Stoney Creek Park (stoney-creek-park):
+  urls: ['https://goo.gl/maps/7nf9BFjD9zG5dzJS7']
+
+Spruce Creek Park (spruce-creek-park):
+  urls: ['https://www.rockfishvalley.org/blog/spruce-creek-park/']
+
+Rockfish Valley Loop Trails (rockfish-valley-loop-trails):
+  urls: ['https://www.rockfishvalley.org/blog/spruce-creek-park/']
+
+Nelson 151 (nelson-151):
+  urls: ['https://www.nelson151.com/', 'https://nelson151.com/map/']
+
+
+MEDIUM - Very long descriptions (4 listings):
+--------------------------------------------------------------------------------
+
+El Mariachi Mexican Food (el-mariachi-mexican-food):
+  length: 545
+
+Vito's Pizza & Italian Grill (vitos-pizza-italian-grill):
+  length: 545
+
+Outback Brew House (outback-brew-house):
+  length: 521
+
+Wood Ridge Farm Brewery (wood-ridge-farm-brewery):
+  length: 512
+
+
+LOW - Missing ZIP codes (16 listings):
+--------------------------------------------------------------------------------
+
+IGA Blue Ridge Grocery (iga-blue-ridge-grocery):
+  address: 2797 Rockfish Valley Highway, Nellysford, VA
+
+Ike's Market & Deli (ikes-market-deli):
+  address: Schuyler, VA
+
+The Market at Wintergreen (the-market-at-wintergreen):
+  address: 189 Mountain Inn Loop, Nellysford, VA
+
+Paulie's Pig Out (paulies-pig-out):
+  address: Afton, VA
+
+Virginia Distillery Co. (virginia-distillery-co):
+  address: Lovingston, VA
+
+Seamans' Orchard (seamans-orchard):
+  address: 415 Dark Hollow Road, Roseland, VA
+
+Silver Creek and Seamans' Orchards (silver-creek-and-seamans-orchards):
+  address: Roseland, VA
+
+Three Trees Farm (threetreesfarm):
+  address: Walkers Mountain, Arrington, VA
+
+Mountain and Vine Winery (mountain-and-vine-winery):
+  address: 500 DelFosse Winery Lane, Faber, VA
+
+Inglewood Fine Meats (inglewood-fine-meats):
+  address: 4638 Variety Mills Road, Arrington, VA
+
+Montebello Nature Trail (montebello-nature-trail):
+  address: 359 Fish Hatchery Lane, Montebello, VA
+
+Virginia Spirits Trail (virginia-spirits-trail):
+  address: Spirits Trail, VA
+
+Meili Mountain (meili-mountain):
+  address: Nelson County, VA
+
+Oakland Museum (oakland-museum):
+  address: 5365 Thomas Nelson Highway, Arrington, VA
+
+Belties (belties):
+  address: 2884 Rockfish Valley Highway, Nellysford, VA
+
+Brown Bear Lodge (brown-bear-lodge):
+  address: Nellysford, VA
+

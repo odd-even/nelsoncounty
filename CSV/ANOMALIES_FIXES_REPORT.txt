@@ -1,0 +1,120 @@
+================================================================================
+ANOMALIES FIXES REPORT
+================================================================================
+
+Date: 2026-01-12 15:46:16
+Total listings processed: 407
+Listings fixed: 14
+Total changes made: 21
+
+IMPORTANT: All slugs were preserved exactly as they were.
+
+================================================================================
+DETAILED CHANGES
+================================================================================
+
+Humpback Rocks (humpback-rocks)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Lyndhurst
+    New: Nelson County
+
+Fishing the Little Piney River (fishing-the-little-piney-river)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Lowesville
+    New: Roseland
+  Field: address
+    Old: 162 Woodson Road, Lowesville, VA 22967
+    New: 162 Woodson Road, Roseland, VA 22967
+
+Virginia Spirits Trail (virginia-spirits-trail)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Commonwealth of Virginia
+    New: Nelson County
+  Field: address
+    Old: Spirits Trail, VA
+    New: Nelson County, VA
+
+Avon Hill (avon-hill)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Howardsville
+    New: Nelson County
+  Field: address
+    Old: 289 Avon Road, Howardsville, VA 24562
+    New: 289 Avon Road, Nelson County, VA 24562
+
+Love Ridge Mountain Lodging (love-ridge-mountain-lodging)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Lyndhurst
+    New: Nelson County
+
+Nonny Cottage (nonny-cottage)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Vesuvius
+    New: Afton
+  Field: address
+    Old: Love, VA 22920
+    New: Love, Afton, VA 22920
+
+12 Ridges Vineyard (12-ridges-vineyard)
+--------------------------------------------------------------------------------
+  Field: address
+    Old: 24981 Blue Ridge Pkwy, Vesuvius, VA 24981
+    New: 24981 Blue Ridge Parkway, Vesuvius, VA 24483
+
+Rapunzel’s Coffee & Books (rapunzels-coffee-books)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Coffee Shops
+    New: Lovingston
+  Field: address
+    Old: 
+    New: 956 Front Street, Lovingston, VA 22949
+
+Terrace Café (terrace-cafe-at-wintergreen-resort)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Coffee Shops
+    New: Wintergreen Resort
+
+Castor Cabin (castor-cabin)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Cabins
+    New: Nelson County
+
+Wooder House (wooder-house)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Cabins
+    New: Nelson County
+
+Ski House (ski-house)
+--------------------------------------------------------------------------------
+  Field: area
+    Old: Whole House Rentals
+    New: Wintergreen Resort
+
+Celadon Acres Farm (celadonacresfarm)
+--------------------------------------------------------------------------------
+  Field: detailedDescription
+    Old: Montebello Fish Hatchery Veritas Vineyards & Winery Mountain and Vine Winery Blue Mountain Brewery Basic Necessities.
+    New: 
+  Field: type
+    Old: Hikes & Trails
+    New: Farms & Orchards
+  Field: address
+    Old: 
+    New: Lovingston, VA 22949
+
+Heart of Nelson (heartofnelson)
+--------------------------------------------------------------------------------
+  Field: detailedDescription
+    Old: Blue Mountain Brewery Basic Necessities.
+    New: 
+

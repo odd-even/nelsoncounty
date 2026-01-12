@@ -895,17 +895,18 @@ function doGet(e) {
     
     // Handle delete listing via GET (fallback to avoid CORS preflight issues)
     if (e && e.parameter && e.parameter.action === 'deleteListing') {
-      const listingId = e.parameter.listingId;
-      if (!listingId) {
+      // Support both listingSlug (new) and listingId (legacy) for backward compatibility
+      const listingSlug = e.parameter.listingSlug || e.parameter.listingId;
+      if (!listingSlug) {
         return ContentService
           .createTextOutput(JSON.stringify({
             success: false,
-            error: 'Missing "listingId" parameter'
+            error: 'Missing "listingSlug" parameter'
           }))
           .setMimeType(ContentService.MimeType.JSON)
       }
       const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      const result = deleteListing(sheet, listingId);
+      const result = deleteListing(sheet, listingSlug);
       return ContentService
         .createTextOutput(JSON.stringify(result))
         .setMimeType(ContentService.MimeType.JSON);
@@ -1119,8 +1120,10 @@ function doPost(e) {
       if (!data.listings) throw new Error('Missing "listings" field for replaceAllListings action');
       result = replaceAllListings(sheet, data.listings);
     } else if (action === 'deleteListing') {
-      if (!data.listingId) throw new Error('Missing "listingId" field for deleteListing action');
-      result = deleteListing(sheet, data.listingId);
+      // Support both listingSlug (new) and listingId (legacy) for backward compatibility
+      const listingSlug = data.listingSlug || data.listingId;
+      if (!listingSlug) throw new Error('Missing "listingSlug" field for deleteListing action');
+      result = deleteListing(sheet, listingSlug);
     } else if (action === 'saveCategories') {
       if (!data.categories) throw new Error('Missing "categories" field for saveCategories action');
       result = saveCategories(data.categories);
@@ -1406,16 +1409,55 @@ function saveCategories(categories) {
 
 function saveListing(sheet, listing) {
   try {
-    const listingId = listing.id;
+    // Use slug to find existing row (prefer slug, fallback to id for backward compatibility)
+    const listingSlug = listing.slug;
+    const listingId = listing.id; // Keep for backward compatibility
     const values = sheet.getDataRange().getValues();
     const headers = values[0];
     let rowIndex = -1;
 
+    // Find slug column index
+    const slugColumnIndex = headers.findIndex(function(h) {
+      const headerLower = String(h || '').toLowerCase().trim();
+      return headerLower === 'slug';
+    });
+    const idColumnIndex = headers.findIndex(function(h) {
+      const headerLower = String(h || '').toLowerCase().trim();
+      return headerLower === 'id';
+    });
+
     for (let i = 1; i < values.length; i++) {
-      const rowId = String(values[i][0] || '');
-      if (rowId === String(listingId)) {
-        rowIndex = i + 1;
-        break;
+      const row = values[i];
+      
+      // Try slug first (preferred)
+      if (slugColumnIndex >= 0 && listingSlug) {
+        const rowSlug = String(row[slugColumnIndex] || '').trim();
+        if (rowSlug === String(listingSlug).trim()) {
+          rowIndex = i + 1;
+          break;
+        }
+      }
+      
+      // Fallback to ID for backward compatibility
+      if (rowIndex < 0 && idColumnIndex >= 0 && listingId) {
+        const rowId = String(row[idColumnIndex] || '').trim();
+        if (rowId === String(listingId).trim()) {
+          rowIndex = i + 1;
+          break;
+        }
+      }
+      
+      // Fallback to first column if neither slug nor id found
+      if (rowIndex < 0 && slugColumnIndex < 0 && idColumnIndex < 0) {
+        const rowValue = String(row[0] || '').trim();
+        if (listingSlug && rowValue === String(listingSlug).trim()) {
+          rowIndex = i + 1;
+          break;
+        }
+        if (listingId && rowValue === String(listingId).trim()) {
+          rowIndex = i + 1;
+          break;
+        }
       }
     }
 
@@ -1428,10 +1470,11 @@ function saveListing(sheet, listing) {
     const rowData = [];
     headers.forEach((header, colIndex) => {
       const headerLower = String(header).toLowerCase().trim();
-      if (headerLower === 'id') {
-        rowData.push(listing.id || '');
-      } else if (headerLower === 'slug') {
+      if (headerLower === 'slug') {
         rowData.push(listing.slug || '');
+      } else if (headerLower === 'id') {
+        // Keep ID for backward compatibility, but prefer slug
+        rowData.push(listing.id || '');
       } else if (['title', 'name', 'listing name'].includes(headerLower)) {
         rowData.push(listing.name || '');
       } else if (headerLower === 'type') {
@@ -1740,19 +1783,19 @@ function replaceAllListings(sheet, listings) {
   }
 }
 
-function deleteListing(sheet, listingId) {
+function deleteListing(sheet, listingSlug) {
   try {
     Logger.log('=== deleteListing called ===');
-    Logger.log('Listing ID to delete: ' + listingId);
-    Logger.log('Listing ID type: ' + typeof listingId);
+    Logger.log('Listing slug to delete: ' + listingSlug);
+    Logger.log('Listing slug type: ' + typeof listingSlug);
     
-    // Normalize the ID to delete - trim whitespace and convert to string
-    const idToDelete = String(listingId || '').trim();
-    Logger.log('Normalized ID to delete: "' + idToDelete + '"');
+    // Normalize the slug to delete - trim whitespace and convert to string
+    const slugToDelete = String(listingSlug || '').trim();
+    Logger.log('Normalized slug to delete: "' + slugToDelete + '"');
     
-    if (!idToDelete) {
-      Logger.log('❌ Empty listing ID provided');
-      return { success: false, error: 'Empty listing ID provided' };
+    if (!slugToDelete) {
+      Logger.log('❌ Empty listing slug provided');
+      return { success: false, error: 'Empty listing slug provided' };
     }
     
     const values = sheet.getDataRange().getValues();
@@ -1763,105 +1806,96 @@ function deleteListing(sheet, listingId) {
       return { success: false, error: 'No listings found in sheet' };
     }
     
-    // Get headers to find ID and name columns
+    // Get headers to find slug column (prefer slug, fallback to id for backward compatibility)
     const headers = values[0];
-    const idColumnIndex = headers.findIndex(function(h) {
+    const slugColumnIndex = headers.findIndex(function(h) {
       const headerLower = String(h || '').toLowerCase().trim();
-      return headerLower === 'id' || headerLower === 'slug';
+      return headerLower === 'slug';
     });
+    const idColumnIndex = slugColumnIndex < 0 ? headers.findIndex(function(h) {
+      const headerLower = String(h || '').toLowerCase().trim();
+      return headerLower === 'id';
+    }) : -1;
     const nameColumnIndex = headers.findIndex(function(h) {
       const headerLower = String(h || '').toLowerCase().trim();
       return ['title', 'name', 'listing name'].includes(headerLower);
     });
     
-    Logger.log('ID column index: ' + idColumnIndex);
+    Logger.log('Slug column index: ' + slugColumnIndex);
+    Logger.log('ID column index (fallback): ' + idColumnIndex);
     Logger.log('Name column index: ' + nameColumnIndex);
     
-    // Normalize ID for comparison (remove leading zeros, handle variations)
+    // Normalize slug for comparison (lowercase, trim)
+    const normalizeSlugForComparison = function(slug) {
+      if (!slug) return '';
+      return String(slug).trim().toLowerCase();
+    };
+    
+    // For backward compatibility: normalize ID for comparison (remove leading zeros, handle variations)
     const normalizeIdForComparison = function(id) {
       if (!id) return '';
       let normalized = String(id).trim();
-      
-      // Remove leading zeros from numeric prefixes (e.g., "00112-ridges" -> "12-ridges")
-      // Handle patterns like "00112-ridges-vineyard" -> "12-ridges-vineyard"
-      // Also handle "00112" -> "12" (pure numeric)
       normalized = normalized.replace(/^0+(\d+)/, function(match, digits) {
-        // Remove leading zeros but keep at least one digit
         return digits;
       });
-      
       return normalized.toLowerCase();
     };
     
-    // Also create a function to extract the numeric part for comparison
-    const extractNumericPart = function(id) {
-      if (!id) return '';
-      const match = String(id).trim().match(/^0*(\d+)/);
-      return match ? match[1] : '';
-    };
+    const normalizedSlugToDelete = normalizeSlugForComparison(slugToDelete);
+    Logger.log('Normalized slug for comparison: "' + normalizedSlugToDelete + '"');
     
-    const numericPartToDelete = extractNumericPart(idToDelete);
-    Logger.log('Numeric part of ID to delete: "' + numericPartToDelete + '"');
-    
-    const normalizedIdToDelete = normalizeIdForComparison(idToDelete);
-    Logger.log('Normalized ID for comparison: "' + normalizedIdToDelete + '"');
-    
-    // Search for matching ID using multiple strategies
+    // Search for matching slug (prefer slug column, fallback to id column for backward compatibility)
     let foundRow = -1;
     let matchStrategy = '';
     
     for (let i = 1; i < values.length; i++) {
       const row = values[i];
       
-      // Strategy 1: Exact match in ID column
-      if (idColumnIndex >= 0) {
-        const rowId = String(row[idColumnIndex] || '').trim();
-        const normalizedRowId = normalizeIdForComparison(rowId);
-        const rowNumericPart = extractNumericPart(rowId);
+      // Strategy 1: Exact match in slug column (preferred)
+      if (slugColumnIndex >= 0) {
+        const rowSlug = String(row[slugColumnIndex] || '').trim();
+        const normalizedRowSlug = normalizeSlugForComparison(rowSlug);
         
-        Logger.log('Row ' + (i + 1) + ' ID: "' + rowId + '" (normalized: "' + normalizedRowId + '", numeric: "' + rowNumericPart + '")');
+        Logger.log('Row ' + (i + 1) + ' Slug: "' + rowSlug + '" (normalized: "' + normalizedRowSlug + '")');
         
-        // Try exact match first
-        if (rowId === idToDelete || normalizedRowId === normalizedIdToDelete) {
+        if (rowSlug === slugToDelete || normalizedRowSlug === normalizedSlugToDelete) {
           foundRow = i + 1;
-          matchStrategy = 'exact ID match';
-          Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
-          break;
-        }
-        
-        // Try numeric part match (handles leading zero differences)
-        // e.g., "00112-ridges" matches "12-ridges" or "112-ridges"
-        if (numericPartToDelete && rowNumericPart && numericPartToDelete === rowNumericPart) {
-          // Check if the rest of the ID (after numeric part) matches
-          const idAfterNumeric = idToDelete.replace(/^0*\d+/, '').toLowerCase();
-          const rowIdAfterNumeric = rowId.replace(/^0*\d+/, '').toLowerCase();
-          if (idAfterNumeric === rowIdAfterNumeric || 
-              idAfterNumeric.includes(rowIdAfterNumeric) || 
-              rowIdAfterNumeric.includes(idAfterNumeric)) {
-            foundRow = i + 1;
-            matchStrategy = 'numeric part match';
-            Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
-            break;
-          }
-        }
-        
-        // Try partial match (in case of prefix/suffix differences)
-        if (rowId.includes(idToDelete) || idToDelete.includes(rowId) ||
-            normalizedRowId.includes(normalizedIdToDelete) || normalizedIdToDelete.includes(normalizedRowId)) {
-          foundRow = i + 1;
-          matchStrategy = 'partial ID match';
+          matchStrategy = 'exact slug match';
           Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
           break;
         }
       }
       
-      // Strategy 2: Fallback to first column if ID column not found
-      if (foundRow < 0 && idColumnIndex < 0) {
-        const rowId = String(row[0] || '').trim();
+      // Strategy 2: Fallback to ID column for backward compatibility
+      if (foundRow < 0 && idColumnIndex >= 0) {
+        const rowId = String(row[idColumnIndex] || '').trim();
         const normalizedRowId = normalizeIdForComparison(rowId);
+        const normalizedSlug = normalizeSlugForComparison(slugToDelete);
         
-        if (rowId === idToDelete || normalizedRowId === normalizedIdToDelete ||
-            rowId.includes(idToDelete) || idToDelete.includes(rowId)) {
+        // Try exact match
+        if (rowId === slugToDelete || normalizedRowId === normalizedSlug) {
+          foundRow = i + 1;
+          matchStrategy = 'exact ID match (backward compatibility)';
+          Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
+          break;
+        }
+        
+        // Try partial match for backward compatibility
+        if (rowId.includes(slugToDelete) || slugToDelete.includes(rowId) ||
+            normalizedRowId.includes(normalizedSlug) || normalizedSlug.includes(normalizedRowId)) {
+          foundRow = i + 1;
+          matchStrategy = 'partial ID match (backward compatibility)';
+          Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
+          break;
+        }
+      }
+      
+      // Strategy 3: Fallback to first column if neither slug nor id column found
+      if (foundRow < 0 && slugColumnIndex < 0 && idColumnIndex < 0) {
+        const rowValue = String(row[0] || '').trim();
+        const normalizedRowValue = normalizeSlugForComparison(rowValue);
+        
+        if (rowValue === slugToDelete || normalizedRowValue === normalizedSlugToDelete) {
           foundRow = i + 1;
           matchStrategy = 'first column match';
           Logger.log('✅ Found matching listing at row ' + foundRow + ' (strategy: ' + matchStrategy + ')');
@@ -1876,20 +1910,20 @@ function deleteListing(sheet, listingId) {
       Logger.log('✅ Row deleted successfully');
       return { success: true, message: 'Listing deleted successfully' };
     } else {
-      // Provide detailed error message with available IDs
-      const availableIds = [];
-      const idCol = idColumnIndex >= 0 ? idColumnIndex : 0;
+      // Provide detailed error message with available slugs/IDs
+      const availableSlugs = [];
+      const slugCol = slugColumnIndex >= 0 ? slugColumnIndex : (idColumnIndex >= 0 ? idColumnIndex : 0);
       for (let i = 1; i < Math.min(values.length, 21); i++) {
-        const rowId = String(values[i][idCol] || '').trim();
-        if (rowId) {
-          availableIds.push('"' + rowId + '"');
+        const rowSlug = String(values[i][slugCol] || '').trim();
+        if (rowSlug) {
+          availableSlugs.push('"' + rowSlug + '"');
         }
       }
       
-      const errorMsg = 'Listing with id "' + listingId + '" not found in sheet. ' +
-                      'Searched for: "' + idToDelete + '" (normalized: "' + normalizedIdToDelete + '"). ' +
-                      'Available IDs (first 20): ' + availableIds.join(', ') +
-                      (availableIds.length >= 20 ? '... (and more)' : '');
+      const errorMsg = 'Listing with slug "' + listingSlug + '" not found in sheet. ' +
+                      'Searched for: "' + slugToDelete + '" (normalized: "' + normalizedSlugToDelete + '"). ' +
+                      'Available slugs (first 20): ' + availableSlugs.join(', ') +
+                      (availableSlugs.length >= 20 ? '... (and more)' : '');
       
       Logger.log('❌ ' + errorMsg);
       return { success: false, error: errorMsg };

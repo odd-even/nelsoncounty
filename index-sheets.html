@@ -3168,9 +3168,14 @@
                 <div class="form-group">
                     <label>Address *</label>
                     <div class="address-autocomplete-wrapper">
+                        <select id="listingAddressType" style="margin-bottom: 8px; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+                            <option value="full">Full Address</option>
+                            <option value="booking">Full address available on booking site</option>
+                        </select>
                         <input type="text" id="listingAddress" required autocomplete="off" />
                         <div class="address-autocomplete-dropdown" id="addressAutocompleteDropdown"></div>
                     </div>
+                    <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">Select "Full address available on booking site" for Airbnb-type listings that don't show addresses until booking.</small>
                 </div>
 
                 <div class="form-row">
@@ -6132,9 +6137,6 @@ function updateUnsavedChangesBadge() {
                 const card = document.createElement('div');
                 card.className = 'flip-card';
                 // Add data attributes for navigation
-                if (listing.id) {
-                    card.setAttribute('data-id', listing.id.toString());
-                }
                 if (listing.slug) {
                     card.setAttribute('data-slug', listing.slug);
                 }
@@ -6304,7 +6306,10 @@ function updateUnsavedChangesBadge() {
                 cardContent.style.cssText = 'padding: 20px 0px 0px 0px; display: flex; flex-direction: column; flex: 1 1 auto;';
                 
                 // Build contact info HTML with icons
-                const mapUrl = listing.address ? (listing.directionsLink && listing.directionsLink.trim() 
+                // Check if address is the booking site placeholder
+                const bookingSiteText = 'Full address available on booking site';
+                const isBookingSiteAddress = listing.address === bookingSiteText;
+                const mapUrl = (!isBookingSiteAddress && listing.address) ? (listing.directionsLink && listing.directionsLink.trim() 
                     ? listing.directionsLink 
                     : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(listing.address)) : '';
                 
@@ -6595,7 +6600,6 @@ function updateUnsavedChangesBadge() {
                 const searchableText = [
                     listing.name || '',
                     listing.slug || '',
-                    listing.id || '',
                     listing.type || '',
                     listing.category || '',
                     listing.area || '',
@@ -7159,6 +7163,9 @@ function updateUnsavedChangesBadge() {
             document.getElementById('modalTitle').textContent = 'Add New Listing';
             document.getElementById('listingForm').reset();
             document.getElementById('editingId').value = '';
+            // Reset address type dropdown
+            const addressTypeSelect = document.getElementById('listingAddressType');
+            if (addressTypeSelect) addressTypeSelect.value = 'full';
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
@@ -7281,7 +7288,23 @@ function updateUnsavedChangesBadge() {
             if (image3DescInput) image3DescInput.value = listing.image3Desc || '';
             document.getElementById('listingWebsite').value = listing.website;
             document.getElementById('listingPhone').value = listing.phone || '';
-            document.getElementById('listingAddress').value = listing.address || '';
+            // Handle address type dropdown
+            const addressTypeSelect = document.getElementById('listingAddressType');
+            const addressInput = document.getElementById('listingAddress');
+            const bookingSiteText = 'Full address available on booking site';
+            if (listing.address === bookingSiteText) {
+                if (addressTypeSelect) addressTypeSelect.value = 'booking';
+                if (addressInput) {
+                    addressInput.value = '';
+                    addressInput.style.display = 'none';
+                }
+            } else {
+                if (addressTypeSelect) addressTypeSelect.value = 'full';
+                if (addressInput) {
+                    addressInput.value = listing.address || '';
+                    addressInput.style.display = 'block';
+                }
+            }
             const authorNameInput = document.getElementById('listingAuthorName');
             if (authorNameInput) authorNameInput.value = listing.authorName || '';
             const publishedInput = document.getElementById('listingPublishedDate');
@@ -7290,10 +7313,12 @@ function updateUnsavedChangesBadge() {
             if (modifiedInput) modifiedInput.value = listing.modifiedDate || '';
             const directionsInput = document.getElementById('listingDirectionsLink');
             // If directions link is empty but address exists, auto-generate it
+            // Skip if address is the booking site placeholder
+            const bookingSiteText = 'Full address available on booking site';
             if (directionsInput) {
                 if (listing.directionsLink && listing.directionsLink.trim()) {
                     directionsInput.value = listing.directionsLink;
-                } else if (listing.address && listing.address.trim()) {
+                } else if (listing.address && listing.address.trim() && listing.address !== bookingSiteText) {
                     const encodedAddress = encodeURIComponent(listing.address.trim());
                     directionsInput.value = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
                 } else {
@@ -7485,7 +7510,7 @@ function updateUnsavedChangesBadge() {
                     }
                 } else {
                     // No Google Sheets configured - delete locally only
-                    data.listings = data.listings.filter(function(l) { return l.id !== id; });
+                    data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
                     updateSyncStatus(false, '⚠️ Deleted locally only (Google Sheets not configured)');
                     alert('Deleted "' + listing.name + '" (Local only - configure Google Sheets to sync)');
                     
@@ -7496,7 +7521,7 @@ function updateUnsavedChangesBadge() {
                 
             } else {
                 // First click - set confirmation needed
-                deleteConfirmId = id;
+                deleteConfirmId = slug;
                 
                 // Clear any existing timeout
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -7625,7 +7650,13 @@ function updateUnsavedChangesBadge() {
                 image3FileId: image3Field && image3Field.dataset.imagekitFileId ? image3Field.dataset.imagekitFileId : (existingListing && existingListing.image3FileId ? existingListing.image3FileId : undefined),
                 website: getValue('listingWebsite'),
                 phone: getValue('listingPhone'),
-                address: getValue('listingAddress'),
+                address: (() => {
+                    const addressType = document.getElementById('listingAddressType')?.value;
+                    if (addressType === 'booking') {
+                        return 'Full address available on booking site';
+                    }
+                    return getValue('listingAddress');
+                })(),
                 amenities: selectedAmenities,
                 featured: getChecked('listingFeatured'),
                 private: getChecked('listingPrivate'),
@@ -7852,7 +7883,14 @@ function updateUnsavedChangesBadge() {
         
         // Helper function to generate Google Maps URL from address (always reads current value)
         function generateGoogleMapsUrlFromAddress() {
+            const addressTypeSelect = document.getElementById('listingAddressType');
             const addressInputElement = document.getElementById('listingAddress');
+            
+            // Check if "booking site" option is selected
+            if (addressTypeSelect && addressTypeSelect.value === 'booking') {
+                return ''; // Don't generate maps link for booking site addresses
+            }
+            
             if (!addressInputElement) return '';
             
             const address = addressInputElement.value.trim();
@@ -7865,13 +7903,27 @@ function updateUnsavedChangesBadge() {
         // Function to initialize autocomplete when modal opens
         window.initializeAddressAutocomplete = function initializeAddressAutocomplete() {
             const addressInput = document.getElementById('listingAddress');
+            const addressTypeSelect = document.getElementById('listingAddressType');
             const directionsLinkInput = document.getElementById('listingDirectionsLink');
             const dropdown = document.getElementById('addressAutocompleteDropdown');
             
-            if (!addressInput) {
-                console.warn('Address input not found');
+            if (!addressInput || !addressTypeSelect) {
+                console.warn('Address input or type select not found');
                 return;
             }
+            
+            // Handle address type dropdown change
+            addressTypeSelect.addEventListener('change', function() {
+                if (this.value === 'booking') {
+                    addressInput.value = '';
+                    addressInput.style.display = 'none';
+                    addressInput.required = false;
+                    if (directionsLinkInput) directionsLinkInput.value = '';
+                } else {
+                    addressInput.style.display = 'block';
+                    addressInput.required = true;
+                }
+            });
             
             // Set up Nominatim autocomplete
             if (!addressInputHandlersInitialized) {
@@ -11288,8 +11340,8 @@ function updateUnsavedChangesBadge() {
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
                     '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
                     '<td class="cell-actions">' +
-                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.id ? '#dc2626' : '#E3795C') + ';">' +
-                        (deleteConfirmId === listing.id ? 'Confirm?' : 'Delete') +
+                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
+                        (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
                         '</button>' +
                     '</td>';
                 tbody.appendChild(row);
@@ -11503,7 +11555,7 @@ function updateUnsavedChangesBadge() {
             const listing = data.listings[index];
             
             // Check if this is the confirmation click
-            if (deleteConfirmId === listing.id) {
+            if (deleteConfirmId === listing.slug) {
                 // Confirmed - delete it
                 data.listings.splice(index, 1);
                 deleteConfirmId = null;
@@ -11517,7 +11569,7 @@ function updateUnsavedChangesBadge() {
                 alert('Deleted: ' + listing.name);
             } else {
                 // First click - set confirmation needed
-                deleteConfirmId = listing.id;
+                deleteConfirmId = listing.slug;
                 
                 // Clear any existing timeout
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -11551,7 +11603,7 @@ function updateUnsavedChangesBadge() {
                 
                 // Add standard fields first (in preferred order)
                 const standardFields = [
-                    'id', 'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
+                    'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
                     'image1', 'image1Desc', 'image1FileId',
                     'image2', 'image2Desc', 'image2FileId',
                     'image3', 'image3Desc', 'image3FileId',
@@ -11678,8 +11730,8 @@ function updateUnsavedChangesBadge() {
                                         rawRowKeys: Object.keys(row).slice(0, 10)
                                     });
                                 }
-                                if (!listing.name && !listing.id) {
-                                    console.warn('Skipping row', index + 2, '- missing required name/id field', row);
+                                if (!listing.name && !listing.slug) {
+                                    console.warn('Skipping row', index + 2, '- missing required name/slug field', row);
                                     return null;
                                 }
                                 return listing;
@@ -11705,20 +11757,20 @@ function updateUnsavedChangesBadge() {
                                 data = { listings: [], filterOptions: { types: [], areas: [], amenities: [] } };
                             }
                             
-                            // Create a map of existing listings by ID for date preservation
+                            // Create a map of existing listings by slug for date preservation
                             const existingListingsMap = {};
                             if (data.listings && Array.isArray(data.listings)) {
                                 data.listings.forEach(function(existing) {
-                                    if (existing && existing.id) {
-                                        existingListingsMap[existing.id] = existing;
+                                    if (existing && existing.slug) {
+                                        existingListingsMap[existing.slug] = existing;
                                     }
                                 });
                             }
                             
                             data.listings = newListings.map(function(listing) {
                                 // Preserve existing dates if CSV doesn't have them
-                                if (listing.id && existingListingsMap[listing.id]) {
-                                    const existing = existingListingsMap[listing.id];
+                                if (listing.slug && existingListingsMap[listing.slug]) {
+                                    const existing = existingListingsMap[listing.slug];
                                     // Only preserve dates if CSV date is undefined (not provided)
                                     if (listing.publishedDate === undefined && existing.publishedDate) {
                                         listing.publishedDate = existing.publishedDate;

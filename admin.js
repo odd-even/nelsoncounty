@@ -3501,16 +3501,34 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     // Use detailedDescription if available, otherwise fall back to description
                     '<p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 15px; line-height: 1.6; white-space: pre-wrap;">' + (listing.detailedDescription && listing.detailedDescription.trim() ? listing.detailedDescription : listing.description) + '</p>' +
                     amenitiesHTML +
-                    // Address with icon
-                    '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(listing.address) + '" target="_blank" class="card-info-item" style="text-decoration: none; cursor: pointer;" onclick="event.stopPropagation();">' +
-                    '<div class="card-info-icon">' +
-                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
-                    '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />' +
-                    '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />' +
-                    '</svg>' +
-                    '</div>' +
-                    '<div class="card-info-text" style="color: var(--text-secondary);">' + listing.address + '</div>' +
-                    '</a>' +
+                    // Address with icon (check if booking site address)
+                    (() => {
+                        const bookingSiteText = 'Full address available on booking site';
+                        const isBookingSite = listing.address === bookingSiteText;
+                        if (isBookingSite) {
+                            // Show as non-clickable text
+                            return '<div class="card-info-item" onclick="event.stopPropagation();">' +
+                                '<div class="card-info-icon">' +
+                                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+                                '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />' +
+                                '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />' +
+                                '</svg>' +
+                                '</div>' +
+                                '<div class="card-info-text" style="color: var(--text-secondary);">' + listing.address + '</div>' +
+                                '</div>';
+                        } else {
+                            // Show as clickable map link
+                            return '<a href="https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(listing.address) + '" target="_blank" class="card-info-item" style="text-decoration: none; cursor: pointer;" onclick="event.stopPropagation();">' +
+                                '<div class="card-info-icon">' +
+                                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+                                '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />' +
+                                '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />' +
+                                '</svg>' +
+                                '</div>' +
+                                '<div class="card-info-text" style="color: var(--text-secondary);">' + listing.address + '</div>' +
+                                '</a>';
+                        }
+                    })() +
                     // Phone with icon
                     (listing.phone ? 
                     '<a href="tel:' + listing.phone.replace(/[^0-9+]/g, '') + '" class="card-info-item" style="text-decoration: none; cursor: pointer;" onclick="event.stopPropagation();">' +
@@ -3532,14 +3550,26 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<div class="card-info-text" style="color: var(--text-secondary);">' + listing.website + '</div>' +
                     '</a>' : '') +
                     // Directions button (use directionsLink if available, otherwise generate Google Maps URL)
-                    '<div style="margin-top: auto; padding-top: 15px;">' +
-                    '<a href="' + (listing.directionsLink && listing.directionsLink.trim() ? listing.directionsLink : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(listing.address)) + '" target="_blank" style="width: 100%; background: #E3795C; color: white; padding: 12px; text-align: center; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="event.stopPropagation();">' +
-                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">' +
-                    '<path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />' +
-                    '</svg>' +
-                    'Open Map' +
-                    '</a>' +
-                    '</div>';
+                    // Hide if address is booking site placeholder
+                    (() => {
+                        const bookingSiteText = 'Full address available on booking site';
+                        const isBookingSite = listing.address === bookingSiteText;
+                        if (isBookingSite) {
+                            return ''; // Don't show directions button for booking site addresses
+                        }
+                        const mapUrl = listing.directionsLink && listing.directionsLink.trim() 
+                            ? listing.directionsLink 
+                            : (listing.address ? 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(listing.address) : '');
+                        if (!mapUrl) return '';
+                        return '<div style="margin-top: auto; padding-top: 15px;">' +
+                            '<a href="' + mapUrl + '" target="_blank" style="width: 100%; background: #E3795C; color: white; padding: 12px; text-align: center; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 6px;" onclick="event.stopPropagation();">' +
+                            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;">' +
+                            '<path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />' +
+                            '</svg>' +
+                            'Open Map' +
+                            '</a>' +
+                            '</div>';
+                    })();
                 
                 inner.appendChild(front);
                 inner.appendChild(back);
@@ -3942,8 +3972,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         const newListings = parsed.dataRows
                             .map(function(row, index) {
                                 const listing = mapCSVRowToListing(row);
-                                if (!listing.name && !listing.id) {
-                                    console.warn('Skipping row', index + 2, '- missing required name/id field', row);
+                                if (!listing.name && !listing.slug) {
+                                    console.warn('Skipping row', index + 2, '- missing required name/slug field', row);
                                     return null;
                                 }
                                 return listing;

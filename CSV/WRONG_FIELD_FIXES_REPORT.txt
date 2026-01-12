@@ -1,0 +1,216 @@
+================================================================================
+WRONG FIELD DATA FIXES REPORT
+================================================================================
+
+Date: 2026-01-12 15:50:30
+Total listings processed: 407
+Listings fixed: 27
+Total changes made: 30
+
+IMPORTANT: All slugs were preserved exactly as they were.
+
+================================================================================
+DETAILED CHANGES
+================================================================================
+
+Nelson County Wilderness Area (nelson-county-wilderness-area)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://www.wilderness.net/NWPS/wildView?WID=601
+
+Shamokin Springs Nature Preserve (shamokin-springs-nature-preserve)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.tnfw.org/trilliumhouse
+
+Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.kidsinparks.com/virginia-blue-ridge-railway-trail
+
+Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://www.kidsinparks.com/
+
+El Mariachi Mexican Food (el-mariachi-mexican-food)
+--------------------------------------------------------------------------------
+  Field: detailedDescription
+    Reason: Moved from description (too long)
+    Old: 
+    New: El Mariachi Mexican Food serves classic Mexican dishes in Lovingston with weekday and weekend hours extending to 10 pm and gift certificates available
+  Field: description
+    Reason: Truncated (moved full text to detailedDescription)
+    Old: El Mariachi Mexican Food serves classic Mexican dishes in Lovingston with weekday and weekend hours extending to 10 pm and gift certificates available
+    New: El Mariachi Mexican Food serves classic Mexican dishes in Lovingston with weekday and weekend hours extending to 10 pm and gift certificates available
+
+The Copper Mine Bistro (the-copper-mine-bistro)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.wintergreenresort.com/the-wintergreen-weekly/
+
+The Edge (the-edge)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.wintergreenresort.com/the-wintergreen-weekly/
+
+Tennis (tennis)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.tennis.com/
+
+Outback Brew House (outback-brew-house)
+--------------------------------------------------------------------------------
+  Field: detailedDescription
+    Reason: Moved from description (too long)
+    Old: 
+    New: Nano-brewery taproom in Lovingston pouring house recipes with plans for expanded outdoor seating, live music, and an onsite food truck. Outback Brew H
+  Field: description
+    Reason: Truncated (moved full text to detailedDescription)
+    Old: Nano-brewery taproom in Lovingston pouring house recipes with plans for expanded outdoor seating, live music, and an onsite food truck. Outback Brew H
+    New: Nano-brewery taproom in Lovingston pouring house recipes with plans for expanded outdoor seating, live music, and an onsite food truck. Outback Brew H
+
+Wood Ridge Farm Brewery (wood-ridge-farm-brewery)
+--------------------------------------------------------------------------------
+  Field: detailedDescription
+    Reason: Moved from description (too long)
+    Old: 
+    New: Estate farm brewery malting its own grains for 'dirt-to-glass' beers served with panoramic views of the Lovingston countryside. Wood Ridge Farm Brewer
+  Field: description
+    Reason: Truncated (moved full text to detailedDescription)
+    Old: Estate farm brewery malting its own grains for 'dirt-to-glass' beers served with panoramic views of the Lovingston countryside. Wood Ridge Farm Brewer
+    New: Estate farm brewery malting its own grains for 'dirt-to-glass' beers served with panoramic views of the Lovingston countryside. Wood Ridge Farm Brewer
+
+Blue Ridge Parkway Loops (blue-ridge-parkway-loops)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://www.vacabins.com/
+
+Oak Ridge Loop (oak-ridge-loop)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.oakridgeestate.com/
+
+Woodson's Mill Loop (woodsons-mill-loop)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.woodsonsmill.com/
+
+Walton's Mountain Museum Loop (waltons-mountain-museum-loop)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://walton-mountain.org/
+
+Nelson Scenic Loop (nelson-scenic-loop)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.nelsonscenicloop.com/
+
+Robinia Institute (robinia-institute)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://wildtimshel.com/
+
+Fishing the James River (fishing-the-james-river)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.dcr.virginia.gov/state-parks/james-river
+
+Fishing the Little Piney River (fishing-the-little-piney-river)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.dgif.virginia.gov/
+
+Fishing the South Rockfish River (fishing-the-south-rockfish-river)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.dgif.virginia.gov/fishing/trout-stocking-schedule/
+
+Fishing at Lake Monocan Park (fishing-at-lake-monacan-park)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://www.wintergreenresort.com/lake-monocan/
+
+Fishing at Lake Nelson (fishing-at-lake-nelson)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.dgif.virginia.gov/waterbody/lake-nelson/
+
+Wintergreen Resort Fishing (wintergreen-resort-fishing)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: http://www.wintergreenresort.com/
+
+Devils Knob Golf Course (devils-knob-golf-course)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.wintergreenresort.com/devils-knob/
+
+Stoney Creek Golf Course (stoney-creek-golf-course)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.wintergreenresort.com/Stoney-Creek/
+
+Spruce Creek Park (spruce-creek-park)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.rockfishvalley.org/blog/spruce-creek-park/
+
+Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.rockfishvalley.org/blog/spruce-creek-park/
+
+Nelson 151 (nelson-151)
+--------------------------------------------------------------------------------
+  Field: website
+    Reason: Extracted from description
+    Old: 
+    New: https://www.nelson151.com/
+
