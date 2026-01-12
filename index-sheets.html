@@ -2812,11 +2812,15 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <div id="listingsCount" style="font-size: 14px; color: var(--text-secondary); font-weight: 500;"></div>
                         <select id="adminSortDropdown" onchange="sortAdminListings()" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--bg-primary); color: var(--text-primary); font-size: 14px; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                            <option value="default" selected style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Area → Type → Name</option>
-                            <option value="name-asc" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Name (A-Z)</option>
-                            <option value="name-desc" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Name (Z-A)</option>
-                            <option value="area-asc" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Area (A-Z)</option>
-                            <option value="type-asc" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">Type (A-Z)</option>
+                            <option value="default" selected>Default (Area → Type → Name)</option>
+                            <option value="name-asc">Name (A-Z)</option>
+                            <option value="name-desc">Name (Z-A)</option>
+                            <option value="area-asc">Area (A-Z)</option>
+                            <option value="type-asc">Type (A-Z)</option>
+                            <option value="publishedDate-desc">Published Date (Newest First)</option>
+                            <option value="publishedDate-asc">Published Date (Oldest First)</option>
+                            <option value="modifiedDate-desc">Modified Date (Newest First)</option>
+                            <option value="modifiedDate-asc">Modified Date (Oldest First)</option>
                         </select>
                     </div>
                     <div id="listingsGrid" class="listings-grid"></div>
@@ -6070,6 +6074,62 @@ function updateUnsavedChangesBadge() {
                         return aArea.localeCompare(bArea);
                     case 'type-asc':
                         return aType.localeCompare(bType);
+                    case 'publishedDate-asc':
+                        // Sort by published date (oldest first)
+                        const parseDate = function(dateStr) {
+                            if (!dateStr) return 0;
+                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                            if (dateMatch) {
+                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                            }
+                            const parsed = new Date(dateStr);
+                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                        };
+                        const aPubDate = parseDate(a.publishedDate);
+                        const bPubDate = parseDate(b.publishedDate);
+                        return aPubDate - bPubDate;
+                    case 'publishedDate-desc':
+                        // Sort by published date (newest first)
+                        const parseDateDesc = function(dateStr) {
+                            if (!dateStr) return 0;
+                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                            if (dateMatch) {
+                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                            }
+                            const parsed = new Date(dateStr);
+                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                        };
+                        const aPubDateDesc = parseDateDesc(a.publishedDate);
+                        const bPubDateDesc = parseDateDesc(b.publishedDate);
+                        return bPubDateDesc - aPubDateDesc;
+                    case 'modifiedDate-asc':
+                        // Sort by modified date (oldest first)
+                        const parseModDate = function(dateStr) {
+                            if (!dateStr) return 0;
+                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                            if (dateMatch) {
+                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                            }
+                            const parsed = new Date(dateStr);
+                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                        };
+                        const aModDate = parseModDate(a.modifiedDate);
+                        const bModDate = parseModDate(b.modifiedDate);
+                        return aModDate - bModDate;
+                    case 'modifiedDate-desc':
+                        // Sort by modified date (newest first)
+                        const parseModDateDesc = function(dateStr) {
+                            if (!dateStr) return 0;
+                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                            if (dateMatch) {
+                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                            }
+                            const parsed = new Date(dateStr);
+                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                        };
+                        const aModDateDesc = parseModDateDesc(a.modifiedDate);
+                        const bModDateDesc = parseModDateDesc(b.modifiedDate);
+                        return bModDateDesc - aModDateDesc;
                     default:
                         // Fallback to default sort: Area → Type → Name
                         const areaCompareDefault = aArea.localeCompare(bArea);
@@ -11133,6 +11193,21 @@ function updateUnsavedChangesBadge() {
                 } else if (tableSortField === 'amenities') {
                     aValue = Array.isArray(aValue) ? aValue.join(', ') : '';
                     bValue = Array.isArray(bValue) ? bValue.join(', ') : '';
+                } else if (tableSortField === 'publishedDate' || tableSortField === 'modifiedDate') {
+                    // Parse dates for proper sorting
+                    const parseDate = function(dateStr) {
+                        if (!dateStr) return 0;
+                        // Try to parse YYYY-MM-DD format
+                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                        if (dateMatch) {
+                            return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                        }
+                        // Try to parse as Date object
+                        const parsed = new Date(dateStr);
+                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                    };
+                    aValue = parseDate(aValue);
+                    bValue = parseDate(bValue);
                 } else {
                     aValue = (aValue || '').toString().toLowerCase();
                     bValue = (bValue || '').toString().toLowerCase();
