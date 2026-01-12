@@ -7314,7 +7314,7 @@ function updateUnsavedChangesBadge() {
             const directionsInput = document.getElementById('listingDirectionsLink');
             // If directions link is empty but address exists, auto-generate it
             // Skip if address is the booking site placeholder
-            const bookingSiteText = 'Full address available on booking site';
+            // (bookingSiteText already declared above)
             if (directionsInput) {
                 if (listing.directionsLink && listing.directionsLink.trim()) {
                     directionsInput.value = listing.directionsLink;
