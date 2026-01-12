@@ -1572,7 +1572,6 @@ function saveListing(sheet, listing) {
 }
 
 const CANONICAL_LISTING_HEADERS = [
-  'id',
   'name',
   'slug',
   'type',

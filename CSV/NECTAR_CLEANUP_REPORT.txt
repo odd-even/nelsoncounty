@@ -1,0 +1,1768 @@
+======================================================================
+NECTAR FORMATTING CLEANUP REPORT
+======================================================================
+
+Total listings cleaned: 211
+Date: 2026-01-12 11:30:57
+
+LISTINGS CLEANED:
+----------------------------------------------------------------------
+
+4. The Plunge
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.2  
+Blaze Color: Yellow  
+Difficulty Level: Moderate (if you take your time)  
+
+Directions: <a href=https://goo.gl/maps/1p9jDyMyTjJqYpvo6 target=_blank rel=noopener noreferrer>Google Maps</a>...
+   After:  Miles: 0.2
+Blaze Color: Yellow
+Difficulty Level: Moderate (if you take your time)
+
+Directions: <a href=https://goo.gl/maps/1p9jDyMyTjJqYpvo6 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+One ...
+
+6. Old Appalachian Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 3.3  
+Blaze Color: Red-Yellow  
+Difficulty Level: Moderate to Difficult  
+
+Directions: <a href=https://goo.gl/maps/ANsHVLfkx6f3PNAaA target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+Thi...
+   After:  Miles: 3.3
+Blaze Color: Red-Yellow
+Difficulty Level: Moderate to Difficult
+
+Directions: <a href=https://goo.gl/maps/ANsHVLfkx6f3PNAaA target=_blank rel=noopener noreferrer>Google Maps</a>
+
+This trail ...
+
+8. Blue Ridge Tunnel
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Blue Ridge Tunnel, constructed between 1850 and 1858 beneath Rockfish Gap in the Blue Ridge Mountains of central Virginia, offers a unique experience for visitors. CSX Transportation generously do...
+   After:  The Blue Ridge Tunnel, constructed between 1850 and 1858 beneath Rockfish Gap in the Blue Ridge Mountains of central Virginia, offers a unique experience for visitors. CSX Transportation generously do...
+
+10. Lower Shamokin Falls Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 1.7  
+Blaze Color: Blue  
+Difficulty Level: Moderate  
+
+Perhaps the longest destination hike on the property, the Lower Shamokin Falls Trail begins on a jeep trail and meanders through dense fo...
+   After:  Miles: 1.7
+Blaze Color: Blue
+Difficulty Level: Moderate
+
+Perhaps the longest destination hike on the property, the Lower Shamokin Falls Trail begins on a jeep trail and meanders through dense forest c...
+
+11. Brimstone Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.8  
+Blaze Color: Red  
+Difficulty Level: Difficult  
+
+The steep and rocky cliffs provide incredible views of Three Ridges Mountain and points to the southwest. The trail meanders below the Pl...
+   After:  Miles: 0.8
+Blaze Color: Red
+Difficulty Level: Difficult
+
+The steep and rocky cliffs provide incredible views of Three Ridges Mountain and points to the southwest. The trail meanders below the Plunge a...
+
+13. Skiing & Snowboarding
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Skiing & Snowboarding 
+
+Twice named “Best Ski Resort” by the readers of WashingtonPost.com, Wintergreen Resort boasts the most thrilling winter playground in the Mid-Atlantic. Its snow-covered ameniti...
+   After:  Skiing & Snowboarding
+
+Twice named “Best Ski Resort” by the readers of WashingtonPost.com, Wintergreen Resort boasts the most thrilling winter playground in the Mid-Atlantic. Its snow-covered amenitie...
+
+14. Chestnut Springs Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 1.1  
+Blaze Color: Yellow-Red  
+Difficulty Level: Moderate  
+Directions: <a href=https://goo.gl/maps/fpNe9zxvjvkMc2Ks9 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+The north end of ...
+   After:  Miles: 1.1
+Blaze Color: Yellow-Red
+Difficulty Level: Moderate
+Directions: <a href=https://goo.gl/maps/fpNe9zxvjvkMc2Ks9 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+The north end of the Ches...
+
+15. Soaring
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Soaring is a vibrant group of 50+ members who enjoy soaring over the Blue Ridge Mountains in both classic and state-of-the-art gliders, harnessing the power of nature to sustain our flights. We always...
+   After:  Soaring is a vibrant group of 50+ members who enjoy soaring over the Blue Ridge Mountains in both classic and state-of-the-art gliders, harnessing the power of nature to sustain our flights. We always...
+
+16. Upper Shamokin Gorge Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.8  
+Blaze Color: Red  
+Difficulty Level: Difficult  
+
+Directions: <a href=https://goo.gl/maps/worqnjvdmccjF1MJ9 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+One of the more beauti...
+   After:  Miles: 0.8
+Blaze Color: Red
+Difficulty Level: Difficult
+
+Directions: <a href=https://goo.gl/maps/worqnjvdmccjF1MJ9 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+One of the more beautiful and ...
+
+19. Trillium Field
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.1  
+Blaze Color: Yellow  
+Difficulty Level: Easy  
+
+In early May, the bloom from thousands of trillium blankets the forest floor with white and pink. The Trillium Field provides habitat for w...
+   After:  Miles: 0.1
+Blaze Color: Yellow
+Difficulty Level: Easy
+
+In early May, the bloom from thousands of trillium blankets the forest floor with white and pink. The Trillium Field provides habitat for wildflo...
+
+21. Three Ridges
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 13.3  
+Blaze Color: Red  
+Difficulty Level: Difficult  
+
+For a very long and rugged trail near Wintergreen, check out Three Ridges Trail. It is a 13.3-mile heavily trafficked loop that some hik...
+   After:  Miles: 13.3
+Blaze Color: Red
+Difficulty Level: Difficult
+
+For a very long and rugged trail near Wintergreen, check out Three Ridges Trail. It is a 13.3-mile heavily trafficked loop that some hikers ta...
+
+24. Cedar Ciffs North Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.7  
+Blaze Color: Red  
+Difficulty Level: Moderate to Difficult  
+Directions: <a href=https://goo.gl/maps/7WU3boDV7oaX85P79 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+Cedar Cliff...
+   After:  Miles: 0.7
+Blaze Color: Red
+Difficulty Level: Moderate to Difficult
+Directions: <a href=https://goo.gl/maps/7WU3boDV7oaX85P79 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+Cedar Cliffs North ...
+
+27. Hemlock Springs Loop
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.8  
+Blaze Color: Yellow-Red  
+Difficulty Level: Moderate to Difficult  
+
+Directions: <a href=https://goo.gl/maps/worqnjvdmccjF1MJ9 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+Thi...
+   After:  Miles: 0.8
+Blaze Color: Yellow-Red
+Difficulty Level: Moderate to Difficult
+
+Directions: <a href=https://goo.gl/maps/worqnjvdmccjF1MJ9 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+This trail ...
+
+28. Nelson County Wilderness Area
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: <a href=http://www.wilderness.net/NWPS/wildView?WID=601 target=_blank rel=noopener noreferrer>The Wilderness</a> designation provides permanent protection for the two areas in their natural state. <a ...
+   After:  <a href=http://www.wilderness.net/NWPS/wildView?WID=601 target=_blank rel=noopener noreferrer>The Wilderness</a> designation provides permanent protection for the two areas in their natural state. <a ...
+
+29. Blackrock Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.8  
+Blaze Color: Red  
+Difficulty Level: Difficult  
+
+Blackrock Trail is located on a south-facing slope, which promotes the dry, thin soils along the Pedlar gneiss rock formations. Mountain ...
+   After:  Miles: 0.8
+Blaze Color: Red
+Difficulty Level: Difficult
+
+Blackrock Trail is located on a south-facing slope, which promotes the dry, thin soils along the Pedlar gneiss rock formations. Mountain laurel...
+
+30. Shamokin Springs Nature Preserve
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.3  
+Blaze Color: Yellow  
+Difficulty Level: Easy  
+
+This nature preserve, located in the heart of Wintergreen’s community, is one of the most unique environments on the mountain. The high ele...
+   After:  Miles: 0.3
+Blaze Color: Yellow
+Difficulty Level: Easy
+
+This nature preserve, located in the heart of Wintergreen’s community, is one of the most unique environments on the mountain. The high elevation...
+
+31. Upper Shamokin Falls Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.4  
+Blaze Color: Yellow  
+Difficulty Level: Easy  
+
+Directions: <a href=https://goo.gl/maps/7nf9BFjD9zG5dzJS7 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+One of the most popular ...
+   After:  Miles: 0.4
+Blaze Color: Yellow
+Difficulty Level: Easy
+
+Directions: <a href=https://goo.gl/maps/7nf9BFjD9zG5dzJS7 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+One of the most popular and beau...
+
+32. Fortune's Ridge Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 1.1  
+Blaze Color: Red  
+Difficulty Level: Moderate to Difficult  
+
+Fortune's Ridge Trail follows a cold mountain stream over cascading rock formations. This scenic hike offers a blend of natur...
+   After:  Miles: 1.1
+Blaze Color: Red
+Difficulty Level: Moderate to Difficult
+
+Fortune's Ridge Trail follows a cold mountain stream over cascading rock formations. This scenic hike offers a blend of natural bea...
+
+34. Allen Creek Nature Preserve
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.7  
+Blaze Color: Yellow  
+Difficulty Level: EASY
+
+This nature preserve, located in the heart of Wintergreen’s community, is one of the most unique environments on the mountain. Enjoy a serene...
+   After:  Miles: 0.7
+Blaze Color: Yellow
+Difficulty Level: EASY
+
+This nature preserve, located in the heart of Wintergreen’s community, is one of the most unique environments on the mountain. Enjoy a serene hik...
+
+35. Kids in Parks: Virginia Blue Ridge Railway Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This Blue Ridge Parkway Foundation program helps get kids and families “un-plugged,” outdoors, and actively engaged in nature for their health and the health of our parks. Each <a href=https://www.kid...
+   After:  This Blue Ridge Parkway Foundation program helps get kids and families “un-plugged,” outdoors, and actively engaged in nature for their health and the health of our parks. Each <a href=https://www.kid...
+
+36. Kids in Parks: Rockfish River Trailhead
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Rockfish Valley <a href=http://www.kidsinparks.com/ target=_blank rel=noopener noreferrer>Kids in Parks Track Trail</a> is located at the scenic Rockfish River Trailhead, nestled within the beauti...
+   After:  The Rockfish Valley <a href=http://www.kidsinparks.com/ target=_blank rel=noopener noreferrer>Kids in Parks Track Trail</a> is located at the scenic Rockfish River Trailhead, nestled within the beauti...
+
+37. Trager Brothers Coffee 1.0
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: TBC is a family-owned and operated, small-batch coffee roastery that is completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulo...
+   After:  TBC is a family-owned and operated, small-batch coffee roastery that is completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulo...
+
+38. Trager Brothers Coffee 2.0
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: TBC is a family-owned and operated, small-batch coffee roastery that is completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulo...
+   After:  TBC is a family-owned and operated, small-batch coffee roastery that is completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulo...
+
+48. Indian Oven
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: Embark on a culinary journey through India at Indian Oven, where authentic dishes are prepared with the freshest ingredients and meticulous attention to detail. From fiery curries to coconut-infused d...
+   After:  Embark on a culinary journey through India at Indian Oven, where authentic dishes are prepared with the freshest ingredients and meticulous attention to detail. From fiery curries to coconut-infused d...
+
+49. Mac's Country Store
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: Serving breakfast, lunch, and dinner, Mac's Country Store offers daily specials for both eat-in and take-out. Our famous fried chicken is renowned as the best around, and we also feature a selection o...
+   After:  Serving breakfast, lunch, and dinner, Mac's Country Store offers daily specials for both eat-in and take-out. Our famous fried chicken is renowned as the best around, and we also feature a selection o...
+
+51. The Market at Wintergreen
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: The Market at Wintergreen offers a convenient shopping experience with a variety of groceries, deli items, and gas services. You can also find Wintergreen sweatshirts and tee shirts to take home as a ...
+   After:  The Market at Wintergreen offers a convenient shopping experience with a variety of groceries, deli items, and gas services. You can also find Wintergreen sweatshirts and tee shirts to take home as a ...
+
+52. Williams Grocery
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: Williams Grocery is your go-to destination for all your grocery needs and fuel. We proudly feature local honey, fishing supplies, and bait, making it easy for you to stock up on essentials while enjoy...
+   After:  Williams Grocery is your go-to destination for all your grocery needs and fuel. We proudly feature local honey, fishing supplies, and bait, making it easy for you to stock up on essentials while enjoy...
+
+54. Basic Necessities
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Basic Necessities is an off-beat café, wine, and cheese shop nestled in the Rockfish Valley of the Blue Ridge Mountains near Nellysford, Virginia. Since 1997, it has been offering what many call “a ta...
+   After:  Basic Necessities is an off-beat café, wine, and cheese shop nestled in the Rockfish Valley of the Blue Ridge Mountains near Nellysford, Virginia. Since 1997, it has been offering what many call “a ta...
+
+55. Blue Mountain Brewery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our full-service restaurant features appetizers, salads, sandwiches, burgers, specialty pizzas, and desserts made from scratch using the highest quality ingredients we can find. We offer 8-10 Blue Mou...
+   After:  Our full-service restaurant features appetizers, salads, sandwiches, burgers, specialty pizzas, and desserts made from scratch using the highest quality ingredients we can find. We offer 8-10 Blue Mou...
+
+56. Blue Ridge Pig
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Whether it be the classic Pork Barbeque with slaw or the Turkey Croissant with the works (lettuce, tomato, cheddar cheese, mayo, and our special dill sauce), this quaint establishment will always keep...
+   After:  Whether it be the classic Pork Barbeque with slaw or the Turkey Croissant with the works (lettuce, tomato, cheddar cheese, mayo, and our special dill sauce), this quaint establishment will always keep...
+
+57. Bold Kitchen at Bold Rock
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Bold Kitchen at Bold Rock is a local restaurant serving a variety of dishes in a welcoming atmosphere. Guests can enjoy a diverse menu that caters to different tastes, making it an ideal spot for gath...
+   After:  Bold Kitchen at Bold Rock is a local restaurant serving a variety of dishes in a welcoming atmosphere. Guests can enjoy a diverse menu that caters to different tastes, making it an ideal spot for gath...
+
+63. Fire & Frost Wood Fired Bakehouse
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Fire & Frost Wood Fired Bakehouse offers a unique dining experience centered around the art of wood-fired cooking. Our menu features a delightful selection of artisanal pizzas, freshly baked breads, a...
+   After:  Fire & Frost Wood Fired Bakehouse offers a unique dining experience centered around the art of wood-fired cooking. Our menu features a delightful selection of artisanal pizzas, freshly baked breads, a...
+
+65. McDonald's
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Open 7 days a week from 6 am to 11 pm, with extended hours until midnight on Friday and Saturday nights. 
+
+Visit us on Highway 29 in Lovingston for a delicious meal and a welcoming atmosphere. Enjoy a...
+   After:  Open 7 days a week from 6 am to 11 pm, with extended hours until midnight on Friday and Saturday nights.
+
+Visit us on Highway 29 in Lovingston for a delicious meal and a welcoming atmosphere. Enjoy a ...
+
+66. Montebello Country Store & Cafe
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: A family operation for five generations, Montebello Country Store & Cafe is an interesting place to explore—just think “Country Store.” We offer a unique collection of toys for children, McCutcheon’s ...
+   After:  A family operation for five generations, Montebello Country Store & Cafe is an interesting place to explore—just think “Country Store.” We offer a unique collection of toys for children, McCutcheon’s ...
+
+67. Paulie's Pig Out
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Paulie's Pig Out is a barbecue restaurant specializing in delicious pork and chicken dishes. Our menu features mouthwatering sides such as mac n’ cheese, beans, potato salad, and cheesy garlic potatoe...
+   After:  Paulie's Pig Out is a barbecue restaurant specializing in delicious pork and chicken dishes. Our menu features mouthwatering sides such as mac n’ cheese, beans, potato salad, and cheesy garlic potatoe...
+
+69. The Copper Mine Bistro
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Located in the heart of the mountain’s Blackrock Village, The Copper Mine Bistro serves a traditional breakfast in the morning and an innovative Mediterranean menu at dinner. During the winter, the Bi...
+   After:  Located in the heart of the mountain’s Blackrock Village, The Copper Mine Bistro serves a traditional breakfast in the morning and an innovative Mediterranean menu at dinner. During the winter, the Bi...
+
+71. The Farmhouse at Veritas
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Surrounded by the Blue Ridge Mountains and located in the heart of Virginia wine country, The Farmhouse at Veritas was named one of the Top 10 Best Wine Travel Destinations in 2012 by Wine Enthusiast ...
+   After:  Surrounded by the Blue Ridge Mountains and located in the heart of Virginia wine country, The Farmhouse at Veritas was named one of the Top 10 Best Wine Travel Destinations in 2012 by Wine Enthusiast ...
+
+73. Black Bear Creamery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Black Bear Creamery is a local ice cream shop specializing in homemade ice cream, milkshakes, and sundaes. 
+
+Indulge in a variety of delicious flavors and treat yourself to a delightful experience tha...
+   After:  Black Bear Creamery is a local ice cream shop specializing in homemade ice cream, milkshakes, and sundaes.
+
+Indulge in a variety of delicious flavors and treat yourself to a delightful experience that...
+
+76. Blue Toad Hard Cider
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Born in a barn, Blue Toad Cider honors the tradition and legacy of America’s first preferred beverage by brewing an all-natural and eminently drinkable hard cider using locally grown apples in Western...
+   After:  Born in a barn, Blue Toad Cider honors the tradition and legacy of America’s first preferred beverage by brewing an all-natural and eminently drinkable hard cider using locally grown apples in Western...
+
+77. Bold Rock Hard Cider
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our cidery in the heart of the Blue Ridge Mountains is open daily for tours, tastings, and hard cider to go. 
+
+Join us to experience the unique flavors of our craft ciders, made with fresh, local ingr...
+   After:  Our cidery in the heart of the Blue Ridge Mountains is open daily for tours, tastings, and hard cider to go.
+
+Join us to experience the unique flavors of our craft ciders, made with fresh, local ingre...
+
+78. Brewing Tree Beer Company
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Brewing Tree Beer Company was founded in 2018 by the husband and wife team of Mark and Gina Thompson. Their passion for crafting unique and flavorful beers has driven the company to create a diverse r...
+   After:  Brewing Tree Beer Company was founded in 2018 by the husband and wife team of Mark and Gina Thompson. Their passion for crafting unique and flavorful beers has driven the company to create a diverse r...
+
+80. Devils Backbone Brewing Company
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Years ago, our founders, Steve and Heidi Crandall, were on a ski trip in the Alps when they tried their first craft beer, a German Weisse at a brewpub. This experience ignited their passion for craft ...
+   After:  Years ago, our founders, Steve and Heidi Crandall, were on a ski trip in the Alps when they tried their first craft beer, a German Weisse at a brewpub. This experience ignited their passion for craft ...
+
+82. Three Notch'd Brewery, Distillery & Craft Kitchen
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Located off the historic Highway 151, our Nelson County location houses our Brewery, Distillery, and Craft Kitchen. 
+
+Join us to experience a unique blend of handcrafted beers, artisanal spirits, and ...
+   After:  Located off the historic Highway 151, our Nelson County location houses our Brewery, Distillery, and Craft Kitchen.
+
+Join us to experience a unique blend of handcrafted beers, artisanal spirits, and d...
+
+85. Devils Backbone Distilling Co.
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Devils Backbone Distilling Co. is dedicated to crafting high-quality spirits that reflect the unique character of the Virginia landscape. With a commitment to using locally sourced ingredients, our di...
+   After:  Devils Backbone Distilling Co. is dedicated to crafting high-quality spirits that reflect the unique character of the Virginia landscape. With a commitment to using locally sourced ingredients, our di...
+
+87. Virginia Distillery Co.
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our American single malt whisky is crafted in the heart of Virginia’s Blue Ridge Mountains, showcasing both New and Old World whisky-making. 
+
+Experience the unique flavors and craftsmanship that defi...
+   After:  Our American single malt whisky is crafted in the heart of Virginia’s Blue Ridge Mountains, showcasing both New and Old World whisky-making.
+
+Experience the unique flavors and craftsmanship that defin...
+
+88. Montebello Fish Hatchery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Montebello Fish Hatchery hosts numerous visitors and school group tours throughout the year. In addition to trout, there is a nature trail and pollinator plots located on the property. 
+
+Nearby attrac...
+   After:  Montebello Fish Hatchery hosts numerous visitors and school group tours throughout the year. In addition to trout, there is a nature trail and pollinator plots located on the property.
+
+Nearby attract...
+
+89. One Forest
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Forest Farm – One Forest is a forest farm and woodland activity space where people from all walks of life can gather to play, experience, and learn from nature. In our forest, we host a wide variety o...
+   After:  Forest Farm – One Forest is a forest farm and woodland activity space where people from all walks of life can gather to play, experience, and learn from nature. In our forest, we host a wide variety o...
+
+91. Swannanoa
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Swannanoa was built in 1911 by Major James H. Dooley atop the Blue Ridge at Afton Mountain. It is an Italianate marble villa with commanding views of the Shenandoah and Rockfish Valleys. Extensive ter...
+   After:  Swannanoa was built in 1911 by Major James H. Dooley atop the Blue Ridge at Afton Mountain. It is an Italianate marble villa with commanding views of the Shenandoah and Rockfish Valleys. Extensive ter...
+
+92. Blue Ridge Fruit Loop
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: From May until December, taste and tour the places that grow the freshest fruits and berries in Nelson and Amherst counties. Select from a wide variety of apples, Asian pears, blackberries, blueberrie...
+   After:  From May until December, taste and tour the places that grow the freshest fruits and berries in Nelson and Amherst counties. Select from a wide variety of apples, Asian pears, blackberries, blueberrie...
+
+93. Blue Ridge Parkway Loops
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Enjoy breathtaking views from several scenic overlooks along the Blue Ridge Parkway. 
+
+The 22-mile ride begins at <a href=http://www.vacabins.com/ target=_blank rel=noopener noreferrer>Royal Oaks Cabi...
+   After:  Enjoy breathtaking views from several scenic overlooks along the Blue Ridge Parkway.
+
+The 22-mile ride begins at <a href=http://www.vacabins.com/ target=_blank rel=noopener noreferrer>Royal Oaks Cabin...
+
+94. Oak Ridge Loop
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Oak Ridge Loop is a 29-mile biking route that begins at the parking area on Route 650 (sharp curve). From there, turn left onto Route 56, keeping an eye on traffic. Continue for 1.5 miles, then tu...
+   After:  The Oak Ridge Loop is a 29-mile biking route that begins at the parking area on Route 650 (sharp curve). From there, turn left onto Route 56, keeping an eye on traffic. Continue for 1.5 miles, then tu...
+
+95. Woodson's Mill Loop
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Woodson's Mill Loop is a scenic 24-mile biking route that begins and ends at Woodson’s Mill on Route 778, just off Route 56 in the Lowesville area. 
+
+Starting at 0.0 miles, take a left onto Route 778....
+   After:  Woodson's Mill Loop is a scenic 24-mile biking route that begins and ends at Woodson’s Mill on Route 778, just off Route 56 in the Lowesville area.
+
+Starting at 0.0 miles, take a left onto Route 778. ...
+
+96. Walton's Mountain Museum Loop
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Walton's Mountain <a href=http://walton-mountain.org/ target=_blank rel=noopener noreferrer>Museum</a> Loop is a scenic 31-mile biking route that begins and ends at the <a href=http://www.waltonmu...
+   After:  The Walton's Mountain <a href=http://walton-mountain.org/ target=_blank rel=noopener noreferrer>Museum</a> Loop is a scenic 31-mile biking route that begins and ends at the <a href=http://www.waltonmu...
+
+99. Tye River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: With headwaters beginning high in the Blue Ridge Mountains and the George Washington National Forest, the Tye River is one of the most beautiful whitewater streams in Virginia. The river starts at the...
+   After:  With headwaters beginning high in the Blue Ridge Mountains and the George Washington National Forest, the Tye River is one of the most beautiful whitewater streams in Virginia. The river starts at the...
+
+100. James River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The <a href=https://www.dgif.virginia.gov/wma/james-river/ target=_blank rel=noopener noreferrer>James River</a> forms the southeastern border of Nelson County and is the longest and largest of Virgin...
+   After:  The <a href=https://www.dgif.virginia.gov/wma/james-river/ target=_blank rel=noopener noreferrer>James River</a> forms the southeastern border of Nelson County and is the longest and largest of Virgin...
+
+101. Rockfish River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Rockfish River is formed in Nelson County, Virginia, by the confluence of its North and South Forks, both of which rise in the Blue Ridge Mountains near the Blue Ridge Parkway. It flows generally ...
+   After:  The Rockfish River is formed in Nelson County, Virginia, by the confluence of its North and South Forks, both of which rise in the Blue Ridge Mountains near the Blue Ridge Parkway. It flows generally ...
+
+102. Lake Nelson
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: <a href=https://www.dgif.virginia.gov/waterbody/lake-nelson/ target=_blank rel=noopener noreferrer>Lake Nelson</a> is a 40-acre impoundment located in Nelson County, Virginia. This reservoir is owned ...
+   After:  <a href=https://www.dgif.virginia.gov/waterbody/lake-nelson/ target=_blank rel=noopener noreferrer>Lake Nelson</a> is a 40-acre impoundment located in Nelson County, Virginia. This reservoir is owned ...
+
+103. Dickie Brothers Orchard
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: One of Virginia’s Century Farms, Dickie Brothers Orchard offers a variety of apple types including Gala, Paula Red, McIntosh, Red and Golden Delicious, Empire, Winesap, Stayman, Rome, Granny Smith, an...
+   After:  One of Virginia’s Century Farms, Dickie Brothers Orchard offers a variety of apple types including Gala, Paula Red, McIntosh, Red and Golden Delicious, Empire, Winesap, Stayman, Rome, Granny Smith, an...
+
+107. Caldwell Farms
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Caldwell Farms is a charming you-pick flower farm located in the beautiful Nelson County, VA. Experience the joy of selecting your own fresh blooms amidst stunning natural scenery. 
+
+Whether you're pl...
+   After:  Caldwell Farms is a charming you-pick flower farm located in the beautiful Nelson County, VA. Experience the joy of selecting your own fresh blooms amidst stunning natural scenery.
+
+Whether you're pla...
+
+109. Deer Creek Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Deer Creek Farm offers custom beef and lamb available for purchase by whole, half, or quarter. Our commitment to quality ensures that you receive the best cuts, tailored to your needs. 
+
+Experience th...
+   After:  Deer Creek Farm offers custom beef and lamb available for purchase by whole, half, or quarter. Our commitment to quality ensures that you receive the best cuts, tailored to your needs.
+
+Experience the...
+
+112. Fitzgerald's Orchard
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Fitzgerald's Orchard offers a delightful selection of apples available in season, including Red and Golden Delicious, Gala, Rome, Granny Smith, Fuji, and Pink Lady varieties. 
+
+Come visit us to enjoy ...
+   After:  Fitzgerald's Orchard offers a delightful selection of apples available in season, including Red and Golden Delicious, Gala, Rome, Granny Smith, Fuji, and Pink Lady varieties.
+
+Come visit us to enjoy t...
+
+114. Lost Point Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Situated on a rocky knob above the Tye River, Lost Point Farm was established in 2010. All herbs and produce are grown without the use of synthetic fertilizers or pesticides for our friends and neighb...
+   After:  Situated on a rocky knob above the Tye River, Lost Point Farm was established in 2010. All herbs and produce are grown without the use of synthetic fertilizers or pesticides for our friends and neighb...
+
+115. Pharsalia
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Built in 1814 at the foot of dePriest Mountain in Nelson County, Virginia, by William Massie, Pharsalia commands stunning views and is surrounded by original outbuildings and lovely gardens. Rich in h...
+   After:  Built in 1814 at the foot of dePriest Mountain in Nelson County, Virginia, by William Massie, Pharsalia commands stunning views and is surrounded by original outbuildings and lovely gardens. Rich in h...
+
+116. Robinia Institute
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: FROM THE SOUL TO THE SOIL  
+
+Reawakening the Wild  
+
+Founded in 2017 as the educational and consulting center of <a href=http://wildtimshel.com/ target=_blank rel=noopener noreferrer>Timshel Wildland<...
+   After:  FROM THE SOUL TO THE SOIL
+
+Reawakening the Wild
+
+Founded in 2017 as the educational and consulting center of <a href=http://wildtimshel.com/ target=_blank rel=noopener noreferrer>Timshel Wildland</a>,...
+
+117. Rose Isle Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: At the foot of the Blue Ridge Mountains in Roseland, Virginia, Massie and Joyce Saunders of Rose Isle Farm raise beef with a difference – Beer Beef. The cattle at Rose Isle Farm are fed spent mash fro...
+   After:  At the foot of the Blue Ridge Mountains in Roseland, Virginia, Massie and Joyce Saunders of Rose Isle Farm raise beef with a difference – Beer Beef. The cattle at Rose Isle Farm are fed spent mash fro...
+
+118. Seamans' Orchard
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nestled at the foot of the Blue Ridge Mountains, Seamans’ Orchard is a fourth-generation farm. The farm grows the finest apples, blueberries, cherries, and strawberries that Mother Nature will allow. ...
+   After:  Nestled at the foot of the Blue Ridge Mountains, Seamans’ Orchard is a fourth-generation farm. The farm grows the finest apples, blueberries, cherries, and strawberries that Mother Nature will allow.
+...
+
+119. Silver Creek and Seamans' Orchards
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The packing shed offers a variety of apples including Empire, Gala, Jonathan, Red and Golden Delicious, York, Winesap, Red Rome, Stayman, Pippin, Jonagold, and Pink Lady. In addition to apples, we als...
+   After:  The packing shed offers a variety of apples including Empire, Gala, Jonathan, Red and Golden Delicious, York, Winesap, Red Rome, Stayman, Pippin, Jonagold, and Pink Lady. In addition to apples, we als...
+
+121. Silver Fox Lavender Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Silver Fox Lavender Farm offers a delightful selection of lavender products, along with handmade wooden farm tables, mantles, and benches for your home and garden. Join us for our annual Lavender Fest...
+   After:  Silver Fox Lavender Farm offers a delightful selection of lavender products, along with handmade wooden farm tables, mantles, and benches for your home and garden. Join us for our annual Lavender Fest...
+
+122. The Apple Shed
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Get fresh, local apples and pumpkins, including Fuji, old-fashioned Winesap, Stamens, and many others. We also offer apple, pear, and plum butters, oysters, and grain-fed beef. Pre-cut Christmas trees...
+   After:  Get fresh, local apples and pumpkins, including Fuji, old-fashioned Winesap, Stamens, and many others. We also offer apple, pear, and plum butters, oysters, and grain-fed beef. Pre-cut Christmas trees...
+
+126. Mars Knob Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: My husband and I bought my family farmhouse in 2009. It was built in the 1800s and sits on 200+ acres in Roseland, VA. We decided that we wanted to take things back to the way they used to be: natural...
+   After:  My husband and I bought my family farmhouse in 2009. It was built in the 1800s and sits on 200+ acres in Roseland, VA. We decided that we wanted to take things back to the way they used to be: natural...
+
+128. Deep Sea Pete's Creekside Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Deep Sea Pete's Creekside Farm offers log and garden bed grown cultivated culinary mushrooms. Our farm specializes in providing high-quality, fresh mushrooms that enhance any culinary experience. 
+
+Vi...
+   After:  Deep Sea Pete's Creekside Farm offers log and garden bed grown cultivated culinary mushrooms. Our farm specializes in providing high-quality, fresh mushrooms that enhance any culinary experience.
+
+Vis...
+
+131. Queen Oaks Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Thanks for visiting us here at L&B Farms! My name is Lauren Shifflett, and my husband and I manage our small farm in Schuyler, Virginia. I have always dreamed of running my own homestead, as I have a ...
+   After:  Thanks for visiting us here at L&B Farms! My name is Lauren Shifflett, and my husband and I manage our small farm in Schuyler, Virginia. I have always dreamed of running my own homestead, as I have a ...
+
+132. Three Trees Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our story is deeply rooted in our love for nature and sustainable farming practices. We are dedicated to providing the freshest and highest quality produce and meats to our customers. Passionate about...
+   After:  Our story is deeply rooted in our love for nature and sustainable farming practices. We are dedicated to providing the freshest and highest quality produce and meats to our customers. Passionate about...
+
+133. Fishing the Tye River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Tye River is a 35.4-mile-long tributary of the James River in central Virginia, originating on the eastern slope of the Blue Ridge Mountains in Nelson County. It is fed by the Piney and Buffalo ri...
+   After:  The Tye River is a 35.4-mile-long tributary of the James River in central Virginia, originating on the eastern slope of the Blue Ridge Mountains in Nelson County. It is fed by the Piney and Buffalo ri...
+
+134. Fishing the James River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: From the confluence of the Jackson and Cowpasture Rivers in Botetourt County downstream to Richmond, the James River offers a wide range of angling opportunities and settings. Smallmouth bass are the ...
+   After:  From the confluence of the Jackson and Cowpasture Rivers in Botetourt County downstream to Richmond, the James River offers a wide range of angling opportunities and settings. Smallmouth bass are the ...
+
+135. Fishing the Little Piney River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Little Piney River is a stream located at the junction of Rt. 666 and Woodson, in the southern part of Nelson County near Lowesville, VA. Fishermen will find a variety of fish here, including largemou...
+   After:  Little Piney River is a stream located at the junction of Rt. 666 and Woodson, in the southern part of Nelson County near Lowesville, VA. Fishermen will find a variety of fish here, including largemou...
+
+136. Fishing the South Rockfish River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Rockfish River (South) is periodically stocked with catchable-sized trout by the Department of Wildlife Resources from October through May. Please refer to the <a href=https://www.dgif.virginia.go...
+   After:  The Rockfish River (South) is periodically stocked with catchable-sized trout by the Department of Wildlife Resources from October through May. Please refer to the <a href=https://www.dgif.virginia.go...
+
+138. Fishing at Lake Monocan Park
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Photo credit: Wintergreen Resort  
+
+<a href=http://www.wintergreenresort.com/lake-monocan/ target=_blank rel=noopener noreferrer>Lake Monocan</a> is a 20-acre lake and park located at Stoney Creek in ...
+   After:  Photo credit: Wintergreen Resort
+
+<a href=http://www.wintergreenresort.com/lake-monocan/ target=_blank rel=noopener noreferrer>Lake Monocan</a> is a 20-acre lake and park located at Stoney Creek in Ne...
+
+139. Fishing at Lake Nelson
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: <a href=https://www.dgif.virginia.gov/waterbody/lake-nelson/ target=_blank rel=noopener noreferrer>Lake Nelson</a> is a 40-acre impoundment located in Nelson County, Virginia. This reservoir is owned ...
+   After:  <a href=https://www.dgif.virginia.gov/waterbody/lake-nelson/ target=_blank rel=noopener noreferrer>Lake Nelson</a> is a 40-acre impoundment located in Nelson County, Virginia. This reservoir is owned ...
+
+141. Devils Knob Golf Course
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: When Ellis Maples designed this 18-hole gem, the highest golf course in Virginia, his challenge was to enhance its stunning Blue Ridge Mountain setting. Sitting at an elevation of over 3,800 feet, pla...
+   After:  When Ellis Maples designed this 18-hole gem, the highest golf course in Virginia, his challenge was to enhance its stunning Blue Ridge Mountain setting. Sitting at an elevation of over 3,800 feet, pla...
+
+142. Stoney Creek Golf Course
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Golf year-round in the Rockfish River Valley on the 27-hole Rees Jones Design <a href=https://www.wintergreenresort.com/Stoney-Creek/ target=_blank rel=noopener noreferrer>Stoney Creek Golf Course</a>...
+   After:  Golf year-round in the Rockfish River Valley on the 27-hole Rees Jones Design <a href=https://www.wintergreenresort.com/Stoney-Creek/ target=_blank rel=noopener noreferrer>Stoney Creek Golf Course</a>...
+
+144. Appalachian Trail from Rt 56 to Harpers Creek
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 2.6  
+Difficulty Level: Moderate  
+
+Enjoy a 2.6-mile moderate hike along the Appalachian Trail that features a wooden swinging bridge over the Tye River. The trail meanders through beautiful st...
+   After:  Miles: 2.6
+Difficulty Level: Moderate
+
+Enjoy a 2.6-mile moderate hike along the Appalachian Trail that features a wooden swinging bridge over the Tye River. The trail meanders through beautiful stands...
+
+145. Afton Mountain Vineyards
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our beautiful vineyard site is located on the sunrise side of Afton Mountain. Here, the vines are protected from frost by our elevation of nearly 1,000 feet, shielded from excessive rain by the mounta...
+   After:  Our beautiful vineyard site is located on the sunrise side of Afton Mountain. Here, the vines are protected from frost by our elevation of nearly 1,000 feet, shielded from excessive rain by the mounta...
+
+146. Brent Manor Vineyards
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nestled in the hills of Virginia Wine Country in beautiful Nelson County, just south of Charlottesville, Brent Manor Vineyards welcomes you to a mix of the New World and the Old World. 
+
+Experience th...
+   After:  Nestled in the hills of Virginia Wine Country in beautiful Nelson County, just south of Charlottesville, Brent Manor Vineyards welcomes you to a mix of the New World and the Old World.
+
+Experience the...
+
+148. Cardinal Point Winery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Family owned and operated, Cardinal Point Vineyard and Winery lies in the beautiful foothills of the Blue Ridge, in the shadow of Afton Mountain. 
+
+Experience the charm of our vineyard as you explore ...
+   After:  Family owned and operated, Cardinal Point Vineyard and Winery lies in the beautiful foothills of the Blue Ridge, in the shadow of Afton Mountain.
+
+Experience the charm of our vineyard as you explore t...
+
+151. Lovingston Winery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Lovingston Winery opened in 2003 as a small batch, 100% estate grown vineyard and winery located in the rolling countryside of the Blue Ridge Mountains. 
+
+With a commitment to quality and sustainabili...
+   After:  Lovingston Winery opened in 2003 as a small batch, 100% estate grown vineyard and winery located in the rolling countryside of the Blue Ridge Mountains.
+
+With a commitment to quality and sustainabilit...
+
+157. HeartRock Retreat & Homestead
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to HeartRock! Located in Nelson County, Virginia, our fifteen-acre homestead offers both rustic charm and modern comfort. We’ve got fields of edible, medicinal, and floral gardens tucked into ...
+   After:  Welcome to HeartRock! Located in Nelson County, Virginia, our fifteen-acre homestead offers both rustic charm and modern comfort. We’ve got fields of edible, medicinal, and floral gardens tucked into ...
+
+158. Inglewood Fine Meats
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nestled in Nelson County, we take pride in the fact that our beef and lamb is not only Verified All Natural, but our animals live a quality life in the foothills of the Blue Ridge Mountains. We never ...
+   After:  Nestled in Nelson County, we take pride in the fact that our beef and lamb is not only Verified All Natural, but our animals live a quality life in the foothills of the Blue Ridge Mountains. We never ...
+
+159. Montebello Nature Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: A short trail (.5 mile) follows a small stream that was once part of the Montebello Fish Hatchery. The path is lined with a wide diversity of ferns, as well as native shrubs and wildflowers. Relax on ...
+   After:  A short trail (.5 mile) follows a small stream that was once part of the Montebello Fish Hatchery. The path is lined with a wide diversity of ferns, as well as native shrubs and wildflowers. Relax on ...
+
+160. North Fork of the Piney River
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: A scenic driving and short walking trail offers views of the Piney River as it cascades over large rocks. The area is stocked for fishing and features good swimming holes. 
+
+To reach the trail, take R...
+   After:  A scenic driving and short walking trail offers views of the Piney River as it cascades over large rocks. The area is stocked for fishing and features good swimming holes.
+
+To reach the trail, take Ro...
+
+161. Stoney Creek Park
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Miles: 0.3  
+Blaze Color: Yellow  
+Difficulty Level: Easy  
+
+Directions: <a href=https://goo.gl/maps/7nf9BFjD9zG5dzJS7 target=_blank rel=noopener noreferrer>Google Maps</a>  
+
+Visit the forested linea...
+   After:  Miles: 0.3
+Blaze Color: Yellow
+Difficulty Level: Easy
+
+Directions: <a href=https://goo.gl/maps/7nf9BFjD9zG5dzJS7 target=_blank rel=noopener noreferrer>Google Maps</a>
+
+Visit the forested linear park f...
+
+162. Spy Rock
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The USDA Forest Service has closed the parking lot and associated trail that provides access to Spy Rock. The parking lot located behind the Montebello Fish Hatchery in Nelson County is now closed; ho...
+   After:  The USDA Forest Service has closed the parking lot and associated trail that provides access to Spy Rock. The parking lot located behind the Montebello Fish Hatchery in Nelson County is now closed; ho...
+
+164. Rockfish Valley Loop Trails
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the Rockfish River and Reid’s Creek on approximately four miles of trails on a farm surrounding the confluence. Part of the Virginia Birding & Wildlife Trail, these paths offer recreation a...
+   After:  Experience the Rockfish River and Reid’s Creek on approximately four miles of trails on a farm surrounding the confluence. Part of the Virginia Birding & Wildlife Trail, these paths offer recreation a...
+
+167. Nelson 151
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Located at the base of the Blue Ridge, Route 151 is Main Street for the Rockfish Valley. This northern part of Nelson County is home to five wineries, three breweries, one cidery, cozy bed & breakfast...
+   After:  Located at the base of the Blue Ridge, Route 151 is Main Street for the Rockfish Valley. This northern part of Nelson County is home to five wineries, three breweries, one cidery, cozy bed & breakfast...
+
+168. Nelson 29
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nelson has a new craft beverage trail! Nelson 29 is named after the Route 29 corridor that travels through the middle of the county. This route, conveniently located between Charlottesville and Lynchb...
+   After:  Nelson has a new craft beverage trail! Nelson 29 is named after the Route 29 corridor that travels through the middle of the county. This route, conveniently located between Charlottesville and Lynchb...
+
+170. Virginia Spirits Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Here in Virginia, we take great pride in putting our souls into every bottle of distilled spirits because we know that small batches take time, heart, and spirit. We believe in farm to bottle, continu...
+   After:  Here in Virginia, we take great pride in putting our souls into every bottle of distilled spirits because we know that small batches take time, heart, and spirit. We believe in farm to bottle, continu...
+
+171. Crestvue Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Take it easy at this unique and tranquil getaway on a working farm. Originally the summer kitchen to the 1904 farmhouse, and surrounded by 111 acres of pasture and woods with almost 2 miles of hiking ...
+   After:  Take it easy at this unique and tranquil getaway on a working farm. Originally the summer kitchen to the 1904 farmhouse, and surrounded by 111 acres of pasture and woods with almost 2 miles of hiking ...
+
+172. Sentosa Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Sentosa Cabin is a 1-bedroom, 1-bath cabin featuring a covered back porch, a full kitchen, and Wi-Fi. This remote haven for nature lovers offers stunning mountain and woods views, making it ideal for ...
+   After:  Sentosa Cabin is a 1-bedroom, 1-bath cabin featuring a covered back porch, a full kitchen, and Wi-Fi. This remote haven for nature lovers offers stunning mountain and woods views, making it ideal for ...
+
+173. Roudy's Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Escape to Roudy's Retreat, a spacious getaway featuring a hot tub and all the comforts of home. Enjoy quiet moments in the loft with a good book, or gather with family for games at the large dining ta...
+   After:  Escape to Roudy's Retreat, a spacious getaway featuring a hot tub and all the comforts of home. Enjoy quiet moments in the loft with a good book, or gather with family for games at the large dining ta...
+
+174. Pachi's Ridge
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Get your own little slice of wooded paradise at this Nellysford, VA, vacation rental near Wintergreen Resort. This 3-bedroom, 3-bathroom cabin offers unfettered access to more than 40 acres of foreste...
+   After:  Get your own little slice of wooded paradise at this Nellysford, VA, vacation rental near Wintergreen Resort. This 3-bedroom, 3-bathroom cabin offers unfettered access to more than 40 acres of foreste...
+
+178. Village Inn
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Village Inn, a cozy 23-room motel located on US-29 North in Lovingston. Our accommodations provide a comfortable and convenient stay for travelers seeking a restful retreat. 
+
+Please note t...
+   After:  Welcome to Village Inn, a cozy 23-room motel located on US-29 North in Lovingston. Our accommodations provide a comfortable and convenient stay for travelers seeking a restful retreat.
+
+Please note th...
+
+180. Piedmont Grove Lodging
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Your ideal Nelson County escape starts here. Our ten hotel-style suites offer the perfect base for exploring all the region has to offer. Conveniently located near Rt 664 & Rt 151, you'll enjoy effort...
+   After:  Your ideal Nelson County escape starts here. Our ten hotel-style suites offer the perfect base for exploring all the region has to offer. Conveniently located near Rt 664 & Rt 151, you'll enjoy effort...
+
+182. Straw Bale House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Custom built private home on a 70-acre property near vineyards and breweries. Suitable for all guests, including solo travelers or couples in a private room, with 2 additional rooms available for larg...
+   After:  Custom built private home on a 70-acre property near vineyards and breweries. Suitable for all guests, including solo travelers or couples in a private room, with 2 additional rooms available for larg...
+
+183. Blue Ridge Bliss
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience 'Blue Ridge Bliss,' a beautifully updated 2-bedroom, 2-bath condo located in the Ledges at Wintergreen Resort. This well-appointed retreat has consistently received five-star ratings, offer...
+   After:  Experience 'Blue Ridge Bliss,' a beautifully updated 2-bedroom, 2-bath condo located in the Ledges at Wintergreen Resort. This well-appointed retreat has consistently received five-star ratings, offer...
+
+184. Stays at Lovingston Winery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Choose between our historic farmhouse or cozy cabin, both just a short stroll from our tasting room! The farmhouse has plenty of room for larger groups and features top-of-the-line finishes like Vikin...
+   After:  Choose between our historic farmhouse or cozy cabin, both just a short stroll from our tasting room! The farmhouse has plenty of room for larger groups and features top-of-the-line finishes like Vikin...
+
+186. Woodson's Mill House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Conveniently located near Charlottesville, Wintergreen, and the Blue Ridge Parkway, this idyllic Craftsman-style home offers the perfect opportunity for couples' weekends filled with excursions to loc...
+   After:  Conveniently located near Charlottesville, Wintergreen, and the Blue Ridge Parkway, this idyllic Craftsman-style home offers the perfect opportunity for couples' weekends filled with excursions to loc...
+
+187. Harmony Hill Bed & Breakfast
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the charm of Harmony Hill Bed & Breakfast, featuring six inviting rooms, each with private baths. Some accommodations include luxurious Jacuzzi tubs and cozy fireplaces. Guests can enjoy a ...
+   After:  Experience the charm of Harmony Hill Bed & Breakfast, featuring six inviting rooms, each with private baths. Some accommodations include luxurious Jacuzzi tubs and cozy fireplaces. Guests can enjoy a ...
+
+190. Point of View
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience resort living at its best in this completely renovated 5-bedroom, 5.5-bathroom house in Wintergreen, perfect for a peaceful weekend getaway or an active family reunion. Enjoy breathtaking m...
+   After:  Experience resort living at its best in this completely renovated 5-bedroom, 5.5-bathroom house in Wintergreen, perfect for a peaceful weekend getaway or an active family reunion. Enjoy breathtaking m...
+
+191. The Inn at Blue Mountain Brewery
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Inn at Blue Mountain Brewery is a 4,000 sq ft Cape Cod home located beside the brewery. It features a wraparound porch, hot tub, fire pit, and a private path leading to the taproom. 
+
+Enjoy a rela...
+   After:  The Inn at Blue Mountain Brewery is a 4,000 sq ft Cape Cod home located beside the brewery. It features a wraparound porch, hot tub, fire pit, and a private path leading to the taproom.
+
+Enjoy a relax...
+
+192. Gracewood
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Modern cottage updated for guests. Hike our 2 miles of beautiful, well-maintained trails. The cottage and property are very serene and quiet, with no road noise. It is ideally located just 1.5 miles f...
+   After:  Modern cottage updated for guests. Hike our 2 miles of beautiful, well-maintained trails. The cottage and property are very serene and quiet, with no road noise. It is ideally located just 1.5 miles f...
+
+196. Papa's Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This charming Mid-Century Modern cottage includes a private hot tub for you. Tucked away in the heart of Nelson County wine country, this little bungalow is perfect for two couples or a small family. ...
+   After:  This charming Mid-Century Modern cottage includes a private hot tub for you. Tucked away in the heart of Nelson County wine country, this little bungalow is perfect for two couples or a small family. ...
+
+197. Meme's Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Cute getaway Mid-Century Modern style cottage in the heart of Nelson County wine country, perfect for two couples. Affectionately called “Meme’s Cottage,” this restored ranch is nestled into the woods...
+   After:  Cute getaway Mid-Century Modern style cottage in the heart of Nelson County wine country, perfect for two couples. Affectionately called “Meme’s Cottage,” this restored ranch is nestled into the woods...
+
+198. Cheval Circle
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Clean, charmingly rustic, well-appointed, and in the heart of Virginia Wine Country, “Cheval Circle” is just a short drive from many of Nelson County’s most popular destinations, including dozens of w...
+   After:  Clean, charmingly rustic, well-appointed, and in the heart of Virginia Wine Country, “Cheval Circle” is just a short drive from many of Nelson County’s most popular destinations, including dozens of w...
+
+200. Carter's Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This clean, modern farmhouse-style, one-story cottage, “Carter’s Cottage,” is located in the heart of the 151 corridor. It is within walking distance from the new Three Notch’d distillery/brewery/pub,...
+   After:  This clean, modern farmhouse-style, one-story cottage, “Carter’s Cottage,” is located in the heart of the 151 corridor. It is within walking distance from the new Three Notch’d distillery/brewery/pub,...
+
+202. Montebello Resort
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Private, cozy, comfortable rental cabins and cottages await you at Montebello. Enjoy a serene lake, a trout pond, and a unique country store all on site. The location is close to historical sites and ...
+   After:  Private, cozy, comfortable rental cabins and cottages await you at Montebello. Enjoy a serene lake, a trout pond, and a unique country store all on site. The location is close to historical sites and ...
+
+203. Freshwater Field Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Freshwater Field Cabin is very private, located on a farm nestled in a mountain hollow, but only 5 miles from Route 29. It is rustic and secluded yet comfortable. Enjoy hiking the trails on the pr...
+   After:  The Freshwater Field Cabin is very private, located on a farm nestled in a mountain hollow, but only 5 miles from Route 29. It is rustic and secluded yet comfortable. Enjoy hiking the trails on the pr...
+
+206. Love Afton Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Love Afton Cabin! Escape to our secluded 11.5-acre retreat with stunning mountain views, a private fishing pond, and endless space for relaxation. This home sleeps up to 16 guests and provi...
+   After:  Welcome to Love Afton Cabin! Escape to our secluded 11.5-acre retreat with stunning mountain views, a private fishing pond, and endless space for relaxation. This home sleeps up to 16 guests and provi...
+
+208. Adventure Awaits
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Adventure Awaits at Wintergreen Resort, where the charm of the Blue Ridge Mountains meets luxury, convenience, and adventure! Our pet-friendly home is perfectly located just two minutes fro...
+   After:  Welcome to Adventure Awaits at Wintergreen Resort, where the charm of the Blue Ridge Mountains meets luxury, convenience, and adventure! Our pet-friendly home is perfectly located just two minutes fro...
+
+209. Wintergreen Ridge Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Wintergreen Ridge Retreat, your perfect escape at Wintergreen Resort, VA! Just 3 minutes from the ski slopes and snow tubing, our spacious and comfortable home offers a seamless blend of fo...
+   After:  Welcome to Wintergreen Ridge Retreat, your perfect escape at Wintergreen Resort, VA! Just 3 minutes from the ski slopes and snow tubing, our spacious and comfortable home offers a seamless blend of fo...
+
+210. Maren Estate
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Luxury estate featuring a 7,200 square foot house on a 50-acre farm, accommodating a maximum of 14 guests. Enjoy a seasonal pool and year-round hot tub, along with a bocce ball court and beer garden o...
+   After:  Luxury estate featuring a 7,200 square foot house on a 50-acre farm, accommodating a maximum of 14 guests. Enjoy a seasonal pool and year-round hot tub, along with a bocce ball court and beer garden o...
+
+212. Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Acorn Inn features three distinct structures on the property designed for hosting guests. 'The Inn,' which was once a horse barn, offers 10 bedrooms (originally stalls), men's and women's bathrooms an...
+   After:  Acorn Inn features three distinct structures on the property designed for hosting guests. 'The Inn,' which was once a horse barn, offers 10 bedrooms (originally stalls), men's and women's bathrooms an...
+
+213. Cottage at Old Stoney Creek
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The perfect outdoor adventure is waiting for you at this charming home in Nellysford. This 2-bedroom, 1-bathroom vacation rental is the ideal home base for anything on your itinerary. Spend your day s...
+   After:  The perfect outdoor adventure is waiting for you at this charming home in Nellysford. This 2-bedroom, 1-bathroom vacation rental is the ideal home base for anything on your itinerary. Spend your day s...
+
+214. Blue Ridge Heaven
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Blue Ridge Heaven is located atop Devils Knob – the highest point at Wintergreen Resort. Enjoy the best views in central Virginia from one of three decks or many picture windows. 
+
+Perched at an eleva...
+   After:  Blue Ridge Heaven is located atop Devils Knob – the highest point at Wintergreen Resort. Enjoy the best views in central Virginia from one of three decks or many picture windows.
+
+Perched at an elevat...
+
+215. Dancing Bear Lodge
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Dancing Bear Lodge is a cabin located in Roseland, VA. With just over 2,000 square feet, it offers ample space for hosting larger groups of up to 10 people. If you are looking for an 'off the grid' ex...
+   After:  Dancing Bear Lodge is a cabin located in Roseland, VA. With just over 2,000 square feet, it offers ample space for hosting larger groups of up to 10 people. If you are looking for an 'off the grid' ex...
+
+216. Windy Knoll
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Windy Knoll invites you to come and relax while enjoying the stunning views of Afton Mountain greenery. Large A-Frame windows allow sunlight to flood the space, letting you appreciate the birds and na...
+   After:  Windy Knoll invites you to come and relax while enjoying the stunning views of Afton Mountain greenery. Large A-Frame windows allow sunlight to flood the space, letting you appreciate the birds and na...
+
+219. Farmhouse on Route 151
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our two-story, 1904 farmhouse is just off Route 151 and close to wineries, breweries, hiking trails, and the Blue Ridge Parkway. It's only 25 minutes from Wintergreen Resort and 30 minutes from Charlo...
+   After:  Our two-story, 1904 farmhouse is just off Route 151 and close to wineries, breweries, hiking trails, and the Blue Ridge Parkway. It's only 25 minutes from Wintergreen Resort and 30 minutes from Charlo...
+
+221. Rocky Run Landing
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Wintergreen Resort we’re not, but if you’re looking for a cozy (800-900 sq. ft.) mountain cabin with most of the comforts of home, Rocky Run Landing might be the place for you. Our motto is “You’re a ...
+   After:  Wintergreen Resort we’re not, but if you’re looking for a cozy (800-900 sq. ft.) mountain cabin with most of the comforts of home, Rocky Run Landing might be the place for you. Our motto is “You’re a ...
+
+222. Cottage on the Knoll
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the Blue Ridge Mountains and the country life of central Virginia while enjoying everything Nelson County has to offer. The Cottage on the Knoll is a comfortable 3-bedroom, 2-bathroom retre...
+   After:  Experience the Blue Ridge Mountains and the country life of central Virginia while enjoying everything Nelson County has to offer. The Cottage on the Knoll is a comfortable 3-bedroom, 2-bathroom retre...
+
+223. High Lonesome Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: High Lonesome Cabin was built in 2008 in the Virginia Blue Ridge Mountains. This rustic cabin sits on 20 secluded acres high on a steep finger of Priest Mountain near the Appalachian Trail, just minut...
+   After:  High Lonesome Cabin was built in 2008 in the Virginia Blue Ridge Mountains. This rustic cabin sits on 20 secluded acres high on a steep finger of Priest Mountain near the Appalachian Trail, just minut...
+
+225. Glenbrae
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Glenbrae is located just off the iconic Nelson 151 and 1 mile from Afton Mountain Vineyards. This property was stylishly decorated by a local interior designer and is the perfect getaway for a group o...
+   After:  Glenbrae is located just off the iconic Nelson 151 and 1 mile from Afton Mountain Vineyards. This property was stylishly decorated by a local interior designer and is the perfect getaway for a group o...
+
+226. Elk Mountain Overlook
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Mountaintop overlook with jaw-dropping views and camp-themed interior design. Perched upon Elk Mountain just off the Blue Ridge Parkway, this petite chalet is under 30 minutes from Charlottesville, 10...
+   After:  Mountaintop overlook with jaw-dropping views and camp-themed interior design. Perched upon Elk Mountain just off the Blue Ridge Parkway, this petite chalet is under 30 minutes from Charlottesville, 10...
+
+227. Ethan's Den
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Step into a beautifully crafted retreat where a stunning live-edge oak breakfast bar with leather stools awaits. 
+
+This inviting space is perfect for relaxation and gathering, offering a unique blend ...
+   After:  Step into a beautifully crafted retreat where a stunning live-edge oak breakfast bar with leather stools awaits.
+
+This inviting space is perfect for relaxation and gathering, offering a unique blend o...
+
+233. Cottage on the Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Wake to gorgeous mountain views and rolling green meadows bordering the Rockfish River on our family estate. This private attached unit features a built-in pool (available mid-April to mid-September) ...
+   After:  Wake to gorgeous mountain views and rolling green meadows bordering the Rockfish River on our family estate. This private attached unit features a built-in pool (available mid-April to mid-September) ...
+
+234. Rockfish Farmhouse
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Quaint destination with farmhouse charm in the heart of 151. Wineries, breweries, cideries, and distilleries are within close proximity. The farmhouse comfortably sleeps 7 people, and stunning views c...
+   After:  Quaint destination with farmhouse charm in the heart of 151. Wineries, breweries, cideries, and distilleries are within close proximity. The farmhouse comfortably sleeps 7 people, and stunning views c...
+
+235. Fulton Belle Vue
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Completely renovated farmhouse conveniently located in the heart of the 151 Brew Trail. This charming retreat features five spacious bedrooms, a large open kitchen, and a family room, as well as three...
+   After:  Completely renovated farmhouse conveniently located in the heart of the 151 Brew Trail. This charming retreat features five spacious bedrooms, a large open kitchen, and a family room, as well as three...
+
+236. Spindle Hill Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Two extraordinary homes on one 50-acre family farm. Our handcrafted guest cottage has been one of Nelson County's most beloved rentals for more than a decade, and we're excited to offer the historic 1...
+   After:  Two extraordinary homes on one 50-acre family farm. Our handcrafted guest cottage has been one of Nelson County's most beloved rentals for more than a decade, and we're excited to offer the historic 1...
+
+237. Beech Grove Cabins
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Four (4) two-bedroom/one-bathroom cabins with a full kitchen, separate living and dining areas, and central heat and air conditioning. Each bedroom and the living room have a ceiling fan, and for cozy...
+   After:  Four (4) two-bedroom/one-bathroom cabins with a full kitchen, separate living and dining areas, and central heat and air conditioning. Each bedroom and the living room have a ceiling fan, and for cozy...
+
+238. Slipper Slope
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the ultimate ski getaway in this spacious 4-bedroom condo located at the resort, offering true ski-in/ski-out access on the Upper Diamond Hill slope. Finding a bottom-floor ski-in/ski-out o...
+   After:  Experience the ultimate ski getaway in this spacious 4-bedroom condo located at the resort, offering true ski-in/ski-out access on the Upper Diamond Hill slope. Finding a bottom-floor ski-in/ski-out o...
+
+239. Wintergreen Resort
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: A mountaintop escape doesn't have to mean roughing it. When you come to Wintergreen Resort, you are here to relax, refresh, and rejuvenate in your choice of relaxing and professionally managed accommo...
+   After:  A mountaintop escape doesn't have to mean roughing it. When you come to Wintergreen Resort, you are here to relax, refresh, and rejuvenate in your choice of relaxing and professionally managed accommo...
+
+241. Devils Backbone Camp
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Devils Backbone Camp offers an unparalleled camping experience in the heart of the Blue Ridge Mountains, combining a casual camp experience with world-class craft beverages and food. With a range of s...
+   After:  Devils Backbone Camp offers an unparalleled camping experience in the heart of the Blue Ridge Mountains, combining a casual camp experience with world-class craft beverages and food. With a range of s...
+
+243. Relaxing 3 bedroom Mountain Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Beautiful cabin in the woods! Welcome to our home! This beautiful mountain cabin is located on the top of Wintergreen Resort, and we are pleased to offer your family the same stress-free, relaxing get...
+   After:  Beautiful cabin in the woods! Welcome to our home! This beautiful mountain cabin is located on the top of Wintergreen Resort, and we are pleased to offer your family the same stress-free, relaxing get...
+
+244. Mountain Dacha
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the comfort of 'Mountain Dacha,' a cozy 4-bedroom, 3-bath house located adjacent to a golf course and just a short distance from skiing slopes. This property is perfect for year-round activ...
+   After:  Experience the comfort of 'Mountain Dacha,' a cozy 4-bedroom, 3-bath house located adjacent to a golf course and just a short distance from skiing slopes. This property is perfect for year-round activ...
+
+246. Skis and Trees
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Completely renovated, this 3 BR/2BA chalet is located on the Lower Tyro slope, just below Tequila. Featuring rustic decor, a fully stocked kitchen with high-end appliances and granite counters, the op...
+   After:  Completely renovated, this 3 BR/2BA chalet is located on the Lower Tyro slope, just below Tequila. Featuring rustic decor, a fully stocked kitchen with high-end appliances and granite counters, the op...
+
+251. Sleepy Hollow Retreat Enjoy Your Stay
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Our 1800's two-story, 2200 square foot farmhouse, once a log cabin, welcomes you! Sleepy Hollow is nestled in scenic rural Nelson County, Virginia. Relax on the covered deck, dine in the renovated kit...
+   After:  Our 1800's two-story, 2200 square foot farmhouse, once a log cabin, welcomes you! Sleepy Hollow is nestled in scenic rural Nelson County, Virginia. Relax on the covered deck, dine in the renovated kit...
+
+253. Wren House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Wren House is a 5-bedroom, 3.5-bath country home with a 4.95 rating on Airbnb. The house is very private, featuring expansive lawns, secluded wooded surroundings, and stunning views of pastures, sunse...
+   After:  Wren House is a 5-bedroom, 3.5-bath country home with a 4.95 rating on Airbnb. The house is very private, featuring expansive lawns, secluded wooded surroundings, and stunning views of pastures, sunse...
+
+255. Fenton Inn
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Come and enjoy a stylish European village nestled in the heart of the Blue Ridge Mountains, between the scenic Blue Ridge Parkway and the ski slopes of Wintergreen Mountain. The Inn is a one-of-a-kind...
+   After:  Come and enjoy a stylish European village nestled in the heart of the Blue Ridge Mountains, between the scenic Blue Ridge Parkway and the ski slopes of Wintergreen Mountain. The Inn is a one-of-a-kind...
+
+258. Remodeled 3BR/2BA Ski Chalet off Tyro Slope
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This quaint remodeled Austrian-styled 3BR/2BA ski chalet is located just one row off the Tyro Slopes. The unit has been completely renovated inside and out, featuring new siding, insulation, a modern ...
+   After:  This quaint remodeled Austrian-styled 3BR/2BA ski chalet is located just one row off the Tyro Slopes. The unit has been completely renovated inside and out, featuring new siding, insulation, a modern ...
+
+259. Three Springs Myndus
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Beautiful 3-bedroom home outfitted to accommodate a variety of visitors with high-speed internet, 2 large screen TVs, a whirlpool tub, and a huge deck. Nestled in a quiet cove in the beautiful Blue Ri...
+   After:  Beautiful 3-bedroom home outfitted to accommodate a variety of visitors with high-speed internet, 2 large screen TVs, a whirlpool tub, and a huge deck. Nestled in a quiet cove in the beautiful Blue Ri...
+
+260. Lovingston Get-Away
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to the Lovingston Get-Away, located in the charming Village of Lovingston, VA, a historical district rich with older buildings to explore. You can easily stroll down Front Street to access man...
+   After:  Welcome to the Lovingston Get-Away, located in the charming Village of Lovingston, VA, a historical district rich with older buildings to explore. You can easily stroll down Front Street to access man...
+
+261. Rock-n-Creek Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Rock-n-Creek Cabin offers the comforts of country living with all modern amenities, nestled high on the pinnacle of Whetstone Ridge in the Blue Ridge Mountains of Virginia. Conveniently located near t...
+   After:  Rock-n-Creek Cabin offers the comforts of country living with all modern amenities, nestled high on the pinnacle of Whetstone Ridge in the Blue Ridge Mountains of Virginia. Conveniently located near t...
+
+264. Avon Hill
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: For almost 10 years, Avon Hill Lodge has offered a unique getaway close to the heart of Virginia wine country. Tucked away in the rolling hills of Nelson County, the property has served as an exclusiv...
+   After:  For almost 10 years, Avon Hill Lodge has offered a unique getaway close to the heart of Virginia wine country. Tucked away in the rolling hills of Nelson County, the property has served as an exclusiv...
+
+265. A Nellysford Nest
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: One of Airbnb's favorites! This 4BR/2.5BA cabin is nestled on 5 acres in the forest, adjacent to 40 acres of private eco-village trails. Centrally located near Nelson County 151 attractions, with Bold...
+   After:  One of Airbnb's favorites! This 4BR/2.5BA cabin is nestled on 5 acres in the forest, adjacent to 40 acres of private eco-village trails. Centrally located near Nelson County 151 attractions, with Bold...
+
+270. Appalachian Horse Adventures
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Located in Montebello, Appalachian Horse Adventures offers a riding experience for everyone—from children as young as 6, who have dreamed of being on horseback, to experienced trail riders looking to ...
+   After:  Located in Montebello, Appalachian Horse Adventures offers a riding experience for everyone—from children as young as 6, who have dreamed of being on horseback, to experienced trail riders looking to ...
+
+271. Nonny Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nonny Cottage is a charming two-bedroom remote cottage, perfect for a peaceful getaway. It features a full kitchen, one bathroom, a washer/dryer, a grill, and a firepit, making it an ideal spot for re...
+   After:  Nonny Cottage is a charming two-bedroom remote cottage, perfect for a peaceful getaway. It features a full kitchen, one bathroom, a washer/dryer, a grill, and a firepit, making it an ideal spot for re...
+
+274. Oak Ledge
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Discover our peaceful retreat at Oak Ledge, a charming 3BR, 2.5 BA cabin just steps from Wintergreen Resort. Newly renovated in 2023, family-friendly Oak Ledge offers all the support you need to getaw...
+   After:  Discover our peaceful retreat at Oak Ledge, a charming 3BR, 2.5 BA cabin just steps from Wintergreen Resort. Newly renovated in 2023, family-friendly Oak Ledge offers all the support you need to getaw...
+
+275. Walton's Mountain Museum
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Walton’s Mountain Museum showcases the beloved television show of the 1960s, “The Waltons.” 
+
+Visitors can explore exhibits that celebrate the show's legacy, featuring memorabilia and insights int...
+   After:  The Walton’s Mountain Museum showcases the beloved television show of the 1960s, “The Waltons.”
+
+Visitors can explore exhibits that celebrate the show's legacy, featuring memorabilia and insights into...
+
+277. Wintergreen Resort Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Get away with your adventure-loving friends or family and stay at this chic 3-bedroom, 2.5-bath cabin nestled in the woods! The cabin is ideally located within the Wintergreen Resort, allowing easy ac...
+   After:  Get away with your adventure-loving friends or family and stay at this chic 3-bedroom, 2.5-bath cabin nestled in the woods! The cabin is ideally located within the Wintergreen Resort, allowing easy ac...
+
+278. Bluebird Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Bluebird Cottage! This house is less than a mile from Devil's Backbone Brewery and is nestled at the bottom of Wintergreen Resort. Located near several local wineries, breweries, and distil...
+   After:  Welcome to Bluebird Cottage! This house is less than a mile from Devil's Backbone Brewery and is nestled at the bottom of Wintergreen Resort. Located near several local wineries, breweries, and distil...
+
+280. Faber Farmhouse
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Faber Farmhouse, conveniently located in Faber, VA, with easy access to the Nelson 151 corridor, Charlottesville, and the quaint town of Scottsville. This house features ample space for gue...
+   After:  Welcome to Faber Farmhouse, conveniently located in Faber, VA, with easy access to the Nelson 151 corridor, Charlottesville, and the quaint town of Scottsville. This house features ample space for gue...
+
+281. Wintergreen - Fairway Woods
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Discover the beauty of Wintergreen Resort, VA, and indulge in a memorable stay at this 2-bedroom, 2-bathroom vacation rental condo. Featuring a cozy fireplace, outdoor seating, and an electric grill, ...
+   After:  Discover the beauty of Wintergreen Resort, VA, and indulge in a memorable stay at this 2-bedroom, 2-bathroom vacation rental condo. Featuring a cozy fireplace, outdoor seating, and an electric grill, ...
+
+282. Oakland Museum
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Oakland Museum is housed in a historic tavern and features exhibits that explore significant events in local history. Visitors can learn about Rural Electrification in Nelson County during the 193...
+   After:  The Oakland Museum is housed in a historic tavern and features exhibits that explore significant events in local history. Visitors can learn about Rural Electrification in Nelson County during the 193...
+
+284. Hawthorne
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Entire small guest house/log cabin featuring a living room with a wood-burning fireplace, a small kitchen, a bedroom with a queen bed, and a full bathroom. Enjoy the outdoor fireplace and deck that ov...
+   After:  Entire small guest house/log cabin featuring a living room with a wood-burning fireplace, a small kitchen, a bedroom with a queen bed, and a full bathroom. Enjoy the outdoor fireplace and deck that ov...
+
+286. Tupelo
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Tupelo is a charming 1900 square foot Blue Ridge Bungalow nestled on one acre in the enchanting Rockfish River Valley. Three bedrooms and two full baths host up to 8 guests comfortably. Enjoy the cozy...
+   After:  Tupelo is a charming 1900 square foot Blue Ridge Bungalow nestled on one acre in the enchanting Rockfish River Valley. Three bedrooms and two full baths host up to 8 guests comfortably. Enjoy the cozy...
+
+289. The Wooder House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Wooder House is a spacious 1,900-square-foot, four-bedroom, pet-friendly home nestled on a stunning 38-acre forest property. This inviting retreat features huge windows that allow for plenty of na...
+   After:  The Wooder House is a spacious 1,900-square-foot, four-bedroom, pet-friendly home nestled on a stunning 38-acre forest property. This inviting retreat features huge windows that allow for plenty of na...
+
+292. Bear Creek Inn
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Escape to Bear Creek Inn, a charming 2-3 bedroom cottage featuring a large fenced-in yard, perfect for your pets. Enjoy a quiet and peaceful retreat alongside a year-round trout stream, just minutes f...
+   After:  Escape to Bear Creek Inn, a charming 2-3 bedroom cottage featuring a large fenced-in yard, perfect for your pets. Enjoy a quiet and peaceful retreat alongside a year-round trout stream, just minutes f...
+
+293. Cookie's Place, LLC
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Cookie's Place, LLC! This charming cabin features 3 bedrooms and 2 baths, along with a private pool. Enjoy stunning mountain views in a tranquil setting that is still conveniently close to ...
+   After:  Welcome to Cookie's Place, LLC! This charming cabin features 3 bedrooms and 2 baths, along with a private pool. Enjoy stunning mountain views in a tranquil setting that is still conveniently close to ...
+
+294. Bearfeet Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Cozy family cabin that sleeps 8 (K, Q, 2x twin bunks) tucked away in a quiet cul-de-sac. It's the ideal mountain getaway offering the best of seasonal activities like hiking, fishing, swimming, skiing...
+   After:  Cozy family cabin that sleeps 8 (K, Q, 2x twin bunks) tucked away in a quiet cul-de-sac. It's the ideal mountain getaway offering the best of seasonal activities like hiking, fishing, swimming, skiing...
+
+300. Mountain & Vine Farmhouse
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Prepare your palette for a tasteful getaway at this 4-bedroom, 4.5-bath vacation rental home overlooking Delfosse Vineyards and Winery! Sip and savor while enjoying the area’s best wine and beer, take...
+   After:  Prepare your palette for a tasteful getaway at this 4-bedroom, 4.5-bath vacation rental home overlooking Delfosse Vineyards and Winery! Sip and savor while enjoying the area’s best wine and beer, take...
+
+301. Mountain & Vine Vineyards Log Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This 1-bed, 1-bath vacation rental is calling—your next couple's retreat awaits! With panoramic vistas and private hilltop digs, this historic Faber cabin is well worth a visit. Enjoy a good night's r...
+   After:  This 1-bed, 1-bath vacation rental is calling—your next couple's retreat awaits! With panoramic vistas and private hilltop digs, this historic Faber cabin is well worth a visit. Enjoy a good night's r...
+
+302. The Fairway Chalet
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Fairway Chalet is a spacious 3,000-square-foot Wintergreen retreat featuring an arcade game, ping pong, and a cozy fire pit. Enjoy easy access to skiing, pools, and hiking, making it the perfect g...
+   After:  The Fairway Chalet is a spacious 3,000-square-foot Wintergreen retreat featuring an arcade game, ping pong, and a cozy fire pit. Enjoy easy access to skiing, pools, and hiking, making it the perfect g...
+
+305. Parr's Camp
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Service animals allowed. Parr's Camp is a historical rustic fishing cabin restored by us, surviving three hurricanes and dating back to the 1940s. Sleeping seven, there are two bedrooms downstairs: on...
+   After:  Service animals allowed. Parr's Camp is a historical rustic fishing cabin restored by us, surviving three hurricanes and dating back to the 1940s. Sleeping seven, there are two bedrooms downstairs: on...
+
+306. Bella Vista
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Bella Vista, a stunning 4-bedroom, 4.5-bathroom home located just a 7-minute walk or a 4-minute drive from the slopes. Enjoy spectacular views from the back deck and take advantage of the p...
+   After:  Welcome to Bella Vista, a stunning 4-bedroom, 4.5-bathroom home located just a 7-minute walk or a 4-minute drive from the slopes. Enjoy spectacular views from the back deck and take advantage of the p...
+
+310. Art & Soul Main House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: At Art & Soul, luxury and design meet nature, offering unsurpassed access to all that Central Virginia has to offer. Every detail of Art & Soul is crafted to elevate guest experiences. The property is...
+   After:  At Art & Soul, luxury and design meet nature, offering unsurpassed access to all that Central Virginia has to offer. Every detail of Art & Soul is crafted to elevate guest experiences. The property is...
+
+317. Kremer Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Lovely Cape Cod surrounded by mountains on 6 acres. Spend time on the huge front porch (partially screened in) watching the deer while sitting on one of the two porch swings. Room for the whole family...
+   After:  Lovely Cape Cod surrounded by mountains on 6 acres. Spend time on the huge front porch (partially screened in) watching the deer while sitting on one of the two porch swings. Room for the whole family...
+
+319. Boho Cliff House Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Beautiful views await you at the Boho Cliff House Retreat. This charming whole house rental offers a serene escape in Wintergreen, perfect for those looking to unwind and connect with nature. 
+
+Please...
+   After:  Beautiful views await you at the Boho Cliff House Retreat. This charming whole house rental offers a serene escape in Wintergreen, perfect for those looking to unwind and connect with nature.
+
+Please ...
+
+321. Three Ridge Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: A 2-bedroom, 2-bathroom dog-friendly condo at Wintergreen, Three Ridge Retreat is within walking distance to most amenities at the resort, including the ski slopes, restaurants, the Lodge, and many of...
+   After:  A 2-bedroom, 2-bathroom dog-friendly condo at Wintergreen, Three Ridge Retreat is within walking distance to most amenities at the resort, including the ski slopes, restaurants, the Lodge, and many of...
+
+322. Sunset Vista Villa
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Sunset Vista Villa! This stunning 2-bedroom, 2-bathroom retreat offers breathtaking views that stretch for miles. Though located on the first floor, the villa boasts elevated second-story v...
+   After:  Welcome to Sunset Vista Villa! This stunning 2-bedroom, 2-bathroom retreat offers breathtaking views that stretch for miles. Though located on the first floor, the villa boasts elevated second-story v...
+
+323. Arrowwood Lane
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Arrowwood Lane, a spacious whole house rental featuring 4 bedrooms, a living room, dining area, and kitchen, comfortably accommodating up to 10 guests. The property includes 3.5 baths, with...
+   After:  Welcome to Arrowwood Lane, a spacious whole house rental featuring 4 bedrooms, a living room, dining area, and kitchen, comfortably accommodating up to 10 guests. The property includes 3.5 baths, with...
+
+324. Winterhaven
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This is a 5-bedroom, 4.5-bath home located just 0.5 miles from the Lodge. This newer rental features many updates and is conveniently close to the Lodge. 
+
+Please note that lodging descriptions are pr...
+   After:  This is a 5-bedroom, 4.5-bath home located just 0.5 miles from the Lodge. This newer rental features many updates and is conveniently close to the Lodge.
+
+Please note that lodging descriptions are pro...
+
+327. Ski in Style At Sapphire Squirrel
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Adventure awaits at The Sapphire Squirrel in Wintergreen Resort. Our cozy 3-bedroom home, located on Squirrel Tree Lane, is just steps from the slopes and offers space for up to 6 guests. Enjoy a full...
+   After:  Adventure awaits at The Sapphire Squirrel in Wintergreen Resort. Our cozy 3-bedroom home, located on Squirrel Tree Lane, is just steps from the slopes and offers space for up to 6 guests. Enjoy a full...
+
+330. Time Out
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: ★ Comfortably sleeps 7: Q, Q, Q, single sofa. ★ Hot Tub ★ FAST Wi-Fi ★ Smart TVs ★ Ms. PAC-MAN arcade ★ Deck ★ Grill ★ Pack n' play ★ Highchair. 
+
+Walk to trails and enjoy endless activities: apple pi...
+   After:  ★ Comfortably sleeps 7: Q, Q, Q, single sofa. ★ Hot Tub ★ FAST Wi-Fi ★ Smart TVs ★ Ms. PAC-MAN arcade ★ Deck ★ Grill ★ Pack n' play ★ Highchair.
+
+Walk to trails and enjoy endless activities: apple pic...
+
+338. Love of Mountains Oh Fill My Cup
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Relax with the whole family at this peaceful place to stay. Let the mountains fill your cup and the fire warm your heart. Both beds are queen size. The condo is less than 5 minutes by car to the ski l...
+   After:  Relax with the whole family at this peaceful place to stay. Let the mountains fill your cup and the fire warm your heart. Both beds are queen size. The condo is less than 5 minutes by car to the ski l...
+
+343. Rockfish Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The main level boasts sliding glass doors leading to a generous porch, a well-stocked kitchen with granite countertops and a gas stove, a gas fireplace, comfortable seating, a farm table, a twin bedro...
+   After:  The main level boasts sliding glass doors leading to a generous porch, a well-stocked kitchen with granite countertops and a gas stove, a gas fireplace, comfortable seating, a farm table, a twin bedro...
+
+345. Wintergreen Duplex
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Wintergreen Duplex is a spacious three-floor rental featuring 4 bedrooms and 3.5 bathrooms. Enjoy cozy evenings by the wood-burning fireplace, or relax on the back deck. The unit includes a full-size ...
+   After:  Wintergreen Duplex is a spacious three-floor rental featuring 4 bedrooms and 3.5 bathrooms. Enjoy cozy evenings by the wood-burning fireplace, or relax on the back deck. The unit includes a full-size ...
+
+346. Sunrise on the Trail
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: This newly renovated home features a well-appointed kitchen with modern appliances, a dining area, and a coffee bar. The home also includes a full-size washer/dryer, a Keurig Duo coffee maker, and a 5...
+   After:  This newly renovated home features a well-appointed kitchen with modern appliances, a dining area, and a coffee bar. The home also includes a full-size washer/dryer, a Keurig Duo coffee maker, and a 5...
+
+347. Mima's Mountain House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Mima's Mountain House is a 5 BR/3 BA house that sleeps 10, offering a peaceful creekside mountain retreat with stunning mountain views. Relax with family and friends as you take in the beauty of the A...
+   After:  Mima's Mountain House is a 5 BR/3 BA house that sleeps 10, offering a peaceful creekside mountain retreat with stunning mountain views. Relax with family and friends as you take in the beauty of the A...
+
+353. Rockfish Valley Retreat
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Well-behaved pets/dogs are considered with an additional fee and certain restrictions/guidelines. Rockfish Valley Retreat is a 3-bedroom, 2-bathroom home, perfect for families and friends looking for ...
+   After:  Well-behaved pets/dogs are considered with an additional fee and certain restrictions/guidelines. Rockfish Valley Retreat is a 3-bedroom, 2-bathroom home, perfect for families and friends looking for ...
+
+354. Dobie Condo 323 at Wintergreen
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Dobie Condo 323 at Wintergreen! This cozy condo features 2 bedrooms and 2 bathrooms, complete with a fireplace, making it the perfect retreat for a quiet weekend getaway or an entertaining ...
+   After:  Welcome to Dobie Condo 323 at Wintergreen! This cozy condo features 2 bedrooms and 2 bathrooms, complete with a fireplace, making it the perfect retreat for a quiet weekend getaway or an entertaining ...
+
+356. Gumtree Drive 134
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Experience the perfect getaway at Gumtree Drive 134, a spacious 4-bedroom, 4-bath house featuring a game room equipped with two big-screen TVs. Unwind in the hot tub after a day of adventure, with the...
+   After:  Experience the perfect getaway at Gumtree Drive 134, a spacious 4-bedroom, 4-bath house featuring a game room equipped with two big-screen TVs. Unwind in the hot tub after a day of adventure, with the...
+
+358. Nectar Landing
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Nectar Landing is a charming 3BR/2.5 Bath ranch-style home that comfortably sleeps 10, making it ideal for multi-family or multi-generational trips. This open-concept vacation rental features a dining...
+   After:  Nectar Landing is a charming 3BR/2.5 Bath ranch-style home that comfortably sleeps 10, making it ideal for multi-family or multi-generational trips. This open-concept vacation rental features a dining...
+
+359. Nelson 151 Views and Brews
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Charming 1-bedroom apartment in beautiful Afton, close to wineries, breweries, and trails. The property offers a lovely view of Humpback Rock and the surrounding Blue Ridge Mountain Range. 
+
+Enjoy a f...
+   After:  Charming 1-bedroom apartment in beautiful Afton, close to wineries, breweries, and trails. The property offers a lovely view of Humpback Rock and the surrounding Blue Ridge Mountain Range.
+
+Enjoy a fu...
+
+362. Rockfish River Ranch Guest House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to the Rockfish River Ranch Guest House, nestled in the heart of Nelson County on 100 acres of beautiful landscape. This family-friendly retreat is conveniently located near numerous breweries...
+   After:  Welcome to the Rockfish River Ranch Guest House, nestled in the heart of Nelson County on 100 acres of beautiful landscape. This family-friendly retreat is conveniently located near numerous breweries...
+
+363. The Treetops Lodge
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Treetops Lodge is a luxurious cabin retreat accommodating up to ten guests across three spacious levels. With a cozy bunk room and plenty of indoor and outdoor seating, it’s ideal for gatherings w...
+   After:  The Treetops Lodge is a luxurious cabin retreat accommodating up to ten guests across three spacious levels. With a cozy bunk room and plenty of indoor and outdoor seating, it’s ideal for gatherings w...
+
+371. Sanctuary Retreat Center
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Join us for one of our 3 to 7-day retreats and experience the peaceful, holistic atmosphere of Sanctuary. Nestled in 120 acres of serene woodland, our retreat center offers the perfect setting to slow...
+   After:  Join us for one of our 3 to 7-day retreats and experience the peaceful, holistic atmosphere of Sanctuary. Nestled in 120 acres of serene woodland, our retreat center offers the perfect setting to slow...
+
+372. Trinacria Restaurant & Pizzeria
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Family-owned Italian pizzeria, Trinacria Restaurant & Pizzeria offers a warm and inviting atmosphere perfect for families and friends. Join us for a delightful dining experience featuring authentic It...
+   After:  Family-owned Italian pizzeria, Trinacria Restaurant & Pizzeria offers a warm and inviting atmosphere perfect for families and friends. Join us for a delightful dining experience featuring authentic It...
+
+376. Country Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Peaceful cottage tucked in the woods but close to breweries, wineries, and Charlottesville. The cottage features a full kitchen, a full bathroom, laundry facilities, a queen-size bed, and a huge front...
+   After:  Peaceful cottage tucked in the woods but close to breweries, wineries, and Charlottesville. The cottage features a full kitchen, a full bathroom, laundry facilities, a queen-size bed, and a huge front...
+
+379. Chateau Greenstone
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Wintergreen Retreat has something for everyone. With 6 bedrooms and 4 baths, this spacious getaway features 3 game areas for kids of all ages, including shuffleboard, bumper pool, ping pong, foosb...
+   After:  The Wintergreen Retreat has something for everyone. With 6 bedrooms and 4 baths, this spacious getaway features 3 game areas for kids of all ages, including shuffleboard, bumper pool, ping pong, foosb...
+
+382. Woodson's Mill
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Woodson’s Mill has been owned and cherished by a small handful of families since its construction in 1794, when Guiliford Campbell built the original four-story, 32-foot square building. The Fulchers ...
+   After:  Woodson’s Mill has been owned and cherished by a small handful of families since its construction in 1794, when Guiliford Campbell built the original four-story, 32-foot square building. The Fulchers ...
+
+383. Rockfish Valley Natural History Center
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: The Rockfish Valley Foundation’s Natural History Center features exhibits from the Virginia Museum of Natural History, including an array of taxidermied native wildlife. Young visitors will have the c...
+   After:  The Rockfish Valley Foundation’s Natural History Center features exhibits from the Virginia Museum of Natural History, including an array of taxidermied native wildlife. Young visitors will have the c...
+
+386. Rockwell Ridge Inn
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Welcome to Rockwell Ridge Inn, a pet-friendly mountain retreat in Afton, Virginia, set on 20 peaceful acres of meadows, creeks, woods, and trails. Located just minutes from the Blue Ridge Parkway, She...
+   After:  Welcome to Rockwell Ridge Inn, a pet-friendly mountain retreat in Afton, Virginia, set on 20 peaceful acres of meadows, creeks, woods, and trails. Located just minutes from the Blue Ridge Parkway, She...
+
+387. Everett Estate
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: Step into a beautifully crafted retreat where a stunning live-edge oak breakfast bar with leather stools awaits. This inviting space is perfect for enjoying your morning coffee or gathering with frien...
+   After:  Step into a beautifully crafted retreat where a stunning live-edge oak breakfast bar with leather stools awaits. This inviting space is perfect for enjoying your morning coffee or gathering with frien...
+
+394. Wine Cottage
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=2350 image_size=full....
+   After:  ...
+
+395. Castor Cabin
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=2397 image_size=full....
+   After:  ...
+
+396. Mountain House INN
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=2412 image_size=....
+   After:  ...
+
+397. Wooder House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=2723 image_size=full....
+   After:  ...
+
+398. Afton House
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=2825 image_size=full....
+   After:  ...
+
+402. Treetops Lodge
+   Fields cleaned: description
+
+   DESCRIPTION:
+   Before: Luxury “Cabin in the Woods”, perfectly secluded yet convenient to everything Nelson County has to offer! Sleeps 10 with 3 bedrooms ( 1king, 2 queen ) and bunk room (2 sets). Three living areas on thre...
+   After:  Luxury “Cabin in the Woods”, perfectly secluded yet convenient to everything Nelson County has to offer! Sleeps 10 with 3 bedrooms ( 1king, 2 queen ) and bunk room (2 sets). Three living areas on thre...
+
+403. Ski House
+   Fields cleaned: description, detailedDescription
+
+   DESCRIPTION:
+   Before: The Ski House [split_line_heading line_reveal_by_space_text_effect=letter-reveal-bottom font_style=h1 stagger_animation=true content_alignment=default mobile_content_alignment=inherit animat......
+   After:  The Ski House...
+
+   DETAILED DESCRIPTION:
+   Before: The Ski House [image_with_animation image_url=3159 image_....
+   After:  The Ski House...
+
+404. Goldfinch
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: [image_with_animation image_url=3330 image_size=full ma....
+   After:  ...
+
+405. Celadon Acres Farm
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Montebello Fish Hatchery Veritas Vineyards & Winery Mountain and Vine Winery Blue Mountain Brewery Basic Necessities [split_line_heading line_reveal_by_space_text_effect=none font_style=h6 text_color=...
+   After:  Montebello Fish Hatchery Veritas Vineyards & Winery Mountain and Vine Winery Blue Mountain Brewery Basic Necessities...
+
+407. Heart of Nelson
+   Fields cleaned: detailedDescription
+
+   DETAILED DESCRIPTION:
+   Before: Blue Mountain Brewery Basic Necessities [split_line_heading line_reveal_by_space_text_effect=none font_style=h6 text_....
+   After:  Blue Mountain Brewery Basic Necessities...
+

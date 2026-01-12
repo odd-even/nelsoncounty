@@ -2845,7 +2845,6 @@
                 <table id="dataTable" class="data-table">
                     <thead>
                         <tr>
-                            <th class="sortable" data-sort="id" data-column-key="id">ID</th>
                             <th class="sortable" data-sort="name" data-column-key="name">Name</th>
                             <th class="sortable" data-sort="slug" data-column-key="slug">Slug</th>
                             <th class="sortable" data-sort="type" data-column-key="type">Type</th>
@@ -2887,7 +2886,6 @@
                             <th data-column-key="actions">Actions</th>
                         </tr>
                         <tr class="filter-row">
-                            <th><input type="text" class="filter-input" data-filter="id" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="name" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="slug" placeholder="Filter..." /></th>
                             <th><select class="filter-select" data-filter="type"><option value="">All</option></select></th>
@@ -4392,7 +4390,6 @@ function applyFilterOptionCleanup(existingOptions) {
 initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, initialData.listings);
 
 const DEFAULT_TABLE_HEADERS = [
-    'id',
     'name',
     'slug',
     'type',
@@ -4428,7 +4425,6 @@ function normalizeHeaderKey(header) {
 }
 
 const TABLE_HEADER_KEY_MAP = [
-    { key: 'id', matches: ['id'] },
     { key: 'name', matches: ['name', 'title', 'listing name'] },
     { key: 'slug', matches: ['slug'] },
     { key: 'type', matches: ['type'] },
@@ -4764,7 +4760,6 @@ function updateUnsavedChangesBadge() {
             const categoryValue = getField('Category', ['category']);
             
             const listing = {
-                id: getField('ID', ['id', 'Id']),
                 name: getField('Title', ['Name', 'name', 'title']) || getField('name'),
                 type: getField('Type', ['type']), // Simple, direct - no normalization
                 category: categoryValue, // Simple, direct - same as type (no normalization)
@@ -4832,12 +4827,6 @@ function updateUnsavedChangesBadge() {
             listing.googleMapsUrl = googleMapsUrlField || listing.directionsLink || '';
             if (!listing.directionsLink && listing.googleMapsUrl) {
                 listing.directionsLink = listing.googleMapsUrl;
-            }
-            
-            if (!listing.id && listing.name) {
-                listing.id = listing.name.toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '');
             }
             
             return sanitizeListing(listing);
@@ -5996,9 +5985,8 @@ function updateUnsavedChangesBadge() {
             
             // Try to find by data attribute if it exists
             cards.forEach(function(card) {
-                const cardId = card.getAttribute('data-id');
                 const cardSlug = card.getAttribute('data-slug');
-                if (cardId === listing.id || cardSlug === listing.slug) {
+                if (cardSlug === listing.slug) {
                     targetCard = card;
                 }
             });
@@ -6425,14 +6413,14 @@ function updateUnsavedChangesBadge() {
                 editBtn.textContent = 'Edit';
                 editBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    editListing(listing.id);
+                    editListing(listing.slug);
                 });
                 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.className = 'btn-delete';
                 
                 // Check if this listing is waiting for confirmation
-                if (deleteConfirmId === listing.id) {
+                if (deleteConfirmId === listing.slug) {
                     deleteBtn.textContent = 'Confirm Delete?';
                     deleteBtn.style.background = '#dc2626';
                 } else {
@@ -6442,7 +6430,7 @@ function updateUnsavedChangesBadge() {
                 
                 deleteBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    deleteListing(listing.id);
+                    deleteListing(listing.slug);
                 });
                 
                 const duplicateBtn = document.createElement('button');
@@ -6450,7 +6438,7 @@ function updateUnsavedChangesBadge() {
                 duplicateBtn.textContent = 'Duplicate';
                 duplicateBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    duplicateListing(listing.id);
+                    duplicateListing(listing.slug);
                 });
                 
                 actions.appendChild(editBtn);
@@ -6499,14 +6487,14 @@ function updateUnsavedChangesBadge() {
                 backEditBtn.textContent = 'Edit';
                 backEditBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    editListing(listing.id);
+                    editListing(listing.slug);
                 });
                 
                 const backDeleteBtn = document.createElement('button');
                 backDeleteBtn.className = 'btn-delete';
                 
                 // Check if this listing is waiting for confirmation
-                if (deleteConfirmId === listing.id) {
+                if (deleteConfirmId === listing.slug) {
                     backDeleteBtn.textContent = 'Confirm Delete?';
                     backDeleteBtn.style.background = '#dc2626';
                 } else {
@@ -6516,7 +6504,7 @@ function updateUnsavedChangesBadge() {
                 
                 backDeleteBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    deleteListing(listing.id);
+                    deleteListing(listing.slug);
                 });
                 
                 const backDuplicateBtn = document.createElement('button');
@@ -6524,7 +6512,7 @@ function updateUnsavedChangesBadge() {
                 backDuplicateBtn.textContent = 'Duplicate';
                 backDuplicateBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    duplicateListing(listing.id);
+                    duplicateListing(listing.slug);
                 });
                 
                 backActions.appendChild(backEditBtn);
@@ -7201,8 +7189,8 @@ function updateUnsavedChangesBadge() {
             }, 100);
         }
         
-        function editListing(id) {
-            const listing = data.listings.find(function(l) { return l.id === id; });
+        function editListing(slug) {
+            const listing = data.listings.find(function(l) { return l.slug === slug; });
             if (!listing) return;
             
             // Ensure dropdowns are populated with current options
@@ -7212,7 +7200,7 @@ function updateUnsavedChangesBadge() {
             renderAmenitiesCheckboxes();
             
             document.getElementById('modalTitle').textContent = 'Edit Listing';
-            document.getElementById('editingId').value = id;
+            document.getElementById('editingId').value = slug;
             const nameInput = document.getElementById('listingName');
             nameInput.value = listing.name;
             nameInput.defaultValue = listing.name; // Store original name for slug comparison
@@ -7375,8 +7363,8 @@ function updateUnsavedChangesBadge() {
             }, 100);
         }
         
-        async function deleteListing(id) {
-            const listing = data.listings.find(function(l) { return l.id === id; });
+        async function deleteListing(slug) {
+            const listing = data.listings.find(function(l) { return l.slug === slug; });
             
             if (!listing) {
                 alert('Listing not found!');
@@ -7384,7 +7372,7 @@ function updateUnsavedChangesBadge() {
             }
             
             // Check if this is the confirmation click
-            if (deleteConfirmId === id) {
+            if (deleteConfirmId === slug) {
                 // Confirmed - delete it
                 deleteConfirmId = null;
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -7397,7 +7385,7 @@ function updateUnsavedChangesBadge() {
                         // Use GET request to avoid CORS preflight (OPTIONS) issues
                         // GET requests don't trigger CORS preflight, so they work even if OPTIONS fails
                         try {
-                            const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingId=' + encodeURIComponent(id) + '&t=' + Date.now();
+                            const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + '&t=' + Date.now();
                             const response = await fetch(deleteUrl, {
                                 method: 'GET',
                                 mode: 'cors'
@@ -7432,9 +7420,9 @@ function updateUnsavedChangesBadge() {
                             // This prevents any reload from restoring the deleted listing
                             const beforeCount = data.listings.length;
                             data.listings = data.listings.filter(function(l) { 
-                                const matches = String(l.id).trim() === String(id).trim();
+                                const matches = String(l.slug).trim() === String(slug).trim();
                                 if (matches) {
-                                    console.log('Removing listing from local data:', l.name, 'ID:', l.id);
+                                    console.log('Removing listing from local data:', l.name, 'Slug:', l.slug);
                                 }
                                 return !matches;
                             });
@@ -7443,14 +7431,14 @@ function updateUnsavedChangesBadge() {
                             
                             // Verify it was actually removed
                             const stillExists = data.listings.some(function(l) {
-                                return String(l.id).trim() === String(id).trim();
+                                return String(l.slug).trim() === String(slug).trim();
                             });
                             
                             if (stillExists) {
                                 console.error('❌ ERROR: Listing still exists in local data after delete!');
-                                console.error('Listing ID:', id);
+                                console.error('Listing Slug:', slug);
                                 console.error('Matching listings:', data.listings.filter(function(l) {
-                                    return String(l.id).trim() === String(id).trim();
+                                    return String(l.slug).trim() === String(slug).trim();
                                 }));
                             }
                             
@@ -7524,8 +7512,8 @@ function updateUnsavedChangesBadge() {
             }
         }
         
-        function duplicateListing(id) {
-            const listing = data.listings.find(function(l) { return l.id === id; });
+        function duplicateListing(slug) {
+            const listing = data.listings.find(function(l) { return l.slug === slug; });
             
             if (!listing) {
                 alert('Listing not found!');
@@ -7535,15 +7523,17 @@ function updateUnsavedChangesBadge() {
             // Create a deep copy of the listing
             const duplicate = JSON.parse(JSON.stringify(listing));
             
-            // Generate a new ID
-            duplicate.id = Date.now().toString();
-            
             // Modify the name to indicate it's a duplicate
             duplicate.name = (listing.name || 'Untitled Listing') + ' (Copy)';
             
             // Generate a new slug if it exists
             if (duplicate.slug) {
                 duplicate.slug = duplicate.slug + '-copy';
+            } else if (duplicate.name) {
+                // Generate slug from name if it doesn't exist
+                duplicate.slug = duplicate.name.toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
             }
             
             // Add to the listings array
@@ -7556,7 +7546,7 @@ function updateUnsavedChangesBadge() {
             
             // Optionally open the duplicate for editing
             setTimeout(function() {
-                editListing(duplicate.id);
+                editListing(duplicate.slug);
             }, 100);
             
             alert('✅ Duplicated "' + listing.name + '"');
@@ -7579,10 +7569,9 @@ function updateUnsavedChangesBadge() {
             const selectedAmenities = [];
             checkboxes.forEach(function(cb) { selectedAmenities.push(cb.value); });
             
-            const editingId = document.getElementById('editingId').value;
-            const isUpdate = !!editingId;
-            const existingListing = isUpdate ? data.listings.find(function(l) { return l.id === editingId; }) : null;
-            const generatedId = editingId || Date.now().toString();
+            const editingSlug = document.getElementById('editingId').value;
+            const isUpdate = !!editingSlug;
+            const existingListing = isUpdate ? data.listings.find(function(l) { return l.slug === editingSlug; }) : null;
             
             // Get category - handle EXACTLY like type (simple, direct, no normalization)
             // Type: getValue('listingType') - no transformation
@@ -7617,7 +7606,6 @@ function updateUnsavedChangesBadge() {
             const image3Field = document.getElementById('listingImage3');
             
             const listingUpdates = {
-                id: generatedId,
                 name: getValue('listingName'),
                 slug: getValue('listingSlug'),
                 type: getValue('listingType'), // Simple, direct - no normalization
@@ -7670,7 +7658,7 @@ function updateUnsavedChangesBadge() {
             
             // Save locally only - user must click "Save All to Google Sheets" to sync
                         if (isUpdate) {
-                            const index = data.listings.findIndex(function(l) { return l.id === editingId; });
+                            const index = data.listings.findIndex(function(l) { return l.slug === editingSlug; });
                             if (index >= 0) {
                                 data.listings[index] = listing;
                     updateSyncStatus(true, '✅ "' + listing.name + '" updated locally');
@@ -11257,7 +11245,6 @@ function updateUnsavedChangesBadge() {
                 }
                 
                 row.innerHTML = 
-                    '<td class="cell-id"><input type="text" value="' + safe(listing.id) + '" data-field="id" /></td>' +
                     '<td class="cell-name"><input type="text" value="' + safe(listing.name) + '" data-field="name" /></td>' +
                     '<td class="cell-slug"><input type="text" value="' + safe(listing.slug) + '" data-field="slug" placeholder="auto" /></td>' +
                     '<td class="cell-type"><select data-field="type">' +

@@ -1061,7 +1061,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const categoryValue = getField('Category', ['category']);
             
             const listing = {
-                id: getField('ID', ['id', 'Id']),
                 name: getField('Title', ['Name', 'name', 'title']) || getField('name'),
                 type: getField('Type', ['type']),
                 category: categoryValue || undefined, // Only set if provided
@@ -1118,12 +1117,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             listing.googleMapsUrl = googleMapsUrlField || listing.directionsLink || '';
             if (!listing.directionsLink && listing.googleMapsUrl) {
                 listing.directionsLink = listing.googleMapsUrl;
-            }
-            
-            if (!listing.id && listing.name) {
-                listing.id = listing.name.toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '');
             }
             
             return sanitizeListing(listing);
@@ -1739,14 +1732,14 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 editBtn.className = 'btn-edit';
                 editBtn.textContent = 'Edit';
                 editBtn.addEventListener('click', function() { 
-                    editListing(listing.id); 
+                    editListing(listing.slug); 
                 });
                 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.className = 'btn-delete';
                 
                 // Check if this listing is waiting for confirmation
-                if (deleteConfirmId === listing.id) {
+                if (deleteConfirmId === listing.slug) {
                     deleteBtn.textContent = 'Confirm Delete?';
                     deleteBtn.style.background = '#dc2626';
                 } else {
@@ -1755,7 +1748,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 }
                 
                 deleteBtn.addEventListener('click', function() { 
-                    deleteListing(listing.id); 
+                    deleteListing(listing.slug); 
                 });
                 
                 actions.appendChild(editBtn);
@@ -2196,8 +2189,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingModal').classList.add('active');
         }
         
-        function editListing(id) {
-            const listing = data.listings.find(function(l) { return l.id === id; });
+        function editListing(slug) {
+            const listing = data.listings.find(function(l) { return l.slug === slug; });
             if (!listing) return;
             
             // Debug: Log detailedDescription to console
@@ -2212,7 +2205,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             renderAmenitiesCheckboxes();
             
             document.getElementById('modalTitle').textContent = 'Edit Listing';
-            document.getElementById('editingId').value = id;
+            document.getElementById('editingId').value = slug;
             document.getElementById('listingName').value = listing.name;
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
@@ -2306,8 +2299,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             document.getElementById('listingModal').classList.add('active');
         }
         
-        async function deleteListing(id) {
-            const listing = data.listings.find(function(l) { return l.id === id; });
+        async function deleteListing(slug) {
+            const listing = data.listings.find(function(l) { return l.slug === slug; });
             
             if (!listing) {
                 alert('Listing not found!');
@@ -2315,7 +2308,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             }
             
             // Check if this is the confirmation click
-            if (deleteConfirmId === id) {
+            if (deleteConfirmId === slug) {
                 // Confirmed - delete it
                 deleteConfirmId = null;
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -2326,7 +2319,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         // Try direct POST, fallback to form submission
                         const postData = JSON.stringify({
                             action: 'deleteListing',
-                            listingId: id
+                            listingSlug: slug
                         });
                         
                         let result = { success: false };
@@ -2364,7 +2357,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         
                         if (result.success) {
                             // Update local data
-                            data.listings = data.listings.filter(function(l) { return l.id !== id; });
+                            data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
                             updateSyncStatus(true, '✅ Deleted from Google Sheets');
                             
                             // Reload from Google Sheets to sync
@@ -2378,11 +2371,11 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                         alert('⚠️ Failed to delete from Google Sheets: ' + error.message + '\n\nDeleted locally only.');
                         
                         // Still delete locally
-                        data.listings = data.listings.filter(function(l) { return l.id !== id; });
+                        data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
                     }
                 } else {
                     // No Google Sheets configured - delete locally only
-                    data.listings = data.listings.filter(function(l) { return l.id !== id; });
+                    data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
                     alert('Deleted "' + listing.name + '" (Local only - configure Google Sheets to sync)');
                 }
                 
@@ -2391,7 +2384,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
             } else {
                 // First click - set confirmation needed
-                deleteConfirmId = id;
+                deleteConfirmId = slug;
                 
                 // Clear any existing timeout
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -2424,16 +2417,14 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const selectedAmenities = [];
             checkboxes.forEach(function(cb) { selectedAmenities.push(cb.value); });
             
-            const editingId = document.getElementById('editingId').value;
-            const isUpdate = !!editingId;
-            const existingListing = isUpdate ? data.listings.find(function(l) { return l.id === editingId; }) : null;
-            const generatedId = editingId || Date.now().toString();
+            const editingSlug = document.getElementById('editingId').value;
+            const isUpdate = !!editingSlug;
+            const existingListing = isUpdate ? data.listings.find(function(l) { return l.slug === editingSlug; }) : null;
             
             // Get category override, if provided
             const categoryOverride = getValue('listingCategory');
             
             const listingUpdates = {
-                id: generatedId,
                 name: getValue('listingName'),
                 slug: getValue('listingSlug'),
                 type: getValue('listingType'),
@@ -2476,7 +2467,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             
             // Save locally only - user must click "Save All to Google Sheets" to sync
                         if (isUpdate) {
-                            const index = data.listings.findIndex(function(l) { return l.id === editingId; });
+                            const index = data.listings.findIndex(function(l) { return l.slug === editingSlug; });
                             if (index >= 0) {
                                 data.listings[index] = listing;
                     alert('"' + listing.name + '" has been updated locally!\n\n💾 Click "Save All to Google Sheets" to sync changes.');
@@ -3673,7 +3664,6 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 }
                 
                 row.innerHTML = 
-                    '<td class="cell-id"><input type="text" value="' + safe(listing.id) + '" data-field="id" /></td>' +
                     '<td class="cell-name"><input type="text" value="' + safe(listing.name) + '" data-field="name" /></td>' +
                     '<td class="cell-slug"><input type="text" value="' + safe(listing.slug) + '" data-field="slug" placeholder="auto" /></td>' +
                     '<td class="cell-type"><select data-field="type">' +
@@ -3712,8 +3702,8 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                     '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
                     '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
                     '<td class="cell-actions">' +
-                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.id ? '#dc2626' : '#E3795C') + ';">' +
-                        (deleteConfirmId === listing.id ? 'Confirm?' : 'Delete') +
+                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
+                        (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
                         '</button>' +
                     '</td>';
                 tbody.appendChild(row);
@@ -3786,7 +3776,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
             const listing = data.listings[index];
             
             // Check if this is the confirmation click
-            if (deleteConfirmId === listing.id) {
+            if (deleteConfirmId === listing.slug) {
                 // Confirmed - delete it
                 data.listings.splice(index, 1);
                 deleteConfirmId = null;
@@ -3799,7 +3789,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 alert('Deleted: ' + listing.name);
             } else {
                 // First click - set confirmation needed
-                deleteConfirmId = listing.id;
+                deleteConfirmId = listing.slug;
                 
                 // Clear any existing timeout
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
@@ -3833,7 +3823,7 @@ initialData.filterOptions = sanitizeFilterOptions(initialData.filterOptions, ini
                 
                 // Add standard fields first (in preferred order)
                 const standardFields = [
-                    'id', 'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
+                    'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
                     'image1', 'image1Desc',
                     'image2', 'image2Desc',
                     'image3', 'image3Desc',
