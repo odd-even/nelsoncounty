@@ -4699,14 +4699,23 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         function initializeAccordionPanel1Editor() {
             const editorContainer = document.getElementById('listingAccordionPanel1ContentEditor');
             if (!editorContainer) {
-                console.warn('Accordion Panel 1 editor container not found');
+                console.warn('⚠️ Accordion Panel 1 editor container not found');
                 return;
             }
+            // Check if Quill is already initialized on this element
+            if (editorContainer.__quill) {
+                console.log('✅ Accordion Panel 1: Quill already initialized on element');
+                quillAccordionPanel1 = editorContainer.__quill;
+                return;
+            }
+            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel1) {
-                return;
+                console.log('🔄 Accordion Panel 1: Clearing old reference');
+                quillAccordionPanel1 = null;
             }
-            console.log('Initializing Quill for Accordion Panel 1');
-            quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', {
+            console.log('🔧 Initializing Quill for Accordion Panel 1');
+            try {
+                quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
@@ -4718,28 +4727,41 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                     ]
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            });
-            quillAccordionPanel1.on('text-change', function() {
-                const html = quillAccordionPanel1.root.innerHTML;
-                const textarea = document.getElementById('listingAccordionPanel1Content');
-                if (textarea) {
-                    textarea.value = html;
-                }
-            });
+                });
+                console.log('✅ Accordion Panel 1: Quill initialized successfully');
+                quillAccordionPanel1.on('text-change', function() {
+                    const html = quillAccordionPanel1.root.innerHTML;
+                    const textarea = document.getElementById('listingAccordionPanel1Content');
+                    if (textarea) {
+                        textarea.value = html;
+                    }
+                });
+            } catch(error) {
+                console.error('❌ Error initializing Accordion Panel 1 Quill:', error);
+            }
         }
         
         // Initialize Quill editor for accordion panel 2
         function initializeAccordionPanel2Editor() {
             const editorContainer = document.getElementById('listingAccordionPanel2ContentEditor');
             if (!editorContainer) {
-                console.warn('Accordion Panel 2 editor container not found');
+                console.warn('⚠️ Accordion Panel 2 editor container not found');
                 return;
             }
+            // Check if Quill is already initialized on this element
+            if (editorContainer.__quill) {
+                console.log('✅ Accordion Panel 2: Quill already initialized on element');
+                quillAccordionPanel2 = editorContainer.__quill;
+                return;
+            }
+            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel2) {
-                return;
+                console.log('🔄 Accordion Panel 2: Clearing old reference');
+                quillAccordionPanel2 = null;
             }
-            console.log('Initializing Quill for Accordion Panel 2');
-            quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', {
+            console.log('🔧 Initializing Quill for Accordion Panel 2');
+            try {
+                quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
@@ -4751,28 +4773,41 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                     ]
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            });
-            quillAccordionPanel2.on('text-change', function() {
-                const html = quillAccordionPanel2.root.innerHTML;
-                const textarea = document.getElementById('listingAccordionPanel2Content');
-                if (textarea) {
-                    textarea.value = html;
-                }
-            });
+                });
+                console.log('✅ Accordion Panel 2: Quill initialized successfully');
+                quillAccordionPanel2.on('text-change', function() {
+                    const html = quillAccordionPanel2.root.innerHTML;
+                    const textarea = document.getElementById('listingAccordionPanel2Content');
+                    if (textarea) {
+                        textarea.value = html;
+                    }
+                });
+            } catch(error) {
+                console.error('❌ Error initializing Accordion Panel 2 Quill:', error);
+            }
         }
         
         // Initialize Quill editor for accordion panel 3
         function initializeAccordionPanel3Editor() {
             const editorContainer = document.getElementById('listingAccordionPanel3ContentEditor');
             if (!editorContainer) {
-                console.warn('Accordion Panel 3 editor container not found');
+                console.warn('⚠️ Accordion Panel 3 editor container not found');
                 return;
             }
+            // Check if Quill is already initialized on this element
+            if (editorContainer.__quill) {
+                console.log('✅ Accordion Panel 3: Quill already initialized on element');
+                quillAccordionPanel3 = editorContainer.__quill;
+                return;
+            }
+            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel3) {
-                return;
+                console.log('🔄 Accordion Panel 3: Clearing old reference');
+                quillAccordionPanel3 = null;
             }
-            console.log('Initializing Quill for Accordion Panel 3');
-            quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', {
+            console.log('🔧 Initializing Quill for Accordion Panel 3');
+            try {
+                quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
@@ -4784,28 +4819,41 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                     ]
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            });
-            quillAccordionPanel3.on('text-change', function() {
-                const html = quillAccordionPanel3.root.innerHTML;
-                const textarea = document.getElementById('listingAccordionPanel3Content');
-                if (textarea) {
-                    textarea.value = html;
-                }
-            });
+                });
+                console.log('✅ Accordion Panel 3: Quill initialized successfully');
+                quillAccordionPanel3.on('text-change', function() {
+                    const html = quillAccordionPanel3.root.innerHTML;
+                    const textarea = document.getElementById('listingAccordionPanel3Content');
+                    if (textarea) {
+                        textarea.value = html;
+                    }
+                });
+            } catch(error) {
+                console.error('❌ Error initializing Accordion Panel 3 Quill:', error);
+            }
         }
         
         // Initialize Quill editor for accordion panel 4
         function initializeAccordionPanel4Editor() {
             const editorContainer = document.getElementById('listingAccordionPanel4ContentEditor');
             if (!editorContainer) {
-                console.warn('Accordion Panel 4 editor container not found');
+                console.warn('⚠️ Accordion Panel 4 editor container not found');
                 return;
             }
+            // Check if Quill is already initialized on this element
+            if (editorContainer.__quill) {
+                console.log('✅ Accordion Panel 4: Quill already initialized on element');
+                quillAccordionPanel4 = editorContainer.__quill;
+                return;
+            }
+            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel4) {
-                return;
+                console.log('🔄 Accordion Panel 4: Clearing old reference');
+                quillAccordionPanel4 = null;
             }
-            console.log('Initializing Quill for Accordion Panel 4');
-            quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', {
+            console.log('🔧 Initializing Quill for Accordion Panel 4');
+            try {
+                quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
@@ -4817,14 +4865,18 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                     ]
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            });
-            quillAccordionPanel4.on('text-change', function() {
-                const html = quillAccordionPanel4.root.innerHTML;
-                const textarea = document.getElementById('listingAccordionPanel4Content');
-                if (textarea) {
-                    textarea.value = html;
-                }
-            });
+                });
+                console.log('✅ Accordion Panel 4: Quill initialized successfully');
+                quillAccordionPanel4.on('text-change', function() {
+                    const html = quillAccordionPanel4.root.innerHTML;
+                    const textarea = document.getElementById('listingAccordionPanel4Content');
+                    if (textarea) {
+                        textarea.value = html;
+                    }
+                });
+            } catch(error) {
+                console.error('❌ Error initializing Accordion Panel 4 Quill:', error);
+            }
         }
         
         document.addEventListener('input', function(event) {
@@ -7743,18 +7795,11 @@ function updateUnsavedChangesBadge() {
             // Initialize accordion Quill editors after modal is visible (they're inside the modal)
             // Then set content after editors are initialized (same pattern as detailedDescription)
             setTimeout(function() {
-                if (!quillAccordionPanel1) {
-                    initializeAccordionPanel1Editor();
-                }
-                if (!quillAccordionPanel2) {
-                    initializeAccordionPanel2Editor();
-                }
-                if (!quillAccordionPanel3) {
-                    initializeAccordionPanel3Editor();
-                }
-                if (!quillAccordionPanel4) {
-                    initializeAccordionPanel4Editor();
-                }
+                console.log('🔧 editListing: Initializing accordion Quill editors...');
+                initializeAccordionPanel1Editor();
+                initializeAccordionPanel2Editor();
+                initializeAccordionPanel3Editor();
+                initializeAccordionPanel4Editor();
                 
                 // Set accordion panel 1 content after editor is initialized
                 const accordionPanel1ContentValue = listing.accordionPanel1Content || '';
