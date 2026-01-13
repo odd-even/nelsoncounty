@@ -459,6 +459,8 @@
         .checkbox-group { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+            grid-auto-flow: column;
+            grid-template-rows: repeat(auto-fill, minmax(25px, auto));
             gap: 8px 16px; 
             margin-top: 8px;
             max-height: 400px;
@@ -7240,12 +7242,12 @@ function updateUnsavedChangesBadge() {
                 return;
             }
             
-            // Sort amenities alphabetically (simple alphabetical sort)
+            // Sort amenities alphabetically - CSS Grid with grid-auto-flow: column handles the rest!
             const amenities = data.filterOptions.amenities.slice().sort(function(a, b) {
                 return a.toLowerCase().localeCompare(b.toLowerCase());
             });
             
-            // Simple rendering - let CSS Grid handle the column layout naturally
+            // Simple rendering - CSS handles column-first flow automatically
             container.innerHTML = amenities.map(function(amenity) {
                 const id = 'amenity-' + amenity.replace(/\s+/g, '-').toLowerCase();
                 return '<div class="checkbox-item">' +
