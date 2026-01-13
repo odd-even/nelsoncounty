@@ -807,7 +807,7 @@
         .data-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
         .data-header h2 { font-size: 24px; color: var(--text-primary); }
         .data-actions { display: flex; gap: 10px; }
-        .table-wrapper { background: var(--card-bg); border-radius: 12px; overflow-x: auto; overflow-y: visible; max-height: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; }
+        .table-wrapper { background: var(--card-bg); border-radius: 12px; overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 150px); box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; }
         .data-table { width: 100%; border-collapse: collapse; }
         .data-table thead { background: #1a1a1a; color: white; }
         .data-table thead tr:first-child th { position: sticky; top: 0; z-index: 10; background: #1a1a1a; }
@@ -855,6 +855,10 @@
         .data-table .cell-amenities textarea { min-height: 80px; }
         .data-table .cell-featured { text-align: center; }
         .data-table .cell-private { text-align: center; }
+        .data-table .cell-accordion-title { min-width: 200px; max-width: 300px; }
+        .data-table .cell-accordion-title input { font-size: 12px; }
+        .data-table .cell-accordion-content { min-width: 800px; max-width: 1200px; }
+        .data-table .cell-accordion-content textarea { min-height: 200px; white-space: pre-wrap; font-size: 12px; resize: vertical; }
         .data-table .cell-actions { white-space: nowrap; }
         .data-table .btn-table-save { background: #007AFF; color: white; padding: 6px 12px; border: none; border-radius: 18px; font-size: 12px; cursor: pointer; margin-right: 5px; }
         .data-table .btn-table-save:hover { background: #0051D5; }
