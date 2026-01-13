@@ -458,8 +458,8 @@
         
         .checkbox-group { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 10px; 
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+            gap: 8px 16px; 
             margin-top: 8px;
             max-height: 400px;
             overflow-y: auto;
@@ -467,17 +467,19 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             background: var(--bg-secondary);
+            grid-auto-flow: column;
+            grid-template-rows: repeat(auto-fill, minmax(25px, auto));
         }
         
         @media (max-width: 768px) {
             .checkbox-group {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
         }
         
         @media (max-width: 480px) {
             .checkbox-group {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
         }
         .checkbox-item { display: flex; align-items: center; gap: 6px; }
@@ -7257,13 +7259,69 @@ function updateUnsavedChangesBadge() {
                 return a.toLowerCase().localeCompare(b.toLowerCase());
             });
             
-            container.innerHTML = amenities.map(function(amenity) {
+            // Calculate number of columns based on container width
+            // Wait for container to be rendered to get accurate width
+            const calculateColumns = function() {
+                const containerWidth = container.offsetWidth || 600; // Fallback to 600px
+                const minColumnWidth = 180;
+                const gap = 16;
+                const numColumns = Math.max(1, Math.floor((containerWidth + gap) / (minColumnWidth + gap)));
+                return numColumns;
+            };
+            
+            // Get number of columns (will recalculate if needed)
+            let numColumns = calculateColumns();
+            
+            // If container not yet rendered, use a reasonable default
+            if (numColumns === 1 && container.offsetWidth === 0) {
+                numColumns = 3; // Default to 3 columns
+            }
+            
+            // Organize amenities into columns (fill down columns first, then across rows)
+            // This means: column 1 gets items 0, 3, 6, 9... column 2 gets 1, 4, 7, 10... etc.
+            const itemsPerColumn = Math.ceil(amenities.length / numColumns);
+            const columns = [];
+            
+            // Initialize columns
+            for (let col = 0; col < numColumns; col++) {
+                columns[col] = [];
+            }
+            
+            // Distribute items: fill down each column first
+            for (let i = 0; i < amenities.length; i++) {
+                const col = i % numColumns;
+                const row = Math.floor(i / numColumns);
+                if (!columns[col]) columns[col] = [];
+                columns[col][row] = amenities[i];
+            }
+            
+            // Flatten columns back into a single array (maintaining column-first order)
+            // This creates the visual effect of items going down columns first
+            const orderedAmenities = [];
+            for (let row = 0; row < itemsPerColumn; row++) {
+                for (let col = 0; col < numColumns; col++) {
+                    if (columns[col] && columns[col][row] !== undefined) {
+                        orderedAmenities.push(columns[col][row]);
+                    }
+                }
+            }
+            
+            container.innerHTML = orderedAmenities.map(function(amenity) {
                 const id = 'amenity-' + amenity.replace(/\s+/g, '-').toLowerCase();
                 return '<div class="checkbox-item">' +
                     '<input type="checkbox" id="' + id + '" value="' + amenity + '" />' +
                     '<label for="' + id + '" style="font-weight: normal; margin: 0;">' + amenity + '</label>' +
                     '</div>';
             }).join('');
+            
+            // Recalculate columns after rendering if container width changed
+            setTimeout(function() {
+                const newNumColumns = calculateColumns();
+                if (newNumColumns !== numColumns && container.offsetWidth > 0) {
+                    // Re-render with correct column count
+                    renderAmenitiesCheckboxes();
+                }
+            }, 100);
         }
         
         window.openAddModal = function openAddModal() {
