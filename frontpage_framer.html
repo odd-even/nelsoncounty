@@ -4589,6 +4589,10 @@ function mapCSVRowToListing(row, index) {
     const featuredStr = getField('Featured', ['featured']);
     const featured = featuredStr === 'TRUE' || featuredStr === 'true' || featuredStr === '1' || featuredStr === 'Yes' || featuredStr === 'yes';
     
+    // Parse private (handle various formats)
+    const privateStr = getField('Private', ['private']);
+    const isPrivate = privateStr === 'TRUE' || privateStr === 'true' || privateStr === '1' || privateStr === 'Yes' || privateStr === 'yes';
+    
     // Handle category EXACTLY like type - simple and direct
     // Type: getField('Type', ['type']) || '' - no normalization, no transformation
     // Category: getField('Category', ['category']) || '' - same approach
@@ -4615,7 +4619,32 @@ function mapCSVRowToListing(row, index) {
         phone: getField('Phone', ['phone']) || '',
         address: getField('Address', ['address']) || '',
         amenities: amenities,
-        featured: featured
+        featured: featured,
+        private: isPrivate
+    };
+}
+
+// Helper function to filter out private listings
+function filterPrivateListings(data) {
+    if (!data || !data.listings) return data;
+    
+    const publicListings = data.listings.filter(function(listing) {
+        const isPrivate = listing.private === true || 
+                         listing.private === 'true' || 
+                         listing.private === 'TRUE' || 
+                         listing.private === '1' || 
+                         String(listing.private || '').toLowerCase() === 'yes';
+        return !isPrivate;
+    });
+    
+    const privateCount = data.listings.length - publicListings.length;
+    if (privateCount > 0) {
+        console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+    }
+    
+    return {
+        listings: publicListings,
+        filterOptions: data.filterOptions || extractFilterOptions(publicListings)
     };
 }
 
@@ -6578,12 +6607,27 @@ function loadDataFromGoogleSheets() {
                 console.log('📋 Last listing:', JSON.stringify(listings[listings.length - 1]).substring(0, 300));
             }
             
-            // Extract filter options
-            const filterOptions = extractFilterOptions(listings);
+            // Filter out private listings
+            const publicListings = listings.filter(function(listing) {
+                const isPrivate = listing.private === true || 
+                                 listing.private === 'true' || 
+                                 listing.private === 'TRUE' || 
+                                 listing.private === '1' || 
+                                 String(listing.private || '').toLowerCase() === 'yes';
+                return !isPrivate;
+            });
+            
+            const privateCount = listings.length - publicListings.length;
+            if (privateCount > 0) {
+                console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+            }
+            
+            // Extract filter options from public listings only
+            const filterOptions = extractFilterOptions(publicListings);
             console.log('📊 Filter options - Types:', filterOptions.types.length, 'Areas:', filterOptions.areas.length, 'Amenities:', filterOptions.amenities.length);
             
             return {
-                listings: listings,
+                listings: publicListings,
                 filterOptions: filterOptions
             };
         })
@@ -6641,13 +6685,14 @@ function loadDataFromGitHub() {
             console.log('📡 GitHub Response Status:', response.status, response.statusText);
             if (!response.ok) {
                 console.warn('⚠️ Could not fetch from GitHub (status ' + response.status + '), using embedded fallback data');
-                return fallbackData;
+                return filterPrivateListings(fallbackData);
             }
             console.log('✅ Successfully fetched from GitHub');
             // Ensure UTF-8 encoding is handled properly
             return response.text().then(text => {
                 try {
-                    return JSON.parse(text);
+                    const data = JSON.parse(text);
+                    return filterPrivateListings(data);
                 } catch (e) {
                     console.error('Error parsing JSON:', e);
                     // Try to fix common encoding issues
@@ -6660,14 +6705,15 @@ function loadDataFromGitHub() {
                         .replace(/\u00C3\u00B1/g, '\u00F1') // Fix ñ
                         .replace(/\u00C3\u00BC/g, '\u00FC') // Fix ü
                         .replace(/\u00C3\u00B6/g, '\u00F6'); // Fix ö
-                    return JSON.parse(fixedText);
+                    const data = JSON.parse(fixedText);
+                    return filterPrivateListings(data);
                 }
             });
         })
         .catch(error => {
             console.warn('⚠️ GitHub fetch failed:', error);
             console.log('💾 Using embedded fallback data');
-            return fallbackData;
+            return filterPrivateListings(fallbackData);
         });
 }
 
@@ -6678,10 +6724,29 @@ loadDataFromGoogleSheets()
             throw new Error('Loaded data is empty or missing listings');
         }
         
-        data = loadedData;
+        // Filter out private listings before assigning to data
+        const publicListings = (loadedData.listings || []).filter(function(listing) {
+            const isPrivate = listing.private === true || 
+                             listing.private === 'true' || 
+                             listing.private === 'TRUE' || 
+                             listing.private === '1' || 
+                             String(listing.private || '').toLowerCase() === 'yes';
+            return !isPrivate;
+        });
+        
+        const privateCount = (loadedData.listings || []).length - publicListings.length;
+        if (privateCount > 0) {
+            console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+        }
+        
+        data = {
+            listings: publicListings,
+            filterOptions: loadedData.filterOptions || extractFilterOptions(publicListings)
+        };
+        
         console.log('✅ Adventure data loaded successfully');
         console.log('📊 Source: Google Sheets');
-        console.log('📊 Listings count:', data.listings.length);
+        console.log('📊 Listings count (public):', data.listings.length);
         console.log('📊 First listing name:', data.listings[0]?.name || 'N/A');
         console.log('📊 Last listing name:', data.listings[data.listings.length - 1]?.name || 'N/A');
         
@@ -6987,7 +7052,7 @@ loadDataFromGoogleSheets()
         console.error('❌ Error loading data:', error);
         console.error('❌ Error details:', error.message, error.stack);
         console.warn('🔄 Falling back to embedded data');
-        data = fallbackData;
+        data = filterPrivateListings(fallbackData);
         
         // Reload categories from localStorage to get latest changes from admin panel
         reloadCategoriesFromStorage();
