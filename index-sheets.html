@@ -4665,9 +4665,26 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 return;
             }
             
-            // Only initialize once
+            // Destroy existing instance to force re-initialization with new config
             if (quillDetailedDescription) {
-                return;
+                try {
+                    const container = document.getElementById('listingDetailedDescriptionEditor');
+                    if (container && container.__quill) {
+                        container.__quill = null;
+                    }
+                    quillDetailedDescription = null;
+                } catch(e) {}
+            }
+            
+            // Destroy existing instance if it exists to force re-initialization with new config
+            if (quillDetailedDescription) {
+                try {
+                    const container = document.getElementById('listingDetailedDescriptionEditor');
+                    if (container && container.__quill) {
+                        container.__quill = null;
+                    }
+                    quillDetailedDescription = null;
+                } catch(e) {}
             }
             
             // Configure Quill with allowed formats
@@ -4703,15 +4720,13 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 1 editor container not found');
                 return;
             }
-            // Checking if Quill is already initialized on this element
+            // Destroy existing instance to force re-initialization with new config
             if (editorContainer.__quill) {
-                console.log('✅ Accordion Panel 1: Quill already initialized on element');
-                quillAccordionPanel1 = editorContainer.__quill;
-                return;
+                try {
+                    editorContainer.__quill = null;
+                } catch(e) {}
             }
-            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel1) {
-                console.log('🔄 Accordion Panel 1: Clearing old reference');
                 quillAccordionPanel1 = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 1');
@@ -4750,15 +4765,13 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 2 editor container not found');
                 return;
             }
-            // Check if Quill is already initialized on this element
+            // Destroy existing instance to force re-initialization with new config
             if (editorContainer.__quill) {
-                console.log('✅ Accordion Panel 2: Quill already initialized on element');
-                quillAccordionPanel2 = editorContainer.__quill;
-                return;
+                try {
+                    editorContainer.__quill = null;
+                } catch(e) {}
             }
-            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel2) {
-                console.log('🔄 Accordion Panel 2: Clearing old reference');
                 quillAccordionPanel2 = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 2');
@@ -4797,15 +4810,13 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 3 editor container not found');
                 return;
             }
-            // Check if Quill is already initialized on this element
+            // Destroy existing instance to force re-initialization with new config
             if (editorContainer.__quill) {
-                console.log('✅ Accordion Panel 3: Quill already initialized on element');
-                quillAccordionPanel3 = editorContainer.__quill;
-                return;
+                try {
+                    editorContainer.__quill = null;
+                } catch(e) {}
             }
-            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel3) {
-                console.log('🔄 Accordion Panel 3: Clearing old reference');
                 quillAccordionPanel3 = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 3');
@@ -4844,15 +4855,13 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 4 editor container not found');
                 return;
             }
-            // Check if Quill is already initialized on this element
+            // Destroy existing instance to force re-initialization with new config
             if (editorContainer.__quill) {
-                console.log('✅ Accordion Panel 4: Quill already initialized on element');
-                quillAccordionPanel4 = editorContainer.__quill;
-                return;
+                try {
+                    editorContainer.__quill = null;
+                } catch(e) {}
             }
-            // If we have a global reference but it's not attached, clear it
             if (quillAccordionPanel4) {
-                console.log('🔄 Accordion Panel 4: Clearing old reference');
                 quillAccordionPanel4 = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 4');
@@ -13563,7 +13572,7 @@ function updateUnsavedChangesBadge() {
         }
     </script>
     
-    </div> <!-- End main-containers -->
+    </div> <!-- End main-container -->
     
     <!-- Flip Overlay -->
     <div id="flipOverlay"></div>
