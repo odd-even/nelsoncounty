@@ -1,0 +1,265 @@
+================================================================================
+FINAL ADDRESS VERIFICATION REPORT
+================================================================================
+
+Total listings: 407
+Unique addresses: 169
+Addresses used by 3+ listings: 13
+
+================================================================================
+REPEATED ADDRESSES (3+ listings)
+================================================================================
+
+
+Address: Wintergreen Resort, Roseland, VA 22967
+Used by 60 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Roseland: 9 listings
+   Wintergreen Resort: 51 listings
+
+Listings:
+   - Point of View (Roseland) - point-of-view
+   - Adventure Awaits (Roseland) - adventure-awaits
+   - Blue Ridge Heaven (Roseland) - blue-ridge-heaven
+   - Slipper Slope (Wintergreen Resort) - slipper-slope
+   - Relaxing 3 bedroom Mountain Cabin (Roseland) - relaxing-3-bedroom-mountain-cabin
+   - Mountain Dacha (Roseland) - mountain-dacha
+   - Panoramic Peak - Vistas 1559, Wintergreen (Wintergreen Resort) - panoramic-peak-vistas-1559-wintergreen
+   - Skis and Trees (Roseland) - skis-and-trees
+   - Wintergreen Vistas (Roseland) - wintergreen-vistas
+   - Eagles Court Ski In/Ski Out Condo (Wintergreen Resort) - eagles-court-ski-in-ski-out-condo
+   ... and 50 more
+
+
+Address: Afton, VA 22920
+Used by 46 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Afton: 45 listings
+   Shipman: 1 listings
+
+Listings:
+   - Galleywinter Farm (Afton) - galleywinter
+   - Boogie Nights Manor (Afton) - boogie-nights-manor
+   - The Big Tiny House (Afton) - the-big-tiny-house
+   - Rusty's Retreat (Afton) - rustys-retreat
+   - Straw Bale House (Afton) - straw-bale-house
+   - Gracewood (Afton) - gracewood
+   - Papa's Cottage (Afton) - papas-cottage
+   - Meme's Cottage (Afton) - memes-cottage
+   - Cheval Circle (Afton) - cheval-circle
+   - The Wine Cottage (Afton) - the-wine-cottage
+   ... and 36 more
+
+
+Address: Roseland, VA 22967
+Used by 33 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Roseland: 28 listings
+   Wintergreen Resort: 5 listings
+
+Listings:
+   - Deer Creek Farm (Roseland) - deer-creek-farm
+   - Silver Creek and Seamans' Orchards (Roseland) - silver-creek-and-seamans-orchards
+   - Mars Knob Farm (Roseland) - marsknob
+   - Deep Sea Pete's Creekside Farm (Roseland) - deep-sea-petes-creekside-farm
+   - Fishing the Little Piney River (Roseland) - fishing-the-little-piney-river
+   - HeartRock Retreat & Homestead (Roseland) - heartrockretreat
+   - Piedmont Grove Lodging (Roseland) - piedmont-grove-lodging
+   - Beech Grove Farmhouse (Roseland) - beech-grove-farmhouse
+   - Blue Ridge Bliss (Roseland) - blue-ridge-bliss
+   - Four Elements Farm (Roseland) - four-elements-farm
+   ... and 23 more
+
+
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Used by 22 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Wintergreen Resort: 20 listings
+   Lovingston: 1 listings
+   Tyro: 1 listings
+
+Listings:
+   - Devils Knob Trail (Wintergreen Resort) - devils-knob-trail
+   - The Plunge (Wintergreen Resort) - the-plunge
+   - Highlands Leisure Trail (Wintergreen Resort) - highlands-leisure-trail
+   - Old Appalachian Trail (Wintergreen Resort) - old-appalachian-trail
+   - Paul's Creek Trail (Wintergreen Resort) - pauls-creek-trail
+   - Laurel Ridge Loop (Wintergreen Resort) - laurel-ridge-loop
+   - Lower Shamokin Falls Trail (Wintergreen Resort) - lower-shamokin-falls-trail
+   - Brimstone Trail (Wintergreen Resort) - brimstone-trail
+   - Pedlars Edge Trail (Wintergreen Resort) - pedlars-edge-trail
+   - Chestnut Springs Trail (Wintergreen Resort) - chestnut-springs-trail
+   ... and 12 more
+
+
+Address: Nellysford, VA 22958
+Used by 22 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Nellysford
+
+Listings:
+   - Coquito Kitchen (Nellysford) - coquito-kitchen
+   - Fire & Frost Wood Fired Bakehouse (Nellysford) - fire-frost-wood-fired-bakehouse
+   - One Forest (Nellysford) - one-forest
+   - Pachi's Ridge (Nellysford) - pachis-ridge
+   - Cozy Mountain Cottage (Nellysford) - cozy-mountain-cottage
+   - Cottage at Old Stoney Creek (Nellysford) - cottage-at-old-stoney-creek
+   - Spindle Hill Farm (Nellysford) - spindle-hill-farm
+   - A Nellysford Nest (Nellysford) - a-nellysford-nest
+   - Bear Tracks Cottage (Nellysford) - bear-tracks-cottage
+   - Hawthorne (Nellysford) - hawthorne
+   ... and 12 more
+
+
+Address: Faber, VA 22938
+Used by 10 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Faber
+
+Listings:
+   - Acorn Inn, Inc (Cottage, B&B and Group Retreat) (Faber) - acorn-inn-inc-cottage-bb-and-group-retreat
+   - Faber Farmhouse (Faber) - faber-farmhouse
+   - The Ash House at Holland Hill (Faber) - ash-house-at-holland-hill
+   - Mountain & Vine Farmhouse (Faber) - mountain-vine-farmhouse
+   - Mountain & Vine Vineyards Log Cabin (Faber) - mountain-vine-vineyards-log-cabin
+   - Kremer Cabin (Faber) - kremer-cabin
+   - Stewart's Place (Faber) - stewarts-place
+   - Mountain Home in Nelson County (Faber) - mountain-home-in-nelson-county
+   - Rockfish Cabin (Faber) - rockfish-cabin
+   - Country Cottage (Faber) - country-cottage
+
+
+Address: Montebello, VA 24464
+Used by 9 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Montebello
+
+Listings:
+   - Roudy's Retreat (Montebello) - roudys-retreat
+   - Spyrock Lodge (Montebello) - spyrock-lodge
+   - The Chimneys (Montebello) - the-chimneys
+   - The Mountain House INN (Montebello) - the-mountain-house-inn
+   - Three Sisters Pre-Civil War Log Cabin (Montebello) - three-sisters-pre-civil-war-log-cabin
+   - Nine Ridges Retreat (Montebello) - nine-ridges-retreat
+   - Rock-n-Creek Cabin (Montebello) - rock-n-creek-cabin
+   - Tyebello Cabins (Montebello) - tyebello-cabins
+   - Swimming (Montebello) - swimming
+
+
+Address: Lovingston, VA 22949
+Used by 7 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Lovingston
+
+Listings:
+   - Freshwater Field Cabin (Lovingston) - freshwater-field-cabin
+   - Cottage on the Knoll (Lovingston) - cottage-on-the-knoll
+   - Three Springs Myndus (Lovingston) - three-springs-myndus
+   - Lovingston Get-Away (Lovingston) - lovingston-get-away
+   - The Treetops Lodge (Lovingston) - the-treetops-lodge
+   - Treetops Lodge (Lovingston) - treetops-lodge
+   - Celadon Acres Farm (Lovingston) - celadonacresfarm
+
+
+Address: Tyro, VA 22976
+Used by 6 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Tyro: 4 listings
+   Wintergreen Resort: 2 listings
+
+Listings:
+   - Three Ridges (Tyro) - three-ridges
+   - Tye River (Tyro) - tye-river
+   - High Lonesome Cabin (Tyro) - high-lonesome-cabin
+   - Bear Creek Inn (Tyro) - bear-creek-inn
+   - Parrs Camp, Mountain Hollow (Wintergreen Resort) - parrs-camp-mountain-hollow
+   - Parr's Camp (Wintergreen Resort) - parrs-camp
+
+
+Address: Schuyler, VA 22969
+Used by 5 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Schuyler
+
+Listings:
+   - Corner Market (Schuyler) - corner-market
+   - Williams Grocery (Schuyler) - williams-grocery
+   - Queen Oaks Farm (Schuyler) - queenoaksfarm
+   - Sentosa Cabin (Schuyler) - sentosa-cabin
+   - Rockfish Tiny Home (Schuyler) - rockfish-tiny-home
+
+
+Address: 200 Mosbys Run, Roseland, VA 22967
+Used by 4 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Roseland
+
+Listings:
+   - Devils Backbone Brewing (Roseland) - devils-backbone-brewing
+   - Beech Grove Cottage (Roseland) - beech-grove-cottage
+   - Devils Backbone Camp (Roseland) - devils-backbone-camp
+   - The Haven at Devils Backbone Camp (Roseland) - haven-at-devils-backbone-camp
+
+
+Address: Arrington, VA 22922
+Used by 4 listings:
+--------------------------------------------------------------------------------
+✅ All listings in same area: Arrington
+
+Listings:
+   - Lost Point Farm (Arrington) - lost-point-farm
+   - Crestvue Cottage (Arrington) - crestvue-cottage
+   - The Cottage at Pines End (Arrington) - cottage-at-pines-end
+   - Rocky Run Landing (Arrington) - rocky-run-landing
+
+
+Address: 3211 Lowesville Road, Roseland, VA 22967
+Used by 3 listings:
+--------------------------------------------------------------------------------
+⚠️  AREA MISMATCH - Multiple areas using this address:
+   Nelson County: 1 listings
+   Roseland: 2 listings
+
+Listings:
+   - Woodson's Mill Loop (Nelson County) - woodsons-mill-loop
+   - Woodson's Mill House (Roseland) - woodsons-mill-house
+   - Woodson's Mill (Roseland) - woodsons-mill
+
+
+================================================================================
+WINTERGREEN RESORT ADDRESS ANALYSIS
+================================================================================
+
+
+Wintergreen Resort, Roseland, VA 22967: 60 listings
+   Note: This is a valid address for Wintergreen Resort properties.
+   Main resort address is: 39 Wintergreen Drive, Roseland, VA 22967
+   'Wintergreen Resort, Roseland, VA 22967' is acceptable for vacation rentals.
+
+39 Wintergreen Drive, Roseland, VA 22967: 1 listings
+   Note: This is a valid address for Wintergreen Resort properties.
+   Main resort address is: 39 Wintergreen Drive, Roseland, VA 22967
+   'Wintergreen Resort, Roseland, VA 22967' is acceptable for vacation rentals.
+
+39 Mountain Inn Loop, Wintergreen, VA 22967: 2 listings
+   Note: This is a valid address for Wintergreen Resort properties.
+   Main resort address is: 39 Wintergreen Drive, Roseland, VA 22967
+   'Wintergreen Resort, Roseland, VA 22967' is acceptable for vacation rentals.
+
+================================================================================
+SUMMARY
+================================================================================
+
+✅ Most repeated addresses are legitimate:
+   - Wintergreen Resort addresses (many vacation rentals)
+   - Town names for listings without specific addresses
+   - Shared locations (e.g., same building, same trailhead)
+
+⚠️  Some addresses may need verification:
+   - Listings with area/address mismatches
+   - Generic town names when specific addresses might exist

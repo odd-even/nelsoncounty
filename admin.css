@@ -586,26 +586,29 @@
         .data-table td { padding: 12px; font-size: 13px; color: var(--text-primary); }
         .data-table td input, .data-table td textarea { width: 100%; padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 13px; background: var(--bg-primary); color: var(--text-primary); }
         .data-table td input:focus, .data-table td textarea:focus { outline: none; border-color: #007AFF; }
-        .data-table td textarea { min-height: 60px; resize: vertical; }
+        .data-table td textarea { min-height: 100px; resize: vertical; }
         .data-table .cell-id { color: var(--text-secondary); font-weight: 600; }
         .data-table .cell-name { font-weight: 600; min-width: 150px; }
         .data-table .cell-slug { min-width: 180px; }
         .data-table .cell-type, .data-table .cell-area, .data-table .cell-category { min-width: 120px; }
-        .data-table .cell-description { min-width: 250px; max-width: 350px; }
-        .data-table .cell-description-detailed { min-width: 300px; max-width: 400px; }
-        .data-table .cell-description-detailed textarea { min-height: 120px; white-space: pre-wrap; }
+        .data-table .cell-description { min-width: 400px; max-width: 600px; }
+        .data-table .cell-description textarea { min-height: 150px; white-space: pre-wrap; }
+        .data-table .cell-description-detailed { min-width: 500px; max-width: 700px; }
+        .data-table .cell-description-detailed textarea { min-height: 200px; white-space: pre-wrap; }
+        .data-table .cell-customHtml { min-width: 500px; max-width: 700px; }
+        .data-table .cell-customHtml textarea { min-height: 200px; white-space: pre-wrap; font-family: 'Courier New', monospace; font-size: 12px; }
         .data-table .cell-image { min-width: 200px; }
         .data-table .cell-image input { font-size: 11px; }
         .data-table .cell-website { min-width: 250px; }
         .data-table .cell-phone { min-width: 140px; }
         .data-table .cell-address { min-width: 250px; }
-        .data-table .cell-amenities { min-width: 200px; max-width: 300px; font-size: 12px; }
-        .data-table .cell-amenities textarea { min-height: 50px; }
+        .data-table .cell-amenities { min-width: 250px; max-width: 400px; font-size: 12px; }
+        .data-table .cell-amenities textarea { min-height: 80px; }
         .data-table .cell-featured { text-align: center; }
-        .data-table .cell-accordion-title { min-width: 150px; max-width: 200px; }
+        .data-table .cell-accordion-title { min-width: 200px; max-width: 300px; }
         .data-table .cell-accordion-title input { font-size: 12px; }
-        .data-table .cell-accordion-content { min-width: 250px; max-width: 350px; }
-        .data-table .cell-accordion-content textarea { min-height: 80px; white-space: pre-wrap; font-size: 12px; resize: vertical; }
+        .data-table .cell-accordion-content { min-width: 500px; max-width: 700px; }
+        .data-table .cell-accordion-content textarea { min-height: 180px; white-space: pre-wrap; font-size: 12px; resize: vertical; }
         .data-table .cell-actions { white-space: nowrap; }
         .data-table .btn-table-save { background: #007AFF; color: white; padding: 6px 12px; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; margin-right: 5px; }
         .data-table .btn-table-save:hover { background: #0051D5; }

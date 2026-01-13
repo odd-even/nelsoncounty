@@ -1,0 +1,2174 @@
+================================================================================
+ADDRESS RESTORATION REPORT
+================================================================================
+
+Total addresses restored/updated: 388
+
+✅ Devils Knob Trail
+   Slug: devils-knob-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Fortune's Cove Nature Preserve
+   Slug: fortunes-cove-nature-preserve
+   Old: 1920 Fortune's Cove Lane, Lovingston, VA 22949
+   New: 1920 Fortune's Cove Lane, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ The Plunge
+   Slug: the-plunge
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Highlands Leisure Trail
+   Slug: highlands-leisure-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Old Appalachian Trail
+   Slug: old-appalachian-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Paul's Creek Trail
+   Slug: pauls-creek-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Blue Ridge Tunnel
+   Slug: blue-ridge-tunnel
+   Old: 215 Afton Depot Lane, Afton, VA 22920
+   New: 215 Afton Depot Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Laurel Ridge Loop
+   Slug: laurel-ridge-loop
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Lower Shamokin Falls Trail
+   Slug: lower-shamokin-falls-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Brimstone Trail
+   Slug: brimstone-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Pedlars Edge Trail
+   Slug: pedlars-edge-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Skiing & Snowboarding
+   Slug: skiing-snowboarding
+   Old: 39 Mountain Inn Loop, Nellysford, VA 22967
+   New: 39 Mountain Inn Loop, Wintergreen, VA 22967
+
+✅ Chestnut Springs Trail
+   Slug: chestnut-springs-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Soaring
+   Slug: soaring
+   Old: 604 Dillard Hill Road, Lovingston, VA 22949
+   New: 604 Dillard Hill Road, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Upper Shamokin Gorge Trail
+   Slug: upper-shamokin-gorge-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Mau-Har Trail
+   Slug: mau-har-trail
+   Old: Blue Ridge Parkway Milepost 13.7, Tyro, VA 22967
+   New: Blue Ridge Parkway Milepost 13.7, Roseland, VA 22967
+
+✅ Ravens Roost Park
+   Slug: ravens-roost-park
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Trillium Field
+   Slug: trillium-field
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ White Oak Trail
+   Slug: white-oak-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Three Ridges
+   Slug: three-ridges
+   Old: Reeds Gap Trailhead, Route 664, Tyro, VA 22967
+   New: Reeds Gap Trailhead, Route 664, Roseland, VA 22967
+
+✅ Humpback Rocks
+   Slug: humpback-rocks
+   Old: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+   New: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+   Note: Google Maps URL updated
+
+✅ Pond Hollow Trail
+   Slug: pond-hollow-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Cedar Ciffs North Trail
+   Slug: cedar-ciffs-north-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Crabtree Falls
+   Slug: crabtree-falls
+   Old: 11581 Crabtree Falls Highway, Montebello, VA 11581
+   New: 11581 Crabtree Falls Highway, Montebello, VA 24464
+
+✅ White Rock Falls
+   Slug: white-rock-falls
+   Old: Blue Ridge Parkway Milepost 19, Montebello, VA 24464
+   New: Blue Ridge Parkway Milepost 19, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Hemlock Springs Loop
+   Slug: hemlock-springs-loop
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Nelson County Wilderness Area
+   Slug: nelson-county-wilderness-area
+   Old: George Washington National Forest, Montebello, VA 24464
+   New: George Washington National Forest, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Blackrock Trail
+   Slug: blackrock-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Shamokin Springs Nature Preserve
+   Slug: shamokin-springs-nature-preserve
+   Old: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Upper Shamokin Falls Trail
+   Slug: upper-shamokin-falls-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Fortune's Ridge Trail
+   Slug: fortunes-ridge-trail
+   Old: 8519 Thomas Nelson Hwy, Nellysford, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Glass Hollow Studio & Gallery
+   Slug: glasshollow
+   Old: 9080 Rockfish Valley Highway, Afton, VA 22920
+   New: 9080 Rockfish Valley Highway, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Kids in Parks: Virginia Blue Ridge Railway Trail
+   Slug: kids-in-parks-virginia-blue-ridge-railway-trail
+   Old: 3124 Patrick Henry Highway, Piney River, VA 22964
+   New: 3124 Patrick Henry Highway, Piney River, VA 22964
+   Note: Google Maps URL updated
+
+✅ Kids in Parks: Rockfish River Trailhead
+   Slug: kids-in-parks-rockfish-river-trailhead
+   Old: Rockfish River Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   New: Rockfish River Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Trager Brothers Coffee 1.0
+   Slug: trager-brothers-coffee-1-0
+   Old: 486 Front Street, Lovingston, VA 22949
+   New: 486 Front Street, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Trager Brothers Coffee 2.0
+   Slug: trager-brothers-coffee-2-0
+   Old: 190 Rockfish Valley School Lane, Afton, VA 22920
+   New: 190 Rockfish Valley School Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Afton Market
+   Slug: afton-market
+   Old: 10185 Rockfish Valley Highway, Afton, VA 10185
+   New: 10185 Rockfish Valley Highway, Afton, VA
+
+✅ Ashley's Market
+   Slug: ashleys-market
+   Old: 6445 Rockfish Valley Highway, Afton, VA 22920
+   New: 6445 Rockfish Valley Highway, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Chicken Coop
+   Slug: chicken-coop
+   Old: 40 Front Street, Lovingston, VA 22949
+   New: 40 Front Street, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Colleen Deli
+   Slug: colleen-deli
+   Old: 4071 Thomas Nelson Hwy, Arrington, VA 22922
+   New: 4071 Thomas Nelson Hwy, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Corner Market
+   Slug: corner-market
+   Old: Schuyler, VA 11309
+   New: 11309 James River Road in Shipman, VA
+
+✅ Graves Grocery & Deli
+   Slug: graves-grocery-deli
+   Old: 1779 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 1779 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Hickman's Exxon Grocery
+   Slug: hickmans-exxon-grocery
+   Old: 1311 Beech Grove Road, Roseland, VA 22967
+   New: 1311 Beech Grove Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ IGA Blue Ridge Grocery
+   Slug: iga-blue-ridge-grocery
+   Old: 2797 Rockfish Valley Highway, Nellysford, VA
+   New: 2797 Rockfish Valley Highway, Nellysford, VA
+   Note: Google Maps URL updated
+
+✅ Ike's Market & Deli
+   Slug: ikes-market-deli
+   Old: Schuyler, VA
+   New: 6597 Rockfish River Road in Schuyler, VA
+
+✅ Indian Oven
+   Slug: indian-oven
+   Old: 10749 Thomas Nelson Hwy, Lovingston, VA 10749
+   New: 10749 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Mac's Country Store
+   Slug: macs-country-store
+   Old: 7023 Patrick Henry Highway, Roseland, VA 22967
+   New: 7023 Patrick Henry Highway, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Subway
+   Slug: subway
+   Old: 65 Callohill Drive, Lovingston, VA 22949
+   New: 65 Callohill Drive, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ The Market at Wintergreen
+   Slug: the-market-at-wintergreen
+   Old: 189 Mountain Inn Loop, Nellysford, VA
+   New: 189 Mountain Inn Loop, Wintergreen, VA
+
+✅ Williams Grocery
+   Slug: williams-grocery
+   Old: 439 Williamstown Road in Shipman or 6445 Rockfish Va
+   New: 439 Williamstown Road in Shipman or 6445 Rockfish Va
+   Note: Google Maps URL updated
+
+✅ Ann's Family Restaurant
+   Slug: anns-family-restaurant
+   Old: 1170 Thomas Nelson Highway, Arrington, VA 22922
+   New: 1170 Thomas Nelson Highway, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Basic Necessities
+   Slug: basic-necessities
+   Old: 2226 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 2226 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Blue Mountain Brewery
+   Slug: blue-mountain-brewery
+   Old: 9519 Critzers Shop Road, Afton, VA 22920
+   New: 9519 Critzers Shop Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Blue Ridge Pig
+   Slug: blue-ridge-pig
+   Old: 2198 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 2198 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Bold Kitchen at Bold Rock
+   Slug: bold-kitchen-at-bold-rock
+   Old: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Chen's Restaurant
+   Slug: chens-restaurant
+   Old: 73 Callohill Drive, Lovingston, VA 22949
+   New: 73 Callohill Drive, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Chirio's Pizza
+   Slug: chirios-pizza
+   Old: 2777 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 2777 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Coquito Kitchen
+   Slug: coquito-kitchen
+   Old: 190 Rockfish School Lane, Nellysford, VA 22920
+   New: 190 Rockfish School Lane, Afton, VA 22920
+
+✅ Devils Backbone Brewing
+   Slug: devils-backbone-brewing
+   Old: 200 Mosbys Run, Roseland, VA 22967
+   New: 200 Mosbys Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ El Mariachi Mexican Food
+   Slug: el-mariachi-mexican-food
+   Old: 165 Front Street, Lovingston, VA 22949
+   New: 165 Front Street, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Fire & Frost Wood Fired Bakehouse
+   Slug: fire-frost-wood-fired-bakehouse
+   Old: 121 Blue Ridge Drive, Nellysford, VA 22967
+   New: 121 Blue Ridge Drive, Roseland, VA 22967
+
+✅ Iron and Ale
+   Slug: iron-and-ale
+   Old: 1354 Stoney Creek West, Nellysford, VA 22958
+   New: 1354 Stoney Creek West, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ McDonald's
+   Slug: mcdonalds
+   Old: 44 Callohill Drive, Lovingston, VA 22949
+   New: 44 Callohill Drive, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Montebello Country Store & Cafe
+   Slug: montebello-country-store-cafe
+   Old: 15072 Crabtree Falls Highway, Montebello, VA 15072
+   New: 15072 Crabtree Falls Highway, Montebello, VA 24464
+
+✅ Paulie's Pig Out
+   Slug: paulies-pig-out
+   Old: Afton, VA
+   New: 7376 Rockfish Valley Highway in Afton, VA
+
+✅ Smokin' Barrel Restaurant
+   Slug: smokin-barrel-restaurant
+   Old: 495 Cooperative Way, Arrington, VA 22922
+   New: 495 Cooperative Way, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ The Copper Mine Bistro
+   Slug: the-copper-mine-bistro
+   Old: 39 Wintergreen Drive, Roseland, VA 22967
+   New: 39 Wintergreen Drive, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ The Edge
+   Slug: the-edge
+   Old: 11 Grassy Ridge Road, Nellysford, VA 22958
+   New: 11 Grassy Ridge Road, Wintergreen, VA 22958
+
+✅ The Farmhouse at Veritas
+   Slug: the-farmhouse-at-veritas
+   Old: 72 Saddleback Farm, Afton, VA 22920
+   New: 72 Saddleback Farm, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Vito's Pizza & Italian Grill
+   Slug: vitos-pizza-italian-grill
+   Old: 8181 Thomas Nelson Highway, Lovingston, VA 22949
+   New: 8181 Thomas Nelson Highway, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Black Bear Creamery
+   Slug: black-bear-creamery
+   Old: 18 Pheasant Run, Nellysford, VA 22958
+   New: 18 Pheasant Run, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Tennis
+   Slug: tennis
+   Old: Wintergreen Tennis Center, 581 Wintergreen Drive, Nellysford, VA 22967
+   New: Wintergreen Tennis Center, 581 Wintergreen Drive, Wintergreen, VA 22967
+
+✅ Blue Mountain Barrel House
+   Slug: blue-mountain-barrel-house
+   Old: 495 Cooperative Way, Arrington, VA 22922
+   New: 495 Cooperative Way, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Blue Toad Hard Cider
+   Slug: blue-toad-hard-cider
+   Old: 462 Winery Lane, Roseland, VA 22967
+   New: 462 Winery Lane, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Bold Rock Hard Cider
+   Slug: bold-rock-hard-cider
+   Old: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Brewing Tree Beer Company
+   Slug: brewing-tree-beer-company
+   Old: 9278 Rockfish Valley Highway, Afton, VA 22920
+   New: 9278 Rockfish Valley Highway, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Bryant's Cider & Brewery
+   Slug: bryants-cider-brewery
+   Old: 3224 East Branch Loop, Roseland, VA 22967
+   New: 3224 East Branch Loop, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Devils Backbone Brewing Company
+   Slug: devils-backbone-brewing-company
+   Old: 200 Crandall Run, Roseland, VA 22967
+   New: 200 Crandall Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Outback Brew House
+   Slug: outback-brew-house
+   Old: 7995 Thomas Nelson Hwy, Lovingston, VA 22949
+   New: 7995 Thomas Nelson Hwy, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Three Notch'd Brewery, Distillery & Craft Kitchen
+   Slug: three-notchd-brewery-distillery-craft-kitchen-nelson-county
+   Old: 2461 Rockfish Valley Hwy, Nellysford, VA 22958
+   New: 2461 Rockfish Valley Hwy, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Wild Man Dan Brewery
+   Slug: wild-man-dan-brewery
+   Old: 279 Avon Road, Afton, VA 22920
+   New: 279 Avon Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Wood Ridge Farm Brewery
+   Slug: wood-ridge-farm-brewery
+   Old: 165 Old Ridge Road, Lovingston, VA 22949
+   New: 165 Old Ridge Road, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Devils Backbone Distilling Co.
+   Slug: devils-backbone-distilling-co
+   Old: 35 Mosbys Run, Roseland, VA 22967
+   New: 35 Mosbys Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Silverback Distillery
+   Slug: silverback-distillery
+   Old: 9520 Rockfish Valley Highway, Afton, VA 22920
+   New: 9520 Rockfish Valley Highway, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Virginia Distillery Co.
+   Slug: virginia-distillery-co
+   Old: Lovingston, VA
+   New: 299 Eades Lane in Lovingston, VA
+
+✅ Montebello Fish Hatchery
+   Slug: montebello-fish-hatchery
+   Old: 359 Fish Hatchery Lane, Montebello, VA 24464
+   New: 359 Fish Hatchery Lane, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ One Forest
+   Slug: one-forest
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Oak Ridge Estate
+   Slug: oak-ridge-estate
+   Old: 2300 Oak Ridge Road, Arrington, VA 22922
+   New: 2300 Oak Ridge Road, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Swannanoa
+   Slug: swannanoa
+   Old: 497 Swannanoa Lane, Afton, VA 22920
+   New: 497 Swannanoa Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Blue Ridge Fruit Loop
+   Slug: blue-ridge-fruit-loop
+   Old: Blue Ridge Fruit Loop Trailhead, 56 Cabell Road, Tyro, VA 22976
+   New: Blue Ridge Fruit Loop Trailhead, 56 Cabell Road, Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Blue Ridge Parkway Loops
+   Slug: blue-ridge-parkway-loops
+   Old: Milepost 16, Blue Ridge Parkway, Love, VA 22952
+   New: Milepost 16, Blue Ridge Parkway, Love, VA 22952
+   Note: Google Maps URL updated
+
+✅ Oak Ridge Loop
+   Slug: oak-ridge-loop
+   Old: 1010 Oak Ridge Road, Arrington, VA 22922
+   New: 1010 Oak Ridge Road, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Woodson's Mill Loop
+   Slug: woodsons-mill-loop
+   Old: 3211 Lowesville Road, Roseland, VA 22967
+   New: 3211 Lowesville Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Walton's Mountain Museum Loop
+   Slug: waltons-mountain-museum-loop
+   Old: 6484 Rockfish River Road, Schuyler, VA 22969
+   New: 6484 Rockfish River Road, Schuyler, VA 22969
+   Note: Google Maps URL updated
+
+✅ Virginia Blue Ridge Railway Trail
+   Slug: virginia-blue-ridge-railway-trail
+   Old: 3124 Patrick Henry Highway, Piney River, VA 22964
+   New: 3124 Patrick Henry Highway, Piney River, VA 22964
+   Note: Google Maps URL updated
+
+✅ Nelson Scenic Loop
+   Slug: nelson-scenic-loop
+   Old: Route 151 & Route 664 Junction, Tyro, VA 22958
+   New: Route 151 & Route 664 Junction, Nellysford, VA 22958
+
+✅ Tye River
+   Slug: tye-river
+   Old: Tye River Main Access 2724 Patrick Henry Highway Piney River VA, VA 22964
+   New: Tye River Main Access 2724 Patrick Henry Highway Piney River VA 22964
+
+✅ James River
+   Slug: james-river
+   Old: 947 James River Road Wingina VA, VA 24599
+   New: 947 James River Road Wingina VA 24599
+
+✅ Rockfish River
+   Slug: rockfish-river
+   Old: Rockfish River Access 5156 Rockfish Valley Highway Afton VA, VA 22920
+   New: Rockfish River Access 5156 Rockfish Valley Highway Afton VA 22920
+
+✅ Lake Nelson
+   Slug: lake-nelson
+   Old: 801 Lake Nelson LaneArrington VA, VA 22922
+   New: 801 Lake Nelson LaneArrington VA 22922
+
+✅ Dickie Brothers Orchard
+   Slug: dickie-brothers-orchard
+   Old: 2685 Dickie Road, Roseland, VA 22967
+   New: 2685 Dickie Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Drumheller's Orchard
+   Slug: drumhellers-orchard
+   Old: 1130 Drumheller Orchard Lane, Lovingston, VA 22949
+   New: 1130 Drumheller Orchard Lane, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Saunders Brothers Farm Market
+   Slug: saunders-brothers-farm-market
+   Old: 2717 Tye Brook Highway, Piney River, VA 22964
+   New: 2717 Tye Brook Highway, Piney River, VA 22964
+   Note: Google Maps URL updated
+
+✅ Big Arms Farm
+   Slug: big-arms-farm
+   Old: Nelson Farmers Market Cooperative, 868 Front Street, Lovingston, VA 22949
+   New: Nelson Farmers Market Cooperative, 868 Front Street, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Caldwell Farms
+   Slug: caldwell-farms
+   Old: 394 Stagebridge Road, Lovingston, VA 24590
+   New: 394 Stagebridge Road, Lovingston, VA 24590
+   Note: Google Maps URL updated
+
+✅ Davis Creek Farm
+   Slug: davis-creek-farm
+   Old: 4670 Davis Creek Lane, Lovingston, VA 22949
+   New: 4670 Davis Creek Lane, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Deer Creek Farm
+   Slug: deer-creek-farm
+   Old: 3764 Lowesville Road, Roseland, VA 22967
+   New: 3764 Lowesville Road, Lowesville, VA 22967
+
+✅ Edible Landscaping
+   Slug: edible-landscaping
+   Old: 361 Spirit Ridge Lane, Afton, VA 22920
+   New: 361 Spirit Ridge Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Fitzgerald Farms
+   Slug: fitzgerald-farms
+   Old: 4850 Tye Brook Highway, Arrington, VA 22922
+   New: 4850 Tye Brook Highway, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Fitzgerald's Orchard
+   Slug: fitzgeralds-orchard
+   Old: 728 Harpers Creek Lane, Tyro, VA 22976
+   New: 728 Harpers Creek Lane, Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Hungry Hill Farm
+   Slug: hungry-hill-farm
+   Old: 89 Williamstown Road, Shipman, VA 22971
+   New: 89 Williamstown Road, Shipman, VA 22971
+   Note: Google Maps URL updated
+
+✅ Lost Point Farm
+   Slug: lost-point-farm
+   Old: Arrington, VA 22922
+   New: Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Pharsalia
+   Slug: pharsalia
+   Old: 2333 Pharsalia Road, Tyro, VA 22976
+   New: 2333 Pharsalia Road, Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Robinia Institute
+   Slug: robinia-institute
+   Old: 530 James River Road, Wingina, VA 24599
+   New: 530 James River Road, Wingina, VA 24599
+   Note: Google Maps URL updated
+
+✅ Rose Isle Farm
+   Slug: rose-isle-farm
+   Old: 329 Crabtree Falls Highway, Roseland, VA 22967
+   New: 329 Crabtree Falls Highway, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Seamans' Orchard
+   Slug: seamans-orchard
+   Old: 415 Dark Hollow Road, Roseland, VA
+   New: 415 Dark Hollow Road, Roseland, VA
+   Note: Google Maps URL updated
+
+✅ Silver Creek and Seamans' Orchards
+   Slug: silver-creek-and-seamans-orchards
+   Old: Roseland, VA
+   New: 5529 Crabtree Falls Highway in Tyro, VA
+
+✅ Silver Creek Orchards
+   Slug: silver-creek-orchards
+   Old: 3679 Pharsalia Road, Tyro, VA 22976
+   New: 3679 Pharsalia Road, Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Silver Fox Lavender Farm
+   Slug: silver-fox-lavender-farm
+   Old: 877 Glenthorne Loop, Nellysford, VA 22958
+   New: 877 Glenthorne Loop, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ The Apple Shed
+   Slug: the-apple-shed
+   Old: 14815 Thomas Nelson Highway, Lovingston, VA 14815
+   New: 14815 Thomas Nelson Highway, Lovingston, VA 22949
+
+✅ Tinkerland Farm
+   Slug: tinkerland-farm
+   Old: Bryant Lane & Route 151, Roseland, VA 22967
+   New: Bryant Lane & Route 151, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Turnip the Beets Farm
+   Slug: turnip-the-beets-farm
+   Old: 110 Boltons Place, Gladstone, VA 24553
+   New: 110 Boltons Place, Gladstone, VA 24553
+   Note: Google Maps URL updated
+
+✅ Virginia Chestnuts
+   Slug: virginia-chestnuts
+   Old: 5990 Wheeler Cove Road, Shipman, VA 22971
+   New: 5990 Wheeler Cove Road, Shipman, VA 22971
+   Note: Google Maps URL updated
+
+✅ Mars Knob Farm
+   Slug: marsknob
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Eventide Farm
+   Slug: eventidefarm
+   Old: 11254 Rockfish Valley Highway, Afton, VA 11254
+   New: 11254 Rockfish Valley Highway, Afton, VA 22920
+
+✅ Deep Sea Pete's Creekside Farm
+   Slug: deep-sea-petes-creekside-farm
+   Old: 1219 Perry Lane, Roseland, VA 22949
+   New: 1219 Perry Lane, Lovingston, VA 22949
+
+✅ Gathered Threads
+   Slug: gathered
+   Old: 1127 Jennys Creek Road, Roseland, VA 22967
+   New: 1127 Jennys Creek Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Galleywinter Farm
+   Slug: galleywinter
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Queen Oaks Farm
+   Slug: queenoaksfarm
+   Old: Schuyler, VA 22969
+   New: Schuyler, VA 22969
+   Note: Google Maps URL updated
+
+✅ Three Trees Farm
+   Slug: threetreesfarm
+   Old: Walkers Mountain, Arrington, VA
+   New: Walkers Mountain, Arrington, VA
+   Note: Google Maps URL updated
+
+✅ Fishing the Tye River
+   Slug: fishing-the-tye-river
+   Old: Route 56 River Access, Tyro, VA 22976
+   New: Route 56 River Access, Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Fishing the James River
+   Slug: fishing-the-james-river
+   Old: Midway Boat Ramp, 106 Midway Lane, Wingina, VA 24599
+   New: Midway Boat Ramp, 106 Midway Lane, Wingina, VA 24599
+   Note: Google Maps URL updated
+
+✅ Fishing the Little Piney River
+   Slug: fishing-the-little-piney-river
+   Old: 162 Woodson Road, Roseland, VA 22967
+   New: 162 Woodson Road, Lowesville, VA 22967
+
+✅ Fishing the South Rockfish River
+   Slug: fishing-the-south-rockfish-river
+   Old: Rockfish River Wayside, 6759 Rockfish Valley Highway, Afton, VA 22920
+   New: Rockfish River Wayside, 6759 Rockfish Valley Highway, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Fishing at Montebello
+   Slug: fishing-at-montebello
+   Old: 15072 Crabtree Falls Highway, Montebello, VA 15072
+   New: 15072 Crabtree Falls Highway, Montebello, VA 24464
+
+✅ Fishing at Lake Monocan Park
+   Slug: fishing-at-lake-monacan-park
+   Old: Lake Monocan Park, 239 Monocan Drive, Nellysford, VA 22958
+   New: Lake Monocan Park, 239 Monocan Drive, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Fishing at Lake Nelson
+   Slug: fishing-at-lake-nelson
+   Old: 801 Lake Nelson Lane, Arrington, VA 22922
+   New: 801 Lake Nelson Lane, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Wintergreen Resort Fishing
+   Slug: wintergreen-resort-fishing
+   Old: Wintergreen Resort Outdoor Programs, 39 Mountain Inn Loop, Nellysford, VA 22967
+   New: Wintergreen Resort Outdoor Programs, 39 Mountain Inn Loop, Wintergreen, VA 22967
+
+✅ Devils Knob Golf Course
+   Slug: devils-knob-golf-course
+   Old: Route 664, Nellysford, VA 22958
+   New: Route 664, Wintergreen, VA 22958
+
+✅ Stoney Creek Golf Course
+   Slug: stoney-creek-golf-course
+   Old: 135 Stoney Creek East, Nellysford, VA 22958
+   New: 135 Stoney Creek East, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Indian Summer Guide Service
+   Slug: indian-summer-guide-service
+   Old: 151 Veritas Lane, Afton, VA 22920
+   New: 151 Veritas Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Appalachian Trail from Rt 56 to Harpers Creek
+   Slug: appalachian-trail-from-rt-56-to-harpers-creek
+   Old: 8519 Thomas Nelson Hwy, Tyro, VA 22949
+   New: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+✅ Afton Mountain Vineyards
+   Slug: afton-mountain-vineyards
+   Old: 234 Vineyard Lane, Afton, VA 22920
+   New: 234 Vineyard Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Brent Manor Vineyards
+   Slug: brent-manor-vineyards
+   Old: 100 Brent Manor Lane, Faber, VA 22938
+   New: 100 Brent Manor Lane, Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ Caihailian Vineyard
+   Slug: caihailian-vineyard
+   Old: 872 Beech Grove, Roseland, VA 22967
+   New: 872 Beech Grove, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Cardinal Point Winery
+   Slug: cardinal-point-winery
+   Old: 9423 Batesville Rd, Afton, VA 22920
+   New: 9423 Batesville Rd, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Flying Fox Vineyards
+   Slug: flying-fox-vineyards
+   Old: 10368 Critzer Shop Rd, Afton, VA 10368
+   New: 10368 Critzer Shop Rd, Afton, VA 22920
+
+✅ Hill Top Winery & Meadery
+   Slug: hill-top-winery-meadery
+   Old: 2800 Berry Hill Road, Nellysford, VA 22958
+   New: 2800 Berry Hill Road, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Lovingston Winery
+   Slug: lovingston-winery
+   Old: 885 Freshwater Cove, Lovingston, VA 22949
+   New: 885 Freshwater Cove, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Mountain and Vine Winery
+   Slug: mountain-and-vine-winery
+   Old: 500 DelFosse Winery Lane, Faber, VA
+   New: 500 DelFosse Winery Lane, Faber, VA
+   Note: Google Maps URL updated
+
+✅ Mountain Cove Vineyards & Winery
+   Slug: mountain-cove-vineyards-winery
+   Old: 1365 North Amherst Hwy, Lovingston, VA 22949
+   New: 1365 North Amherst Hwy, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Valley Road Vineyards
+   Slug: valley-road-vineyards
+   Old: 9264 Critzers Shop Road, Afton, VA 22920
+   New: 9264 Critzers Shop Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Veritas Vineyards & Winery
+   Slug: veritas-vineyards-winery
+   Old: 151 Veritas Lane, Afton, VA 22920
+   New: 151 Veritas Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ James River State Park
+   Slug: james-river-state-park
+   Old: 104 Green Hill Drive, Gladstone, VA 24553
+   New: 104 Green Hill Drive, Gladstone, VA 24553
+   Note: Google Maps URL updated
+
+✅ HeartRock Retreat & Homestead
+   Slug: heartrockretreat
+   Old: 2808 Glad Road, Roseland, VA 22969
+   New: 2808 Glad Road, Schuyler, VA 22969
+
+✅ Inglewood Fine Meats
+   Slug: inglewood-fine-meats
+   Old: 4638 Variety Mills Road, Arrington, VA
+   New: 4638 Variety Mills Road, Arrington, VA
+   Note: Google Maps URL updated
+
+✅ Montebello Nature Trail
+   Slug: montebello-nature-trail
+   Old: 359 Fish Hatchery Lane, Montebello, VA
+   New: 359 Fish Hatchery Lane, Montebello, VA
+   Note: Google Maps URL updated
+
+✅ North Fork of the Piney River
+   Slug: north-fork-of-the-piney-river
+   Old: Piney River, VA 22964
+   New: Piney River, VA 22964
+   Note: Google Maps URL updated
+
+✅ Stoney Creek Park
+   Slug: stoney-creek-park
+   Old: Stoney Creek West Drive, Nellysford, VA 22958
+   New: Stoney Creek West Drive, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Spy Rock
+   Slug: spy-rock
+   Old: Meadows Lane (SR 826) Trailhead, Montebello, VA 24464
+   New: Meadows Lane (SR 826) Trailhead, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Spruce Creek Park
+   Slug: spruce-creek-park
+   Old: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Rockfish Valley Loop Trails
+   Slug: rockfish-valley-loop-trails
+   Old: Rockfish Valley Loop Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   New: Rockfish Valley Loop Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Quarry Gardens at Schuyler
+   Slug: quarry-gardens-at-schuyler
+   Old: 1643 Salem Road, Schuyler, VA 22969
+   New: 1643 Salem Road, Schuyler, VA 22969
+   Note: Google Maps URL updated
+
+✅ Brew Ridge Trail
+   Slug: brew-ridge-trail
+   Old: Route 151 Craft Beverage Corridor, Nelson County, VA 22958
+   New: Route 151 Craft Beverage Corridor, Nelson County, VA 22958
+   Note: Google Maps URL updated
+
+✅ Nelson 151
+   Slug: nelson-151
+   Old: Route 151, Nellysford, VA 22958
+   New: Route 151, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Nelson 29
+   Slug: nelson-29
+   Old: Route 29 Corridor, Lovingston, VA 22949
+   New: Route 29 Corridor, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Nelson Scoops
+   Slug: nelsonscoops
+   Old: 8203 Thomas Nelson Highway, Lovingston, VA 22949
+   New: 8203 Thomas Nelson Highway, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Virginia Spirits Trail
+   Slug: virginia-spirits-trail
+   Old: Nelson County, VA
+   New: Virginia Spirits Trail, Commonwealth of Virginia
+
+✅ Crestvue Cottage
+   Slug: crestvue-cottage
+   Old: Arrington, VA 22922
+   New: Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Sentosa Cabin
+   Slug: sentosa-cabin
+   Old: Schuyler, VA 22958
+   New: Nellysford, VA 22958
+
+✅ Roudy's Retreat
+   Slug: roudys-retreat
+   Old: Montebello, VA 22967
+   New: Roseland, VA 22967
+
+✅ Pachi's Ridge
+   Slug: pachis-ridge
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Boogie Nights Manor
+   Slug: boogie-nights-manor
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ The Big Tiny House
+   Slug: the-big-tiny-house
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Rusty's Retreat
+   Slug: rustys-retreat
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Village Inn
+   Slug: village-inn
+   Old: 79 Tanbark Plaza, Lovingston, VA 22949
+   New: 79 Tanbark Plaza, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Cozy Mountain Cottage
+   Slug: cozy-mountain-cottage
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Piedmont Grove Lodging
+   Slug: piedmont-grove-lodging
+   Old: 76 Rodes Farm Drive, Roseland, VA 22958
+   New: 76 Rodes Farm Drive, Nellysford, VA 22958
+
+✅ Beech Grove Farmhouse
+   Slug: beech-grove-farmhouse
+   Old: 9519 Critzers Shop Road, Roseland, VA 22920
+   New: 9519 Critzers Shop Road, Afton, VA 22920
+
+✅ Straw Bale House
+   Slug: straw-bale-house
+   Old: Afton, VA 22958
+   New: Nellysford, VA 22958
+
+✅ Blue Ridge Bliss
+   Slug: blue-ridge-bliss
+   Old: 46 Ledges Lane, Roseland, VA 22958
+   New: 46 Ledges Lane, Wintergreen, VA 22958
+
+✅ Stays at Lovingston Winery
+   Slug: stays-at-lovingston-winery
+   Old: 885 Freshwater Cove Lane, Lovingston, VA 22949
+   New: 885 Freshwater Cove Lane, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ The Cottage at Pines End
+   Slug: cottage-at-pines-end
+   Old: Arrington, VA 22922
+   New: Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Woodson's Mill House
+   Slug: woodsons-mill-house
+   Old: 3211 Lowesville Road, Roseland, VA 22967
+   New: 3211 Lowesville Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Harmony Hill Bed & Breakfast
+   Slug: harmony-hill-bed-and-breakfast
+   Old: 929 Wilson Hill Road, Arrington, VA 22922
+   New: 929 Wilson Hill Road, Arrington, VA 22922
+   Note: Google Maps URL updated
+
+✅ Spyrock Lodge
+   Slug: spyrock-lodge
+   Old: Montebello, VA 24464
+   New: Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ The Retreat at Crabtree Falls
+   Slug: retreat-at-crabtree-falls
+   Old: 10777 Crabtree Falls Highway, Tyro, VA 10777
+   New: 10777 Crabtree Falls Highway, Tyro, VA 22976
+
+✅ Point of View
+   Slug: point-of-view
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ The Inn at Blue Mountain Brewery
+   Slug: the-inn-at-blue-mountain-brewery
+   Old: 9519 Critzers Shop Road, Afton, VA 22920
+   New: 9519 Critzers Shop Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Gracewood
+   Slug: gracewood
+   Old: Afton, VA 22958
+   New: Nellysford, VA 22958
+
+✅ The Chimneys
+   Slug: the-chimneys
+   Old: Montebello, VA 22967
+   New: Roseland, VA 22967
+
+✅ The Carriage House at Stagebridge Farm
+   Slug: carriage-house-at-stagebridge-farm
+   Old: Stagebridge Farm, Lovingston, VA 22949
+   New: Stagebridge Farm, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Indigo House Bed & Breakfast
+   Slug: indigo-house-bed-and-breakfast
+   Old: 451 Indigo Lane, Afton, VA 22920
+   New: 451 Indigo Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Papa's Cottage
+   Slug: papas-cottage
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Meme's Cottage
+   Slug: memes-cottage
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Cheval Circle
+   Slug: cheval-circle
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ The Wine Cottage
+   Slug: the-wine-cottage
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Carter's Cottage
+   Slug: carters-cottage
+   Old: Afton, VA 22958
+   New: Nellysford, VA 22958
+
+✅ Beech Grove Cottage
+   Slug: beech-grove-cottage
+   Old: 200 Mosbys Run, Roseland, VA 22967
+   New: 200 Mosbys Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Montebello Resort
+   Slug: montebello-resort
+   Old: 15090 Crabtree Falls Highway, Montebello, VA 15090
+   New: 15090 Crabtree Falls Highway, Montebello, VA 24464
+
+✅ Freshwater Field Cabin
+   Slug: freshwater-field-cabin
+   Old: Lovingston, VA 22949
+   New: Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Four Elements Farm
+   Slug: four-elements-farm
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Time to Wine Down
+   Slug: time-to-wine-down
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Love Afton Cabin
+   Slug: love-afton-cabin
+   Old: 5495 Mountain Road, Afton, VA 22920
+   New: 5495 Mountain Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Meili Mountain
+   Slug: meili-mountain
+   Old: Nelson County, VA
+   New: Nelson County, VA
+   Note: Google Maps URL updated
+
+✅ Adventure Awaits
+   Slug: adventure-awaits
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Wintergreen Ridge Retreat
+   Slug: wintergreen-ridge-retreat
+   Old: Wintergreen Resort, Nellysford, VA 22958
+   New: Wintergreen Resort, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Maren Estate
+   Slug: maren-estate
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ The Blue Ridge Farm and Wedding Venue
+   Slug: blue-ridge-farm-and-wedding-venue
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+   Slug: acorn-inn-inc-cottage-bb-and-group-retreat
+   Old: 2131 Stagebridge Road, Faber, VA 22949
+   New: 2131 Stagebridge Road, Lovingston, VA 22949
+
+✅ Cottage at Old Stoney Creek
+   Slug: cottage-at-old-stoney-creek
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Blue Ridge Heaven
+   Slug: blue-ridge-heaven
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Dancing Bear Lodge
+   Slug: dancing-bear-lodge
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Windy Knoll
+   Slug: windy-knoll
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Creekside
+   Slug: creekside
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Cottage on Route 151
+   Slug: cottage-on-route-151
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Farmhouse on Route 151
+   Slug: farmhouse-on-route-151
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ The Castor Cabin
+   Slug: the-castor-cabin
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Rocky Run Landing
+   Slug: rocky-run-landing
+   Old: Arrington, VA 22976
+   New: Tyro, VA 22976
+
+✅ Cottage on the Knoll
+   Slug: cottage-on-the-knoll
+   Old: Lovingston, VA 22949
+   New: Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ High Lonesome Cabin
+   Slug: high-lonesome-cabin
+   Old: Tyro, VA 22976
+   New: Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ The Lewis Catherine House
+   Slug: lewis-catherine-house
+   Old: 1470 Afton Mountain Road, Afton, VA 22920
+   New: 1470 Afton Mountain Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Glenbrae
+   Slug: glenbrae
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Elk Mountain Overlook
+   Slug: elk-mountain-overlook
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Ethan's Den
+   Slug: ethans-den
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ The Mountain House INN
+   Slug: the-mountain-house-inn
+   Old: Montebello, VA 24464
+   New: Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Sweet Afton
+   Slug: sweet-afton
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Three Sisters Pre-Civil War Log Cabin
+   Slug: three-sisters-pre-civil-war-log-cabin
+   Old: Montebello, VA 22967
+   New: Roseland, VA 22967
+
+✅ Nine Ridges Retreat
+   Slug: nine-ridges-retreat
+   Old: Montebello, VA 24464
+   New: Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Grace's Place Petite Retreats
+   Slug: graces-place-petite-retreats
+   Old: Roseland, VA 22958
+   New: Wintergreen, VA 22958
+
+✅ Cottage on the Trail
+   Slug: cottage-on-the-trail
+   Old: Afton, VA 22958
+   New: Nellysford, VA 22958
+
+✅ Rockfish Farmhouse
+   Slug: rockfish-farmhouse
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Fulton Belle Vue
+   Slug: fulton-belle-vue
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Spindle Hill Farm
+   Slug: spindle-hill-farm
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Beech Grove Cabins
+   Slug: beech-grove-cabins
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Slipper Slope
+   Slug: slipper-slope
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Wintergreen Resort
+   Slug: wintergreen-resort-2
+   Old: 39 Mountain Inn Loop, Nellysford, VA 22967
+   New: 39 Mountain Inn Loop, Wintergreen, VA 22967
+
+✅ Camp Blue Ridge
+   Slug: camp-blue-ridge
+   Old: 355 Camp Blue Ridge Road, Montebello, VA 24464
+   New: 355 Camp Blue Ridge Road, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Devils Backbone Camp
+   Slug: devils-backbone-camp
+   Old: 200 Mosbys Run, Roseland, VA 22967
+   New: 200 Mosbys Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ The Haven at Devils Backbone Camp
+   Slug: haven-at-devils-backbone-camp
+   Old: 200 Mosbys Run, Roseland, VA 22967
+   New: 200 Mosbys Run, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Relaxing 3 bedroom Mountain Cabin
+   Slug: relaxing-3-bedroom-mountain-cabin
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Mountain Dacha
+   Slug: mountain-dacha
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Panoramic Peak - Vistas 1559, Wintergreen
+   Slug: panoramic-peak-vistas-1559-wintergreen
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Skis and Trees
+   Slug: skis-and-trees
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Mountain Dreams Condo
+   Slug: mountain-dreams-condo
+   Old: Wintergreen Resort, Roseland, VA 22958
+   New: Wintergreen Resort, Nellysford, VA 22958
+
+✅ Wintergreen Vistas
+   Slug: wintergreen-vistas
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Clonmel Acres
+   Slug: clonmel-acres
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Cabin at Clonmel
+   Slug: cabin-at-clonmel
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Sleepy Hollow Retreat Enjoy Your Stay
+   Slug: sleepy-hollow-retreat-enjoy-your-stay
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Eagles Court Ski In/Ski Out Condo
+   Slug: eagles-court-ski-in-ski-out-condo
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Wren House
+   Slug: wren-house
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ WildManDan B&B (Beer centric)
+   Slug: wildmandan-bb-beer-centric
+   Old: 279 Avon Road, Afton, VA 22920
+   New: 279 Avon Road, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Fenton Inn
+   Slug: fenton-inn
+   Old: 29 Shelton Laurel Trail, Roseland, VA 22958
+   New: 29 Shelton Laurel Trail, Nellysford, VA 22958
+
+✅ Marley's Cabin
+   Slug: marleys-cabin
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Cozy & Clean Wintergreen Condo (Tanners Ridge)
+   Slug: cozy-clean-wintergreen-condo-tanners-ridge
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Remodeled 3BR/2BA Ski Chalet off Tyro Slope
+   Slug: remodeled-3br-2ba-ski-chalet-off-tyro-slope
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Three Springs Myndus
+   Slug: three-springs-myndus
+   Old: Lovingston, VA 22922
+   New: Arrington, VA 22922
+
+✅ Lovingston Get-Away
+   Slug: lovingston-get-away
+   Old: Lovingston, VA 22949
+   New: Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Rock-n-Creek Cabin
+   Slug: rock-n-creek-cabin
+   Old: 2307 Whetstone Ridge Road, Montebello, VA 22967
+   New: 2307 Whetstone Ridge Road, Roseland, VA 22967
+
+✅ The Branch at Afton Mountain Retreat
+   Slug: branch-at-afton-mountain-retreat
+   Old: 1220 Fox Ridge Lane, Afton, VA 22920
+   New: 1220 Fox Ridge Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ The Bungalow at Afton Mountain Retreat
+   Slug: bungalow-at-afton-mountain-retreat
+   Old: 1230 Fox Ridge Lane, Afton, VA 22920
+   New: 1230 Fox Ridge Lane, Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Avon Hill
+   Slug: avon-hill
+   Old: 289 Avon Road, Nelson County, VA 24562
+   New: 289 Avon Road, Howardsville, VA 24562
+
+✅ A Nellysford Nest
+   Slug: a-nellysford-nest
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Love Ridge Mountain Lodging
+   Slug: love-ridge-mountain-lodging
+   Old: 31 Woodridge Trail, Lyndhurst, VA 22952
+   New: 31 Woodridge Trail, Lyndhurst, VA 22952
+   Note: Google Maps URL updated
+
+✅ Open Heart Inn
+   Slug: open-heart-inn
+   Old: 9731 Rockfish Valley Highway, Roseland, VA 22920
+   New: 9731 Rockfish Valley Highway, Afton, VA 22920
+
+✅ Hillside Hideaway
+   Slug: hillside-hideaway
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Saddleback Sanctuary
+   Slug: saddleback-sanctuary
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Appalachian Horse Adventures
+   Slug: appalachian-horse-adventures
+   Old: 396 Fork Mountain Lane, Montebello, VA 24464
+   New: 396 Fork Mountain Lane, Montebello, VA 24464
+   Note: Google Maps URL updated
+
+✅ Nonny Cottage
+   Slug: nonny-cottage
+   Old: Love, Afton, VA 22920
+   New: Love, VA 22920
+
+✅ Rebel's Run at Afton Mountain
+   Slug: rebels-run-at-afton-mountain
+   Old: 1020 Rockfish Valley Highway, Afton, VA 22958
+   New: 1020 Rockfish Valley Highway, Nellysford, VA 22958
+
+✅ Basecamp 151
+   Slug: basecamp-151
+   Old: 2904 Rockfish Valley Highway, Afton, VA 22958
+   New: 2904 Rockfish Valley Highway, Nellysford, VA 22958
+
+✅ Oak Ledge
+   Slug: oak-ledge
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Walton's Mountain Museum
+   Slug: waltons-mountain-museum
+   Old: 6484 Rockfish River Road, Schuyler, VA 22969
+   New: 6484 Rockfish River Road, Schuyler, VA 22969
+   Note: Google Maps URL updated
+
+✅ Wintergreen Getaway for Families
+   Slug: wintergreen-getaway-for-families
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Wintergreen Resort Cabin
+   Slug: wintergreen-resort-cabin
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Bluebird Cottage
+   Slug: bluebird-cottage
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Bear Tracks Cottage
+   Slug: bear-tracks-cottage
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Faber Farmhouse
+   Slug: faber-farmhouse
+   Old: Faber, VA 22938
+   New: Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ Wintergreen - Fairway Woods
+   Slug: wintergreen-fairway-woods
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Oakland Museum
+   Slug: oakland-museum
+   Old: 5365 Thomas Nelson Highway, Arrington, VA
+   New: 5365 Thomas Nelson Highway, Arrington, VA
+   Note: Google Maps URL updated
+
+✅ Peaktime
+   Slug: peaktime
+   Old: Roseland, VA 22920
+   New: Afton, VA 22920
+
+✅ Hawthorne
+   Slug: hawthorne
+   Old: Nellysford, VA 22920
+   New: Afton, VA 22920
+
+✅ Rockfish Tiny Home
+   Slug: rockfish-tiny-home
+   Old: Schuyler, VA 22969
+   New: Schuyler, VA 22969
+   Note: Google Maps URL updated
+
+✅ Tupelo
+   Slug: tupelo
+   Old: Roseland, VA 22958
+   New: Nellysford, VA 22958
+
+✅ The Vu, Afton
+   Slug: the-vu-afton
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Serenity Summit
+   Slug: serenity-summit
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ The Wooder House
+   Slug: the-wooder-house
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ The Ash House at Holland Hill
+   Slug: ash-house-at-holland-hill
+   Old: Faber, VA 22958
+   New: Nellysford, VA 22958
+
+✅ D & D's Mountain Home
+   Slug: d-ds-mountain-home
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Bear Creek Inn
+   Slug: bear-creek-inn
+   Old: Tyro, VA 22976
+   New: Tyro, VA 22976
+   Note: Google Maps URL updated
+
+✅ Cookie's Place, LLC
+   Slug: cookies-place-llc
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Bearfeet Retreat
+   Slug: bearfeet-retreat
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Peaceful Mountain Getaway
+   Slug: peaceful-mountain-getaway
+   Old: Wintergreen Resort, Nellysford, VA 22958
+   New: Wintergreen Resort, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ The Afton House
+   Slug: the-afton-house
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ THE LITTLE FARMHOUSE
+   Slug: thelittlefarmhouse
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Mountaintop Overlook
+   Slug: mountaintop-overlook
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Blue Ridge Mountain Retreat
+   Slug: blue-ridge-mountain-retreat
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Mountain & Vine Farmhouse
+   Slug: mountain-vine-farmhouse
+   Old: Faber, VA 22938
+   New: Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ Mountain & Vine Vineyards Log Cabin
+   Slug: mountain-vine-vineyards-log-cabin
+   Old: Faber, VA 22938
+   New: Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ The Fairway Chalet
+   Slug: the-fairway-chalet
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Spruce Creek Garden Cottage
+   Slug: spruce-creek-garden-cottage
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Parrs Camp, Mountain Hollow
+   Slug: parrs-camp-mountain-hollow
+   Old: Nellysford, VA 22976
+   New: Tyro, VA 22976
+
+✅ Parr's Camp
+   Slug: parrs-camp
+   Old: Nellysford, VA 22976
+   New: Tyro, VA 22976
+
+✅ Bella Vista
+   Slug: bella-vista
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Red, White and Wintergreen
+   Slug: red-white-and-wintergreen
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Mountain View Vista
+   Slug: mountain-view-vista
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Art & Soul Guesthouse
+   Slug: art-soul-guesthouse
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Art & Soul Main House
+   Slug: art-soul-main-house
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ The Cottage at River Circle Farm
+   Slug: cottage-at-river-circle-farm
+   Old: Nellysford, VA 24590
+   New: Scottsville, VA 24590
+
+✅ Berry Hill Lake
+   Slug: berry-hill-lake
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Afton Awaits
+   Slug: afton-awaits
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Pilotview Hollow
+   Slug: pilotview-hollow
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Nelson Cozy Cabin
+   Slug: nelson-cozy-cabin
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Kneeling Shepherd
+   Slug: kneeling-shepherd
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Kremer Cabin
+   Slug: kremer-cabin
+   Old: Faber, VA 22938
+   New: Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ Stewart's Place
+   Slug: stewarts-place
+   Old: Faber, VA 22938
+   New: Faber, VA 22938
+   Note: Google Maps URL updated
+
+✅ Boho Cliff House Retreat
+   Slug: boho-cliff-house-retreat
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Airkey Boutique Rentals
+   Slug: airkey
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Three Ridge Retreat
+   Slug: three-ridge-retreat
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Sunset Vista Villa
+   Slug: sunset-vista-villa
+   Old: Wintergreen Resort, Roseland, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Arrowwood Lane
+   Slug: arrowwood-lane
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Winterhaven
+   Slug: winterhaven
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ 779 Blue Ridge Drive
+   Slug: 779-blue-ridge-drive
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Belties
+   Slug: belties
+   Old: 2884 Rockfish Valley Highway, Nellysford, VA
+   New: 2884 Rockfish Valley Highway, Nellysford, VA
+   Note: Google Maps URL updated
+
+✅ Ski in Style At Sapphire Squirrel
+   Slug: ski-in-style-at-sapphire-squirrel
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ The Retreat at Three Ridges
+   Slug: retreat-at-three-ridges
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Wintergreen Condo 1437 Highlands
+   Slug: wintergreen-condo-1437-highlands
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Time Out
+   Slug: time-out
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Cub Creek Cabin
+   Slug: cub-creek-cabin
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Tyebello Cabins
+   Slug: tyebello-cabins
+   Old: Montebello, VA 22976
+   New: Tyro, VA 22976
+
+✅ Glass & Pine
+   Slug: glass-pine
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Wintergreen 19 Ivy Glen Lane
+   Slug: wintergreen-19-ivy-glen-lane
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ The Brown Bear Lodge
+   Slug: the-brown-bear-lodge
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Mountain Home in Nelson County
+   Slug: mountain-home-in-nelson-county
+   Old: Faber, VA 22959
+   New: North Garden, VA 22959
+
+✅ Spy Run Hideaway
+   Slug: spy-run-hideaway
+   Old: Nellysford, VA 22967
+   New: Roseland, VA 22967
+
+✅ Love of Mountains Oh Fill My Cup
+   Slug: love-of-mountains-oh-fill-my-cup
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Marigold on the Mountain
+   Slug: marigold-on-the-mountain
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Top of The Mountain Hideaway
+   Slug: top-of-the-mountain-hideaway
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ On The Rocks
+   Slug: on-the-rocks
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Our Mountain Getaway
+   Slug: our-mountain-getaway
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Rockfish Cabin
+   Slug: rockfish-cabin
+   Old: Faber, VA 22920
+   New: Afton, VA 22920
+
+✅ Blue Ridge Cabin
+   Slug: blue-ridge-cabin
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Wintergreen Duplex
+   Slug: wintergreen-duplex
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Sunrise on the Trail
+   Slug: sunrise-on-the-trail
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Mima's Mountain House
+   Slug: mimas-mountain-house
+   Old: Massies Mill, VA 22943
+   New: Massies Mill, VA 22943
+   Note: Google Maps URL updated
+
+✅ Village Antiques
+   Slug: villageantiques
+   Old: 605 Front Street, Lovingston, VA 22949
+   New: 605 Front Street, Lovingston, VA 22949
+   Note: Google Maps URL updated
+
+✅ Cliffs Edge
+   Slug: cliffs-edge
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Slopes At Tyro
+   Slug: slopes-at-tyro
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Home on the Ridge
+   Slug: home-on-the-ridge
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Peppers Mountain Pad
+   Slug: peppers-mountain-pad
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Rockfish Valley Retreat
+   Slug: rockfish-valley-retreat
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Dobie Condo 323 at Wintergreen
+   Slug: dobie-condo-323-at-wintergreen
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Highlands 1426 Condo
+   Slug: highlands-1426-condo
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Gumtree Drive 134
+   Slug: gumtree-drive-134
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Wake In The Clouds
+   Slug: wake-in-the-clouds
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Nectar Landing
+   Slug: nectar-landing
+   Old: Roseland, VA 22958
+   New: Nellysford, VA 22958
+
+✅ Nelson 151 Views and Brews
+   Slug: nelson-151-views-and-brews
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Woodland Hideaway
+   Slug: woodland-hideaway
+   Old: Shipman, VA 22920
+   New: Afton, VA 22920
+
+✅ Cuatro Climas At 130 Pedlars Point
+   Slug: cuatro-climas-at-130-pedlars-point
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Rockfish River Ranch Guest House
+   Slug: rockfish-river-ranch-guest-house
+   Old: Shipman, VA 22971
+   New: Shipman, VA 22971
+   Note: Google Maps URL updated
+
+✅ The Treetops Lodge
+   Slug: the-treetops-lodge
+   Old: Lovingston, VA 22920
+   New: Afton, VA 22920
+
+✅ Cabin on Eagles Ridge Road
+   Slug: cabin-on-eagles-ridge-road
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ 1639 Overlook
+   Slug: 1639-overlook
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Foxfire Cottage
+   Slug: foxfire-cottage
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ The Ski House
+   Slug: the-ski-house
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ 1566 Vistas Condo
+   Slug: 1566-vistas-condo
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Afton Mountain Inn
+   Slug: afton-mountain-inn
+   Old: 10273 Rockfish Valley Highway, Afton, VA 10273
+   New: 10273 Rockfish Valley Highway, Afton, VA 22920
+
+✅ M 260
+   Slug: m-260
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Sanctuary Retreat Center
+   Slug: sanctuaryretreatcenter
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Trinacria Restaurant & Pizzeria
+   Slug: trinacria
+   Old: 2842 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 2842 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Rockfish Valley Farm Guest House
+   Slug: rockfish-valley-farm-guest-house
+   Old: Nellysford, VA 22958
+   New: Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Shenandoah Ridge 11
+   Slug: shenandoah-ridge-11
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Inn at the Woods
+   Slug: inn-at-the-woods
+   Old: Roseland, VA 22967
+   New: Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Country Cottage
+   Slug: country-cottage
+   Old: Faber, VA 22920
+   New: Afton, VA 22920
+
+✅ The View at Crawfords Edge
+   Slug: view-at-crawfords-edge
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Altitude Adjustment
+   Slug: altitude-adjustment
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Chateau Greenstone
+   Slug: chateau-greenstone
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ Blue Sky Retreat
+   Slug: blue-sky-retreat
+   Old: Wintergreen Resort, Nellysford, VA 22967
+   New: Wintergreen Resort, Roseland, VA 22967
+
+✅ The Treehouse
+   Slug: thetreehouse
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Woodson's Mill
+   Slug: woodsons-mill
+   Old: 3211 Lowesville Road, Roseland, VA 22967
+   New: 3211 Lowesville Road, Roseland, VA 22967
+   Note: Google Maps URL updated
+
+✅ Rockfish Valley Natural History Center
+   Slug: rockfish-valley-natural-history-center
+   Old: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   New: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ The Goldfinch
+   Slug: the-goldfinch
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Swimming
+   Slug: swimming
+   Old: Wintergreen Aquatics & Fitness Center, 39 Mountain Inn Loop, Montebello, VA 22967
+   New: Wintergreen Aquatics & Fitness Center, 39 Mountain Inn Loop, Wintergreen, VA 22967
+
+✅ Rockwell Ridge Inn
+   Slug: rockwellridgeinn
+   Old: Afton, VA 22920
+   New: Afton, VA 22920
+   Note: Google Maps URL updated
+
+✅ Everett Estate
+   Slug: everettestate
+   Old: 56 Rodes Farm Drive, Nellysford, VA 22958
+   New: 56 Rodes Farm Drive, Nellysford, VA 22958
+   Note: Google Maps URL updated
+
+✅ Don Lupe Mexican Restaurant
+   Slug: donlupe
+   Old: 2815 Rockfish Valley Highway, Roseland, VA 22958
+   New: 2815 Rockfish Valley Highway, Nellysford, VA 22958
+
+✅ 12 Ridges Vineyard
+   Slug: 12-ridges-vineyard
+   Old: 24981 Blue Ridge Parkway, Vesuvius, VA 24483
+   New: 24981 Blue Ridge Pkwy, Vesuvius, VA 24483
+
+✅ Sweet Bliss Bakery
+   Slug: sweet-bliss-bakery
+   Old: Nellysford, VA 22958
+   New: 2789 Rockfish Valley Highway Nellysford, VA 22958
+

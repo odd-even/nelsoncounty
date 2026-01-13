@@ -1,0 +1,53 @@
+================================================================================
+ADDRESS VERIFICATION REPORT
+================================================================================
+
+Total listings: 407
+Addresses matching previous file: 397
+Addresses different from previous: 9
+Listings not in previous file: 1
+
+Google Maps URLs:
+  Correct format (location search): 398
+  Wrong format (directions): 0
+
+================================================================================
+ADDRESS MISMATCHES (Current vs Previous)
+================================================================================
+
+Rapunzel’s Coffee & Books (rapunzels-coffee-books)
+  Current:  956 Front Street, Lovingston, VA 22949
+  Previous: 
+
+Big Tiny House (big-tiny-house)
+  Current:  Afton, VA 22920
+  Previous: 
+
+Fairway Chalet (fairway-chalet)
+  Current:  Wintergreen, Nellysford, VA 22958
+  Previous: 
+
+Brown Bear Lodge (brown-bear-lodge)
+  Current:  Nellysford, VA
+  Previous: 
+
+Treetops Lodge (treetops-lodge)
+  Current:  Lovingston, VA 22949
+  Previous: 
+
+Celadon Acres Farm (celadonacresfarm)
+  Current:  Lovingston, VA 22949
+  Previous: 
+
+A. Bryant Family Farm (abryantfamilyfarm)
+  Current:  141 Bryant Lane, Roseland, VA 22967
+  Previous: 
+
+Heart of Nelson (heartofnelson)
+  Current:  611 Front Street, Lovingston, VA 22949
+  Previous: 
+
+Afton Peak (aftonpeak)
+  Current:  Afton, VA 22920
+  Previous: 
+
