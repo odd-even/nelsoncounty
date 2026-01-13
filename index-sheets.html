@@ -8251,16 +8251,16 @@ function updateUnsavedChangesBadge() {
                             if (index >= 0) {
                                 data.listings[index] = listing;
                     updateSyncStatus(true, '✅ "' + listing.name + '" updated locally');
-                    alert('"' + listing.name + '" has been updated locally!\n\n💾 Click "Save All to Google Sheets" to sync changes.');
+                    // Success message removed per user request
                         } else {
                             data.listings.push(listing);
                     updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
-                    alert('"' + listing.name + '" has been added locally!\n\n💾 Click "Save All to Google Sheets" to sync changes.');
+                    // Success message removed per user request
                 }
                     } else {
                         data.listings.push(listing);
                 updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
-                alert('"' + listing.name + '" has been added locally!\n\n💾 Click "Save All to Google Sheets" to sync changes.');
+                // Success message removed per user request
             }
             
             // Update ImageKit metadata for all images that have descriptions and ImageKit URLs
@@ -11124,7 +11124,7 @@ function updateUnsavedChangesBadge() {
                                 descField.focus();
                             }, 100);
                             
-                            alert('✅ Description generated and saved!\n\nLength: ' + description.length + ' characters');
+                            // Success message removed per user request
                         } else {
                             console.warn('No description was generated (description is null/empty)');
                             alert('⚠️ Could not generate description. Check console for details.\n\nMake sure GEMINI_API_KEY or OPENAI_API_KEY is configured in Google Apps Script.');
@@ -11429,7 +11429,7 @@ function updateUnsavedChangesBadge() {
                                 descField.focus();
                             }, 100);
                             
-                            alert('✅ Description generated and saved!\n\nLength: ' + description.length + ' characters');
+                            // Success message removed per user request
                         } else {
                             console.warn('No description was generated (description is null/empty)');
                             alert('⚠️ Could not generate description. Check console for details.\n\nMake sure GEMINI_API_KEY or OPENAI_API_KEY is configured in Google Apps Script.');
