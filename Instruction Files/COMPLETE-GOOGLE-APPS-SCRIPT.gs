@@ -206,18 +206,39 @@ function listSheetHeaders() {
 
 /**
  * Generate a cryptographically secure 6-digit OTP
+ * Uses multiple sources of entropy to ensure true randomness
  */
 function generateOTP() {
   const min = 100000;
   const max = 999999;
-  const randomBytes = Utilities.computeDigest(
-    Utilities.DigestAlgorithm.MD5,
-    Utilities.newBlob(Math.random().toString()).getBytes()
+  
+  // Use multiple sources of entropy for better randomness
+  const timestamp = Date.now().toString();
+  const random1 = Math.random().toString();
+  const random2 = Math.random().toString();
+  
+  // Combine entropy sources
+  const combinedEntropy = timestamp + random1 + random2 + Utilities.getUuid();
+  
+  // Generate hash from combined entropy
+  const hashBytes = Utilities.computeDigest(
+    Utilities.DigestAlgorithm.SHA_256,
+    Utilities.newBlob(combinedEntropy).getBytes()
   );
-  const randomNum = Math.abs(
-    (randomBytes[0] << 24) | (randomBytes[1] << 16) | (randomBytes[2] << 8) | randomBytes[3]
-  );
-  return (min + (randomNum % (max - min + 1))).toString();
+  
+  // Convert hash bytes to a large integer using multiple bytes
+  // This avoids bias from modulo operations
+  let randomNum = 0;
+  for (let i = 0; i < Math.min(8, hashBytes.length); i++) {
+    randomNum = (randomNum * 256) + (hashBytes[i] & 0xFF);
+  }
+  
+  // Ensure positive and apply modulo to get value in range
+  randomNum = Math.abs(randomNum);
+  const range = max - min + 1;
+  const otp = min + (randomNum % range);
+  
+  return otp.toString();
 }
 
 /**

@@ -16,6 +16,9 @@
     </script>
     <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ&libraries=places&callback=initMap" async defer></script>
+    <!-- Quill.js Rich Text Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Local Stylesheet for Admin Panel -->
     <style>
 /* =================================           CENTRALIZED SVG ICON LIBRARY
@@ -373,6 +376,41 @@
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: inherit; transition: border-color 0.3s ease, background-color 0.3s ease; background: var(--bg-primary); color: var(--text-primary); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #007AFF; }
         .form-group textarea { resize: vertical; min-height: 100px; }
+        
+        /* Quill Editor Styling */
+        #listingDetailedDescriptionEditor { 
+            background: var(--bg-primary) !important; 
+            color: var(--text-primary) !important;
+            border: 2px solid var(--border-color) !important;
+            border-radius: 8px !important;
+        }
+        #listingDetailedDescriptionEditor .ql-toolbar {
+            background: var(--card-bg) !important;
+            border-bottom: 1px solid var(--border-color) !important;
+            border-top-left-radius: 8px !important;
+            border-top-right-radius: 8px !important;
+        }
+        #listingDetailedDescriptionEditor .ql-toolbar .ql-stroke {
+            stroke: var(--text-primary) !important;
+        }
+        #listingDetailedDescriptionEditor .ql-toolbar .ql-fill {
+            fill: var(--text-primary) !important;
+        }
+        #listingDetailedDescriptionEditor .ql-toolbar button:hover,
+        #listingDetailedDescriptionEditor .ql-toolbar button.ql-active {
+            background: var(--bg-hover) !important;
+        }
+        #listingDetailedDescriptionEditor .ql-editor {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            min-height: 200px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        #listingDetailedDescriptionEditor .ql-editor.ql-blank::before {
+            color: var(--text-secondary) !important;
+            font-style: normal;
+        }
         
         /* Address autocomplete dropdown */
         .address-autocomplete-wrapper { position: relative; }
@@ -3090,7 +3128,8 @@
 
                 <div class="form-group">
                     <label>Detailed Description</label>
-                    <textarea id="listingDetailedDescription" placeholder="Optional longer description with more details, history, context, etc." style="min-height: 150px;"></textarea>
+                    <div id="listingDetailedDescriptionEditor" style="min-height: 200px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
+                    <textarea id="listingDetailedDescription" style="display: none;"></textarea>
                     <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Optional extended description. Only shown if it provides significantly more information than the short description.</small>
                 </div>
 
@@ -4545,7 +4584,47 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         
         document.addEventListener('DOMContentLoaded', function() {
             updateUnsavedChangesBadge();
+            // Initialize Quill editor for detailedDescription
+            initializeQuillEditor();
         });
+        
+        // Initialize Quill editor for detailedDescription
+        function initializeQuillEditor() {
+            const editorContainer = document.getElementById('listingDetailedDescriptionEditor');
+            if (!editorContainer) {
+                console.warn('Quill editor container not found');
+                return;
+            }
+            
+            // Only initialize once
+            if (quillDetailedDescription) {
+                return;
+            }
+            
+            // Configure Quill with allowed formats
+            quillDetailedDescription = new Quill('#listingDetailedDescriptionEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [4, 6, false] }],  // h4, h6
+                        ['bold', 'italic'],              // bold, italic
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // ordered and bullet lists
+                        ['blockquote'],                  // blockquote
+                        ['clean']                        // remove formatting
+                    ]
+                },
+                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
+            });
+            
+            // Sync Quill content to hidden textarea on change
+            quillDetailedDescription.on('text-change', function() {
+                const html = quillDetailedDescription.root.innerHTML;
+                const textarea = document.getElementById('listingDetailedDescription');
+                if (textarea) {
+                    textarea.value = html;
+                }
+            });
+        }
         
         document.addEventListener('input', function(event) {
             const target = event.target;
@@ -4568,6 +4647,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         let deleteConfirmId = null;
         let deleteConfirmTimeout = null;
         let unsavedChanges = false;
+        let quillDetailedDescription = null;
         
 function showUnsavedChangesBadge() {
     unsavedChanges = true;
@@ -7180,6 +7260,14 @@ function updateUnsavedChangesBadge() {
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
+            // Clear Quill editor
+            if (quillDetailedDescription) {
+                quillDetailedDescription.root.innerHTML = '';
+            }
+            const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
+            if (detailedDescriptionTextarea) {
+                detailedDescriptionTextarea.value = '';
+            }
             // Ensure dropdowns are populated with current options
             updateTypeDropdown();
             updateAreaDropdown();
@@ -7196,6 +7284,12 @@ function updateUnsavedChangesBadge() {
             }
             
             document.getElementById('listingModal').classList.add('active');
+            // Initialize Quill editor if not already initialized
+            setTimeout(function() {
+                if (!quillDetailedDescription) {
+                    initializeQuillEditor();
+                }
+            }, 50);
             // Initialize image upload buttons after modal is shown
             setTimeout(function() {
                 initImageUploadButtons();
@@ -7225,8 +7319,41 @@ function updateUnsavedChangesBadge() {
             document.getElementById('listingType').value = listing.type;
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
-            const detailedDescriptionInput = document.getElementById('listingDetailedDescription');
-            if (detailedDescriptionInput) detailedDescriptionInput.value = listing.detailedDescription || '';
+            
+            // Initialize Quill if not already initialized
+            if (!quillDetailedDescription) {
+                initializeQuillEditor();
+            }
+            
+            // Set detailedDescription in Quill editor (preserve existing HTML)
+            const detailedDescriptionValue = listing.detailedDescription || '';
+            const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
+            if (detailedDescriptionTextarea) {
+                detailedDescriptionTextarea.value = detailedDescriptionValue;
+            }
+            
+            // Set content in Quill editor
+            if (quillDetailedDescription) {
+                // If content is HTML, set it directly; otherwise treat as plain text
+                if (detailedDescriptionValue.trim()) {
+                    // Check if it looks like HTML
+                    if (detailedDescriptionValue.includes('<') && detailedDescriptionValue.includes('>')) {
+                        // It's HTML - set it directly
+                        quillDetailedDescription.root.innerHTML = detailedDescriptionValue;
+                    } else {
+                        // It's plain text - convert to HTML paragraphs
+                        const lines = detailedDescriptionValue.split('\n').filter(line => line.trim());
+                        if (lines.length > 0) {
+                            const htmlContent = lines.map(line => `<p>${line}</p>`).join('');
+                            quillDetailedDescription.root.innerHTML = htmlContent;
+                        } else {
+                            quillDetailedDescription.root.innerHTML = '';
+                        }
+                    }
+                } else {
+                    quillDetailedDescription.root.innerHTML = '';
+                }
+            }
             const customHtmlInput = document.getElementById('listingCustomHtml');
             if (customHtmlInput) customHtmlInput.value = listing.customHtml || '';
             const slugInput = document.getElementById('listingSlug');
@@ -7388,6 +7515,12 @@ function updateUnsavedChangesBadge() {
             });
             
             document.getElementById('listingModal').classList.add('active');
+            // Initialize Quill editor if not already initialized
+            setTimeout(function() {
+                if (!quillDetailedDescription) {
+                    initializeQuillEditor();
+                }
+            }, 50);
             // Re-initialize image upload buttons after modal is shown
             setTimeout(function() {
                 initImageUploadButtons();
@@ -7647,7 +7780,7 @@ function updateUnsavedChangesBadge() {
                 type: getValue('listingType'), // Simple, direct - no normalization
                 area: getValue('listingArea'),
                 description: getValue('listingDescription'),
-                detailedDescription: getValue('listingDetailedDescription'),
+                detailedDescription: quillDetailedDescription ? quillDetailedDescription.root.innerHTML : getValue('listingDetailedDescription'),
                 customHtml: getValue('listingCustomHtml'),
                 image1: getValue('listingImage1'),
                 image2: getValue('listingImage2'),
@@ -7781,6 +7914,14 @@ function updateUnsavedChangesBadge() {
         }
         
         window.closeModal = function closeModal() {
+            // Clear Quill editor when closing modal
+            if (quillDetailedDescription) {
+                quillDetailedDescription.root.innerHTML = '';
+            }
+            const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
+            if (detailedDescriptionTextarea) {
+                detailedDescriptionTextarea.value = '';
+            }
             document.getElementById('listingModal').classList.remove('active');
         }
         
