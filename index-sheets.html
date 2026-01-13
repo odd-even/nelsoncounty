@@ -4654,8 +4654,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             updateUnsavedChangesBadge();
             // Initialize Quill editor for detailedDescription
             initializeQuillEditor();
-            // Initialize Quill editors for accordion panels
-            initializeAccordionQuillEditors();
+            // Note: Accordion Quill editors initialize when modal opens (they're inside the modal)
         });
         
         // Initialize Quill editor for detailedDescription
@@ -4696,69 +4695,128 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             });
         }
         
-        // Initialize Quill editors for accordion panels
-        function initializeAccordionQuillEditors() {
-            const quillConfig = {
+        // Initialize Quill editor for accordion panel 1
+        function initializeAccordionPanel1Editor() {
+            const editorContainer = document.getElementById('listingAccordionPanel1ContentEditor');
+            if (!editorContainer) {
+                return;
+            }
+            if (quillAccordionPanel1) {
+                return;
+            }
+            quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', {
                 theme: 'snow',
                 modules: {
                     toolbar: [
-                        [{ 'header': [4, 6, false] }],  // h4, h6
-                        ['bold', 'italic'],              // bold, italic
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // ordered and bullet lists
-                        ['blockquote'],                  // blockquote
-                        ['clean']                        // remove formatting
+                        [{ 'header': [4, 6, false] }],
+                        ['bold', 'italic'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote'],
+                        ['clean']
                     ]
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            };
-            
-            // Panel 1
-            if (!quillAccordionPanel1) {
-                const container1 = document.getElementById('listingAccordionPanel1ContentEditor');
-                if (container1) {
-                    quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', quillConfig);
-                    quillAccordionPanel1.on('text-change', function() {
-                        const textarea = document.getElementById('listingAccordionPanel1Content');
-                        if (textarea) textarea.value = quillAccordionPanel1.root.innerHTML;
-                    });
+            });
+            quillAccordionPanel1.on('text-change', function() {
+                const html = quillAccordionPanel1.root.innerHTML;
+                const textarea = document.getElementById('listingAccordionPanel1Content');
+                if (textarea) {
+                    textarea.value = html;
                 }
+            });
+        }
+        
+        // Initialize Quill editor for accordion panel 2
+        function initializeAccordionPanel2Editor() {
+            const editorContainer = document.getElementById('listingAccordionPanel2ContentEditor');
+            if (!editorContainer) {
+                return;
             }
-            
-            // Panel 2
-            if (!quillAccordionPanel2) {
-                const container2 = document.getElementById('listingAccordionPanel2ContentEditor');
-                if (container2) {
-                    quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', quillConfig);
-                    quillAccordionPanel2.on('text-change', function() {
-                        const textarea = document.getElementById('listingAccordionPanel2Content');
-                        if (textarea) textarea.value = quillAccordionPanel2.root.innerHTML;
-                    });
+            if (quillAccordionPanel2) {
+                return;
+            }
+            quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [4, 6, false] }],
+                        ['bold', 'italic'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote'],
+                        ['clean']
+                    ]
+                },
+                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
+            });
+            quillAccordionPanel2.on('text-change', function() {
+                const html = quillAccordionPanel2.root.innerHTML;
+                const textarea = document.getElementById('listingAccordionPanel2Content');
+                if (textarea) {
+                    textarea.value = html;
                 }
+            });
+        }
+        
+        // Initialize Quill editor for accordion panel 3
+        function initializeAccordionPanel3Editor() {
+            const editorContainer = document.getElementById('listingAccordionPanel3ContentEditor');
+            if (!editorContainer) {
+                return;
             }
-            
-            // Panel 3
-            if (!quillAccordionPanel3) {
-                const container3 = document.getElementById('listingAccordionPanel3ContentEditor');
-                if (container3) {
-                    quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', quillConfig);
-                    quillAccordionPanel3.on('text-change', function() {
-                        const textarea = document.getElementById('listingAccordionPanel3Content');
-                        if (textarea) textarea.value = quillAccordionPanel3.root.innerHTML;
-                    });
+            if (quillAccordionPanel3) {
+                return;
+            }
+            quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [4, 6, false] }],
+                        ['bold', 'italic'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote'],
+                        ['clean']
+                    ]
+                },
+                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
+            });
+            quillAccordionPanel3.on('text-change', function() {
+                const html = quillAccordionPanel3.root.innerHTML;
+                const textarea = document.getElementById('listingAccordionPanel3Content');
+                if (textarea) {
+                    textarea.value = html;
                 }
+            });
+        }
+        
+        // Initialize Quill editor for accordion panel 4
+        function initializeAccordionPanel4Editor() {
+            const editorContainer = document.getElementById('listingAccordionPanel4ContentEditor');
+            if (!editorContainer) {
+                return;
             }
-            
-            // Panel 4
-            if (!quillAccordionPanel4) {
-                const container4 = document.getElementById('listingAccordionPanel4ContentEditor');
-                if (container4) {
-                    quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', quillConfig);
-                    quillAccordionPanel4.on('text-change', function() {
-                        const textarea = document.getElementById('listingAccordionPanel4Content');
-                        if (textarea) textarea.value = quillAccordionPanel4.root.innerHTML;
-                    });
+            if (quillAccordionPanel4) {
+                return;
+            }
+            quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [4, 6, false] }],
+                        ['bold', 'italic'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote'],
+                        ['clean']
+                    ]
+                },
+                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
+            });
+            quillAccordionPanel4.on('text-change', function() {
+                const html = quillAccordionPanel4.root.innerHTML;
+                const textarea = document.getElementById('listingAccordionPanel4Content');
+                if (textarea) {
+                    textarea.value = html;
                 }
-            }
+            });
         }
         
         document.addEventListener('input', function(event) {
@@ -7440,10 +7498,22 @@ function updateUnsavedChangesBadge() {
             listingFormOriginalData = captureFormData();
             
             document.getElementById('listingModal').classList.add('active');
-            // Initialize Quill editor if not already initialized
+            // Initialize Quill editors if not already initialized (same pattern as detailedDescription)
             setTimeout(function() {
                 if (!quillDetailedDescription) {
                     initializeQuillEditor();
+                }
+                if (!quillAccordionPanel1) {
+                    initializeAccordionPanel1Editor();
+                }
+                if (!quillAccordionPanel2) {
+                    initializeAccordionPanel2Editor();
+                }
+                if (!quillAccordionPanel3) {
+                    initializeAccordionPanel3Editor();
+                }
+                if (!quillAccordionPanel4) {
+                    initializeAccordionPanel4Editor();
                 }
                 // Re-capture form data after Quill is initialized
                 setTimeout(function() {
@@ -7480,9 +7550,21 @@ function updateUnsavedChangesBadge() {
             document.getElementById('listingArea').value = listing.area;
             document.getElementById('listingDescription').value = listing.description;
             
-            // Initialize Quill if not already initialized
+            // Initialize Quill editors if not already initialized (same pattern as detailedDescription)
             if (!quillDetailedDescription) {
                 initializeQuillEditor();
+            }
+            if (!quillAccordionPanel1) {
+                initializeAccordionPanel1Editor();
+            }
+            if (!quillAccordionPanel2) {
+                initializeAccordionPanel2Editor();
+            }
+            if (!quillAccordionPanel3) {
+                initializeAccordionPanel3Editor();
+            }
+            if (!quillAccordionPanel4) {
+                initializeAccordionPanel4Editor();
             }
             
             // Set detailedDescription in Quill editor (preserve existing HTML)
@@ -7650,12 +7732,21 @@ function updateUnsavedChangesBadge() {
                     window._editAccordionDebugLogged = true;
                 }
             }
-            // Initialize accordion Quill editors if not already initialized
-            if (!quillAccordionPanel1 || !quillAccordionPanel2 || !quillAccordionPanel3 || !quillAccordionPanel4) {
-                initializeAccordionQuillEditors();
+            // Initialize accordion Quill editors if not already initialized (same pattern as detailedDescription)
+            if (!quillAccordionPanel1) {
+                initializeAccordionPanel1Editor();
+            }
+            if (!quillAccordionPanel2) {
+                initializeAccordionPanel2Editor();
+            }
+            if (!quillAccordionPanel3) {
+                initializeAccordionPanel3Editor();
+            }
+            if (!quillAccordionPanel4) {
+                initializeAccordionPanel4Editor();
             }
             
-            // Set accordion panel 1 content
+            // Set accordion panel 1 content (same pattern as detailedDescription)
             const accordionPanel1ContentValue = listing.accordionPanel1Content || '';
             const accordionPanel1ContentTextarea = document.getElementById('listingAccordionPanel1Content');
             if (accordionPanel1ContentTextarea) {
@@ -7681,7 +7772,7 @@ function updateUnsavedChangesBadge() {
             const accordionPanel2TitleInput = document.getElementById('listingAccordionPanel2Title');
             if (accordionPanel2TitleInput) accordionPanel2TitleInput.value = listing.accordionPanel2Title || '';
             
-            // Set accordion panel 2 content
+            // Set accordion panel 2 content (same pattern as detailedDescription)
             const accordionPanel2ContentValue = listing.accordionPanel2Content || '';
             const accordionPanel2ContentTextarea = document.getElementById('listingAccordionPanel2Content');
             if (accordionPanel2ContentTextarea) {
@@ -7707,7 +7798,7 @@ function updateUnsavedChangesBadge() {
             const accordionPanel3TitleInput = document.getElementById('listingAccordionPanel3Title');
             if (accordionPanel3TitleInput) accordionPanel3TitleInput.value = listing.accordionPanel3Title || '';
             
-            // Set accordion panel 3 content
+            // Set accordion panel 3 content (same pattern as detailedDescription)
             const accordionPanel3ContentValue = listing.accordionPanel3Content || '';
             const accordionPanel3ContentTextarea = document.getElementById('listingAccordionPanel3Content');
             if (accordionPanel3ContentTextarea) {
@@ -7733,7 +7824,7 @@ function updateUnsavedChangesBadge() {
             const accordionPanel4TitleInput = document.getElementById('listingAccordionPanel4Title');
             if (accordionPanel4TitleInput) accordionPanel4TitleInput.value = listing.accordionPanel4Title || '';
             
-            // Set accordion panel 4 content
+            // Set accordion panel 4 content (same pattern as detailedDescription)
             const accordionPanel4ContentValue = listing.accordionPanel4Content || '';
             const accordionPanel4ContentTextarea = document.getElementById('listingAccordionPanel4Content');
             if (accordionPanel4ContentTextarea) {
@@ -7771,10 +7862,22 @@ function updateUnsavedChangesBadge() {
             }, 200);
             
             document.getElementById('listingModal').classList.add('active');
-            // Initialize Quill editor if not already initialized
+            // Initialize Quill editors if not already initialized (same pattern as detailedDescription)
             setTimeout(function() {
                 if (!quillDetailedDescription) {
                     initializeQuillEditor();
+                }
+                if (!quillAccordionPanel1) {
+                    initializeAccordionPanel1Editor();
+                }
+                if (!quillAccordionPanel2) {
+                    initializeAccordionPanel2Editor();
+                }
+                if (!quillAccordionPanel3) {
+                    initializeAccordionPanel3Editor();
+                }
+                if (!quillAccordionPanel4) {
+                    initializeAccordionPanel4Editor();
                 }
                 // Re-capture form data after Quill is initialized
                 setTimeout(function() {
