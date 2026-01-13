@@ -366,6 +366,9 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(62,53,53,0.5); z-index: 1000; overflow-y: auto; }
         .modal.active { display: flex; align-items: center; justify-content: center; padding: 20px; }
         .modal-content { background: var(--card-bg); border-radius: 12px; padding: 30px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px var(--shadow); }
+        #listingModal .modal-content { width: 90vw; max-width: 90vw; height: 90vh; max-height: 90vh; display: flex; flex-direction: column; }
+        #listingModal .modal-content form { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
+        #listingModal .modal-content .form-scrollable { flex: 1; overflow-y: auto; padding-right: 10px; min-height: 0; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
         .modal-header h2 { font-size: 24px; color: var(--text-primary); }
         .close-modal { background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-secondary); padding: 0; width: 32px; height: 32px; }
@@ -1814,9 +1817,8 @@
                                         return null;
                                     } else if (errorMsg.includes('invalid session token')) {
                                         // "Invalid session token" might be a server-side parsing issue
-                                        // Don't clear immediately - allow session through but log warning
-                                        // Only clear if this happens multiple times (handled by monitoring)
-                                        console.warn('Server reported invalid session token, but allowing through (may be temporary server issue):', validation.error);
+                                        // Don't clear immediately - allow session through
+                                        // Suppress warning in monitoring (only log in getAuthSession if called directly)
                                         // Don't clear - allow session to persist
                                     } else {
                                         // Unknown error - be conservative and allow through
@@ -2530,6 +2532,9 @@
             }
             
             // Continuous monitoring to prevent bypass (with server validation)
+            let lastServerValidation = 0;
+            const SERVER_VALIDATION_INTERVAL = 60000; // Only validate with server every 60 seconds
+            
             setInterval(async function() {
                 if (ENABLE_EMAIL_OTP) {
                     const overlay = document.getElementById('loginOverlay');
@@ -2538,49 +2543,58 @@
                     let isLoggedIn = false;
                     let adminEmail = null;
                     
-                    // 1. Try server-validated session first
+                    // 1. Try session from localStorage (client-side check only, no server validation)
                     try {
-                        const session = await getAuthSession();
-                        if (session) {
-                            isLoggedIn = true;
-                            adminEmail = session.email;
+                        const sessionData = localStorage.getItem('adminAuthSession');
+                        if (sessionData) {
+                            const session = JSON.parse(sessionData);
+                            // Check if expired (client-side check only)
+                            if (session.token && session.email && Date.now() < session.expires) {
+                                isLoggedIn = true;
+                                adminEmail = session.email;
+                            }
                         }
                     } catch (e) {
-                        console.warn('Session validation error in monitoring:', e);
+                        // Ignore parse errors
                     }
                     
-                    // 2. Fallback to sessionStorage if server validation failed
+                    // 2. Only validate with server occasionally (every 60 seconds) to reduce noise
+                    const now = Date.now();
+                    if (isLoggedIn && (now - lastServerValidation) > SERVER_VALIDATION_INTERVAL) {
+                        lastServerValidation = now;
+                        try {
+                            const sessionData = localStorage.getItem('adminAuthSession');
+                            if (sessionData) {
+                                const session = JSON.parse(sessionData);
+                                if (session.token && typeof validateSessionWithServer === 'function') {
+                                    // Validate with server silently (don't log warnings if it fails)
+                                    const validation = await validateSessionWithServer(session.token);
+                                    if (validation.valid) {
+                                        // Server validated - update email from server response
+                                        session.email = validation.email || session.email;
+                                        localStorage.setItem('adminAuthSession', JSON.stringify(session));
+                                    } else if (validation.error && !validation.error.includes('temporary')) {
+                                        // Only log if it's a real error, not a temporary server issue
+                                        // Don't clear session - allow it to persist
+                                    }
+                                }
+                            }
+                        } catch (e) {
+                            // Silently ignore validation errors - session is still valid client-side
+                        }
+                    }
+                    
+                    // 3. Fallback to sessionStorage if localStorage check failed
                     if (!isLoggedIn) {
                         const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
                         const sessionStorageEmail = sessionStorage.getItem('adminEmail');
                         if (sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
-                            console.log('⚠️ Monitoring: Using sessionStorage fallback');
                             isLoggedIn = true;
                             adminEmail = sessionStorageEmail;
                         }
                     }
                     
-                    // 3. Fallback to localStorage session token if both above failed
-                    if (!isLoggedIn) {
-                        try {
-                            const sessionData = localStorage.getItem('adminAuthSession');
-                            if (sessionData) {
-                                const parsedSession = JSON.parse(sessionData);
-                                if (parsedSession.token && parsedSession.email && Date.now() < parsedSession.expires) {
-                                    console.log('⚠️ Monitoring: Using localStorage session token fallback');
-                                    isLoggedIn = true;
-                                    adminEmail = parsedSession.email;
-                                }
-                            }
-                        } catch (e) {
-                            // Ignore parse errors
-                        }
-                    }
-                    
                     // Check if properly authenticated
-                    // If they have a valid session token from the server, that's proof of authorization
-                    // Don't check against localStorage email list (it may be out of sync)
-                    // Server-validated session token is the source of truth
                     const isValidAuth = isLoggedIn && adminEmail;
                     
                     // Check if session exists in storage (even if validation hasn't completed)
@@ -2590,7 +2604,10 @@
                     
                     // If valid, ensure overlay is hidden and logged-in class is set
                     if (isValidAuth) {
-                        console.log('✅ Monitoring: Valid session found, hiding login overlay');
+                        // Only log once when first detected, not every 5 seconds
+                        if (overlay && overlay.style.display !== 'none') {
+                            console.log('✅ Monitoring: Valid session found, hiding login overlay');
+                        }
                         if (overlay) {
                             overlay.style.display = 'none';
                             overlay.setAttribute('style', 'display: none !important;');
@@ -2598,12 +2615,8 @@
                         document.body.classList.add('logged-in');
                         // Don't clear session - it's valid!
                     } else if (hasSessionData) {
-                        // Session data exists but validation might be in progress or failed
-                        // Be conservative - keep overlay hidden if session data exists
-                        // Only show overlay if session was explicitly cleared by validation
-                        // Don't log this repeatedly - it's normal during validation
+                        // Session data exists but might be expired - keep overlay hidden if data exists
                         if (overlay && overlay.style.display !== 'none') {
-                            console.log('⚠️ Monitoring: Session data exists, keeping overlay hidden (validation may be in progress)');
                             overlay.style.display = 'none';
                             overlay.setAttribute('style', 'display: none !important;');
                         }
@@ -2626,7 +2639,7 @@
                         }
                     }
                 }
-            }, 5000); // Check every 5 seconds (less frequent to reduce server load)
+            }, 5000); // Check every 5 seconds (but only validate with server every 60 seconds)
         })();
     </script>
     
@@ -3075,16 +3088,17 @@
         </div>
     </div>
     
-    <div id="listingModal" class="modal">
-        <div class="modal-content">
+    <div id="listingModal" class="modal" onclick="if(event.target === this) { const shouldClose = !hasFormChanges() || confirm('You have unsaved changes. Close without saving?'); if(shouldClose) closeModal(true); }">
+        <div class="modal-content" onclick="event.stopPropagation();">
             <div class="modal-header">
                 <h2 id="modalTitle">Add New Listing</h2>
-                <button class="close-modal" onclick="closeModal()">&times;</button>
+                <button class="close-modal" onclick="closeModal()" title="Close (will prompt if unsaved changes)">&times;</button>
             </div>
             
             <form id="listingForm" onsubmit="saveListing(event)">
                 <input type="hidden" id="editingId" />
                 
+                <div class="form-scrollable">
                 <div class="form-group">
                     <label>Listing Name *</label>
                     <input type="text" id="listingName" required />
@@ -3322,9 +3336,10 @@
                         <textarea id="listingAccordionPanel4Content" placeholder="Panel 4 Content" style="width: 100%; min-height: 100px; padding: 8px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
                     </div>
                 </div>
+                </div>
                 
                 <div class="modal-actions">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()" title="Cancel (will prompt if unsaved changes)">Cancel</button>
                     <button type="submit" class="btn btn-success">Save Listing</button>
                 </div>
             </form>
@@ -4648,6 +4663,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         let deleteConfirmTimeout = null;
         let unsavedChanges = false;
         let quillDetailedDescription = null;
+        let listingFormOriginalData = null; // Store original form data to detect changes
         
 function showUnsavedChangesBadge() {
     unsavedChanges = true;
@@ -7283,12 +7299,19 @@ function updateUnsavedChangesBadge() {
                 }
             }
             
+            // Capture original form data (empty for new listing)
+            listingFormOriginalData = captureFormData();
+            
             document.getElementById('listingModal').classList.add('active');
             // Initialize Quill editor if not already initialized
             setTimeout(function() {
                 if (!quillDetailedDescription) {
                     initializeQuillEditor();
                 }
+                // Re-capture form data after Quill is initialized
+                setTimeout(function() {
+                    listingFormOriginalData = captureFormData();
+                }, 100);
             }, 50);
             // Initialize image upload buttons after modal is shown
             setTimeout(function() {
@@ -7514,12 +7537,21 @@ function updateUnsavedChangesBadge() {
                 checkbox.checked = listing.amenities.indexOf(checkbox.value) > -1;
             });
             
+            // Capture original form data after populating all fields
+            setTimeout(function() {
+                listingFormOriginalData = captureFormData();
+            }, 200);
+            
             document.getElementById('listingModal').classList.add('active');
             // Initialize Quill editor if not already initialized
             setTimeout(function() {
                 if (!quillDetailedDescription) {
                     initializeQuillEditor();
                 }
+                // Re-capture form data after Quill is initialized
+                setTimeout(function() {
+                    listingFormOriginalData = captureFormData();
+                }, 100);
             }, 50);
             // Re-initialize image upload buttons after modal is shown
             setTimeout(function() {
@@ -7910,10 +7942,111 @@ function updateUnsavedChangesBadge() {
             applyFilterOptionCleanup();
             renderListings();
             showUnsavedChangesBadge();
-            closeModal();
+            // Clear original data since we saved
+            listingFormOriginalData = null;
+            closeModal(true); // Force close since we just saved
         }
         
-        window.closeModal = function closeModal() {
+        // Capture current form data as a snapshot
+        function captureFormData() {
+            const form = document.getElementById('listingForm');
+            if (!form) return null;
+            
+            const getValue = function(id) {
+                const el = document.getElementById(id);
+                if (!el) return '';
+                if (el.type === 'checkbox') return el.checked;
+                return el.value || '';
+            };
+            
+            const getChecked = function(selector) {
+                const checkboxes = document.querySelectorAll(selector + ':checked');
+                return Array.from(checkboxes).map(cb => cb.value);
+            };
+            
+            return {
+                name: getValue('listingName'),
+                slug: getValue('listingSlug'),
+                type: getValue('listingType'),
+                category: getValue('listingCategory'),
+                area: getValue('listingArea'),
+                description: getValue('listingDescription'),
+                detailedDescription: quillDetailedDescription ? quillDetailedDescription.root.innerHTML : getValue('listingDetailedDescription'),
+                customHtml: getValue('listingCustomHtml'),
+                image1: getValue('listingImage1'),
+                image1Desc: getValue('listingImage1Desc'),
+                image2: getValue('listingImage2'),
+                image2Desc: getValue('listingImage2Desc'),
+                image3: getValue('listingImage3'),
+                image3Desc: getValue('listingImage3Desc'),
+                website: getValue('listingWebsite'),
+                phone: getValue('listingPhone'),
+                address: getValue('listingAddress'),
+                addressType: getValue('listingAddressType'),
+                authorName: getValue('listingAuthorName'),
+                publishedDate: getValue('listingPublishedDate'),
+                modifiedDate: getValue('listingModifiedDate'),
+                directionsLink: getValue('listingDirectionsLink'),
+                videoLink: getValue('listingVideoLink'),
+                document1: getValue('listingDocument1'),
+                document1Name: getValue('listingDocument1Name'),
+                document2: getValue('listingDocument2'),
+                document2Name: getValue('listingDocument2Name'),
+                accordionPanel1Title: getValue('accordionPanel1Title'),
+                accordionPanel1Content: getValue('accordionPanel1Content'),
+                accordionPanel2Title: getValue('accordionPanel2Title'),
+                accordionPanel2Content: getValue('accordionPanel2Content'),
+                accordionPanel3Title: getValue('accordionPanel3Title'),
+                accordionPanel3Content: getValue('accordionPanel3Content'),
+                accordionPanel4Title: getValue('accordionPanel4Title'),
+                accordionPanel4Content: getValue('accordionPanel4Content'),
+                amenities: getChecked('#amenitiesCheckboxes input[type="checkbox"]'),
+                featured: getValue('listingFeatured'),
+                private: getValue('listingPrivate'),
+                googleMapsUrl: getValue('listingGoogleMapsUrl')
+            };
+        }
+        
+        // Check if form has unsaved changes
+        function hasFormChanges() {
+            if (!listingFormOriginalData) return false;
+            const currentData = captureFormData();
+            if (!currentData) return false;
+            
+            // Compare all fields
+            for (const key in listingFormOriginalData) {
+                if (key === 'amenities') {
+                    // Compare arrays
+                    const orig = (listingFormOriginalData[key] || []).sort().join(',');
+                    const curr = (currentData[key] || []).sort().join(',');
+                    if (orig !== curr) return true;
+                } else {
+                    const orig = String(listingFormOriginalData[key] || '').trim();
+                    const curr = String(currentData[key] || '').trim();
+                    if (orig !== curr) return true;
+                }
+            }
+            return false;
+        }
+        
+        window.closeModal = function closeModal(force) {
+            // Check for unsaved changes unless force is true
+            if (!force && hasFormChanges()) {
+                const shouldSave = confirm('You have unsaved changes. Do you want to save before closing?\n\nClick OK to save, or Cancel to discard changes.');
+                if (shouldSave) {
+                    // Trigger save
+                    const form = document.getElementById('listingForm');
+                    if (form) {
+                        const event = new Event('submit', { bubbles: true, cancelable: true });
+                        form.dispatchEvent(event);
+                    }
+                    return; // Don't close yet - let save handle it
+                }
+            }
+            
+            // Clear original data
+            listingFormOriginalData = null;
+            
             // Clear Quill editor when closing modal
             if (quillDetailedDescription) {
                 quillDetailedDescription.root.innerHTML = '';
