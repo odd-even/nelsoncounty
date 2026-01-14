@@ -1468,11 +1468,11 @@
             function showLoginOverlay() {
                 // Re-check session in case it was just created
                 if (!hasValidSession()) {
-                    const overlay = document.getElementById('loginOverlay');
-                    if (overlay) {
-                        overlay.style.display = 'flex';
-                        overlay.style.zIndex = '10000';
-                    }
+                const overlay = document.getElementById('loginOverlay');
+                if (overlay) {
+                    overlay.style.display = 'flex';
+                    overlay.style.zIndex = '10000';
+                }
                     
                     // Force body to not have logged-in class
                     if (document.body) {
@@ -1855,9 +1855,9 @@
                                                errorMsg.includes('email not authorized')) {
                                         // Server explicitly rejected email authorization - clear it
                                         console.warn('Server rejected email authorization (' + validation.error + '), clearing session');
-                                        localStorage.removeItem('adminAuthSession');
-                                        sessionStorage.clear();
-                                        return null;
+                                    localStorage.removeItem('adminAuthSession');
+                                    sessionStorage.clear();
+                                    return null;
                                     } else if (errorMsg.includes('session expired')) {
                                         // Session expired - clear it
                                         console.warn('Session expired, clearing session');
@@ -2046,27 +2046,27 @@
                     const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
                     
                     try {
-                        const response = await fetch(scriptUrl + '?' + params.toString(), {
-                            method: 'GET',
+                    const response = await fetch(scriptUrl + '?' + params.toString(), {
+                        method: 'GET',
                             mode: 'cors',
                             signal: controller.signal
-                        });
+                    });
                         
                         clearTimeout(timeoutId);
-                        
-                        if (!response.ok) {
+                    
+                    if (!response.ok) {
                             // HTTP error - treat as network/ambiguous error, not explicit rejection
                             console.warn('Session validation HTTP error:', response.status);
                             return { valid: false, error: 'Network error' };
-                        }
-                        
-                        const responseText = await response.text();
+                    }
+                    
+                    const responseText = await response.text();
                         if (!responseText) {
                             return { valid: false, error: 'No response from server' };
                         }
-                        
+                    
                         const result = JSON.parse(responseText);
-                        return result;
+                    return result;
                     } catch (fetchError) {
                         clearTimeout(timeoutId);
                         if (fetchError.name === 'AbortError') {
@@ -2599,8 +2599,8 @@
                             const session = JSON.parse(sessionData);
                             // Check if expired (client-side check only)
                             if (session.token && session.email && Date.now() < session.expires) {
-                                isLoggedIn = true;
-                                adminEmail = session.email;
+                            isLoggedIn = true;
+                            adminEmail = session.email;
                             }
                         }
                     } catch (e) {
@@ -2671,7 +2671,7 @@
                         }
                         document.body.classList.add('logged-in');
                     } else {
-                        // No session anywhere - show login
+                            // No session anywhere - show login
                         // Only log and show if overlay isn't already showing (avoid spam)
                         const overlayCurrentlyShowing = overlay && overlay.style.display === 'flex';
                         if (!overlayCurrentlyShowing) {
@@ -3188,7 +3188,7 @@
                     <label>Description *</label>
                     <textarea id="listingDescription" required></textarea>
                 </div>
-
+                
                 <div class="form-group">
                     <label>Detailed Description</label>
                     <div id="listingDetailedDescriptionEditor" style="min-height: 200px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
@@ -4720,14 +4720,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 1 editor container not found');
                 return;
             }
-            // Destroy existing instance to force re-initialization with new config
-            if (editorContainer.__quill) {
-                try {
-                    editorContainer.__quill = null;
-                } catch(e) {}
-            }
+            // Check if Quill already exists - if so, don't re-initialize
             if (quillAccordionPanel1) {
-                quillAccordionPanel1 = null;
+                return;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 1');
             try {
@@ -4765,14 +4760,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 2 editor container not found');
                 return;
             }
-            // Destroy existing instance to force re-initialization with new config
-            if (editorContainer.__quill) {
-                try {
-                    editorContainer.__quill = null;
-                } catch(e) {}
-            }
+            // Check if Quill already exists - if so, don't re-initialize
             if (quillAccordionPanel2) {
-                quillAccordionPanel2 = null;
+                return;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 2');
             try {
@@ -4810,14 +4800,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 3 editor container not found');
                 return;
             }
-            // Destroy existing instance to force re-initialization with new config
-            if (editorContainer.__quill) {
-                try {
-                    editorContainer.__quill = null;
-                } catch(e) {}
-            }
+            // Check if Quill already exists - if so, don't re-initialize
             if (quillAccordionPanel3) {
-                quillAccordionPanel3 = null;
+                return;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 3');
             try {
@@ -4855,14 +4840,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 4 editor container not found');
                 return;
             }
-            // Destroy existing instance to force re-initialization with new config
-            if (editorContainer.__quill) {
-                try {
-                    editorContainer.__quill = null;
-                } catch(e) {}
-            }
+            // Check if Quill already exists - if so, don't re-initialize
             if (quillAccordionPanel4) {
-                quillAccordionPanel4 = null;
+                return;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 4');
             try {
@@ -7809,11 +7789,19 @@ function updateUnsavedChangesBadge() {
             // Initialize accordion Quill editors after modal is visible (they're inside the modal)
             // Then set content after editors are initialized (same pattern as detailedDescription)
             setTimeout(function() {
-                console.log('🔧 editListing: Initializing accordion Quill editors...');
-                initializeAccordionPanel1Editor();
-                initializeAccordionPanel2Editor();
-                initializeAccordionPanel3Editor();
-                initializeAccordionPanel4Editor();
+                // Initialize Quill editors if not already initialized
+                if (!quillAccordionPanel1) {
+                    initializeAccordionPanel1Editor();
+                }
+                if (!quillAccordionPanel2) {
+                    initializeAccordionPanel2Editor();
+                }
+                if (!quillAccordionPanel3) {
+                    initializeAccordionPanel3Editor();
+                }
+                if (!quillAccordionPanel4) {
+                    initializeAccordionPanel4Editor();
+                }
                 
                 // Set accordion panel 1 content after editor is initialized
                 const accordionPanel1ContentValue = listing.accordionPanel1Content || '';
@@ -8868,7 +8856,7 @@ function updateUnsavedChangesBadge() {
         
         // Define switchTab early so it's available for onclick handlers
         if (typeof window.switchTab === 'undefined') {
-            window.switchTab = function switchTab(tab) {
+        window.switchTab = function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
             document.querySelectorAll('.tab-content').forEach(function(content) { content.classList.remove('active'); });
             
