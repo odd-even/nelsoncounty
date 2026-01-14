@@ -4720,25 +4720,16 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 1 editor container not found');
                 return;
             }
-            // Check if Quill already exists - if so, don't re-initialize
-            if (quillAccordionPanel1) {
+            // Match detailedDescription behavior: initialize ONCE, then reuse.
+            if (quillAccordionPanel1) return;
+            if (editorContainer.__quill) {
+                quillAccordionPanel1 = editorContainer.__quill;
                 return;
             }
-            // Check if container already has Quill elements (toolbar/editor)
-            // If it does, we need to clean it up before initializing
-            const existingToolbar = editorContainer.querySelector('.ql-toolbar');
-            const existingEditor = editorContainer.querySelector('.ql-editor');
-            if (existingToolbar || existingEditor || editorContainer.__quill) {
-                // Container already has Quill - check if we can reuse it
-                if (editorContainer.__quill) {
-                    quillAccordionPanel1 = editorContainer.__quill;
-                    return;
-                }
-                // Otherwise, clean up and reinitialize
+            // Safety: if toolbars exist but instance was lost, wipe once to prevent stacking.
+            if (editorContainer.querySelector('.ql-toolbar') || editorContainer.querySelector('.ql-editor')) {
                 editorContainer.innerHTML = '';
-                if (editorContainer.__quill) {
-                    editorContainer.__quill = null;
-                }
+                editorContainer.__quill = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 1');
             try {
@@ -4776,25 +4767,16 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 2 editor container not found');
                 return;
             }
-            // Check if Quill already exists - if so, don't re-initialize
-            if (quillAccordionPanel2) {
+            // Match detailedDescription behavior: initialize ONCE, then reuse.
+            if (quillAccordionPanel2) return;
+            if (editorContainer.__quill) {
+                quillAccordionPanel2 = editorContainer.__quill;
                 return;
             }
-            // Check if container already has Quill elements (toolbar/editor)
-            // If it does, we need to clean it up before initializing
-            const existingToolbar = editorContainer.querySelector('.ql-toolbar');
-            const existingEditor = editorContainer.querySelector('.ql-editor');
-            if (existingToolbar || existingEditor || editorContainer.__quill) {
-                // Container already has Quill - check if we can reuse it
-                if (editorContainer.__quill) {
-                    quillAccordionPanel2 = editorContainer.__quill;
-                    return;
-                }
-                // Otherwise, clean up and reinitialize
+            // Safety: if toolbars exist but instance was lost, wipe once to prevent stacking.
+            if (editorContainer.querySelector('.ql-toolbar') || editorContainer.querySelector('.ql-editor')) {
                 editorContainer.innerHTML = '';
-                if (editorContainer.__quill) {
-                    editorContainer.__quill = null;
-                }
+                editorContainer.__quill = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 2');
             try {
@@ -4832,25 +4814,16 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 3 editor container not found');
                 return;
             }
-            // Check if Quill already exists - if so, don't re-initialize
-            if (quillAccordionPanel3) {
+            // Match detailedDescription behavior: initialize ONCE, then reuse.
+            if (quillAccordionPanel3) return;
+            if (editorContainer.__quill) {
+                quillAccordionPanel3 = editorContainer.__quill;
                 return;
             }
-            // Check if container already has Quill elements (toolbar/editor)
-            // If it does, we need to clean it up before initializing
-            const existingToolbar = editorContainer.querySelector('.ql-toolbar');
-            const existingEditor = editorContainer.querySelector('.ql-editor');
-            if (existingToolbar || existingEditor || editorContainer.__quill) {
-                // Container already has Quill - check if we can reuse it
-                if (editorContainer.__quill) {
-                    quillAccordionPanel3 = editorContainer.__quill;
-                    return;
-                }
-                // Otherwise, clean up and reinitialize
+            // Safety: if toolbars exist but instance was lost, wipe once to prevent stacking.
+            if (editorContainer.querySelector('.ql-toolbar') || editorContainer.querySelector('.ql-editor')) {
                 editorContainer.innerHTML = '';
-                if (editorContainer.__quill) {
-                    editorContainer.__quill = null;
-                }
+                editorContainer.__quill = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 3');
             try {
@@ -4888,25 +4861,16 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 console.warn('⚠️ Accordion Panel 4 editor container not found');
                 return;
             }
-            // Check if Quill already exists - if so, don't re-initialize
-            if (quillAccordionPanel4) {
+            // Match detailedDescription behavior: initialize ONCE, then reuse.
+            if (quillAccordionPanel4) return;
+            if (editorContainer.__quill) {
+                quillAccordionPanel4 = editorContainer.__quill;
                 return;
             }
-            // Check if container already has Quill elements (toolbar/editor)
-            // If it does, we need to clean it up before initializing
-            const existingToolbar = editorContainer.querySelector('.ql-toolbar');
-            const existingEditor = editorContainer.querySelector('.ql-editor');
-            if (existingToolbar || existingEditor || editorContainer.__quill) {
-                // Container already has Quill - check if we can reuse it
-                if (editorContainer.__quill) {
-                    quillAccordionPanel4 = editorContainer.__quill;
-                    return;
-                }
-                // Otherwise, clean up and reinitialize
+            // Safety: if toolbars exist but instance was lost, wipe once to prevent stacking.
+            if (editorContainer.querySelector('.ql-toolbar') || editorContainer.querySelector('.ql-editor')) {
                 editorContainer.innerHTML = '';
-                if (editorContainer.__quill) {
-                    editorContainer.__quill = null;
-                }
+                editorContainer.__quill = null;
             }
             console.log('🔧 Initializing Quill for Accordion Panel 4');
             try {
@@ -7577,16 +7541,20 @@ function updateUnsavedChangesBadge() {
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
-            // Clear Quill editors
+            // Destroy and clear Quill editors
             if (quillDetailedDescription) {
-                quillDetailedDescription.root.innerHTML = '';
+                const container = document.getElementById('listingDetailedDescriptionEditor');
+                if (container) {
+                    container.innerHTML = '';
+                }
+                quillDetailedDescription = null;
             }
             const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
             if (detailedDescriptionTextarea) {
                 detailedDescriptionTextarea.value = '';
             }
             
-            // Clear accordion Quill editors
+            // Clear accordion Quill editors (reuse instances; do not destroy toolbars)
             if (quillAccordionPanel1) quillAccordionPanel1.root.innerHTML = '';
             if (quillAccordionPanel2) quillAccordionPanel2.root.innerHTML = '';
             if (quillAccordionPanel3) quillAccordionPanel3.root.innerHTML = '';
@@ -7853,19 +7821,11 @@ function updateUnsavedChangesBadge() {
             // Initialize accordion Quill editors after modal is visible (they're inside the modal)
             // Then set content after editors are initialized (same pattern as detailedDescription)
             setTimeout(function() {
-                // Initialize Quill editors if not already initialized
-                if (!quillAccordionPanel1) {
-                    initializeAccordionPanel1Editor();
-                }
-                if (!quillAccordionPanel2) {
-                    initializeAccordionPanel2Editor();
-                }
-                if (!quillAccordionPanel3) {
-                    initializeAccordionPanel3Editor();
-                }
-                if (!quillAccordionPanel4) {
-                    initializeAccordionPanel4Editor();
-                }
+                // Always reinitialize Quill editors to ensure clean state (containers are cleared in init functions)
+                initializeAccordionPanel1Editor();
+                initializeAccordionPanel2Editor();
+                initializeAccordionPanel3Editor();
+                initializeAccordionPanel4Editor();
                 
                 // Set accordion panel 1 content after editor is initialized
                 const accordionPanel1ContentValue = listing.accordionPanel1Content || '';
@@ -8495,16 +8455,20 @@ function updateUnsavedChangesBadge() {
             // Clear original data
             listingFormOriginalData = null;
             
-            // Clear Quill editors when closing modal
+            // Destroy and clear Quill editors when closing modal
             if (quillDetailedDescription) {
-                quillDetailedDescription.root.innerHTML = '';
+                const container = document.getElementById('listingDetailedDescriptionEditor');
+                if (container) {
+                    container.innerHTML = '';
+                }
+                quillDetailedDescription = null;
             }
             const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
             if (detailedDescriptionTextarea) {
                 detailedDescriptionTextarea.value = '';
             }
             
-            // Clear accordion Quill editors
+            // Clear accordion Quill editors (reuse instances; do not destroy toolbars)
             if (quillAccordionPanel1) quillAccordionPanel1.root.innerHTML = '';
             if (quillAccordionPanel2) quillAccordionPanel2.root.innerHTML = '';
             if (quillAccordionPanel3) quillAccordionPanel3.root.innerHTML = '';
