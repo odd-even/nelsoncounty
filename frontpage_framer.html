@@ -9192,8 +9192,14 @@ function renderPreview(filteredListings, appendMode) {
             addressDiv.addEventListener('click', function(e) {
                 e.stopPropagation(); // Prevent card flip
             });
-            // Use simple ?q= format to open location (not directions) - works on both desktop and mobile
-            const googleMapsUrl = 'https://www.google.com/maps?q=' + encodeURIComponent(listing.address);
+            
+            // Check if address indicates it's not a real address (booking site placeholder)
+            const addressLower = listing.address.toLowerCase().trim();
+            const isBookingSiteAddress = addressLower.includes('full address available') || 
+                                         addressLower.includes('address available on booking') ||
+                                         addressLower.includes('address on booking site') ||
+                                         addressLower.includes('booking site');
+            
             addressDiv.innerHTML = 
                 '<div class="card-info-icon" style="width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px;">' +
                 '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; stroke: #D65052;">' +
@@ -9202,7 +9208,9 @@ function renderPreview(filteredListings, appendMode) {
                 '</svg>' +
                 '</div>' +
                 '<div style="flex: 1; padding-top: 6px; line-height: 0.85;">' +
-                '<a href="' + googleMapsUrl + '" style="font-size: 12px; color: var(--text-primary); text-decoration: none; line-height: 0.85;" target="_blank" rel="noopener noreferrer">' + escapeHtml(fixEncoding(listing.address)) + '</a>' +
+                (isBookingSiteAddress 
+                    ? '<span style="font-size: 12px; color: var(--text-primary); line-height: 0.85;">' + escapeHtml(fixEncoding(listing.address)) + '</span>'
+                    : '<a href="https://www.google.com/maps?q=' + encodeURIComponent(listing.address) + '" style="font-size: 12px; color: var(--text-primary); text-decoration: none; line-height: 0.85;" target="_blank" rel="noopener noreferrer">' + escapeHtml(fixEncoding(listing.address)) + '</a>') +
                 '</div>';
             backContent.appendChild(addressDiv);
         }
@@ -10556,6 +10564,21 @@ function updateMapMarkers(listings) {
 
 // Simple geocoding function (uses approximate coordinates for demo)
 function geocodeAddress(address, callback) {
+    // Skip geocoding for booking site addresses (no real address available)
+    if (!address) {
+        callback(null, null);
+        return;
+    }
+    var addressLower = address.toLowerCase().trim();
+    var isBookingSiteAddress = addressLower.includes('full address available') || 
+                               addressLower.includes('address available on booking') ||
+                               addressLower.includes('address on booking site') ||
+                               addressLower.includes('booking site');
+    if (isBookingSiteAddress) {
+        callback(null, null);
+        return;
+    }
+    
     // Approximate coordinates for Nelson County area locations
     var locations = {
         'Roseland': [37.8167, -79.0833],
