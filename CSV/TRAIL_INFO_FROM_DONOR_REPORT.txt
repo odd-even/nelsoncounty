@@ -1,0 +1,92 @@
+================================================================================
+TRAIL INFORMATION FROM DONOR FILE - UPDATE REPORT
+================================================================================
+
+Donor file: /Users/ernest/Documents/GitHub/nelsoncounty/CSV/listings-2026-01-07-2-final_clean-no-duplication-updated-from-donor-natural-openings-cleaned-FINAL-google-sheets-ready-no-quotes-full-nectar-content-reviewed-fixed-with-short-summaries-with-links-cleaned-descriptions.csv
+Current file: /Users/ernest/Documents/GitHub/nelsoncounty/CSV/listings-2026-01-15.csv
+Updated 28 trail listings
+
+Devils Knob Trail (devils-knob-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+  Added/Updated: Directions link
+
+Highlands Leisure Trail (highlands-leisure-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Paul's Creek Trail (pauls-creek-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Blue Ridge Tunnel (blue-ridge-tunnel)
+  Added/Updated: Directions link
+
+Laurel Ridge Loop (laurel-ridge-loop)
+  Added/Updated: Directions link, Updated address from Directions link, Updated address from Directions link, Updated address from Directions link
+
+Pedlars Edge Trail (pedlars-edge-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Mau-Har Trail (mau-har-trail)
+  Added/Updated: Directions link
+
+Ravens Roost Park (ravens-roost-park)
+  Added/Updated: Directions link, Updated address from Directions link, Updated address from Directions link
+
+White Oak Trail (white-oak-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Humpback Rocks (humpback-rocks)
+  Added/Updated: Directions link
+
+Pond Hollow Trail (pond-hollow-trail)
+  Added/Updated: Directions link, Updated address from Directions link
+
+Crabtree Falls (crabtree-falls)
+  Added/Updated: Directions link
+
+White Rock Falls (white-rock-falls)
+  Added/Updated: Directions link
+
+Nelson County Wilderness Area (nelson-county-wilderness-area)
+  Added/Updated: Directions link, Updated address from Directions link, Updated address from Directions link, Updated address from Directions link
+
+Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+  Added/Updated: Directions link
+
+Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+  Added/Updated: Directions link, Updated address from Directions link
+
+James River State Park (james-river-state-park)
+  Added/Updated: Directions link
+
+Montebello Nature Trail (montebello-nature-trail)
+  Added/Updated: Directions link
+
+North Fork of the Piney River (north-fork-of-the-piney-river)
+  Added/Updated: Directions link
+
+Spy Rock (spy-rock)
+  Added/Updated: Directions link
+
+Spruce Creek Park (spruce-creek-park)
+  Added/Updated: Directions link
+
+Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+  Added/Updated: Directions link
+
+Quarry Gardens at Schuyler (quarry-gardens-at-schuyler)
+  Added/Updated: Directions link
+
+Brew Ridge Trail (brew-ridge-trail)
+  Added/Updated: Directions link
+
+Nelson 151 (nelson-151)
+  Added/Updated: Directions link
+
+Nelson 29 (nelson-29)
+  Added/Updated: Directions link
+
+Virginia Spirits Trail (virginia-spirits-trail)
+  Added/Updated: Directions link
+

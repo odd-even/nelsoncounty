@@ -1,0 +1,187 @@
+ADDRESS EXTRACTION REPORT
+======================================================================
+
+Found 22 trails using generic address:
+  "8519 Thomas Nelson Hwy, Lovingston, VA 22949"
+
+These trails have extractable addresses from their Google Maps links.
+
+TRAILS TO UPDATE:
+======================================================================
+
+Trail: Devils Knob Trail
+Slug: devils-knob-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: The Plunge
+Slug: the-plunge
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Highlands Leisure Trail
+Slug: highlands-leisure-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Old Appalachian Trail
+Slug: old-appalachian-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/ANsHVLfkx6f3PNAaA
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Paul's Creek Trail
+Slug: pauls-creek-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Laurel Ridge Loop
+Slug: laurel-ridge-loop
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Lower Shamokin Falls Trail
+Slug: lower-shamokin-falls-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Brimstone Trail
+Slug: brimstone-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Pedlars Edge Trail
+Slug: pedlars-edge-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Ravens Roost Park
+Slug: ravens-roost-park
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Trillium Field
+Slug: trillium-field
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: White Oak Trail
+Slug: white-oak-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Pond Hollow Trail
+Slug: pond-hollow-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/7WU3boDV7oaX85P79
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Blackrock Trail
+Slug: blackrock-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 37.910033,-78.93503499999997
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=37.910033,-78.93503499999997
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Shamokin Springs Nature Preserve
+Slug: shamokin-springs-nature-preserve
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Upper Shamokin Falls Trail
+Slug: upper-shamokin-falls-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: googleMapsUrl
+Directions Link: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Fortune's Ridge Trail
+Slug: fortunes-ridge-trail
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Appalachian Trail from Rt 56 to Harpers Creek
+Slug: appalachian-trail-from-rt-56-to-harpers-creek
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Source: directionsLink
+Directions Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Google Maps URL: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+

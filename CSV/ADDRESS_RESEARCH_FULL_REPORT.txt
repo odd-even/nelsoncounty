@@ -1,0 +1,308 @@
+ADDRESS RESEARCH FULL REPORT
+======================================================================
+
+Research of Google Maps links for trails using generic address:
+  "8519 Thomas Nelson Hwy, Lovingston, VA 22949"
+
+Total trails analyzed: 22
+
+SUMMARY:
+======================================================================
+Trails with short links (need visiting): 8
+Trails with coordinates (need reverse geocoding): 1
+Trails with extractable addresses (different from generic): 1
+
+
+TRAILS WITH COORDINATES:
+======================================================================
+
+Trail: Blackrock Trail
+Slug: blackrock-trail
+Area: Wintergreen Resort
+Coordinates: Coordinates: 37.910033,-78.93503499999997
+Source: directionsLink
+
+
+
+TRAILS WITH SHORT LINKS TO VISIT:
+======================================================================
+
+Trail: Devils Knob Trail
+Slug: devils-knob-trail
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+Status: Needs browser visit to extract address
+
+Trail: The Plunge
+Slug: the-plunge
+Area: Wintergreen Resort
+Short Link: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+Status: Needs browser visit to extract address
+
+Trail: Old Appalachian Trail
+Slug: old-appalachian-trail
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/ANsHVLfkx6f3PNAaA
+Status: Needs browser visit to extract address
+
+Trail: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9
+Status: Needs browser visit to extract address
+
+Trail: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Status: Needs browser visit to extract address
+
+Trail: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/7WU3boDV7oaX85P79
+Status: Needs browser visit to extract address
+
+Trail: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Area: Wintergreen Resort
+Short Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Status: Needs browser visit to extract address
+
+Trail: Upper Shamokin Falls Trail
+Slug: upper-shamokin-falls-trail
+Area: Wintergreen Resort
+Short Link: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+Status: Needs browser visit to extract address
+
+
+
+TRAILS WITH EXTRACTABLE ADDRESSES:
+======================================================================
+
+
+
+ALL TRAILS - DETAILED LISTING:
+======================================================================
+
+Trail: Appalachian Trail from Rt 56 to Harpers Creek
+Slug: appalachian-trail-from-rt-56-to-harpers-creek
+Area: Tyro
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Blackrock Trail
+Slug: blackrock-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Extracted Address: Coordinates: 37.910033,-78.93503499999997 (from directionsLink)
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=37.910033,-78.93503499999997
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=37.910033,-78.93503499999997
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Brimstone Trail
+Slug: brimstone-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/7WU3boDV7oaX85P79 (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/7WU3boDV7oaX85P79
+  - detailedDescription: https://goo.gl/maps/7WU3boDV7oaX85P79
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9 (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9
+  - detailedDescription: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Devils Knob Trail
+Slug: devils-knob-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/dqBDS8tZ5xiCsKea8 (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+  - detailedDescription: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Fortune's Ridge Trail
+Slug: fortunes-ridge-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/worqnjvdmccjF1MJ9 (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/worqnjvdmccjF1MJ9
+  - detailedDescription: https://goo.gl/maps/worqnjvdmccjF1MJ9
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Highlands Leisure Trail
+Slug: highlands-leisure-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Laurel Ridge Loop
+Slug: laurel-ridge-loop
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Lower Shamokin Falls Trail
+Slug: lower-shamokin-falls-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Old Appalachian Trail
+Slug: old-appalachian-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/ANsHVLfkx6f3PNAaA (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/ANsHVLfkx6f3PNAaA
+  - detailedDescription: https://goo.gl/maps/ANsHVLfkx6f3PNAaA
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Paul's Creek Trail
+Slug: pauls-creek-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Pedlars Edge Trail
+Slug: pedlars-edge-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Pond Hollow Trail
+Slug: pond-hollow-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Ravens Roost Park
+Slug: ravens-roost-park
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Shamokin Springs Nature Preserve
+Slug: shamokin-springs-nature-preserve
+Area: Lovingston
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: The Plunge
+Slug: the-plunge
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6 (needs visiting)
+All Links:
+  - directionsLink: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+  - detailedDescription: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+  - detailedDescription: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Trillium Field
+Slug: trillium-field
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Upper Shamokin Falls Trail
+Slug: upper-shamokin-falls-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5 (needs visiting)
+All Links:
+  - directionsLink: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+  - detailedDescription: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Short Link: https://goo.gl/maps/worqnjvdmccjF1MJ9 (needs visiting)
+All Links:
+  - directionsLink: https://goo.gl/maps/worqnjvdmccjF1MJ9
+  - detailedDescription: https://goo.gl/maps/worqnjvdmccjF1MJ9
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+
+Trail: White Oak Trail
+Slug: white-oak-trail
+Area: Wintergreen Resort
+Current Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+No extractable address found
+All Links:
+  - directionsLink: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - detailedDescription: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+  - googleMapsUrl: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+

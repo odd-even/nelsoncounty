@@ -1,0 +1,420 @@
+TRAIL ADDRESSES FULL REPORT
+======================================================================
+
+Complete analysis of all Hikes & Trails addresses.
+This report shows current addresses and addresses extracted from Google Maps links.
+
+Generic address checked: "8519 Thomas Nelson Hwy, Lovingston, VA 22949"
+
+SUMMARY:
+======================================================================
+Total trails: 45
+Trails using generic address: 0
+Trails with addresses in Google Maps links: 45
+
+
+
+ALL TRAILS - COMPLETE LISTING:
+======================================================================
+
+Trail: Allen Creek Nature Preserve
+Slug: allen-creek-nature-preserve
+Current Address: 
+Addresses in Google Maps links:
+  - directionsLink (place): Allen Creek Nature Preserve
+  - detailedDescription (place): Allen Creek Nature Preserve
+
+Trail: Appalachian Trail from Rt 56 to Harpers Creek
+Slug: appalachian-trail-from-rt-56-to-harpers-creek
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Blackrock Trail
+Slug: blackrock-trail
+Current Address: 37.910033,-78.93503499999997
+Addresses in Google Maps links:
+  - directionsLink: 37.910033,-78.93503499999997
+  - detailedDescription: 37.910033,-78.93503499999997
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Blue Ridge Tunnel
+Slug: blue-ridge-tunnel
+Current Address: 215 Afton Depot Lane, Afton, VA 22920
+Addresses in Google Maps links:
+  - directionsLink: 215+Afton+Depot+Lane,+Afton,+VA+22920
+  - detailedDescription: 215+Afton+Depot+Lane,+Afton,+VA+22920
+  - googleMapsUrl: 215+Afton+Depot+Lane,+Afton,+VA+22920
+Donor File Address: 215 Afton Depot Lane, Afton, VA 22920
+
+Trail: Brew Ridge Trail
+Slug: brew-ridge-trail
+Current Address: Route 151 Craft Beverage Corridor, Nelson County, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: Route+151+Craft+Beverage+Corridor,+Nelson+County,+VA+22958
+  - detailedDescription: Route+151+Craft+Beverage+Corridor,+Nelson+County,+VA+22958
+  - googleMapsUrl: Route+151+Craft+Beverage+Corridor,+Nelson+County,+VA+22958
+Donor File Address: Route 151 Craft Beverage Corridor, Nelson County, VA 22958
+
+Trail: Brimstone Trail
+Slug: brimstone-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Crabtree Falls
+Slug: crabtree-falls
+Current Address: 11581 Crabtree Falls Highway, Montebello, VA 24464
+Addresses in Google Maps links:
+  - directionsLink: 11581+Crabtree+Falls+Highway,+Montebello,+VA+24464
+  - detailedDescription: 11581+Crabtree+Falls+Highway,+Montebello,+VA+24464
+  - googleMapsUrl: 11581+Crabtree+Falls+Highway,+Montebello,+VA+24464
+Donor File Address: 11581 Crabtree Falls Highway, Montebello, VA 24464
+
+Trail: Devils Knob Trail
+Slug: devils-knob-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Fortune's Cove Nature Preserve
+Slug: fortunes-cove-nature-preserve
+Current Address: 1920 Fortune's Cove Lane, Lovingston, VA 22949
+Addresses in Google Maps links:
+  - directionsLink: 1920+Fortune’s+Cove+Lane,+Lovingston,+VA+22949
+  - detailedDescription: 1920+Fortune’s+Cove+Lane,+Lovingston,+VA+22949
+  - googleMapsUrl: 1920+Fortune's+Cove+Lane,+Lovingston,+VA+22949
+Donor File Address: 1920 Fortune's Cove Lane, Lovingston, VA 22949
+
+Trail: Fortune's Ridge Trail
+Slug: fortunes-ridge-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Highlands Leisure Trail
+Slug: highlands-leisure-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Humpback Rocks
+Slug: humpback-rocks
+Current Address: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+Addresses in Google Maps links:
+  - directionsLink: Humpback+Gap+Parking+Area,+Milepost+5.8+Blue+Ridge+Parkway,+Lyndhurst,+VA+22952
+  - detailedDescription: Humpback+Gap+Parking+Area,+Milepost+5.8+Blue+Ridge+Parkway,+Lyndhurst,+VA+22952
+  - googleMapsUrl: Humpback+Gap+Parking+Area,+Milepost+5.8+Blue+Ridge+Parkway,+Lyndhurst,+VA+22952
+Donor File Address: Humpback Gap Parking Area, Milepost 5.8 Blue Ridge Parkway, Lyndhurst, VA 22952
+
+Trail: James River State Park
+Slug: james-river-state-park
+Current Address: 104 Green Hill Drive, Gladstone, VA 24553
+Addresses in Google Maps links:
+  - directionsLink: 104+Green+Hill+Drive,+Gladstone,+VA+24553
+  - detailedDescription: 104+Green+Hill+Drive,+Gladstone,+VA+24553
+  - googleMapsUrl: 104+Green+Hill+Drive,+Gladstone,+VA+24553
+Donor File Address: 104 Green Hill Drive, Gladstone, VA 24553
+
+Trail: Kids in Parks: Rockfish River Trailhead
+Slug: kids-in-parks-rockfish-river-trailhead
+Current Address: Rockfish River Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: Rockfish+River+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - detailedDescription: Rockfish+River+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - detailedDescription: Rockfish+River+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - googleMapsUrl: Rockfish+River+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+Donor File Address: Rockfish River Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+
+Trail: Kids in Parks: Virginia Blue Ridge Railway Trail
+Slug: kids-in-parks-virginia-blue-ridge-railway-trail
+Current Address: 3124 Patrick Henry Highway, Piney River, VA 22964
+Addresses in Google Maps links:
+  - directionsLink: 3124+Patrick+Henry+Highway,+Piney+River,+VA+22964
+  - detailedDescription: 3124+Patrick+Henry+Highway,+Piney+River,+VA+22964
+  - googleMapsUrl: 3124+Patrick+Henry+Highway,+Piney+River,+VA+22964
+Donor File Address: 3124 Patrick Henry Highway, Piney River, VA 22964
+
+Trail: Laurel Ridge Loop
+Slug: laurel-ridge-loop
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Lower Shamokin Falls Trail
+Slug: lower-shamokin-falls-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Mau-Har Trail
+Slug: mau-har-trail
+Current Address: Blue Ridge Parkway Milepost 13.7, Roseland, VA 22967
+Addresses in Google Maps links:
+  - directionsLink: Blue+Ridge+Parkway+Milepost+13.7,+Roseland,+VA+22967
+  - detailedDescription: Blue+Ridge+Parkway+Milepost+13.7,+Roseland,+VA+22967
+  - detailedDescription: Blue+Ridge+Parkway+Milepost+13.7,+Roseland,+VA+22967
+  - detailedDescription: Blue+Ridge+Parkway+Milepost+13.7,+Roseland,+VA+22967
+  - googleMapsUrl: Blue+Ridge+Parkway+Milepost+13.7,+Roseland,+VA+22967
+Donor File Address: Blue Ridge Parkway Milepost 13.7, Roseland, VA 22967
+
+Trail: Montebello Nature Trail
+Slug: montebello-nature-trail
+Current Address: 359 Fish Hatchery Lane, Montebello, VA
+Addresses in Google Maps links:
+  - directionsLink: 359+Fish+Hatchery+Lane,+Montebello,+VA+24464
+  - detailedDescription: 359+Fish+Hatchery+Lane,+Montebello,+VA+24464
+  - googleMapsUrl: 359+Fish+Hatchery+Lane,+Montebello,+VA
+Donor File Address: 359 Fish Hatchery Lane, Montebello, VA
+
+Trail: Nelson 151
+Slug: nelson-151
+Current Address: Route 151, Nellysford, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: Route+151,+Nellysford,+VA+22958
+  - detailedDescription: Route+151,+Nellysford,+VA+22958
+  - detailedDescription: Route+151,+Nellysford,+VA+22958
+  - googleMapsUrl: Route+151,+Nellysford,+VA+22958
+Donor File Address: Route 151, Nellysford, VA 22958
+
+Trail: Nelson 29
+Slug: nelson-29
+Current Address: Route 29 Corridor, Lovingston, VA 22949
+Addresses in Google Maps links:
+  - directionsLink: Route+29+Corridor,+Lovingston,+VA+22949
+  - detailedDescription: Route+29+Corridor,+Lovingston,+VA+22949
+  - googleMapsUrl: Route+29+Corridor,+Lovingston,+VA+22949
+Donor File Address: Route 29 Corridor, Lovingston, VA 22949
+
+Trail: Nelson County Wilderness Area
+Slug: nelson-county-wilderness-area
+Current Address: George Washington National Forest, Montebello, VA 24464
+Addresses in Google Maps links:
+  - directionsLink: George+Washington+National+Forest,+Montebello,+VA+24464
+  - detailedDescription: George+Washington+National+Forest,+Montebello,+VA+24464
+  - detailedDescription: George+Washington+National+Forest,+Montebello,+VA+24464
+  - detailedDescription: George+Washington+National+Forest,+Montebello,+VA+24464
+  - detailedDescription: George+Washington+National+Forest,+Montebello,+VA+24464
+  - googleMapsUrl: George+Washington+National+Forest,+Montebello,+VA+24464
+Donor File Address: George Washington National Forest, Montebello, VA 24464
+
+Trail: North Fork of the Piney River
+Slug: north-fork-of-the-piney-river
+Current Address: Piney River, VA 22964
+Addresses in Google Maps links:
+  - directionsLink: Piney+River,+VA+22964
+  - detailedDescription: Piney+River,+VA+22964
+  - googleMapsUrl: Piney+River,+VA+22964
+Donor File Address: Piney River, VA 22964
+
+Trail: Old Appalachian Trail
+Slug: old-appalachian-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Paul's Creek Trail
+Slug: pauls-creek-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Pedlars Edge Trail
+Slug: pedlars-edge-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Pond Hollow Trail
+Slug: pond-hollow-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Quarry Gardens at Schuyler
+Slug: quarry-gardens-at-schuyler
+Current Address: 1643 Salem Road, Schuyler, VA 22969
+Addresses in Google Maps links:
+  - directionsLink: 1643+Salem+Road,+Schuyler,+VA+22969
+  - detailedDescription: 1643+Salem+Road,+Schuyler,+VA+22969
+  - googleMapsUrl: 1643+Salem+Road,+Schuyler,+VA+22969
+Donor File Address: 1643 Salem Road, Schuyler, VA 22969
+
+Trail: Ravens Roost Park
+Slug: ravens-roost-park
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Rockfish Valley Loop Trails
+Slug: rockfish-valley-loop-trails
+Current Address: Rockfish Valley Loop Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: Rockfish+Valley+Loop+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - detailedDescription: Rockfish+Valley+Loop+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - googleMapsUrl: Rockfish+Valley+Loop+Trailhead,+1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+Donor File Address: Rockfish Valley Loop Trailhead, 1368 Rockfish Valley Highway, Nellysford, VA 22958
+
+Trail: Shamokin Springs Nature Preserve
+Slug: shamokin-springs-nature-preserve
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Spruce Creek Park
+Slug: spruce-creek-park
+Current Address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: 1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - detailedDescription: 1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+  - googleMapsUrl: 1368+Rockfish+Valley+Highway,+Nellysford,+VA+22958
+Donor File Address: 1368 Rockfish Valley Highway, Nellysford, VA 22958
+
+Trail: Spy Rock
+Slug: spy-rock
+Current Address: Meadows Lane (SR 826) Trailhead, Montebello, VA 24464
+Addresses in Google Maps links:
+  - directionsLink: Meadows+Lane+(SR+826)+Trailhead,+Montebello,+VA+24464
+  - detailedDescription: Meadows+Lane+(SR+826)+Trailhead,+Montebello,+VA+24464
+  - googleMapsUrl: Meadows+Lane+(SR+826)+Trailhead,+Montebello,+VA+24464
+Donor File Address: Meadows Lane (SR 826) Trailhead, Montebello, VA 24464
+
+Trail: Stoney Creek Park
+Slug: stoney-creek-park
+Current Address: Stoney Creek West Drive, Nellysford, VA 22958
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: Stoney+Creek+West+Drive,+Nellysford,+VA+22958
+Donor File Address: Stoney Creek West Drive, Nellysford, VA 22958
+
+Trail: The Plunge
+Slug: the-plunge
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Three Ridges
+Slug: three-ridges
+Current Address: Reeds Gap Trailhead, Route 664, Roseland, VA 22967
+Addresses in Google Maps links:
+  - directionsLink: Reeds+Gap+Trailhead,+Route+664,+Roseland,+VA+22967
+  - detailedDescription: Reeds+Gap+Trailhead,+Route+664,+Roseland,+VA+22967
+  - googleMapsUrl: Reeds+Gap+Trailhead,+Route+664,+Roseland,+VA+22967
+Donor File Address: Reeds Gap Trailhead, Route 664, Roseland, VA 22967
+
+Trail: Trillium Field
+Slug: trillium-field
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Upper Shamokin Falls Trail
+Slug: upper-shamokin-falls-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: Short link (cannot extract address)
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: Virginia Spirits Trail
+Slug: virginia-spirits-trail
+Current Address: Virginia Spirits Trail, Commonwealth of Virginia
+Addresses in Google Maps links:
+  - directionsLink: Virginia+Spirits+Trail,+Commonwealth+of+Virginia
+  - detailedDescription: Virginia+Spirits+Trail,+Commonwealth+of+Virginia
+  - googleMapsUrl: Virginia+Spirits+Trail,+Commonwealth+of+Virginia
+Donor File Address: Virginia Spirits Trail, Commonwealth of Virginia
+
+Trail: White Oak Trail
+Slug: white-oak-trail
+Current Address: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Addresses in Google Maps links:
+  - directionsLink: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - detailedDescription: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+  - googleMapsUrl: 8519+Thomas+Nelson+Hwy,+Lovingston,+VA+22949
+Donor File Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Trail: White Rock Falls
+Slug: white-rock-falls
+Current Address: Blue Ridge Parkway Milepost 19, Montebello, VA 24464
+Addresses in Google Maps links:
+  - directionsLink: Blue+Ridge+Parkway+Milepost+19,+Montebello,+VA+24464
+  - detailedDescription: Blue+Ridge+Parkway+Milepost+19,+Montebello,+VA+24464
+  - googleMapsUrl: Blue+Ridge+Parkway+Milepost+19,+Montebello,+VA+24464
+Donor File Address: Blue Ridge Parkway Milepost 19, Montebello, VA 24464
+

@@ -1,0 +1,476 @@
+================================================================================
+CHANGES REPORT: listings-2026-01-15-UPDATED.csv
+================================================================================
+Generated: 2026-01-16 06:29:06
+
+Original file: CSV/listings-2026-01-15.csv
+Updated file: CSV/listings-2026-01-15-UPDATED.csv
+
+================================================================================
+SUMMARY
+================================================================================
+Total trails analyzed: 45
+Total trails modified: 39
+
+Changes by type:
+  - Directions added: 23
+  - Links updated: 10
+  - directionsLink field updated: 6
+
+================================================================================
+DETAILED CHANGES
+================================================================================
+
+TRAILS WITH DIRECTIONS ADDED:
+--------------------------------------------------------------------------------
+1. Allen Creek Nature Preserve (allen-creek-nature-preserve)
+   Added Directions with link: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+   Added directionsLink: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+                         to: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+
+2. Appalachian Trail from Rt 56 to Harpers Creek (appalachian-trail-from-rt-56-to-harpers-creek)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+3. Blue Ridge Tunnel (blue-ridge-tunnel)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=215%20Afton%20Depot%20Lane%2C%20Afton%2C%20VA%2022920
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=215+Afton+Depot+Lane%2C+Afton%2C+VA+22920
+                         to: https://www.google.com/maps/dir/?api=1&destination=215%20Afton%20Depot%20Lane%2C%20Afton%2C%20VA%2022920
+
+4. Brew Ridge Trail (brew-ridge-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Route%20151%20Craft%20Beverage%20Corridor%2C%20Nelson%20County%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+151+Craft+Beverage+Corridor%2C+Nelson+County%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%20Craft%20Beverage%20Corridor%2C%20Nelson%20County%2C%20VA%2022958
+
+5. Crabtree Falls (crabtree-falls)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=11581%20Crabtree%20Falls%20Highway%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=11581+Crabtree+Falls+Highway%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=11581%20Crabtree%20Falls%20Highway%2C%20Montebello%2C%20VA%2024464
+
+6. Devils Knob Trail (devils-knob-trail)
+   Added Directions with link: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+
+7. Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=1920%20Fortune%E2%80%99s%20Cove%20Lane%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1920+Fortune%27s+Cove+Lane%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=1920%20Fortune%E2%80%99s%20Cove%20Lane%2C%20Lovingston%2C%20VA%2022949
+
+8. Fortune's Ridge Trail (fortunes-ridge-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+9. Highlands Leisure Trail (highlands-leisure-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+10. Humpback Rocks (humpback-rocks)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Humpback%20Gap%20Parking%20Area%2C%20Milepost%205.8%20Blue%20Ridge%20Parkway%2C%20Lyndhurst%2C%20VA%2022952
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Humpback+Gap+Parking+Area%2C+Milepost+5.8+Blue+Ridge+Parkway%2C+Lyndhurst%2C+VA+22952
+                         to: https://www.google.com/maps/dir/?api=1&destination=Humpback%20Gap%20Parking%20Area%2C%20Milepost%205.8%20Blue%20Ridge%20Parkway%2C%20Lyndhurst%2C%20VA%2022952
+
+11. James River State Park (james-river-state-park)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=104%20Green%20Hill%20Drive%2C%20Gladstone%2C%20VA%2024553
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=104+Green+Hill+Drive%2C+Gladstone%2C+VA+24553
+                         to: https://www.google.com/maps/dir/?api=1&destination=104%20Green%20Hill%20Drive%2C%20Gladstone%2C%20VA%2024553
+
+12. Laurel Ridge Loop (laurel-ridge-loop)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+13. Nelson 29 (nelson-29)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Route%2029%20Corridor%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+29+Corridor%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%2029%20Corridor%2C%20Lovingston%2C%20VA%2022949
+
+14. North Fork of the Piney River (north-fork-of-the-piney-river)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Piney%20River%2C%20VA%2022964
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Piney+River%2C+VA+22964
+                         to: https://www.google.com/maps/dir/?api=1&destination=Piney%20River%2C%20VA%2022964
+
+15. Paul's Creek Trail (pauls-creek-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+16. Pedlars Edge Trail (pedlars-edge-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+17. Pond Hollow Trail (pond-hollow-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+18. Quarry Gardens at Schuyler (quarry-gardens-at-schuyler)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=1643%20Salem%20Road%2C%20Schuyler%2C%20VA%2022969
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1643+Salem+Road%2C+Schuyler%2C+VA+22969
+                         to: https://www.google.com/maps/dir/?api=1&destination=1643%20Salem%20Road%2C%20Schuyler%2C%20VA%2022969
+
+19. Ravens Roost Park (ravens-roost-park)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+20. Three Ridges (three-ridges)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Reeds%20Gap%20Trailhead%2C%20Route%20664%2C%20Roseland%2C%20VA%2022967
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Reeds+Gap+Trailhead%2C+Route+664%2C+Roseland%2C+VA+22967
+                         to: https://www.google.com/maps/dir/?api=1&destination=Reeds%20Gap%20Trailhead%2C%20Route%20664%2C%20Roseland%2C%20VA%2022967
+
+21. Virginia Spirits Trail (virginia-spirits-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Virginia%20Spirits%20Trail%2C%20Commonwealth%20of%20Virginia
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Virginia+Spirits+Trail%2C+Commonwealth+of+Virginia
+                         to: https://www.google.com/maps/dir/?api=1&destination=Virginia%20Spirits%20Trail%2C%20Commonwealth%20of%20Virginia
+
+22. White Oak Trail (white-oak-trail)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+23. White Rock Falls (white-rock-falls)
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2019%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Blue+Ridge+Parkway+Milepost+19%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2019%2C%20Montebello%2C%20VA%2024464
+
+
+TRAILS WITH LINKS UPDATED:
+--------------------------------------------------------------------------------
+1. Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+   Updated link from: http://www.kidsinparks.com/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20River%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Rockfish+River+Trailhead%2C+1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20River%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+2. Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+   Updated link from: https://www.kidsinparks.com/virginia-blue-ridge-railway-trail
+                         to: https://www.google.com/maps/dir/?api=1&destination=3124%20Patrick%20Henry%20Highway%2C%20Piney%20River%2C%20VA%2022964
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=3124+Patrick+Henry+Highway%2C+Piney+River%2C+VA+22964
+                         to: https://www.google.com/maps/dir/?api=1&destination=3124%20Patrick%20Henry%20Highway%2C%20Piney%20River%2C%20VA%2022964
+
+3. Mau-Har Trail (mau-har-trail)
+   Updated link from: https://en.wikipedia.org/wiki/Appalachian_Trail
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2013.7%2C%20Roseland%2C%20VA%2022967
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Blue+Ridge+Parkway+Milepost+13.7%2C+Roseland%2C+VA+22967
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2013.7%2C%20Roseland%2C%20VA%2022967
+
+4. Nelson 151 (nelson-151)
+   Updated link from: https://www.nelson151.com/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+151%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%2C%20Nellysford%2C%20VA%2022958
+
+5. Nelson County Wilderness Area (nelson-county-wilderness-area)
+   Updated link from: http://www.wilderness.net/NWPS/wildView?WID=601
+                         to: https://www.google.com/maps/dir/?api=1&destination=George%20Washington%20National%20Forest%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=George+Washington+National+Forest%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=George%20Washington%20National%20Forest%2C%20Montebello%2C%20VA%2024464
+
+6. Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+   Updated link from: https://www.rockfishvalley.org/blog/spruce-creek-park/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20Valley%20Loop%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Rockfish+Valley+Loop+Trailhead%2C+1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20Valley%20Loop%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+7. Shamokin Springs Nature Preserve (shamokin-springs-nature-preserve)
+   Updated link from: https://www.tnfw.org/trilliumhouse
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+8. Spruce Creek Park (spruce-creek-park)
+   Updated link from: https://www.rockfishvalley.org/blog/spruce-creek-park/
+                         to: https://www.google.com/maps/dir/?api=1&destination=1368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=1368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+9. The Plunge (the-plunge)
+   Updated link from: https://goo.gl/maps/1p9jDyMyTjJqYpvo6
+                         to: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+
+10. Upper Shamokin Falls Trail (upper-shamokin-falls-trail)
+   Updated link from: https://goo.gl/maps/7nf9BFjD9zG5dzJS7
+                         to: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+
+
+TRAILS WITH directionsLink FIELD UPDATED:
+--------------------------------------------------------------------------------
+1. Blackrock Trail (blackrock-trail)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir//37.910033,-78.93503499999997
+
+2. Brimstone Trail (brimstone-trail)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+3. Lower Shamokin Falls Trail (lower-shamokin-falls-trail)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+4. Montebello Nature Trail (montebello-nature-trail)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=359+Fish+Hatchery+Lane%2C+Montebello%2C+VA
+                         to: https://www.google.com/maps/dir/?api=1&destination=359%20Fish%20Hatchery%20Lane%2C%20Montebello%2C%20VA%2024464
+
+5. Spy Rock (spy-rock)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Meadows+Lane+%28SR+826%29+Trailhead%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=Meadows%20Lane%20%28SR%20826%29%20Trailhead%2C%20Montebello%2C%20VA%2024464
+
+6. Trillium Field (trillium-field)
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+
+================================================================================
+COMPLETE LIST OF ALL MODIFIED TRAILS
+================================================================================
+
+1. Allen Creek Nature Preserve (allen-creek-nature-preserve)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+   Added directionsLink: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+                         to: https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu
+
+2. Appalachian Trail from Rt 56 to Harpers Creek (appalachian-trail-from-rt-56-to-harpers-creek)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+3. Blackrock Trail (blackrock-trail)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir//37.910033,-78.93503499999997
+
+4. Blue Ridge Tunnel (blue-ridge-tunnel)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=215%20Afton%20Depot%20Lane%2C%20Afton%2C%20VA%2022920
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=215+Afton+Depot+Lane%2C+Afton%2C+VA+22920
+                         to: https://www.google.com/maps/dir/?api=1&destination=215%20Afton%20Depot%20Lane%2C%20Afton%2C%20VA%2022920
+
+5. Brew Ridge Trail (brew-ridge-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Route%20151%20Craft%20Beverage%20Corridor%2C%20Nelson%20County%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+151+Craft+Beverage+Corridor%2C+Nelson+County%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%20Craft%20Beverage%20Corridor%2C%20Nelson%20County%2C%20VA%2022958
+
+6. Brimstone Trail (brimstone-trail)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+7. Crabtree Falls (crabtree-falls)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=11581%20Crabtree%20Falls%20Highway%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=11581+Crabtree+Falls+Highway%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=11581%20Crabtree%20Falls%20Highway%2C%20Montebello%2C%20VA%2024464
+
+8. Devils Knob Trail (devils-knob-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://goo.gl/maps/dqBDS8tZ5xiCsKea8
+
+9. Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=1920%20Fortune%E2%80%99s%20Cove%20Lane%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1920+Fortune%27s+Cove+Lane%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=1920%20Fortune%E2%80%99s%20Cove%20Lane%2C%20Lovingston%2C%20VA%2022949
+
+10. Fortune's Ridge Trail (fortunes-ridge-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+11. Highlands Leisure Trail (highlands-leisure-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+12. Humpback Rocks (humpback-rocks)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Humpback%20Gap%20Parking%20Area%2C%20Milepost%205.8%20Blue%20Ridge%20Parkway%2C%20Lyndhurst%2C%20VA%2022952
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Humpback+Gap+Parking+Area%2C+Milepost+5.8+Blue+Ridge+Parkway%2C+Lyndhurst%2C+VA+22952
+                         to: https://www.google.com/maps/dir/?api=1&destination=Humpback%20Gap%20Parking%20Area%2C%20Milepost%205.8%20Blue%20Ridge%20Parkway%2C%20Lyndhurst%2C%20VA%2022952
+
+13. James River State Park (james-river-state-park)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=104%20Green%20Hill%20Drive%2C%20Gladstone%2C%20VA%2024553
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=104+Green+Hill+Drive%2C+Gladstone%2C+VA+24553
+                         to: https://www.google.com/maps/dir/?api=1&destination=104%20Green%20Hill%20Drive%2C%20Gladstone%2C%20VA%2024553
+
+14. Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+   Change type: UPDATED_LINK
+   Updated link from: http://www.kidsinparks.com/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20River%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Rockfish+River+Trailhead%2C+1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20River%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+15. Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+   Change type: UPDATED_LINK
+   Updated link from: https://www.kidsinparks.com/virginia-blue-ridge-railway-trail
+                         to: https://www.google.com/maps/dir/?api=1&destination=3124%20Patrick%20Henry%20Highway%2C%20Piney%20River%2C%20VA%2022964
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=3124+Patrick+Henry+Highway%2C+Piney+River%2C+VA+22964
+                         to: https://www.google.com/maps/dir/?api=1&destination=3124%20Patrick%20Henry%20Highway%2C%20Piney%20River%2C%20VA%2022964
+
+16. Laurel Ridge Loop (laurel-ridge-loop)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+17. Lower Shamokin Falls Trail (lower-shamokin-falls-trail)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+18. Mau-Har Trail (mau-har-trail)
+   Change type: UPDATED_LINK
+   Updated link from: https://en.wikipedia.org/wiki/Appalachian_Trail
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2013.7%2C%20Roseland%2C%20VA%2022967
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Blue+Ridge+Parkway+Milepost+13.7%2C+Roseland%2C+VA+22967
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2013.7%2C%20Roseland%2C%20VA%2022967
+
+19. Montebello Nature Trail (montebello-nature-trail)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=359+Fish+Hatchery+Lane%2C+Montebello%2C+VA
+                         to: https://www.google.com/maps/dir/?api=1&destination=359%20Fish%20Hatchery%20Lane%2C%20Montebello%2C%20VA%2024464
+
+20. Nelson 151 (nelson-151)
+   Change type: UPDATED_LINK
+   Updated link from: https://www.nelson151.com/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+151%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%20151%2C%20Nellysford%2C%20VA%2022958
+
+21. Nelson 29 (nelson-29)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Route%2029%20Corridor%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Route+29+Corridor%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=Route%2029%20Corridor%2C%20Lovingston%2C%20VA%2022949
+
+22. Nelson County Wilderness Area (nelson-county-wilderness-area)
+   Change type: UPDATED_LINK
+   Updated link from: http://www.wilderness.net/NWPS/wildView?WID=601
+                         to: https://www.google.com/maps/dir/?api=1&destination=George%20Washington%20National%20Forest%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=George+Washington+National+Forest%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=George%20Washington%20National%20Forest%2C%20Montebello%2C%20VA%2024464
+
+23. North Fork of the Piney River (north-fork-of-the-piney-river)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Piney%20River%2C%20VA%2022964
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Piney+River%2C+VA+22964
+                         to: https://www.google.com/maps/dir/?api=1&destination=Piney%20River%2C%20VA%2022964
+
+24. Paul's Creek Trail (pauls-creek-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+25. Pedlars Edge Trail (pedlars-edge-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+26. Pond Hollow Trail (pond-hollow-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+27. Quarry Gardens at Schuyler (quarry-gardens-at-schuyler)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=1643%20Salem%20Road%2C%20Schuyler%2C%20VA%2022969
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1643+Salem+Road%2C+Schuyler%2C+VA+22969
+                         to: https://www.google.com/maps/dir/?api=1&destination=1643%20Salem%20Road%2C%20Schuyler%2C%20VA%2022969
+
+28. Ravens Roost Park (ravens-roost-park)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+29. Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+   Change type: UPDATED_LINK
+   Updated link from: https://www.rockfishvalley.org/blog/spruce-creek-park/
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20Valley%20Loop%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Rockfish+Valley+Loop+Trailhead%2C+1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=Rockfish%20Valley%20Loop%20Trailhead%2C%201368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+30. Shamokin Springs Nature Preserve (shamokin-springs-nature-preserve)
+   Change type: UPDATED_LINK
+   Updated link from: https://www.tnfw.org/trilliumhouse
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+31. Spruce Creek Park (spruce-creek-park)
+   Change type: UPDATED_LINK
+   Updated link from: https://www.rockfishvalley.org/blog/spruce-creek-park/
+                         to: https://www.google.com/maps/dir/?api=1&destination=1368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=1368+Rockfish+Valley+Highway%2C+Nellysford%2C+VA+22958
+                         to: https://www.google.com/maps/dir/?api=1&destination=1368%20Rockfish%20Valley%20Highway%2C%20Nellysford%2C%20VA%2022958
+
+32. Spy Rock (spy-rock)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Meadows+Lane+%28SR+826%29+Trailhead%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=Meadows%20Lane%20%28SR%20826%29%20Trailhead%2C%20Montebello%2C%20VA%2024464
+
+33. The Plunge (the-plunge)
+   Change type: UPDATED_LINK
+   Updated link from: https://goo.gl/maps/1p9jDyMyTjJqYpvo6
+                         to: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://maps.app.goo.gl/BVZqujLrFdfU7jYx6
+
+34. Three Ridges (three-ridges)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Reeds%20Gap%20Trailhead%2C%20Route%20664%2C%20Roseland%2C%20VA%2022967
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Reeds+Gap+Trailhead%2C+Route+664%2C+Roseland%2C+VA+22967
+                         to: https://www.google.com/maps/dir/?api=1&destination=Reeds%20Gap%20Trailhead%2C%20Route%20664%2C%20Roseland%2C%20VA%2022967
+
+35. Trillium Field (trillium-field)
+   Change type: UPDATED_DIRECTIONS_LINK
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+36. Upper Shamokin Falls Trail (upper-shamokin-falls-trail)
+   Change type: UPDATED_LINK
+   Updated link from: https://goo.gl/maps/7nf9BFjD9zG5dzJS7
+                         to: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://maps.app.goo.gl/7qw2VWyBAWrTV9Ww5
+
+37. Virginia Spirits Trail (virginia-spirits-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Virginia%20Spirits%20Trail%2C%20Commonwealth%20of%20Virginia
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Virginia+Spirits+Trail%2C+Commonwealth+of+Virginia
+                         to: https://www.google.com/maps/dir/?api=1&destination=Virginia%20Spirits%20Trail%2C%20Commonwealth%20of%20Virginia
+
+38. White Oak Trail (white-oak-trail)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+                         to: https://www.google.com/maps/dir/?api=1&destination=8519%20Thomas%20Nelson%20Hwy%2C%20Lovingston%2C%20VA%2022949
+
+39. White Rock Falls (white-rock-falls)
+   Change type: ADDED_DIRECTIONS
+   Added Directions with link: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2019%2C%20Montebello%2C%20VA%2024464
+   Updated directionsLink from: https://www.google.com/maps/search/?api=1&query=Blue+Ridge+Parkway+Milepost+19%2C+Montebello%2C+VA+24464
+                         to: https://www.google.com/maps/dir/?api=1&destination=Blue%20Ridge%20Parkway%20Milepost%2019%2C%20Montebello%2C%20VA%2024464
+
+================================================================================
+END OF REPORT
+================================================================================

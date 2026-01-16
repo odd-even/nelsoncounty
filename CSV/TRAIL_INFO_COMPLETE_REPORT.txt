@@ -1,0 +1,90 @@
+================================================================================
+COMPLETE TRAIL INFORMATION UPDATE REPORT
+================================================================================
+
+Updated 28 trail listings
+
+Devils Knob Trail (devils-knob-trail)
+  Added/Updated: Distance: 0.6 miles, Blaze Color: Red-Yellow, Difficulty: Moderate
+
+Fortune's Cove Nature Preserve (fortunes-cove-nature-preserve)
+  Added/Updated: Distance: 5.3 miles, Difficulty: Strenuous
+
+Highlands Leisure Trail (highlands-leisure-trail)
+  Added/Updated: Distance: 0.5 miles, Blaze Color: Yellow
+
+Paul's Creek Trail (pauls-creek-trail)
+  Added/Updated: Distance: 0.6 miles, Blaze Color: Blue
+
+Blue Ridge Tunnel (blue-ridge-tunnel)
+  Added/Updated: Distance: 2.25 miles
+
+Laurel Ridge Loop (laurel-ridge-loop)
+  Added/Updated: Distance: 1.6 miles
+
+Pedlars Edge Trail (pedlars-edge-trail)
+  Added/Updated: Distance: 1.6 miles, Difficulty: difficult
+
+Mau-Har Trail (mau-har-trail)
+  Added/Updated: Distance: 1.8 miles, Blaze Color: Blue
+
+Ravens Roost Park (ravens-roost-park)
+  Added/Updated: Distance: 0.5 miles, Blaze Color: Yellow
+
+White Oak Trail (white-oak-trail)
+  Added/Updated: Distance: 0.5 miles, Difficulty: moderate
+
+Humpback Rocks (humpback-rocks)
+  Added/Updated: Distance: 2 miles
+
+Pond Hollow Trail (pond-hollow-trail)
+  Added/Updated: Distance: 1 miles, Blaze Color: Red
+
+Crabtree Falls (crabtree-falls)
+  Added/Updated: Distance: 3 miles
+
+White Rock Falls (white-rock-falls)
+  Added/Updated: Distance: 2.5 miles, Difficulty: moderate
+
+Nelson County Wilderness Area (nelson-county-wilderness-area)
+  Added/Updated: Distance: 2.6 miles, Difficulty: moderate
+
+Kids in Parks: Virginia Blue Ridge Railway Trail (kids-in-parks-virginia-blue-ridge-railway-trail)
+  Added/Updated: 
+
+Kids in Parks: Rockfish River Trailhead (kids-in-parks-rockfish-river-trailhead)
+  Added/Updated: 
+
+James River State Park (james-river-state-park)
+  Added/Updated: 
+
+Montebello Nature Trail (montebello-nature-trail)
+  Added/Updated: Distance: .5 miles, Difficulty: moderate
+
+North Fork of the Piney River (north-fork-of-the-piney-river)
+  Added/Updated: Distance: 4 miles, Difficulty: moderate
+
+Spy Rock (spy-rock)
+  Added/Updated: Distance: 6.5 miles, Blaze Color: Trail
+
+Spruce Creek Park (spruce-creek-park)
+  Added/Updated: Distance: 2.6 miles, Difficulty: moderate
+
+Rockfish Valley Loop Trails (rockfish-valley-loop-trails)
+  Added/Updated: Distance: 2.6 miles, Difficulty: moderate
+
+Quarry Gardens at Schuyler (quarry-gardens-at-schuyler)
+  Added/Updated: Distance: 2 miles
+
+Brew Ridge Trail (brew-ridge-trail)
+  Added/Updated: 
+
+Nelson 151 (nelson-151)
+  Added/Updated: 
+
+Nelson 29 (nelson-29)
+  Added/Updated: Distance: 20 miles
+
+Virginia Spirits Trail (virginia-spirits-trail)
+  Added/Updated: 
+

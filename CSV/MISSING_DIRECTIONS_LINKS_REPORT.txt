@@ -1,0 +1,53 @@
+MISSING DIRECTIONS LINKS REPORT
+======================================================================
+
+Total trails missing directions links: 0
+Total trails with mismatched links: 6
+
+
+======================================================================
+MISMATCHED DIRECTIONS LINKS:
+======================================================================
+
+Name: Old Appalachian Trail
+Slug: old-appalachian-trail
+Donor Link: https://goo.gl/maps/ANsHVLfkx6f3PNAaA
+Updated Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Donor Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Updated Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Donor Link: https://goo.gl/maps/fpNe9zxvjvkMc2Ks9
+Updated Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Donor Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Updated Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Donor Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Updated Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Donor Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Updated Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Donor Link: https://goo.gl/maps/7WU3boDV7oaX85P79
+Updated Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Donor Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Updated Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Donor Link: https://goo.gl/maps/worqnjvdmccjF1MJ9
+Updated Link: https://www.google.com/maps/search/?api=1&query=8519+Thomas+Nelson+Hwy%2C+Lovingston%2C+VA+22949
+Donor Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+Updated Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Stoney Creek Park
+Slug: stoney-creek-park
+Donor Link: https://goo.gl/maps/7nf9BFjD9zG5dzJS7
+Updated Link: https://www.google.com/maps/search/?api=1&query=Stoney+Creek+West+Drive%2C+Nellysford%2C+VA+22958
+Donor Address: Stoney Creek West Drive, Nellysford, VA 22958
+Updated Address: Stoney Creek West Drive, Nellysford, VA 22958
+

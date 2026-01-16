@@ -1,0 +1,41 @@
+TRAIL MAP LINKS ADDED REPORT
+======================================================================
+
+Added Google My Maps "Trail Map" link to matching trails from the
+custom trail map: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+SUMMARY:
+======================================================================
+✅ Added map link to: 18 trails
+✅ Already had map link: 4 trails
+   - Devils Knob Trail (document1)
+   - The Plunge (document1)
+   - Brimstone Trail (document1)
+   - Allen Creek Nature Preserve (document1 - as "Interactive Trail Map")
+
+TRAILS UPDATED:
+======================================================================
+
+The following trails now have the "Trail Map" link added:
+
+1. Highlands Leisure Trail
+2. Old Appalachian Trail
+3. Paul's Creek Trail
+4. Laurel Ridge Loop
+5. Lower Shamokin Falls Trail
+6. Chestnut Springs Trail
+7. Upper Shamokin Gorge Trail
+8. Ravens Roost Park
+9. Trillium Field
+10. White Oak Trail
+11. Pond Hollow Trail
+12. Hemlock Springs Loop
+13. Blackrock Trail
+14. Shamokin Springs Nature Preserve
+15. Upper Shamokin Falls Trail
+16. Fortune's Ridge Trail
+17. Appalachian Trail from Rt 56 to Harpers Creek
+18. Stoney Creek Park
+
+NOTE: The map link was added to the first available document field
+(document1 or document2) for each trail.

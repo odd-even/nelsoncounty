@@ -1,0 +1,171 @@
+GENERIC ADDRESS USAGE REPORT
+======================================================================
+
+Generic address: "8519 Thomas Nelson Hwy, Lovingston, VA 22949"
+
+Total listings using this address: 22
+
+BREAKDOWN BY TYPE:
+======================================================================
+
+Hikes & Trails: 22 listings
+
+
+
+ALL LISTINGS USING GENERIC ADDRESS:
+======================================================================
+
+Name: Appalachian Trail from Rt 56 to Harpers Creek
+Slug: appalachian-trail-from-rt-56-to-harpers-creek
+Type: Hikes & Trails
+Category: outdoor
+Area: Tyro
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Blackrock Trail
+Slug: blackrock-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Brimstone Trail
+Slug: brimstone-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Cedar Ciffs North Trail
+Slug: cedar-ciffs-north-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Chestnut Springs Trail
+Slug: chestnut-springs-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Devils Knob Trail
+Slug: devils-knob-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Fortune's Ridge Trail
+Slug: fortunes-ridge-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Hemlock Springs Loop
+Slug: hemlock-springs-loop
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Highlands Leisure Trail
+Slug: highlands-leisure-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Laurel Ridge Loop
+Slug: laurel-ridge-loop
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Lower Shamokin Falls Trail
+Slug: lower-shamokin-falls-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Old Appalachian Trail
+Slug: old-appalachian-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Paul's Creek Trail
+Slug: pauls-creek-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Pedlars Edge Trail
+Slug: pedlars-edge-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Pond Hollow Trail
+Slug: pond-hollow-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Ravens Roost Park
+Slug: ravens-roost-park
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Shamokin Springs Nature Preserve
+Slug: shamokin-springs-nature-preserve
+Type: Hikes & Trails
+Category: outdoor
+Area: Lovingston
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: The Plunge
+Slug: the-plunge
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Trillium Field
+Slug: trillium-field
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Upper Shamokin Falls Trail
+Slug: upper-shamokin-falls-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: Upper Shamokin Gorge Trail
+Slug: upper-shamokin-gorge-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
+Name: White Oak Trail
+Slug: white-oak-trail
+Type: Hikes & Trails
+Category: outdoor
+Area: Wintergreen Resort
+Address: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+
