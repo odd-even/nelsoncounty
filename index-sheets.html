@@ -2708,9 +2708,9 @@
                     Logout
                 </button>
                 <button class="btn btn-success" onclick="openAddModal()">+ Add New Listing</button>
-                <input type="file" id="csvUploadMain" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)">
+                <input type="file" id="csvUploadMain" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)">
                 <button class="btn btn-primary" onclick="document.getElementById('csvUploadMain').click()">
-                    Upload CSV
+                    Upload CSV/TSV
                 </button>
                 <span id="unsavedChangesBadge" class="unsaved-changes-badge" aria-live="polite" onclick="saveAllToSheets()" style="cursor: pointer;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2945,9 +2945,10 @@
             <div class="data-header">
                 <h2>Data Table</h2>
                 <div class="data-actions">
-                    <input type="file" id="csvUpload" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)" />
-                    <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV</button>
+                    <input type="file" id="csvUpload" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)" />
+                    <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV/TSV</button>
                     <button class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
+                    <button class="btn btn-success" onclick="downloadTSV()" style="background: #2d8a4e;">Download TSV</button>
                     <button class="btn btn-success" onclick="saveTableChanges()" style="background: #4E6B52;">Update Table</button>
                     <button class="btn btn-secondary" onclick="clearTableFilters()" style="background: #6c757d; margin-left: 10px;">Clear Filters</button>
                 </div>
@@ -4949,10 +4950,32 @@ function updateUnsavedChangesBadge() {
     }
 }
 
-        // Helper function to parse CSV text into array of objects
+        // Helper function to parse CSV/TSV text into array of objects
+        // Robust parser that handles: CSV, TSV, BOM, multiline fields, various edge cases
         function parseCSV(csvText) {
-            if (!csvText) return { headers: [], dataRows: [] };
+            if (!csvText) return { headers: [], dataRows: [], errors: [], warnings: [] };
             
+            const errors = [];
+            const warnings = [];
+            
+            // Remove BOM if present (UTF-8 BOM: \uFEFF)
+            if (csvText.charCodeAt(0) === 0xFEFF) {
+                csvText = csvText.slice(1);
+                warnings.push('Removed BOM character from file');
+            }
+            
+            // Auto-detect delimiter: TSV (tab) vs CSV (comma)
+            // Check first line for tabs vs commas
+            const firstLineEnd = csvText.indexOf('\n');
+            const firstLine = firstLineEnd > 0 ? csvText.substring(0, firstLineEnd) : csvText;
+            const tabCount = (firstLine.match(/\t/g) || []).length;
+            const commaCount = (firstLine.match(/,/g) || []).length;
+            const delimiter = tabCount > commaCount ? '\t' : ',';
+            const formatName = delimiter === '\t' ? 'TSV' : 'CSV';
+            
+            console.log(`📊 Detected format: ${formatName} (${delimiter === '\t' ? 'tabs' : 'commas'}: ${delimiter === '\t' ? tabCount : commaCount})`);
+            
+            // Split into rows, handling quoted fields that may contain newlines
             const rows = [];
             let currentRow = '';
             let inQuotes = false;
@@ -4963,29 +4986,38 @@ function updateUnsavedChangesBadge() {
                 
                 if (char === '"') {
                     if (inQuotes && nextChar === '"') {
+                        // Escaped quote (doubled)
                         currentRow += '"';
                         i++;
                     } else {
+                        // Toggle quote state
                         inQuotes = !inQuotes;
                         currentRow += char;
                     }
                 } else if ((char === '\n' || char === '\r') && !inQuotes) {
-                    if (char === '\r' && nextChar === '\n') i++;
+                    // End of row (only if not inside quotes)
+                    if (char === '\r' && nextChar === '\n') i++; // Skip \n after \r
                     if (currentRow.length > 0) rows.push(currentRow);
                     currentRow = '';
                 } else {
                     currentRow += char;
                 }
             }
+            // Don't forget the last row
             if (currentRow.length > 0) rows.push(currentRow);
             
             const filteredRows = rows.filter(row => row.trim().length > 0);
-            if (filteredRows.length === 0) return { headers: [], dataRows: [] };
+            if (filteredRows.length === 0) {
+                errors.push('File appears to be empty or contains no valid rows');
+                return { headers: [], dataRows: [], errors, warnings };
+            }
             
-            const parseCSVLine = (line) => {
+            // Parse a single line into values
+            const parseLine = (line, lineNum) => {
                 const values = [];
                 let current = '';
                 let inQuotes = false;
+                let quoteBalance = 0;
                 
                 for (let i = 0; i < line.length; i++) {
                     const char = line[i];
@@ -4993,12 +5025,16 @@ function updateUnsavedChangesBadge() {
                     
                     if (char === '"') {
                         if (inQuotes && nextChar === '"') {
+                            // Escaped quote
                             current += '"';
                             i++;
                         } else {
+                            // Toggle quote state
                             inQuotes = !inQuotes;
+                            quoteBalance += inQuotes ? 1 : -1;
                         }
-                    } else if (char === ',' && !inQuotes) {
+                    } else if (char === delimiter && !inQuotes) {
+                        // Field separator
                         values.push(current);
                         current = '';
                     } else {
@@ -5007,40 +5043,76 @@ function updateUnsavedChangesBadge() {
                 }
                 values.push(current);
                 
-                return values.map(value => value.trim().replace(/^"|"$/g, '').replace(/""/g, '"'));
+                // Check for unbalanced quotes (common error)
+                if (quoteBalance !== 0) {
+                    warnings.push(`Row ${lineNum}: Unbalanced quotes detected - attempting to recover`);
+                }
+                
+                // Clean up values: trim and handle quotes
+                return values.map(value => {
+                    value = value.trim();
+                    // Remove surrounding quotes if present
+                    if (value.length >= 2 && value[0] === '"' && value[value.length - 1] === '"') {
+                        value = value.slice(1, -1);
+                    }
+                    // Replace escaped quotes (doubled quotes become single)
+                    value = value.replace(/""/g, '"');
+                    return value;
+                });
             };
             
-            const headers = parseCSVLine(filteredRows[0]).filter(Boolean);
+            // Parse header row
+            let headers = parseLine(filteredRows[0], 1).filter(h => h && h.trim());
+            
+            // Clean header names (remove any leftover BOM artifacts, normalize whitespace)
+            headers = headers.map(h => h.trim().replace(/^\uFEFF/, ''));
+            
+            if (headers.length === 0) {
+                errors.push('No valid headers found in the first row');
+                return { headers: [], dataRows: [], errors, warnings };
+            }
+            
+            console.log(`📊 Found ${headers.length} columns: ${headers.slice(0, 5).join(', ')}${headers.length > 5 ? '...' : ''}`);
+            
             const dataRows = [];
+            let skippedRows = 0;
+            let fixedRows = 0;
             
             for (let i = 1; i < filteredRows.length; i++) {
-                const values = parseCSVLine(filteredRows[i]);
-                if (!values.some(v => v && v.trim())) continue;
+                const lineNum = i + 1;
+                let values = parseLine(filteredRows[i], lineNum);
                 
-                // CRITICAL: Validate column count matches
+                // Skip completely empty rows
+                if (!values.some(v => v && v.trim())) {
+                    skippedRows++;
+                    continue;
+                }
+                
+                // Handle column count mismatch - try to fix instead of failing
                 if (values.length !== headers.length) {
                     const rowName = values[1] || values[0] || 'Unknown';
-                    console.error('❌ CRITICAL: Column count mismatch in row', i + 1, ':', {
-                        name: rowName,
-                        expected: headers.length,
-                        got: values.length,
-                        difference: values.length - headers.length,
-                        'This will cause column misalignment!': 'FIX NEEDED',
-                        'First few values': values.slice(0, 5)
-                    });
-                    // Try to fix by padding with empty strings or truncating
+                    const diff = values.length - headers.length;
+                    
                     if (values.length < headers.length) {
-                        console.warn('⚠️ Row has too few columns - padding with empty strings');
+                        // Pad with empty strings
+                        warnings.push(`Row ${lineNum} (${rowName}): Has ${headers.length - values.length} fewer columns than expected - padding with empty values`);
                         while (values.length < headers.length) {
                             values.push('');
                         }
+                        fixedRows++;
                     } else {
-                        console.warn('⚠️ Row has too many columns - truncating');
+                        // Truncate extra columns (but log what we're losing)
+                        const extra = values.slice(headers.length);
+                        const hasData = extra.some(v => v && v.trim());
+                        if (hasData) {
+                            warnings.push(`Row ${lineNum} (${rowName}): Has ${values.length - headers.length} extra columns - truncating (lost: ${extra.slice(0, 3).join(', ')}${extra.length > 3 ? '...' : ''})`);
+                        }
                         values = values.slice(0, headers.length);
+                        fixedRows++;
                     }
-                    // Don't skip - try to fix it
                 }
                 
+                // Build row object
                 const row = {};
                 headers.forEach((header, index) => {
                     row[header] = (values[index] !== undefined) ? values[index] : '';
@@ -5048,7 +5120,22 @@ function updateUnsavedChangesBadge() {
                 dataRows.push(row);
             }
             
-            return { headers, dataRows };
+            // Summary logging
+            console.log(`📊 Parse complete: ${dataRows.length} rows parsed successfully`);
+            if (fixedRows > 0) {
+                console.warn(`⚠️ Fixed column counts in ${fixedRows} rows`);
+            }
+            if (skippedRows > 0) {
+                console.log(`📊 Skipped ${skippedRows} empty rows`);
+            }
+            if (warnings.length > 0) {
+                console.warn(`⚠️ ${warnings.length} warnings during parsing:`, warnings.slice(0, 5));
+            }
+            if (errors.length > 0) {
+                console.error(`❌ ${errors.length} errors during parsing:`, errors);
+            }
+            
+            return { headers, dataRows, errors, warnings };
         }
         
         // Map CSV row to listing object
@@ -12397,16 +12484,114 @@ function updateUnsavedChangesBadge() {
             }
         }
         
+        // Download as TSV (Tab-Separated Values) - more robust for complex data
+        window.downloadTSV = function downloadTSV() {
+            try {
+                const escapeTsv = function(value) {
+                    const str = value === undefined || value === null ? '' : String(value);
+                    if (str === '') return '';
+                    // TSV: Replace tabs with spaces, replace newlines with \\n literal
+                    return str.replace(/\t/g, ' ').replace(/\r?\n/g, '\\n');
+                };
+                
+                const joinList = function(arr) {
+                    if (!arr || !arr.length) return '';
+                    return arr.join('; ');
+                };
+                
+                // Use same field collection as CSV
+                const allFields = new Set();
+                const standardFields = [
+                    'name', 'slug', 'type', 'category', 'area', 'description', 'detailedDescription', 'customHtml',
+                    'image1', 'image1Desc', 'image1FileId',
+                    'image2', 'image2Desc', 'image2FileId',
+                    'image3', 'image3Desc', 'image3FileId',
+                    'website', 'phone', 'address',
+                    'authorName', 'publishedDate', 'modifiedDate', 'directionsLink', 'videoLink', 
+                    'document1', 'document1Name', 'document2', 'document2Name',
+                    'accordionPanel1Title', 'accordionPanel1Content',
+                    'accordionPanel2Title', 'accordionPanel2Content',
+                    'accordionPanel3Title', 'accordionPanel3Content',
+                    'accordionPanel4Title', 'accordionPanel4Content',
+                    'amenities', 'featured', 'googleMapsUrl'
+                ];
+                
+                standardFields.forEach(field => allFields.add(field));
+                
+                if (data && data.listings && Array.isArray(data.listings)) {
+                    data.listings.forEach(function(listing) {
+                        if (listing && typeof listing === 'object') {
+                            Object.keys(listing).forEach(function(key) {
+                                if (key && typeof key === 'string') {
+                                    allFields.add(key);
+                                }
+                            });
+                        }
+                    });
+                }
+                
+                const headers = Array.from(allFields);
+                headers.sort(function(a, b) {
+                    const aIndex = standardFields.indexOf(a);
+                    const bIndex = standardFields.indexOf(b);
+                    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+                    if (aIndex !== -1) return -1;
+                    if (bIndex !== -1) return 1;
+                    return a.localeCompare(b);
+                });
+                
+                const rows = data.listings.map(function(listing) {
+                    const safeAmenities = joinList(listing.amenities || []);
+                    
+                    return headers.map(function(header) {
+                        if (header === 'amenities') {
+                            return escapeTsv(safeAmenities);
+                        } else if (header === 'featured') {
+                            return escapeTsv(listing.featured ? 'true' : 'false');
+                        } else if (header === 'private') {
+                            return escapeTsv(listing.private ? 'true' : 'false');
+                        } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
+                            return escapeTsv(listing.directionsLink || '');
+                        } else {
+                            return escapeTsv(listing[header] || '');
+                        }
+                    }).join('\t');
+                });
+                
+                const tsv = [headers.join('\t')].concat(rows).join('\n');
+                
+                const blob = new Blob([tsv], { type: 'text/tab-separated-values;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'listings-' + new Date().toISOString().split('T')[0] + '.tsv';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                setTimeout(() => {
+                    updateSyncStatus(true, '✅ TSV backup downloaded');
+                }, 100);
+            } catch (error) {
+                console.error('Error downloading TSV:', error);
+                updateSyncStatus(false, '❌ TSV download failed');
+                alert('Error downloading TSV: ' + error.message);
+            }
+        }
+        
         function handleCSVUpload(event) {
             try {
-                console.log('CSV upload started');
+                console.log('CSV/TSV upload started');
                 const file = event.target.files[0];
                 if (!file) {
                     console.log('No file selected');
                     return;
                 }
                 
-                console.log('Reading file:', file.name);
+                const fileName = file.name.toLowerCase();
+                const isTSV = fileName.endsWith('.tsv') || fileName.endsWith('.txt');
+                console.log('Reading file:', file.name, isTSV ? '(TSV format)' : '(CSV format)');
                 const reader = new FileReader();
                 
                 reader.onerror = function(error) {
@@ -12416,12 +12601,30 @@ function updateUnsavedChangesBadge() {
                 
                 reader.onload = function(e) {
                     try {
-                        console.log('File loaded, parsing CSV with header mapping...');
+                        console.log('File loaded, parsing with header mapping...');
                         const text = e.target.result;
                         const parsed = parseCSV(text);
                         
+                        // Check for parsing errors
+                        if (parsed.errors && parsed.errors.length > 0) {
+                            const errorMsg = 'Errors encountered while parsing:\n\n' + 
+                                parsed.errors.slice(0, 5).join('\n') +
+                                (parsed.errors.length > 5 ? `\n...and ${parsed.errors.length - 5} more` : '');
+                            alert(errorMsg);
+                            console.error('Parse errors:', parsed.errors);
+                        }
+                        
+                        // Show warnings if any (but don't block)
+                        if (parsed.warnings && parsed.warnings.length > 0) {
+                            console.warn('Parse warnings:', parsed.warnings);
+                            // Only show first few warnings to user if there are many
+                            if (parsed.warnings.length > 3) {
+                                console.log(`📋 ${parsed.warnings.length} total warnings - check console for full list`);
+                            }
+                        }
+                        
                         if (!parsed || !parsed.headers || parsed.headers.length === 0) {
-                            alert('CSV file is missing a header row. Please include column names in the first row of the CSV.');
+                            alert('File is missing a header row. Please include column names in the first row.');
                             return;
                         }
                         
@@ -12506,16 +12709,21 @@ function updateUnsavedChangesBadge() {
                             updateStats();
                             showUnsavedChangesBadge();
                             
-                            // CSV imported locally only - user must click "Save All to Google Sheets" to sync
-                            alert('CSV uploaded successfully! ' + newListings.length + ' listings imported locally.\n\n💾 Click "Save All to Google Sheets" to sync changes.');
+                            // Build success message with any warnings
+                            let successMsg = `✅ Upload successful! ${newListings.length} listings imported locally.`;
+                            if (parsed.warnings && parsed.warnings.length > 0) {
+                                successMsg += `\n\n⚠️ ${parsed.warnings.length} warning(s) during parsing (check console for details)`;
+                            }
+                            successMsg += '\n\n💾 Click "Save All to Google Sheets" to sync changes.';
+                            alert(successMsg);
                         }
                         
                         // Reset file input
                         event.target.value = '';
                         
                     } catch (parseError) {
-                        console.error('Error parsing CSV:', parseError);
-                        alert('Error parsing CSV file: ' + parseError.message);
+                        console.error('Error parsing file:', parseError);
+                        alert('Error parsing file: ' + parseError.message + '\n\nTip: Try saving your file as TSV (tab-separated) if CSV is causing issues.');
                     }
                 };
                 
@@ -12523,7 +12731,7 @@ function updateUnsavedChangesBadge() {
                 
             } catch (error) {
                 console.error('Error in handleCSVUpload:', error);
-                alert('Error uploading CSV: ' + error.message);
+                alert('Error uploading file: ' + error.message);
             }
         }
         

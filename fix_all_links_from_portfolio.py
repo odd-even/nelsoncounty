@@ -6,6 +6,7 @@ Uses text-based extraction to handle CSV escaping
 
 import csv
 import re
+from robust_csv import read_csv_robust, write_csv_robust
 
 def main():
     donor_file = '/Users/ernest/Documents/GitHub/nelsoncounty/CSV/A - Donor - Portfolio-Export-2026-January-02-1652.csv'
@@ -65,10 +66,18 @@ def main():
         print(f"  {slug}: {link}")
     
     print(f"\nReading current file: {current_file}...")
-    with open(current_file, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
-        fieldnames = reader.fieldnames
+    rows, fieldnames, errors, warnings = read_csv_robust(current_file)
+    
+    if errors:
+        print(f"Errors reading file:")
+        for e in errors:
+            print(f"  {e}")
+        return
+    
+    if warnings:
+        print(f"Warnings ({len(warnings)}):")
+        for w in warnings[:5]:
+            print(f"  {w}")
     
     print(f"Found {len(rows)} listings")
     
@@ -133,12 +142,14 @@ def main():
             if row.get('directionsLink', '').strip() != donor_link:
                 row['directionsLink'] = donor_link
     
-    # Write updated CSV
+    # Write updated CSV using robust writer
     print(f"\nWriting updated CSV to {output_file}...")
-    with open(output_file, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_MINIMAL, doublequote=True)
-        writer.writeheader()
-        writer.writerows(rows)
+    success, write_errors, write_warnings = write_csv_robust(output_file, rows, fieldnames)
+    
+    if write_errors:
+        print(f"Errors writing file:")
+        for e in write_errors:
+            print(f"  {e}")
     
     # Write report
     print(f"Writing report to {report_file}...")

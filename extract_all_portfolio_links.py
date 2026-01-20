@@ -5,6 +5,7 @@ Extract all trail links from Portfolio donor file by searching for each trail
 
 import csv
 import re
+from robust_csv import read_csv_robust, write_csv_robust
 
 def main():
     donor_file = '/Users/ernest/Documents/GitHub/nelsoncounty/CSV/A - Donor - Portfolio-Export-2026-January-02-1652.csv'
@@ -12,17 +13,22 @@ def main():
     output_file = '/Users/ernest/Documents/GitHub/nelsoncounty/CSV/listings-2026-01-15-FINAL.csv'
     report_file = '/Users/ernest/Documents/GitHub/nelsoncounty/CSV/TRAIL_LINKS_FIX_FROM_PORTFOLIO_REPORT.txt'
     
-    # Get list of all trail slugs from current file
+    # Get list of all trail slugs from current file using robust reader
     print(f"Reading current file to get trail list: {current_file}...")
+    rows, fieldnames, errors, warnings = read_csv_robust(current_file)
+    
+    if errors:
+        print(f"Errors reading {current_file}:")
+        for e in errors:
+            print(f"  {e}")
+    
     trail_slugs = []
-    with open(current_file, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            if row.get('type', '').strip() == 'Hikes & Trails':
-                slug = row.get('slug', '').strip().lower()
-                name = row.get('name', '').strip()
-                if slug:
-                    trail_slugs.append({'slug': slug, 'name': name})
+    for row in rows:
+        if row.get('type', '').strip() == 'Hikes & Trails':
+            slug = row.get('slug', '').strip().lower()
+            name = row.get('name', '').strip()
+            if slug:
+                trail_slugs.append({'slug': slug, 'name': name})
     
     print(f"Found {len(trail_slugs)} trails")
     
@@ -69,10 +75,20 @@ def main():
     
     # Update current file
     print(f"\nReading current file: {current_file}...")
-    with open(current_file, 'r', encoding='utf-8') as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
-        fieldnames = reader.fieldnames
+    rows, fieldnames, errors, warnings = read_csv_robust(current_file)
+    
+    if errors:
+        print(f"Errors reading file:")
+        for e in errors:
+            print(f"  {e}")
+        return
+    
+    if warnings:
+        print(f"Warnings ({len(warnings)}):")
+        for w in warnings[:5]:
+            print(f"  {w}")
+        if len(warnings) > 5:
+            print(f"  ... and {len(warnings) - 5} more")
     
     updated_count = 0
     updates = []
@@ -135,12 +151,19 @@ def main():
             if row.get('directionsLink', '').strip() != donor_link:
                 row['directionsLink'] = donor_link
     
-    # Write updated CSV
+    # Write updated CSV using robust writer
     print(f"\nWriting updated CSV to {output_file}...")
-    with open(output_file, 'w', encoding='utf-8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_MINIMAL, doublequote=True)
-        writer.writeheader()
-        writer.writerows(rows)
+    success, write_errors, write_warnings = write_csv_robust(output_file, rows, fieldnames)
+    
+    if write_errors:
+        print(f"Errors writing file:")
+        for e in write_errors:
+            print(f"  {e}")
+    
+    if write_warnings:
+        print(f"Write warnings ({len(write_warnings)}):")
+        for w in write_warnings[:5]:
+            print(f"  {w}")
     
     # Write report
     print(f"Writing report to {report_file}...")
