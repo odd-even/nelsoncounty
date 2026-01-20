@@ -1224,6 +1224,10 @@ function getData(sheet) {
           listing.phone = String(value || '');
         } else if (headerLower === 'address') {
           listing.address = String(value || '');
+        } else if (headerLower === 'latitude' || headerLower === 'lat') {
+          listing.latitude = value ? parseFloat(value) : null;
+        } else if (headerLower === 'longitude' || headerLower === 'lng' || headerLower === 'lon') {
+          listing.longitude = value ? parseFloat(value) : null;
         } else if (headerLower === 'amenities') {
           const amenityStr = String(value || '');
           listing.amenities = amenityStr.split(/[,;]/).map(a => a.trim()).filter(a => a);
@@ -1530,6 +1534,10 @@ function saveListing(sheet, listing) {
         rowData.push(listing.phone || '');
       } else if (headerLower === 'address') {
         rowData.push(listing.address || '');
+      } else if (headerLower === 'latitude' || headerLower === 'lat') {
+        rowData.push(listing.latitude != null ? listing.latitude : '');
+      } else if (headerLower === 'longitude' || headerLower === 'lng' || headerLower === 'lon') {
+        rowData.push(listing.longitude != null ? listing.longitude : '');
       } else if (headerLower === 'amenities') {
         rowData.push(Array.isArray(listing.amenities) ? listing.amenities.join(', ') : (listing.amenities || ''));
       } else if (headerLower === 'featured') {
@@ -1656,6 +1664,8 @@ const CANONICAL_LISTING_HEADERS = [
   'website',
   'phone',
   'address',
+  'latitude',
+  'longitude',
   'authorName',
   'publishedDate',
   'modifiedDate',

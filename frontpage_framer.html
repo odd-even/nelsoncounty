@@ -4618,6 +4618,8 @@ function mapCSVRowToListing(row, index) {
         website: getField('External Website', ['Website', 'website', 'URL', 'url']) || '',
         phone: getField('Phone', ['phone']) || '',
         address: getField('Address', ['address']) || '',
+        latitude: parseFloat(getField('Latitude', ['latitude', 'lat'])) || null,
+        longitude: parseFloat(getField('Longitude', ['longitude', 'lng', 'lon'])) || null,
         amenities: amenities,
         featured: featured,
         private: isPrivate
@@ -10346,7 +10348,8 @@ function updateMapMarkers(listings) {
     
     // Add markers for each listing
     listings.forEach(function(listing) {
-        geocodeAddress(listing.address, function(lat, lng) {
+        // Use pre-stored coordinates if available, otherwise geocode the address
+        geocodeAddress(listing, function(lat, lng) {
             if (lat && lng) {
                 var position = { lat: lat, lng: lng };
                 
@@ -10562,8 +10565,17 @@ function updateMapMarkers(listings) {
     });
 }
 
-// Simple geocoding function (uses approximate coordinates for demo)
-function geocodeAddress(address, callback) {
+// Geocoding function - uses pre-stored coordinates if available, falls back to approximate locations
+function geocodeAddress(listing, callback) {
+    // If listing has pre-stored coordinates, use them directly (most accurate)
+    if (listing.latitude && listing.longitude && !isNaN(listing.latitude) && !isNaN(listing.longitude)) {
+        callback(listing.latitude, listing.longitude);
+        return;
+    }
+    
+    // Fall back to address-based geocoding
+    var address = listing.address;
+    
     // Skip geocoding for booking site addresses (no real address available)
     if (!address) {
         callback(null, null);
@@ -10579,14 +10591,22 @@ function geocodeAddress(address, callback) {
         return;
     }
     
-    // Approximate coordinates for Nelson County area locations
+    // Approximate coordinates for Nelson County area locations (fallback for listings without pre-stored coords)
     var locations = {
         'Roseland': [37.8167, -79.0833],
         'Montebello': [37.8500, -79.1333],
         'Wintergreen': [37.9167, -79.0000],
         'Afton': [38.0333, -78.8333],
         'Lovingston': [37.7667, -78.8667],
-        'Nellysford': [37.9000, -78.8833]
+        'Nellysford': [37.9000, -78.8833],
+        'Schuyler': [37.7900, -78.7050],
+        'Arrington': [37.7100, -78.9400],
+        'Shipman': [37.7350, -78.8500],
+        'Piney River': [37.7100, -79.0200],
+        'Gladstone': [37.5500, -78.8500],
+        'Massies Mill': [37.8200, -79.0100],
+        'Faber': [37.8100, -78.7600],
+        'Tyro': [37.8600, -79.0300]
     };
     
     // Try to match address to known locations
