@@ -3290,6 +3290,12 @@
                         <div class="address-autocomplete-dropdown" id="addressAutocompleteDropdown"></div>
                     </div>
                     <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">Select "Full address available on booking site" for Airbnb-type listings that don't show addresses until booking.</small>
+                    <div id="coordsDisplay" style="margin-top: 8px; display: none;">
+                        <small style="color: #28a745; font-size: 11px;">📍 Coordinates: <span id="coordsText"></span></small>
+                    </div>
+                    <!-- Hidden fields for coordinates -->
+                    <input type="hidden" id="listingLatitude" />
+                    <input type="hidden" id="listingLongitude" />
                 </div>
 
                 <div class="form-row">
@@ -7629,6 +7635,13 @@ function updateUnsavedChangesBadge() {
             // Reset address type dropdown
             const addressTypeSelect = document.getElementById('listingAddressType');
             if (addressTypeSelect) addressTypeSelect.value = 'full';
+            // Clear coordinates for new listing
+            const latInput = document.getElementById('listingLatitude');
+            const lngInput = document.getElementById('listingLongitude');
+            const coordsDisplay = document.getElementById('coordsDisplay');
+            if (latInput) latInput.value = '';
+            if (lngInput) lngInput.value = '';
+            if (coordsDisplay) coordsDisplay.style.display = 'none';
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
@@ -7853,6 +7866,19 @@ function updateUnsavedChangesBadge() {
                     addressInput.value = listing.address || '';
                     addressInput.style.display = 'block';
                 }
+            }
+            // Populate latitude/longitude if available
+            const latInput = document.getElementById('listingLatitude');
+            const lngInput = document.getElementById('listingLongitude');
+            const coordsDisplay = document.getElementById('coordsDisplay');
+            const coordsText = document.getElementById('coordsText');
+            if (latInput) latInput.value = listing.latitude || '';
+            if (lngInput) lngInput.value = listing.longitude || '';
+            if (listing.latitude && listing.longitude && coordsDisplay && coordsText) {
+                coordsText.textContent = parseFloat(listing.latitude).toFixed(6) + ', ' + parseFloat(listing.longitude).toFixed(6) + ' (saved)';
+                coordsDisplay.style.display = 'block';
+            } else if (coordsDisplay) {
+                coordsDisplay.style.display = 'none';
             }
             const authorNameInput = document.getElementById('listingAuthorName');
             if (authorNameInput) authorNameInput.value = listing.authorName || '';
@@ -8332,6 +8358,14 @@ function updateUnsavedChangesBadge() {
                     }
                     return getValue('listingAddress');
                 })(),
+                latitude: (() => {
+                    const val = getValue('listingLatitude');
+                    return val ? parseFloat(val) : null;
+                })(),
+                longitude: (() => {
+                    const val = getValue('listingLongitude');
+                    return val ? parseFloat(val) : null;
+                })(),
                 amenities: selectedAmenities,
                 featured: getChecked('listingFeatured'),
                 private: getChecked('listingPrivate'),
@@ -8681,6 +8715,62 @@ function updateUnsavedChangesBadge() {
         let addressAutocompleteAbortController = null;
         let addressInputHandlersInitialized = false;
         let selectedAutocompleteIndex = -1;
+        let lastGeocodedAddress = ''; // Track last geocoded address to avoid duplicate API calls
+        
+        // Helper function to set coordinates (used by both Nominatim and Google geocoder)
+        function setCoordinates(lat, lng, source) {
+            const latInput = document.getElementById('listingLatitude');
+            const lngInput = document.getElementById('listingLongitude');
+            const coordsDisplay = document.getElementById('coordsDisplay');
+            const coordsText = document.getElementById('coordsText');
+            
+            if (latInput) latInput.value = lat;
+            if (lngInput) lngInput.value = lng;
+            
+            // Show coordinates to user
+            if (coordsDisplay && coordsText) {
+                coordsText.textContent = lat.toFixed(6) + ', ' + lng.toFixed(6) + ' (' + source + ')';
+                coordsDisplay.style.display = 'block';
+            }
+            
+            console.log('📍 Coordinates set:', lat, lng, 'via', source);
+        }
+        
+        // Clear coordinates when address changes
+        function clearCoordinates() {
+            const latInput = document.getElementById('listingLatitude');
+            const lngInput = document.getElementById('listingLongitude');
+            const coordsDisplay = document.getElementById('coordsDisplay');
+            
+            if (latInput) latInput.value = '';
+            if (lngInput) lngInput.value = '';
+            if (coordsDisplay) coordsDisplay.style.display = 'none';
+        }
+        
+        // Google Geocoder fallback (for manually typed addresses)
+        function geocodeAddressWithGoogle(address) {
+            if (!address || address.length < 10) return;
+            if (address === lastGeocodedAddress) return; // Skip if already geocoded
+            
+            // Check if Google Maps API is available
+            if (typeof google === 'undefined' || !google.maps || !google.maps.Geocoder) {
+                console.warn('Google Maps Geocoder not available');
+                return;
+            }
+            
+            const geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ address: address }, function(results, status) {
+                if (status === 'OK' && results && results[0]) {
+                    const location = results[0].geometry.location;
+                    const lat = location.lat();
+                    const lng = location.lng();
+                    setCoordinates(lat, lng, 'google');
+                    lastGeocodedAddress = address;
+                } else {
+                    console.warn('Google geocoding failed:', status);
+                }
+            });
+        }
         
         // Helper function to generate Google Maps URL from address (always reads current value)
         function generateGoogleMapsUrlFromAddress() {
@@ -8832,6 +8922,33 @@ function updateUnsavedChangesBadge() {
                     });
                 }
                 
+                // Add blur handler for Google geocoder fallback (for manually typed addresses)
+                addressInput.addEventListener('blur', function() {
+                    const address = addressInput.value.trim();
+                    const latInput = document.getElementById('listingLatitude');
+                    
+                    // Only geocode if:
+                    // 1. Address has content (at least 10 chars for a valid address)
+                    // 2. No coordinates already set (Nominatim didn't provide them)
+                    // 3. Not a booking site address
+                    const addressTypeSelect = document.getElementById('listingAddressType');
+                    const isBookingAddress = addressTypeSelect && addressTypeSelect.value === 'booking';
+                    const hasCoords = latInput && latInput.value && latInput.value.trim() !== '';
+                    
+                    if (address.length >= 10 && !hasCoords && !isBookingAddress) {
+                        console.log('📍 No coords from Nominatim, falling back to Google geocoder...');
+                        geocodeAddressWithGoogle(address);
+                    }
+                });
+                
+                // Clear coordinates when address input changes (user is typing new address)
+                addressInput.addEventListener('input', function() {
+                    // Clear coords when user starts modifying the address
+                    // They'll be re-set when user selects from dropdown or on blur
+                    clearCoordinates();
+                    lastGeocodedAddress = ''; // Reset so we can re-geocode
+                });
+                
                 addressInputHandlersInitialized = true;
             }
         };
@@ -8899,6 +9016,13 @@ function updateUnsavedChangesBadge() {
                             const selectedAddress = fullAddress || displayName;
                             addressInput.value = selectedAddress;
                             dropdown.classList.remove('show');
+                            
+                            // Capture coordinates from Nominatim response (FREE geocoding!)
+                            if (item.lat && item.lon) {
+                                const lat = parseFloat(item.lat);
+                                const lng = parseFloat(item.lon);
+                                setCoordinates(lat, lng, 'nominatim');
+                            }
                             
                             // The live update system will automatically update the directions link
                             // Trigger the input event to ensure it updates
