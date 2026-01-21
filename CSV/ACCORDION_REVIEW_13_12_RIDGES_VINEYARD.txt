@@ -1,0 +1,55 @@
+================================================================================
+LISTING 13: 12 RIDGES VINEYARD (Vineyards & Wineries)
+================================================================================
+
+================================================================================
+ORIGINAL DETAILED DESCRIPTION (THE SOURCE - WHAT EXISTS NOW)
+================================================================================
+
+<strong>A new vision has come to life at one of the most beautiful locations in all of Virginia.</strong> ​ 12 Ridges, a family-owned vineyard formerly known as Skylark Farm, now offers an intimate Tasting Room, over seven thousand five hundred square feet of outdoor patio space, and glorious 360 degree hilltop views. As we wait for our vines to mature and grow, we are offering a sommelier-crafted portfolio of cool climate wines from around the world. The terroir of 12 Ridges is well suited to make high-quality wines and we seek to make exceptional sparkling wines using the Traditional Method originating from the Champagne, France region. ​ Our high altitude at 3,300′, a permeable and stony soil low in clay, cooler temperatures as well as lower humidity, all combine to give 12 Ridges an extraordinary opportunity for our chosen varietals to thrive. Our sparkling wines will be complemented by other chardonnay, riesling, pinot gris, and pinot noir wines. <strong>Weddings &amp; Events</strong> 12 Ridges' panoramic views and central Virginia location allow for unforgettable weddings and events. With spectacular views and a variety of venue options, 12 Ridges is an exquisite location for your wedding day! Please reach out to learn more! 24981 Blue Ridge Pkwy Vesuvius, VA 24483 <a href='tel:434-996-4252'>434-996-4252</a>
+
+
+================================================================================
+================================================================================
+PROPOSED ACCORDION PANELS (WHAT IT WILL BECOME)
+================================================================================
+================================================================================
+
+
+================================================================================
+ACCORDION PANEL 1
+TITLE: About 12 Ridges
+================================================================================
+
+<p><strong>A new vision has come to life at one of the most beautiful locations in all of Virginia.</strong> 12 Ridges, a family-owned vineyard formerly known as Skylark Farm, now offers an intimate Tasting Room, over seven thousand five hundred square feet of outdoor patio space, and glorious 360 degree hilltop views.</p>
+
+<p>As we wait for our vines to mature and grow, we are offering a sommelier-crafted portfolio of cool climate wines from around the world. The terroir of 12 Ridges is well suited to make high-quality wines and we seek to make exceptional sparkling wines using the Traditional Method originating from the Champagne, France region.</p>
+
+<p>Our high altitude at 3,300′, a permeable and stony soil low in clay, cooler temperatures as well as lower humidity, all combine to give 12 Ridges an extraordinary opportunity for our chosen varietals to thrive. Our sparkling wines will be complemented by other chardonnay, riesling, pinot gris, and pinot noir wines.</p>
+
+
+================================================================================
+ACCORDION PANEL 2
+TITLE: Weddings & Events
+================================================================================
+
+<p><strong>Weddings &amp; Events</strong></p>
+
+<p>12 Ridges' panoramic views and central Virginia location allow for unforgettable weddings and events. With spectacular views and a variety of venue options, 12 Ridges is an exquisite location for your wedding day! Please reach out to learn more!</p>
+
+<p><strong>Contact:</strong> <a href='tel:434-996-4252'>434-996-4252</a></p>
+
+<p>24981 Blue Ridge Pkwy<br>
+Vesuvius, VA 24483</p>
+
+
+================================================================================
+WHAT WILL BE REMOVED (not included in accordions)
+================================================================================
+
+- Nothing - all content preserved
+
+
+================================================================================
+APPROVE? (yes/no)
+================================================================================

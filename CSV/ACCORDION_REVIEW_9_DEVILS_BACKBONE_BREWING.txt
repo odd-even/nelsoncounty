@@ -1,0 +1,92 @@
+================================================================================
+LISTING 9: DEVILS BACKBONE BREWING COMPANY (Breweries & Cideries)
+================================================================================
+
+================================================================================
+ORIGINAL DETAILED DESCRIPTION (THE SOURCE - WHAT EXISTS NOW)
+================================================================================
+
+Years ago, our founders, Steve and Heidi Crandall, were on a ski trip in the Alps 
+when they tried their first craft beer, a German Weisse at a brewpub. To satisfy 
+their thirst for a local haunt that served craft European-style beers, they started 
+a whole brewery complete with a full-on brewpub for locals and visitors. It became 
+a place where folks could drink and tell stories about their time on the trail or 
+ski slope, or all of the above.
+
+They named it Devils Backbone, the same name some brave surveyors, including 
+Thomas Jefferson's dad, Peter, called this hard-to-summit mountain region almost 
+300 years ago. Kinda poetic, right?
+
+In 2016 Devils Backbone Brewing Company was acquired by Anheuser-Busch. Since then, 
+we've continued to brew award-winning beers that we're proud of, as well as share 
+our beers with more beer friends than ever before!
+
+Quite simply, we exist for one thing: To bring the people together in the great 
+outdoors. After the pandemic forcibly slowed us down, we are ready to go explore 
+the places we've missed with the friends and family we've longed for. Wherever you 
+find yourself enjoying time with your favorite people, whether it's at one of our 
+locations nestled in the beautiful Blue Ridge Mountains or on your own back porch 
+pulling cans from a cooler, we hope you also bring along your favorite Devils 
+Backbone beer or cocktail and Drink Outdoors Together.
+
+200 Crandall Run Roseland, VA 22967
+434-361-1001
+
+
+================================================================================
+================================================================================
+PROPOSED ACCORDION PANELS (WHAT IT WILL BECOME)
+================================================================================
+================================================================================
+
+
+================================================================================
+ACCORDION PANEL 1
+TITLE: Our Story & Mission
+================================================================================
+
+<p>Years ago, our founders, Steve and Heidi Crandall, were on a ski trip in the 
+Alps when they tried their first craft beer, a German Weisse at a brewpub. To 
+satisfy their thirst for a local haunt that served craft European-style beers, 
+they started a whole brewery complete with a full-on brewpub for locals and 
+visitors. It became a place where folks could drink and tell stories about their 
+time on the trail or ski slope, or all of the above.</p>
+
+<p>They named it Devils Backbone, the same name some brave surveyors, including 
+Thomas Jefferson's dad, Peter, called this hard-to-summit mountain region almost 
+300 years ago. Kinda poetic, right?</p>
+
+<p>Quite simply, we exist for one thing: To bring the people together in the great 
+outdoors. After the pandemic forcibly slowed us down, we are ready to go explore 
+the places we've missed with the friends and family we've longed for. Wherever you 
+find yourself enjoying time with your favorite people, whether it's at one of our 
+locations nestled in the beautiful Blue Ridge Mountains or on your own back porch 
+pulling cans from a cooler, we hope you also bring along your favorite Devils 
+Backbone beer or cocktail and Drink Outdoors Together.</p>
+
+
+================================================================================
+ACCORDION PANEL 2
+TITLE: Our Beers & Location
+================================================================================
+
+<p>In 2016 Devils Backbone Brewing Company was acquired by Anheuser-Busch. Since 
+then, we've continued to brew award-winning beers that we're proud of, as well as 
+share our beers with more beer friends than ever before!</p>
+
+<p>200 Crandall Run<br>
+Roseland, VA 22967</p>
+
+<p><a href="tel:434-361-1001">434-361-1001</a></p>
+
+
+================================================================================
+WHAT WILL BE REMOVED (not included in accordions)
+================================================================================
+
+- Nothing - all content preserved
+
+
+================================================================================
+APPROVE? (yes/no)
+================================================================================
