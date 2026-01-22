@@ -1,0 +1,86 @@
+====================================================================================================
+URL AUDIT SUMMARY
+====================================================================================================
+
+✅ 404 ERRORS: 0 (All previously broken URLs have been fixed)
+
+====================================================================================================
+nelsoncounty.com URLs FOUND (15 total)
+====================================================================================================
+
+These are self-referential links pointing back to nelsoncounty.com:
+
+1. https://nelsoncounty.com/wp-content/uploads/2024/05/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+2. https://nelsoncounty.com/explore/montebello-fish-hatchery/
+3. https://nelsoncounty.com/explore/montebello-country-store-cafe/
+4. https://nelsoncounty.com/explore/fishing-at-montebello/
+5. https://nelsoncounty.com/wp-content/uploads/2024/05/Humpback-Rock-Nelson-County.pdf
+6. https://www.nelsoncounty.com/hikes-trails/
+7. https://nelsoncounty.com/wp-content/uploads/2024/05/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+8. https://nelsoncounty.com/explore/blackrock-trail/
+9. https://nelsoncounty.com/explore/upper-shamokin-falls-trail/
+10. https://nelsoncounty.com/explore/james-river/
+11. https://nelsoncounty.com/explore/north-fork-of-the-piney-river/
+12. https://nelsoncounty.com/explore/tye-river/
+13. https://nelsoncounty.com/explore/rockfish-river/
+14. https://nelsoncounty.com/explore/crabtree-falls/
+15. https://nelsoncounty.com/stay/
+16. https://trager-brothers-coffee-20.goto-restaurants.com/
+17. https://bluemountainbrewery.com/
+18. https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+19. https://bluemountainbarrel.com/
+20. https://www.vitospizzagrill.com/
+21. https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73667
+22. https://www.fs.usda.gov/gwj
+23. https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd862390.pdf
+24. http://www.vacabins.com/
+25. https://www.nelsonscenicloop.com/
+26. http://www.howardsvillecanoe.com/
+27. http://mossycreekflyfishing.com/portfolio-item/stoney-creek/
+28. https://www.hilltopberrywine.com/
+29. https://inglewood-farm.com/
+30. http://wildtimshel.com/
+31. https://seamansorchard.com/
+32. https://tinkerlandfarm.com/
+33. https://www.appalachianhorseadventures.org/
+34. https://nelson151.com/map/
+35. https://www.virginiaspirits.org/
+36. http://Expedia.com
+37. http://www.crabtreefalls.com
+38. https://www.vrbo.com/3805379ha?dateless=true
+39. https://indigohouseva.com/stay/
+40. https://koehlervacationrentals.com/listing/hot-tub-near-veritas-blue-ridge-tunnel-afton-mt/
+41. https://koehlervacationrentals.com/listing/fully-equipped-near-veritas-blue-ridge-tunnel/
+42. https://koehlervacationrentals.com/listing/hot-tub-near-afton-mtn-vineyard-horse-farm/
+43. https://koehlervacationrentals.com/listing/fully-equipped-near-veritas-afton-mtn-hazy-mtn/
+44. https://koehlervacationrentals.com/listing/hot-tub-15-mins-to-wintergreen-walk-to-3-notchd/
+45. https://www.vrbo.com/2018325
+46. https://www.vrbo.com/1347342
+47. https://www.vrbo.com/368761
+48. https://tinynelson.com
+49. http://www.campblueridge.org
+50. https://www.vrbo.com/7907648ha?dateless=true
+51. https://fourseasonvacationrentals.com/room/mountain-dreams-condo-at-wintergreen-resort/
+52. https://www.vrbo.com/2096887?dateless=true
+53. https://www.vrbo.com/1231026?dateless=true
+54. http://loveridgeva.com
+55. http://www.vrbo.com/758982
+56. http://koehlervacationrentals.com
+57. http://www.artandsouldwtg.com
+58. https://partners.eviivo.com/bestillgetaways/p/united-states/virginia/afton/afton-awaits/aftonawaits22920
+59. https://www.vrbo.com/3181909
+60. http://www.staybubowinterbreen.com
+61. http://www.vrbo.com/7973682
+62. http://www.vrbo.com/2202432
+63. https://www.vrbo.com/96942
+64. http://www.vrbo.com/4451978
+65. http://www.vrbo.com
+66. https://shop.castiron.me/queenoaksfarm
+
+====================================================================================================
+NOTE: The 'Other Errors' section includes:
+- tel: links (phone numbers - these are expected to fail HTTP checks)
+- Some 403 Forbidden errors (may need manual review)
+- SSL/DNS errors (may be temporary or need manual review)
+
+For full details, see: COMPREHENSIVE_URL_AUDIT.txt

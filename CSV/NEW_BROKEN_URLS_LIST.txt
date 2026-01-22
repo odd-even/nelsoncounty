@@ -1,0 +1,7 @@
+====================================================================================================
+NEW BROKEN URLs (404 ERRORS) FOUND IN COMPREHENSIVE AUDIT
+====================================================================================================
+
+1. https://www.tnfw.org/crawfords-knob
+   - Paul’s Creek Trail (detailedDescription)
+

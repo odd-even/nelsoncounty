@@ -1,0 +1,265 @@
+====================================================================================================
+FINAL SUMMARY - ALL DOCUMENTS/PDFs IN DOCUMENT COLUMNS
+====================================================================================================
+
+Total documents in document columns: 28
+
+====================================================================================================
+ALL DOCUMENTS BY LISTING
+====================================================================================================
+
+Listing: Allen Creek Nature Preserve
+  Column: document1
+  Label: Interactive Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Appalachian Trail from Rt 56 to Harpers Creek
+  Column: document1
+  Label: Harpers Creek Trail Map
+  URL: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+
+Listing: Appalachian Trail from Rt 56 to Harpers Creek
+  Column: document2
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Blackrock Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Blue Ridge Tunnel
+  Column: document1
+  Label: Blue Ridge Tunnel Map
+  URL: https://ik.imagekit.io/OE/nelson-county/listings/Blue_Ridge_Tunnel_Map_OxY941XXoL.pdf
+
+Listing: Brimstone Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Chestnut Springs Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Devils Knob Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Fortune’s Ridge Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Hemlock Springs Loop
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Highlands Leisure Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Humpback Rocks
+  Column: document1
+  Label: Humpback Rocks Trail Map
+  URL: https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf
+
+Listing: Laurel Ridge Loop
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Lower Shamokin Falls Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Nelson County Wilderness Area
+  Column: document1
+  Label: Three Ridges Trail Map
+  URL: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+
+Listing: Old Appalachian Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Paul’s Creek Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Pond Hollow Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Ravens Roost Park
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Shamokin Springs Nature Preserve
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: The Plunge
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Trillium Field
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Upper Shamokin Falls Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Upper Shamokin Gorge Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: White Oak Trail
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Stoney Creek Park
+  Column: document1
+  Label: Trail Map
+  URL: https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Listing: Spy Rock
+  Column: document1
+  Label: Spy Rock Parking Map
+  URL: https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd862390.pdf
+
+Listing: Fishing the South Rockfish River
+  Column: document1
+  Label: Trout Stocking Schedule
+  URL: https://www.dgif.virginia.gov/fishing/trout-stocking-schedule/
+
+
+====================================================================================================
+GROUPED BY LISTING
+====================================================================================================
+
+Allen Creek Nature Preserve:
+  - Interactive Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Appalachian Trail from Rt 56 to Harpers Creek:
+  - Harpers Creek Trail Map (document1)
+    https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+  - Trail Map (document2)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Blackrock Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Blue Ridge Tunnel:
+  - Blue Ridge Tunnel Map (document1)
+    https://ik.imagekit.io/OE/nelson-county/listings/Blue_Ridge_Tunnel_Map_OxY941XXoL.pdf
+
+Brimstone Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Chestnut Springs Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Devils Knob Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Fishing the South Rockfish River:
+  - Trout Stocking Schedule (document1)
+    https://www.dgif.virginia.gov/fishing/trout-stocking-schedule/
+
+Fortune’s Ridge Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Hemlock Springs Loop:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Highlands Leisure Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Humpback Rocks:
+  - Humpback Rocks Trail Map (document1)
+    https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf
+
+Laurel Ridge Loop:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Lower Shamokin Falls Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Nelson County Wilderness Area:
+  - Three Ridges Trail Map (document1)
+    https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+
+Old Appalachian Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Paul’s Creek Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Pond Hollow Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Ravens Roost Park:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Shamokin Springs Nature Preserve:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Spy Rock:
+  - Spy Rock Parking Map (document1)
+    https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd862390.pdf
+
+Stoney Creek Park:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+The Plunge:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Trillium Field:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Upper Shamokin Falls Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+Upper Shamokin Gorge Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+
+White Oak Trail:
+  - Trail Map (document1)
+    https://www.google.com/maps/d/viewer?mid=1OgGZeph6Q78QSF1sr9C2HSv6AVH6Xuvo&ll=37.920842%2C-78.94760400000001&z=13
+

@@ -1,0 +1,199 @@
+====================================================================================================
+HOURS FORMATTING - PREVIEW FOR ALL LISTINGS
+====================================================================================================
+
+Total listings to format: 12
+
+FORMATTING RULES:
+1. Add <strong>Hours:</strong> label at the start
+2. Add line breaks (<br><br>) before the label
+3. ONLY add <br> after semicolons (separates distinct time periods)
+4. Keep day ranges together (Monday-Saturday stays on one line)
+5. Keep complete phrases together
+
+====================================================================================================
+ALL LISTINGS - BEFORE AND AFTER
+====================================================================================================
+
+1. Colleen Deli
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...ch specials. Full breakfast served from >>>to close. Salad bar during the summer. Full menu featuring sandwiches, wraps, subs and more. Homemade bake goods for your sweet tooth. Located in the Colleen Exxon &amp; Convenience Mart on Rt. 29<<<5 miles south of Lovingston) in Nelson C...
+
+AFTER:
+  ...ch specials. Full breakfast served from >>><br><br><strong>Hours:</strong> to close. Salad bar during the summer. Full menu featuring sandwiches, wraps, subs and more. Homemade bake goods for your sweet tooth. Located in the Colleen Exxon &amp;<br>Convenience Mart on Rt. 29<<<5 miles south of Lovingston) in Nelson C...
+
+VISUAL PREVIEW:
+  
+
+Hours: to close. Salad bar during the summer. Full menu featuring sandwiches, wraps, subs and more. Homemade bake goods for your sweet tooth. Located in the Colleen Exxon &amp;
+Convenience Mart on Rt. 29
+
+====================================================================================================
+
+2. Graves Grocery & Deli
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...<p>Convenience store and gas. >>>breakfast and lunch daily.<<<ockfish Valley Hwy. Nellysford, VA 22958...
+
+AFTER:
+  ...<p>Convenience store and gas. >>><br><br><strong>Hours:</strong> breakfast and lunch daily.<<<ockfish Valley Hwy. Nellysford, VA 22958...
+
+VISUAL PREVIEW:
+  
+
+Hours: breakfast and lunch daily.
+
+====================================================================================================
+
+3. Hickman’s Exxon Grocery
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...<p>Convenience Store and Gas. >>>for Breakfast and Lunch daily. Game Checking Station (all game)<<<eech Grove Road Roseland, VA 22967 <br><...
+
+AFTER:
+  ...<p>Convenience Store and Gas. >>><br><br><strong>Hours:</strong> for Breakfast and Lunch daily. Game Checking Station (all game)<<<eech Grove Road Roseland, VA 22967 <br><...
+
+VISUAL PREVIEW:
+  
+
+Hours: for Breakfast and Lunch daily. Game Checking Station (all game)
+
+====================================================================================================
+
+4. Ike’s Market & Deli
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...<p>Convenience Store and Deli. >>>– featuring specials and menu items. Game Checking Station<<<ockfish River Road Schuyler, VA 22969 <b...
+
+AFTER:
+  ...<p>Convenience Store and Deli. >>><br><br><strong>Hours:</strong> – featuring specials and menu items. Game Checking Station<<<ockfish River Road Schuyler, VA 22969 <b...
+
+VISUAL PREVIEW:
+  
+
+Hours: – featuring specials and menu items. Game Checking Station
+
+====================================================================================================
+
+5. Subway
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...<p>“The way a sandwich should be.” >>>10 am-10 pm; Friday night until<<<m; Sunday until 9 p.m. Located in Annie ...
+
+AFTER:
+  ...<p>“The way a sandwich should be.” >>><br><br><strong>Hours:</strong> 10 am-10 pm;<br>Friday night until<<<m; Sunday until 9 p.m. Located in Annie ...
+
+VISUAL PREVIEW:
+  
+
+Hours: 10 am-10 pm;
+Friday night until
+
+====================================================================================================
+
+6. The Market at Wintergreen
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...Wintergreen sweatshirts and tee shirts. >>>7:30 am to 7:30 pm daily.<<<ountain Inn Loop Wintergreen, VA 22958 <...
+
+AFTER:
+  ...Wintergreen sweatshirts and tee shirts. >>><br><br><strong>Hours:</strong> 7:30 am to 7:30 pm daily.<<<ountain Inn Loop Wintergreen, VA 22958 <...
+
+VISUAL PREVIEW:
+  
+
+Hours: 7:30 am to 7:30 pm daily.
+
+====================================================================================================
+
+7. Ann’s Family Restaurant
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...resh vegetables and specials every day. >>>Saturday.<<<homas Nelson Hwy Arrington, VA 22922 <br...
+
+AFTER:
+  ...resh vegetables and specials every day. >>><br><br><strong>Hours:</strong> Saturday.<<<homas Nelson Hwy Arrington, VA 22922 <br...
+
+VISUAL PREVIEW:
+  
+
+Hours: Saturday.
+
+====================================================================================================
+
+8. Blue Mountain Brewery
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...der &amp; kombucha are available daily. >>>11am-10pm Monday-Saturday and 11am-9pm on Sunday.<<<ritzers Shop Road Afton, VA 22920 <br><b...
+
+AFTER:
+  ...der &amp; kombucha are available daily. >>><br><br><strong>Hours:</strong> 11am-10pm Monday-Saturday and 11am-9pm on Sunday.<<<ritzers Shop Road Afton, VA 22920 <br><b...
+
+VISUAL PREVIEW:
+  
+
+Hours: 11am-10pm Monday-Saturday and 11am-9pm on Sunday.
+
+====================================================================================================
+
+9. Coquito Kitchen
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...vors and adding a twist here and there. >>>Thursday-Saturday 11:00-6:00<<<ockfish School Ln Afton, VA 22920</p>...
+
+AFTER:
+  ...vors and adding a twist here and there. >>><br><br><strong>Hours:</strong> Thursday-Saturday 11:00-6:00<<<ockfish School Ln Afton, VA 22920</p>...
+
+VISUAL PREVIEW:
+  
+
+Hours: Thursday-Saturday 11:00-6:00
+
+====================================================================================================
+
+10. El Mariachi Mexican Food
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...without Mexican food is NO life at all! >>>Monday thru Thursday 11am – 9pm. Friday 11am – 10pm, Saturday 12pm – 10pm and Sunday 11:30am – 9pm.<<<Two other locations in Amherst &amp; Cre...
+
+AFTER:
+  ...without Mexican food is NO life at all! >>><br><br><strong>Hours:</strong> Monday thru Thursday 11am – 9pm. Friday 11am – 10pm, Saturday 12pm – 10pm and Sunday 11:30am – 9pm.<<<Two other locations in Amherst &amp; Cre...
+
+VISUAL PREVIEW:
+  
+
+Hours: Monday thru Thursday 11am – 9pm. Friday 11am – 10pm, Saturday 12pm – 10pm and Sunday 11:30am – 9pm.
+
+====================================================================================================
+
+11. McDonald’s
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...<p>>>>7 days a week from 6 am – 11 pm<<<open until midnight on Friday and Saturd...
+
+AFTER:
+  ...<p>>>><br><br><strong>Hours:</strong> 7 days a week from 6 am – 11 pm<<<open until midnight on Friday and Saturd...
+
+VISUAL PREVIEW:
+  
+
+Hours: 7 days a week from 6 am – 11 pm
+
+====================================================================================================
+
+12. Oakland Museum
+----------------------------------------------------------------------------------------------------
+BEFORE:
+  ...es and the Virginia Landmarks Register. >>>Wednesdays 1-4PM and Saturdays 10AM to<<<M. 5365 Thomas Nelson Highway Arrington,...
+
+AFTER:
+  ...es and the Virginia Landmarks Register. >>><br><br><strong>Hours:</strong> Wednesdays 1-4PM and Saturdays 10AM to<<<M. 5365 Thomas Nelson Highway Arrington,...
+
+VISUAL PREVIEW:
+  
+
+Hours: Wednesdays 1-4PM and Saturdays 10AM to
+
+====================================================================================================
+

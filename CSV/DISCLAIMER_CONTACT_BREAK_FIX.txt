@@ -1,0 +1,205 @@
+====================================================================================================
+DISCLAIMER/CONTACT LINE BREAK FIX
+====================================================================================================
+
+1. Crestvue Cottage
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Leslie Brock <br><br><strong>Email:</strong> leslie@crestvuefarm.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Arrington</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Leslie Brock <br><br><strong>Email:</strong> leslie@crestvuefarm.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Arrington</p>
+
+====================================================================================================
+
+2. Sentosa Cabin
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Sarah Ponton <br><br><strong>Email:</strong> samponton123@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Schuyler</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Sarah Ponton <br><br><strong>Email:</strong> samponton123@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Schuyler</p>
+
+====================================================================================================
+
+3. Roudy's Retreat
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Jaclyn Roudabush <br><br><strong>Email:</strong> roudys.retreat@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Montebello</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Jaclyn Roudabush <br><br><strong>Email:</strong> roudys.retreat@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Montebello</p>
+
+====================================================================================================
+
+4. Pachi's Ridge
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Susan Castaldo <br><br><strong>Email:</strong> szulcs@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Nellysford</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Susan Castaldo <br><br><strong>Email:</strong> szulcs@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Nellysford</p>
+
+====================================================================================================
+
+5. Boogie Nights Manor
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Jeremy DiMaio <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Pets allowed, but approval required in advance<br><br><strong>Located in:</strong> Afton</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Jeremy DiMaio <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Pets allowed, but approval required in advance<br><br><strong>Located in:</strong> Afton</p>
+
+====================================================================================================
+
+6. Rusty's Retreat
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Jeremy DiMaio <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Afton</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Jeremy DiMaio <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Afton</p>
+
+====================================================================================================
+
+7. Village Inn
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Sundeep Madhiwala <br><br><strong>Email:</strong> smadhiwala@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Lovingston</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Sundeep Madhiwala <br><br><strong>Email:</strong> smadhiwala@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Lovingston</p>
+
+====================================================================================================
+
+8. Cozy Mountain Cottage
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Benjamin Sites <br><br><strong>Email:</strong> bsites1420@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Nellysford</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Benjamin Sites <br><br><strong>Email:</strong> bsites1420@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Nellysford</p>
+
+====================================================================================================
+
+9. Beech Grove Farmhouse
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Wendy &amp; Jason Harris <br><br><strong>Email:</strong> harrisx4@icloud.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Roseland</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Wendy &amp; Jason Harris <br><br><strong>Email:</strong> harrisx4@icloud.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in:</strong> Roseland</p>
+
+====================================================================================================
+
+10. Straw Bale House
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Mary Elizabeth Cunningham <br><br><strong>Email:</strong> mscsherpa@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Mary Elizabeth Cunningham <br><br><strong>Email:</strong> mscsherpa@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+====================================================================================================
+
+11. Blue Ridge Bliss
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Mary Beth Cowardin <br><br><strong>Email:</strong> blueridgeblisswgn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Roseland</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Mary Beth Cowardin <br><br><strong>Email:</strong> blueridgeblisswgn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Roseland</p>
+
+====================================================================================================
+
+12. Stays at Lovingston Winery
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Tessa Riley <br><br><strong>Email:</strong> tessa@lovingstonwinery.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Lovingston</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Tessa Riley <br><br><strong>Email:</strong> tessa@lovingstonwinery.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Lovingston</p>
+
+====================================================================================================
+
+13. Cottage at Pines End
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Salena Hitzeman <br><br><strong>Email:</strong> salenahitzeman@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Arrington</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Salena Hitzeman <br><br><strong>Email:</strong> salenahitzeman@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Arrington</p>
+
+====================================================================================================
+
+14. Woodson's Mill House
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> William &amp; Charlene Chinworth <br><br><strong>Email:</strong> bandcchinworth@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Roseland</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> William &amp; Charlene Chinworth <br><br><strong>Email:</strong> bandcchinworth@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in:</strong> Roseland</p>
+
+====================================================================================================
+
+15. Harmony Hill Bed & Breakfast
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Mary Ten Hoopen <br><br><strong>Email:</strong> mtenhoopen@verizon.net<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Arrington</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Mary Ten Hoopen <br><br><strong>Email:</strong> mtenhoopen@verizon.net<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Arrington</p>
+
+====================================================================================================
+
+16. Spyrock Lodge
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Lilibeth Yankovich <br><br><strong>Email:</strong> spyrock@mac.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Montebello</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Lilibeth Yankovich <br><br><strong>Email:</strong> spyrock@mac.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Montebello</p>
+
+====================================================================================================
+
+17. Inn at Blue Mountain Brewery
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Martha Hayman <br><br><strong>Email:</strong> inn@bluemountainbrewery.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Martha Hayman <br><br><strong>Email:</strong> inn@bluemountainbrewery.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+====================================================================================================
+
+18. Gracewood
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Michael Penny <br><br><strong>Email:</strong> michael@savvyrest.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Michael Penny <br><br><strong>Email:</strong> michael@savvyrest.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Afton</p>
+
+====================================================================================================
+
+19. The Chimneys
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Margaret Stahl <br><br><strong>Email:</strong> maggiestahl11@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Montebello</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Margaret Stahl <br><br><strong>Email:</strong> maggiestahl11@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Montebello</p>
+
+====================================================================================================
+
+20. Carriage House at Stagebridge Farm
+----------------------------------------------------------------------------------------------------
+BEFORE:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em> <strong>Contact:</strong> Barbara Larson <br><br><strong>Email:</strong> larsonba57@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Lovingston</p>
+
+AFTER:
+<em>*Lodging descriptions are provided by the host and not independently verified.</em><br><br><strong>Contact:</strong> Barbara Larson <br><br><strong>Email:</strong> larsonba57@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in:</strong> Lovingston</p>
+
+====================================================================================================
+
+... and 122 more listings

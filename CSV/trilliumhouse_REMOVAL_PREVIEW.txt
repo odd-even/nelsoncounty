@@ -1,0 +1,63 @@
+====================================================================================================
+TRILLIUMHOUSE URL REMOVAL PREVIEW
+====================================================================================================
+
+====================================================================================================
+OCCURRENCE 1: Allen Creek Nature Preserve (detailedDescription)
+====================================================================================================
+
+SENTENCE WITH URL (BEFORE):
+----------------------------------------------------------------------------------------------------
+It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at <a href='https://www.tnfw.org/trilliumhouse'>https://www.tnfw.org/trilliumhouse</a> Trillium House.</p>
+
+SENTENCE AFTER REMOVAL:
+----------------------------------------------------------------------------------------------------
+It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+FULL FIELD CONTENT (BEFORE):
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <strong>Miles:</strong> 0.7 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> EASY <strong>Directions:</strong> <a href='https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu'>Google Maps</a> Google Maps </div> This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at <a href='https://www.tnfw.org/trilliumhouse'>https://www.tnfw.org/trilliumhouse</a> Trillium House.</p>
+
+FULL FIELD CONTENT (AFTER):
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <strong>Miles:</strong> 0.7 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> EASY <strong>Directions:</strong> <a href='https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu'>Google Maps</a> Google Maps </div> This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+====================================================================================================
+
+====================================================================================================
+OCCURRENCE 2: Allen Creek Nature Preserve (website)
+====================================================================================================
+
+BEFORE (with broken URL):
+----------------------------------------------------------------------------------------------------
+https://www.tnfw.org/trilliumhouse
+
+AFTER (URL removed):
+----------------------------------------------------------------------------------------------------
+[Website field will be cleared/empty]
+
+
+====================================================================================================
+
+====================================================================================================
+OCCURRENCE 3: Shamokin Springs Nature Preserve (detailedDescription)
+====================================================================================================
+
+SENTENCE WITH URL (BEFORE):
+----------------------------------------------------------------------------------------------------
+It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at <a href='https://www.tnfw.org/trilliumhouse'>https://www.tnfw.org/trilliumhouse</a> Trillium House.</p>
+
+SENTENCE AFTER REMOVAL:
+----------------------------------------------------------------------------------------------------
+It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+FULL FIELD CONTENT (BEFORE):
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at <a href='https://www.tnfw.org/trilliumhouse'>https://www.tnfw.org/trilliumhouse</a> Trillium House.</p>
+
+FULL FIELD CONTENT (AFTER):
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+====================================================================================================
+

@@ -1,0 +1,16 @@
+====================================================================================================
+UNFORMATTED CONTACT INFO - PREVIEW
+====================================================================================================
+
+Total listings with unformatted contact info: 0
+
+FORMATTING RULES:
+1. Find phone numbers that aren't already formatted with <strong>Phone:</strong>
+2. Add <strong>Phone:</strong> label before the phone number
+3. Add line breaks (<br><br>) before the label
+4. Standardize phone format to XXX-XXX-XXXX
+
+====================================================================================================
+ALL LISTINGS - BEFORE AND AFTER
+====================================================================================================
+

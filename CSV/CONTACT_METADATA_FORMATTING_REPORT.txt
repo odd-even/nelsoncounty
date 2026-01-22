@@ -1,0 +1,2044 @@
+====================================================================================================
+CONTACT/METADATA FORMATTING - NEEDS LINE BREAKS
+====================================================================================================
+
+Total listings needing formatting: 203
+
+FORMATTING RULE:
+Add <br> or <br><br> between consecutive contact/metadata items like:
+  <strong>Contact</strong> ... <strong>Email:</strong> ... <strong>Staff on Site?</strong> etc.
+
+====================================================================================================
+ALL LISTINGS NEEDING FORMATTING
+====================================================================================================
+
+1. Crestvue Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Leslie Brock, <br><br><strong>Email:</strong> leslie@crestvuefarm.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Arrington</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Leslie Brock, <br><br><strong>Email:</strong> leslie@crestvuefarm.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Arrington</p>...
+
+====================================================================================================
+
+2. Sentosa Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sarah Ponton, <br><br><strong>Email:</strong> samponton123@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Schuyler</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sarah Ponton, <br><br><strong>Email:</strong> samponton123@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Schuyler</p>...
+
+====================================================================================================
+
+3. Roudy's Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jaclyn Roudabush, <br><br><strong>Email:</strong> roudys.retreat@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jaclyn Roudabush, <br><br><strong>Email:</strong> roudys.retreat@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+4. Pachi's Ridge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Susan Castaldo, <br><br><strong>Email:</strong> szulcs@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Susan Castaldo, <br><br><strong>Email:</strong> szulcs@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+5. Boogie Nights Manor
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jeremy DiMaio, <br><br><strong>Email:</strong> jddimaio@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Pets allowed, but approval required in advance <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jeremy DiMaio, <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Pets allowed, but approval required in advance<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+6. Big Tiny House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jeremy DiMaio, <a href='mailto:jddimaio@yahoo.com'>jddimaio@yahoo.com</a> <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jeremy DiMaio, <a href='mailto:jddimaio@yahoo.com'>jddimaio@yahoo.com</a> <strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+7. Rusty's Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jeremy DiMaio, <br><br><strong>Email:</strong> jddimaio@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jeremy DiMaio, <br><br><strong>Email:</strong> jddimaio@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+8. Village Inn
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sundeep Madhiwala, <br><br><strong>Email:</strong> smadhiwala@yahoo.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sundeep Madhiwala, <br><br><strong>Email:</strong> smadhiwala@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+9. Cozy Mountain Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Benjamin Sites, <br><br><strong>Email:</strong> bsites1420@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Benjamin Sites, <br><br><strong>Email:</strong> bsites1420@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+10. Beech Grove Farmhouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Wendy &amp; Jason Harris, <br><br><strong>Email:</strong> harrisx4@icloud.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Wendy &amp; Jason Harris, <br><br><strong>Email:</strong> harrisx4@icloud.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+11. Straw Bale House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mary Elizabeth Cunningham, <br><br><strong>Email:</strong> mscsherpa@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mary Elizabeth Cunningham, <br><br><strong>Email:</strong> mscsherpa@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+12. Blue Ridge Bliss
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mary Beth Cowardin, <br><br><strong>Email:</strong> blueridgeblisswgn@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mary Beth Cowardin, <br><br><strong>Email:</strong> blueridgeblisswgn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+13. Stays at Lovingston Winery
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Tessa Riley, <br><br><strong>Email:</strong> tessa@lovingstonwinery.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Tessa Riley, <br><br><strong>Email:</strong> tessa@lovingstonwinery.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+14. Cottage at Pines End
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Salena Hitzeman, <br><br><strong>Email:</strong> salenahitzeman@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Arrington</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Salena Hitzeman, <br><br><strong>Email:</strong> salenahitzeman@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Arrington</p>...
+
+====================================================================================================
+
+15. Woodson's Mill House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> William &amp; Charlene Chinworth, <br><br><strong>Email:</strong> bandcchinworth@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> William &amp; Charlene Chinworth, <br><br><strong>Email:</strong> bandcchinworth@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+16. Harmony Hill Bed & Breakfast
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mary Ten Hoopen, <br><br><strong>Email:</strong> mtenhoopen@verizon.net <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Arrington</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mary Ten Hoopen, <br><br><strong>Email:</strong> mtenhoopen@verizon.net<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Arrington</p>...
+
+====================================================================================================
+
+17. Spyrock Lodge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lilibeth Yankovich, <br><br><strong>Email:</strong> spyrock@mac.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lilibeth Yankovich, <br><br><strong>Email:</strong> spyrock@mac.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+18. Inn at Blue Mountain Brewery
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Martha Hayman, <br><br><strong>Email:</strong> inn@bluemountainbrewery.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Martha Hayman, <br><br><strong>Email:</strong> inn@bluemountainbrewery.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+19. Gracewood
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Michael Penny, <br><br><strong>Email:</strong> michael@savvyrest.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Michael Penny, <br><br><strong>Email:</strong> michael@savvyrest.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+20. The Chimneys
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Margaret Stahl, <br><br><strong>Email:</strong> maggiestahl11@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Margaret Stahl, <br><br><strong>Email:</strong> maggiestahl11@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+21. Carriage House at Stagebridge Farm
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Barbara Larson, <br><br><strong>Email:</strong> larsonba57@yahoo.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Barbara Larson, <br><br><strong>Email:</strong> larsonba57@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+22. Indigo House Bed & Breakfast
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Stephanie Thomas, <br><br><strong>Email:</strong> info@indigohouseva.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Stephanie Thomas, <br><br><strong>Email:</strong> info@indigohouseva.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+23. Papa's Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Scott Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Scott Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+24. Meme's Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+25. Cheval Circle
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+26. Wine Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+27. Carter's Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> scottlkoehler@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+28. Beech Grove Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jill Averitt, <br><br><strong>Email:</strong> jill@raveritt.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> N/A <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jill Averitt, <br><br><strong>Email:</strong> jill@raveritt.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> N/A<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+29. Montebello Resort
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Christy Humphreys, <br><br><strong>Email:</strong> christy@montebellova.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Christy Humphreys, <br><br><strong>Email:</strong> christy@montebellova.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+30. Freshwater Field Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kathy Bryant, <br><br><strong>Email:</strong> kcjcbryant@hotmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kathy Bryant, <br><br><strong>Email:</strong> kcjcbryant@hotmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+31. Four Elements Farm
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Craig Griffin, <br><br><strong>Email:</strong> wiredbikecraig@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Craig Griffin, <br><br><strong>Email:</strong> wiredbikecraig@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+32. Time to Wine Down
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+33. Love Afton Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+34. Meili Mountain
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jim McCullough, <br><br><strong>Email:</strong> jim@meilimountain.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Tyro</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jim McCullough, <br><br><strong>Email:</strong> jim@meilimountain.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Tyro</p>...
+
+====================================================================================================
+
+35. Adventure Awaits
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+36. Wintergreen Ridge Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Pathway Properties, <br><br><strong>Email:</strong> hello@pathwaypropertiesva.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+37. Maren Estate
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kevin Lee, <br><br><strong>Email:</strong> blueheavenchalet@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kevin Lee, <br><br><strong>Email:</strong> blueheavenchalet@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+38. Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kathy &amp; Martin Versluys, <br><br><strong>Email:</strong> contact@acorninn.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kathy &amp; Martin Versluys, <br><br><strong>Email:</strong> contact@acorninn.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+39. Cottage at Old Stoney Creek
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Graham Howe, <br><br><strong>Email:</strong> howegraham@hotmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Graham Howe, <br><br><strong>Email:</strong> howegraham@hotmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+40. Blue Ridge Heaven
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Vestal Tutterow, <br><br><strong>Email:</strong> vestutt@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Vestal Tutterow, <br><br><strong>Email:</strong> vestutt@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+41. Dancing Bear Lodge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Katie McKay, <br><br><strong>Email:</strong> maplecreekproperties@outlook.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Katie McKay, <br><br><strong>Email:</strong> maplecreekproperties@outlook.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+42. Windy Knoll
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Wendy Raubenheimer, <br><br><strong>Email:</strong> wendywill12@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Wendy Raubenheimer, <br><br><strong>Email:</strong> wendywill12@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+43. Creekside
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+44. Cottage on Route 151
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+45. Farmhouse on Route 151
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ashley Long, <br><br><strong>Email:</strong> ashley@patterncap.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+46. Castor Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Valerie McFarland, <br><br><strong>Email:</strong> thecastorcabin@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Valerie McFarland, <br><br><strong>Email:</strong> thecastorcabin@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+47. Rocky Run Landing
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Charles Murphy, <br><br><strong>Email:</strong> rockyrunlanding@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Arrington</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Charles Murphy, <br><br><strong>Email:</strong> rockyrunlanding@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Arrington</p>...
+
+====================================================================================================
+
+48. Cottage on the Knoll
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Bobbi Comer, <br><br><strong>Email:</strong> alwaysrunnin2@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Bobbi Comer, <br><br><strong>Email:</strong> alwaysrunnin2@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+49. High Lonesome Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Robb Torgler, <br><br><strong>Email:</strong> highlonesomecabin@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Tyro</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Robb Torgler, <br><br><strong>Email:</strong> highlonesomecabin@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Tyro</p>...
+
+====================================================================================================
+
+50. Lewis Catherine House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lindsey Koshansky, <br><br><strong>Email:</strong> lewiscatherinehouse@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lindsey Koshansky, <br><br><strong>Email:</strong> lewiscatherinehouse@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+51. Glenbrae
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sydney Robertson, <br><br><strong>Email:</strong> sydney@loringwoodriff.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sydney Robertson, <br><br><strong>Email:</strong> sydney@loringwoodriff.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+52. Elk Mountain Overlook
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sydney Robertson, <br><br><strong>Email:</strong> sydney@loringwoodriff.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sydney Robertson, <br><br><strong>Email:</strong> sydney@loringwoodriff.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+53. Ethan's Den
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+54. Mountain House INN
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> David Lassiter, <br><br><strong>Email:</strong> davidlassiter1@mac.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> David Lassiter, <br><br><strong>Email:</strong> davidlassiter1@mac.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+55. Sweet Afton
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Guest Houses, <br><br><strong>Email:</strong> info@vaguesthouses.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Guest Houses, <br><br><strong>Email:</strong> info@vaguesthouses.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+56. Three Sisters Pre-Civil War Log Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+57. Nine Ridges Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+58. Grace's Place Petite Retreats
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jack Buni, <br><br><strong>Email:</strong> jack@tinynelson.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jack Buni, <br><br><strong>Email:</strong> jack@tinynelson.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+59. Cottage on the Trail
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Todd Hobson, <br><br><strong>Email:</strong> blueridgeclassics@yahoo.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Todd Hobson, <br><br><strong>Email:</strong> blueridgeclassics@yahoo.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+60. Rockfish Farmhouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sarah Ferren, <br><br><strong>Email:</strong> tulapropertiesva@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sarah Ferren, <br><br><strong>Email:</strong> tulapropertiesva@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+61. Fulton Belle Vue
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sarah Ferren, <br><br><strong>Email:</strong> tulapropertiesva@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sarah Ferren, <br><br><strong>Email:</strong> tulapropertiesva@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+62. Spindle Hill Farm
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Elise Lauterbach, <br><br><strong>Email:</strong> elise.lauterbach@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Elise Lauterbach, <br><br><strong>Email:</strong> elise.lauterbach@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+63. Beech Grove Cabins
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Becky Evans, <br><br><strong>Email:</strong> beechgrovecabins@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Becky Evans, <br><br><strong>Email:</strong> beechgrovecabins@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+64. Slipper Slope
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kevin Zachary, <br><br><strong>Email:</strong> kzacharysonic@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kevin Zachary, <br><br><strong>Email:</strong> kzacharysonic@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+65. Wintergreen Resort
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Stacey Dawkins, <br><br><strong>Email:</strong> sdawkins@wintergreenresort.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Stacey Dawkins, <br><br><strong>Email:</strong> sdawkins@wintergreenresort.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+66. Camp Blue Ridge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Julie Minnick, <br><br><strong>Email:</strong> cbroffice@pcsda.org <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Julie Minnick, <br><br><strong>Email:</strong> cbroffice@pcsda.org<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+67. Devils Backbone Camp
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jessica Carter, <br><br><strong>Email:</strong> jessica.carter@dbbrewingcompany.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jessica Carter, <br><br><strong>Email:</strong> jessica.carter@dbbrewingcompany.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+68. Haven at Devils Backbone Camp
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jessica Carter, <br><br><strong>Email:</strong> jessica.carter@dbbrewingcompany.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jessica Carter, <br><br><strong>Email:</strong> jessica.carter@dbbrewingcompany.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+69. Relaxing 3 bedroom Mountain Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kirstyn Martin, <br><br><strong>Email:</strong> kirstyn1215@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kirstyn Martin, <br><br><strong>Email:</strong> kirstyn1215@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+70. Mountain Dacha
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sergey Zhitar, <br><br><strong>Email:</strong> 67southforest@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sergey Zhitar, <br><br><strong>Email:</strong> 67southforest@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+71. Panoramic Peak - Vistas 1559, Wintergreen
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jamie Inlow, <br><br><strong>Email:</strong> hello@bestillgetaways.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jamie Inlow, <br><br><strong>Email:</strong> hello@bestillgetaways.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+72. Skis and Trees
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Joseph Bauer, <br><br><strong>Email:</strong> joebauer01@hotmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Joseph Bauer, <br><br><strong>Email:</strong> joebauer01@hotmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+73. Mountain Dreams Condo
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Rebecca Boyd, <br><br><strong>Email:</strong> info@fourseasonvacationrentals.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Rebecca Boyd, <br><br><strong>Email:</strong> info@fourseasonvacationrentals.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+74. Wintergreen Vistas
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lee Stocks, <br><br><strong>Email:</strong> rleestocks@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lee Stocks, <br><br><strong>Email:</strong> rleestocks@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+75. Clonmel Acres
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Allison Harwood, <br><br><strong>Email:</strong> allisonlharwood@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Allison Harwood, <br><br><strong>Email:</strong> allisonlharwood@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+76. Cabin at Clonmel
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Allison Harwood, <br><br><strong>Email:</strong> hello@bestillgetaways.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Allison Harwood, <br><br><strong>Email:</strong> hello@bestillgetaways.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+77. Sleepy Hollow Retreat Enjoy Your Stay
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Darlene Seay, <br><br><strong>Email:</strong> Dolleen4@aol.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Darlene Seay, <br><br><strong>Email:</strong> Dolleen4@aol.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+78. Eagles Court Ski In/Ski Out Condo
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lindsay Klein, <br><br><strong>Email:</strong> lindsayeckertklein@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lindsay Klein, <br><br><strong>Email:</strong> lindsayeckertklein@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+79. Wren House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Tom Fisher, <br><br><strong>Email:</strong> tom@environdc.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Tom Fisher, <br><br><strong>Email:</strong> tom@environdc.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+80. WildManDan B&B (Beer centric)
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Terri Tatarka, <br><br><strong>Email:</strong> terri@tatarka.me <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Terri Tatarka, <br><br><strong>Email:</strong> terri@tatarka.me<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+81. Marley's Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> John Crain, <br><br><strong>Email:</strong> jmcrain@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> John Crain, <br><br><strong>Email:</strong> jmcrain@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+82. Cozy & Clean Wintergreen Condo (Tanners Ridge)
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ritta Cunningham, <br><br><strong>Email:</strong> va4cunninghams@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ritta Cunningham, <br><br><strong>Email:</strong> va4cunninghams@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+83. Remodeled 3BR/2BA Ski Chalet off Tyro Slope
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Thomas Schaaf, <br><br><strong>Email:</strong> PaddingtonRVA@hotmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Thomas Schaaf, <br><br><strong>Email:</strong> PaddingtonRVA@hotmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+84. Three Springs Myndus
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Deborah Harvey, <br><br><strong>Email:</strong> threesprings.myndus@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Deborah Harvey, <br><br><strong>Email:</strong> threesprings.myndus@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+85. Lovingston Get-Away
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ed Hicks, <br><br><strong>Email:</strong> mredward0754@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ed Hicks, <br><br><strong>Email:</strong> mredward0754@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+86. Rock-n-Creek Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Richard Christy, <br><br><strong>Email:</strong> rchristy.964@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Richard Christy, <br><br><strong>Email:</strong> rchristy.964@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+87. Branch at Afton Mountain Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Dawn Cromer, <br><br><strong>Email:</strong> cromer.dawn@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Dawn Cromer, <br><br><strong>Email:</strong> cromer.dawn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+88. Bungalow at Afton Mountain Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Dawn Cromer, <br><br><strong>Email:</strong> cromer.dawn@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Dawn Cromer, <br><br><strong>Email:</strong> cromer.dawn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+89. Avon Hill
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Joceyn O'Twitchell, <br><br><strong>Email:</strong> jocelyn@avonhilllodge.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Howardsville</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Joceyn O'Twitchell, <br><br><strong>Email:</strong> jocelyn@avonhilllodge.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Howardsville</p>...
+
+====================================================================================================
+
+90. A Nellysford Nest
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jeff Smidt, <br><br><strong>Email:</strong> jeff@stargazingllc.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jeff Smidt, <br><br><strong>Email:</strong> jeff@stargazingllc.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+91. Love Ridge Mountain Lodging
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Natasha Sienitsky, <br><br><strong>Email:</strong> loveridgeva@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Lyndhurst</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Natasha Sienitsky, <br><br><strong>Email:</strong> loveridgeva@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Lyndhurst</p>...
+
+====================================================================================================
+
+92. Open Heart Inn
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Laura Thibault, <br><br><strong>Email:</strong> openheartinn@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Laura Thibault, <br><br><strong>Email:</strong> openheartinn@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+93. Hillside Hideaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Kailey DiFerdinando, <br><br><strong>Email:</strong> kailey.watson19@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Kailey DiFerdinando, <br><br><strong>Email:</strong> kailey.watson19@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+94. Saddleback Sanctuary
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jamie Inlow, <br><br><strong>Email:</strong> hello@bestillgetaways.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jamie Inlow, <br><br><strong>Email:</strong> hello@bestillgetaways.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+95. Nonny Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sally Northcott-Mayes, <br><br><strong>Email:</strong> snmayes@vbschools.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Vesuvius</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sally Northcott-Mayes, <br><br><strong>Email:</strong> snmayes@vbschools.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Vesuvius</p>...
+
+====================================================================================================
+
+96. Basecamp 151
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Stephanie Hoover, <br><br><strong>Email:</strong> stephaniehoover623@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Stephanie Hoover, <br><br><strong>Email:</strong> stephaniehoover623@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+97. Oak Ledge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Tyler Sells, <br><br><strong>Email:</strong> hello@designspark.properties <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Tyler Sells, <br><br><strong>Email:</strong> hello@designspark.properties<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+98. Wintergreen Getaway for Families
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Christopher Battle, <br><br><strong>Email:</strong> chrisbattle@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Christopher Battle, <br><br><strong>Email:</strong> chrisbattle@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+99. Wintergreen Resort Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Scott &amp; Keli Davis, <br><br><strong>Email:</strong> wtgcabin@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Scott &amp; Keli Davis, <br><br><strong>Email:</strong> wtgcabin@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+100. Bluebird Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+101. Bear Tracks Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+102. Faber Farmhouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ben Butler, <br><br><strong>Email:</strong> caplerhomes@msn.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+103. Wintergreen - Fairway Woods
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Dan Ryan, <br><br><strong>Email:</strong> dryan6460@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Dan Ryan, <br><br><strong>Email:</strong> dryan6460@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+104. Peaktime
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Leigh Houghland, <br><br><strong>Email:</strong> lhoughland@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Leigh Houghland, <br><br><strong>Email:</strong> lhoughland@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+105. Hawthorne
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Cathleen Coyle, <br><br><strong>Email:</strong> coyleflowers@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Cathleen Coyle, <br><br><strong>Email:</strong> coyleflowers@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+106. Rockfish Tiny Home
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Daniel Urban, <br><br><strong>Email:</strong> rockfishtinyhome@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Schuyler</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Daniel Urban, <br><br><strong>Email:</strong> rockfishtinyhome@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Schuyler</p>...
+
+====================================================================================================
+
+107. Tupelo
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lauren Bishop, <br><br><strong>Email:</strong> lauren.lam@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lauren Bishop, <br><br><strong>Email:</strong> lauren.lam@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+108. The Vu, Afton
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Emily Hutter, <br><br><strong>Email:</strong> emilyhgreenwood@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Emily Hutter, <br><br><strong>Email:</strong> emilyhgreenwood@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+109. Serenity Summit
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Tyler &amp; Meredith, <br><br><strong>Email:</strong> hello@designspark.properties <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Tyler &amp; Meredith, <br><br><strong>Email:</strong> hello@designspark.properties<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+110. Wooder House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Amy Crooke, <br><br><strong>Email:</strong> thewooderhouse@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Amy Crooke, <br><br><strong>Email:</strong> thewooderhouse@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+111. Ash House at Holland Hill
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Brad Connors, <br><br><strong>Email:</strong> bradleyconnors@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Brad Connors, <br><br><strong>Email:</strong> bradleyconnors@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+112. D & D's Mountain Home
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> David Blackstock, <br><br><strong>Email:</strong> debbstock@outlook.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> David Blackstock, <br><br><strong>Email:</strong> debbstock@outlook.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+113. Bear Creek Inn
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Michael Sexton, <br><br><strong>Email:</strong> msexton478@yahoo.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Tyro</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Michael Sexton, <br><br><strong>Email:</strong> msexton478@yahoo.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Tyro</p>...
+
+====================================================================================================
+
+114. Cookie's Place, LLC
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Myra Brent-McGarry, <br><br><strong>Email:</strong> mbrentmcgarry@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Myra Brent-McGarry, <br><br><strong>Email:</strong> mbrentmcgarry@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+115. Bearfeet Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lydia Powell, <br><br><strong>Email:</strong> lydiapowell75@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lydia Powell, <br><br><strong>Email:</strong> lydiapowell75@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+116. Peaceful Mountain Getaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Laurie Reilly, <br><br><strong>Email:</strong> lblreilly@icloud.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Laurie Reilly, <br><br><strong>Email:</strong> lblreilly@icloud.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+117. Afton House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Taylor Bates, <br><br><strong>Email:</strong> hello@theaftonhouse.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Taylor Bates, <br><br><strong>Email:</strong> hello@theaftonhouse.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+118. LITTLE FARMHOUSE
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> homebuyerrichmond@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Heather Koehler, <br><br><strong>Email:</strong> homebuyerrichmond@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+119. Mountaintop Overlook
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> EmilyBauslaugh, <br><br><strong>Email:</strong> emilybauslaugh@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> EmilyBauslaugh, <br><br><strong>Email:</strong> emilybauslaugh@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+120. Blue Ridge Mountain Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ashley Wind, <br><br><strong>Email:</strong> windrentals@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ashley Wind, <br><br><strong>Email:</strong> windrentals@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+121. Mountain & Vine Farmhouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Michael Albers, <br><br><strong>Email:</strong> mike@delfossewine.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Michael Albers, <br><br><strong>Email:</strong> mike@delfossewine.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+122. Mountain & Vine Vineyards Log Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> MichaelAlbers, <br><br><strong>Email:</strong> mike@delfossewine.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly?</strong> No<strong>Located in</strong><strong> </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> MichaelAlbers, <br><br><strong>Email:</strong> mike@delfossewine.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly?</strong> No<br><br><strong>Located in</strong><strong> </strong> Faber</p>...
+
+====================================================================================================
+
+123. Fairway Chalet
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong>Stacie Husmann, <br><br><strong>Email:</strong> 72fairwayoaks@gmail.com <strong>Staff on Site? </strong>No <strong>Pet-Friendly? </strong>No <strong>Located in </strong>Wintergreen...
+
+SHOULD BECOME:
+<strong>Contact </strong>Stacie Husmann, <br><br><strong>Email:</strong> 72fairwayoaks@gmail.com<br><br><strong>Staff on Site? </strong>No<br><br><strong>Pet-Friendly? </strong>No<br><br><strong>Located in </strong>Wintergreen...
+
+====================================================================================================
+
+124. Spruce Creek Garden Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jennifer Arrendale, <br><br><strong>Email:</strong> jmarrendale@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jennifer Arrendale, <br><br><strong>Email:</strong> jmarrendale@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+125. Parrs Camp, Mountain Hollow
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Beverly White, <br><br><strong>Email:</strong> parrscamp@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Tyro</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Beverly White, <br><br><strong>Email:</strong> parrscamp@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Tyro</p>...
+
+====================================================================================================
+
+126. Parr's Camp
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Beverly White, <br><br><strong>Email:</strong> parrscamp@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong><strong>No</strong> <strong>Located in </strong> Tyro</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Beverly White, <br><br><strong>Email:</strong> parrscamp@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong><strong>No</strong><br><br><strong>Located in </strong> Tyro</p>...
+
+====================================================================================================
+
+127. Bella Vista
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Megan MacCutcheon, <br><br><strong>Email:</strong> megan.maccutcheon@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Megan MacCutcheon, <br><br><strong>Email:</strong> megan.maccutcheon@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+128. Mountain View Vista
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> James Reynolds, <br><br><strong>Email:</strong> jreynolds@findclarityvision.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> James Reynolds, <br><br><strong>Email:</strong> jreynolds@findclarityvision.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+129. Art & Soul Guesthouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Karen Rucker, <br><br><strong>Email:</strong> karenrucker59@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Karen Rucker, <br><br><strong>Email:</strong> karenrucker59@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+130. Art & Soul Main House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Karen Rucker, <br><br><strong>Email:</strong> karenrucker59@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Karen Rucker, <br><br><strong>Email:</strong> karenrucker59@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+131. Cottage at River Circle Farm
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Brian Bruce, <br><br><strong>Email:</strong> jbrirce@gmail.com <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wingina</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Brian Bruce, <br><br><strong>Email:</strong> jbrirce@gmail.com<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wingina</p>...
+
+====================================================================================================
+
+132. Berry Hill Lake
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Rich Daughtridge, <br><br><strong>Email:</strong> rich@daughtridge.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Rich Daughtridge, <br><br><strong>Email:</strong> rich@daughtridge.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+133. Afton Awaits
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> <br><br><strong>Email:</strong> hello@bestillgetaways.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> <br><br><strong>Email:</strong> hello@bestillgetaways.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+134. Pilotview Hollow
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Katherine Shields, <br><br><strong>Email:</strong> pilotviewhollow@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Katherine Shields, <br><br><strong>Email:</strong> pilotviewhollow@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+135. Nelson Cozy Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Klara Reilly, <br><br><strong>Email:</strong> klarareilly@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Klara Reilly, <br><br><strong>Email:</strong> klarareilly@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+136. Kneeling Shepherd
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> David Duncan, <br><br><strong>Email:</strong> davideduncan84@hotmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> David Duncan, <br><br><strong>Email:</strong> davideduncan84@hotmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+137. Kremer Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mike Kremer, <br><br><strong>Email:</strong> mike@mykremer.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mike Kremer, <br><br><strong>Email:</strong> mike@mykremer.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+138. Stewart's Place
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Shedana Esdaile, <br><br><strong>Email:</strong> stewartsplace422@gmail.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Shedana Esdaile, <br><br><strong>Email:</strong> stewartsplace422@gmail.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+139. Boho Cliff House Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Michael Hodges, <br><br><strong>Email:</strong> hello@designsparkproperties.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Michael Hodges, <br><br><strong>Email:</strong> hello@designsparkproperties.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+140. Airkey Boutique Rentals
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Airkey +14344666942 <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Airkey +14344666942<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+141. Three Ridge Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Justin Muchard <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Justin Muchard<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+142. Sunset Vista Villa
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Rebecca Precious <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Rebecca Precious<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+143. Arrowwood Lane
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Joe Jernigan <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Joe Jernigan<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+144. Winterhaven
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Neal Beggan <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Neal Beggan<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+145. 779 Blue Ridge Drive
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong>779 Blue Ridge Drive <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong>779 Blue Ridge Drive<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+146. Ski in Style At Sapphire Squirrel
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sherri-Lyn Whitfield <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sherri-Lyn Whitfield<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+147. Retreat at Three Ridges
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Paul Stojanovsici <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Paul Stojanovsici<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+148. Wintergreen Condo 1437 Highlands
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Chad Barbour <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Chad Barbour<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+149. Time Out
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Nancy Oates <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Nancy Oates<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+150. Cub Creek Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jacob Keeler <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jacob Keeler<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+151. Tyebello Cabins
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jerry Bowman <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Montebello</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jerry Bowman<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Montebello</p>...
+
+====================================================================================================
+
+152. Glass & Pine
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mark Jeschke <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mark Jeschke<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+153. Wintergreen 19 Ivy Glen Lane
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Christine Baker <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Christine Baker<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+154. Brown Bear Lodge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Brandon Pace <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Brandon Pace<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+155. Mountain Home in Nelson County
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Carl Breiner <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Carl Breiner<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+156. Spy Run Hideaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Frank Lehner <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Vesuvius</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Frank Lehner<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Vesuvius</p>...
+
+====================================================================================================
+
+157. Love of Mountains Oh Fill My Cup
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> J. Crain <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> J. Crain<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+158. Marigold on the Mountain
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Crystal Allen <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Crystal Allen<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+159. Top of The Mountain Hideaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jill Sandoval <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jill Sandoval<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+160. On The Rocks
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Elise Dunton <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Elise Dunton<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+161. Our Mountain Getaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Craig Zeigler <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Craig Zeigler<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+162. Rockfish Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Mary Battle <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Mary Battle<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+163. Blue Ridge Cabin
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Daniel Mais <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Daniel Mais<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+164. Wintergreen Duplex
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Emily Piacentino <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Emily Piacentino<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+165. Sunrise on the Trail
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> James Boyer <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> James Boyer<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+166. Mima's Mountain House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Anne Panas <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Massies Mill</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Anne Panas<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Massies Mill</p>...
+
+====================================================================================================
+
+167. Cliffs Edge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Karen Brown <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Karen Brown<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+168. Slopes At Tyro
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Julie Fitzgerald <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Julie Fitzgerald<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+169. Home on the Ridge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Marilyn Alphin <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Marilyn Alphin<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+170. Peppers Mountain Pad
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Cindy Torres <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Cindy Torres<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+171. Rockfish Valley Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Stacey Newton <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Stacey Newton<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+172. Dobie Condo 323 at Wintergreen
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Gioia Niquita <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Gioia Niquita<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+173. Highlands 1426 Condo
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Niquita Gioia <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Niquita Gioia<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+174. Gumtree Drive 134
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Scott Hartwick <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Scott Hartwick<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+175. Wake In The Clouds
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> John Mandryk <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> John Mandryk<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+176. Nectar Landing
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Katherine Currin <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Katherine Currin<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+177. Nelson 151 Views and Brews
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Amy Randolph <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Amy Randolph<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+178. Woodland Hideaway
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Barbara Fiske <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Shipman</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Barbara Fiske<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Shipman</p>...
+
+====================================================================================================
+
+179. Cuatro Climas At 130 Pedlars Point
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jennifer Hernandez <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jennifer Hernandez<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+180. Rockfish River Ranch Guest House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Micahel Roper <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Shipman</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Micahel Roper<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Shipman</p>...
+
+====================================================================================================
+
+181. Treetops Lodge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Erin Ashcroft <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Lovingston</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Erin Ashcroft<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Lovingston</p>...
+
+====================================================================================================
+
+182. Cabin on Eagles Ridge Road
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Anthony Freddo <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Anthony Freddo<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+183. 1639 Overlook
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Leslie Goransson <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Leslie Goransson<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+184. Foxfire Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Ashley Carman <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Ashley Carman<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+185. Ski House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Lee Murray <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Lee Murray<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+186. 1566 Vistas Condo
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Rebecca Rockey <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Rebecca Rockey<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+187. Afton Mountain Inn
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Be Still Getaways <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Be Still Getaways<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+188. M 260
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Dan Melin <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Dan Melin<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+189. Sanctuary Retreat Center
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> <br><br><strong>Email:</strong> info@sanctuaryrc.org <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> <br><br><strong>Email:</strong> info@sanctuaryrc.org<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+190. Rockfish Valley Farm Guest House
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Peter Agelasto <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Peter Agelasto<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+191. Shenandoah Ridge 11
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Jeffrey Summers <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Jeffrey Summers<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+192. Inn at the Woods
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Breanna Wood <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Roseland</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Breanna Wood<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Roseland</p>...
+
+====================================================================================================
+
+193. Country Cottage
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Barbara McBride <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Faber</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Barbara McBride<br><br><strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Faber</p>...
+
+====================================================================================================
+
+194. View at Crawfords Edge
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Joe Foley <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Joe Foley<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+195. Red, White and Wintergreen
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Erin Penfold <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Erin Penfold<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+196. Altitude Adjustment
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Gregory Monnett <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Nellysford</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Gregory Monnett<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Nellysford</p>...
+
+====================================================================================================
+
+197. Chateau Greenstone
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Thomas Dieringer <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Thomas Dieringer<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+198. Blue Sky Retreat
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Shilpa Menon <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Shilpa Menon<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen</p>...
+
+====================================================================================================
+
+199. The Treehouse
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Rachel <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> No <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Rachel<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> No<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+200. Goldfinch
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Sharon Horton, <br><br><strong>Phone:</strong> <a href='tel:7577781160'>757-778-1160</a> <strong>Staff on Site? </strong> Yes <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Sharon Horton, <br><br><strong>Phone:</strong> <a href='tel:7577781160'>757-778-1160</a> <strong>Staff on Site? </strong> Yes<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+201. Rockwell Ridge Inn
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> <br><br><strong>Email:</strong> hello@three-little-birds.co <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> <br><br><strong>Email:</strong> hello@three-little-birds.co<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+
+202. Everett Estate
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Wintergreen Resort</p>...
+
+SHOULD BECOME:
+<strong>Contact </strong> Monica Barker, <br><br><strong>Email:</strong> monica@celticscots.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Wintergreen Resort</p>...
+
+====================================================================================================
+
+203. Afton Peak
+----------------------------------------------------------------------------------------------------
+CURRENT FORMATTING:
+<strong>Contact</strong> <br><br><strong>Email:</strong> info@aftonpeak.com <strong>Staff on Site? </strong> No <strong>Pet-Friendly? </strong> Yes <strong>Located in </strong> Afton</p>...
+
+SHOULD BECOME:
+<strong>Contact</strong> <br><br><strong>Email:</strong> info@aftonpeak.com<br><br><strong>Staff on Site? </strong> No<br><br><strong>Pet-Friendly? </strong> Yes<br><br><strong>Located in </strong> Afton</p>...
+
+====================================================================================================
+

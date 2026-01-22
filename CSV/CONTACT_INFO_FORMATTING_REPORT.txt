@@ -1,0 +1,88 @@
+====================================================================================================
+CONTACT INFO FORMATTING REPORT
+====================================================================================================
+
+Total listings updated: 98
+Total formatting changes: 109
+
+====================================================================================================
+EXAMPLE CHANGES
+====================================================================================================
+
+1. Rapunzel’s Coffee & Books
+----------------------------------------------------------------------------------------------------
+Changes made:
+   - Formatted phone from tel: link: 434-263-6660
+
+BEFORE:
+<p>Rapunzel’s Coffee and Books is an eclectic arts venue, community space, coffee shop, and used bookstore located in The Packing Shed in historic Lovingston, Virginia. Rapunzel’s Further Ado Foundation hosts live music every Wednesday, Friday, and Saturday evenings starting at 8pm.</p>
+
+<p>Rapunzel’s is a listening-room, living-room-style environment. Come get comfortable with a good book and a cup of coffee or tea, and settle in for an evening of music on the couch of your choice… we have free wi-fi and serve only Nelson County local brews (wine, beer, and, cider). Join us! 924 Front Street<br>
+
+Lovingston, VA 22949<br>
+
+<a href='tel:434-263-6660'>434-263-6660</a></p>...
+
+AFTER:
+<p>Rapunzel’s Coffee and Books is an eclectic arts venue, community space, coffee shop, and used bookstore located in The Packing Shed in historic Lovingston, Virginia. Rapunzel’s Further Ado Foundation hosts live music every Wednesday, Friday, and Saturday evenings starting at 8pm.</p>
+
+<p>Rapunzel’s is a listening-room, living-room-style environment. Come get comfortable with a good book and a cup of coffee or tea, and settle in for an evening of music on the couch of your choice… we have free wi-fi and serve only Nelson County local brews (wine, beer, and, cider). Join us! 924 Front Street<br>
+
+Lovingston, VA 22949<br>
+
+<br><br><strong>Phone:</strong> 434-263-6660</p>...
+
+====================================================================================================
+
+2. Sweet Bliss Bakery
+----------------------------------------------------------------------------------------------------
+Changes made:
+   - Formatted phone from tel: link: 434-465-6776
+
+BEFORE:
+<p>Our desserts are lovingly handcrafted from the finest ingredients. We love supporting our local farmers, and offer seasonal desserts so they are at their peak of freshness. We are passionate about creating fresh, decadent desserts, and seeing our clients smile. Our specialty are cheesecakes and cakes. We have over 50 flavors, and are always creating new flavors. We take our time to bake the highest quality desserts and hand- decorate each creation, so no two are alike. Many of our cakes are infused with liqueurs to enhance their natural flavors, decorated with nuts, candies, fresh fruits and a variety of chocolates. In addition to cheesecakes and cakes, we offer a full-line menu of pastry items such as pies, scones, muffins, cookies, brownies, blondies, cream puffs, eclairs and other sc...
+
+AFTER:
+<p>Our desserts are lovingly handcrafted from the finest ingredients. We love supporting our local farmers, and offer seasonal desserts so they are at their peak of freshness. We are passionate about creating fresh, decadent desserts, and seeing our clients smile. Our specialty are cheesecakes and cakes. We have over 50 flavors, and are always creating new flavors. We take our time to bake the highest quality desserts and hand- decorate each creation, so no two are alike. Many of our cakes are infused with liqueurs to enhance their natural flavors, decorated with nuts, candies, fresh fruits and a variety of chocolates. In addition to cheesecakes and cakes, we offer a full-line menu of pastry items such as pies, scones, muffins, cookies, brownies, blondies, cream puffs, eclairs and other sc...
+
+====================================================================================================
+
+3. Terrace Café
+----------------------------------------------------------------------------------------------------
+Changes made:
+   - Formatted phone from tel: link: 434-325-8080
+
+BEFORE:
+<p>Stop in for a shot of energy! The Terrace Café proudly serve Starbucks beverages. Enjoy breakfast sandwiches, sweet treats, and warm specialty drinks to brighten your day. Hours vary by season. 39 Mountain Inn Loop Wintergreen, VA 22958 <a href='tel:434-325-8080'>434-325-8080</a></p>...
+
+AFTER:
+<p>Stop in for a shot of energy! The Terrace Café proudly serve Starbucks beverages. Enjoy breakfast sandwiches, sweet treats, and warm specialty drinks to brighten your day. Hours vary by season. 39 Mountain Inn Loop Wintergreen, VA 22958 <br><br><strong>Phone:</strong> 434-325-8080</p>...
+
+====================================================================================================
+
+4. Trager Brothers Coffee 1.0
+----------------------------------------------------------------------------------------------------
+Changes made:
+   - Formatted phone from tel: link: 434-263-8916
+
+BEFORE:
+<p>TBC is family-owned and operated, small-batch, and completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulously cup each coffee we source, collectively creating roast profiles that coax out and enhance the inherent flavor characteristics that are special to each particular origin. We are proud to serve only Organic coffee and are an OCIA certified Organic coffee roastery. We are committed to bringing you the highest quality, freshest, environmentally sound coffee on the market. We believe in sourcing coffee from farms that are committed to environmental sustainability and fair wages for farmers and their families. This has led us to a lifelong pursuit of building relationships with like-minded people in the Specialt...
+
+AFTER:
+<p>TBC is family-owned and operated, small-batch, and completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulously cup each coffee we source, collectively creating roast profiles that coax out and enhance the inherent flavor characteristics that are special to each particular origin. We are proud to serve only Organic coffee and are an OCIA certified Organic coffee roastery. We are committed to bringing you the highest quality, freshest, environmentally sound coffee on the market. We believe in sourcing coffee from farms that are committed to environmental sustainability and fair wages for farmers and their families. This has led us to a lifelong pursuit of building relationships with like-minded people in the Specialt...
+
+====================================================================================================
+
+5. Trager Brothers Coffee 2.0
+----------------------------------------------------------------------------------------------------
+Changes made:
+   - Formatted phone from tel: link: 434-263-8916
+
+BEFORE:
+<p>TBC is family-owned and operated, small-batch, and completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulously cup each coffee we source, collectively creating roast profiles that coax out and enhance the inherent flavor characteristics that are special to each particular origin. We are proud to serve only Organic coffee and are an OCIA certified Organic coffee roastery. We are committed to bringing you the highest quality, freshest, environmentally sound coffee on the market. We believe in sourcing coffee from farms that are committed to environmental sustainability and fair wages for farmers and their families. This has led us to a lifelong pursuit of building relationships with like-minded people in the Specialt...
+
+AFTER:
+<p>TBC is family-owned and operated, small-batch, and completely “a mano.” We sight roast to order and do not warehouse roasted coffee of any kind. Our roasters and baristas meticulously cup each coffee we source, collectively creating roast profiles that coax out and enhance the inherent flavor characteristics that are special to each particular origin. We are proud to serve only Organic coffee and are an OCIA certified Organic coffee roastery. We are committed to bringing you the highest quality, freshest, environmentally sound coffee on the market. We believe in sourcing coffee from farms that are committed to environmental sustainability and fair wages for farmers and their families. This has led us to a lifelong pursuit of building relationships with like-minded people in the Specialt...
+
+====================================================================================================
+

@@ -1,0 +1,62 @@
+====================================================================================================
+PDF MAPS - DOCUMENT COLUMN ASSIGNMENT REPORT
+====================================================================================================
+
+SUMMARY:
+  - Total PDFs processed: 3
+  - Listings affected: 3
+  - PDFs removed from website column: 0
+  - PDFs added to document columns: 0
+  - PDF labels updated: 1
+  - Inline links kept in detailedDescription: 2
+
+====================================================================================================
+DETAILED CHANGES BY LISTING
+====================================================================================================
+
+Listing: Appalachian Trail from Rt 56 to Harpers Creek
+PDF: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+Label: Harpers Creek Trail Map
+Action: Updated document1 label
+Was in website: False
+Was in detailedDescription: False
+Inline link kept: False
+----------------------------------------------------------------------------------------------------
+
+Listing: Humpback Rocks
+PDF: https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf
+Label: Humpback Rocks Trail Map
+Action: Already in document column, kept inline link
+Was in website: False
+Was in detailedDescription: True
+Inline link kept: True
+----------------------------------------------------------------------------------------------------
+
+Listing: Nelson County Wilderness Area
+PDF: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+Label: Three Ridges Trail Map
+Action: Already in document column, kept inline link
+Was in website: False
+Was in detailedDescription: True
+Inline link kept: True
+----------------------------------------------------------------------------------------------------
+
+====================================================================================================
+FINAL STATUS - ALL PDFS
+====================================================================================================
+
+
+Humpback Rocks Trail Map
+URL: https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf
+----------------------------------------------------------------------------------------------------
+  - Humpback Rocks: Already in document column, kept inline link
+
+Harpers Creek Trail Map
+URL: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+----------------------------------------------------------------------------------------------------
+  - Appalachian Trail from Rt 56 to Harpers Creek: Updated document1 label
+
+Three Ridges Trail Map
+URL: https://ik.imagekit.io/OE/nelson-county/Documents/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+----------------------------------------------------------------------------------------------------
+  - Nelson County Wilderness Area: Already in document column, kept inline link

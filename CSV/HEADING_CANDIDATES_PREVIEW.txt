@@ -1,0 +1,516 @@
+====================================================================================================
+HEADING CANDIDATES - PREVIEW (Using <h4> instead of <strong>)
+====================================================================================================
+
+Total listings with heading candidates: 31
+
+FORMATTING RULES:
+1. Replace <strong>Miles:</strong> with <h4>Miles:</h4>
+2. Replace standalone <strong>Address</strong> with <h4>Address</h4>
+3. Replace specific section headings with <h4> tags
+4. Keep <strong>Address:</strong> and <strong>Phone:</strong> as-is (these are labels, not headings)
+
+NOTE: This is an optional stylistic change. <h4> tags provide semantic meaning
+for section headings, while <strong> is better for emphasis/labels.
+
+====================================================================================================
+ALL LISTINGS - BEFORE AND AFTER
+====================================================================================================
+
+1. Allen Creek Nature Preserve
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <strong>Miles:</strong> 0.7 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> EASY <strong>Directions:</strong> <a href='https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu'>Google Maps</a> Google Maps </div> This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <h4>Miles:</h4> 0.7 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> EASY <strong>Directions:</strong> <a href='https://www.google.com/maps/place/Allen+Creek+Nature+Preserve/@37.8994654,-78.8655118,216m/data=!3m1!1e3!4m6!3m5!1s0x89b36fa68418850f:0xedd52f8e54379b98!8m2!3d37.8994682!4d-78.8651706!16s%2Fg%2F11vbyb8c8y?entry=ttu'>Google Maps</a> Google Maps </div> This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+====================================================================================================
+
+2. Appalachian Trail from Rt 56 to Harpers Creek
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <strong>Miles:</strong> 2.6 <strong>Difficulty Level:</strong> Moderate </div> A 2.6-mile moderate hike along the Appalachian Trail traverses a wooden Swinging Bridge over the Tye River, and travels through stands of mountain laurel and rhododendron to the Harpers Creek Shelter (AT) and Harper’s Creek, where the water gurgles through the large cascading rocks. Multiple campsites are on each side of the creek, and there’s a vault toilet up the hill from the shelter. <br><br><strong>Directions:</strong> From State Route 56 at Crabtree Falls: Take SR 56 east for approximately 3-4 miles. The Appalachian Trail crosses SR 56 and a AT parking lot is available to the right (South side) of SR 56. Head across the street from the parking lot (North) on the AT across the Swinging Bridge, and continue up the trail towards Harper’s Creek Shelter.<strong> </strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <h4>Miles:</h4> 2.6 <strong>Difficulty Level:</strong> Moderate </div> A 2.6-mile moderate hike along the Appalachian Trail traverses a wooden Swinging Bridge over the Tye River, and travels through stands of mountain laurel and rhododendron to the Harpers Creek Shelter (AT) and Harper’s Creek, where the water gurgles through the large cascading rocks. Multiple campsites are on each side of the creek, and there’s a vault toilet up the hill from the shelter. <br><br><strong>Directions:</strong> From State Route 56 at Crabtree Falls: Take SR 56 east for approximately 3-4 miles. The Appalachian Trail crosses SR 56 and a AT parking lot is available to the right (South side) of SR 56. Head across the street from the parking lot (North) on the AT across the Swinging Bridge, and continue up the trail towards Harper’s Creek Shelter.<strong> </strong></p>
+
+====================================================================================================
+
+3. Blackrock Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <strong>Miles:</strong> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.935035/@37.910469,-79.0048087,12z'>Google Maps</a> Google Maps </div> Blackrock Trail is located on a south-facing slope, which promotes the dry, thin soils along the pedlar gneiss rock formations. Mountain laurel, blueberry, and rose azalea thrive in this harsh environment and are in bloom during June. The dominant tree species found along the trail are chestnut oak and table mountain pine; note the way the southwest winds shape these pines. It connect to the Pedlars Edge Trail. <strong>Use caution in winter. </strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><div class='fusion-text fusion-text-1 fusion-text-no-margin'> <h4>Miles:</h4> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.935035/@37.910469,-79.0048087,12z'>Google Maps</a> Google Maps </div> Blackrock Trail is located on a south-facing slope, which promotes the dry, thin soils along the pedlar gneiss rock formations. Mountain laurel, blueberry, and rose azalea thrive in this harsh environment and are in bloom during June. The dominant tree species found along the trail are chestnut oak and table mountain pine; note the way the southwest winds shape these pines. It connect to the Pedlars Edge Trail. <strong>Use caution in winter. </strong></p>
+
+====================================================================================================
+
+4. Brimstone Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/oEhTdEWe9RmN78wN8'>https://goo.gl/maps/oEhTdEWe9RmN78wN8</a> Google Maps The steep and rocky cliffs provide incredible views of Three Ridges Mountain and points to the southwest. The trail meanders below the Plunge and consists of a series of steep, short up and down sections. Mountain laurel and rhododendron cover these dry soiled slopes, along with chestnut oaks. These thickets are interrupted by “rock gardens” where rock cap fern &amp; fly poison lily grow. <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/oEhTdEWe9RmN78wN8'>https://goo.gl/maps/oEhTdEWe9RmN78wN8</a> Google Maps The steep and rocky cliffs provide incredible views of Three Ridges Mountain and points to the southwest. The trail meanders below the Plunge and consists of a series of steep, short up and down sections. Mountain laurel and rhododendron cover these dry soiled slopes, along with chestnut oaks. These thickets are interrupted by “rock gardens” where rock cap fern &amp; fly poison lily grow. <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+5. Cedar Ciffs North Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.7 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/7WU3boDV7oaX85P79'>https://goo.gl/maps/7WU3boDV7oaX85P79</a> Google Maps This trail is parallel to the Cedar Cliffs Main trail on a north- facing slope. This setting promotes cool, damp conditions. The trail is boulder strewn and provides a beautifully scenic walk. The trail is somewhat difficult but well worth the effort and is connected to the Cedar Cliffs Main Trail and overlook. <strong>Closed in winter. </strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.7 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/7WU3boDV7oaX85P79'>https://goo.gl/maps/7WU3boDV7oaX85P79</a> Google Maps This trail is parallel to the Cedar Cliffs Main trail on a north- facing slope. This setting promotes cool, damp conditions. The trail is boulder strewn and provides a beautifully scenic walk. The trail is somewhat difficult but well worth the effort and is connected to the Cedar Cliffs Main Trail and overlook. <strong>Closed in winter. </strong></p>
+
+====================================================================================================
+
+6. Chestnut Springs Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 1.1 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/fpNe9zxvjvkMc2Ks9'>https://goo.gl/maps/fpNe9zxvjvkMc2Ks9</a> Google Maps The north end of the trail leaves the stream and yellow birches and rhododendron of the Shamokin Gorge and enters oak-hickory forest type. As the trail enters south facing territory, several small streams cross the trail. This southern end is ideal for spring wildflowers like bloodroot, wild ginger, and violets; all of which bloom in April. Watch for stinging nettle (long pants recommended). <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 1.1 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/fpNe9zxvjvkMc2Ks9'>https://goo.gl/maps/fpNe9zxvjvkMc2Ks9</a> Google Maps The north end of the trail leaves the stream and yellow birches and rhododendron of the Shamokin Gorge and enters oak-hickory forest type. As the trail enters south facing territory, several small streams cross the trail. This southern end is ideal for spring wildflowers like bloodroot, wild ginger, and violets; all of which bloom in April. Watch for stinging nettle (long pants recommended). <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+7. Crabtree Falls
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Address</strong> → <h4>Address</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<h1><em>Crabtree Falls</em></h1> This popular attraction is located in Nelson County, Virginia, just six miles off the scenic Blue Ridge Parkway near milepost 27. Crabtree Falls features a series of five major cascades and a number of smaller ones that fall a total distance of 1,200 feet. The first overlook is just a few hundred feet from the parking lot along a gentle, paved trail making it an excellent stopover for travelers of all ages and abilities. The more adventuresome hiker may continue along the 3-mile trail to four other overlooks offering spectacular views of the Crabtree Creek Falls and lovely vistas of the Tye River Valley. From the upper falls, the trail follows the creek another 1.2 miles to the Crabtree Meadows. Please stay on trail – rocks are slippery. Open dawn to dusk. Parking lot with daily parking fee per vehicle. All dogs must be leashed. <br><br><strong>Directions:</strong>From US Route 29, take Route 56 west at Colleen. Follow Rt. 56 for approximately 20 miles to 11581 Crabtree Falls Highway, Montebello, VA. From the Blue Ridge Parkway (Milepost 27) take Rt. 56 east for 6.3 miles to Crabtree Falls. <strong>Address </strong><br><br><strong>Address:</strong> 11581 Crabtree Falls Highway, Montebello, VA 24464 (NOTE: GPS/ Navigation devices often do not work in this area.)<strong> </strong> Please visit the <a href='https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73667'>fs.usda.gov</a>U.S. Forest Service Glenwood Pedlar Ranger District website for current conditions. <table width='80%'> <tbody> <tr> <td align='left'><strong>Address</strong></td> <td align='left'><br><br><strong>Address:</strong> 11581 Crabtree Falls Highway (Rt 56), Montebello, VA 24464</td> </tr> <tr> <td align='left'><strong>Fees</strong></td> <td align='left'>$3.00 Fee per vehicle per day. (Honor system / no change available)</td> </tr> <tr> <td align='left'><strong>Open</strong></td> <td align='left'>Open Daily (dawn to dusk)</td> </tr> <tr> <td align='left'><strong>Difficulty</strong></td> <td align='left'>Moderate difficulty, also some stairs on trail (most overlooks during first half of hike)</td> </tr> <tr valign='top'> <td align='left'><strong>Restrictions</strong></td> <td align='left'><strong><span style='color: #ff0000;'>CAUTION:</span></strong> Leaving the trail has resulted in numerous fatalities due to extraordinarily slippery conditions created by clear algae on rocks. Hikers must STAY ON THE TRAIL and pets must be leashed at all times. Alcoholic beverages prohibited. No horses or bicycles allowed.</td> </tr> <tr valign='top'> <td align='left'><strong>Water Volume (Avg)</strong></td> <td align='left'>50 cubic feet of water per second, and eventually flows into the Tye River</td> </tr> <tr valign='top'> <td align='left'><strong>Closest Town</strong></td> <td align='left'>Montebello, VA</td> </tr> <tr> <td align='left'><strong>Water</strong></td> <td align='left'>No drinking water available (bring water &amp; food with you)</td> </tr> <tr> <td align='left'><strong>Hiking Prep</strong></td> <td align='left'>Wear appropriate footwear/hiking shoes or other. (Opt. hiking poles)</td> </tr> <tr valign='top'> <td align='left'><strong>Restrooms</strong></td> <td align='left'>Vault toilets at parking lot.(Vault toilets at Crabtree Meadows (at top) are open mid-March thru end of November.</td> </tr> <tr valign='top'> <td align='left'><strong>Other Amenities</strong></td> <td align='left'>Picnic table(s) located near the footbridge across the parking lot.</td> </tr> <tr valign='top'> <td align='left'><strong>Operated By</strong></td> <td align='left'>Glenwood and Pedlar Ranger Districts: <br><br><strong>Phone:</strong> <a href='tel:5402912188'>540-291-2188</a> (George Washington National Forest)</td> </tr> <tr valign='top'> <td align='left'><strong>Additional Info</strong></td> <td align='left'>Nelson County Visitor Center <br><br><strong>Phone:</strong> (434) 263-7015 | Open Daily 9-5</td> </tr> </tbody> </table> From the end of the parking area, follow the paved trail 700 ft. to the bottom of the lower-most falls. (this first overlook is accessible for wheelchair users) At this point the trail becomes dirt, and does the first of nine switchbacks on its way to the top of the highest set of falls. The traill is well maintained, and has wooden guardrails along its steeper portions, as well as railed overlooks at the most scenic points. Arrive at the top of the falls and cross over a wooden bridge to an overlook. From here you can get a nice view of the Tye River Valley and Blue Ridge Mountains. Don’t be tempted to climb over the stone wall onto the uppermost portion of the falls. The rocks are covered with a very slippery “clear” algae, and according to the Forestry Service sign, over 30 people have fallen to their deaths climbing out onto the rocks. From this point re-cross the footbridge and either head back down, or continue left up the trail where the hike becomes much flatter and follows Crabtree Stream. If you continue upwards, the trail will split in 70 yards. Take the right fork uphill as it first traverses the ridge, then follows the stream to the upper parking area in 1.1 miles. (Crabtree Meadows) To return, retrace your steps back down. Or, from the upper trailhead parking lot, continue to the left on FDR-263/VA 826 to access the Appalachian Trail just a short distance further (The AT crosses the road in 0.7 miles). Excerpted in part from <a href='http://www.hikingupward.com/'>http://www.hikingupward.com/</a>HikingUpward.com <strong>From I-81:</strong> Take exit 205 for Raphine/Steeles Tavern and continue east on State Route (SR) 606 to US 11. Turn left onto US 11 and continue north for a very short distance, then take a right onto SR 56. Follow SR 56 for 2 miles into the community of Vesuvius. As you enter Vesuvius, continue on the road as it bears to the left for another 6 miles. At the top of the mountain, continue under the Blue Ridge Parkway on SR 56 for 6 to 8 miles. The entrance to Crabtree Falls Day Use Area is on the right. <strong>From the Blue Ridge Parkway (Milepost 27):</strong> Take Route 56 East for 6.3 miles to Crabtree Falls Day Use Area on your right. <strong>From US Route 29:</strong> Take Route 56 West at Colleen, follow Route 56 West for approximately 20 miles to Crabtree Falls Day Use Area on your left. (Next left after Crabtree Falls Campground – about ½ mile). <strong>Alternative way to Access Upper Crabtree Falls Trailhead at Crabtree Meadows:</strong> To explore the “top of the falls” one can take Forest Road 826 off of Rt. 56 (West of the Crabtree Falls Day Use area). This road leads to Crabtree Meadows and the Upper Trail Head. Recommended for four-wheel vehicles only, this road is rough and challenging. There are three places where you may have to cross water on the road, and one can come across fallen trees, branches or large rocks, and vehicles with little clearance underneath may scrape bottom. You’ll see a few campsites on the way up on each side of the road, and once you’re at the upper parking area it will be easy to see the trail head leading to the falls. (Parking area has trashcans and a vault toilet.) It’s 1.1 miles from Crabtree Meadows to the top of the falls. The trail continues down the falls about 2.6 miles to the lower trail head and parking area. Crabtree Meadows is an open area with crab apples and apple trees, across the road from the parking lot. In the 1930’s, several families lived in this area, which once included a saw mill. Now it is a popular primitive camping spot, with access to the Appalachian Trail which is only 0.7 miles from the parking lot up the steep gravel fire road (FDR-263/VA-823). The fall colors at Crabtree Meadows, in particular, can be spectacular! The name “Crabtree” is thought to have come from William Crabtree, who settled in the area in 1777. Another noted pioneer, Allen Tye, who did extensive exploration in the Blue Ridge Mountains, is identified as having discovered the Tye River. To add to its popularity, Crabtree Falls was sometimes referred to as a Sunday outing location in the 1970’s television show, “The Waltons.” The land at the base of the falls was almost developed as a resort area in the late 1960s. LA Snead, former US Assistant Fuel Administrator (WWI), environmentalist and notable Nelsonian, blocked development efforts and spearheaded negotiations to secure the land surrounding the falls. Using personal and Congressional funds, the land deals were completed and the deeds transferred by LA Snead on June 3, 1968 to the National Forest System. This assured benefit for future generations of this magnificent Nelson County treasure. Under National Forest domain, the safety, accessibility and continued improvements have made Crabtree Falls a major tourist destination within Nelson County. There are wooden stairs, gravel paths, railed overlooks, and a spectacular 100-foot bridge over the Tye River. This beautiful bridge, a laminated arch, was shipped from New York in one piece and installed over the Tye River in 1978. Until the mid-1980’s, the footbridge was the starting point for the hike up Crabtree Falls. Today the parking area is on the other side of the river, and the bridge now serves primarily as a decorative addition to the hike. <a href='https://nelsoncounty.com/explore/montebello-fish-hatchery/'>nelsoncounty.com</a>Montebello Fish Hatchery (0.6 miles on Rt. <br><br><strong>Address:</strong> 56 West) 359 Fish Hatchery Lane, Montebello, VA 24464 <br><br><strong>Phone:</strong> <a href='tel:5403772418'>540-377-2418</a> <a href='https://nelsoncounty.com/explore/montebello-country-store-cafe/'>nelsoncounty.com</a>'>Montebello Country Store and Café (4.5 miles on Rt. <br><br><strong>Address:</strong> <br><br><strong>Address:</strong> 56 West) 15072 Crabtree Falls Highway, Montebello, VA 24464 <br><br><strong>Phone:</strong> <br><br><strong>Phone:</strong> <a href='tel:5403772650'>540-377-2650</a> <a href='https://nelsoncounty.com/explore/fishing-at-montebello/'>nelsoncounty.com</a>Montebello Camping &amp; Fishing Resort (4.<br><br><strong>Address:</strong> 5 miles on Rt. 56 West) 15072 Crabtree Falls Highway, Montebello, VA 24464 <br><br><strong>Phone:</strong> <a href='tel:5403772650'>540-377-2650</a>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<h1><em>Crabtree Falls</em></h1> This popular attraction is located in Nelson County, Virginia, just six miles off the scenic Blue Ridge Parkway near milepost 27. Crabtree Falls features a series of five major cascades and a number of smaller ones that fall a total distance of 1,200 feet. The first overlook is just a few hundred feet from the parking lot along a gentle, paved trail making it an excellent stopover for travelers of all ages and abilities. The more adventuresome hiker may continue along the 3-mile trail to four other overlooks offering spectacular views of the Crabtree Creek Falls and lovely vistas of the Tye River Valley. From the upper falls, the trail follows the creek another 1.2 miles to the Crabtree Meadows. Please stay on trail – rocks are slippery. Open dawn to dusk. Parking lot with daily parking fee per vehicle. All dogs must be leashed. <br><br><strong>Directions:</strong>From US Route 29, take Route 56 west at Colleen. Follow Rt. 56 for approximately 20 miles to 11581 Crabtree Falls Highway, Montebello, VA. From the Blue Ridge Parkway (Milepost 27) take Rt. 56 east for 6.3 miles to Crabtree Falls. <strong>Address </strong><br><br><strong>Address:</strong> 11581 Crabtree Falls Highway, Montebello, VA 24464 (NOTE: GPS/ Navigation devices often do not work in this area.)<strong> </strong> Please visit the <a href='https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73667'>fs.usda.gov</a>U.S. Forest Service Glenwood Pedlar Ranger District website for current conditions. <table width='80%'> <tbody> <tr> <td align='left'><h4>Address</h4></td> <td align='left'><br><br><strong>Address:</strong> 11581 Crabtree Falls Highway (Rt 56), Montebello, VA 24464</td> </tr> <tr> <td align='left'><strong>Fees</strong></td> <td align='left'>$3.00 Fee per vehicle per day. (Honor system / no change available)</td> </tr> <tr> <td align='left'><strong>Open</strong></td> <td align='left'>Open Daily (dawn to dusk)</td> </tr> <tr> <td align='left'><strong>Difficulty</strong></td> <td align='left'>Moderate difficulty, also some stairs on trail (most overlooks during first half of hike)</td> </tr> <tr valign='top'> <td align='left'><strong>Restrictions</strong></td> <td align='left'><strong><span style='color: #ff0000;'>CAUTION:</span></strong> Leaving the trail has resulted in numerous fatalities due to extraordinarily slippery conditions created by clear algae on rocks. Hikers must STAY ON THE TRAIL and pets must be leashed at all times. Alcoholic beverages prohibited. No horses or bicycles allowed.</td> </tr> <tr valign='top'> <td align='left'><strong>Water Volume (Avg)</strong></td> <td align='left'>50 cubic feet of water per second, and eventually flows into the Tye River</td> </tr> <tr valign='top'> <td align='left'><strong>Closest Town</strong></td> <td align='left'>Montebello, VA</td> </tr> <tr> <td align='left'><strong>Water</strong></td> <td align='left'>No drinking water available (bring water &amp; food with you)</td> </tr> <tr> <td align='left'><strong>Hiking Prep</strong></td> <td align='left'>Wear appropriate footwear/hiking shoes or other. (Opt. hiking poles)</td> </tr> <tr valign='top'> <td align='left'><strong>Restrooms</strong></td> <td align='left'>Vault toilets at parking lot.(Vault toilets at Crabtree Meadows (at top) are open mid-March thru end of November.</td> </tr> <tr valign='top'> <td align='left'><strong>Other Amenities</strong></td> <td align='left'>Picnic table(s) located near the footbridge across the parking lot.</td> </tr> <tr valign='top'> <td align='left'><strong>Operated By</strong></td> <td align='left'>Glenwood and Pedlar Ranger Districts: <br><br><strong>Phone:</strong> <a href='tel:5402912188'>540-291-2188</a> (George Washington National Forest)</td> </tr> <tr valign='top'> <td align='left'><strong>Additional Info</strong></td> <td align='left'>Nelson County Visitor Center <br><br><strong>Phone:</strong> (434) 263-7015 | Open Daily 9-5</td> </tr> </tbody> </table> From the end of the parking area, follow the paved trail 700 ft. to the bottom of the lower-most falls. (this first overlook is accessible for wheelchair users) At this point the trail becomes dirt, and does the first of nine switchbacks on its way to the top of the highest set of falls. The traill is well maintained, and has wooden guardrails along its steeper portions, as well as railed overlooks at the most scenic points. Arrive at the top of the falls and cross over a wooden bridge to an overlook. From here you can get a nice view of the Tye River Valley and Blue Ridge Mountains. Don’t be tempted to climb over the stone wall onto the uppermost portion of the falls. The rocks are covered with a very slippery “clear” algae, and according to the Forestry Service sign, over 30 people have fallen to their deaths climbing out onto the rocks. From this point re-cross the footbridge and either head back down, or continue left up the trail where the hike becomes much flatter and follows Crabtree Stream. If you continue upwards, the trail will split in 70 yards. Take the right fork uphill as it first traverses the ridge, then follows the stream to the upper parking area in 1.1 miles. (Crabtree Meadows) To return, retrace your steps back down. Or, from the upper trailhead parking lot, continue to the left on FDR-263/VA 826 to access the Appalachian Trail just a short distance further (The AT crosses the road in 0.7 miles). Excerpted in part from <a href='http://www.hikingupward.com/'>http://www.hikingupward.com/</a>HikingUpward.com <strong>From I-81:</strong> Take exit 205 for Raphine/Steeles Tavern and continue east on State Route (SR) 606 to US 11. Turn left onto US 11 and continue north for a very short distance, then take a right onto SR 56. Follow SR 56 for 2 miles into the community of Vesuvius. As you enter Vesuvius, continue on the road as it bears to the left for another 6 miles. At the top of the mountain, continue under the Blue Ridge Parkway on SR 56 for 6 to 8 miles. The entrance to Crabtree Falls Day Use Area is on the right. <strong>From the Blue Ridge Parkway (Milepost 27):</strong> Take Route 56 East for 6.3 miles to Crabtree Falls Day Use Area on your right. <strong>From US Route 29:</strong> Take Route 56 West at Colleen, follow Route 56 West for approximately 20 miles to Crabtree Falls Day Use Area on your left. (Next left after Crabtree Falls Campground – about ½ mile). <strong>Alternative way to Access Upper Crabtree Falls Trailhead at Crabtree Meadows:</strong> To explore the “top of the falls” one can take Forest Road 826 off of Rt. 56 (West of the Crabtree Falls Day Use area). This road leads to Crabtree Meadows and the Upper Trail Head. Recommended for four-wheel vehicles only, this road is rough and challenging. There are three places where you may have to cross water on the road, and one can come across fallen trees, branches or large rocks, and vehicles with little clearance underneath may scrape bottom. You’ll see a few campsites on the way up on each side of the road, and once you’re at the upper parking area it will be easy to see the trail head leading to the falls. (Parking area has trashcans and a vault toilet.) It’s 1.1 miles from Crabtree Meadows to the top of the falls. The trail continues down the falls about 2.6 miles to the lower trail head and parking area. Crabtree Meadows is an open area with crab apples and apple trees, across the road from the parking lot. In the 1930’s, several families lived in this area, which once included a saw mill. Now it is a popular primitive camping spot, with access to the Appalachian Trail which is only 0.7 miles from the parking lot up the steep gravel fire road (FDR-263/VA-823). The fall colors at Crabtree Meadows, in particular, can be spectacular! The name “Crabtree” is thought to have come from William Crabtree, who settled in the area in 1777. Another noted pioneer, Allen Tye, who did extensive exploration in the Blue Ridge Mountains, is identified as having discovered the Tye River. To add to its popularity, Crabtree Falls was sometimes referred to as a Sunday outing location in the 1970’s television show, “The Waltons.” The land at the base of the falls was almost developed as a resort area in the late 1960s. LA Snead, former US Assistant Fuel Administrator (WWI), environmentalist and notable Nelsonian, blocked development efforts and spearheaded negotiations to secure the land surrounding the falls. Using personal and Congressional funds, the land deals were completed and the deeds transferred by LA Snead on June 3, 1968 to the National Forest System. This assured benefit for future generations of this magnificent Nelson County treasure. Under National Forest domain, the safety, accessibility and continued improvements have made Crabtree Falls a major tourist destination within Nelson County. There are wooden stairs, gravel paths, railed overlooks, and a spectacular 100-foot bridge over the Tye River. This beautiful bridge, a laminated arch, was shipped from New York in one piece and installed over the Tye River in 1978. Until the mid-1980’s, the footbridge was the starting point for the hike up Crabtree Falls. Today the parking area is on the other side of the river, and the bridge now serves primarily as a decorative addition to the hike. <a href='https://nelsoncounty.com/explore/montebello-fish-hatchery/'>nelsoncounty.com</a>Montebello Fish Hatchery (0.6 miles on Rt. <br><br><strong>Address:</strong> 56 West) 359 Fish Hatchery Lane, Montebello, VA 24464 <br><br><strong>Phone:</strong> <a href='tel:5403772418'>540-377-2418</a> <a href='https://nelsoncounty.com/explore/montebello-country-store-cafe/'>nelsoncounty.com</a>'>Montebello Country Store and Café (4.5 miles on Rt. <br><br><strong>Address:</strong> <br><br><strong>Address:</strong> 56 West) 15072 Crabtree Falls Highway, Montebello, VA 24464 <br><br><strong>Phone:</strong> <br><br><strong>Phone:</strong> <a href='tel:5403772650'>540-377-2650</a> <a href='https://nelsoncounty.com/explore/fishing-at-montebello/'>nelsoncounty.com</a>Montebello Camping &amp; Fishing Resort (4.<br><br><strong>Address:</strong> 5 miles on Rt. 56 West) 15072 Crabtree Falls Highway, Montebello, VA 24464 <br><br><strong>Phone:</strong> <a href='tel:5403772650'>540-377-2650</a>
+
+====================================================================================================
+
+8. Devils Knob Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.6 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/dqBDS8tZ5xiCsKea8'>https://goo.gl/maps/dqBDS8tZ5xiCsKea8</a> Google Maps The trail begins at the Blue Ridge Overlook. The rock areas are called catoctin greenstone. Note the natural “gardens” along the rock faces and crevices. During the spring, small flowered phacelia and saxifrage, white flowers in the rock crevices, are in full bloom blanketing many parts of the trail. Bird watching and views of Pond Hollow and Fortunes Ridge are the treats of this rocky-footed hike. <strong>Use caution in winter. </strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.6 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/dqBDS8tZ5xiCsKea8'>https://goo.gl/maps/dqBDS8tZ5xiCsKea8</a> Google Maps The trail begins at the Blue Ridge Overlook. The rock areas are called catoctin greenstone. Note the natural “gardens” along the rock faces and crevices. During the spring, small flowered phacelia and saxifrage, white flowers in the rock crevices, are in full bloom blanketing many parts of the trail. Bird watching and views of Pond Hollow and Fortunes Ridge are the treats of this rocky-footed hike. <strong>Use caution in winter. </strong></p>
+
+====================================================================================================
+
+9. Fortune’s Cove Nature Preserve
+----------------------------------------------------------------------------------------------------
+Found 2 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+  - <strong>Address</strong> → <h4>Address</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<strong>Miles:</strong> 5.3 <strong>Difficulty Level:</strong> Difficult Fortune’s Cove provides two loops that reward visitors with stunning mountain vistas. The preserve is situated within some 29,000 acres of relatively intact forest habitat and hosts rare plant communities on a series of rocky glades. The 5.3-mile loop trail climbs steeply from the parking area, gaining some 1,500 feet in elevation before reaching its highest point. The trail forks at the 0.8-mile mark. Continuing along the Upper Loop (Yellow Trail) makes for an arduous 5.1-mile counter-clockwise trek around the horseshoe-shaped cove. Hikers should be in good physical condition and should allow about four hours to complete this trail. Turning left at the fork onto the Lower Loop (or White Trail) shortens the total distance to 3.7 miles and lowers the intensity by cutting out the steepest climbs. <strong>Please note:</strong> Dogs are not allowed at this preserve. Open daily, dawn to dusk, year-round. <strong>Address</strong> Fortune’s Cove Lane Lovingston, VA 22949 <br><br><strong>Directions:</strong> From US 29 near Lovingston travel north for 0.5 miles to Rt. 718/Mountain Cove Road. Turn left and follow Rt. 718 west 1.5 miles to Rt. 651/ Fortune’s Cove Ln. Turn right (north) on Rt. 651/ Fortune’s Cove Ln and continue for 1.6 miles to Fortune’s Cove Preserve.
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<h4>Miles:</h4> 5.3 <strong>Difficulty Level:</strong> Difficult Fortune’s Cove provides two loops that reward visitors with stunning mountain vistas. The preserve is situated within some 29,000 acres of relatively intact forest habitat and hosts rare plant communities on a series of rocky glades. The 5.3-mile loop trail climbs steeply from the parking area, gaining some 1,500 feet in elevation before reaching its highest point. The trail forks at the 0.8-mile mark. Continuing along the Upper Loop (Yellow Trail) makes for an arduous 5.1-mile counter-clockwise trek around the horseshoe-shaped cove. Hikers should be in good physical condition and should allow about four hours to complete this trail. Turning left at the fork onto the Lower Loop (or White Trail) shortens the total distance to 3.7 miles and lowers the intensity by cutting out the steepest climbs. <strong>Please note:</strong> Dogs are not allowed at this preserve. Open daily, dawn to dusk, year-round. <h4>Address</h4> Fortune’s Cove Lane Lovingston, VA 22949 <br><br><strong>Directions:</strong> From US 29 near Lovingston travel north for 0.5 miles to Rt. 718/Mountain Cove Road. Turn left and follow Rt. 718 west 1.5 miles to Rt. 651/ Fortune’s Cove Ln. Turn right (north) on Rt. 651/ Fortune’s Cove Ln and continue for 1.6 miles to Fortune’s Cove Preserve.
+
+====================================================================================================
+
+10. Fortune’s Ridge Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 1.1 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/JrGreyCFYCzFSGot6'>https://goo.gl/maps/JrGreyCFYCzFSGot6</a> Google Maps Fortunes Ridge Trail follows a cold mountain stream over cascading rock formations. After dropping steeply, a picturesque waterfall emerges about halfway on the trail. The trail passes through laurel thickets that bloom pink in June. Note the dramatic changes in forest types along the trail. Access from Fortunes Ridge Drive at one end or just above Elkwood Drive on Wintergreen Drive at the other. Three Ridges Overlook (via Brimstone Trail access) intersects is another access point as well.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 1.1 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/JrGreyCFYCzFSGot6'>https://goo.gl/maps/JrGreyCFYCzFSGot6</a> Google Maps Fortunes Ridge Trail follows a cold mountain stream over cascading rock formations. After dropping steeply, a picturesque waterfall emerges about halfway on the trail. The trail passes through laurel thickets that bloom pink in June. Note the dramatic changes in forest types along the trail. Access from Fortunes Ridge Drive at one end or just above Elkwood Drive on Wintergreen Drive at the other. Three Ridges Overlook (via Brimstone Trail access) intersects is another access point as well.</p>
+
+====================================================================================================
+
+11. Hemlock Springs Loop
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.8 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/worqnjvdmccjF1MJ9'>https://goo.gl/maps/worqnjvdmccjF1MJ9</a> Google Maps This trail is one of the only areas that provides habitat for both pink and yellow ladyslippers. The loop portion (Difficult) of the trail passes through an old-growth stand of eastern hemlocks that have been devastated by an insect called the hemlock woolly adelgid. <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.8 <strong>Blaze Color:</strong> Yellow-Red <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/worqnjvdmccjF1MJ9'>https://goo.gl/maps/worqnjvdmccjF1MJ9</a> Google Maps This trail is one of the only areas that provides habitat for both pink and yellow ladyslippers. The loop portion (Difficult) of the trail passes through an old-growth stand of eastern hemlocks that have been devastated by an insect called the hemlock woolly adelgid. <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+12. Highlands Leisure Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps The Highlands Leisure Trail is the popular connecting trail between the resort’s Blackrock Village and the Wintergarden. The trail provides hikers with quick access to older-growth forests without taking them on a long hike, although in places it can be as steep and rocky as any of the moderate mountain trails. Near the higher end of the trail there is an overlook platform with views of the Highlands ski slopes and Wintergreen’s “Open Space” on Crawford’s Knob and alongside Humpback Mountain.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps The Highlands Leisure Trail is the popular connecting trail between the resort’s Blackrock Village and the Wintergarden. The trail provides hikers with quick access to older-growth forests without taking them on a long hike, although in places it can be as steep and rocky as any of the moderate mountain trails. Near the higher end of the trail there is an overlook platform with views of the Highlands ski slopes and Wintergreen’s “Open Space” on Crawford’s Knob and alongside Humpback Mountain.</p>
+
+====================================================================================================
+
+13. Humpback Rocks
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Humpback Rocks Visitor Center</strong> → <h4>Humpback Rocks Visitor Center</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+The <a href='https://www.nps.gov/blri/planyourvisit/humpback-rocks-mp-5-8.htm'>nps.gov</a>Humpback Rocks Visitors Center is located at milemarker 5.8, six miles south of the Rockfish Gap Interchange of I-64 and US 250. It is most easily accessed by either one of these two highways. Head south on the Blue Ridge Parkway for 5.8 miles (9.3 km) to reach the Humpback Rocks Visitors Center, or continue another 0.2 miles (0.32 km) to arrive at the Humpback Gap parking area on the left. Hiking Humpback Rocks is a relatively short moderate hike following a 2.0-mile (3.2 km) trail loop. With a roughly 45 minute hike to ascend 740 feet (230 m) to the peak, and a 20-25 minute descent, this ranks as one of the shorter hikes along the Blue Ridge, however it remains one of the most rewarding. The peak affords a spectacular 360 degree view of the surrounding terrain. To the north you can see into the southern section of <a href='https://www.nps.gov/shen/index.htm'>https://www.nps.gov/shen/index.htm</a>Shenandoah National Park, to the east check out the patchwork of farms, to the southwest you see thick woods and mountain ridges of the <a href='https://www.fs.usda.gov/gwj'>https://www.fs.usda.gov/gwj</a>George Washington National Forest. <a href='https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf'>nelsoncounty.com</a>Download the Humpback Rocks Visitor Center &amp; Trail Guide. <strong>Humpback Rocks Visitor Center</strong> <span class='LrzXr'>Milepost 5.8 Blue Ridge Parkway Lyndhurst, VA 22952</span> <br><br><strong>Directions:</strong> From I-64: Take Afton Exit 99. Take a right onto 250 East. After 1.5miles, take a sharp right onto VA-6 East. Go .5 mile and turn right onto Afton Depot Lane. 56 parking spaces. No bus parking. Trail fully ADA accessible.
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+The <a href='https://www.nps.gov/blri/planyourvisit/humpback-rocks-mp-5-8.htm'>nps.gov</a>Humpback Rocks Visitors Center is located at milemarker 5.8, six miles south of the Rockfish Gap Interchange of I-64 and US 250. It is most easily accessed by either one of these two highways. Head south on the Blue Ridge Parkway for 5.8 miles (9.3 km) to reach the Humpback Rocks Visitors Center, or continue another 0.2 miles (0.32 km) to arrive at the Humpback Gap parking area on the left. Hiking Humpback Rocks is a relatively short moderate hike following a 2.0-mile (3.2 km) trail loop. With a roughly 45 minute hike to ascend 740 feet (230 m) to the peak, and a 20-25 minute descent, this ranks as one of the shorter hikes along the Blue Ridge, however it remains one of the most rewarding. The peak affords a spectacular 360 degree view of the surrounding terrain. To the north you can see into the southern section of <a href='https://www.nps.gov/shen/index.htm'>https://www.nps.gov/shen/index.htm</a>Shenandoah National Park, to the east check out the patchwork of farms, to the southwest you see thick woods and mountain ridges of the <a href='https://www.fs.usda.gov/gwj'>https://www.fs.usda.gov/gwj</a>George Washington National Forest. <a href='https://ik.imagekit.io/OE/nelson-county/Documents/Humpback-Rock-Nelson-County.pdf'>nelsoncounty.com</a>Download the Humpback Rocks Visitor Center &amp; Trail Guide. <h4>Humpback Rocks Visitor Center</h4> <span class='LrzXr'>Milepost 5.8 Blue Ridge Parkway Lyndhurst, VA 22952</span> <br><br><strong>Directions:</strong> From I-64: Take Afton Exit 99. Take a right onto 250 East. After 1.5miles, take a sharp right onto VA-6 East. Go .5 mile and turn right onto Afton Depot Lane. 56 parking spaces. No bus parking. Trail fully ADA accessible.
+
+====================================================================================================
+
+14. James River State Park
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Address</strong> → <h4>Address</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<a href='http://www.dcr.virginia.gov/state-parks/james-river#general_information'>dcr.virginia.gov</a>James River State Park features over 15 miles of hiking/biking/horseback riding trails that meander through 1500 acres of rolling meadows and quiet forests. Three miles of river frontage offer spectacular views, boat launches, picnic areas, primitive camping, electric/water camping for various equipment, cabins, and picnic shelters. A full service canoe livery is open seasonally. See spectacular views along the James River of Norwood in Nelson County, across the river from the park. <strong>Address</strong> 104 Green Hill Drive Gladstone, VA <br><br><strong>Phone:</strong> <a href='tel:4349334355'>434-933-4355</a> <br><br><strong>Directions:</strong> Take US Route 60 east from Amherst to Gladstone. At the James River Bridge, turn left onto SR 605, travel seven miles, and turn left onto Route 606.
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<a href='http://www.dcr.virginia.gov/state-parks/james-river#general_information'>dcr.virginia.gov</a>James River State Park features over 15 miles of hiking/biking/horseback riding trails that meander through 1500 acres of rolling meadows and quiet forests. Three miles of river frontage offer spectacular views, boat launches, picnic areas, primitive camping, electric/water camping for various equipment, cabins, and picnic shelters. A full service canoe livery is open seasonally. See spectacular views along the James River of Norwood in Nelson County, across the river from the park. <h4>Address</h4> 104 Green Hill Drive Gladstone, VA <br><br><strong>Phone:</strong> <a href='tel:4349334355'>434-933-4355</a> <br><br><strong>Directions:</strong> Take US Route 60 east from Amherst to Gladstone. At the James River Bridge, turn left onto SR 605, travel seven miles, and turn left onto Route 606.
+
+====================================================================================================
+
+15. Kids in Parks: Virginia Blue Ridge Railway Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Piney River Depot &amp; Trailhead</strong> → <h4>Piney River Depot &amp; Trailhead</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+This Blue Ridge Parkway Foundation program helps get kids and families “un-plugged”, outdoors and actively engaged in nature, for their health and the health of our parks. Each <a href='https://www.kidsinparks.com/virginia-blue-ridge-railway-trail'>kidsinparks.com</a>TRACK Trail provides a series of self-guided, brochure led adventures designed to turn an ordinary hike into a fun-filled adventure. Kids who register their <a href='https://www.kidsinparks.com/virginia-blue-ridge-railway-trail'>kidsinparks.com</a>TRACK Trail adventures on the <a href='https://www.kidsinparks.com/'>https://www.kidsinparks.com/</a>KIDS IN PARKS website become members of the program’s Trail TRACKer Team and earn prizes designed to make their next adventure more fun. <strong>Piney River Depot &amp; Trailhead</strong> 3124 Patrick Henry Highway Piney River, Virginia, 22964 <br><br><strong>Phone:</strong> <a href='tel:4342637130'>434-263-7130</a> or <br><br><strong>Phone:</strong> <a href='tel:4342637015'>434-263-7015</a> <strong>Directions, Parking &amp; Trail Access</strong> To access the Piney River trailhead from the Lovingston area, take US 29 to State Route 56 west at Colleen; turn right onto SR 56, and travel 5 miles to turn left onto SR 151. After 2 miles you’ll see the trailhead sign on left (3124 Patrick Henry Highway, Piney River). Parking for cars and horse trailers is available.
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+This Blue Ridge Parkway Foundation program helps get kids and families “un-plugged”, outdoors and actively engaged in nature, for their health and the health of our parks. Each <a href='https://www.kidsinparks.com/virginia-blue-ridge-railway-trail'>kidsinparks.com</a>TRACK Trail provides a series of self-guided, brochure led adventures designed to turn an ordinary hike into a fun-filled adventure. Kids who register their <a href='https://www.kidsinparks.com/virginia-blue-ridge-railway-trail'>kidsinparks.com</a>TRACK Trail adventures on the <a href='https://www.kidsinparks.com/'>https://www.kidsinparks.com/</a>KIDS IN PARKS website become members of the program’s Trail TRACKer Team and earn prizes designed to make their next adventure more fun. <h4>Piney River Depot &amp; Trailhead</h4> 3124 Patrick Henry Highway Piney River, Virginia, 22964 <br><br><strong>Phone:</strong> <a href='tel:4342637130'>434-263-7130</a> or <br><br><strong>Phone:</strong> <a href='tel:4342637015'>434-263-7015</a> <strong>Directions, Parking &amp; Trail Access</strong> To access the Piney River trailhead from the Lovingston area, take US 29 to State Route 56 west at Colleen; turn right onto SR 56, and travel 5 miles to turn left onto SR 151. After 2 miles you’ll see the trailhead sign on left (3124 Patrick Henry Highway, Piney River). Parking for cars and horse trailers is available.
+
+====================================================================================================
+
+16. Laurel Ridge Loop
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<strong>Miles:</strong> 1.6 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/zixB4DHoBGPy9pCu8'>https://goo.gl/maps/zixB4DHoBGPy9pCu8</a>Google Maps The loop layout of the trail provides access to an array of forest types: mountain laurel thickets, yellow birch, hemlock remains, and oak-hickory forest. The Laurel Ridge Loop trail offers a challenging rocky section. (Loop ends in Parking Lot F.)
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<h4>Miles:</h4> 1.6 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/zixB4DHoBGPy9pCu8'>https://goo.gl/maps/zixB4DHoBGPy9pCu8</a>Google Maps The loop layout of the trail provides access to an array of forest types: mountain laurel thickets, yellow birch, hemlock remains, and oak-hickory forest. The Laurel Ridge Loop trail offers a challenging rocky section. (Loop ends in Parking Lot F.)
+
+====================================================================================================
+
+17. Lower Shamokin Falls Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 1.7 <strong>Blaze Color:</strong> Blue <strong>Difficulty Level:</strong> Moderate Perhaps the longest destination hike on the property, the trail begins on a jeep trail and then meanders through dense forest cover. The end of the trail is located at the base of a cascading waterfall that begins just below the Upper Shamokin Falls Trail. DIRECTIONS: From Rt. 151 in Nellysford, take a left onto Rt. 751 (Old Stoney Creek Road), trail begins at the end of the road at gate.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 1.7 <strong>Blaze Color:</strong> Blue <strong>Difficulty Level:</strong> Moderate Perhaps the longest destination hike on the property, the trail begins on a jeep trail and then meanders through dense forest cover. The end of the trail is located at the base of a cascading waterfall that begins just below the Upper Shamokin Falls Trail. DIRECTIONS: From Rt. 151 in Nellysford, take a left onto Rt. 751 (Old Stoney Creek Road), trail begins at the end of the road at gate.</p>
+
+====================================================================================================
+
+18. Old Appalachian Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 3.3 <strong>Blaze Color:</strong> Red-Yellow <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/ANsHVLfkx6f3PNAaA'>https://goo.gl/maps/ANsHVLfkx6f3PNAaA</a> Google Maps This trail has an array of access points and varying hike lengths. Along the trail there are numerous greenstone ledges that provide spectacular views of the south &amp; Shenandoah Valley. Wildflowers are always abundant in the spring and summer. The trail was once part of the official Appalachian Trail and there is an access trail to the current Appalachian Trail on Laurel Springs Drive near Wolftrap Lane which also connects to the old trail as well. <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 3.3 <strong>Blaze Color:</strong> Red-Yellow <strong>Difficulty Level:</strong> Moderate to Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/ANsHVLfkx6f3PNAaA'>https://goo.gl/maps/ANsHVLfkx6f3PNAaA</a> Google Maps This trail has an array of access points and varying hike lengths. Along the trail there are numerous greenstone ledges that provide spectacular views of the south &amp; Shenandoah Valley. Wildflowers are always abundant in the spring and summer. The trail was once part of the official Appalachian Trail and there is an access trail to the current Appalachian Trail on Laurel Springs Drive near Wolftrap Lane which also connects to the old trail as well. <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+19. Paul’s Creek Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.6 <strong>Blaze Color:</strong> Blue <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/JrGreyCFYCzFSGot6'>https://goo.gl/maps/JrGreyCFYCzFSGot6</a> Google Maps Family favorite! At the end of this valley hike near <a href='https://www.tnfw.org/crawfords-knob'>https://www.tnfw.org/crawfords-knob</a> Crawford’s Knob is a series of cascading waterfalls. The rock surfaces of the falls have been smoothed by thousands of years of rushing water.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.6 <strong>Blaze Color:</strong> Blue <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/JrGreyCFYCzFSGot6'>https://goo.gl/maps/JrGreyCFYCzFSGot6</a> Google Maps Family favorite! At the end of this valley hike near <a href='https://www.tnfw.org/crawfords-knob'>https://www.tnfw.org/crawfords-knob</a> Crawford’s Knob is a series of cascading waterfalls. The rock surfaces of the falls have been smoothed by thousands of years of rushing water.</p>
+
+====================================================================================================
+
+20. Pedlars Edge Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 1.6 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps The Pedlars Edge trail connects to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail. It is named after the geologic formations found at this elevation–the “pedlar formation,” which was formed 1.1 million years ago. The power-line section is a birdwatchers delight with the creation of edge that increases wildflowers and seeds for birds to feed upon. Allow extra time for access and return. <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 1.6 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps The Pedlars Edge trail connects to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail. It is named after the geologic formations found at this elevation–the “pedlar formation,” which was formed 1.1 million years ago. The power-line section is a birdwatchers delight with the creation of edge that increases wildflowers and seeds for birds to feed upon. Allow extra time for access and return. <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+21. Pond Hollow Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 1.0 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps Pond Hollow is one of the most interesting and challenging trails on the mountain. It is located within a geologic fault line. The fault line is located in the center of the trail and easily recognized by the 50-100-foot swath of displaced boulders. Note the interesting placement of plant life. The forested area to the west has been labeled as prime bobcat habitat. <strong>Use caution in winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 1.0 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps Pond Hollow is one of the most interesting and challenging trails on the mountain. It is located within a geologic fault line. The fault line is located in the center of the trail and easily recognized by the 50-100-foot swath of displaced boulders. Note the interesting placement of plant life. The forested area to the west has been labeled as prime bobcat habitat. <strong>Use caution in winter.</strong></p>
+
+====================================================================================================
+
+22. Ravens Roost Park
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://www.google.com/maps/place/ravens+roost+park+nelson+county/data=!4m2!3m1!1s0x89b369fc0676f171:0x8da6fecaac553374?sa=X&amp;ved=1t:242&amp;hl=en-us&amp;ictx=111'>Google Maps</a> Google Maps This trail is excellent for finding wildflowers during warmer months. White Oak Trail also provides hikers with a short, heavily forested hike through Wintergreen’s wilderness. This is an ideal trail for solitude and birdwatching. Access to the trail can be made either on White Oak Drive or Wintergreen Drive.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://www.google.com/maps/place/ravens+roost+park+nelson+county/data=!4m2!3m1!1s0x89b369fc0676f171:0x8da6fecaac553374?sa=X&amp;ved=1t:242&amp;hl=en-us&amp;ictx=111'>Google Maps</a> Google Maps This trail is excellent for finding wildflowers during warmer months. White Oak Trail also provides hikers with a short, heavily forested hike through Wintergreen’s wilderness. This is an ideal trail for solitude and birdwatching. Access to the trail can be made either on White Oak Drive or Wintergreen Drive.</p>
+
+====================================================================================================
+
+23. Shamokin Springs Nature Preserve
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps This nature preserve in the middle of Wintergreen’s community is one of the most unique environments on the mountain. The high elevation wetland with braided streams features northern plant species. It is a favorite with families and can be accompanied by a Nature Preserve Guide found at the trail entrance or at Trillium House.</p>
+
+====================================================================================================
+
+24. The Plunge
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.2 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate (if you take your time) <strong>Directions:</strong> <a href='https://goo.gl/maps/1p9jDyMyTjJqYpvo6'>https://goo.gl/maps/1p9jDyMyTjJqYpvo6</a> Google Maps One of the shortest trails on the mountain (it is an access trail to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail), The Plunge is an excellent introduction to the beauty and natural history of the area. The hikers will find a steep climb around rock formations that were created millions of years ago (called pedlar gneiss). The Plunge provides an incredible overlook and family picture spot at both the top (at Blackrock Park on Blackrock Circle) and the bottom of the trail. Use extra caution in winter.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.2 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate (if you take your time) <strong>Directions:</strong> <a href='https://goo.gl/maps/1p9jDyMyTjJqYpvo6'>https://goo.gl/maps/1p9jDyMyTjJqYpvo6</a> Google Maps One of the shortest trails on the mountain (it is an access trail to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail), The Plunge is an excellent introduction to the beauty and natural history of the area. The hikers will find a steep climb around rock formations that were created millions of years ago (called pedlar gneiss). The Plunge provides an incredible overlook and family picture spot at both the top (at Blackrock Park on Blackrock Circle) and the bottom of the trail. Use extra caution in winter.</p>
+
+====================================================================================================
+
+25. Trillium Field
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.1 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps In early May the bloom from thousands of trillium blanket the forest floor with white and pink. The Trillium Field provides habitat for wildflower species that bloom throughout the warmer months. On the corner of Wintergreen Drive and Devils Knob Loop.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.1 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps In early May the bloom from thousands of trillium blanket the forest floor with white and pink. The Trillium Field provides habitat for wildflower species that bloom throughout the warmer months. On the corner of Wintergreen Drive and Devils Knob Loop.</p>
+
+====================================================================================================
+
+26. Upper Shamokin Falls Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.4 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps One of the most popular and beautiful hikes on the mountain. Follow the sound of falling water to the falls and be sure to stop and look around at the evergreen ferns and wildflowers. For a different return, there is <a href='https://www.tnfw.org/morgans-loop'>https://www.tnfw.org/morgans-loop</a> Morgans Loop. Please refrain from climbing on the edges of the falls, as the rocks are slippery when wet. Don’t forget your camera on this hike for the entire family. <strong>Use caution in the winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.4 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps One of the most popular and beautiful hikes on the mountain. Follow the sound of falling water to the falls and be sure to stop and look around at the evergreen ferns and wildflowers. For a different return, there is <a href='https://www.tnfw.org/morgans-loop'>https://www.tnfw.org/morgans-loop</a> Morgans Loop. Please refrain from climbing on the edges of the falls, as the rocks are slippery when wet. Don’t forget your camera on this hike for the entire family. <strong>Use caution in the winter.</strong></p>
+
+====================================================================================================
+
+27. Upper Shamokin Gorge Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/worqnjvdmccjF1MJ9'>https://goo.gl/maps/worqnjvdmccjF1MJ9</a> Google Maps One of the more beautiful and challenging hikes on the mountain, the Gorge Trail starts on Laurel Springs Drive near Wolftrap Lane where it follows and crosses the headwaters of Stoney Creek at several spots. At some places the water itself is invisible, but easily heard under the rocks. Stream life can be found on the undersides of rocks and plant life is abundant all around. It connects to the current Appalachian Trail and intersects with the <a href='https://nelsoncounty.com/explore/upper-shamokin-falls-trail/'>nelsoncounty.com</a> Upper Shamokin Falls and Laurel Springs Gap Overlook trails. <strong>Use caution in the winter.</strong></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.8 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://goo.gl/maps/worqnjvdmccjF1MJ9'>https://goo.gl/maps/worqnjvdmccjF1MJ9</a> Google Maps One of the more beautiful and challenging hikes on the mountain, the Gorge Trail starts on Laurel Springs Drive near Wolftrap Lane where it follows and crosses the headwaters of Stoney Creek at several spots. At some places the water itself is invisible, but easily heard under the rocks. Stream life can be found on the undersides of rocks and plant life is abundant all around. It connects to the current Appalachian Trail and intersects with the <a href='https://nelsoncounty.com/explore/upper-shamokin-falls-trail/'>nelsoncounty.com</a> Upper Shamokin Falls and Laurel Springs Gap Overlook trails. <strong>Use caution in the winter.</strong></p>
+
+====================================================================================================
+
+28. White Oak Trail
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps This trail is excellent for finding wildflowers during warmer months. White Oak Trail also provides hikers with a short, heavily forested hike through Wintergreen’s wilderness. This is an ideal trail for solitude and birdwatching. Access to the trail can be made either on White Oak Drive or Wintergreen Drive.</p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.5 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Moderate <strong>Directions:</strong> <a href='https://goo.gl/maps/nBaFmA7ogwoGbGA4A'>https://goo.gl/maps/nBaFmA7ogwoGbGA4A</a> Google Maps This trail is excellent for finding wildflowers during warmer months. White Oak Trail also provides hikers with a short, heavily forested hike through Wintergreen’s wilderness. This is an ideal trail for solitude and birdwatching. Access to the trail can be made either on White Oak Drive or Wintergreen Drive.</p>
+
+====================================================================================================
+
+29. White Rock Falls
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<strong>Miles:</strong> 2.5 <strong>Difficulty Level:</strong> Moderate The 2.5 mile moderate hike highlights an impressive gorge, which has a waterfall and a natural wading pool. On the climb back up to the Parkway, you will be treated to glimpses of the Blue Ridge Mountains to the Northeast. The trail can easily be combined with other trails to make for a longer hike. To create a 5-mile loop, combine it with the Slacks Overlook Trail. Park at the Slacks Overlook and the trail starts about 60 yards ahead on the right side of the Blue Ridge Parkway. Leashed dogs are allowed. <strong>White Rock Falls</strong> Blue Ridge Parkway (milepost 19)
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<h4>Miles:</h4> 2.5 <strong>Difficulty Level:</strong> Moderate The 2.5 mile moderate hike highlights an impressive gorge, which has a waterfall and a natural wading pool. On the climb back up to the Parkway, you will be treated to glimpses of the Blue Ridge Mountains to the Northeast. The trail can easily be combined with other trails to make for a longer hike. To create a 5-mile loop, combine it with the Slacks Overlook Trail. Park at the Slacks Overlook and the trail starts about 60 yards ahead on the right side of the Blue Ridge Parkway. Leashed dogs are allowed. <strong>White Rock Falls</strong> Blue Ridge Parkway (milepost 19)
+
+====================================================================================================
+
+30. Three Ridges
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 13.3 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps For a very long and very rugged trail near Wintergreen check out Three Ridges Trail. It is a 13.3 mile heavily trafficked loop that some hikers take two days to cover. It features a waterfall and is rated as difficult. <a href='https://www.hikingupward.com/gwnf/threeridges/'>Hiking Upward</a><u>Three Ridges on Hiking Upward</u></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 13.3 <strong>Blaze Color:</strong> Red <strong>Difficulty Level:</strong> Difficult <strong>Directions:</strong> <a href='https://www.google.com/maps/dir//37.910033,-78.93503499999997'>Google Maps</a> Google Maps For a very long and very rugged trail near Wintergreen check out Three Ridges Trail. It is a 13.3 mile heavily trafficked loop that some hikers take two days to cover. It features a waterfall and is rated as difficult. <a href='https://www.hikingupward.com/gwnf/threeridges/'>Hiking Upward</a><u>Three Ridges on Hiking Upward</u></p>
+
+====================================================================================================
+
+31. Stoney Creek Park
+----------------------------------------------------------------------------------------------------
+Found 1 heading(s) to convert:
+
+  - <strong>Miles:</strong> → <h4>Miles:</h4>
+
+BEFORE:
+----------------------------------------------------------------------------------------------------
+<p><strong>Miles:</strong> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps Visit the forested linear park with a mile-plus long walking path next to a stream with picnic tables and bench. The park’s creek forms part of the western boundary of Wintergreen’s subdivision in the valley. A major expansion in 2022 included a completely new parking lot off of Stoney Creek West along with a new, easy-to-walk trail lined with benches and picnic tables. <a href='https://www.wtgpoa.org/stoney-creek-park'>https://www.wtgpoa.org/stoney-creek-park</a><u>Learn more about Stoney Creek Park</u></p>
+
+AFTER:
+----------------------------------------------------------------------------------------------------
+<p><h4>Miles:</h4> 0.3 <strong>Blaze Color:</strong> Yellow <strong>Difficulty Level:</strong> Easy <strong>Directions:</strong> <a href='https://goo.gl/maps/7nf9BFjD9zG5dzJS7'>https://goo.gl/maps/7nf9BFjD9zG5dzJS7</a> Google Maps Visit the forested linear park with a mile-plus long walking path next to a stream with picnic tables and bench. The park’s creek forms part of the western boundary of Wintergreen’s subdivision in the valley. A major expansion in 2022 included a completely new parking lot off of Stoney Creek West along with a new, easy-to-walk trail lined with benches and picnic tables. <a href='https://www.wtgpoa.org/stoney-creek-park'>https://www.wtgpoa.org/stoney-creek-park</a><u>Learn more about Stoney Creek Park</u></p>
+
+====================================================================================================
+

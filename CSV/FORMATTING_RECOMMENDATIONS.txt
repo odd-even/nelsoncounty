@@ -1,0 +1,135 @@
+====================================================================================================
+FORMATTING RECOMMENDATIONS - DETAILED ANALYSIS
+====================================================================================================
+
+====================================================================================================
+1. HOURS/OPERATING HOURS - NEEDS STANDARDIZATION
+====================================================================================================
+
+Found 15 listings with hours info that could be formatted:
+
+  Rapunzel’s Coffee & Books:
+    ...dation hosts live music every Wednesday, Friday, and Saturday evenings starting at 8pm.</p>
+
+<p>Rapunzel’s is a listening-room, living-r...
+
+  Subway:
+    ...he way a sandwich should be.” Hours: 10 am-10 pm; Friday night until 11 pm; Sunday until 9 p.m. Located in Annie Land Plaza, Highway...
+
+  The Market at Wintergreen:
+    ...atshirts and tee shirts. Deli open: 7:30 am to 7:30 pm daily. 189 Mountain Inn Loop Wintergreen, VA 2295...
+
+  Ann’s Family Restaurant:
+    ...ables and specials every day. Closed Saturday. 1170 Thomas Nelson Hwy Arrington, VA 22922 <br><...
+
+  Blue Mountain Brewery:
+    ...e available daily. Restaurant hours are 11am-10pm Monday-Saturday and 11am-9pm on Sunday. 9519 Critzers Shop Road Afton, VA 22920 <br><br>...
+
+  Coquito Kitchen:
+    ...dding a twist here and there. Open Thursday-Saturday 11:00-6:00 190 Rockfish School Ln Afton, VA 22920</p>...
+
+  El Mariachi Mexican Food:
+    ...xican food is NO life at all! Open Monday thru Thursday 11am – 9pm. Friday 11am – 10pm, Saturday 12pm – 10pm and Sunday 11:30am – 9pm. (...
+
+  McDonald’s:
+    ...<p>Open 7 days a week from 6 am – 11 pm (open until midnight on Friday and Saturday night...
+
+  The Farmhouse at Veritas:
+    ...Farmhouse Dinners are offered Wednesday through Sunday nights at 6:30 pm. They are four-course, wine paired meals which fe...
+
+  Saunders Brothers Farm Market:
+    ...stop for our customers! We’re open May to December, Monday through Saturday, from 9-6 until Daylight Savings and 9-5 afterwar...
+
+RECOMMENDATION: Add <strong>Hours:</strong> or <strong>Operating Hours:</strong> label with line breaks
+
+====================================================================================================
+2. DIRECTIONS - NEEDS STANDARDIZATION
+====================================================================================================
+
+Found 15 listings with directions that could be formatted:
+
+  Appalachian Trail from Rt 56 to Harpers Creek:
+    ...l from the shelter. <strong>Directions </strong> From State Route 56 at Crabtree Falls: Take SR 56 east for approximately 3-4 miles. The Appalachian...
+
+  Crabtree Falls:
+    ...gs must be leashed. <strong>Directions </strong>From US Route 29, take Route 56 west at Colleen. Follow Rt. 56 for approximately 20 miles to 11581 C...
+
+  Fortune’s Cove Nature Preserve:
+    ...ovingston, VA 22949 <strong>Directions</strong> From US 29 near Lovingston travel north for 0.5 miles to Rt. 718/Mountain Cove Road. Turn left and ...
+
+  Humpback Rocks:
+    ...st, VA 22952</span> <strong>Directions</strong> From I-64: Take Afton Exit 99. Take a right onto 250 East. After 1.5miles, take a sharp right onto ...
+
+  James River State Park:
+    ...trong> 434-933-4355 <strong>Directions</strong> Take US Route 60 east from Amherst to Gladstone. At the James River Bridge, turn left onto SR 605, ...
+
+  Kids in Parks: Virginia Blue Ridge Railway Trail:
+    ...ney River trailhead from the Lovingston area, take US 29 to State Route 56 west at Colleen; turn right onto SR 56, and travel 5 miles to turn left onto SR 151. After 2 miles you’ll see the trailhead sign on left (3124 Patrick Henry Highway, ...
+
+  Mau-Har Trail:
+    ...er, 2.6 trail miles from the Tye River. The trail begins on the A.T. 1.8 miles from Reeds Gap/route 664. It continues for 3.3 miles through steep terrain passing near the 50 foot Campbell’s Creek wat...
+
+  Montebello Nature Trail:
+    ...ontebello, VA 24464 <strong>Directions</strong> Follow Route 56 to Montebello</p>...
+
+  North Fork of the Piney River:
+    ...ood swimming holes. <strong>Directions</strong> <ul> <li>Take Route 56 west to Massies Mill, turn on SR 666 (Dickie Road).</li> <li>Follow SR 666 f...
+
+  Spy Rock:
+    ...arking Map</strong> <strong>Directions</strong> <ul> <li>From State Route 56, take State Route 826 (Meadows Lane) for approximately 3.75 miles to i...
+
+RECOMMENDATION: Add <strong>Directions:</strong> label with line breaks before directions text
+
+====================================================================================================
+3. UNFORMATTED CONTACT INFO
+====================================================================================================
+
+Found 1 listings:
+
+  James River: Unformatted phone: 434-286-2338
+
+RECOMMENDATION: Format all contact info consistently
+
+====================================================================================================
+4. HEADING CANDIDATES (Could use <h4> instead of <strong>)
+====================================================================================================
+
+Found 20 potential headings:
+
+  Allen Creek Nature Preserve: "Miles:"
+  Appalachian Trail from Rt 56 to Harpers Creek: "Miles:"
+  Blackrock Trail: "Miles:"
+  Brimstone Trail: "Miles:"
+  Cedar Ciffs North Trail: "Miles:"
+  Chestnut Springs Trail: "Miles:"
+  Crabtree Falls: "Directions"
+  Devils Knob Trail: "Miles:"
+  Fortune’s Cove Nature Preserve: "Miles:"
+  Fortune’s Ridge Trail: "Miles:"
+  Hemlock Springs Loop: "Miles:"
+  Highlands Leisure Trail: "Miles:"
+  Humpback Rocks: "Humpback Rocks Visitor Center"
+  James River State Park: "Address"
+  Kids in Parks: Virginia Blue Ridge Railway Trail: "Piney River Depot &amp; Trailhead"
+
+RECOMMENDATION: Consider using <h4> tags for section headings
+
+====================================================================================================
+5. INCONSISTENT SPACING
+====================================================================================================
+
+Found 0 listings:
+
+
+RECOMMENDATION: Normalize line breaks (max 2-3 consecutive <br> tags)
+
+====================================================================================================
+SUMMARY OF RECOMMENDATIONS
+====================================================================================================
+
+1. Format Hours with <strong>Hours:</strong> label
+2. Format Directions with <strong>Directions:</strong> label
+3. Ensure all contact info is formatted (Address, Phone, Email)
+4. Consider using <h4> for section headings instead of <strong>
+5. Normalize spacing and line breaks
+6. Standardize phone number format (XXX-XXX-XXXX)

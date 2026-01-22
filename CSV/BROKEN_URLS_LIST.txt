@@ -1,0 +1,42 @@
+================================================================================
+BROKEN URLs (404 ERRORS) - RECOMMEND REMOVAL
+================================================================================
+
+1. ~~http://www.silvercreekorchards.com/home/~~ (FIXED - Correct URL is https://silvercreekorchards.com)
+   Found in: Silver Creek Orchards (website field) - UPDATED IN CSV
+
+2. ~~https://nelsoncounty.com/explore/cruciblecoffee/~~ (FIXED - Correct URL is https://cruciblecoffee.com)
+   Found in: Basecamp 151 (detailedDescription - appears twice) - UPDATED IN CSV
+
+3. ~~https://nelsonhistorical.org/cpage.php?pt=16~~ (FIXED - Correct URL is https://nelsonhistorical.org)
+   Found in: Oakland Museum (website field) - UPDATED IN CSV
+
+4. ~~https://www.daviscreekfarm.com/~~ (REMOVED - Website field cleared)
+   Found in: Davis Creek Farm (website field) - UPDATED IN CSV
+
+5. ~~https://www.dbbrewingcompany.com/bluegrass/~~ (FIXED - Correct URL is https://www.dbbrewingcompany.com/location/basecamp-brewpub-meadows)
+   Found in: Devils Backbone Brewing (detailedDescription - appears twice) - UPDATED IN CSV
+
+6. ~~https://www.dgif.virginia.gov/wp-content/uploads/map-james-river-wma.pdf~~ (FIXED - Correct URL is https://dwr.virginia.gov/waterbody/james-river-upper-middle/#maps)
+   Found in: James River (detailedDescription - appears twice) - UPDATED IN CSV
+
+7. ~~https://www.rockwellridgeinn.com/?amp%3Butm_medium=wix_google_business_profile&amp%3Butm_campaign=3087709408624668177~~ (REMOVED - Website field cleared)
+   Found in: Rockwell Ridge Inn (website field) - UPDATED IN CSV
+
+8. ~~https://www.tnfw.org/crawfords-knob~~ (FIXED - Correct URL is https://tnfw.org/pauls-creek-trail/)
+   Found in: Paul's Creek Trail (detailedDescription - appears 3 times) - UPDATED IN CSV
+
+9. ~~https://www.tnfw.org/trilliumhouse~~ (REMOVED - Links removed, text "Trillium House" kept)
+   Found in: 
+   - Allen Creek Nature Preserve (detailedDescription - links removed, website cleared) - UPDATED IN CSV
+   - Shamokin Springs Nature Preserve (detailedDescription - links removed) - UPDATED IN CSV
+
+================================================================================
+SUMMARY
+================================================================================
+Total broken URLs: 0 (6 fixed, 3 removed - Silver Creek Orchards, Oakland Museum, Devils Backbone Brewing, James River, Basecamp 151, Paul's Creek Trail, trilliumhouse, Davis Creek Farm, Rockwell Ridge Inn)
+Total listings affected: 0 listings remaining
+
+================================================================================
+NOTE: Additional URLs with other errors (SSL, DNS, rate limiting) are documented
+in the full report: BROKEN_URLS_REPORT_20260122_063704.txt

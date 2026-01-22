@@ -1,0 +1,119 @@
+====================================================================================================
+NELSONCOUNTY.COM URLs FOUND IN CSV
+====================================================================================================
+
+Total: 15 unique URLs pointing back to nelsoncounty.com
+
+====================================================================================================
+DETAILED LIST WITH CONTEXT
+====================================================================================================
+
+1. https://nelsoncounty.com/wp-content/uploads/2024/05/Nelson-County-Hiking-Trails-Harpers-Creek-Final.pdf
+   Listing: Appalachian Trail from Rt 56 to Harpers Creek
+   Field: website
+   Context: PDF download link
+
+2. https://nelsoncounty.com/explore/montebello-fish-hatchery/
+   Listing: Crabtree Falls
+   Field: detailedDescription
+   Context: ...de of the river, and the bridge now serves primarily as a decorative addition to the hike. <a href='https://nelsoncounty.com/explore/montebello-fish-hatchery/'>nelsoncounty.com</a>Montebello Fish Hatchery (0.6 miles on Rt. 56 West) 359 Fish Hatchery Lane, Mo...
+
+3. https://nelsoncounty.com/explore/montebello-country-store-cafe/
+   Listing: Crabtree Falls
+   Field: detailedDescription
+   Context: ...chery (0.6 miles on Rt. 56 West) 359 Fish Hatchery Lane, Montebello, VA 24464 540-377-2418 <a href='https://nelsoncounty.com/explore/montebello-country-store-cafe/'>nelsoncounty.com</a>'>Montebello Country Store and Café (4.5 miles on Rt. 56 West) 15072 Crabtree ...
+
+4. https://nelsoncounty.com/explore/fishing-at-montebello/
+   Listing: Crabtree Falls
+   Field: detailedDescription
+   Context: ...(4.5 miles on Rt. 56 West) 15072 Crabtree Falls Highway, Montebello, VA 24464 540-377-2650 <a href='https://nelsoncounty.com/explore/fishing-at-montebello/'>nelsoncounty.com</a>Montebello Camping &amp; Fishing Resort (4.5 miles on Rt. 56 West) 15072 Crabt...
+
+5. https://nelsoncounty.com/wp-content/uploads/2024/05/Humpback-Rock-Nelson-County.pdf
+   Listing: Humpback Rocks
+   Field: detailedDescription
+   Context: ...s://www.fs.usda.gov/gwj'>https://www.fs.usda.gov/gwj</a>George Washington National Forest. <a href='https://nelsoncounty.com/wp-content/uploads/2024/05/Humpback-Rock-Nelson-County.pdf'>nelsoncounty.com</a>Download the Humpback Rocks Visitor Center &amp; Trail Guide. <strong>Humpback...
+
+6. https://www.nelsoncounty.com/hikes-trails/
+   Listing: Montebello Nature Trail
+   Field: website
+   Context: General hiking trails page
+   
+   Listing: North Fork of the Piney River
+   Field: website
+   Context: General hiking trails page
+
+7. https://nelsoncounty.com/wp-content/uploads/2024/05/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf
+   Listing: Nelson County Wilderness Area
+   Field: detailedDescription
+   Context: ...ps://appalachiantrail.org/</a> Appalachian Trail that runs through this scenic wilderness. <a href='https://nelsoncounty.com/wp-content/uploads/2024/05/Nelson-County-Hiking-Trails-Three-Ridges-Final.pdf'>nelsoncounty.com</a> See the Three Ridges Map</p>...
+
+8. https://nelsoncounty.com/explore/blackrock-trail/
+   Listing: Pedlars Edge Trail
+   Field: detailedDescription
+   Context: ...033,-78.93503499999997'>Google Maps</a> Google Maps The Pedlars Edge trail connects to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail. It is named after the geologic formations found at this elev...
+   
+   Listing: The Plunge
+   Field: detailedDescription
+   Context: ...6</a> Google Maps One of the shortest trails on the mountain (it is an access trail to the <a href='https://nelsoncounty.com/explore/blackrock-trail/'>nelsoncounty.com</a> Blackrock Trail), The Plunge is an excellent introduction to the beauty and n...
+
+9. https://nelsoncounty.com/explore/upper-shamokin-falls-trail/
+   Listing: Upper Shamokin Gorge Trail
+   Field: detailedDescription
+   Context: ... abundant all around. It connects to the current Appalachian Trail and intersects with the <a href='https://nelsoncounty.com/explore/upper-shamokin-falls-trail/'>nelsoncounty.com</a> Upper Shamokin Falls and Laurel Springs Gap Overlook trails. <strong>Use caut...
+
+10. https://nelsoncounty.com/explore/james-river/
+    Listing: Swimming
+    Field: accordionPanel2Content
+    Context: ...e rivers of Nelson County can be fun and offer very different experiences. From the mighty <a href='https://nelsoncounty.com/explore/james-river/'>James River</a> that borders on the eastern side of the county to the mountain streams that includ...
+
+11. https://nelsoncounty.com/explore/north-fork-of-the-piney-river/
+    Listing: Swimming
+    Field: accordionPanel2Content
+    Context: ...r</a> that borders on the eastern side of the county to the mountain streams that include, <a href='https://nelsoncounty.com/explore/north-fork-of-the-piney-river/'>Piney River</a>, <a href='https://nelsoncounty.com/explore/tye-river/'>Tye River</a> and <a href='...
+
+12. https://nelsoncounty.com/explore/tye-river/
+    Listing: Swimming
+    Field: accordionPanel2Content
+    Context: ...<a href='https://nelsoncounty.com/explore/north-fork-of-the-piney-river/'>Piney River</a>, <a href='https://nelsoncounty.com/explore/tye-river/'>Tye River</a> and <a href='https://nelsoncounty.com/explore/rockfish-river/'>Rockfish River</a> of...
+
+13. https://nelsoncounty.com/explore/rockfish-river/
+    Listing: Swimming
+    Field: accordionPanel2Content
+    Context: ...'>Piney River</a>, <a href='https://nelsoncounty.com/explore/tye-river/'>Tye River</a> and <a href='https://nelsoncounty.com/explore/rockfish-river/'>Rockfish River</a> offer many opportunities to enjoy the water.</p>
+
+14. https://nelsoncounty.com/explore/crabtree-falls/
+    Listing: Montebello Fish Hatchery
+    Field: detailedDescription
+    Context: ...lots located on the property. Spy Rock, a scenic view off of the Appalachian Trail and and <a href='https://nelsoncounty.com/explore/crabtree-falls/'>nelsoncounty.com</a> Crabtree Falls, another popular hiking destination, are nearby. 359 Fish Hatc...
+
+15. https://nelsoncounty.com/stay/
+    Listing: Marigold on the Mountain
+    Field: website
+    Context: General stay/accommodations page
+    
+    Listing: Goldfinch
+    Field: website
+    Context: General stay/accommodations page
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+
+✅ 404 ERRORS: 0 (All previously broken URLs have been fixed)
+
+📊 URL AUDIT RESULTS:
+   - Total unique URLs found: 473
+   - Working URLs: 305
+   - nelsoncounty.com URLs: 15 (self-referential links)
+   - Other errors: 152 (mostly tel: phone links, some 403/SSL errors)
+
+====================================================================================================
+NOTE
+====================================================================================================
+
+The "Other Errors" section includes:
+- tel: links (phone numbers - these are expected to fail HTTP checks, they're not broken)
+- Some 403 Forbidden errors (may need manual review)
+- SSL/DNS errors (may be temporary or need manual review)
+
+For full details on all URLs, see: COMPREHENSIVE_URL_AUDIT.txt
