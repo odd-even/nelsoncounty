@@ -1,0 +1,144 @@
+================================================================================
+ADDRESS ANALYSIS - NON-STANDARD ADDRESSES REPORT
+================================================================================
+Generated from: final_listings_PERFECT.csv
+Total listings: 395
+Addresses requiring attention: 23
+================================================================================
+
+CRITICAL ISSUES - These are clearly NOT actual addresses:
+================================================================================
+
+1. Fishing the James River
+   Address: "626 travel easterly following road signs"
+   Issue: This is directions/instructions, not an address
+   Similar to your example!
+
+2. Blue Ridge Parkway Loops
+   Address: "16 Blue Ridge Parkway – cross the Parkway onto Route 814 Right onto Route 56 to"
+   Issue: Contains driving directions, not a physical address
+
+3. Kids in Parks: Rockfish River Trailhead
+   Address: "5 miles south of Nellysford. This is another of the Blue Ridge Parkway Foundation's Kids in Parks Track Trail programs of self gui"
+   Issue: Directions with extra descriptive text (also appears cut off)
+
+4. Montebello Country Store & Cafe
+   Address: "5 miles east of the Parkway (MP 27)"
+   Issue: Distance/direction description, not a street address
+
+5. Nine Ridges Retreat
+   Address: "2 miles from Crabtree Falls and 4 miles from the Blue Ridge Parkway, our home comfortably sleeps 6"
+   Issue: Contains directions AND descriptive text about the property
+
+6. North Fork of the Piney River
+   Address: "4 miles past Dickie Brothers Orchard where the road becomes a gravel road then winds up and over the mountain o"
+   Issue: Detailed directions, appears cut off at the end
+
+7. Mac's Country Store
+   Address: "151 and 56 and Roseland Road. 7023 Patrick Henry Hwy"
+   Issue: Route intersection description, though it does have a street address at the end
+
+8. Nelson 151
+   Address: "151 is Main Street for the Rockfish Valley"
+   Issue: This is a description/explanation, not an address
+
+9. Tinkerland Farm
+   Address: "5 per lb. Bryant Lane (State Route 781) and VA 151 Patrick Henry Highway Roselan"
+   Issue: Contains pricing info ("5 per lb.") and appears cut off
+
+10. Virginia Blue Ridge Railway Trail
+    Address: "3124 Patrick Henry Highway Piney River, Virginia, 22964 Parking and Trail Access To a"
+    Issue: Contains descriptive text and appears cut off
+
+11. Kids in Parks: Virginia Blue Ridge Railway Trail
+    Address: "3124 Patrick Henry Highway Piney River, Virginia, 22964 or"
+    Issue: Ends with "or" - appears incomplete
+
+================================================================================
+OTHER ISSUES - Missing components or formatting problems:
+================================================================================
+
+12. Humpback Rocks
+    Address: "5.8 Blue Ridge Parkway, Lyndhurst, VA 22952"
+    Issue: Appears to be a mile marker (5.8) rather than a street number
+
+13. Stoney Creek Golf Course
+    Address: "Route 664, Wintergreen, VA 22958"
+    Issue: Only has route number, no street number
+
+14. Graves Grocery & Deli
+    Address: "1779 Rockfish Valley Hwy"
+    Issue: Missing city, state, and ZIP code
+
+15. Pharsalia
+    Address: "2333 Pharsalia Rd"
+    Issue: Missing city, state, and ZIP code
+
+16. Village Antiques
+    Address: "605 Front St"
+    Issue: Missing city, state, and ZIP code
+
+17. Heart of Nelson
+    Address: "1287 611 Front Street, P"
+    Issue: Has duplicate numbers (1287 611), appears cut off
+
+18. James River
+    Address: "292 Logan Road, Scottsville 24590"
+    Issue: Missing state abbreviation (VA)
+
+19. Bold Rock Hard Cider
+    Address: "1020 Rockfish Valley Highway Nellysford VA 22958"
+    Issue: Missing comma before state (should be "Nellysford, VA")
+
+20. Colleen Deli
+    Address: "4071 Thomas Nelson Hwy Arrington VA 22922"
+    Issue: Missing comma before state (should be "Arrington, VA")
+
+21. Nelson Scoops
+    Address: "8203 Thomas Nelson Hwy Lovingston VA 22949"
+    Issue: Missing comma before state (should be "Lovingston, VA")
+
+22. Fishing at Montebello
+    Address: "15072 Crabtree Falls Highway Montebello, VA https://www"
+    Issue: Contains URL fragment at the end
+
+23. Tennis
+    Address: "6919 Thomas Nelson Highway Lovingston, Virginia 22949 | https://www"
+    Issue: Contains URL fragment and pipe character
+
+================================================================================
+RECOMMENDATIONS:
+================================================================================
+
+CRITICAL (Need actual addresses):
+- Fishing the James River
+- Blue Ridge Parkway Loops
+- Kids in Parks: Rockfish River Trailhead
+- Montebello Country Store & Cafe
+- Nine Ridges Retreat
+- North Fork of the Piney River
+- Nelson 151
+- Tinkerland Farm
+
+HIGH PRIORITY (Fix formatting/complete):
+- Mac's Country Store (extract the actual address: "7023 Patrick Henry Hwy")
+- Virginia Blue Ridge Railway Trail (remove extra text)
+- Kids in Parks: Virginia Blue Ridge Railway Trail (remove "or")
+- Heart of Nelson (fix duplicate numbers, complete address)
+- Humpback Rocks (verify if 5.8 is correct or needs street address)
+
+MEDIUM PRIORITY (Add missing components):
+- Graves Grocery & Deli
+- Pharsalia
+- Village Antiques
+- James River
+- Bold Rock Hard Cider
+- Colleen Deli
+- Nelson Scoops
+
+LOW PRIORITY (Clean up formatting):
+- Stoney Creek Golf Course (verify if route-only is acceptable)
+- Fishing at Montebello (remove URL)
+- Tennis (remove URL and pipe)
+
+================================================================================
