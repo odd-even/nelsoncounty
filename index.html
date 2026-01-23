@@ -13817,7 +13817,8 @@ function updateUnsavedChangesBadge() {
             
             // Add markers for each listing
             listings.forEach(function(listing) {
-                geocodeAddress(listing.address, function(lat, lng) {
+                // Use pre-stored coordinates if available, otherwise geocode the address
+                geocodeAddress(listing, function(lat, lng) {
                     if (lat && lng) {
                         var position = { lat: lat, lng: lng };
                         
@@ -13887,14 +13888,33 @@ function updateUnsavedChangesBadge() {
             });
         }
         
-        // Simple geocoding function (uses approximate coordinates for demo)
-        function geocodeAddress(address, callback) {
-            if (!address) {
-                callback(37.8 + (Math.random() - 0.5) * 0.1, -79.0 + (Math.random() - 0.5) * 0.1);
+        // Geocoding function - uses pre-stored coordinates if available, falls back to approximate locations
+        function geocodeAddress(listing, callback) {
+            // If listing has pre-stored coordinates, use them directly (most accurate)
+            if (listing.latitude && listing.longitude && !isNaN(listing.latitude) && !isNaN(listing.longitude)) {
+                callback(listing.latitude, listing.longitude);
                 return;
             }
             
-            // Approximate coordinates for Nelson County area locations
+            // Fall back to address-based geocoding
+            var address = listing.address || '';
+            
+            // Skip geocoding for booking site addresses (no real address available)
+            if (!address) {
+                callback(null, null);
+                return;
+            }
+            var addressLower = address.toLowerCase().trim();
+            var isBookingSiteAddress = addressLower.includes('full address available') || 
+                                       addressLower.includes('address available on booking') ||
+                                       addressLower.includes('address on booking site') ||
+                                       addressLower.includes('booking site');
+            if (isBookingSiteAddress) {
+                callback(null, null);
+                return;
+            }
+            
+            // Approximate coordinates for Nelson County area locations (fallback for listings without pre-stored coords)
             var locations = {
                 'Roseland': [37.8167, -79.0833],
                 'Montebello': [37.8500, -79.1333],
