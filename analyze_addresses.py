@@ -170,3 +170,4 @@ print('SUMMARY BY ISSUE TYPE')
 print('=' * 100)
 for status, items in sorted(by_status.items(), key=lambda x: len(x[1]), reverse=True):
     print(f'{status.replace("_", " ").title()}: {len(items)} addresses')
+

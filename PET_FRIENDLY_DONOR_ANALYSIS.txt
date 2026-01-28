@@ -1,0 +1,249 @@
+================================================================================
+PET-FRIENDLY ANOMALIES - DONOR SHEET ANALYSIS (AUTHORITATIVE)
+================================================================================
+
+Total anomalous listings: 76
+Listings with "Pet-Friendly? No" in donor: 0
+Listings with "Pet-Friendly? Yes" in donor: 0
+Listings with no mention in donor: 76
+
+================================================================================
+LISTINGS WITH "Pet-Friendly? No" IN DONOR (REMOVE FROM AMENITIES)
+================================================================================
+
+================================================================================
+LISTINGS WITH "Pet-Friendly? Yes" IN DONOR (KEEP IN AMENITIES)
+================================================================================
+
+================================================================================
+LISTINGS WITH NO MENTION IN DONOR (NEEDS MANUAL REVIEW)
+================================================================================
+
+Sentosa Cabin
+  ACTION: Manual review needed - check other sources
+
+Rusty's Retreat
+  ACTION: Manual review needed - check other sources
+
+Village Inn
+  ACTION: Manual review needed - check other sources
+
+Cozy Mountain Cottage
+  ACTION: Manual review needed - check other sources
+
+Freshwater Field Cabin
+  ACTION: Manual review needed - check other sources
+
+Cottage at Old Stoney Creek
+  ACTION: Manual review needed - check other sources
+
+Creekside
+  ACTION: Manual review needed - check other sources
+
+Cottage on Route 151
+  ACTION: Manual review needed - check other sources
+
+Three Sisters Pre-Civil War Log Cabin
+  ACTION: Manual review needed - check other sources
+
+Nine Ridges Retreat
+  ACTION: Manual review needed - check other sources
+
+Grace's Place Petite Retreats
+  ACTION: Manual review needed - check other sources
+
+Rockfish Farmhouse
+  ACTION: Manual review needed - check other sources
+
+Fulton Belle Vue
+  ACTION: Manual review needed - check other sources
+
+Skis and Trees
+  ACTION: Manual review needed - check other sources
+
+Wintergreen Vistas
+  ACTION: Manual review needed - check other sources
+
+Clonmel Acres
+  ACTION: Manual review needed - check other sources
+
+Cabin at Clonmel
+  ACTION: Manual review needed - check other sources
+
+Marley's Cabin
+  ACTION: Manual review needed - check other sources
+
+Saddleback Sanctuary
+  ACTION: Manual review needed - check other sources
+
+Wintergreen Resort Cabin
+  ACTION: Manual review needed - check other sources
+
+Peaktime
+  ACTION: Manual review needed - check other sources
+
+Hawthorne
+  ACTION: Manual review needed - check other sources
+
+Rockfish Tiny Home
+  ACTION: Manual review needed - check other sources
+
+Serenity Summit
+  ACTION: Manual review needed - check other sources
+
+Ash House at Holland Hill
+  ACTION: Manual review needed - check other sources
+
+D & D's Mountain Home
+  ACTION: Manual review needed - check other sources
+
+Cookie's Place, LLC
+  ACTION: Manual review needed - check other sources
+
+Afton House
+  ACTION: Manual review needed - check other sources
+
+LITTLE FARMHOUSE
+  ACTION: Manual review needed - check other sources
+
+Mountaintop Overlook
+  ACTION: Manual review needed - check other sources
+
+Mountain & Vine Farmhouse
+  ACTION: Manual review needed - check other sources
+
+Mountain & Vine Vineyards Log Cabin
+  ACTION: Manual review needed - check other sources
+
+Fairway Chalet
+  ACTION: Manual review needed - check other sources
+
+Spruce Creek Garden Cottage
+  ACTION: Manual review needed - check other sources
+
+Mountain View Vista
+  ACTION: Manual review needed - check other sources
+
+Art & Soul Guesthouse
+  ACTION: Manual review needed - check other sources
+
+Art & Soul Main House
+  ACTION: Manual review needed - check other sources
+
+Cottage at River Circle Farm
+  ACTION: Manual review needed - check other sources
+
+Afton Awaits
+  ACTION: Manual review needed - check other sources
+
+Pilotview Hollow
+  ACTION: Manual review needed - check other sources
+
+Kremer Cabin
+  ACTION: Manual review needed - check other sources
+
+Stewart's Place
+  ACTION: Manual review needed - check other sources
+
+Boho Cliff House Retreat
+  ACTION: Manual review needed - check other sources
+
+Airkey Boutique Rentals
+  ACTION: Manual review needed - check other sources
+
+Sunset Vista Villa
+  ACTION: Manual review needed - check other sources
+
+Winterhaven
+  ACTION: Manual review needed - check other sources
+
+Ski in Style At Sapphire Squirrel
+  ACTION: Manual review needed - check other sources
+
+Retreat at Three Ridges
+  ACTION: Manual review needed - check other sources
+
+Wintergreen Condo 1437 Highlands
+  ACTION: Manual review needed - check other sources
+
+Cub Creek Cabin
+  ACTION: Manual review needed - check other sources
+
+Glass & Pine
+  ACTION: Manual review needed - check other sources
+
+Brown Bear Lodge
+  ACTION: Manual review needed - check other sources
+
+Mountain Home in Nelson County
+  ACTION: Manual review needed - check other sources
+
+Love of Mountains Oh Fill My Cup
+  ACTION: Manual review needed - check other sources
+
+Our Mountain Getaway
+  ACTION: Manual review needed - check other sources
+
+Wintergreen Duplex
+  ACTION: Manual review needed - check other sources
+
+Cliffs Edge
+  ACTION: Manual review needed - check other sources
+
+Home on the Ridge
+  ACTION: Manual review needed - check other sources
+
+Dobie Condo 323 at Wintergreen
+  ACTION: Manual review needed - check other sources
+
+Highlands 1426 Condo
+  ACTION: Manual review needed - check other sources
+
+Wake In The Clouds
+  ACTION: Manual review needed - check other sources
+
+Nelson 151 Views and Brews
+  ACTION: Manual review needed - check other sources
+
+Woodland Hideaway
+  ACTION: Manual review needed - check other sources
+
+Cuatro Climas At 130 Pedlars Point
+  ACTION: Manual review needed - check other sources
+
+Treetops Lodge
+  ACTION: Manual review needed - check other sources
+
+Foxfire Cottage
+  ACTION: Manual review needed - check other sources
+
+Ski House
+  ACTION: Manual review needed - check other sources
+
+1566 Vistas Condo
+  ACTION: Manual review needed - check other sources
+
+M 260
+  ACTION: Manual review needed - check other sources
+
+Sanctuary Retreat Center
+  ACTION: Manual review needed - check other sources
+
+Shenandoah Ridge 11
+  ACTION: Manual review needed - check other sources
+
+Inn at the Woods
+  ACTION: Manual review needed - check other sources
+
+Country Cottage
+  ACTION: Manual review needed - check other sources
+
+Red, White and Wintergreen
+  ACTION: Manual review needed - check other sources
+
+Altitude Adjustment
+  ACTION: Manual review needed - check other sources
+
+Chateau Greenstone
+  ACTION: Manual review needed - check other sources
+

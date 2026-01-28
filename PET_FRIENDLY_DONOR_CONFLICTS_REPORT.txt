@@ -1,0 +1,67 @@
+================================================================================
+PET-FRIENDLY CONFLICTS: DONOR SAYS YES, FINAL CSV SAYS NO
+================================================================================
+Generated: 2025-01-23
+
+Total conflicts found: 2
+
+These listings are marked as pet-friendly in the donor sheet (authoritative source)
+but have "Pet-Friendly? No" in the final CSV. They should be changed to "Yes".
+
+================================================================================
+CONFLICT #1: Wintergreen Resort Cabin
+================================================================================
+
+DONOR SHEET (AUTHORITATIVE):
+  Name: Wintergreen Resort
+  Categories: All (Lodging)>Pet Friendly; All (Lodging)>Staff on Site; All (Lodging)>Wintergreen; All (Lodging)>Wintergreen Resort
+  Amenities: Resort-Managed Lodging; Wintergreen Advantage Amenities; Guaranteed Lift Access; On-Mountain Shuttle Service
+  Indicates Pet-Friendly: YES (in categories)
+
+FINAL CSV (NEEDS FIX):
+  Name: Wintergreen Resort Cabin
+  Pet-Friendly Status: Pet-Friendly? No
+  Amenities: Adventure, Appalachian Trail, Beer, Golf, Lodging, Pet Friendly, Pool, Resort, Grill
+  Issue: Description says "No" but amenities include "Pet Friendly"
+
+ACTION REQUIRED:
+  1. Change detailedDescription from "Pet-Friendly? No" to "Pet-Friendly? Yes"
+  2. Keep "Pet Friendly" in amenities column (already there)
+
+================================================================================
+CONFLICT #2: Cookie's Place, LLC
+================================================================================
+
+DONOR SHEET (AUTHORITATIVE):
+  Name: Cookie's Place, LLC
+  Categories: All (Lodging)>Afton; All (Lodging)>Whole House Rentals
+  Amenities: 3-Bedroom Home; Private Pool & Mountain Views; Quiet but Central to Attractions; Pet-Friendly Option
+  Indicates Pet-Friendly: YES (in amenities: "Pet-Friendly Option")
+
+FINAL CSV (NEEDS FIX):
+  Name: Cookie's Place, LLC
+  Pet-Friendly Status: Pet-Friendly? No
+  Amenities: Hiking, Lodging, Pet Friendly, Pool, Skiing
+  Issue: Description says "No" but amenities include "Pet Friendly"
+
+ACTION REQUIRED:
+  1. Change detailedDescription from "Pet-Friendly? No" to "Pet-Friendly? Yes"
+  2. Keep "Pet Friendly" in amenities column (already there)
+
+================================================================================
+SUMMARY
+================================================================================
+
+Total listings to fix: 2
+
+Both listings:
+- Have "Pet Friendly" in amenities column (correct)
+- Say "Pet-Friendly? No" in detailedDescription (WRONG - should be "Yes")
+- Are marked as pet-friendly in donor sheet (authoritative source)
+
+Fix: Change "Pet-Friendly? No" to "Pet-Friendly? Yes" in detailedDescription
+      for both listings.
+
+================================================================================
+END OF REPORT
+================================================================================
