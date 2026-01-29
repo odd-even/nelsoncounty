@@ -1,0 +1,42 @@
+================================================================================
+SHORT DESCRIPTION FILL-IN — WORK (pulled from detailedDescription)
+================================================================================
+Source: final_listings_PERFECT_br_cleaned.csv
+Listings with missing short description: Afton House, LITTLE FARMHOUSE
+================================================================================
+
+----------------------------------------------------------------------
+1. Afton House (afton-house)
+----------------------------------------------------------------------
+
+DETAILED SOURCE (first paragraph, before contact block):
+  "The Afton House is a luxury home built for gathering. The home boasts 
+   incredible views and can sleep 16. Enjoy spectacular views while 
+   resting in luxury. Truly a one-of-a-kind retreat in Afton."
+
+PULLED / CONDENSED FOR SHORT DESCRIPTION (plain text, no HTML):
+  The Afton House is a luxury home built for gathering, with incredible 
+  views and space to sleep 16. A one-of-a-kind retreat in Afton.
+
+----------------------------------------------------------------------
+2. LITTLE FARMHOUSE (littlefarmhouse)
+----------------------------------------------------------------------
+
+DETAILED SOURCE (first sentences, before contact block):
+  "Clean, charmingly rustic, well-appointed and in the heart of Virginia 
+   Wine Country, 'Cheval Circle' is just a short drive from many of 
+   Nelson County's most popular destinations, including dozens of 
+   wineries and breweries and the Afton Mountain Tunnel. Enjoy the 
+   beautiful mountain views and the quiet horse farm just across the 
+   meadow!"
+
+PULLED / CONDENSED FOR SHORT DESCRIPTION (plain text, no HTML):
+  Cheval Circle is a clean, charmingly rustic farmhouse in the heart of 
+  Virginia Wine Country, a short drive from wineries, breweries, and the 
+  Blue Ridge Tunnel, with mountain views and a horse farm across the 
+  meadow.
+
+----------------------------------------------------------------------
+APPLIED: These two strings are written to the "description" column for 
+         the corresponding rows in final_listings_PERFECT_br_cleaned.csv
+================================================================================

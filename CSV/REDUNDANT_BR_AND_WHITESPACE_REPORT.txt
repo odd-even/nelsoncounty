@@ -1,0 +1,176 @@
+================================================================================
+REDUNDANT <br> REMOVAL & WHITESPACE REPORT
+Source: final_listings_PERFECT.csv
+Output: final_listings_PERFECT_br_cleaned.csv
+================================================================================
+
+SECTION 1: LISTINGS WITH EXCESS WHITESPACE (BEFORE CLEANING)
+--------------------------------------------------------------------------------
+
+  Blue Mountain Barrel House (blue-mountain-barrel-house)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 9
+
+  Bold Rock Hard Cider (bold-rock-hard-cider)
+    - accordionPanel1Content: literal_newlines = 10
+    - accordionPanel2Content: literal_newlines = 7
+
+  Devils Backbone Brewing Company (devils-backbone-brewing-company)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 5
+
+  Blue Ridge Tunnel (blue-ridge-tunnel)
+    - accordionPanel1Content: redundant_br_between_blocks = 5
+    - accordionPanel2Content: redundant_br_between_blocks = 6
+    - accordionPanel3Content: redundant_br_between_blocks = 12
+    - accordionPanel4Content: redundant_br_between_blocks = 21
+
+  Blue Ridge Parkway Loops (blue-ridge-parkway-loops)
+    - accordionPanel1Content: literal_newlines = 18
+    - accordionPanel2Content: literal_newlines = 6
+
+  Virginia Blue Ridge Railway Trail (virginia-blue-ridge-railway-trail)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 10
+    - accordionPanel3Content: literal_newlines = 2
+
+  Tye River (tye-river)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 13
+
+  Fishing the James River (fishing-the-james-river)
+    - accordionPanel1Content: literal_newlines = 8
+    - accordionPanel2Content: literal_newlines = 6
+    - accordionPanel3Content: literal_newlines = 9
+    - accordionPanel4Content: literal_newlines = 4
+
+  Devils Knob Golf Course (devils-knob-golf-course)
+    - accordionPanel1Content: literal_newlines = 2
+    - accordionPanel2Content: literal_newlines = 14
+
+  Swimming (swimming)
+    - accordionPanel1Content: literal_newlines = 9
+    - accordionPanel2Content: literal_newlines = 2
+
+  12 Ridges Vineyard (12-ridges-vineyard)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 7
+
+  Retreat at Crabtree Falls (retreat-at-crabtree-falls)
+    - accordionPanel1Content: literal_newlines = 7
+    - accordionPanel2Content: literal_newlines = 6
+    - accordionPanel3Content: literal_newlines = 4
+
+  Point of View (point-of-view)
+    - accordionPanel1Content: literal_newlines = 13
+    - accordionPanel2Content: literal_newlines = 19
+
+  Blue Ridge Farm and Wedding Venue (blue-ridge-farm-and-wedding-venue)
+    - accordionPanel1Content: literal_newlines = 12
+    - accordionPanel2Content: literal_newlines = 2
+    - accordionPanel3Content: literal_newlines = 4
+    - accordionPanel4Content: literal_newlines = 8
+
+  Fenton Inn (fenton-inn)
+    - accordionPanel1Content: literal_newlines = 8
+    - accordionPanel2Content: literal_newlines = 4
+    - accordionPanel3Content: literal_newlines = 6
+    - accordionPanel4Content: literal_newlines = 2
+
+  Galleywinter Farm (galleywinter)
+    - accordionPanel1Content: literal_newlines = 2
+    - accordionPanel2Content: literal_newlines = 16
+
+  Afton Peak (aftonpeak)
+    - detailedDescription: literal_newlines = 19
+
+Total listings with at least one whitespace issue: 17
+
+SECTION 2: CHANGES MADE (REDUNDANT <br> BETWEEN BLOCK TAGS REMOVED)
+--------------------------------------------------------------------------------
+
+  Blue Ridge Tunnel (blue-ridge-tunnel)
+    - accordionPanel1Content: 10 <br> removed, 40 chars saved
+    - accordionPanel2Content: 12 <br> removed, 48 chars saved
+    - accordionPanel3Content: 18 <br> removed, 72 chars saved
+    - accordionPanel4Content: 30 <br> removed, 120 chars saved
+
+Total listings modified: 1
+
+SECTION 3: REMAINING WHITESPACE ISSUES (AFTER CLEANING) — REVIEW THESE
+--------------------------------------------------------------------------------
+
+  Blue Mountain Barrel House (blue-mountain-barrel-house)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 9
+
+  Bold Rock Hard Cider (bold-rock-hard-cider)
+    - accordionPanel1Content: literal_newlines = 10
+    - accordionPanel2Content: literal_newlines = 7
+
+  Devils Backbone Brewing Company (devils-backbone-brewing-company)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 5
+
+  Blue Ridge Parkway Loops (blue-ridge-parkway-loops)
+    - accordionPanel1Content: literal_newlines = 18
+    - accordionPanel2Content: literal_newlines = 6
+
+  Virginia Blue Ridge Railway Trail (virginia-blue-ridge-railway-trail)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 10
+    - accordionPanel3Content: literal_newlines = 2
+
+  Tye River (tye-river)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 13
+
+  Fishing the James River (fishing-the-james-river)
+    - accordionPanel1Content: literal_newlines = 8
+    - accordionPanel2Content: literal_newlines = 6
+    - accordionPanel3Content: literal_newlines = 9
+    - accordionPanel4Content: literal_newlines = 4
+
+  Devils Knob Golf Course (devils-knob-golf-course)
+    - accordionPanel1Content: literal_newlines = 2
+    - accordionPanel2Content: literal_newlines = 14
+
+  Swimming (swimming)
+    - accordionPanel1Content: literal_newlines = 9
+    - accordionPanel2Content: literal_newlines = 2
+
+  12 Ridges Vineyard (12-ridges-vineyard)
+    - accordionPanel1Content: literal_newlines = 4
+    - accordionPanel2Content: literal_newlines = 7
+
+  Retreat at Crabtree Falls (retreat-at-crabtree-falls)
+    - accordionPanel1Content: literal_newlines = 7
+    - accordionPanel2Content: literal_newlines = 6
+    - accordionPanel3Content: literal_newlines = 4
+
+  Point of View (point-of-view)
+    - accordionPanel1Content: literal_newlines = 13
+    - accordionPanel2Content: literal_newlines = 19
+
+  Blue Ridge Farm and Wedding Venue (blue-ridge-farm-and-wedding-venue)
+    - accordionPanel1Content: literal_newlines = 12
+    - accordionPanel2Content: literal_newlines = 2
+    - accordionPanel3Content: literal_newlines = 4
+    - accordionPanel4Content: literal_newlines = 8
+
+  Fenton Inn (fenton-inn)
+    - accordionPanel1Content: literal_newlines = 8
+    - accordionPanel2Content: literal_newlines = 4
+    - accordionPanel3Content: literal_newlines = 6
+    - accordionPanel4Content: literal_newlines = 2
+
+  Galleywinter Farm (galleywinter)
+    - accordionPanel1Content: literal_newlines = 2
+    - accordionPanel2Content: literal_newlines = 16
+
+  Afton Peak (aftonpeak)
+    - detailedDescription: literal_newlines = 19
+
+================================================================================
+END OF REPORT
+================================================================================
