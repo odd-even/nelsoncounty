@@ -136,3 +136,5 @@ print(f'\nDetailed report saved to: {report_file}')
 print(f'\nFirst 10 listings updated:')
 for item in rows_updated[:10]:
     print(f'  - {item["name"]}')
+
+

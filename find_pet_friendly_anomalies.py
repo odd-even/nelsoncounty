@@ -50,3 +50,5 @@ for i, a in enumerate(anomalies, 1):
     print(f"   ISSUE: Description says 'No' but amenities include 'Pet Friendly'")
     print(f"   RECOMMENDATION: Change to 'Pet-Friendly? Yes'")
     print("-" * 80)
+
+

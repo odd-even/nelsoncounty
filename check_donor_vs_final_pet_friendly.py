@@ -113,3 +113,5 @@ with open('PET_FRIENDLY_DONOR_CONFLICTS_REPORT.txt', 'w', encoding='utf-8') as f
         f.write(f'   ACTION: Ensure "Pet Friendly" is in amenities column\n\n')
 
 print(f'\nReport saved to PET_FRIENDLY_DONOR_CONFLICTS_REPORT.txt')
+
+

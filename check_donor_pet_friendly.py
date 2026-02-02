@@ -132,3 +132,5 @@ with open('PET_FRIENDLY_DONOR_ANALYSIS.txt', 'w', encoding='utf-8') as f:
         f.write(f"  ACTION: Manual review needed - check other sources\n\n")
 
 print('\nDetailed report saved to PET_FRIENDLY_DONOR_ANALYSIS.txt')
+
+
