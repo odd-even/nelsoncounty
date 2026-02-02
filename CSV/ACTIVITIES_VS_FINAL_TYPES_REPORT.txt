@@ -1,0 +1,73 @@
+================================================================================
+ACTIVITIES CSV vs FINAL LISTINGS — TYPE COMPARISON REPORT
+================================================================================
+Generated: 2025-01-28
+
+Sources:
+  • Activities.csv (uploaded today) — "Page Title" column used as type list
+  • final_listings_PERFECT_br_cleaned.csv — "type" column
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+  Activities (Page Title):  26 unique types
+  Final listings (type):    26 unique types
+
+--------------------------------------------------------------------------------
+TYPES ONLY IN FINAL LISTINGS (not in Activities.csv)
+--------------------------------------------------------------------------------
+  • Attraction
+  • Lodging
+  • Taste (no longer used — bold-kitchen-at-bold-rock updated to Restaurants)
+
+--------------------------------------------------------------------------------
+PREVIOUS TYPES IN OLDER LISTING CSVs (for listings using Attraction / Lodging / Taste)
+--------------------------------------------------------------------------------
+  Checked: A - to merge- listings-2026-01-02.csv, jan12listings-2026-01-12-3-cleaned.csv,
+  listings-2026-01-07-2-final_clean-no-duplication-enhanced.csv,
+  FINAL I listings-2026-01-11-UPDATED.csv, listings-2026-01-15*.csv, listings-2026-01-16-2.csv.
+
+  CHANGED (had a different type before) — FIXED:
+  • bold-kitchen-at-bold-rock
+      Was: Taste (in final)
+      Before (older CSVs): Restaurants
+      Update: type set back to Restaurants in final_listings_PERFECT_br_cleaned.csv.
+
+  UNCHANGED (same type in older files where present):
+  • Attraction — rapunzels-coffee-books, sweet-bliss-bakery, heartofnelson
+      In jan12 and later files: already "Attraction". Not present in A - to merge.
+  • Lodging — big-tiny-house, wine-cottage, castor-cabin, mountain-house-inn,
+      wooder-house, afton-house, fairway-chalet, brown-bear-lodge, treetops-lodge,
+      ski-house, goldfinch, aftonpeak (and inn-at-blue-mountain-brewery where present)
+      In jan12: already "Lodging". littlefarmhouse not in jan12; others same.
+  • Taste — was only used by bold-kitchen-at-bold-rock; that listing is now Restaurants.
+
+--------------------------------------------------------------------------------
+TYPES ONLY IN ACTIVITIES.CSV (not in final listings)
+--------------------------------------------------------------------------------
+  • Climbing
+  • Guided Tours
+  • Pet Friendly Stays
+
+--------------------------------------------------------------------------------
+TYPES IN BOTH (aligned)
+--------------------------------------------------------------------------------
+  Activities, Art & Artisans, Bed and Breakfast, Biking, Breweries & Cideries,
+  Cabins & Cottages, Campgrounds & Glamping, Canoeing, Coffee Shops, Distilleries,
+  Farms & Orchards, Fishing, Golf, Hikes & Trails, Horseback Riding,
+  Markets & Delis, Motels & Inns, Museums & Heritage, Restaurants, Swimming,
+  Vacation Rentals, Vineyards & Wineries, Whole House Rentals
+
+--------------------------------------------------------------------------------
+NOTES
+--------------------------------------------------------------------------------
+  • "Attraction" and "Taste" in the final sheet may be legacy or category-style
+    labels rather than activity page types; they have no matching Activity page.
+  • "Lodging" in the final sheet has no matching Activity page (lodging may be
+    covered by Bed and Breakfast, Cabins & Cottages, Motels & Inns, etc.).
+  • Activities has "Pet Friendly Stays" and "Guided Tours" as filter pages;
+    no listings in the final sheet currently use those types.
+  • "Climbing" exists as an Activity page but no listing in the final sheet
+    has type "Climbing".
+
+================================================================================

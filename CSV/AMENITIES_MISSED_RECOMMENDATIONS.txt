@@ -1,0 +1,1723 @@
+AMENITIES MISSED — RECOMMENDATIONS (CONSERVATIVE — do not apply automatically)
+========================================================================
+
+RULE WHEN APPLYING: Only ADD the recommended amenities below. Do not remove,
+overwrite, or change any amenities that are already in the listing. Append new
+values to the existing comma-separated list only.
+
+Very conservative: only recommend amenities that clearly describe the listing.
+When in doubt, SKIP or REVIEW. Avoid anything that could mean "nearby" or wrong category.
+
+RULES
+  • Stay: RECOMMEND only: Scenic Views, Outdoor Seating, Full Kitchen, Breakfast,
+    Cabins, Family Friendly, Pet Friendly, Wi-Fi, Parking, Pool, Hot Tub.
+    SKIP: Beer/Wine/Cider/Tastings/Events/Retail/Market/Farm/Golf/Biking/Hiking/Fuel/etc.
+  • Taste: RECOMMEND only: Tastings, Outdoor Seating, Scenic Views, Family Friendly,
+    Live Music. SKIP: Biking, Hiking, Cabins, Lodging.
+  • Outdoor/Experience: RECOMMEND only: Biking, Hiking, Scenic Views, Parking,
+    Picnic Area, Family Friendly. SKIP: dining/retail/stay-only.
+
+RECOMMEND ADD — Short, safe list; only these are suggested for add-back.
+
+  [experience] appalachian-horse-adventures  (type: Horseback Riding)
+    ADD: Biking, Family Friendly, Hiking, Scenic Views
+
+  [experience] devils-knob-golf-course  (type: Golf)
+    ADD: Scenic Views
+
+  [experience] fitzgeralds-orchard  (type: Farms & Orchards)
+    ADD: Scenic Views
+
+  [experience] indian-summer-guide-service  (type: Horseback Riding)
+    ADD: Hiking
+
+  [experience] marsknob  (type: Farms & Orchards)
+    ADD: Family Friendly
+
+  [experience] pharsalia  (type: Farms & Orchards)
+    ADD: Scenic Views
+
+  [experience] rebels-run-at-afton-mountain  (type: Horseback Riding)
+    ADD: Biking, Hiking
+
+  [experience] saunders-brothers-farm-market  (type: Farms & Orchards)
+    ADD: Family Friendly
+
+  [experience] seamans-orchard  (type: Farms & Orchards)
+    ADD: Family Friendly, Scenic Views
+
+  [experience] silver-creek-orchards  (type: Farms & Orchards)
+    ADD: Family Friendly, Scenic Views
+
+  [experience] skiing-snowboarding  (type: Activities)
+    ADD: Scenic Views
+
+  [experience] threetreesfarm  (type: Farms & Orchards)
+    ADD: Scenic Views
+
+  [experience] tinkerland-farm  (type: Farms & Orchards)
+    ADD: Family Friendly
+
+  [experience] virginia-chestnuts  (type: Farms & Orchards)
+    ADD: Family Friendly
+
+  [outdoor] allen-creek-nature-preserve  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] appalachian-trail-from-rt-56-to-harpers-creek  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] blackrock-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] blue-ridge-fruit-loop  (type: Activities)
+    ADD: Biking, Scenic Views
+
+  [outdoor] blue-ridge-parkway-loops  (type: Biking)
+    ADD: Hiking, Scenic Views
+
+  [outdoor] blue-ridge-tunnel  (type: Hikes & Trails)
+    ADD: Parking, Scenic Views
+
+  [outdoor] brew-ridge-trail  (type: Hikes & Trails)
+    ADD: Biking, Hiking, Scenic Views
+
+  [outdoor] brimstone-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] cedar-ciffs-north-trail  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] chestnut-springs-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] crabtree-falls  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] devils-knob-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] fishing-at-montebello  (type: Fishing)
+    ADD: Family Friendly
+
+  [outdoor] fishing-the-little-piney-river  (type: Fishing)
+    ADD: Parking, Scenic Views
+
+  [outdoor] fishing-the-south-rockfish-river  (type: Fishing)
+    ADD: Scenic Views
+
+  [outdoor] fishing-the-tye-river  (type: Fishing)
+    ADD: Scenic Views
+
+  [outdoor] fortunes-cove-nature-preserve  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] fortunes-ridge-trail  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] hemlock-springs-loop  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] highlands-leisure-trail  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] humpback-rocks  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] james-river  (type: Canoeing)
+    ADD: Biking
+
+  [outdoor] kids-in-parks-rockfish-river-trailhead  (type: Hikes & Trails)
+    ADD: Biking, Hiking
+
+  [outdoor] kids-in-parks-virginia-blue-ridge-railway-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] laurel-ridge-loop  (type: Hikes & Trails)
+    ADD: Biking, Hiking
+
+  [outdoor] lower-shamokin-falls-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] mau-har-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] montebello-nature-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] nelson-151  (type: Hikes & Trails)
+    ADD: Biking, Hiking, Scenic Views
+
+  [outdoor] nelson-29  (type: Hikes & Trails)
+    ADD: Biking, Hiking, Scenic Views
+
+  [outdoor] nelson-county-wilderness-area  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] nelson-scenic-loop  (type: Biking)
+    ADD: Scenic Views
+
+  [outdoor] north-fork-of-the-piney-river  (type: Hikes & Trails)
+    ADD: Hiking
+
+  [outdoor] oak-ridge-loop  (type: Biking)
+    ADD: Hiking
+
+  [outdoor] old-appalachian-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] pauls-creek-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] pedlars-edge-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] pond-hollow-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] quarry-gardens-at-schuyler  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] ravens-roost-park  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] rockfish-valley-loop-trails  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] shamokin-springs-nature-preserve  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] spruce-creek-park  (type: Hikes & Trails)
+    ADD: Biking, Hiking
+
+  [outdoor] spy-rock  (type: Hikes & Trails)
+    ADD: Biking, Scenic Views
+
+  [outdoor] stoney-creek-park  (type: Hikes & Trails)
+    ADD: Biking, Family Friendly, Hiking, Picnic Area
+
+  [outdoor] the-plunge  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] three-ridges  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] trillium-field  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] upper-shamokin-falls-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] upper-shamokin-gorge-trail  (type: Hikes & Trails)
+    ADD: Biking, Hiking
+
+  [outdoor] virginia-blue-ridge-railway-trail  (type: Biking)
+    ADD: Scenic Views
+
+  [outdoor] virginia-spirits-trail  (type: Hikes & Trails)
+    ADD: Biking, Hiking, Scenic Views
+
+  [outdoor] waltons-mountain-museum-loop  (type: Biking)
+    ADD: Hiking, Scenic Views
+
+  [outdoor] white-oak-trail  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] white-rock-falls  (type: Hikes & Trails)
+    ADD: Biking
+
+  [outdoor] wintergreen-resort-fishing  (type: Fishing)
+    ADD: Scenic Views
+
+  [outdoor] woodsons-mill-loop  (type: Biking)
+    ADD: Scenic Views
+
+  [stay] 1566-vistas-condo  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] 1639-overlook  (type: Vacation Rentals)
+    ADD: Parking, Scenic Views
+
+  [stay] 779-blue-ridge-drive  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] a-nellysford-nest  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] acorn-inn-inc-cottage-bb-and-group-retreat  (type: Bed and Breakfast)
+    ADD: Breakfast, Outdoor Seating
+
+  [stay] adventure-awaits  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] afton-awaits  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] airkey  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] altitude-adjustment  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] arrowwood-lane  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] art-soul-guesthouse  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] art-soul-main-house  (type: Whole House Rentals)
+    ADD: Full Kitchen, Scenic Views
+
+  [stay] ash-house-at-holland-hill  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] avon-hill  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] bear-creek-inn  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] bear-tracks-cottage  (type: Cabins & Cottages)
+    ADD: Breakfast, Cabins, Outdoor Seating
+
+  [stay] bearfeet-retreat  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] beech-grove-cottage  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] beech-grove-farmhouse  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] bella-vista  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] berry-hill-lake  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] blue-ridge-bliss  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] blue-ridge-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] blue-ridge-farm-and-wedding-venue  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] blue-ridge-heaven  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Scenic Views
+
+  [stay] blue-ridge-mountain-retreat  (type: Whole House Rentals)
+    ADD: Full Kitchen, Scenic Views
+
+  [stay] blue-sky-retreat  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] bluebird-cottage  (type: Cabins & Cottages)
+    ADD: Breakfast, Cabins, Scenic Views
+
+  [stay] boho-cliff-house-retreat  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] bold-kitchen-at-bold-rock  (type: Restaurants)
+    ADD: Full Kitchen
+
+  [stay] boogie-nights-manor  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] branch-at-afton-mountain-retreat  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] brown-bear-lodge  (type: Whole House Rentals)
+    ADD: Family Friendly
+
+  [stay] bungalow-at-afton-mountain-retreat  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] cabin-at-clonmel  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] cabin-on-eagles-ridge-road  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] camp-blue-ridge  (type: Campgrounds & Glamping)
+    ADD: Family Friendly, Scenic Views
+
+  [stay] carriage-house-at-stagebridge-farm  (type: Bed and Breakfast)
+    ADD: Breakfast
+
+  [stay] carters-cottage  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] chateau-greenstone  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] cheval-circle  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] cliffs-edge  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] clonmel-acres  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] cookies-place-llc  (type: Cabins & Cottages)
+    ADD: Cabins, Pet Friendly, Scenic Views
+
+  [stay] cottage-at-old-stoney-creek  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] cottage-at-pines-end  (type: Cabins & Cottages)
+    ADD: Outdoor Seating, Scenic Views
+
+  [stay] cottage-at-river-circle-farm  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] cottage-on-route-151  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] cottage-on-the-knoll  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] cottage-on-the-trail  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views, Wi-Fi
+
+  [stay] country-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Wi-Fi
+
+  [stay] cozy-clean-wintergreen-condo-tanners-ridge  (type: Vacation Rentals)
+    ADD: Outdoor Seating
+
+  [stay] cozy-mountain-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Scenic Views, Wi-Fi
+
+  [stay] creekside  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen
+
+  [stay] crestvue-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] cuatro-climas-at-130-pedlars-point  (type: Whole House Rentals)
+    ADD: Family Friendly, Parking, Scenic Views
+
+  [stay] cub-creek-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] d-ds-mountain-home  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] dancing-bear-lodge  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] devils-backbone-camp  (type: Campgrounds & Glamping)
+    ADD: Scenic Views
+
+  [stay] dobie-condo-323-at-wintergreen  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] eagles-court-ski-in-ski-out-condo  (type: Vacation Rentals)
+    ADD: Full Kitchen
+
+  [stay] elk-mountain-overlook  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Scenic Views
+
+  [stay] everettestate  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] faber-farmhouse  (type: Cabins & Cottages)
+    ADD: Breakfast, Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] farmhouse-on-route-151  (type: Cabins & Cottages)
+    ADD: Scenic Views
+
+  [stay] fenton-inn  (type: Bed and Breakfast)
+    ADD: Scenic Views
+
+  [stay] four-elements-farm  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] foxfire-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views, Wi-Fi
+
+  [stay] freshwater-field-cabin  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] fulton-belle-vue  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] glass-pine  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] glenbrae  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] goldfinch  (type: Cabins & Cottages)
+    ADD: Outdoor Seating
+
+  [stay] graces-place-petite-retreats  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] gracewood  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] gumtree-drive-134  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] harmony-hill-bed-and-breakfast  (type: Bed and Breakfast)
+    ADD: Scenic Views
+
+  [stay] haven-at-devils-backbone-camp  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] hawthorne  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] heartrockretreat  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] high-lonesome-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] highlands-1426-condo  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] hillside-hideaway  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] home-on-the-ridge  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Parking, Wi-Fi
+
+  [stay] indigo-house-bed-and-breakfast  (type: Bed and Breakfast)
+    ADD: Scenic Views
+
+  [stay] inn-at-the-woods  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] kneeling-shepherd  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] kremer-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] lewis-catherine-house  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen
+
+  [stay] love-afton-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] love-of-mountains-oh-fill-my-cup  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Swimming Pool
+
+  [stay] love-ridge-mountain-lodging  (type: Cabins & Cottages)
+    ADD: Scenic Views
+
+  [stay] lovingston-get-away  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] m-260  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Scenic Views, Wi-Fi
+
+  [stay] maren-estate  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] marigold-on-the-mountain  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] marleys-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] meili-mountain  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] memes-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] mimas-mountain-house  (type: Whole House Rentals)
+    ADD: Full Kitchen, Outdoor Seating, Wi-Fi
+
+  [stay] mountain-dacha  (type: Whole House Rentals)
+    ADD: Family Friendly, Scenic Views
+
+  [stay] mountain-dreams-condo  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] mountain-home-in-nelson-county  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] mountain-house-inn  (type: Whole House Rentals)
+    ADD: Outdoor Seating, Scenic Views
+
+  [stay] mountain-view-vista  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] mountain-vine-farmhouse  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] mountain-vine-vineyards-log-cabin  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] mountaintop-overlook  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] nectar-landing  (type: Whole House Rentals)
+    ADD: Full Kitchen, Outdoor Seating, Parking
+
+  [stay] nelson-151-views-and-brews  (type: Whole House Rentals)
+    ADD: Cabins, Parking, Scenic Views
+
+  [stay] nelson-cozy-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Swimming Pool
+
+  [stay] nine-ridges-retreat  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] nonny-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] oak-ledge  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] on-the-rocks  (type: Cabins & Cottages)
+    ADD: Full Kitchen, Parking
+
+  [stay] open-heart-inn  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] pachis-ridge  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] panoramic-peak-vistas-1559-wintergreen  (type: Whole House Rentals)
+    ADD: Cabins, Pool, Scenic Views
+
+  [stay] papas-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] parrs-camp  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] parrs-camp-mountain-hollow  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] peaceful-mountain-getaway  (type: Whole House Rentals)
+    ADD: Family Friendly, Scenic Views
+
+  [stay] peaktime  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] peppers-mountain-pad  (type: Vacation Rentals)
+    ADD: Full Kitchen, Outdoor Seating, Wi-Fi
+
+  [stay] pilotview-hollow  (type: Whole House Rentals)
+    ADD: Parking
+
+  [stay] point-of-view  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] red-white-and-wintergreen  (type: Whole House Rentals)
+    ADD: Family Friendly, Outdoor Seating, Scenic Views
+
+  [stay] relaxing-3-bedroom-mountain-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] remodeled-3br-2ba-ski-chalet-off-tyro-slope  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Scenic Views
+
+  [stay] retreat-at-crabtree-falls  (type: Cabins & Cottages)
+    ADD: Scenic Views
+
+  [stay] retreat-at-three-ridges  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Parking, Scenic Views
+
+  [stay] rock-n-creek-cabin  (type: Cabins & Cottages)
+    ADD: Breakfast, Cabins, Scenic Views
+
+  [stay] rockfish-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] rockfish-farmhouse  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] rockfish-river-ranch-guest-house  (type: Bed and Breakfast)
+    ADD: Breakfast
+
+  [stay] rockfish-tiny-home  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] rockfish-valley-farm-guest-house  (type: Bed and Breakfast)
+    ADD: Breakfast, Full Kitchen, Outdoor Seating, Scenic Views
+
+  [stay] rockfish-valley-retreat  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] rockwellridgeinn  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] rocky-run-landing  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] roudys-retreat  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] rustys-retreat  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] saddleback-sanctuary  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] sanctuaryretreatcenter  (type: Whole House Rentals)
+    ADD: Cabins
+
+  [stay] sentosa-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] shenandoah-ridge-11  (type: Whole House Rentals)
+    ADD: Family Friendly
+
+  [stay] ski-house  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] ski-in-style-at-sapphire-squirrel  (type: Whole House Rentals)
+    ADD: Full Kitchen, Outdoor Seating, Parking, Scenic Views
+
+  [stay] skis-and-trees  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen
+
+  [stay] sleepy-hollow-retreat-enjoy-your-stay  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating, Wi-Fi
+
+  [stay] slipper-slope  (type: Vacation Rentals)
+    ADD: Scenic Views
+
+  [stay] spindle-hill-farm  (type: Bed and Breakfast)
+    ADD: Breakfast
+
+  [stay] spruce-creek-garden-cottage  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] spy-run-hideaway  (type: Cabins & Cottages)
+    ADD: Full Kitchen, Scenic Views
+
+  [stay] spyrock-lodge  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] stays-at-lovingston-winery  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] stewarts-place  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] straw-bale-house  (type: Whole House Rentals)
+    ADD: Breakfast
+
+  [stay] sunrise-on-the-trail  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [stay] sunset-vista-villa  (type: Whole House Rentals)
+    ADD: Cabins, Parking
+
+  [stay] sweet-afton  (type: Cabins & Cottages)
+    ADD: Cabins, Scenic Views
+
+  [stay] the-chimneys  (type: Cabins & Cottages)
+    ADD: Cabins
+
+  [stay] the-vu-afton  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Scenic Views
+
+  [stay] thetreehouse  (type: Whole House Rentals)
+    ADD: Full Kitchen, Outdoor Seating
+
+  [stay] three-sisters-pre-civil-war-log-cabin  (type: Cabins & Cottages)
+    ADD: Scenic Views
+
+  [stay] three-springs-myndus  (type: Cabins & Cottages)
+    ADD: Breakfast, Cabins, Outdoor Seating, Swimming Pool
+
+  [stay] time-out  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] time-to-wine-down  (type: Whole House Rentals)
+    ADD: Cabins, Outdoor Seating
+
+  [stay] top-of-the-mountain-hideaway  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] treetops-lodge  (type: Whole House Rentals)
+    ADD: Family Friendly, Scenic Views
+
+  [stay] tupelo  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] tyebello-cabins  (type: Cabins & Cottages)
+    ADD: Full Kitchen, Scenic Views
+
+  [stay] view-at-crawfords-edge  (type: Whole House Rentals)
+    ADD: Outdoor Seating
+
+  [stay] wake-in-the-clouds  (type: Whole House Rentals)
+    ADD: Cabins, Full Kitchen, Scenic Views, Wi-Fi
+
+  [stay] wildmandan-bb-beer-centric  (type: Bed and Breakfast)
+    ADD: Breakfast, Outdoor Seating
+
+  [stay] windy-knoll  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating, Wi-Fi
+
+  [stay] wine-cottage  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] wintergreen-19-ivy-glen-lane  (type: Vacation Rentals)
+    ADD: Pool
+
+  [stay] wintergreen-condo-1437-highlands  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] wintergreen-duplex  (type: Whole House Rentals)
+    ADD: Outdoor Seating, Scenic Views
+
+  [stay] wintergreen-fairway-woods  (type: Vacation Rentals)
+    ADD: Scenic Views
+
+  [stay] wintergreen-getaway-for-families  (type: Whole House Rentals)
+    ADD: Family Friendly, Outdoor Seating
+
+  [stay] wintergreen-resort-2  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] wintergreen-resort-cabin  (type: Cabins & Cottages)
+    ADD: Cabins, Outdoor Seating, Scenic Views
+
+  [stay] wintergreen-ridge-retreat  (type: Whole House Rentals)
+    ADD: Outdoor Seating, Scenic Views
+
+  [stay] wintergreen-vistas  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] winterhaven  (type: Whole House Rentals)
+    ADD: Scenic Views
+
+  [stay] wooder-house  (type: Whole House Rentals)
+    ADD: Family Friendly
+
+  [stay] woodland-hideaway  (type: Whole House Rentals)
+    ADD: Cabins, Wi-Fi
+
+  [stay] woodsons-mill-house  (type: Whole House Rentals)
+    ADD: Cabins, Scenic Views
+
+  [stay] wren-house  (type: Cabins & Cottages)
+    ADD: Cabins, Full Kitchen, Outdoor Seating
+
+  [taste] 12-ridges-vineyard  (type: Vineyards & Wineries)
+    ADD: Outdoor Seating, Scenic Views, Tastings
+
+  [taste] afton-mountain-vineyards  (type: Vineyards & Wineries)
+    ADD: Outdoor Seating, Scenic Views, Tastings
+
+  [taste] anns-family-restaurant  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] belties  (type: Coffee Shops)
+    ADD: Scenic Views
+
+  [taste] black-bear-creamery  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] blue-mountain-barrel-house  (type: Breweries & Cideries)
+    ADD: Tastings
+
+  [taste] blue-mountain-brewery  (type: Breweries & Cideries)
+    ADD: Family Friendly, Outdoor Seating, Scenic Views, Tastings
+
+  [taste] blue-ridge-pig  (type: Restaurants)
+    ADD: Scenic Views
+
+  [taste] blue-toad-hard-cider  (type: Breweries & Cideries)
+    ADD: Outdoor Seating, Scenic Views, Tastings
+
+  [taste] bold-rock-hard-cider  (type: Breweries & Cideries)
+    ADD: Live Music
+
+  [taste] brent-manor-vineyards  (type: Vineyards & Wineries)
+    ADD: Tastings
+
+  [taste] brewing-tree-beer-company  (type: Breweries & Cideries)
+    ADD: Family Friendly, Tastings
+
+  [taste] bryants-cider-brewery  (type: Breweries & Cideries)
+    ADD: Outdoor Seating, Tastings
+
+  [taste] caihailian-vineyard  (type: Vineyards & Wineries)
+    ADD: Family Friendly, Tastings
+
+  [taste] cardinal-point-winery  (type: Vineyards & Wineries)
+    ADD: Family Friendly, Live Music, Scenic Views
+
+  [taste] chirios-pizza  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] devils-backbone-brewing  (type: Restaurants)
+    ADD: Live Music, Outdoor Seating
+
+  [taste] devils-backbone-brewing-company  (type: Breweries & Cideries)
+    ADD: Tastings
+
+  [taste] devils-backbone-distilling-co  (type: Distilleries)
+    ADD: Outdoor Seating, Tastings
+
+  [taste] fire-frost-wood-fired-bakehouse  (type: Restaurants)
+    ADD: Scenic Views
+
+  [taste] flying-fox-vineyards  (type: Vineyards & Wineries)
+    ADD: Outdoor Seating, Tastings
+
+  [taste] hill-top-winery-meadery  (type: Vineyards & Wineries)
+    ADD: Scenic Views, Tastings
+
+  [taste] indian-oven  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] iron-and-ale  (type: Restaurants)
+    ADD: Outdoor Seating
+
+  [taste] lovingston-winery  (type: Vineyards & Wineries)
+    ADD: Scenic Views, Tastings
+
+  [taste] montebello-country-store-cafe  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] mountain-and-vine-winery  (type: Vineyards & Wineries)
+    ADD: Family Friendly, Tastings
+
+  [taste] mountain-cove-vineyards-winery  (type: Vineyards & Wineries)
+    ADD: Family Friendly, Scenic Views, Tastings
+
+  [taste] nelsonscoops  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] outback-brew-house  (type: Breweries & Cideries)
+    ADD: Outdoor Seating, Tastings
+
+  [taste] silverback-distillery  (type: Distilleries)
+    ADD: Scenic Views, Tastings
+
+  [taste] smokin-barrel-restaurant  (type: Restaurants)
+    ADD: Family Friendly, Scenic Views, Tastings
+
+  [taste] the-edge  (type: Restaurants)
+    ADD: Scenic Views
+
+  [taste] the-farmhouse-at-veritas  (type: Restaurants)
+    ADD: Tastings
+
+  [taste] three-notchd-brewery-distillery-craft-kitchen-nelson-county  (type: Breweries & Cideries)
+    ADD: Tastings
+
+  [taste] trinacria  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] valley-road-vineyards  (type: Vineyards & Wineries)
+    ADD: Tastings
+
+  [taste] veritas-vineyards-winery  (type: Vineyards & Wineries)
+    ADD: Outdoor Seating, Scenic Views, Tastings
+
+  [taste] virginia-distillery-co  (type: Distilleries)
+    ADD: Tastings
+
+  [taste] vitos-pizza-italian-grill  (type: Restaurants)
+    ADD: Family Friendly
+
+  [taste] wild-man-dan-brewery  (type: Breweries & Cideries)
+    ADD: Outdoor Seating, Scenic Views, Tastings
+
+  [taste] wood-ridge-farm-brewery  (type: Breweries & Cideries)
+    ADD: Scenic Views, Tastings
+
+
+SKIP — Do not add these back; they are activity/nearby descriptors or wrong category.
+
+  [community] big-arms-farm
+    SKIP: Local Ingredients  — Unclear fit for culture/community.
+
+  [community] graves-grocery-deli
+    SKIP: Fuel  — Unclear fit for culture/community.
+    SKIP: Market  — Unclear fit for culture/community.
+    SKIP: Retail  — Unclear fit for culture/community.
+
+  [community] hickmans-exxon-grocery
+    SKIP: Fuel  — Unclear fit for culture/community.
+    SKIP: Hunting  — Unclear fit for culture/community.
+    SKIP: Market  — Unclear fit for culture/community.
+
+  [community] iga-blue-ridge-grocery
+    SKIP: Deli  — Unclear fit for culture/community.
+    SKIP: Local Ingredients  — Unclear fit for culture/community.
+    SKIP: Order Pickup  — Unclear fit for culture/community.
+
+  [community] ikes-market-deli
+    SKIP: Hunting  — Unclear fit for culture/community.
+    SKIP: Retail  — Unclear fit for culture/community.
+
+  [community] lost-point-farm
+    SKIP: Local Ingredients  — Unclear fit for culture/community.
+    SKIP: Order Pickup  — Unclear fit for culture/community.
+
+  [community] macs-country-store
+    SKIP: Deli  — Unclear fit for culture/community.
+    SKIP: Market  — Unclear fit for culture/community.
+    SKIP: Takeout  — Unclear fit for culture/community.
+
+  [community] the-market-at-wintergreen
+    SKIP: Fuel  — Unclear fit for culture/community.
+    SKIP: Resort  — Unclear fit for culture/community.
+
+  [community] turnip-the-beets-farm
+    SKIP: Local Ingredients  — Unclear fit for culture/community.
+
+  [community] williams-grocery
+    SKIP: Deli  — Unclear fit for culture/community.
+    SKIP: Fuel  — Unclear fit for culture/community.
+    SKIP: Local Ingredients  — Unclear fit for culture/community.
+    SKIP: Market  — Unclear fit for culture/community.
+    SKIP: Retail  — Unclear fit for culture/community.
+
+  [culture] heartofnelson
+    SKIP: Retail  — Unclear fit for culture/community.
+
+  [culture] oakland-museum
+    SKIP: Seasonal Menu  — Unclear fit for culture/community.
+
+  [culture] sweet-bliss-bakery
+    SKIP: Food Available  — Unclear fit for culture/community.
+
+  [culture] waltons-mountain-museum
+    SKIP: Retail  — Unclear fit for culture/community.
+    SKIP: Seasonal Menu  — Unclear fit for culture/community.
+
+  [culture] woodsons-mill
+    SKIP: Retail  — Unclear fit for culture/community.
+    SKIP: Seasonal Menu  — Unclear fit for culture/community.
+
+  [experience] caldwell-farms
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] deer-creek-farm
+    SKIP: Order Pickup  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] dickie-brothers-orchard
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] drumhellers-orchard
+    SKIP: Bakery  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] edible-landscaping
+    SKIP: Order Pickup  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] eventidefarm
+    SKIP: Bakery  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Market  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] fitzgerald-farms
+    SKIP: Desserts  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] fitzgeralds-orchard
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] gathered
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] hungry-hill-farm
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] indian-summer-guide-service
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] pharsalia
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] queenoaksfarm
+    SKIP: Market  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] rebels-run-at-afton-mountain
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] robinia-institute
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] rose-isle-farm
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] saunders-brothers-farm-market
+    SKIP: Bakery  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Desserts  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] seamans-orchard
+    SKIP: Market  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] silver-creek-and-seamans-orchards
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] silver-fox-lavender-farm
+    SKIP: Retail  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] soaring
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] the-apple-shed
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] tinkerland-farm
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [experience] virginia-chestnuts
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] blue-ridge-fruit-loop
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] cedar-ciffs-north-trail
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] nelson-151
+    SKIP: Spirits  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] nelson-29
+    SKIP: Beer  — Dining/retail amenity; not for trails/parks/activities.
+    SKIP: Spirits  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] ravens-roost-park
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] trillium-field
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] virginia-spirits-trail
+    SKIP: Tastings  — Dining/retail amenity; not for trails/parks/activities.
+
+  [outdoor] white-oak-trail
+    SKIP: Seasonal Menu  — Dining/retail amenity; not for trails/parks/activities.
+
+  [stay] 779-blue-ridge-drive
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] acorn-inn-inc-cottage-bb-and-group-retreat
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] afton-awaits
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] afton-mountain-inn
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Retail  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tea  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] airkey
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Retail  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] altitude-adjustment
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] bearfeet-retreat
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] beech-grove-cabins
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] blue-ridge-bliss
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] blue-ridge-cabin
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] blue-ridge-farm-and-wedding-venue
+    SKIP: Events  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] bluebird-cottage
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] boho-cliff-house-retreat
+    SKIP: Retail  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] bold-kitchen-at-bold-rock
+    SKIP: Bar  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] boogie-nights-manor
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] branch-at-afton-mountain-retreat
+    SKIP: Wine  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] bungalow-at-afton-mountain-retreat
+    SKIP: Wine  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] camp-blue-ridge
+    SKIP: Events  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] carriage-house-at-stagebridge-farm
+    SKIP: Wine  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] carters-cottage
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] clonmel-acres
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] cottage-at-old-stoney-creek
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] cottage-on-route-151
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] country-cottage
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] d-ds-mountain-home
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] devils-backbone-camp
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] everettestate
+    SKIP: Coffee  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Events  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tea  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] faber-farmhouse
+    SKIP: Events  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] farmhouse-on-route-151
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] foxfire-cottage
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] fulton-belle-vue
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] glass-pine
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] graces-place-petite-retreats
+    SKIP: Retail  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] harmony-hill-bed-and-breakfast
+    SKIP: Hiking  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] haven-at-devils-backbone-camp
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] heartrockretreat
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Local Ingredients  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] highlands-1426-condo
+    SKIP: Local Ingredients  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] hillside-hideaway
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] home-on-the-ridge
+    SKIP: Resort  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] inn-at-the-woods
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] lewis-catherine-house
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] love-ridge-mountain-lodging
+    SKIP: Full Service Resort  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] lovingston-get-away
+    SKIP: Tours  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] maren-estate
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] memes-cottage
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] montebello-resort
+    SKIP: Cafe  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Retail  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] mountain-home-in-nelson-county
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Wine  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] mountain-vine-farmhouse
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] mountain-vine-vineyards-log-cabin
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Wine  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] open-heart-inn
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] pachis-ridge
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] panoramic-peak-vistas-1559-wintergreen
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] rockfish-farmhouse
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] rockwellridgeinn
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] rustys-retreat
+    SKIP: Bar  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Coffee  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tea  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] shenandoah-ridge-11
+    SKIP: Golf  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] ski-in-style-at-sapphire-squirrel
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] slipper-slope
+    SKIP: Snow Sports  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] slopes-at-tyro
+    SKIP: Snow Sports  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] spruce-creek-garden-cottage
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] stays-at-lovingston-winery
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] straw-bale-house
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] sunrise-on-the-trail
+    SKIP: Tea  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] the-chimneys
+    SKIP: Adventure  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] thetreehouse
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] top-of-the-mountain-hideaway
+    SKIP: Beer  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] tupelo
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] wildmandan-bb-beer-centric
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] wintergreen-getaway-for-families
+    SKIP: Seasonal Menu  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] wintergreen-resort-2
+    SKIP: Full Service Resort  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] wintergreen-resort-cabin
+    SKIP: Fuel  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [stay] woodsons-mill-house
+    SKIP: Farm  — Activity/nearby or dining; avoid on stay (conservative).
+    SKIP: Tastings  — Activity/nearby or dining; avoid on stay (conservative).
+
+  [taste] ashleys-market
+    SKIP: Hiking  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+
+  [taste] black-bear-creamery
+    SKIP: Hiking  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+
+  [taste] devils-backbone-brewing
+    SKIP: Biking  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+    SKIP: Hiking  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+
+  [taste] devils-backbone-brewing-company
+    SKIP: Adventure  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+    SKIP: Appalachian Trail  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+    SKIP: Biking  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+
+  [taste] the-edge
+    SKIP: Snow Sports  — Not a taste/dining amenity (e.g. no Biking/Cabins).
+
+
+REVIEW — Case-by-case (category missing or ambiguous).
+
+  [community] iga-blue-ridge-grocery  (type: Markets & Delis)
+    REVIEW: Parking
+
+  [community] lost-point-farm  (type: Farms & Orchards)
+    REVIEW: Scenic Views
+
+  [culture] swannanoa  (type: Activities)
+    REVIEW: Outdoor Seating, Scenic Views
+
+  [experience] appalachian-horse-adventures  (type: Horseback Riding)
+    REVIEW: Equestrian
+
+  [experience] caldwell-farms  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] davis-creek-farm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] deep-sea-petes-creekside-farm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] deer-creek-farm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] dickie-brothers-orchard  (type: Farms & Orchards)
+    REVIEW: Farm, Local Ingredients
+
+  [experience] drumhellers-orchard  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] edible-landscaping  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] eventidefarm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] fitzgeralds-orchard  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] galleywinter  (type: Farms & Orchards)
+    REVIEW: Equestrian, Local Ingredients
+
+  [experience] gathered  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] indian-summer-guide-service  (type: Horseback Riding)
+    REVIEW: Equestrian, Farm
+
+  [experience] marsknob  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] one-forest  (type: Activities)
+    REVIEW: Outdoor Seating
+
+  [experience] pharsalia  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] queenoaksfarm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] rebels-run-at-afton-mountain  (type: Horseback Riding)
+    REVIEW: Equestrian, Farm
+
+  [experience] robinia-institute  (type: Farms & Orchards)
+    REVIEW: Farm, Local Ingredients
+
+  [experience] rose-isle-farm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] saunders-brothers-farm-market  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] silver-creek-and-seamans-orchards  (type: Farms & Orchards)
+    REVIEW: Farm, Local Ingredients
+
+  [experience] skiing-snowboarding  (type: Activities)
+    REVIEW: Snow Sports
+
+  [experience] stoney-creek-golf-course  (type: Golf)
+    REVIEW: Resort
+
+  [experience] swimming  (type: Swimming)
+    REVIEW: Outdoor Seating
+
+  [experience] the-apple-shed  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] threetreesfarm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] tinkerland-farm  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [experience] virginia-chestnuts  (type: Farms & Orchards)
+    REVIEW: Local Ingredients
+
+  [outdoor] allen-creek-nature-preserve  (type: Hikes & Trails)
+    REVIEW: Tours
+
+  [outdoor] blue-ridge-tunnel  (type: Hikes & Trails)
+    REVIEW: Educational
+
+  [outdoor] brimstone-trail  (type: Hikes & Trails)
+    REVIEW: Fishing
+
+  [outdoor] fishing-at-lake-monacan-park  (type: Fishing)
+    REVIEW: Boating, Water Sports
+
+  [outdoor] fishing-at-lake-nelson  (type: Fishing)
+    REVIEW: Boating
+
+  [outdoor] fishing-the-james-river  (type: Fishing)
+    REVIEW: Boating, Water Sports
+
+  [outdoor] fishing-the-tye-river  (type: Fishing)
+    REVIEW: Water Sports
+
+  [outdoor] james-river  (type: Canoeing)
+    REVIEW: Water Sports
+
+  [outdoor] james-river-state-park  (type: Hikes & Trails)
+    REVIEW: Boating
+
+  [outdoor] kids-in-parks-rockfish-river-trailhead  (type: Hikes & Trails)
+    REVIEW: Adventure, Fishing, Water Sports
+
+  [outdoor] kids-in-parks-virginia-blue-ridge-railway-trail  (type: Hikes & Trails)
+    REVIEW: Hunting, Water Sports
+
+  [outdoor] nelson-151  (type: Hikes & Trails)
+    REVIEW: Fishing
+
+  [outdoor] nelson-scenic-loop  (type: Biking)
+    REVIEW: Educational, Farm
+
+  [outdoor] pauls-creek-trail  (type: Hikes & Trails)
+    REVIEW: Swimming Pool
+
+  [outdoor] rockfish-river  (type: Canoeing)
+    REVIEW: Fishing, Water Sports
+
+  [outdoor] rockfish-valley-loop-trails  (type: Hikes & Trails)
+    REVIEW: Educational, Fishing
+
+  [outdoor] shamokin-springs-nature-preserve  (type: Hikes & Trails)
+    REVIEW: Educational
+
+  [outdoor] spruce-creek-park  (type: Hikes & Trails)
+    REVIEW: Fishing
+
+  [outdoor] three-ridges  (type: Hikes & Trails)
+    REVIEW: Appalachian Trail
+
+  [outdoor] tye-river  (type: Canoeing)
+    REVIEW: Fishing, Water Sports
+
+  [outdoor] virginia-blue-ridge-railway-trail  (type: Biking)
+    REVIEW: Equestrian
+
+  [outdoor] waltons-mountain-museum-loop  (type: Biking)
+    REVIEW: Farm
+
+  [outdoor] wintergreen-resort-fishing  (type: Fishing)
+    REVIEW: Water Sports
+
+  [outdoor] woodsons-mill-loop  (type: Biking)
+    REVIEW: Farm
+
+  [stay] eagles-court-ski-in-ski-out-condo  (type: Vacation Rentals)
+    REVIEW: Skiing
+
+  [stay] freshwater-field-cabin  (type: Cabins & Cottages)
+    REVIEW: Equestrian
+
+  [stay] highlands-1426-condo  (type: Whole House Rentals)
+    REVIEW: Skiing
+
+  [stay] hillside-hideaway  (type: Cabins & Cottages)
+    REVIEW: Skiing
+
+  [stay] remodeled-3br-2ba-ski-chalet-off-tyro-slope  (type: Whole House Rentals)
+    REVIEW: Skiing
+
+  [stay] shenandoah-ridge-11  (type: Whole House Rentals)
+    REVIEW: Skiing
+
+  [stay] skis-and-trees  (type: Whole House Rentals)
+    REVIEW: Skiing
+
+  [stay] three-ridge-retreat  (type: Vacation Rentals)
+    REVIEW: Skiing
+
+  [stay] wintergreen-condo-1437-highlands  (type: Whole House Rentals)
+    REVIEW: Skiing
+
+  [taste] afton-market  (type: Markets & Delis)
+    REVIEW: Beer, Fuel, Retail, Tea
+
+  [taste] ashleys-market  (type: Markets & Delis)
+    REVIEW: Fuel
+
+  [taste] basic-necessities  (type: Restaurants)
+    REVIEW: Dinner, Retail
+
+  [taste] belties  (type: Coffee Shops)
+    REVIEW: Bar, Farm, Seasonal Menu, Tea
+
+  [taste] black-bear-creamery  (type: Restaurants)
+    REVIEW: Beer
+
+  [taste] blue-mountain-barrel-house  (type: Breweries & Cideries)
+    REVIEW: Cider, Seasonal Menu
+
+  [taste] blue-mountain-brewery  (type: Breweries & Cideries)
+    REVIEW: Events, Full Kitchen
+
+  [taste] blue-toad-hard-cider  (type: Breweries & Cideries)
+    REVIEW: Beer, Farm, Pet Friendly
+
+  [taste] bold-rock-hard-cider  (type: Breweries & Cideries)
+    REVIEW: Beer, Cocktails, Farm
+
+  [taste] brent-manor-vineyards  (type: Vineyards & Wineries)
+    REVIEW: Events, Farm, Retail
+
+  [taste] brewing-tree-beer-company  (type: Breweries & Cideries)
+    REVIEW: Cider, Full Kitchen
+
+  [taste] bryants-cider-brewery  (type: Breweries & Cideries)
+    REVIEW: Beer, Farm, Seasonal Menu
+
+  [taste] caihailian-vineyard  (type: Vineyards & Wineries)
+    REVIEW: Farm, Retail
+
+  [taste] cardinal-point-winery  (type: Vineyards & Wineries)
+    REVIEW: Farm
+
+  [taste] chicken-coop  (type: Markets & Delis)
+    REVIEW: Full Kitchen, Market, Retail
+
+  [taste] chirios-pizza  (type: Restaurants)
+    REVIEW: Desserts, Takeout
+
+  [taste] colleen-deli  (type: Markets & Delis)
+    REVIEW: Baked Goods, Bakery, Market, Seasonal Menu
+
+  [taste] coquito-kitchen  (type: Restaurants)
+    REVIEW: Full Kitchen
+
+  [taste] corner-market  (type: Markets & Delis)
+    REVIEW: Fuel, Retail
+
+  [taste] devils-backbone-brewing  (type: Restaurants)
+    REVIEW: Full Kitchen, Tea
+
+  [taste] devils-backbone-brewing-company  (type: Breweries & Cideries)
+    REVIEW: Cider, Spirits
+
+  [taste] donlupe  (type: Restaurants)
+    REVIEW: Local Ingredients
+
+  [taste] el-mariachi-mexican-food  (type: Restaurants)
+    REVIEW: Local Ingredients, Retail
+
+  [taste] fire-frost-wood-fired-bakehouse  (type: Restaurants)
+    REVIEW: Resort
+
+  [taste] flying-fox-vineyards  (type: Vineyards & Wineries)
+    REVIEW: Farm, Seasonal Menu
+
+  [taste] hill-top-winery-meadery  (type: Vineyards & Wineries)
+    REVIEW: Desserts, Farm, Local Ingredients
+
+  [taste] indian-oven  (type: Restaurants)
+    REVIEW: Deli, Market, Takeout
+
+  [taste] inglewood-fine-meats  (type: Restaurants)
+    REVIEW: Local Ingredients
+
+  [taste] iron-and-ale  (type: Restaurants)
+    REVIEW: Seasonal Menu
+
+  [taste] lovingston-winery  (type: Vineyards & Wineries)
+    REVIEW: Farm
+
+  [taste] mcdonalds  (type: Restaurants)
+    REVIEW: Dinner, Lunch
+
+  [taste] montebello-country-store-cafe  (type: Restaurants)
+    REVIEW: Retail
+
+  [taste] mountain-and-vine-winery  (type: Vineyards & Wineries)
+    REVIEW: Farm
+
+  [taste] mountain-cove-vineyards-winery  (type: Vineyards & Wineries)
+    REVIEW: Farm, Local Ingredients, Picnic Area
+
+  [taste] outback-brew-house  (type: Breweries & Cideries)
+    REVIEW: Cider
+
+  [taste] paulies-pig-out  (type: Restaurants)
+    REVIEW: BBQ
+
+  [taste] smokin-barrel-restaurant  (type: Restaurants)
+    REVIEW: Bar, Beer, Full Kitchen
+
+  [taste] subway  (type: Markets & Delis)
+    REVIEW: Market
+
+  [taste] terrace-cafe-at-wintergreen-resort  (type: Coffee Shops)
+    REVIEW: Food Available, Resort
+
+  [taste] the-copper-mine-bistro  (type: Restaurants)
+    REVIEW: Seasonal Menu
+
+  [taste] the-edge  (type: Restaurants)
+    REVIEW: Seasonal Menu
+
+  [taste] the-farmhouse-at-veritas  (type: Restaurants)
+    REVIEW: Beer, Golf
+
+  [taste] three-notchd-brewery-distillery-craft-kitchen-nelson-county  (type: Breweries & Cideries)
+    REVIEW: Cider, Full Kitchen, Spirits
+
+  [taste] trager-brothers-coffee-1-0  (type: Coffee Shops)
+    REVIEW: Cafe, Order Pickup, Tea
+
+  [taste] trager-brothers-coffee-2-0  (type: Coffee Shops)
+    REVIEW: Bar, Cafe, Tea
+
+  [taste] valley-road-vineyards  (type: Vineyards & Wineries)
+    REVIEW: Farm
+
+  [taste] veritas-vineyards-winery  (type: Vineyards & Wineries)
+    REVIEW: Farm
+
+  [taste] villageantiques  (type: Restaurants)
+    REVIEW: Bakery, Coffee, Tea
+
+  [taste] virginia-distillery-co  (type: Distilleries)
+    REVIEW: Spirits
+
+  [taste] vitos-pizza-italian-grill  (type: Restaurants)
+    REVIEW: Full Kitchen
+
+  [taste] wild-man-dan-brewery  (type: Breweries & Cideries)
+    REVIEW: Cider, Retail
+
+  [taste] wood-ridge-farm-brewery  (type: Breweries & Cideries)
+    REVIEW: Cider, Seasonal Menu
+
+
+========================================================================
+SUMMARY
+  RECOMMEND ADD: 305 listings with at least one recommended amenity to add.
+  SKIP: 124 listings with at least one amenity to skip.
+  REVIEW: 117 listings with at least one to review by hand.

@@ -1,0 +1,50 @@
+================================================================================
+CULTURE LISTINGS — OLDER LISTS vs FINAL
+================================================================================
+Source: A - to merge, jan12, 01-07, 01-11, 01-16, final_listings_PERFECT_br_cleaned.csv
+
+--------------------------------------------------------------------------------
+OLDER LISTS (A - to merge, jan12, 01-07, 01-11) — 8 culture listings
+--------------------------------------------------------------------------------
+  glasshollow                    | Art & Artisans   | Glass Hollow Studio & Gallery
+  montebello-fish-hatchery       | Activities       | Montebello Fish Hatchery
+  oak-ridge-estate               | Activities       | Oak Ridge Estate
+  oakland-museum                 | Museums & Heritage | Oakland Museum
+  rockfish-valley-natural-history-center | Museums & Heritage | Rockfish Valley Natural History Center
+  swannanoa                      | Activities       | Swannanoa
+  waltons-mountain-museum        | Museums & Heritage | Walton's Mountain Museum
+  woodsons-mill                  | Museums & Heritage | Woodson's Mill
+
+--------------------------------------------------------------------------------
+LATER LIST (listings-2026-01-16-2.csv) — 11 culture listings
+--------------------------------------------------------------------------------
+  Same 8 as above (slug glasshollow-2 in 01-16 vs glasshollow in older), plus:
+  heartofnelson                  | Attraction | Heart of Nelson
+  rapunzels-coffee-books         | Attraction | Rapunzel's Coffee & Books
+  sweet-bliss-bakery             | Attraction | Sweet Bliss Bakery
+
+  Note: 01-16 has "glasshollow-2" for Glass Hollow; final has "glasshollow".
+
+--------------------------------------------------------------------------------
+CURRENT FINAL (final_listings_PERFECT_br_cleaned.csv) — 11 culture listings
+--------------------------------------------------------------------------------
+  glasshollow                    | Art & Artisans   | Glass Hollow Studio & Gallery
+  heartofnelson                  | Attraction       | Heart of Nelson
+  montebello-fish-hatchery       | Activities       | Montebello Fish Hatchery
+  oak-ridge-estate               | Activities       | Oak Ridge Estate
+  oakland-museum                 | Museums & Heritage | Oakland Museum
+  rapunzels-coffee-books         | Coffee Shops    | Rapunzel's Coffee & Books  (was Attraction; updated)
+  rockfish-valley-natural-history-center | Museums & Heritage | Rockfish Valley Natural History Center
+  swannanoa                      | Activities       | Swannanoa
+  sweet-bliss-bakery             | Restaurants     | Sweet Bliss Bakery  (was Attraction; updated)
+  waltons-mountain-museum        | Museums & Heritage | Walton's Mountain Museum
+  woodsons-mill                  | Museums & Heritage | Woodson's Mill
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+  • Older lists (A - to merge through 01-11): 8 culture — museums, activities, art only.
+  • Added as culture in 01-16 (and still in final): heartofnelson, rapunzels-coffee-books, sweet-bliss-bakery (all were type Attraction; Rapunzel's and Sweet Bliss since changed to Coffee Shops / Restaurants).
+  • Only listing still type "Attraction" in culture: Heart of Nelson.
+
+================================================================================
