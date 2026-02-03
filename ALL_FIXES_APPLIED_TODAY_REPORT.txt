@@ -1,0 +1,270 @@
+================================================================================
+ALL FIXES APPLIED TODAY — CONSOLIDATED REPORT
+================================================================================
+
+This report lists every listing change applied today to final_listings_PERFECT.csv.
+Source: donor sheet (framer-cms-export.csv) is authoritative where applicable.
+
+================================================================================
+SUMMARY
+================================================================================
+
+  Pet-Friendly fixes:     15 listings
+    - Removed Pet-Friendly line (donor did not specify):  14
+    - Changed "No" → "Yes" (donor says pet-friendly):     1
+
+  Website fixes:        338 listings
+    - Website column corrected to match donor (external only; no nelsoncounty.com)
+
+  TOTAL LISTINGS CHANGED: 353
+
+================================================================================
+1. PET-FRIENDLY FIXES (15)
+================================================================================
+
+Rule: Donor sheet is authoritative. If donor did not specify pet-friendly,
+      the "Pet-Friendly? ..." line was removed from detailedDescription and
+      "Pet Friendly" was removed from amenities. If donor said pet-friendly,
+      final CSV was updated from "No" to "Yes".
+
+----------------------------------------------------------------------
+REMOVED PET-FRIENDLY LINE — Donor did not specify (14)
+----------------------------------------------------------------------
+
+  1. Straw Bale House
+  2. Stays at Lovingston Winery
+  3. Harmony Hill Bed & Breakfast
+  4. Spyrock Lodge
+  5. Inn at Blue Mountain Brewery
+  6. Gracewood
+  7. The Chimneys
+  8. Carriage House at Stagebridge Farm
+  9. Papa's Cottage
+ 10. Meme's Cottage
+ 11. Cheval Circle
+ 12. Wine Cottage
+ 13. Carter's Cottage
+ 14. Beech Grove Cottage
+
+----------------------------------------------------------------------
+CHANGED "No" → "Yes" — Donor says pet-friendly (1)
+----------------------------------------------------------------------
+
+  1. Boogie Nights Manor
+
+================================================================================
+2. WEBSITE FIXES (338)
+================================================================================
+
+Rule: External sites only (no nelsoncounty.com). If no external site in donor,
+      website set to blank. All changes applied from backup:
+      CSV/final_listings_PERFECT.csv.backup.20260203_135506
+
+Format: Name | Slug | Before → After
+
+----------------------------------------------------------------------
+
+1. Trager Brothers Coffee 2.0 | trager-brothers-coffee-2-0
+   Before: https://trager-brothers-coffee-20.goto-restaurants.com/
+   After:  (blank)
+
+2. Chicken Coop | chicken-coop
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+3. Colleen Deli | colleen-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+4. Corner Market | corner-market
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+5. Graves Grocery & Deli | graves-grocery-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+6. Hickman's Exxon Grocery | hickmans-exxon-grocery
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+7. IGA Blue Ridge Grocery | iga-blue-ridge-grocery
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+8. Ike's Market & Deli | ikes-market-deli
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+9. Indian Oven | indian-oven
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+10. Mac's Country Store | macs-country-store
+    Before: https://nellysford.iga.com/
+    After:  (blank)
+
+11. The Market at Wintergreen | the-market-at-wintergreen
+    Before: https://www.wintergreenresort.com/the-market-at-wintergreen/
+    After:  (blank)
+
+12. Williams Grocery | williams-grocery
+    Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+    After:  (blank)
+
+13. Ann's Family Restaurant | anns-family-restaurant
+    Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+    After:  (blank)
+
+14. Basic Necessities | basic-necessities
+    Before: https://basicnecessities.us/
+    After:  (blank)
+
+15. Blue Mountain Brewery | blue-mountain-brewery
+    Before: https://bluemountainbrewery.com/
+    After:  https://www.bluemountainbrewery.com/
+
+16. Blue Ridge Pig | blue-ridge-pig
+    Before: https://www.facebook.com/blueridgepig
+    After:  (blank)
+
+17. Bold Kitchen at Bold Rock | bold-kitchen-at-bold-rock
+    Before: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+    After:  (blank)
+
+18. Chen's Restaurant | chens-restaurant
+    Before: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+    After:  (blank)
+
+19. Chirio's Pizza | chirios-pizza
+    Before: https://chiriospizza.com/home/
+    After:  (blank)
+
+20. Coquito Kitchen | coquito-kitchen
+    Before: https://chiriospizza.com/home/
+    After:  (blank)
+
+21. Devils Backbone Brewing | devils-backbone-brewing
+    Before: https://www.facebook.com/bluegrasscville/
+    After:  https://www.dbbrewingcompany.com/visit/basecamp/
+
+22. El Mariachi Mexican Food | el-mariachi-mexican-food
+    Before: https://www.elmariachimexfood.com/
+    After:  (blank)
+
+23. Fire & Frost Wood Fired Bakehouse | fire-frost-wood-fired-bakehouse
+    Before: https://www.fireandfrostva.com/
+    After:  (blank)
+
+24. Iron and Ale | iron-and-ale
+    Before: https://www.ironalewintergreen.com/
+    After:  (blank)
+
+25. McDonald's | mcdonalds
+    Before: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+    After:  (blank)
+
+26. Montebello Country Store & Cafe | montebello-country-store-cafe
+    Before: https://www.montebellova.com/country-store-in-montebello.htm
+    After:  (blank)
+
+27. Paulie's Pig Out | paulies-pig-out
+    Before: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+    After:  (blank)
+
+28. Smokin' Barrel Restaurant | smokin-barrel-restaurant
+    Before: https://bluemountainbarrel.com/
+    After:  (blank)
+
+29. The Copper Mine Bistro | the-copper-mine-bistro
+    Before: https://www.wintergreenresort.com/the-wintergreen-weekly/
+    After:  (blank)
+
+30. The Edge | the-edge
+    Before: https://www.wintergreenresort.com/the-wintergreen-weekly/
+    After:  (blank)
+
+31. The Farmhouse at Veritas | the-farmhouse-at-veritas
+    Before: https://www.veritasfarmhouse.com/
+    After:  (blank)
+
+32. Vito's Pizza & Italian Grill | vitos-pizza-italian-grill
+    Before: https://www.vitospizzagrill.com/
+    After:  (blank)
+
+33. Black Bear Creamery | black-bear-creamery
+    Before: https://www.facebook.com/Black-Bear-Creamery-112769827194686/
+    After:  (blank)
+
+34. Dickie Brothers Orchard | dickie-brothers-orchard
+    Before: https://www.dickiebrothers.com/
+    After:  https://dickiebrothers.com/
+
+35. Saunders Brothers Farm Market | saunders-brothers-farm-market
+    Before: https://www.saundersbrothersfarmmarket.com/
+    After:  https://www.saundersbrothers.com/
+
+36. Blue Mountain Barrel House | blue-mountain-barrel-house
+    Before: https://bluemountainbrewery.com/
+    After:  https://www.bluemountainbarrel.com/
+
+37. Blue Toad Hard Cider | blue-toad-hard-cider
+    Before: https://bluetoadhardcider.com/
+    After:  https://www.bluetoadhardcider.com/
+
+38. Bold Rock Hard Cider | bold-rock-hard-cider
+    Before: https://boldrock.com
+    After:  https://boldrock.com/visit/nellysford-cidery/
+
+39. Brewing Tree Beer Company | brewing-tree-beer-company
+    Before: https://brewingtreebeer.com/
+    After:  https://www.brewingtreebeerco.com/
+
+40. Bryant's Cider & Brewery | bryants-cider-brewery
+    Before: https://bryantscider.com
+    After:  https://www.bryantscider.com/
+
+41. Outback Brew House | outback-brew-house
+    Before: https://www.facebook.com/Outbackbrew
+    After:  https://www.outbackhouselodging.com/outback-brew-house/
+
+42. Three Notch'd Brewery, Distillery & Craft Kitchen | three-notchd-brewery-distillery-craft-kitchen-nelson-county
+    Before: https://threenotchdbrewing.com/pages/151
+    After:  https://threenotchdbrewing.com/location/nellysford/
+
+43. Wild Man Dan Brewery | wild-man-dan-brewery
+    Before: https://www.wmdb3.com/
+    After:  https://wildmandanbeer.com/
+
+44. Wood Ridge Farm Brewery | wood-ridge-farm-brewery
+    Before: https://woodridgefarmbreweryva.com/
+    After:  https://www.woodridgefarmbrewery.com/
+
+45. Devils Backbone Distilling Co. | devils-backbone-distilling-co
+    Before: https://www.dbbrewingcompany.com/
+    After:  https://www.dbbrewingcompany.com/spirits/
+
+46. Silverback Distillery | silverback-distillery
+    Before: https://www.sbdistillery.com/
+    After:  (blank)
+
+[... entries 47–338 follow the same format ...]
+
+Full list of all 338 website fixes (name, slug, before, after) is in:
+  WEBSITE_FIXES_APPLIED_TODAY_REPORT.txt
+
+================================================================================
+REMAINING (NOT YET APPLIED)
+================================================================================
+
+4 listings still have a website that should be set to blank per donor (no
+external site in donor). See WEBSITE_FINAL_CHANGES_LIST.txt:
+
+  - Celadon Acres Farm
+  - A. Bryant Family Farm
+  - Heart of Nelson
+  - Afton Peak
+
+================================================================================
+END OF REPORT
+================================================================================

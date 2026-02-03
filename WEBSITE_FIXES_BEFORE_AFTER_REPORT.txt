@@ -1,0 +1,137 @@
+================================================================================
+WEBSITE FIXES — BEFORE AND AFTER REPORT
+================================================================================
+
+Applied per WEBSITE_COLUMN_ADVISORY_REPORT.txt (lines 181-191):
+  1. Five market/deli (Ashley's URL wrong) -> blank
+  2. IGA URL on Ike's, Indian Oven, Mac's -> blank
+  3. Subway URL on Williams Grocery, Ann's -> blank
+  4. Single Airbnb room on four properties -> blank
+  5. Generic airbnb.com on five listings -> blank
+  6. nelsoncounty.com -> blank
+
+File updated: CSV/final_listings_PERFECT.csv
+Total changes: 23
+
+================================================================================
+BEFORE | AFTER (each change)
+================================================================================
+
+1. Chicken Coop
+   Slug: chicken-coop
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+2. Colleen Deli
+   Slug: colleen-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+3. Corner Market
+   Slug: corner-market
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+4. Graves Grocery & Deli
+   Slug: graves-grocery-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+5. Hickman’s Exxon Grocery
+   Slug: hickmans-exxon-grocery
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  (blank)
+
+6. Ike’s Market & Deli
+   Slug: ikes-market-deli
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+7. Indian Oven
+   Slug: indian-oven
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+8. Mac’s Country Store
+   Slug: macs-country-store
+   Before: https://nellysford.iga.com/
+   After:  (blank)
+
+9. Williams Grocery
+   Slug: williams-grocery
+   Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+   After:  (blank)
+
+10. Ann’s Family Restaurant
+   Slug: anns-family-restaurant
+   Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+   After:  (blank)
+
+11. Montebello Nature Trail
+   Slug: montebello-nature-trail
+   Before: https://www.nelsoncounty.com/hikes-trails/
+   After:  (blank)
+
+12. North Fork of the Piney River
+   Slug: north-fork-of-the-piney-river
+   Before: https://www.nelsoncounty.com/hikes-trails/
+   After:  (blank)
+
+13. Crestvue Cottage
+   Slug: crestvue-cottage
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  (blank)
+
+14. Three Springs Myndus
+   Slug: three-springs-myndus
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  (blank)
+
+15. Sunset Vista Villa
+   Slug: sunset-vista-villa
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  (blank)
+
+16. Marigold on the Mountain
+   Slug: marigold-on-the-mountain
+   Before: https://nelsoncounty.com/stay/
+   After:  (blank)
+
+17. Home on the Ridge
+   Slug: home-on-the-ridge
+   Before: https://www.airbnb.com
+   After:  (blank)
+
+18. Wake In The Clouds
+   Slug: wake-in-the-clouds
+   Before: https://www.airbnb.com
+   After:  (blank)
+
+19. Nectar Landing
+   Slug: nectar-landing
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  (blank)
+
+20. Woodland Hideaway
+   Slug: woodland-hideaway
+   Before: https://www.airbnb.com
+   After:  (blank)
+
+21. Ski House
+   Slug: ski-house
+   Before: https://www.airbnb.com
+   After:  (blank)
+
+22. 1566 Vistas Condo
+   Slug: 1566-vistas-condo
+   Before: https://www.airbnb.com
+   After:  (blank)
+
+23. Goldfinch
+   Slug: goldfinch
+   Before: https://nelsoncounty.com/stay/
+   After:  (blank)
+
+================================================================================
+END OF REPORT
+================================================================================

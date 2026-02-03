@@ -1,0 +1,129 @@
+================================================================================
+WHERE COULD THE ERRORS BE COMING FROM? (Google Script vs Admin)
+================================================================================
+
+Summary: Bulk errors (same URL on many listings) almost certainly came from
+the initial AI/build, not from the Google Script or admin. Single-row or
+wrong-row mixups could in theory come from the script (id fallback) or from
+the admin (if it ever identified listings by id instead of slug).
+
+================================================================================
+1. BULK ERRORS (e.g. Ashley's URL on 6 markets, IGA on 4, Subway on 3)
+================================================================================
+
+  These are very unlikely to be caused by the Google Script or the admin.
+
+  - Google Script: When saving, it receives ONE listing object and finds ONE
+    row by slug (or id fallback), then writes that row. It never "copies one
+    URL to many rows" in a single action. So it would not create the pattern
+    "same URL on 6 different listings."
+
+  - Admin: The admin loads one listing at a time for editing and saves one
+    listing at a time. It doesn't batch-assign one website to multiple rows.
+    So the admin wouldn't create "6 markets all with Ashley's URL" unless
+    someone edited each of the 6 and pasted the same URL 6 times (unlikely).
+
+  Conclusion: Bulk/pattern errors (same URL on many listings, forward-fill
+  style) almost certainly happened when the CSV was first built or merged
+  (AI/script merge by position, forward-fill, or category-level assignment).
+  Not from the Script or the admin.
+
+================================================================================
+2. GOOGLE APPS SCRIPT — COULD IT CAUSE ERRORS?
+================================================================================
+
+  How it works (from COMPLETE-GOOGLE-APPS-SCRIPT.gs):
+
+  - Reading CSV/Sheets: Builds listing objects from each row; reads 'id' and
+    'slug' (and other columns). So it just passes through whatever is in the
+    sheet. If the sheet has wrong data, the script serves wrong data; it
+    doesn't create the wrong data.
+
+  - saveListing(listing): Finds the row to update by:
+    1. PREFERRED: slug column — match row where row.slug === listing.slug
+    2. FALLBACK: id column — match row where row.id === listing.id
+    3. FALLBACK: first column value matches slug or id
+    Then it overwrites that row with the payload (listing) from the client.
+
+  - deleteListing(listingSlug): Finds row by slug (preferred) or id (fallback),
+    then deletes that row.
+
+  Where the script COULD cause wrong-row errors:
+
+  1. ID FALLBACK: If the admin sends a listing with an empty or wrong slug
+     but with an id, the script uses id to find the row. If ids were
+     duplicated or reassigned (e.g. after reordering), the wrong row could
+     be updated or deleted. So: any place that still relies on "id" for
+     finding the row is a risk.
+
+  2. SLUG NORMALIZATION: The script compares slug with trim; deleteListing
+     also normalizes to lowercase. saveListing does trim but I didn't see
+     lowercase normalization for save — so if admin sends "Chicken-Coop" and
+     sheet has "chicken-coop", the row might not match and a new row could
+     be added (or an error). Unlikely to "copy data to wrong row" but could
+     cause duplicate or failed save.
+
+  Conclusion: The script is mostly safe because it prefers slug. The main
+  risk is the id fallback: if slug is missing or wrong and id is used, wrong
+  row could be updated. Recommendation: remove id fallback when possible;
+  require slug for save/delete.
+
+================================================================================
+3. ADMIN (index.html / frontpage) — COULD IT CAUSE ERRORS?
+================================================================================
+
+  How it works (from index.html):
+
+  - editListing(slug): Finds listing by slug: data.listings.find(l => l.slug === slug).
+  - Cards use data-slug and call editListing(listing.slug).
+  - Save sends the current form data (including listingSlug from the form)
+    to the script. The script then finds the row by that slug and writes.
+
+  So the admin finds listings by SLUG when opening the edit form and when
+  building the payload. It does not use id to identify which listing to
+  load or save.
+
+  Where the admin COULD cause wrong-row errors:
+
+  1. If somewhere else (e.g. URL or table row click) the app passed or
+     displayed by id instead of slug, and the user then saved, the payload
+     would still contain whatever slug is in the form. So if the form was
+     opened with the wrong listing's data (e.g. opened "Chicken Coop" but
+     showed Ashley's data because of an id mixup), then saving would write
+     Ashley's data to Chicken Coop's row (because the form's slug would
+     be Chicken Coop). So the risk is: any code path that populates the
+     edit form by id instead of slug could show the wrong listing's data;
+     saving would then overwrite the correct row (by slug) with wrong data.
+
+  2. frontpage_framer.html has findListingByIdentifier(idOrSlug) and
+     id === idOrSlug checks — so the public-facing page might still resolve
+     by id. That affects which listing is displayed, not which row the admin
+     writes to. So that could show the wrong listing to a visitor but
+     wouldn't by itself put wrong data in the sheet.
+
+  Conclusion: The admin (index.html) is slug-based for edit/save. The main
+  risk would be any remaining code path that loads "which listing to edit"
+  by id instead of slug, which could show the wrong listing's data; saving
+  would then write that wrong data to the row identified by the form's slug.
+
+================================================================================
+4. RECOMMENDATIONS
+================================================================================
+
+  1. Prefer slug everywhere: Ensure no code path (admin or script) uses id
+     to decide which row to read or write. Use slug only for find/update/delete.
+
+  2. Google Script: Consider removing the id fallback in saveListing and
+     deleteListing (or make it log-only) so that only slug is used. That
+     prevents wrong-row updates if id is ever duplicated or wrong.
+
+  3. Admin: Audit any URL or click handler that might pass id instead of
+     slug into editListing or into the form. Ensure the edit form is always
+     populated by slug.
+
+  4. Bulk errors: Already fixed or documented; they came from the initial
+     build/AI merge, not from the Script or admin.
+
+================================================================================
+END OF REPORT
+================================================================================

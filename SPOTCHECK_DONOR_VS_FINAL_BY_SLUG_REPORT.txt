@@ -1,0 +1,256 @@
+================================================================================
+SPOTCHECK: DONOR VS FINAL BY NAME/SLUG (NO ID)
+================================================================================
+
+Donor: CSV/framer-cms-export.csv
+Final: CSV/final_listings_PERFECT.csv
+Match key: slug (normalized). No id used.
+
+================================================================================
+FINDINGS SUMMARY (name/slug, no id)
+================================================================================
+
+  - NAME: 0 mismatches when matched by slug.
+    So there is NO evidence of wrong-row merge (e.g. by id/position) that put
+    a different business name on a slug. Every slug in common has the same
+    name in donor and final.
+
+  - SLUG COVERAGE: 366 in both. 29 only in final, 29 only in donor.
+    Most "only in final" vs "only in donor" are the SAME listing with
+    different slug (e.g. final "afton-house" vs donor "the-afton-house").
+    That is a naming convention / slug-normalization difference, not a
+    merge error.
+
+  - TYPE / AREA: 115 type and 86 area mismatches.
+    Many are intentional: final uses refined types (e.g. "Whole House Rentals",
+    "Markets & Delis") and area names (e.g. "Wintergreen", "Vesuvius") vs
+    donor's older values ("Pet Friendly", "Cabins & Cottages", "Roseland",
+    "Afton"). Not necessarily errors.
+
+  - PHONE: 84 mismatches. Most are donor has number / final blank, or
+    formatting (434) vs 434-. One likely ERROR: big-arms-farm — donor
+    (434) 263-7015 vs final 434-295-1536 (different number). Worth verifying.
+
+  - ADDRESS: 338 mismatches. Many are final blank (donor had value), or
+    punctuation (comma vs no comma). Consider backfilling blank final
+    addresses from donor where appropriate.
+
+  - ID VS SLUG: Google Apps Script already finds rows by SLUG first, then
+    id fallback. index/frontpage_framer still have id in fallbackData and
+    id===idOrSlug; recommend moving to slug-only when safe.
+
+================================================================================
+POTENTIAL ERRORS TO REVIEW (spot-check)
+================================================================================
+
+  1. big-arms-farm — Phone: donor (434) 263-7015, final 434-295-1536.
+     Different numbers; final may be wrong (wrong row/merge).
+
+  2. Final addresses blank where donor had value — 300+ rows. May be
+     intentional drop or oversight; consider restoring from donor for
+     key listings.
+
+  3. Slugs that exist in final with "the-*" variant only in donor (or vice
+     versa) — same listing, different slug; no data error but could
+     normalize slugs for consistency.
+
+================================================================================
+1. SLUG COVERAGE
+================================================================================
+  In both:     366
+  Only in final: 29
+  Only in donor: 29
+
+  Slugs only in final (no donor row to compare):
+    - abryantfamilyfarm  (A. Bryant Family Farm)
+    - afton-house  (Afton House)
+    - aftonpeak  (Afton Peak)
+    - ash-house-at-holland-hill  (Ash House at Holland Hill)
+    - big-tiny-house  (Big Tiny House)
+    - blue-ridge-farm-and-wedding-venue  (Blue Ridge Farm and Wedding Venue)
+    - branch-at-afton-mountain-retreat  (Branch at Afton Mountain Retreat)
+    - brown-bear-lodge  (Brown Bear Lodge)
+    - bungalow-at-afton-mountain-retreat  (Bungalow at Afton Mountain Retreat)
+    - carriage-house-at-stagebridge-farm  (Carriage House at Stagebridge Farm)
+    - castor-cabin  (Castor Cabin)
+    - celadonacresfarm  (Celadon Acres Farm)
+    - cottage-at-pines-end  (Cottage at Pines End)
+    - cottage-at-river-circle-farm  (Cottage at River Circle Farm)
+    - fairway-chalet  (Fairway Chalet)
+    - goldfinch  (Goldfinch)
+    - haven-at-devils-backbone-camp  (Haven at Devils Backbone Camp)
+    - heartofnelson  (Heart of Nelson)
+    - inn-at-blue-mountain-brewery  (Inn at Blue Mountain Brewery)
+    - lewis-catherine-house  (Lewis Catherine House)
+    - littlefarmhouse  (LITTLE FARMHOUSE)
+    - mountain-house-inn  (Mountain House INN)
+    - retreat-at-crabtree-falls  (Retreat at Crabtree Falls)
+    - retreat-at-three-ridges  (Retreat at Three Ridges)
+    - ski-house  (Ski House)
+    - treetops-lodge  (Treetops Lodge)
+    - view-at-crawfords-edge  (View at Crawfords Edge)
+    - wine-cottage  (Wine Cottage)
+    - wooder-house  (Wooder House)
+
+  Slugs only in donor (missing in final):
+    - blue-mountain-brewery-experience  (Blue Mountain Brewery)
+    - everettestate-2  (Everett Estate)
+    - fire-frost-wood-fired-bakehouse-draft  (Fire & Frost Wood Fired Bakehouse)
+    - heartrock-retreat  (HeartRock Retreat & Homestead)
+    - the-afton-house  (The Afton House)
+    - the-ash-house-at-holland-hill  (The Ash House at Holland Hill)
+    - the-big-tiny-house  (The Big Tiny House)
+    - the-blue-ridge-farm-and-wedding-venue  (The Blue Ridge Farm and Wedding Venue)
+    - the-branch-at-afton-mountain-retreat  (The Branch at Afton Mountain Retreat)
+    - the-brown-bear-lodge  (The Brown Bear Lodge)
+    - the-bungalow-at-afton-mountain-retreat  (The Bungalow at Afton Mountain Retreat)
+    - the-carriage-house-at-stagebridge-farm  (The Carriage House at Stagebridge Farm)
+    - the-castor-cabin  (The Castor Cabin)
+    - the-cottage-at-pines-end  (The Cottage at Pines End)
+    - the-cottage-at-river-circle-farm  (The Cottage at River Circle Farm)
+    - the-fairway-chalet  (The Fairway Chalet)
+    - the-goldfinch  (The Goldfinch)
+    - the-haven-at-devils-backbone-camp  (The Haven at Devils Backbone Camp)
+    - the-inn-at-blue-mountain-brewery  (The Inn at Blue Mountain Brewery)
+    - the-lewis-catherine-house  (The Lewis Catherine House)
+    ... and 9 more
+
+================================================================================
+2. COLUMN MISMATCHES (matched by slug)
+================================================================================
+
+  Name mismatches:    0
+  Type mismatches:   115
+  Area mismatches:   86
+  Phone mismatches:  84
+  Address mismatches: 338
+
+  --- PHONE (donor vs final) ---
+    airkey: donor=+1 (434) 466-6942  final=
+    allen-creek-nature-preserve: donor=(434) 263-7015  final=
+    appalachian-trail-from-rt-56-to-harpers-creek: donor=(434) 263-7015  final=
+    avon-hill: donor=(434) 361-2519  final=
+    basecamp-151: donor=(434) 422-0015  final=
+    bear-creek-inn: donor=(434) 277-5305  final=
+    big-arms-farm: donor=(434) 263-7015  final=434-295-1536
+    blackrock-trail: donor=(434) 263-7015  final=
+    blue-ridge-fruit-loop: donor=(434) 263-7015  final=
+    blue-ridge-parkway-loops: donor=(434) 263-7015  final=
+    blue-ridge-tunnel: donor=(434) 263-7015  final=
+    bold-kitchen-at-bold-rock: donor=  final=434-226-2450
+    brew-ridge-trail: donor=(434) 263-7015  final=
+    brimstone-trail: donor=(434) 263-7015  final=
+    camp-blue-ridge: donor=(434) 760-0818  final=
+    cedar-ciffs-north-trail: donor=(434) 263-7015  final=
+    chestnut-springs-trail: donor=(434) 263-7015  final=
+    crabtree-falls: donor=  final=540-291-2188
+    devils-backbone-camp: donor=(434) 361-1001  final=
+    devils-knob-trail: donor=(434) 263-7015  final=
+    ... and 64 more
+
+  --- ADDRESS (donor vs final) ---
+    12-ridges-vineyard
+      Donor: 24981 Blue Ridge Pkwy, Vesuvius, VA 24483
+      Final: 24981 Blue Ridge Pkwy Vesuvius, VA 24483
+    1566-vistas-condo
+      Donor: Wintergreen Resort, Roseland, VA 22967
+      Final: 
+    1639-overlook
+      Donor: Wintergreen Resort, Roseland, VA 22967
+      Final: 
+    779-blue-ridge-drive
+      Donor: Wintergreen Resort, Roseland, VA 22967
+      Final: 
+    a-nellysford-nest
+      Donor: Nellysford, VA 22958
+      Final: 
+    acorn-inn-inc-cottage-bb-and-group-retreat
+      Donor: 2131 Stagebridge Road, Lovingston, VA 22949
+      Final: 
+    adventure-awaits
+      Donor: Wintergreen Resort, Roseland, VA 22967
+      Final: 
+    afton-awaits
+      Donor: Afton, VA 22920
+      Final: 
+    afton-market
+      Donor: 10185 Rockfish Valley Highway, Afton, VA 22920
+      Final: 10185 Rockfish Valley Highway Afton, VA 22920
+    afton-mountain-inn
+      Donor: 10273 Rockfish Valley Highway, Afton, VA 22920
+      Final: 
+    airkey
+      Donor: Afton, VA 22920
+      Final: 
+    allen-creek-nature-preserve
+      Donor: 8519 Thomas Nelson Hwy, Lovingston, VA 22949
+      Final: 
+    altitude-adjustment
+      Donor: Wintergreen Resort, Roseland, VA 22967
+      Final: 
+    anns-family-restaurant
+      Donor: 1170 Thomas Nelson Highway, Arrington, VA 22922
+      Final: 1170 Thomas Nelson Hwy Arrington, VA 22922
+    appalachian-horse-adventures
+      Donor: 396 Fork Mountain Lane, Montebello, VA 24464
+      Final: 396 Fork Mountain Ln Montebello, VA, 24464
+    ... and 323 more
+
+  --- TYPE (donor vs final) ---
+    1566-vistas-condo: donor=Cabins & Cottages  final=Whole House Rentals
+    1639-overlook: donor=Pet Friendly  final=Vacation Rentals
+    779-blue-ridge-drive: donor=Pet Friendly  final=Whole House Rentals
+    adventure-awaits: donor=Pet Friendly  final=Whole House Rentals
+    afton-market: donor=Afton  final=Markets & Delis
+    afton-mountain-vineyards: donor=Afton  final=Vineyards & Wineries
+    appalachian-horse-adventures: donor=Attractions  final=Horseback Riding
+    arrowwood-lane: donor=Pet Friendly  final=Whole House Rentals
+    art-soul-guesthouse: donor=Cabins & Cottages  final=Whole House Rentals
+    ashleys-market: donor=Afton  final=Markets & Delis
+    avon-hill: donor=Cabins & Cottages  final=Whole House Rentals
+    blue-ridge-bliss: donor=Cabins & Cottages  final=Whole House Rentals
+    blue-ridge-fruit-loop: donor=Touring Trails  final=Activities
+    blue-ridge-tunnel: donor=Afton  final=Hikes & Trails
+    blue-sky-retreat: donor=Pet Friendly  final=Whole House Rentals
+    ... and 100 more
+
+  --- AREA (donor vs final) ---
+    12-ridges-vineyard: donor=24981 Blue Ridge Pkwy  final=Vesuvius
+    adventure-awaits: donor=Roseland  final=Wintergreen
+    afton-mountain-inn: donor=Afton  final=Wintergreen
+    appalachian-horse-adventures: donor=396 Fork Mountain Lane  final=Montebello
+    avon-hill: donor=Howardsville  final=Lovingston
+    beech-grove-cabins: donor=Roseland  final=Wintergreen
+    beech-grove-cottage: donor=Roseland  final=Wintergreen
+    beech-grove-farmhouse: donor=Roseland  final=Wintergreen
+    bella-vista: donor=Wintergreen  final=Tyro
+    big-arms-farm: donor=Nelson Farmers Market Cooperative  final=Faber
+    blue-ridge-bliss: donor=Roseland  final=Wintergreen
+    blue-ridge-heaven: donor=Roseland  final=Wintergreen
+    blue-ridge-parkway-loops: donor=Milepost 16  final=Afton
+    blue-toad-hard-cider: donor=462 Winery Lane  final=Roseland
+    bluebird-cottage: donor=Roseland  final=Wintergreen
+    ... and 71 more
+
+================================================================================
+3. ID VS SLUG USAGE (codebase note)
+================================================================================
+  - COMPLETE-GOOGLE-APPS-SCRIPT.gs: saveListing/find row uses SLUG first,
+    fallback to ID for backward compatibility. CSV parsing still reads
+    'id' column if present; writes it if header exists.
+  - index.html / frontpage_framer.html: fallbackData has 'id' in sample
+    listings; frontpage_framer has data-listing-id and id===idOrSlug check.
+  - Recommendation: ensure admin/sheets UI finds listings by slug only;
+    remove id from fallback data and URL/lookup logic when safe.
+
+================================================================================
+4. SPOT-CHECK: ERRORS LIKELY FROM ROW/ID MISMATCH
+================================================================================
+  Name mismatch with same slug suggests wrong row merged (e.g. by id/position).
+  Found 0 name mismatches for same slug — review list above.
+  Phone/address mismatch with same slug may be donor vs final data entry difference
+  (e.g. corrected address) or a true merge error.
+
+================================================================================
+END OF REPORT
+================================================================================

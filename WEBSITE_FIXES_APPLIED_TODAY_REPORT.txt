@@ -1,0 +1,1709 @@
+================================================================================
+WEBSITE FIXES APPLIED TODAY
+================================================================================
+
+All website changes applied in the run that used backup:
+  CSV/final_listings_PERFECT.csv.backup.20260203_135506
+
+Compares: that backup (before fixes) vs current final_listings_PERFECT.csv.
+Rule applied: External sites only (no nelsoncounty.com). If no external in donor, blank.
+
+Total listings whose website was changed: 338
+
+================================================================================
+NAME | SLUG | BEFORE | AFTER
+================================================================================
+
+1. Trager Brothers Coffee 2.0
+   Slug: trager-brothers-coffee-2-0
+   Before: https://trager-brothers-coffee-20.goto-restaurants.com/
+   After:  
+
+2. Chicken Coop
+   Slug: chicken-coop
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  
+
+3. Colleen Deli
+   Slug: colleen-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  
+
+4. Corner Market
+   Slug: corner-market
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  
+
+5. Graves Grocery & Deli
+   Slug: graves-grocery-deli
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  
+
+6. Hickman’s Exxon Grocery
+   Slug: hickmans-exxon-grocery
+   Before: https://www.facebook.com/ashleysmaket151/
+   After:  
+
+7. IGA Blue Ridge Grocery
+   Slug: iga-blue-ridge-grocery
+   Before: https://nellysford.iga.com/
+   After:  
+
+8. Ike’s Market & Deli
+   Slug: ikes-market-deli
+   Before: https://nellysford.iga.com/
+   After:  
+
+9. Indian Oven
+   Slug: indian-oven
+   Before: https://nellysford.iga.com/
+   After:  
+
+10. Mac’s Country Store
+   Slug: macs-country-store
+   Before: https://nellysford.iga.com/
+   After:  
+
+11. The Market at Wintergreen
+   Slug: the-market-at-wintergreen
+   Before: https://www.wintergreenresort.com/the-market-at-wintergreen/
+   After:  
+
+12. Williams Grocery
+   Slug: williams-grocery
+   Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+   After:  
+
+13. Ann’s Family Restaurant
+   Slug: anns-family-restaurant
+   Before: https://restaurants.subway.com/united-states/va/lovingston/65-callohill-drive
+   After:  
+
+14. Basic Necessities
+   Slug: basic-necessities
+   Before: https://basicnecessities.us/
+   After:  
+
+15. Blue Mountain Brewery
+   Slug: blue-mountain-brewery
+   Before: https://bluemountainbrewery.com/
+   After:  https://www.bluemountainbrewery.com/
+
+16. Blue Ridge Pig
+   Slug: blue-ridge-pig
+   Before: https://www.facebook.com/blueridgepig
+   After:  
+
+17. Bold Kitchen at Bold Rock
+   Slug: bold-kitchen-at-bold-rock
+   Before: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+   After:  
+
+18. Chen’s Restaurant
+   Slug: chens-restaurant
+   Before: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+   After:  
+
+19. Chirio’s Pizza
+   Slug: chirios-pizza
+   Before: https://chiriospizza.com/home/
+   After:  
+
+20. Coquito Kitchen
+   Slug: coquito-kitchen
+   Before: https://chiriospizza.com/home/
+   After:  
+
+21. Devils Backbone Brewing
+   Slug: devils-backbone-brewing
+   Before: https://www.facebook.com/bluegrasscville/
+   After:  https://www.dbbrewingcompany.com/visit/basecamp/
+
+22. El Mariachi Mexican Food
+   Slug: el-mariachi-mexican-food
+   Before: https://www.elmariachimexfood.com/
+   After:  
+
+23. Fire & Frost Wood Fired Bakehouse
+   Slug: fire-frost-wood-fired-bakehouse
+   Before: https://www.fireandfrostva.com/
+   After:  
+
+24. Iron and Ale
+   Slug: iron-and-ale
+   Before: https://www.ironalewintergreen.com/
+   After:  
+
+25. McDonald’s
+   Slug: mcdonalds
+   Before: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+   After:  
+
+26. Montebello Country Store & Cafe
+   Slug: montebello-country-store-cafe
+   Before: https://www.montebellova.com/country-store-in-montebello.htm
+   After:  
+
+27. Paulie's Pig Out
+   Slug: paulies-pig-out
+   Before: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+   After:  
+
+28. Smokin’ Barrel Restaurant
+   Slug: smokin-barrel-restaurant
+   Before: https://bluemountainbarrel.com/
+   After:  
+
+29. The Copper Mine Bistro
+   Slug: the-copper-mine-bistro
+   Before: https://www.wintergreenresort.com/the-wintergreen-weekly/
+   After:  
+
+30. The Edge
+   Slug: the-edge
+   Before: https://www.wintergreenresort.com/the-wintergreen-weekly/
+   After:  
+
+31. The Farmhouse at Veritas
+   Slug: the-farmhouse-at-veritas
+   Before: https://www.veritasfarmhouse.com/
+   After:  
+
+32. Vito’s Pizza & Italian Grill
+   Slug: vitos-pizza-italian-grill
+   Before: https://www.vitospizzagrill.com/
+   After:  
+
+33. Black Bear Creamery
+   Slug: black-bear-creamery
+   Before: https://www.facebook.com/Black-Bear-Creamery-112769827194686/
+   After:  
+
+34. Dickie Brothers Orchard
+   Slug: dickie-brothers-orchard
+   Before: https://www.dickiebrothers.com/
+   After:  https://dickiebrothers.com/
+
+35. Saunders Brothers Farm Market
+   Slug: saunders-brothers-farm-market
+   Before: https://www.saundersbrothersfarmmarket.com/
+   After:  https://www.saundersbrothers.com/
+
+36. Blue Mountain Barrel House
+   Slug: blue-mountain-barrel-house
+   Before: https://bluemountainbrewery.com/
+   After:  https://www.bluemountainbarrel.com/
+
+37. Blue Toad Hard Cider
+   Slug: blue-toad-hard-cider
+   Before: https://bluetoadhardcider.com/
+   After:  https://www.bluetoadhardcider.com/
+
+38. Bold Rock Hard Cider
+   Slug: bold-rock-hard-cider
+   Before: https://boldrock.com
+   After:  https://boldrock.com/visit/nellysford-cidery/
+
+39. Brewing Tree Beer Company
+   Slug: brewing-tree-beer-company
+   Before: https://brewingtreebeer.com/
+   After:  https://www.brewingtreebeerco.com/
+
+40. Bryant’s Cider & Brewery
+   Slug: bryants-cider-brewery
+   Before: https://bryantscider.com
+   After:  https://www.bryantscider.com/
+
+41. Outback Brew House
+   Slug: outback-brew-house
+   Before: https://www.facebook.com/Outbackbrew
+   After:  https://www.outbackhouselodging.com/outback-brew-house/
+
+42. Three Notch’d Brewery, Distillery & Craft Kitchen
+   Slug: three-notchd-brewery-distillery-craft-kitchen-nelson-county
+   Before: https://threenotchdbrewing.com/pages/151
+   After:  https://threenotchdbrewing.com/location/nellysford/
+
+43. Wild Man Dan Brewery
+   Slug: wild-man-dan-brewery
+   Before: https://www.wmdb3.com/
+   After:  https://wildmandanbeer.com/
+
+44. Wood Ridge Farm Brewery
+   Slug: wood-ridge-farm-brewery
+   Before: https://woodridgefarmbreweryva.com/
+   After:  https://www.woodridgefarmbrewery.com/
+
+45. Devils Backbone Distilling Co.
+   Slug: devils-backbone-distilling-co
+   Before: https://www.dbbrewingcompany.com/
+   After:  https://www.dbbrewingcompany.com/spirits/
+
+46. Silverback Distillery
+   Slug: silverback-distillery
+   Before: https://www.sbdistillery.com/
+   After:  
+
+47. Crabtree Falls
+   Slug: crabtree-falls
+   Before: https://www.fs.usda.gov/recarea/gwj/recarea/?recid=73667
+   After:  
+
+48. Humpback Rocks
+   Slug: humpback-rocks
+   Before: https://www.nps.gov/blri/planyourvisit/humpback-rocks-mp-5-8.htm
+   After:  
+
+49. James River State Park
+   Slug: james-river-state-park
+   Before: http://www.dcr.virginia.gov/state-parks/james-river#general_information
+   After:  
+
+50. Kids in Parks: Virginia Blue Ridge Railway Trail
+   Slug: kids-in-parks-virginia-blue-ridge-railway-trail
+   Before: https://www.kidsinparks.com/virginia-blue-ridge-railway-trail
+   After:  
+
+51. Mau-Har Trail
+   Slug: mau-har-trail
+   Before: https://en.wikipedia.org/wiki/Three_Ridges_Wilderness
+   After:  
+
+52. Montebello Nature Trail
+   Slug: montebello-nature-trail
+   Before: https://www.nelsoncounty.com/hikes-trails/
+   After:  
+
+53. Nelson County Wilderness Area
+   Slug: nelson-county-wilderness-area
+   Before: http://www.wilderness.net/NWPS/wildView?WID=601
+   After:  
+
+54. North Fork of the Piney River
+   Slug: north-fork-of-the-piney-river
+   Before: https://www.nelsoncounty.com/hikes-trails/
+   After:  
+
+55. Three Ridges
+   Slug: three-ridges
+   Before: https://www.hikingupward.com/gwnf/threeridges/
+   After:  
+
+56. Stoney Creek Park
+   Slug: stoney-creek-park
+   Before: https://goo.gl/maps/7nf9BFjD9zG5dzJS7
+   After:  
+
+57. Spruce Creek Park
+   Slug: spruce-creek-park
+   Before: https://www.rockfishvalley.org/blog/spruce-creek-park/
+   After:  
+
+58. Rockfish Valley Loop Trails
+   Slug: rockfish-valley-loop-trails
+   Before: https://dwr.virginia.gov/vbwt/
+   After:  
+
+59. Blue Ridge Parkway Loops
+   Slug: blue-ridge-parkway-loops
+   Before: http://www.vacabins.com/
+   After:  
+
+60. Oak Ridge Loop
+   Slug: oak-ridge-loop
+   Before: https://www.oakridgeestate.com/
+   After:  
+
+61. Woodson's Mill Loop
+   Slug: woodsons-mill-loop
+   Before: https://www.woodsonsmill.com/
+   After:  
+
+62. Walton's Mountain Museum Loop
+   Slug: waltons-mountain-museum-loop
+   Before: http://www.waltonmuseum.org/
+   After:  
+
+63. Nelson Scenic Loop
+   Slug: nelson-scenic-loop
+   Before: https://www.nelsonscenicloop.com/
+   After:  
+
+64. Tye River
+   Slug: tye-river
+   Before: https://www.amazon.com/Virginia-whitewater-paddlers-guide-rivers/dp/B0006RGOWA
+   After:  
+
+65. James River
+   Slug: james-river
+   Before: https://www.dgif.virginia.gov/wma/james-river/
+   After:  
+
+66. Rockfish River
+   Slug: rockfish-river
+   Before: https://commons.wikimedia.org/w/index.php?title=User%3ANobyter&amp%3Baction=edit&amp%3Bredlink=1
+   After:  
+
+67. Lake Nelson
+   Slug: lake-nelson
+   Before: https://www.dgif.virginia.gov/waterbody/lake-nelson/
+   After:  
+
+68. Fishing the Tye River
+   Slug: fishing-the-tye-river
+   Before: https://dwr.virginia.gov/fishing/fish-stocking/
+   After:  
+
+69. Fishing the James River
+   Slug: fishing-the-james-river
+   Before: https://www.dcr.virginia.gov/state-parks/james-river
+   After:  
+
+70. Fishing the Little Piney River
+   Slug: fishing-the-little-piney-river
+   Before: https://www.dgif.virginia.gov/
+   After:  
+
+71. Fishing the South Rockfish River
+   Slug: fishing-the-south-rockfish-river
+   Before: https://www.dgif.virginia.gov/fishing/trout-stocking-schedule/
+   After:  
+
+72. Fishing at Montebello
+   Slug: fishing-at-montebello
+   Before: https://www.montebellova.com/trout-pond-fishing.htm
+   After:  
+
+73. Fishing at Lake Monocan Park
+   Slug: fishing-at-lake-monacan-park
+   Before: http://www.wintergreenresort.com/lake-monocan/
+   After:  
+
+74. Fishing at Lake Nelson
+   Slug: fishing-at-lake-nelson
+   Before: https://www.dgif.virginia.gov/waterbody/lake-nelson/
+   After:  
+
+75. Wintergreen Resort Fishing
+   Slug: wintergreen-resort-fishing
+   Before: http://www.wintergreenresort.com/
+   After:  
+
+76. Devils Knob Golf Course
+   Slug: devils-knob-golf-course
+   Before: https://www.wintergreenresort.com/devils-knob/
+   After:  
+
+77. Stoney Creek Golf Course
+   Slug: stoney-creek-golf-course
+   Before: https://www.wintergreenresort.com/Stoney-Creek/
+   After:  
+
+78. Tennis
+   Slug: tennis
+   Before: https://www.tennis.com/
+   After:  
+
+79. Swimming
+   Slug: swimming
+   Before: https://www.wintergreenresort.com/activity/aquatics-and-fitness/
+   After:  
+
+80. Caihailian Vineyard
+   Slug: caihailian-vineyard
+   Before: https://www.chivineyard.com/
+   After:  
+
+81. Hill Top Winery & Meadery
+   Slug: hill-top-winery-meadery
+   Before: https://www.hilltopberrywine.com/
+   After:  
+
+82. Mountain and Vine Winery
+   Slug: mountain-and-vine-winery
+   Before: https://www.delfossewine.com/
+   After:  https://www.mountainandvine.com/
+
+83. Mountain Cove Vineyards & Winery
+   Slug: mountain-cove-vineyards-winery
+   Before: https://mountaincovevineyards.com/
+   After:  https://www.facebook.com/MountainCoveVineyards/
+
+84. Quarry Gardens at Schuyler
+   Slug: quarry-gardens-at-schuyler
+   Before: https://quarrygardensatschuyler.org/
+   After:  
+
+85. Montebello Fish Hatchery
+   Slug: montebello-fish-hatchery
+   Before: https://dwr.virginia.gov/fishing/fish-stocking/state-hatcheries/montebello-fish-hatchery/
+   After:  
+
+86. Walton’s Mountain Museum
+   Slug: waltons-mountain-museum
+   Before: http://walton-mountain.org/
+   After:  
+
+87. Big Arms Farm
+   Slug: big-arms-farm
+   Before: https://www.womenforwomen.org/
+   After:  
+
+88. Caldwell Farms
+   Slug: caldwell-farms
+   Before: https://www.facebook.com/Caldwellfarmsnelson/
+   After:  
+
+89. Deer Creek Farm
+   Slug: deer-creek-farm
+   Before: https://deercreeksimmental.com/
+   After:  
+
+90. Edible Landscaping
+   Slug: edible-landscaping
+   Before: https://ediblelandscaping.com/
+   After:  
+
+91. Fitzgerald Farms
+   Slug: fitzgerald-farms
+   Before: http://www.fitzgeraldfarms.com/
+   After:  
+
+92. HeartRock Retreat & Homestead
+   Slug: heartrockretreat
+   Before: https://www.heartrockva.com/
+   After:  
+
+93. Hungry Hill Farm
+   Slug: hungry-hill-farm
+   Before: https://www.hungryhillhoney.com/
+   After:  
+
+94. Inglewood Fine Meats
+   Slug: inglewood-fine-meats
+   Before: https://inglewood-farm.com/
+   After:  
+
+95. Lost Point Farm
+   Slug: lost-point-farm
+   Before: https://www.lostpointfarm.com/
+   After:  
+
+96. One Forest
+   Slug: one-forest
+   Before: https://one-forest.com/
+   After:  
+
+97. Pharsalia
+   Slug: pharsalia
+   Before: https://www.pharsaliaevents.com/
+   After:  
+
+98. Robinia Institute
+   Slug: robinia-institute
+   Before: http://wildtimshel.com/
+   After:  
+
+99. Rose Isle Farm
+   Slug: rose-isle-farm
+   Before: http://roseislefarm.com/
+   After:  
+
+100. Seamans’ Orchard
+   Slug: seamans-orchard
+   Before: https://seamansorchard.com/
+   After:  
+
+101. Silver Creek and Seamans’ Orchards
+   Slug: silver-creek-and-seamans-orchards
+   Before: https://silvercreekseamansorchards.com/
+   After:  
+
+102. Silver Creek Orchards
+   Slug: silver-creek-orchards
+   Before: https://silvercreekorchards.com
+   After:  
+
+103. Silver Fox Lavender Farm
+   Slug: silver-fox-lavender-farm
+   Before: https://www.facebook.com/sliverfoxlavenderfarm/
+   After:  
+
+104. The Apple Shed
+   Slug: the-apple-shed
+   Before: https://www.facebook.com/theappleshedva
+   After:  
+
+105. Tinkerland Farm
+   Slug: tinkerland-farm
+   Before: https://tinkerlandfarm.com/
+   After:  
+
+106. Turnip the Beets Farm
+   Slug: turnip-the-beets-farm
+   Before: https://www.facebook.com/TurnipTheBeetsFarm/
+   After:  
+
+107. Virginia Chestnuts
+   Slug: virginia-chestnuts
+   Before: https://virginiachestnuts.com/
+   After:  
+
+108. Kids in Parks: Rockfish River Trailhead
+   Slug: kids-in-parks-rockfish-river-trailhead
+   Before: http://www.kidsinparks.com/
+   After:  
+
+109. Appalachian Horse Adventures
+   Slug: appalachian-horse-adventures
+   Before: https://www.appalachianhorseadventures.org/
+   After:  
+
+110. Rebel's Run at Afton Mountain
+   Slug: rebels-run-at-afton-mountain
+   Before: https://www.rebelsrunaftonmountain.com/
+   After:  
+
+111. Oakland Museum
+   Slug: oakland-museum
+   Before: https://nelsonhistorical.org
+   After:  
+
+112. Oak Ridge Estate
+   Slug: oak-ridge-estate
+   Before: https://www.oakridgeestate.com/
+   After:  
+
+113. Swannanoa
+   Slug: swannanoa
+   Before: https://www.facebook.com/SwannanoaOfficialPage/
+   After:  
+
+114. Woodson's Mill
+   Slug: woodsons-mill
+   Before: https://www.woodsonsmill.com/
+   After:  
+
+115. Nelson 151
+   Slug: nelson-151
+   Before: https://www.nelson151.com/
+   After:  
+
+116. Nelson 29
+   Slug: nelson-29
+   Before: https://www.nelson29.com/
+   After:  
+
+117. Virginia Spirits Trail
+   Slug: virginia-spirits-trail
+   Before: https://www.virginiaspirits.org/
+   After:  
+
+118. Rockfish Valley Natural History Center
+   Slug: rockfish-valley-natural-history-center
+   Before: https://www.rockfishvalley.org/rockfish-valley-natural-history-center/
+   After:  
+
+119. Indian Summer Guide Service
+   Slug: indian-summer-guide-service
+   Before: https://www.indiansummerguideservice.com/
+   After:  
+
+120. Nelson Scoops
+   Slug: nelsonscoops
+   Before: https://www.nelson-scoops.com/
+   After:  
+
+121. Mars Knob Farm
+   Slug: marsknob
+   Before: https://www.marsknobfarm.com/
+   After:  
+
+122. Crestvue Cottage
+   Slug: crestvue-cottage
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  
+
+123. Sentosa Cabin
+   Slug: sentosa-cabin
+   Before: https://www.houfy.com/h/sentosacabin
+   After:  
+
+124. Roudy's Retreat
+   Slug: roudys-retreat
+   Before: http://airbnb.com/h/roudys-retreat
+   After:  
+
+125. Pachi's Ridge
+   Slug: pachis-ridge
+   Before: https://evolve.com/vacation-rentals/us/va/nellysford/490827?amp%3Butm_campaign=listingshare&amp%3Butm_medium=link
+   After:  
+
+126. Boogie Nights Manor
+   Slug: boogie-nights-manor
+   Before: http://AftonStaysVA.com
+   After:  
+
+127. Big Tiny House
+   Slug: big-tiny-house
+   Before: http://AftonStaysVA.com
+   After:  
+
+128. Rusty's Retreat
+   Slug: rustys-retreat
+   Before: http://AftonStaysVA.com
+   After:  
+
+129. Village Inn
+   Slug: village-inn
+   Before: http://Expedia.com
+   After:  
+
+130. Cozy Mountain Cottage
+   Slug: cozy-mountain-cottage
+   Before: http://airbnb.com/h/sprucecreekcozymtncottage
+   After:  
+
+131. Piedmont Grove Lodging
+   Slug: piedmont-grove-lodging
+   Before: https://via.eviivo.com/PiedmontGrove22967
+   After:  
+
+132. Beech Grove Farmhouse
+   Slug: beech-grove-farmhouse
+   Before: http://airbnb.com/h/beechgrovefarmhouse
+   After:  
+
+133. Straw Bale House
+   Slug: straw-bale-house
+   Before: https://www.airbnb.com/h/strawbalehome
+   After:  
+
+134. Blue Ridge Bliss
+   Slug: blue-ridge-bliss
+   Before: http://airbnb.com/h/wintergreenblueridgebliss
+   After:  
+
+135. Stays at Lovingston Winery
+   Slug: stays-at-lovingston-winery
+   Before: https://www.lovingstonwinery.com/stay-at-lovingston
+   After:  
+
+136. Cottage at Pines End
+   Slug: cottage-at-pines-end
+   Before: https://www.airbnb.com/rooms/21964025?guests=1&amp%3Badults=1&amp%3Bs=67&amp%3Bunique_share_id=10a4f08b-565f-43f8-ba5b-17c11a61dc52
+   After:  
+
+137. Woodson's Mill House
+   Slug: woodsons-mill-house
+   Before: http://airbnb.com/h/woodsons-mill-house-getaway
+   After:  
+
+138. Harmony Hill Bed & Breakfast
+   Slug: harmony-hill-bed-and-breakfast
+   Before: http://www.harmony-hill.com
+   After:  
+
+139. Spyrock Lodge
+   Slug: spyrock-lodge
+   Before: http://airbnb.com/h/spyrocklodge
+   After:  
+
+140. Retreat at Crabtree Falls
+   Slug: retreat-at-crabtree-falls
+   Before: http://www.crabtreefalls.com
+   After:  
+
+141. Point of View
+   Slug: point-of-view
+   Before: https://www.vrbo.com/3805379ha?dateless=true
+   After:  
+
+142. Inn at Blue Mountain Brewery
+   Slug: inn-at-blue-mountain-brewery
+   Before: http://innatbluemountain.com
+   After:  https://www.bluemountainbrewery.com/
+
+143. Gracewood
+   Slug: gracewood
+   Before: https://www.airbnb.com/rooms/22027485?source_impression_id=p3_1736010006_P30xQ8g9rMLaeZgX
+   After:  
+
+144. The Chimneys
+   Slug: the-chimneys
+   Before: https://www.airbnb.com/rooms/949878368091009277?guests=1&amp%3Badults=1&amp%3Bs=67&amp%3Bunique_share_id=3ec1a135-e67b-4f5b-8890-3f9132fe598a
+   After:  
+
+145. Carriage House at Stagebridge Farm
+   Slug: carriage-house-at-stagebridge-farm
+   Before: https://www.airbnb.com/rooms/42200606?source_impression_id=p3_1610730827_yEGZQiXmOd%2B3H4zc
+   After:  
+
+146. Indigo House Bed & Breakfast
+   Slug: indigo-house-bed-and-breakfast
+   Before: https://indigohouseva.com/stay/
+   After:  
+
+147. Papa's Cottage
+   Slug: papas-cottage
+   Before: https://koehlervacationrentals.com/listing/hot-tub-near-veritas-blue-ridge-tunnel-afton-mt/
+   After:  
+
+148. Meme's Cottage
+   Slug: memes-cottage
+   Before: https://koehlervacationrentals.com/listing/fully-equipped-near-veritas-blue-ridge-tunnel/
+   After:  
+
+149. Cheval Circle
+   Slug: cheval-circle
+   Before: https://koehlervacationrentals.com/listing/hot-tub-near-afton-mtn-vineyard-horse-farm/
+   After:  
+
+150. Wine Cottage
+   Slug: wine-cottage
+   Before: https://koehlervacationrentals.com/listing/fully-equipped-near-veritas-afton-mtn-hazy-mtn/
+   After:  
+
+151. Carter's Cottage
+   Slug: carters-cottage
+   Before: https://koehlervacationrentals.com/listing/hot-tub-15-mins-to-wintergreen-walk-to-3-notchd/
+   After:  
+
+152. Beech Grove Cottage
+   Slug: beech-grove-cottage
+   Before: http://www.airbnb.com/h/beechgrovecottage
+   After:  
+
+153. Montebello Resort
+   Slug: montebello-resort
+   Before: https://www.montebellova.com/
+   After:  
+
+154. Freshwater Field Cabin
+   Slug: freshwater-field-cabin
+   Before: https://www.airbnb.com/hosting/listings/editor/49369093/details/custom-link
+   After:  
+
+155. Four Elements Farm
+   Slug: four-elements-farm
+   Before: https://www.airbnb.com/rooms/46542491
+   After:  
+
+156. Time to Wine Down
+   Slug: time-to-wine-down
+   Before: https://www.pathwaypropertiesva.com/
+   After:  
+
+157. Love Afton Cabin
+   Slug: love-afton-cabin
+   Before: https://www.pathwaypropertiesva.com/
+   After:  
+
+158. Meili Mountain
+   Slug: meili-mountain
+   Before: http://www.meilimountain.com
+   After:  
+
+159. Adventure Awaits
+   Slug: adventure-awaits
+   Before: https://www.pathwaypropertiesva.com/
+   After:  
+
+160. Wintergreen Ridge Retreat
+   Slug: wintergreen-ridge-retreat
+   Before: https://www.pathwaypropertiesva.com/
+   After:  
+
+161. Maren Estate
+   Slug: maren-estate
+   Before: https://tinyurl.com/marenestate
+   After:  
+
+162. Blue Ridge Farm and Wedding Venue
+   Slug: blue-ridge-farm-and-wedding-venue
+   Before: http://airbnb.com/h/theblueridgefarm
+   After:  
+
+163. Acorn Inn, Inc (Cottage, B&B and Group Retreat)
+   Slug: acorn-inn-inc-cottage-bb-and-group-retreat
+   Before: http://www.acorninn.com
+   After:  
+
+164. Cottage at Old Stoney Creek
+   Slug: cottage-at-old-stoney-creek
+   Before: https://evolve.com/vacation-rentals/460548
+   After:  
+
+165. Blue Ridge Heaven
+   Slug: blue-ridge-heaven
+   Before: https://www.vrbo.com/2018325
+   After:  
+
+166. Dancing Bear Lodge
+   Slug: dancing-bear-lodge
+   Before: https://maplecreekproperti.wixsite.com/maple-creek-properti
+   After:  
+
+167. Windy Knoll
+   Slug: windy-knoll
+   Before: https://www.vrbo.com/1347342
+   After:  
+
+168. Creekside
+   Slug: creekside
+   Before: http://afton.hospitable.rentals
+   After:  
+
+169. Cottage on Route 151
+   Slug: cottage-on-route-151
+   Before: http://afton.hospitable.rentals
+   After:  
+
+170. Farmhouse on Route 151
+   Slug: farmhouse-on-route-151
+   Before: http://afton.hospitable.rentals
+   After:  
+
+171. Castor Cabin
+   Slug: castor-cabin
+   Before: https://www.thecastorcabin.com/
+   After:  
+
+172. Rocky Run Landing
+   Slug: rocky-run-landing
+   Before: https://www.hipcamp.com/en-US/land/virginia-rocky-run-landing-y0zhqke9?searchSource=homepage-autocomplete&amp%3Badults=1&amp%3Bchildren=0&amp%3Bsrid=9a297958-eb8f-425a-aa5d-251ab5721866
+   After:  
+
+173. Cottage on the Knoll
+   Slug: cottage-on-the-knoll
+   Before: https://www.airbnb.com/rooms/38131361?guests=1&amp%3Badults=1&amp%3Bs=67&amp%3Bunique_share_id=7888e1f9-9089-4b77-baad-d1616069139f
+   After:  
+
+174. High Lonesome Cabin
+   Slug: high-lonesome-cabin
+   Before: https://www.vrbo.com/368761
+   After:  
+
+175. Lewis Catherine House
+   Slug: lewis-catherine-house
+   Before: https://www.lewiscatherinehouse.com/
+   After:  
+
+176. Glenbrae
+   Slug: glenbrae
+   Before: https://partners.eviivo.com/BeStillGetaways/p/united-states/virginia/afton/glenbrae/glenbrae22920?sortkey=recommended&amp%3Bsortorder=desc&amp%3Bradius=15&amp%3Bradiusunit=miles&amp%3Blc=false&amp%3Bhli=false&amp%3Badults1=2&amp%3Bchildren1=0&amp%3Bviewtype=2&amp%3Bpageindex=2&amp%3Bpagesize=20&amp%3B_=1737390751483
+   After:  
+
+177. Elk Mountain Overlook
+   Slug: elk-mountain-overlook
+   Before: https://partners.eviivo.com/BeStillGetaways/p/united-states/virginia/afton/elk-mountain-overlook/elkmountainoverlook22920?sortkey=recommended&amp%3Bsortorder=desc&amp%3Bradius=15&amp%3Bradiusunit=miles&amp%3Blc=false&amp%3Bhli=false&amp%3Badults1=2&amp%3Bchildren1=0&amp%3Bviewtype=2&amp%3Bpageindex=2&amp%3Bpagesiz=
+   After:  
+
+178. Ethan's Den
+   Slug: ethans-den
+   Before: http://airbnb.com/h/cozygetawaywithheatedfloors
+   After:  
+
+179. Mountain House INN
+   Slug: mountain-house-inn
+   Before: http://airbnb.com/h/themountainhouseinn
+   After:  
+
+180. Sweet Afton
+   Slug: sweet-afton
+   Before: https://www.vaguesthouses.com/charlottesville-vacation-rentals/sweet-afton
+   After:  
+
+181. Three Sisters Pre-Civil War Log Cabin
+   Slug: three-sisters-pre-civil-war-log-cabin
+   Before: http://airbnb.com/h/3sisterslogcabin
+   After:  
+
+182. Nine Ridges Retreat
+   Slug: nine-ridges-retreat
+   Before: http://airbnb.com/h/nineridges
+   After:  
+
+183. Grace's Place Petite Retreats
+   Slug: graces-place-petite-retreats
+   Before: https://tinynelson.com
+   After:  
+
+184. Cottage on the Trail
+   Slug: cottage-on-the-trail
+   Before: https://www.airbnb.com/h/nelson151trailcottage
+   After:  
+
+185. Rockfish Farmhouse
+   Slug: rockfish-farmhouse
+   Before: https://www.airbnb.com/rooms/20982337?adults=1&amp%3Bchildren=0&amp%3Benable_m3_private_room=true&amp%3Binfants=0&amp%3Bpets=0&amp%3Bsearch_mode=regular_search&amp%3Bcheck_in=2025-01-26&amp%3Bcheck_out=2025-01-31&amp%3Bsource_impression_id=p3_1737402947_P3OxHcqI51hkmm-O&amp%3Bprevious_page_section_name=1000&amp=
+   After:  
+
+186. Fulton Belle Vue
+   Slug: fulton-belle-vue
+   Before: https://www.airbnb.com/rooms/43726928?adults=1&amp%3Bchildren=0&amp%3Benable_m3_private_room=true&amp%3Binfants=0&amp%3Bpets=0&amp%3Bsearch_mode=regular_search&amp%3Bcheck_in=2025-01-21&amp%3Bcheck_out=2025-01-26&amp%3Bsource_impression_id=p3_1737404326_P3rf3HHvAtI78unL&amp%3Bprevious_page_section_name=1000&amp=
+   After:  
+
+187. Spindle Hill Farm
+   Slug: spindle-hill-farm
+   Before: https://www.spindlehillfarm.com
+   After:  
+
+188. Beech Grove Cabins
+   Slug: beech-grove-cabins
+   Before: https://www.beechgrovecabins.com
+   After:  
+
+189. Slipper Slope
+   Slug: slipper-slope
+   Before: https://evolve.com/vacation-rentals/us/va/wintergreen-resort/502895?adults=4&amp%3BqueryID=fbbc04dbbef4e521b5605219f83cda1d
+   After:  
+
+190. Wintergreen Resort
+   Slug: wintergreen-resort-2
+   Before: https://www.wintergreenresort.com/accommodations-home/
+   After:  
+
+191. Camp Blue Ridge
+   Slug: camp-blue-ridge
+   Before: http://www.campblueridge.org
+   After:  
+
+192. Devils Backbone Camp
+   Slug: devils-backbone-camp
+   Before: https://www.dbbrewingcompany.com/camp-at-basecamp
+   After:  
+
+193. Haven at Devils Backbone Camp
+   Slug: haven-at-devils-backbone-camp
+   Before: https://www.dbbrewingcompany.com/lodge-at-basecamp
+   After:  
+
+194. Relaxing 3 bedroom Mountain Cabin
+   Slug: relaxing-3-bedroom-mountain-cabin
+   Before: https://www.vrbo.com/7907648ha?dateless=true
+   After:  
+
+195. Mountain Dacha
+   Slug: mountain-dacha
+   Before: https://blueridgeortus.com/
+   After:  
+
+196. Panoramic Peak - Vistas 1559, Wintergreen
+   Slug: panoramic-peak-vistas-1559-wintergreen
+   Before: https://www.airbnb.com/rooms/51360037
+   After:  
+
+197. Skis and Trees
+   Slug: skis-and-trees
+   Before: http://airbnb.com/h/wintergreen-lowertyro-chalet
+   After:  
+
+198. Mountain Dreams Condo
+   Slug: mountain-dreams-condo
+   Before: https://fourseasonvacationrentals.com/room/mountain-dreams-condo-at-wintergreen-resort/
+   After:  
+
+199. Wintergreen Vistas
+   Slug: wintergreen-vistas
+   Before: http://wintergreenvistas.com
+   After:  
+
+200. Clonmel Acres
+   Slug: clonmel-acres
+   Before: https://partners.eviivo.com/BeStillGetaways/p/united-states/virginia/afton/clonmel-acres/clonmelacres22920?startdate=2025-01-29&amp%3Benddate=2025-02-01&amp%3Bsortkey=recommended&amp%3Bsortorder=desc&amp%3Bpricelow=0&amp%3Bpricehigh=620&amp%3Bradius=15&amp%3Bradiusunit=miles&amp%3Blc=false&amp%3Bhli=false&amp%3Bad=
+   After:  
+
+201. Cabin at Clonmel
+   Slug: cabin-at-clonmel
+   Before: https://partners.eviivo.com/BeStillGetaways/p/united-states/virginia/afton/clonmel-cabin/clonmelcabin22920?startdate=2025-01-28&amp%3Benddate=2025-03-02&amp%3Bsortkey=recommended&amp%3Bsortorder=desc&amp%3Btype=cab&amp%3Bpricelow=0&amp%3Bpricehigh=615&amp%3Bradius=15&amp%3Bradiusunit=miles&amp%3Blc=false&amp%3Bhli=
+   After:  
+
+202. Sleepy Hollow Retreat Enjoy Your Stay
+   Slug: sleepy-hollow-retreat-enjoy-your-stay
+   Before: http://airbnb.com/h/darlenes2335
+   After:  
+
+203. Eagles Court Ski In/Ski Out Condo
+   Slug: eagles-court-ski-in-ski-out-condo
+   Before: https://www.vrbo.com/2096887?dateless=true
+   After:  
+
+204. Wren House
+   Slug: wren-house
+   Before: https://www.airbnb.com/rooms/20440175?adults=8&amp%3Bcheck_in=2022-11-18&amp%3Bcheck_out=2022-11-21&amp%3Bfederated_search_id=803befe8-5fa5-4d71-91aa-1c4337ab0bb6&amp%3Bsource_impression_id=p3_1664292420_HrF8voWvE3P%2BM0Gj
+   After:  
+
+205. WildManDan B&B (Beer centric)
+   Slug: wildmandan-bb-beer-centric
+   Before: http://wmdb3.com
+   After:  
+
+206. Fenton Inn
+   Slug: fenton-inn
+   Before: https://www.fentoninn.com/
+   After:  
+
+207. Marley's Cabin
+   Slug: marleys-cabin
+   Before: https://www.marleyscabin.com/
+   After:  
+
+208. Cozy & Clean Wintergreen Condo (Tanners Ridge)
+   Slug: cozy-clean-wintergreen-condo-tanners-ridge
+   Before: https://www.airbnb.com/rooms/23699931?guests=1&amp%3Badults=1&amp%3Bs=39&amp%3Bunique_share_id=f87e8132-8f04-41d1-8224-ae8b82ff27ec
+   After:  
+
+209. Remodeled 3BR/2BA Ski Chalet off Tyro Slope
+   Slug: remodeled-3br-2ba-ski-chalet-off-tyro-slope
+   Before: https://www.vrbo.com/1231026?dateless=true
+   After:  
+
+210. Three Springs Myndus
+   Slug: three-springs-myndus
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  
+
+211. Lovingston Get-Away
+   Slug: lovingston-get-away
+   Before: https://www.airbnb.com/rooms/19095011?source_impression_id=p3_1738345726_P3tQjZ1Rl-tolLjM
+   After:  
+
+212. Rock-n-Creek Cabin
+   Slug: rock-n-creek-cabin
+   Before: http://www.rockncreekcabin.com
+   After:  
+
+213. Branch at Afton Mountain Retreat
+   Slug: branch-at-afton-mountain-retreat
+   Before: http://www.croftonstays.com
+   After:  
+
+214. Bungalow at Afton Mountain Retreat
+   Slug: bungalow-at-afton-mountain-retreat
+   Before: http://www.croftonstays.com
+   After:  
+
+215. Avon Hill
+   Slug: avon-hill
+   Before: https://www.avonhilllodge.com/
+   After:  
+
+216. A Nellysford Nest
+   Slug: a-nellysford-nest
+   Before: http://airbnb.com/h/nellysfordnest
+   After:  
+
+217. Love Ridge Mountain Lodging
+   Slug: love-ridge-mountain-lodging
+   Before: http://loveridgeva.com
+   After:  
+
+218. Open Heart Inn
+   Slug: open-heart-inn
+   Before: http://openheartinn.com
+   After:  
+
+219. Hillside Hideaway
+   Slug: hillside-hideaway
+   Before: https://evolve.com/vacation-rentals/452402
+   After:  
+
+220. Saddleback Sanctuary
+   Slug: saddleback-sanctuary
+   Before: https://www.saddlebacksanctuary.com/
+   After:  
+
+221. Eventide Farm
+   Slug: eventidefarm
+   Before: https://www.facebook.com/AlmaHerbals
+   After:  
+
+222. Nonny Cottage
+   Slug: nonny-cottage
+   Before: https://evolve.com/vacation-rentals/us/va/vesuvius/452594
+   After:  
+
+223. Deep Sea Pete's Creekside Farm
+   Slug: deep-sea-petes-creekside-farm
+   Before: https://www.facebook.com/profile.php?id=61557163820233
+   After:  
+
+224. Basecamp 151
+   Slug: basecamp-151
+   Before: https://www.basecamp151.com/
+   After:  
+
+225. Oak Ledge
+   Slug: oak-ledge
+   Before: https://designsparkproperties.com/
+   After:  
+
+226. Gathered Threads
+   Slug: gathered
+   Before: https://www.gatheredthreadsllc.com/
+   After:  
+
+227. Wintergreen Getaway for Families
+   Slug: wintergreen-getaway-for-families
+   Before: https://www.airbnb.com/rooms/1294163214069172346
+   After:  
+
+228. Wintergreen Resort Cabin
+   Slug: wintergreen-resort-cabin
+   Before: https://evolve.com/vacation-rentals/us/va/wintergreen-resort/445352
+   After:  
+
+229. Bluebird Cottage
+   Slug: bluebird-cottage
+   Before: https://via.eviivo.com/BluebirdCottage22967
+   After:  
+
+230. Bear Tracks Cottage
+   Slug: bear-tracks-cottage
+   Before: https://via.eviivo.com/BearTracksCottage22958
+   After:  
+
+231. Faber Farmhouse
+   Slug: faber-farmhouse
+   Before: https://via.eviivo.com/FaberFarmhouseFaber
+   After:  
+
+232. Wintergreen - Fairway Woods
+   Slug: wintergreen-fairway-woods
+   Before: https://evolve.com/vacation-rentals/us/va/wintergreen-resort/503431
+   After:  
+
+233. Galleywinter Farm
+   Slug: galleywinter
+   Before: https://leadingforth.com/
+   After:  
+
+234. Peaktime
+   Slug: peaktime
+   Before: https://airbnb.com/h/peaktime
+   After:  
+
+235. Hawthorne
+   Slug: hawthorne
+   Before: https://www.airbnb.com/rooms/1232656038681585237
+   After:  
+
+236. Rockfish Tiny Home
+   Slug: rockfish-tiny-home
+   Before: http://www.airbnb.com/h/rockfishtinyhome
+   After:  
+
+237. Tupelo
+   Slug: tupelo
+   Before: https://www.airbnb.com/rooms/941926437222282549
+   After:  
+
+238. The Vu, Afton
+   Slug: the-vu-afton
+   Before: http://www.airbnb.com/h/thevuafton
+   After:  
+
+239. Serenity Summit
+   Slug: serenity-summit
+   Before: https://www.airbnb.com/rooms/1274559829474605908
+   After:  
+
+240. Wooder House
+   Slug: wooder-house
+   Before: https://www.airbnb.com/h/thewooderhouse
+   After:  
+
+241. Ash House at Holland Hill
+   Slug: ash-house-at-holland-hill
+   Before: https://www.airbnb.com/rooms/696359677261264469
+   After:  
+
+242. D & D's Mountain Home
+   Slug: d-ds-mountain-home
+   Before: https://www.airbnb.com/rooms/48200876
+   After:  
+
+243. Bear Creek Inn
+   Slug: bear-creek-inn
+   Before: https://www.airbnb.com/rooms/51623044
+   After:  
+
+244. Cookie's Place, LLC
+   Slug: cookies-place-llc
+   Before: http://www.airbnb.com/rooms/51846891
+   After:  
+
+245. Bearfeet Retreat
+   Slug: bearfeet-retreat
+   Before: http://www.airbnb.com
+   After:  
+
+246. Peaceful Mountain Getaway
+   Slug: peaceful-mountain-getaway
+   Before: http://www.vrbo.com/758982
+   After:  
+
+247. Afton House
+   Slug: afton-house
+   Before: http://www.theaftonhouse.com
+   After:  
+
+248. LITTLE FARMHOUSE
+   Slug: littlefarmhouse
+   Before: http://koehlervacationrentals.com
+   After:  
+
+249. Mountaintop Overlook
+   Slug: mountaintop-overlook
+   Before: http://www.yourblueridgeretreat.com
+   After:  
+
+250. Blue Ridge Mountain Retreat
+   Slug: blue-ridge-mountain-retreat
+   Before: http://www.windluxuryproperties.com
+   After:  
+
+251. Mountain & Vine Farmhouse
+   Slug: mountain-vine-farmhouse
+   Before: https://evolve.com/vacation-rentals/us/va/faber/448470
+   After:  
+
+252. Mountain & Vine Vineyards Log Cabin
+   Slug: mountain-vine-vineyards-log-cabin
+   Before: https://evolve.com/vacation-rentals/us/va/faber/449933
+   After:  
+
+253. Fairway Chalet
+   Slug: fairway-chalet
+   Before: http://www.fairwaychalet.com
+   After:  
+
+254. Spruce Creek Garden Cottage
+   Slug: spruce-creek-garden-cottage
+   Before: https://evolve.com/vacation-rentals/us/va/nellysford/450694
+   After:  
+
+255. Parrs Camp, Mountain Hollow
+   Slug: parrs-camp-mountain-hollow
+   Before: https://www.airbnb.com/rooms/50841478
+   After:  
+
+256. Parr's Camp
+   Slug: parrs-camp
+   Before: https://www.airbnb.com/rooms/19948626
+   After:  
+
+257. Bella Vista
+   Slug: bella-vista
+   Before: http://www.bellavista.com
+   After:  
+
+258. Mountain View Vista
+   Slug: mountain-view-vista
+   Before: http://www.bestillgetaways.com
+   After:  
+
+259. Art & Soul Guesthouse
+   Slug: art-soul-guesthouse
+   Before: http://www.artandsouldwtg.com
+   After:  
+
+260. Art & Soul Main House
+   Slug: art-soul-main-house
+   Before: http://www.artandsoulwtg.com
+   After:  
+
+261. Cottage at River Circle Farm
+   Slug: cottage-at-river-circle-farm
+   Before: https://evolve.com/vacation-rentals/us/va/wingina/520316
+   After:  
+
+262. Berry Hill Lake
+   Slug: berry-hill-lake
+   Before: http://www.berryhilllake.com
+   After:  
+
+263. Afton Awaits
+   Slug: afton-awaits
+   Before: https://partners.eviivo.com/bestillgetaways/p/united-states/virginia/afton/afton-awaits/aftonawaits22920
+   After:  
+
+264. Pilotview Hollow
+   Slug: pilotview-hollow
+   Before: http://www.bestillgetaways.com
+   After:  
+
+265. Nelson Cozy Cabin
+   Slug: nelson-cozy-cabin
+   Before: https://www.vrbo.com/3181909
+   After:  
+
+266. Kneeling Shepherd
+   Slug: kneeling-shepherd
+   Before: https://www.staybubowintergreen.com/rentals/stargaze-on-12-acres-hot-tub-55tv-fire-pit-grill
+   After:  
+
+267. Kremer Cabin
+   Slug: kremer-cabin
+   Before: http://www.airbnb.com/h/kremercabin
+   After:  
+
+268. Stewart's Place
+   Slug: stewarts-place
+   Before: https://www.airbnb.com/rooms/1034982404487344194
+   After:  
+
+269. Boho Cliff House Retreat
+   Slug: boho-cliff-house-retreat
+   Before: https://designsparkproperties.com/
+   After:  
+
+270. Airkey Boutique Rentals
+   Slug: airkey
+   Before: https://partners.eviivo.com/bestillgetaways/p/united-states/virginia/afton/afton-awaits/aftonawaits22920
+   After:  
+
+271. Three Ridge Retreat
+   Slug: three-ridge-retreat
+   Before: https://www.airbnb.com/rooms/1382522478510469587
+   After:  
+
+272. Sunset Vista Villa
+   Slug: sunset-vista-villa
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  
+
+273. Arrowwood Lane
+   Slug: arrowwood-lane
+   Before: https://www.staybubowintergreen.com/
+   After:  
+
+274. Winterhaven
+   Slug: winterhaven
+   Before: https://www.airbnb.com/rooms/779622727280170800
+   After:  
+
+275. 779 Blue Ridge Drive
+   Slug: 779-blue-ridge-drive
+   Before: https://www.airbnb.com/rooms/1203564738873630910
+   After:  
+
+276. Belties
+   Slug: belties
+   Before: https://www.belties.com/
+   After:  
+
+277. Ski in Style At Sapphire Squirrel
+   Slug: ski-in-style-at-sapphire-squirrel
+   Before: https://www.airbnb.com/rooms/1368103465210934056
+   After:  
+
+278. Retreat at Three Ridges
+   Slug: retreat-at-three-ridges
+   Before: https://www.airbnb.com/rooms/1231433539314330631
+   After:  
+
+279. Wintergreen Condo 1437 Highlands
+   Slug: wintergreen-condo-1437-highlands
+   Before: https://www.wintergreenresort.com/book-your-stay/#/room
+   After:  
+
+280. Time Out
+   Slug: time-out
+   Before: http://www.staybubowinterbreen.com
+   After:  
+
+281. Cub Creek Cabin
+   Slug: cub-creek-cabin
+   Before: http://www.airbnb.com/h/cubcreek
+   After:  
+
+282. Tyebello Cabins
+   Slug: tyebello-cabins
+   Before: https://www.airbnb.com/rooms/1415977010533963680
+   After:  
+
+283. Glass & Pine
+   Slug: glass-pine
+   Before: http://www.airbnb.com/rooms/1333597383035506839
+   After:  
+
+284. Wintergreen 19 Ivy Glen Lane
+   Slug: wintergreen-19-ivy-glen-lane
+   Before: http://www.staybubo.com
+   After:  
+
+285. Brown Bear Lodge
+   Slug: brown-bear-lodge
+   Before: https://www.airbnb.com/h/brownbearlodgewtg
+   After:  
+
+286. Mountain Home in Nelson County
+   Slug: mountain-home-in-nelson-county
+   Before: http://www.airbnb.com
+   After:  
+
+287. Spy Run Hideaway
+   Slug: spy-run-hideaway
+   Before: https://www.airbnb.com/rooms/767963036993479067
+   After:  
+
+288. Love of Mountains Oh Fill My Cup
+   Slug: love-of-mountains-oh-fill-my-cup
+   Before: https://www.airbnb.com/rooms/1256646806104402497
+   After:  
+
+289. Marigold on the Mountain
+   Slug: marigold-on-the-mountain
+   Before: https://nelsoncounty.com/stay/
+   After:  
+
+290. Top of The Mountain Hideaway
+   Slug: top-of-the-mountain-hideaway
+   Before: http://www.airbnb.com/l/DPtttAEF
+   After:  
+
+291. On The Rocks
+   Slug: on-the-rocks
+   Before: https://www.airbnb.com/h/ontherockswintergreen
+   After:  
+
+292. Our Mountain Getaway
+   Slug: our-mountain-getaway
+   Before: https://www.airbnb.com/rooms/43848477
+   After:  
+
+293. Rockfish Cabin
+   Slug: rockfish-cabin
+   Before: http://www.airbnb.com/h/rockfishcabin
+   After:  
+
+294. Blue Ridge Cabin
+   Slug: blue-ridge-cabin
+   Before: http://www.airbnb.com/h/nelsonblueridgecabin
+   After:  
+
+295. Wintergreen Duplex
+   Slug: wintergreen-duplex
+   Before: http://www.airbnb.com/rooms/53684270
+   After:  
+
+296. Sunrise on the Trail
+   Slug: sunrise-on-the-trail
+   Before: http://www.airbnb.com/h/sunriseonthetrail
+   After:  
+
+297. Mima's Mountain House
+   Slug: mimas-mountain-house
+   Before: http://www.airbnb.com/h/mimasmountainhouse
+   After:  
+
+298. Village Antiques
+   Slug: villageantiques
+   Before: https://www.villageantiquesandcafe.com/
+   After:  
+
+299. Cliffs Edge
+   Slug: cliffs-edge
+   Before: http://www.airbnb.com/h/contemporary-mtn-home-wintergreen-resort
+   After:  
+
+300. Slopes At Tyro
+   Slug: slopes-at-tyro
+   Before: https://www.airbnb.com/rooms/21263615
+   After:  
+
+301. Home on the Ridge
+   Slug: home-on-the-ridge
+   Before: https://www.airbnb.com
+   After:  
+
+302. Peppers Mountain Pad
+   Slug: peppers-mountain-pad
+   Before: https://www.airbnb.com/rooms/950672656426370167
+   After:  
+
+303. Rockfish Valley Retreat
+   Slug: rockfish-valley-retreat
+   Before: https://www.airbnb.com/h/rockfish-valley-retreat
+   After:  
+
+304. Dobie Condo 323 at Wintergreen
+   Slug: dobie-condo-323-at-wintergreen
+   Before: http://www.vrbo.com/7973682
+   After:  
+
+305. Highlands 1426 Condo
+   Slug: highlands-1426-condo
+   Before: http://www.vrbo.com/2202432
+   After:  
+
+306. Gumtree Drive 134
+   Slug: gumtree-drive-134
+   Before: https://www.vrbo.com/96942
+   After:  
+
+307. Wake In The Clouds
+   Slug: wake-in-the-clouds
+   Before: https://www.airbnb.com
+   After:  
+
+308. Nectar Landing
+   Slug: nectar-landing
+   Before: https://www.airbnb.com/rooms/800622199379929346
+   After:  
+
+309. Nelson 151 Views and Brews
+   Slug: nelson-151-views-and-brews
+   Before: http://www.vrbo.com/4451978
+   After:  
+
+310. Woodland Hideaway
+   Slug: woodland-hideaway
+   Before: https://www.airbnb.com
+   After:  
+
+311. Cuatro Climas At 130 Pedlars Point
+   Slug: cuatro-climas-at-130-pedlars-point
+   Before: http://www.airbnb.com/rooms/1254398799956414963
+   After:  
+
+312. Rockfish River Ranch Guest House
+   Slug: rockfish-river-ranch-guest-house
+   Before: http://www.airbnb.com/rooms/864511783673810241
+   After:  
+
+313. Treetops Lodge
+   Slug: treetops-lodge
+   Before: https://www.airbnb.com/h/treetops-lodge
+   After:  
+
+314. Cabin on Eagles Ridge Road
+   Slug: cabin-on-eagles-ridge-road
+   Before: http://www.vrbo.com
+   After:  
+
+315. 1639 Overlook
+   Slug: 1639-overlook
+   Before: http://www.airbnb.com/rooms/770417568824243800
+   After:  
+
+316. Foxfire Cottage
+   Slug: foxfire-cottage
+   Before: http://www.alignrealty.com/
+   After:  
+
+317. Ski House
+   Slug: ski-house
+   Before: https://www.airbnb.com
+   After:  
+
+318. 1566 Vistas Condo
+   Slug: 1566-vistas-condo
+   Before: https://www.airbnb.com
+   After:  
+
+319. Afton Mountain Inn
+   Slug: afton-mountain-inn
+   Before: https://aftoninn.com/
+   After:  
+
+320. M 260
+   Slug: m-260
+   Before: https://evolve.com/vacation-rentals/us/va/nellysford/518568
+   After:  
+
+321. Sanctuary Retreat Center
+   Slug: sanctuaryretreatcenter
+   Before: https://sanctuaryretreatcenter.org/
+   After:  
+
+322. Trinacria Restaurant & Pizzeria
+   Slug: trinacria
+   Before: https://www.trinacriarestaurant.com/
+   After:  
+
+323. Rockfish Valley Farm Guest House
+   Slug: rockfish-valley-farm-guest-house
+   Before: https://www.airbnb.com/rooms/839920
+   After:  
+
+324. Shenandoah Ridge 11
+   Slug: shenandoah-ridge-11
+   Before: https://www.wintergreenresort.com/
+   After:  
+
+325. Inn at the Woods
+   Slug: inn-at-the-woods
+   Before: https://www.airbnb.com/rooms/786230813144604956
+   After:  
+
+326. Country Cottage
+   Slug: country-cottage
+   Before: https://www.airbnb.com/rooms/1162198554951913841
+   After:  
+
+327. View at Crawfords Edge
+   Slug: view-at-crawfords-edge
+   Before: https://designsparkproperties.com/en/the-view-at-crawfords-edge
+   After:  
+
+328. Red, White and Wintergreen
+   Slug: red-white-and-wintergreen
+   Before: https://www.bestillgetaways.com/
+   After:  
+
+329. Altitude Adjustment
+   Slug: altitude-adjustment
+   Before: https://www.airbnb.com/rooms/1301548603803044886
+   After:  
+
+330. Chateau Greenstone
+   Slug: chateau-greenstone
+   Before: http://www.chateaugreenstone.com
+   After:  
+
+331. Blue Sky Retreat
+   Slug: blue-sky-retreat
+   Before: https://www.airbnb.com/rooms/1299322344215477139
+   After:  
+
+332. The Treehouse
+   Slug: thetreehouse
+   Before: https://www.airbnb.com/rooms/866086726450983706?source_impression_id=p3_1755716822_P3DKB7xKhSiTGBh0
+   After:  
+
+333. Queen Oaks Farm
+   Slug: queenoaksfarm
+   Before: https://shop.castiron.me/queenoaksfarm
+   After:  
+
+334. Three Trees Farm
+   Slug: threetreesfarm
+   Before: https://www.facebook.com/theappleshedva
+   After:  
+
+335. Goldfinch
+   Slug: goldfinch
+   Before: https://nelsoncounty.com/stay/
+   After:  
+
+336. Glass Hollow Studio & Gallery
+   Slug: glasshollow
+   Before: https://www.glasshollow.com/visit
+   After:  
+
+337. Everett Estate
+   Slug: everettestate
+   Before: http://airbnb.com/h/cozygetawaywithheatedfloors
+   After:  
+
+338. Don Lupe Mexican Restaurant
+   Slug: donlupe
+   Before: https://www.facebook.com/profile.php?id=61573767002734
+   After:  
+
+================================================================================
+END OF REPORT
+================================================================================

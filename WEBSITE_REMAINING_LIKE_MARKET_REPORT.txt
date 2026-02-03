@@ -1,0 +1,121 @@
+================================================================================
+WEBSITE — REMAINING "LIKE THE MARKET ONES" (CLEARLY WRONG)
+================================================================================
+
+After fixing markets/deli, IGA, Subway, Airbnb room, generic airbnb.com, and
+nelsoncounty.com, the script found 20 more shared-URL groups (44 listings).
+
+Below: only the ones that look CLEARLY WRONG — same URL on two different
+*businesses* (not same company/operator). These are the same type of error
+as Chicken Coop having Ashley's URL.
+
+================================================================================
+CLEARLY WRONG — Different business, same URL (recommend set wrong one to blank)
+================================================================================
+
+1. Bold Rock taproom URL on two listings
+   URL: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+   - Bold Kitchen at Bold Rock   (correct — Bold Rock cidery)
+   - Chen's Restaurant            (WRONG — different restaurant; set to blank)
+
+2. Chirio's Pizza URL on two listings
+   URL: https://chiriospizza.com/home
+   - Chirio's Pizza   (correct)
+   - Coquito Kitchen  (WRONG — different restaurant; set to blank)
+
+3. McDonald's location on two listings
+   URL: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+   - McDonald's        (correct)
+   - Paulie's Pig Out   (WRONG — different restaurant; set to blank)
+
+4. Wintergreen Weekly (newsletter) on two restaurant listings
+   URL: https://www.wintergreenresort.com/the-wintergreen-weekly
+   - The Copper Mine Bistro  (WRONG — not their website; set to blank)
+   - The Edge               (WRONG — not their website; set to blank)
+
+5. The Apple Shed Facebook on two listings
+   URL: https://www.facebook.com/theappleshedva
+   - The Apple Shed   (correct)
+   - Three Trees Farm (WRONG — different farm; set to blank)
+
+6. Same Airbnb room on two different stay listings
+   URL: http://airbnb.com/h/cozygetawaywithheatedfloors
+   - Ethan's Den     (one may be correct; other wrong)
+   - Everett Estate  (one may be correct; other wrong)
+   → Recommendation: set both to blank (or keep one if you know which is correct)
+
+7. Facebook profile.php (generic) on two different businesses
+   URL: https://www.facebook.com/profile.php (likely with different id= in full URL)
+   - Deep Sea Pete's Creekside Farm  (different business)
+   - Don Lupe Mexican Restaurant     (different business)
+   → Recommendation: set both to blank (generic profile link; get correct URLs if any)
+
+8. designsparkproperties.com on two different property listings
+   URL: https://designsparkproperties.com
+   - Oak Ledge              (one may be correct)
+   - Boho Cliff House Retreat (one may be correct)
+   → Recommendation: set one to blank (or keep one if you know which property it is)
+
+9. Generic airbnb.com (homepage) on two listings
+   URL: http://www.airbnb.com
+   - Bearfeet Retreat           (WRONG — not a real listing URL; set to blank)
+   - Mountain Home in Nelson County (WRONG — not a real listing URL; set to blank)
+
+10. Same eviivo booking page on two different rental names
+    URL: https://partners.eviivo.com/bestillgetaways/p/.../afton-awaits/aftonawaits22920
+    - Afton Awaits           (likely correct — URL matches name)
+    - Airkey Boutique Rentals (WRONG — different business; set to blank)
+
+================================================================================
+POSSIBLY LEGITIMATE — Same company / same operator (no change unless you want)
+================================================================================
+
+- Pathway Properties (4 listings): Time to Wine Down, Love Afton Cabin,
+  Adventure Awaits, Wintergreen Ridge Retreat — same management company.
+
+- Afton Stays VA (3): Boogie Nights Manor, Big Tiny House, Rusty's Retreat.
+
+- afton.hospitable.rentals (3): Creekside, Cottage on Route 151,
+  Farmhouse on Route 151 — same operator.
+
+- Blue Mountain Brewery + Blue Mountain Barrel House — same company.
+
+- Devils Backbone Brewing Company + Devils Backbone Distilling Co. — same company.
+
+- Oak Ridge Estate + Oak Ridge Loop — same venue (estate + trail).
+
+- Woodson's Mill + Woodson's Mill Loop — same venue.
+
+- Lake Nelson + Fishing at Lake Nelson — same location.
+
+- Branch + Bungalow at Afton Mountain Retreat (croftonstays.com) — same operator.
+
+- Mountain View Vista + Pilotview Hollow (bestillgetaways.com) — possibly same operator.
+
+================================================================================
+SUMMARY — RECOMMEND FIXING (set website to blank for the wrong listing)
+================================================================================
+
+  Slug to set website to blank:
+    1. chens-restaurant          (Bold Rock URL wrong)
+    2. coquito-kitchen           (Chirio's URL wrong)
+    3. paulies-pig-out           (McDonald's URL wrong)
+    4. the-copper-mine-bistro     (Wintergreen Weekly wrong)
+    5. the-edge                  (Wintergreen Weekly wrong)
+    6. threetreesfarm            (Apple Shed URL wrong)
+    7. ethans-den                (same Airbnb room as Everett — blank or keep one)
+    8. everettestate             (same Airbnb room as Ethan's — blank or keep one)
+    9. deep-sea-petes-creekside-farm   (generic Facebook — blank)
+   10. donlupe                   (generic Facebook — blank)
+   11. oak-ledge                (designspark — one of two; or boho-cliff-house-retreat)
+   12. boho-cliff-house-retreat (designspark — one of two)
+   13. bearfeet-retreat         (generic airbnb.com wrong)
+   14. mountain-home-in-nelson-county (generic airbnb.com wrong)
+   15. airkey                   (Afton Awaits URL wrong for Airkey)
+
+  Total: 15 listings (or 13 if you leave both Ethan's/Everett and Oak Ledge/Boho
+         as “one correct, one blank” without blanking both).
+
+================================================================================
+END OF REPORT
+================================================================================

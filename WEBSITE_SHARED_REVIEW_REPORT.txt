@@ -1,0 +1,22 @@
+================================================================================
+LISTINGS SHARING THE SAME WEBSITE – REVIEW (donor-checked)
+================================================================================
+
+Any URL that appears on 2+ listings is listed below. For each, we show which
+listings have it and whether the donor says that listing should have this URL.
+
+Total shared-URL groups: 1
+
+--------------------------------------------------------------------------------
+URL: https://www.bluemountainbrewery.com/
+Shared by 2 listing(s):
+  - Blue Mountain Brewery (slug: blue-mountain-brewery)
+  - Inn at Blue Mountain Brewery (slug: inn-at-blue-mountain-brewery)
+
+  Per donor:
+    SHOULD have this URL: ['Blue Mountain Brewery', 'Inn at Blue Mountain Brewery']
+    All listed above correctly have this URL (e.g. same business).
+
+================================================================================
+END OF REPORT
+================================================================================

@@ -1,0 +1,137 @@
+================================================================================
+WEBSITE COLUMN — ACTUALLY WRONG REPORT
+================================================================================
+
+Criteria for 'actually wrong':
+  1. SHARED URL — Same website appears on 2+ different listings (only one can be correct).
+  2. NELSONCOUNTY.COM — Internal links; you requested these not be in the website field.
+
+File: CSV/final_listings_PERFECT.csv
+
+================================================================================
+1. SHARED URL (same website on multiple listings — wrong for all but one)
+================================================================================
+
+  Total URLs shared across 2+ listings: 20
+
+  --- Shared URL #1 (4 listings) ---
+  URL: https://www.pathwaypropertiesva.com
+    - Time to Wine Down  (slug: time-to-wine-down)
+    - Love Afton Cabin  (slug: love-afton-cabin)
+    - Adventure Awaits  (slug: adventure-awaits)
+    - Wintergreen Ridge Retreat  (slug: wintergreen-ridge-retreat)
+
+  --- Shared URL #2 (3 listings) ---
+  URL: http://aftonstaysva.com
+    - Boogie Nights Manor  (slug: boogie-nights-manor)
+    - Big Tiny House  (slug: big-tiny-house)
+    - Rusty's Retreat  (slug: rustys-retreat)
+
+  --- Shared URL #3 (3 listings) ---
+  URL: http://afton.hospitable.rentals
+    - Creekside  (slug: creekside)
+    - Cottage on Route 151  (slug: cottage-on-route-151)
+    - Farmhouse on Route 151  (slug: farmhouse-on-route-151)
+
+  --- Shared URL #4 (2 listings) ---
+  URL: https://bluemountainbrewery.com
+    - Blue Mountain Brewery  (slug: blue-mountain-brewery)
+    - Blue Mountain Barrel House  (slug: blue-mountain-barrel-house)
+
+  --- Shared URL #5 (2 listings) ---
+  URL: https://taprooms.boldrock.com/bold-rock-nellysford-cidery-b4b3ea2479bc
+    - Bold Kitchen at Bold Rock  (slug: bold-kitchen-at-bold-rock)
+    - Chen’s Restaurant  (slug: chens-restaurant)
+
+  --- Shared URL #6 (2 listings) ---
+  URL: https://chiriospizza.com/home
+    - Chirio’s Pizza  (slug: chirios-pizza)
+    - Coquito Kitchen  (slug: coquito-kitchen)
+
+  --- Shared URL #7 (2 listings) ---
+  URL: https://www.mcdonalds.com/us/en-us/location/va/lovingston/44-callohill-dr/23763.html
+    - McDonald’s  (slug: mcdonalds)
+    - Paulie's Pig Out  (slug: paulies-pig-out)
+
+  --- Shared URL #8 (2 listings) ---
+  URL: https://www.wintergreenresort.com/the-wintergreen-weekly
+    - The Copper Mine Bistro  (slug: the-copper-mine-bistro)
+    - The Edge  (slug: the-edge)
+
+  --- Shared URL #9 (2 listings) ---
+  URL: https://www.dbbrewingcompany.com
+    - Devils Backbone Brewing Company  (slug: devils-backbone-brewing-company)
+    - Devils Backbone Distilling Co.  (slug: devils-backbone-distilling-co)
+
+  --- Shared URL #10 (2 listings) ---
+  URL: https://www.oakridgeestate.com
+    - Oak Ridge Loop  (slug: oak-ridge-loop)
+    - Oak Ridge Estate  (slug: oak-ridge-estate)
+
+  --- Shared URL #11 (2 listings) ---
+  URL: https://www.woodsonsmill.com
+    - Woodson's Mill Loop  (slug: woodsons-mill-loop)
+    - Woodson's Mill  (slug: woodsons-mill)
+
+  --- Shared URL #12 (2 listings) ---
+  URL: https://www.dgif.virginia.gov/waterbody/lake-nelson
+    - Lake Nelson  (slug: lake-nelson)
+    - Fishing at Lake Nelson  (slug: fishing-at-lake-nelson)
+
+  --- Shared URL #13 (2 listings) ---
+  URL: https://www.facebook.com/theappleshedva
+    - The Apple Shed  (slug: the-apple-shed)
+    - Three Trees Farm  (slug: threetreesfarm)
+
+  --- Shared URL #14 (2 listings) ---
+  URL: http://airbnb.com/h/cozygetawaywithheatedfloors
+    - Ethan's Den  (slug: ethans-den)
+    - Everett Estate  (slug: everettestate)
+
+  --- Shared URL #15 (2 listings) ---
+  URL: http://www.croftonstays.com
+    - Branch at Afton Mountain Retreat  (slug: branch-at-afton-mountain-retreat)
+    - Bungalow at Afton Mountain Retreat  (slug: bungalow-at-afton-mountain-retreat)
+
+  --- Shared URL #16 (2 listings) ---
+  URL: https://www.facebook.com/profile.php
+    - Deep Sea Pete's Creekside Farm  (slug: deep-sea-petes-creekside-farm)
+    - Don Lupe Mexican Restaurant  (slug: donlupe)
+
+  --- Shared URL #17 (2 listings) ---
+  URL: https://designsparkproperties.com
+    - Oak Ledge  (slug: oak-ledge)
+    - Boho Cliff House Retreat  (slug: boho-cliff-house-retreat)
+
+  --- Shared URL #18 (2 listings) ---
+  URL: http://www.airbnb.com
+    - Bearfeet Retreat  (slug: bearfeet-retreat)
+    - Mountain Home in Nelson County  (slug: mountain-home-in-nelson-county)
+
+  --- Shared URL #19 (2 listings) ---
+  URL: http://www.bestillgetaways.com
+    - Mountain View Vista  (slug: mountain-view-vista)
+    - Pilotview Hollow  (slug: pilotview-hollow)
+
+  --- Shared URL #20 (2 listings) ---
+  URL: https://partners.eviivo.com/bestillgetaways/p/united-states/virginia/afton/afton-awaits/aftonawaits22920
+    - Afton Awaits  (slug: afton-awaits)
+    - Airkey Boutique Rentals  (slug: airkey)
+
+================================================================================
+2. NELSONCOUNTY.COM (should be blank per your preference)
+================================================================================
+
+  None found.
+================================================================================
+SUMMARY
+================================================================================
+  Listings with a shared (suspicious) URL: 44
+  Listings with nelsoncounty.com:         0
+
+Recommendation: Fix shared URLs (set to blank or correct one per business)
+                and clear nelsoncounty.com URLs to blank.
+
+================================================================================
+END OF REPORT
+================================================================================

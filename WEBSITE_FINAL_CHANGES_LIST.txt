@@ -1,0 +1,36 @@
+================================================================================
+FINAL LIST: WEBSITES THAT SHOULD CHANGE
+================================================================================
+
+Rule: External sites only (no nelsoncounty.com). If no external in donor, blank.
+Source: donor (framer-cms-export.csv) vs final_listings_PERFECT.csv
+
+Total: 4 listing(s)
+
+================================================================================
+NAME | SLUG | CURRENT | CHANGE TO
+================================================================================
+
+1. Celadon Acres Farm
+   Slug: celadonacresfarm
+   Current: https://celadonacres.com/
+   Change to: 
+
+2. A. Bryant Family Farm
+   Slug: abryantfamilyfarm
+   Current: https://www.abryantfamilyfarm.org/
+   Change to: 
+
+3. Heart of Nelson
+   Slug: heartofnelson
+   Current: https://www.heartofnelson.com/
+   Change to: 
+
+4. Afton Peak
+   Slug: aftonpeak
+   Current: https://www.airbnb.com/rooms/1527744687524354747?viralityEntryPoint=1&amp%3Bunique_share_id=2659D045-56CF-4610-9B5D-82A595ACDAE7&amp%3Bslcid=6b8e3aece9f54797a59f0318d83d1a1b&amp%3Bs=76&amp%3Bfeature=share&amp%3Badults=1&amp%3Bchannel=native&amp%3Bslug=CeYRfe88&amp%3Bsource_impression_id=p3_1765551730_P3CEDaK8LUqT7Tgu
+   Change to: 
+
+================================================================================
+END OF LIST
+================================================================================
