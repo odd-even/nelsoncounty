@@ -4684,34 +4684,23 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             // Note: Accordion Quill editors initialize when modal opens (they're inside the modal)
         });
         
-        // Initialize Quill editor for detailedDescription
+        // Initialize Quill editor for detailedDescription (same pattern as accordion: init ONCE, reuse)
         function initializeQuillEditor() {
             const editorContainer = document.getElementById('listingDetailedDescriptionEditor');
             if (!editorContainer) {
                 console.warn('Quill editor container not found');
                 return;
             }
-            
-            // Destroy existing instance to force re-initialization with new config
-            if (quillDetailedDescription) {
-                try {
-                    const container = document.getElementById('listingDetailedDescriptionEditor');
-                    if (container && container.__quill) {
-                        container.__quill = null;
-                    }
-                    quillDetailedDescription = null;
-                } catch(e) {}
+            // Reuse existing instance — do not create a second one (prevents duplication when opening cards)
+            if (quillDetailedDescription) return;
+            if (editorContainer.__quill) {
+                quillDetailedDescription = editorContainer.__quill;
+                return;
             }
-            
-            // Destroy existing instance if it exists to force re-initialization with new config
-            if (quillDetailedDescription) {
-                try {
-                    const container = document.getElementById('listingDetailedDescriptionEditor');
-                    if (container && container.__quill) {
-                        container.__quill = null;
-                    }
-                    quillDetailedDescription = null;
-                } catch(e) {}
+            // Safety: if toolbars/editor exist but instance was lost, wipe once to prevent stacking
+            if (editorContainer.querySelector('.ql-toolbar') || editorContainer.querySelector('.ql-editor')) {
+                editorContainer.innerHTML = '';
+                editorContainer.__quill = null;
             }
             
             // Configure Quill with allowed formats
@@ -7663,14 +7652,8 @@ function updateUnsavedChangesBadge() {
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
-            // Destroy and clear Quill editors
-            if (quillDetailedDescription) {
-                const container = document.getElementById('listingDetailedDescriptionEditor');
-                if (container) {
-                    container.innerHTML = '';
-                }
-                quillDetailedDescription = null;
-            }
+            // Clear detailed description Quill (reuse instance; do not destroy — same as accordion)
+            if (quillDetailedDescription) quillDetailedDescription.root.innerHTML = '';
             const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
             if (detailedDescriptionTextarea) {
                 detailedDescriptionTextarea.value = '';
@@ -8598,14 +8581,8 @@ function updateUnsavedChangesBadge() {
             // Clear original data
             listingFormOriginalData = null;
             
-            // Destroy and clear Quill editors when closing modal
-            if (quillDetailedDescription) {
-                const container = document.getElementById('listingDetailedDescriptionEditor');
-                if (container) {
-                    container.innerHTML = '';
-                }
-                quillDetailedDescription = null;
-            }
+            // Clear detailed description Quill content (reuse instance; do not destroy — same as accordion)
+            if (quillDetailedDescription) quillDetailedDescription.root.innerHTML = '';
             const detailedDescriptionTextarea = document.getElementById('listingDetailedDescription');
             if (detailedDescriptionTextarea) {
                 detailedDescriptionTextarea.value = '';
