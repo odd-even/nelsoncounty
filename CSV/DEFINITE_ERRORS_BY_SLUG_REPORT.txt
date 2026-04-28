@@ -1,0 +1,126 @@
+================================================================================
+DEFINITE ERRORS IN FINAL CSV (matched by SLUG, not id)
+================================================================================
+
+Source: CSV/final_listings_PERFECT.csv
+Reference: CSV/framer-cms-export.csv
+Match key: slug (normalized). No id used.
+
+Total definite errors: 21
+
+================================================================================
+BY SLUG | FIELD | REASON | SUGGESTED FIX
+================================================================================
+
+Slug: afton-awaits  (Afton Awaits)
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: airkey  (Airkey Boutique Rentals)
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: bearfeet-retreat  (Bearfeet Retreat)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: big-arms-farm  (Big Arms Farm)
+  Field: phone
+  Reason: Donor phone digits 4342637015 vs final 4342951536
+  Fix: Verify correct number; set to donor or known good value
+
+Slug: boho-cliff-house-retreat  (Boho Cliff House Retreat)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: chens-restaurant  (Chen’s Restaurant)
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: coquito-kitchen  (Coquito Kitchen)
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: deep-sea-petes-creekside-farm  (Deep Sea Pete's Creekside Farm)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: donlupe  (Don Lupe Mexican Restaurant)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: ethans-den  (Ethan's Den)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: everettestate  (Everett Estate)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: james-river  (James River)
+  Field: phone
+  Reason: Donor phone digits 4349334355 vs final 4342863331
+  Fix: Verify correct number; set to donor or known good value
+
+Slug: mountain-home-in-nelson-county  (Mountain Home in Nelson County)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: oak-ledge  (Oak Ledge)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: paulies-pig-out  (Paulie's Pig Out)
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: spy-rock  (Spy Rock)
+  Field: phone
+  Reason: Donor phone digits 5402655100 vs final 5402912188
+  Fix: Verify correct number; set to donor or known good value
+
+Slug: the-copper-mine-bistro  (The Copper Mine Bistro)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: the-edge  (The Edge)
+  Field: website
+  Reason: Shared URL with 2 listings (unclear owner)
+  Fix: Set to blank
+
+Slug: threetreesfarm  (Three Trees Farm)
+  Field: phone
+  Reason: Donor phone digits 5712680478 vs final 4342638843
+  Fix: Verify correct number; set to donor or known good value
+  Field: website
+  Reason: Same URL as another listing (wrong business)
+  Fix: Set to blank
+
+Slug: trager-brothers-coffee-1-0  (Trager Brothers Coffee 1.0)
+  Field: phone
+  Reason: Donor phone digits 4349963138 vs final 4342638916
+  Fix: Verify correct number; set to donor or known good value
+
+================================================================================
+SUMMARY BY FIELD
+================================================================================
+  phone: 5
+  website: 16
+
+================================================================================
+END OF REPORT
+================================================================================

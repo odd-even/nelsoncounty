@@ -6025,11 +6025,9 @@ function updateUnsavedChangesBadge() {
                 
                 // Send all listings at once with a "replaceAll" action
                 // This tells the Apps Script to clear the sheet and replace with these listings
-                const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                 const postData = JSON.stringify({
                     action: 'replaceAllListings',
-                    listings: listingsWithCategories,
-                    sessionToken: session && session.token ? session.token : null
+                    listings: listingsWithCategories
                 });
                 
                 let result = { success: false };
@@ -8114,9 +8112,7 @@ function updateUnsavedChangesBadge() {
                         // Use GET request to avoid CORS preflight (OPTIONS) issues
                         // GET requests don't trigger CORS preflight, so they work even if OPTIONS fails
                         try {
-                            const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
-                            const tokenParam = session && session.token ? ('&token=' + encodeURIComponent(session.token)) : '';
-                            const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + tokenParam + '&t=' + Date.now();
+                            const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + '&t=' + Date.now();
                             const response = await fetch(deleteUrl, {
                                 method: 'GET',
                                 mode: 'cors'
@@ -9901,19 +9897,16 @@ function updateUnsavedChangesBadge() {
                     updateSyncStatus(true, '💾 Syncing category edit to Google Sheets...');
                     
                     // Save categories first
-                    const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                     const categoriesData = JSON.stringify({
                         action: 'saveCategories',
-                        categories: TYPE_CATEGORIES,
-                        sessionToken: session && session.token ? session.token : null
+                        categories: TYPE_CATEGORIES
                     });
                     
                     // Always save listings if there are any (to ensure admin display is synced)
                     if (data && data.listings && data.listings.length > 0) {
                         const listingsData = JSON.stringify({
                             action: 'replaceAllListings',
-                            listings: data.listings,
-                            sessionToken: session && session.token ? session.token : null
+                            listings: data.listings
                         });
                         
                         try {
@@ -10023,11 +10016,9 @@ function updateUnsavedChangesBadge() {
             // Save to Google Sheets
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                 updateSyncStatus(true, '💾 Syncing new category to Google Sheets...');
-                const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                 const postData = JSON.stringify({
                     action: 'saveCategories',
-                    categories: TYPE_CATEGORIES,
-                    sessionToken: session && session.token ? session.token : null
+                    categories: TYPE_CATEGORIES
                 });
                 fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
@@ -10139,16 +10130,13 @@ function updateUnsavedChangesBadge() {
                         updateSyncStatus(true, '💾 Syncing category deletion to Google Sheets...');
                         
                         // Save updated categories and listings
-                        const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                         const categoriesData = JSON.stringify({
                             action: 'saveCategories',
-                            categories: TYPE_CATEGORIES,
-                            sessionToken: session && session.token ? session.token : null
+                            categories: TYPE_CATEGORIES
                         });
                         const listingsData = JSON.stringify({
                             action: 'replaceAllListings',
-                            listings: data.listings,
-                            sessionToken: session && session.token ? session.token : null
+                            listings: data.listings
                         });
                         
                         try {
@@ -10206,11 +10194,9 @@ function updateUnsavedChangesBadge() {
                     if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                         try {
                             updateSyncStatus(true, '💾 Syncing category deletion to Google Sheets...');
-                            const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                             const postData = JSON.stringify({
                                 action: 'saveCategories',
-                                categories: TYPE_CATEGORIES,
-                                sessionToken: session && session.token ? session.token : null
+                                categories: TYPE_CATEGORIES
                             });
                             const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
@@ -10529,11 +10515,9 @@ function updateUnsavedChangesBadge() {
                     updateSyncStatus(true, '💾 Syncing category definitions to Google Sheets...');
                     
                     // Save all categories to Google Sheets Categories sheet
-                    const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                     const postData = JSON.stringify({
                         action: 'saveCategories',
-                        categories: TYPE_CATEGORIES,
-                        sessionToken: session && session.token ? session.token : null
+                        categories: TYPE_CATEGORIES
                     });
                     
                     try {

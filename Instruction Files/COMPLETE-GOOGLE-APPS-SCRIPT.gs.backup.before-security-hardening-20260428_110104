@@ -126,26 +126,6 @@ const OTP_CONFIG = {
 const SESSION_EXPIRATION_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 // -----------------------------------------------------------------------------
-// Auth helpers (require valid session for write actions)
-// -----------------------------------------------------------------------------
-
-function requireValidSessionTokenOrThrow(sessionToken) {
-  if (!sessionToken) {
-    throw new Error('Unauthorized: Missing session token');
-  }
-  const validation = validateSessionToken(sessionToken);
-  if (!validation || !validation.valid || !validation.email) {
-    throw new Error('Unauthorized: Invalid or expired session token');
-  }
-  const currentEmails = getAuthorizedEmails();
-  const requesterEmail = String(validation.email || '').trim().toLowerCase();
-  if (!currentEmails.includes(requesterEmail)) {
-    throw new Error('Unauthorized: Your email is not in the authorized list');
-  }
-  return requesterEmail;
-}
-
-// -----------------------------------------------------------------------------
 // ImageKit helpers
 // -----------------------------------------------------------------------------
 
@@ -801,9 +781,55 @@ function doGet(e) {
             }))
             .setMimeType(ContentService.MimeType.JSON);
         }
-        // Require valid session for updating authorized emails (no fallback)
-        const requesterEmail = requireValidSessionTokenOrThrow(sessionToken);
-        Logger.log('✅ updateAuthorizedEmails: Requester authorized: ' + requesterEmail);
+        
+        // Validate that requester is authorized
+        // Check session token if provided
+        let requesterEmail = null;
+        if (sessionToken) {
+          const tokenValidation = validateSessionToken(sessionToken);
+          if (tokenValidation.valid) {
+            requesterEmail = tokenValidation.email;
+          }
+        }
+        
+        // If no valid session, check if at least one email in the list is already authorized
+        // This allows adding new emails if you're already logged in (fallback for when token isn't sent)
+        if (!requesterEmail) {
+          const currentEmails = getAuthorizedEmails();
+          Logger.log('🔍 updateAuthorizedEmails: No session token, checking email overlap');
+          Logger.log('🔍 Current authorized emails: ' + JSON.stringify(currentEmails));
+          Logger.log('🔍 New emails: ' + JSON.stringify(emails));
+          
+          const hasOverlap = emails.some(function(email) {
+            return currentEmails.includes(email.toLowerCase());
+          });
+          
+          if (!hasOverlap) {
+            Logger.log('⚠️  updateAuthorizedEmails: No valid session and no overlap with existing emails');
+            return ContentService
+              .createTextOutput(JSON.stringify({
+                success: false,
+                error: 'Unauthorized: Must be logged in with an authorized email to update the list. Please log in first, then try adding the email again.'
+              }))
+              .setMimeType(ContentService.MimeType.JSON);
+          } else {
+            Logger.log('✅ updateAuthorizedEmails: Email overlap found, allowing update');
+          }
+        } else {
+          // Verify requester is in current authorized list
+          const currentEmails = getAuthorizedEmails();
+          if (!currentEmails.includes(requesterEmail.toLowerCase())) {
+            Logger.log('⚠️  updateAuthorizedEmails: Requester not in authorized list: ' + requesterEmail);
+            return ContentService
+              .createTextOutput(JSON.stringify({
+                success: false,
+                error: 'Unauthorized: Your email is not in the authorized list'
+              }))
+              .setMimeType(ContentService.MimeType.JSON);
+          } else {
+            Logger.log('✅ updateAuthorizedEmails: Requester authorized: ' + requesterEmail);
+          }
+        }
         
         Logger.log('✅ updateAuthorizedEmails: Updating to ' + emails.length + ' emails');
         Logger.log('📧 New emails (before normalization): ' + JSON.stringify(emails));
@@ -862,10 +888,6 @@ function doGet(e) {
     
     // Handle ImageKit metadata update via GET
     if (e && e.parameter && e.parameter.action === 'updateImageKitMetadata') {
-      // Require valid session token (prevents public metadata edits)
-      const sessionToken = e.parameter.token || e.parameter.sessionToken;
-      requireValidSessionTokenOrThrow(sessionToken);
-
       // Prefer fileId if provided (faster and more reliable than searching by path)
       const fileId = e.parameter.fileId || null;
       const filePath = e.parameter.filePath || null;
@@ -894,10 +916,6 @@ function doGet(e) {
     
     // Handle delete listing via GET (fallback to avoid CORS preflight issues)
     if (e && e.parameter && e.parameter.action === 'deleteListing') {
-      // Require valid session token for deletes
-      const sessionToken = e.parameter.token || e.parameter.sessionToken;
-      requireValidSessionTokenOrThrow(sessionToken);
-
       // Support both listingSlug (new) and listingId (legacy) for backward compatibility
       const listingSlug = e.parameter.listingSlug || e.parameter.listingId;
       if (!listingSlug) {
@@ -989,15 +1007,6 @@ function doPost(e) {
     const action = data.action;
     if (!action) {
       throw new Error('Missing "action" field in request');
-    }
-
-    // Require valid session for all state-changing actions
-    // (Read-only actions like validateSession/sendOTP/verifyOTP are handled elsewhere.)
-    const writeActions = ['saveListing', 'replaceAllListings', 'deleteListing', 'saveCategories', 'updateAuthorizedEmails', 'updateImageKitMetadata', 'getImageKitUploadParams', 'generateImageDescription'];
-    const isWriteAction = writeActions.indexOf(action) >= 0;
-    if (isWriteAction) {
-      const sessionToken = data.sessionToken || data.token || data.session || null;
-      requireValidSessionTokenOrThrow(sessionToken);
     }
 
     if (action === 'getImageKitUploadParams') {
