@@ -5874,12 +5874,17 @@ let lastParentSearch = '';
 let lastGetUrlParamsRequest = 0;
 let pendingGetUrlParamsRequest = false;
 const GET_URL_PARAMS_THROTTLE = 5000; // Only request every 5 seconds max
+// If we ever hit cross-origin restrictions on parent access, stop trying.
+// Some environments will spam the console even if the error is caught.
+let parentLocationAccessBlocked = false;
 
 // Extract URL parameters from referrer (works cross-origin for iframe embeds)
 function extractParamsFromReferrer() {
-    // Try to get parameters from parent window (same-origin only)
-    try {
-        if (window.parent && window.parent.location && window.parent !== window) {
+    // Try to get parameters from parent window (same-origin only).
+    // IMPORTANT: If we've already seen a cross-origin failure, never touch parent.location again.
+    if (!parentLocationAccessBlocked) {
+        try {
+            if (window.parent && window.parent.location && window.parent !== window) {
             var parentUrl = window.parent.location.href;
             var parentSearch = window.parent.location.search;
             
@@ -5927,9 +5932,13 @@ function extractParamsFromReferrer() {
             
             // If we can access parent URL directly (same-origin), don't need to request via postMessage
             return false;
+            }
+        } catch (e) {
+            // Cross-origin restriction - stop trying parent.location from now on
+            parentLocationAccessBlocked = true;
         }
-    } catch (e) {
-        // Cross-origin restriction - can't access parent URL directly, try referrer
+    }
+    // Cross-origin restriction (or previously blocked) - try referrer
     try {
         var referrer = document.referrer;
         if (referrer && referrer.includes('?')) {
@@ -5940,14 +5949,13 @@ function extractParamsFromReferrer() {
             });
             if (Object.keys(params).length > 0) {
                 console.log('🔗 Extracted parameters from referrer:', params);
-                    receivedUrlParams = Object.assign({}, receivedUrlParams, params);
+                receivedUrlParams = Object.assign({}, receivedUrlParams, params);
                 return true;
             }
-            }
-            // No referrer params - don't log, just continue
-        } catch (e2) {
-            // Referrer check failed, continue to postMessage fallback
         }
+        // No referrer params - don't log, just continue
+    } catch (e2) {
+        // Referrer check failed, continue to postMessage fallback
     }
     
     // Only request via postMessage if:
@@ -5994,6 +6002,7 @@ function startParentUrlPolling() {
     } catch (e) {
         // Cross-origin - we need polling
         needsPolling = true;
+        parentLocationAccessBlocked = true;
     }
     
     if (needsPolling) {
@@ -6023,11 +6032,12 @@ function getUrlParameter(name) {
     // Try parent window first (for iframe embeds - same origin only)
     var searchString = '';
     try {
-        if (window.parent && window.parent.location && window.parent !== window) {
+        if (!parentLocationAccessBlocked && window.parent && window.parent.location && window.parent !== window) {
             searchString = window.parent.location.search;
         }
     } catch (e) {
         // Cross-origin restriction - can't access parent URL, try referrer instead
+        parentLocationAccessBlocked = true;
         var referrer = document.referrer;
         if (referrer && referrer.includes('?')) {
             try {
