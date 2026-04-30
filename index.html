@@ -3144,7 +3144,7 @@
         </div>
     </div>
     
-    <div id="listingModal" class="modal" onclick="if(event.target === this) { const shouldClose = !hasFormChanges() || confirm('You have unsaved changes. Close without saving?'); if(shouldClose) closeModal(true); }">
+    <div id="listingModal" class="modal" onclick="if(event.target === this && !hasFormChanges()) { closeModal(true); }">
         <div class="modal-content" onclick="event.stopPropagation();">
             <div class="modal-header">
                 <h2 id="modalTitle">Add New Listing</h2>
@@ -8666,7 +8666,9 @@ function updateUnsavedChangesBadge() {
         }
         
         document.getElementById('listingModal').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+            // Clicking the backdrop should NOT close the modal when editing.
+            // Only allow backdrop-click close when there are no unsaved changes.
+            if (e.target === this && !hasFormChanges()) closeModal(true);
         });
         
         // Keyboard shortcut: Cmd+S (Mac) or Ctrl+S (Windows) to save listing
