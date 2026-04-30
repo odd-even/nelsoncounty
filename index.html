@@ -410,6 +410,26 @@
             font-size: 14px;
             font-family: inherit;
         }
+        /* Rich text spacing in Detailed Description editor */
+        #listingDetailedDescriptionEditor .ql-editor p { margin: 0 0 0.65em 0; line-height: 1.45; }
+        #listingDetailedDescriptionEditor .ql-editor p:last-child { margin-bottom: 0; }
+        #listingDetailedDescriptionEditor .ql-editor h1,
+        #listingDetailedDescriptionEditor .ql-editor h2,
+        #listingDetailedDescriptionEditor .ql-editor h3,
+        #listingDetailedDescriptionEditor .ql-editor h4,
+        #listingDetailedDescriptionEditor .ql-editor h5,
+        #listingDetailedDescriptionEditor .ql-editor h6 {
+            margin: 0.85em 0 0.4em 0;
+            line-height: 1.2;
+            font-weight: 650;
+        }
+        #listingDetailedDescriptionEditor .ql-editor h1 { font-size: 22px; }
+        #listingDetailedDescriptionEditor .ql-editor h2 { font-size: 18px; }
+        #listingDetailedDescriptionEditor .ql-editor h3 { font-size: 16px; }
+        #listingDetailedDescriptionEditor .ql-editor h4 { font-size: 14px; }
+        #listingDetailedDescriptionEditor .ql-editor ul,
+        #listingDetailedDescriptionEditor .ql-editor ol { margin: 0 0 0.65em 1.2em; padding: 0; line-height: 1.45; }
+        #listingDetailedDescriptionEditor .ql-editor li { margin: 0.2em 0; }
         #listingDetailedDescriptionEditor .ql-editor.ql-blank::before {
             color: var(--text-secondary) !important;
             font-style: normal;
@@ -466,6 +486,43 @@
             font-size: 14px;
             font-family: inherit;
         }
+        /* Rich text spacing in Accordion editors */
+        #listingAccordionPanel1ContentEditor .ql-editor p,
+        #listingAccordionPanel2ContentEditor .ql-editor p,
+        #listingAccordionPanel3ContentEditor .ql-editor p,
+        #listingAccordionPanel4ContentEditor .ql-editor p { margin: 0 0 0.65em 0; line-height: 1.45; }
+        #listingAccordionPanel1ContentEditor .ql-editor p:last-child,
+        #listingAccordionPanel2ContentEditor .ql-editor p:last-child,
+        #listingAccordionPanel3ContentEditor .ql-editor p:last-child,
+        #listingAccordionPanel4ContentEditor .ql-editor p:last-child { margin-bottom: 0; }
+        #listingAccordionPanel1ContentEditor .ql-editor h1,
+        #listingAccordionPanel1ContentEditor .ql-editor h2,
+        #listingAccordionPanel1ContentEditor .ql-editor h3,
+        #listingAccordionPanel2ContentEditor .ql-editor h1,
+        #listingAccordionPanel2ContentEditor .ql-editor h2,
+        #listingAccordionPanel2ContentEditor .ql-editor h3,
+        #listingAccordionPanel3ContentEditor .ql-editor h1,
+        #listingAccordionPanel3ContentEditor .ql-editor h2,
+        #listingAccordionPanel3ContentEditor .ql-editor h3,
+        #listingAccordionPanel4ContentEditor .ql-editor h1,
+        #listingAccordionPanel4ContentEditor .ql-editor h2,
+        #listingAccordionPanel4ContentEditor .ql-editor h3 {
+            margin: 0.85em 0 0.4em 0;
+            line-height: 1.2;
+            font-weight: 650;
+        }
+        #listingAccordionPanel1ContentEditor .ql-editor ul,
+        #listingAccordionPanel1ContentEditor .ql-editor ol,
+        #listingAccordionPanel2ContentEditor .ql-editor ul,
+        #listingAccordionPanel2ContentEditor .ql-editor ol,
+        #listingAccordionPanel3ContentEditor .ql-editor ul,
+        #listingAccordionPanel3ContentEditor .ql-editor ol,
+        #listingAccordionPanel4ContentEditor .ql-editor ul,
+        #listingAccordionPanel4ContentEditor .ql-editor ol { margin: 0 0 0.65em 1.2em; padding: 0; line-height: 1.45; }
+        #listingAccordionPanel1ContentEditor .ql-editor li,
+        #listingAccordionPanel2ContentEditor .ql-editor li,
+        #listingAccordionPanel3ContentEditor .ql-editor li,
+        #listingAccordionPanel4ContentEditor .ql-editor li { margin: 0.2em 0; }
         #listingAccordionPanel1ContentEditor .ql-editor.ql-blank::before,
         #listingAccordionPanel2ContentEditor .ql-editor.ql-blank::before,
         #listingAccordionPanel3ContentEditor .ql-editor.ql-blank::before,
@@ -473,6 +530,31 @@
             color: var(--text-secondary) !important;
             font-style: normal;
         }
+
+        /* Preview card rich text styling (back of card) */
+        .preview-richtext { font-size: 12.5px; line-height: 1.35; color: var(--text-secondary); }
+        .preview-richtext.preview-richtext--compact { font-size: 12px; line-height: 1.32; }
+        .preview-richtext p { margin: 0 0 0.55em 0; }
+        .preview-richtext p:last-child { margin-bottom: 0; }
+        .preview-richtext h1,
+        .preview-richtext h2,
+        .preview-richtext h3,
+        .preview-richtext h4,
+        .preview-richtext h5,
+        .preview-richtext h6 {
+            margin: 0.75em 0 0.35em 0;
+            line-height: 1.2;
+            font-weight: 650;
+            color: var(--text-primary);
+        }
+        .preview-richtext h1 { font-size: 16px; }
+        .preview-richtext h2 { font-size: 14px; }
+        .preview-richtext h3 { font-size: 13px; }
+        .preview-richtext h4 { font-size: 12.5px; }
+        .preview-richtext ul,
+        .preview-richtext ol { margin: 0 0 0.55em 1.1em; padding: 0; }
+        .preview-richtext li { margin: 0.15em 0; }
+        .preview-richtext a { color: var(--badge-type-color); text-decoration: underline; }
         
         /* Address autocomplete dropdown */
         .address-autocomplete-wrapper { position: relative; }
@@ -6934,16 +7016,24 @@ function updateUnsavedChangesBadge() {
                 back.className = 'flip-card-back';
                 
                 // Build description sections with labels for back of card
-                const backDescriptionHTML = listing.description && listing.description.trim() ? 
+                const backDescriptionText = listing.description && listing.description.trim() ? escapeHtml(listing.description).replace(/\n/g, '<br>') : '';
+                const backDescriptionHTML = backDescriptionText ? 
                     '<div style="margin-bottom: 15px;">' +
                     '<h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Description</h4>' +
-                    '<p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; white-space: pre-wrap; margin: 0;">' + listing.description + '</p>' +
+                    '<div class="preview-richtext preview-richtext--compact"><p>' + backDescriptionText + '</p></div>' +
                     '</div>' : '';
                 
-                const backDetailedDescriptionHTML = listing.detailedDescription && listing.detailedDescription.trim() ? 
+                const hasDetailedDescription = listing.detailedDescription && listing.detailedDescription.trim();
+                const detailedDescriptionRaw = hasDetailedDescription ? String(listing.detailedDescription) : '';
+                const detailedDescriptionHtml = detailedDescriptionRaw ? (
+                    (detailedDescriptionRaw.includes('<') && detailedDescriptionRaw.includes('>'))
+                        ? sanitizeCustomHtml(detailedDescriptionRaw)
+                        : ('<p>' + escapeHtml(detailedDescriptionRaw).replace(/\n/g, '<br>') + '</p>')
+                ) : '';
+                const backDetailedDescriptionHTML = detailedDescriptionHtml ? 
                     '<div style="margin-bottom: 15px;">' +
                     '<h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Detailed Description</h4>' +
-                    '<p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6; white-space: pre-wrap; margin: 0;">' + listing.detailedDescription + '</p>' +
+                    '<div class="preview-richtext preview-richtext--compact">' + detailedDescriptionHtml + '</div>' +
                     '</div>' : '';
                 
                 const sanitizedCustomHtml = listing.customHtml && listing.customHtml.trim() ? sanitizeCustomHtml(listing.customHtml) : '';
@@ -8570,7 +8660,7 @@ function updateUnsavedChangesBadge() {
         window.closeModal = function closeModal(force) {
             // Check for unsaved changes unless force is true
             if (!force && hasFormChanges()) {
-                const shouldSave = confirm('You have unsaved changes. Do you want to save before closing?\n\nClick OK to save, or Cancel to discard changes.');
+                const shouldSave = confirm('You have unsaved changes. Do you want to save before closing?\n\nOK = Save\nCancel = Discard');
                 if (shouldSave) {
                     // Trigger save
                     const form = document.getElementById('listingForm');
