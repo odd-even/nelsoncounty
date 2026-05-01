@@ -369,6 +369,8 @@
         .btn-edit:hover { background: #e4ebe7; }
         .btn-duplicate { background: #edf0f4; color: #46515f; padding: 8px 16px; border: none; border-radius: 0; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
         .btn-duplicate:hover { background: #e3e8ef; }
+        .btn-view { background: #f1f2f4; color: #4b5563; padding: 8px 16px; border: none; border-radius: 0; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
+        .btn-view:hover { background: #e9ebee; }
         .btn-delete { background: #FDECF0; color: #5a4f4b; padding: 8px 16px; border: none; border-radius: 0 8px 8px 0; font-size: 12px; font-weight: 600; cursor: pointer; }
         .btn-delete:hover { background: #f8dfe6; }
 
@@ -5773,6 +5775,8 @@ function updateUnsavedChangesBadge() {
                             // Restore category EXACTLY as it was in Google Sheets (same as type)
                             // Don't normalize, don't transform - just use what's in Sheets
                             sanitized.category = originalCategory;
+                            // Listings loaded from Google Sheets are not "local-only"
+                            sanitized._localOnly = false;
                             
                             // Log for debugging (but don't transform the value)
                             if (originalCategory !== undefined && originalCategory !== null && originalCategory !== '') {
@@ -6346,6 +6350,10 @@ function updateUnsavedChangesBadge() {
                 if (result.success) {
             updateSyncStatus(true, `✅ Replaced all data in Google Sheets with ${data.listings.length} listings`);
             resetUnsavedChanges();
+                    // Mark all listings as now persisted (no longer local-only)
+                    if (data && Array.isArray(data.listings)) {
+                        data.listings.forEach(function(l) { l._localOnly = false; });
+                    }
                     alert(`✅ Successfully saved all ${data.listings.length} listings to Google Sheets!`);
                 } else {
                     updateSyncStatus(false);
@@ -7222,7 +7230,7 @@ function updateUnsavedChangesBadge() {
                     deleteBtn.style.color = '#ffffff';
                 } else {
                     deleteBtn.textContent = 'Delete';
-                    deleteBtn.style.background = '#c08475';
+                    deleteBtn.style.background = '#FDECF0';
                     deleteBtn.style.color = '';
                 }
                 
@@ -7238,9 +7246,20 @@ function updateUnsavedChangesBadge() {
                     e.stopPropagation();
                     duplicateListing(listing.slug);
                 });
+
+                const viewBtn = document.createElement('button');
+                viewBtn.className = 'btn-view';
+                viewBtn.textContent = 'View Listing';
+                viewBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const safeSlug = (listing.slug || '').toString().trim();
+                    if (!safeSlug) return;
+                    window.open('https://www.nelsoncounty.com/explore/' + encodeURIComponent(safeSlug) + '/', '_blank', 'noopener,noreferrer');
+                });
                 
                 actions.appendChild(editBtn);
                 actions.appendChild(duplicateBtn);
+                actions.appendChild(viewBtn);
                 actions.appendChild(deleteBtn);
                 cardContent.appendChild(actions);
                 front.appendChild(cardContent);
@@ -7493,7 +7512,7 @@ function updateUnsavedChangesBadge() {
                     backDeleteBtn.style.color = '#ffffff';
                 } else {
                     backDeleteBtn.textContent = 'Delete';
-                    backDeleteBtn.style.background = '#c08475';
+                    backDeleteBtn.style.background = '#FDECF0';
                     backDeleteBtn.style.color = '';
                 }
                 
@@ -7509,9 +7528,20 @@ function updateUnsavedChangesBadge() {
                     e.stopPropagation();
                     duplicateListing(listing.slug);
                 });
+
+                const backViewBtn = document.createElement('button');
+                backViewBtn.className = 'btn-view';
+                backViewBtn.textContent = 'View Listing';
+                backViewBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const safeSlug = (listing.slug || '').toString().trim();
+                    if (!safeSlug) return;
+                    window.open('https://www.nelsoncounty.com/explore/' + encodeURIComponent(safeSlug) + '/', '_blank', 'noopener,noreferrer');
+                });
                 
                 backActions.appendChild(backEditBtn);
                 backActions.appendChild(backDuplicateBtn);
+                backActions.appendChild(backViewBtn);
                 backActions.appendChild(backDeleteBtn);
                 back.appendChild(backActions);
                 
@@ -8628,6 +8658,21 @@ function updateUnsavedChangesBadge() {
                 // Confirmed - delete it
                 deleteConfirmId = null;
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
+
+                // Local-only listing (not yet saved to Google Sheets): delete locally only
+                if (listing._localOnly) {
+                    const beforeCount = data.listings.length;
+                    data.listings = data.listings.filter(function(l) {
+                        return String(l.slug).trim() !== String(slug).trim();
+                    });
+                    const afterCount = data.listings.length;
+                    console.log('🗑️ Local-only delete: ' + beforeCount + ' → ' + afterCount + ' listings');
+                    updateSyncStatus(true, '🗑️ Deleted locally (not yet saved to Google Sheets)');
+                    showUnsavedChangesBadge();
+                    // Preserve current filter state by re-filtering instead of full render
+                    filterListings();
+                    return;
+                }
                 
                 // Delete from Google Sheets if configured
                 if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
@@ -8791,6 +8836,7 @@ function updateUnsavedChangesBadge() {
             }
             
             // Add to the listings array
+            duplicate._localOnly = true; // Not yet saved to Google Sheets
             data.listings.push(duplicate);
             
             // Re-render the list to show the new duplicate
@@ -8993,11 +9039,13 @@ function updateUnsavedChangesBadge() {
                     updateSyncStatus(true, '✅ "' + listing.name + '" updated locally');
                     // Success message removed per user request
                         } else {
+                            listing._localOnly = true; // Not yet saved to Google Sheets
                             data.listings.push(listing);
                     updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
                     // Success message removed per user request
                 }
                     } else {
+                        listing._localOnly = true; // Not yet saved to Google Sheets
                         data.listings.push(listing);
                 updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
                 // Success message removed per user request
