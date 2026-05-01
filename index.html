@@ -379,8 +379,17 @@
             width: auto;
             margin-left: 0;
             margin-right: 0;
-            padding-left: 0;
-            padding-right: 0;
+            padding: 8px 15px 15px 15px;
+        }
+        /* Back of card: slightly smaller action buttons to fit comfortably */
+        .flip-card-back .listing-actions button {
+            padding: 6px 10px;
+            font-size: 11px;
+        }
+        .flip-card-back .listing-actions button svg {
+            width: 11px;
+            height: 11px;
+            flex: 0 0 11px;
         }
         .btn-edit { background: #edf1ef; color: #425248; padding: 8px 16px; border: none; border-radius: 8px 0 0 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
         .btn-edit:hover { background: #e4ebe7; }
