@@ -353,12 +353,61 @@
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
         }
+        /* Back of flip card uses a different content padding (15px) */
+        .flip-card-back .listing-actions {
+            padding-left: 15px;
+            padding-right: 15px;
+            margin-left: 0;
+            margin-right: 0;
+        }
         .btn-edit { background: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
         .btn-edit:hover { background: #218838; }
         .btn-duplicate { background: #007AFF; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
         .btn-duplicate:hover { background: #0056b3; }
         .btn-delete { background: #E3795C; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; }
         .btn-delete:hover { background: #D65052; }
+
+        /* Card action buttons (Directions / Document) */
+        .listing-action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 10px 0 12px 0;
+        }
+        .listing-action-buttons .action-pill {
+            flex: 1 1 220px;
+            min-width: 220px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 18px;
+            font-size: 14px;
+            font-weight: 650;
+            text-decoration: none;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .listing-action-buttons .action-pill svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+        }
+        .listing-action-buttons .action-pill--primary {
+            background: #7AA35A;
+            color: #ffffff;
+            border: 2px solid transparent;
+        }
+        .listing-action-buttons .action-pill--primary:hover { filter: brightness(0.97); }
+        .listing-action-buttons .action-pill--secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(0,0,0,0.25);
+        }
+        .listing-action-buttons .action-pill--secondary:hover { background: var(--bg-hover); }
         
         .featured-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-featured-bg); color: var(--badge-featured-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
         .private-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-private-bg); color: var(--badge-private-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
@@ -7031,6 +7080,37 @@ function updateUnsavedChangesBadge() {
                     '<div class="card-info-text">' + listing.videoLink + '</div>' +
                     '</a>' : '') +
                     '</div>';
+
+                // Directions + Document buttons (front + back)
+                const docUrl = (listing.document1 && String(listing.document1).trim())
+                    ? String(listing.document1).trim()
+                    : ((listing.document2 && String(listing.document2).trim()) ? String(listing.document2).trim() : '');
+                const docName = (listing.document1Name && String(listing.document1Name).trim())
+                    ? String(listing.document1Name).trim()
+                    : ((listing.document2Name && String(listing.document2Name).trim()) ? String(listing.document2Name).trim() : 'Document');
+                const actionButtonsHtml = ((mapUrl && mapUrl.trim()) || (docUrl && docUrl.trim())) ? (
+                    '<div class="listing-action-buttons">' +
+                    ((mapUrl && mapUrl.trim()) ? (
+                        '<a href="' + mapUrl + '" target="_blank" class="action-pill action-pill--primary" onclick="event.stopPropagation();">' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                        '<path d="M3 6l7-3 7 3 4-2v14l-4 2-7-3-7 3-4-2V4z"/>' +
+                        '<path d="M10 3v14"/><path d="M17 6v14"/>' +
+                        '</svg>' +
+                        'Get Directions' +
+                        '</a>'
+                    ) : '') +
+                    ((docUrl && docUrl.trim()) ? (
+                        '<a href="' + docUrl + '" target="_blank" class="action-pill action-pill--secondary" onclick="event.stopPropagation();">' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                        '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
+                        '<path d="M14 2v6h6"/>' +
+                        '<path d="M8 13h8"/><path d="M8 17h8"/><path d="M8 9h2"/>' +
+                        '</svg>' +
+                        escapeHtml(docName) +
+                        '</a>'
+                    ) : '') +
+                    '</div>'
+                ) : '';
                 
                 // Description with up to 5 lines
                 const descriptionHTML = listing.description ? 
@@ -7057,7 +7137,8 @@ function updateUnsavedChangesBadge() {
                         return '<span class="amenity" onclick="filterByAdminBadge(event, \'amenity\', \'' + escapedAmenity + '\')" style="cursor: pointer;">' + a + '</span>';
                     }).join('') +
                     '</div>' : '') +
-                    contactHtml;
+                    contactHtml +
+                    actionButtonsHtml;
                 
                 // Edit and Delete buttons
                 const actions = document.createElement('div');
@@ -7191,7 +7272,7 @@ function updateUnsavedChangesBadge() {
                     );
                 })();
 
-                const backContactHtml = contactHtml ? ('<div style="margin-bottom: 15px;">' + contactHtml + '</div>') : '';
+                const backContactHtml = contactHtml ? ('<div style="margin-bottom: 10px;">' + contactHtml + '</div>') : '';
                 
                 // Match the front layout: images at top, content below
                 back.style.padding = '0';
@@ -7221,28 +7302,28 @@ function updateUnsavedChangesBadge() {
                 if (listing.image1) {
                     const img1 = document.createElement('img');
                     img1.src = getAdminImageUrl(listing.image1);
-                    img1.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img1.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img1.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
                     backImgWrapper.appendChild(img1);
                 }
                 if (listing.image2) {
                     const img2 = document.createElement('img');
                     img2.src = getAdminImageUrl(listing.image2);
-                    img2.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img2.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img2.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
                     backImgWrapper.appendChild(img2);
                 }
                 if (listing.image3) {
                     const img3 = document.createElement('img');
                     img3.src = getAdminImageUrl(listing.image3);
-                    img3.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img3.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img3.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
                     backImgWrapper.appendChild(img3);
                 }
                 if (backImageCount === 0) {
                     const img = document.createElement('img');
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
-                    img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     backImgWrapper.appendChild(img);
                 }
                 
@@ -7314,12 +7395,13 @@ function updateUnsavedChangesBadge() {
                 }
                 
                 const backContent = document.createElement('div');
-                backContent.style.cssText = 'padding: 20px 10px 0px 10px; display: flex; flex-direction: column;';
+                backContent.style.cssText = 'padding: 20px 15px 0px 15px; display: flex; flex-direction: column;';
                 backContent.innerHTML =
                     categoryHTML +
                     '<h3 style="font-size: 22px; margin-bottom: 10px; color: var(--text-primary);">' + listing.name + '</h3>' +
                     backMetaBadgesHtml +
                     backContactHtml +
+                    actionButtonsHtml +
                     amenitiesHtml +
                     backDescriptionHTML +
                     backDetailedDescriptionHTML +
