@@ -1744,7 +1744,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #eef3f8 0%, #e7eef6 60%, #e9eef5 100%);
+            background:
+                linear-gradient(135deg, rgba(238,243,248,0.86) 0%, rgba(231,238,246,0.86) 60%, rgba(233,238,245,0.86) 100%),
+                url('icons/login-background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1759,6 +1764,28 @@
             max-width: 400px;
             width: 90%;
             border: 1px solid rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        #loginOverlay .login-ope-link {
+            position: absolute;
+            right: 12px;
+            bottom: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: #111111;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+            text-decoration: none;
+        }
+        #loginOverlay .login-ope-link:hover { background: #000000; }
+        #loginOverlay .login-ope-link img {
+            width: 18px;
+            height: 18px;
+            display: block;
         }
         
         #loginOverlay h2 {
@@ -1866,6 +1893,9 @@
     <!-- Email OTP Login Overlay -->
     <div id="loginOverlay">
         <div class="login-container">
+            <a class="login-ope-link" href="https://oddpluseven.com" target="_blank" rel="noopener noreferrer" aria-label="OddPlusEven">
+                <img src="icons/oddpluseven.png" alt="" />
+            </a>
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1891,9 +1921,9 @@
                 </div>
                 <button 
                     type="submit" 
-                    style="width: 100%; padding: 12px 24px; background: #4E6B52; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
-                    onmouseover="this.style.background='#3a5240'"
-                    onmouseout="this.style.background='#4E6B52'"
+                    style="width: 100%; padding: 12px 24px; background: #111111; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.2s;"
+                    onmouseover="this.style.background='#000000'"
+                    onmouseout="this.style.background='#111111'"
                 >
                     Send Verification Code
                 </button>
