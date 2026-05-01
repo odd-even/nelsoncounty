@@ -9384,8 +9384,8 @@ function renderPreview(filteredListings, appendMode) {
         const viewLink = document.createElement('a');
         viewLink.href = CMS_BASE_URL + '/explore/' + slug;
         viewLink.target = '_parent';
-        viewLink.style.cssText = 'display: inline-block; margin-top: auto; padding: 12px 20px; background: #61CF5B; color: white; text-decoration: none; border-radius: 16px; text-align: center; font-size: 14px; font-weight: 500; position: relative; z-index: 1;';
-        viewLink.textContent = 'View Details';
+        viewLink.style.cssText = 'display: inline-block; margin-top: auto; padding: 12px 20px; background: #111111; color: white; text-decoration: none; border-radius: 16px; text-align: center; font-size: 14px; font-weight: 400; position: relative; z-index: 1;';
+        viewLink.textContent = 'View Listing';
         backContent.appendChild(viewLink);
         
         back.appendChild(backContent);
@@ -9672,9 +9672,9 @@ function renderPreview(filteredListings, appendMode) {
                         amenity.style.lineHeight = amenityLineHeight;
                     });
                     
-                    // View Details button
+                    // View Listing button
                     const viewButton = backContent.querySelector('a[href*="/explore/"]:last-child');
-                    if (viewButton && viewButton.textContent === 'View Details') {
+                    if (viewButton && viewButton.textContent === 'View Listing') {
                         viewButton.style.fontSize = buttonSize + 'px';
                     }
                 }
@@ -10396,7 +10396,7 @@ function updateMapMarkers(listings) {
                     '</div>' +
                     imageHtml +
                     '<div class="map-popup-desc" style="margin-top: 12px;">' + escapeHtml(fixEncoding(listing.description).substring(0, 100)) + '...</div>' +
-                    '<button class="map-popup-btn" style="width: 100%; margin-top: 16px; background: #2d6a4f !important; color: white !important; border: 1px solid #dddddd; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; overflow: visible; white-space: nowrap;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">View Details</button>' +
+                    '<button class="map-popup-btn" style="width: 100%; margin-top: 16px; background: #111111 !important; color: white !important; border: 1px solid #dddddd; border-radius: 8px; font-size: 13px; font-weight: 400; cursor: pointer; overflow: visible; white-space: nowrap;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">View Listing</button>' +
                     '</div>';
                 
                 // Add click listener to show info window
