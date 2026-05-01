@@ -6939,6 +6939,16 @@ function updateUnsavedChangesBadge() {
                     '</div>' +
                     '<div class="card-info-text">' + listing.website + '</div>' +
                     '</a>' : '') +
+                    // YouTube / Video link with icon
+                    (listing.videoLink ?
+                    '<a href="' + listing.videoLink + '" target="_blank" class="card-info-item" onclick="event.stopPropagation();">' +
+                    '<div class="card-info-icon">' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">' +
+                    '<path d="M21.582 7.19a2.75 2.75 0 0 0-1.93-1.95C18.02 4.8 12 4.8 12 4.8s-6.02 0-7.652.44A2.75 2.75 0 0 0 2.418 7.19C2 8.84 2 12 2 12s0 3.16.418 4.81a2.75 2.75 0 0 0 1.93 1.95c1.632.44 7.652.44 7.652.44s6.02 0 7.652-.44a2.75 2.75 0 0 0 1.93-1.95C22 15.16 22 12 22 12s0-3.16-.418-4.81zM10 15.5v-7l6 3.5-6 3.5z"/>' +
+                    '</svg>' +
+                    '</div>' +
+                    '<div class="card-info-text">' + listing.videoLink + '</div>' +
+                    '</a>' : '') +
                     '</div>';
                 
                 // Description with up to 5 lines
@@ -7042,13 +7052,204 @@ function updateUnsavedChangesBadge() {
                     '<div class="custom-html-preview-title">Custom HTML Preview</div>' +
                     '<div class="custom-html-render">' + sanitizedCustomHtml + '</div>' +
                     '</div>' : '';
+
+                const amenitiesHtml = (listing.amenities && Array.isArray(listing.amenities) && listing.amenities.length > 0) ? (
+                    '<div style="margin-bottom: 15px;">' +
+                    '<h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Amenities</h4>' +
+                    '<div class="listing-amenities">' +
+                    listing.amenities.map(function(a) {
+                        const escapedAmenity = a.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                        return '<span class="amenity" onclick="filterByAdminBadge(event, \'amenity\', \'' + escapedAmenity + '\')" style="cursor: pointer;">' + a + '</span>';
+                    }).join('') +
+                    '</div>' +
+                    '</div>'
+                ) : '';
+
+                function renderAccordionPanel(panelTitle, panelContent) {
+                    const title = (panelTitle || '').toString().trim();
+                    const raw = (panelContent || '').toString().trim();
+                    if (!title && !raw) return '';
+                    const contentHtml = raw ? (
+                        (raw.includes('<') && raw.includes('>'))
+                            ? sanitizeCustomHtml(raw)
+                            : ('<p>' + escapeHtml(raw).replace(/\n/g, '<br>') + '</p>')
+                    ) : '';
+                    return (
+                        '<div style="margin-bottom: 10px; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-hover);">' +
+                        (title ? '<div style="font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px;">' + escapeHtml(title) + '</div>' : '') +
+                        (contentHtml ? '<div class="preview-richtext preview-richtext--compact">' + contentHtml + '</div>' : '') +
+                        '</div>'
+                    );
+                }
+
+                const accordionPanelsHtml = (function() {
+                    const blocks = [
+                        renderAccordionPanel(listing.accordionPanel1Title, listing.accordionPanel1Content),
+                        renderAccordionPanel(listing.accordionPanel2Title, listing.accordionPanel2Content),
+                        renderAccordionPanel(listing.accordionPanel3Title, listing.accordionPanel3Content),
+                        renderAccordionPanel(listing.accordionPanel4Title, listing.accordionPanel4Content)
+                    ].filter(Boolean);
+                    if (blocks.length === 0) return '';
+                    return (
+                        '<div style="margin-bottom: 15px;">' +
+                        '<h4 style="font-size: 13px; font-weight: 600; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px;">Accordion</h4>' +
+                        blocks.join('') +
+                        '</div>'
+                    );
+                })();
+
+                const backMetaBadgesHtml = (function() {
+                    const typeBadge =
+                        '<span class="badge badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + listing.type + '" onclick="filterByAdminBadge(event, \'type\', \'' + listing.type.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.type + '</span>';
+                    const areaBadge =
+                        '<span class="badge badge-area" data-area="' + listing.area + '" onclick="filterByAdminBadge(event, \'area\', \'' + listing.area.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.area + '</span>';
+                    const categoryTag = (listing.category && String(listing.category).trim())
+                        ? ('<span class="amenity" style="cursor: default;">' + escapeHtml(String(listing.category).trim()) + '</span>')
+                        : '';
+                    return (
+                        '<div class="listing-meta" style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;">' +
+                        typeBadge +
+                        areaBadge +
+                        categoryTag +
+                        '</div>'
+                    );
+                })();
+
+                const backContactHtml = contactHtml ? ('<div style="margin-bottom: 15px;">' + contactHtml + '</div>') : '';
                 
-                back.innerHTML = 
-                    '<button class="flip-close-btn" onclick="event.stopPropagation(); this.closest(\'.flip-card\').classList.remove(\'flipped\');">&times;</button>' +
-                    '<h3 style="font-size: 22px; margin-bottom: 12px; color: var(--text-primary);">' + listing.name + '</h3>' +
+                // Match the front layout: images at top, content below
+                back.style.padding = '0';
+                back.innerHTML = '';
+                
+                const closeBtn = document.createElement('button');
+                closeBtn.className = 'flip-close-btn';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    const parentCard = this.closest('.flip-card');
+                    if (parentCard) parentCard.classList.remove('flipped');
+                };
+                back.appendChild(closeBtn);
+                
+                // Create scrollable image container (same as front)
+                const backImgContainer = document.createElement('div');
+                backImgContainer.className = 'card-front-image-scroll';
+                backImgContainer.style.cssText = 'position: relative; width: 100%; height: 240px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; flex-shrink: 0;';
+                backImgContainer.style.setProperty('-ms-overflow-style', 'none');
+                
+                const backImgWrapper = document.createElement('div');
+                backImgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: auto; height: 100%; display: flex;';
+                
+                const backImageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
+                
+                if (listing.image1) {
+                    const img1 = document.createElement('img');
+                    img1.src = getAdminImageUrl(listing.image1);
+                    img1.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img1.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
+                    backImgWrapper.appendChild(img1);
+                }
+                if (listing.image2) {
+                    const img2 = document.createElement('img');
+                    img2.src = getAdminImageUrl(listing.image2);
+                    img2.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img2.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
+                    backImgWrapper.appendChild(img2);
+                }
+                if (listing.image3) {
+                    const img3 = document.createElement('img');
+                    img3.src = getAdminImageUrl(listing.image3);
+                    img3.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    img3.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
+                    backImgWrapper.appendChild(img3);
+                }
+                if (backImageCount === 0) {
+                    const img = document.createElement('img');
+                    img.src = 'https://via.placeholder.com/400x400?text=No+Image';
+                    img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
+                    backImgWrapper.appendChild(img);
+                }
+                
+                if (backImageCount > 1) {
+                    setTimeout(function() {
+                        const containerWidth = backImgContainer.offsetWidth || backImgContainer.clientWidth;
+                        if (containerWidth > 0) {
+                            backImgWrapper.style.width = (containerWidth * backImageCount) + 'px';
+                            const images = backImgWrapper.querySelectorAll('img');
+                            images.forEach(function(img) {
+                                img.style.width = containerWidth + 'px';
+                                img.style.minWidth = containerWidth + 'px';
+                                img.style.maxWidth = containerWidth + 'px';
+                                img.style.height = '240px';
+                            });
+                        }
+                    }, 10);
+                }
+                
+                backImgContainer.appendChild(backImgWrapper);
+                back.appendChild(backImgContainer);
+                
+                if (backImageCount > 1) {
+                    const totalImages = backImageCount;
+                    const getCurrentIndex = function() {
+                        const containerWidth = backImgContainer.offsetWidth || backImgContainer.clientWidth;
+                        if (containerWidth === 0) return 0;
+                        const scrollLeft = backImgContainer.scrollLeft || 0;
+                        return Math.round(scrollLeft / containerWidth);
+                    };
+                    
+                    const rightArrow = document.createElement('div');
+                    rightArrow.className = 'scroll-arrow scroll-arrow-right';
+                    rightArrow.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const containerWidth = backImgContainer.offsetWidth || backImgContainer.clientWidth;
+                        if (containerWidth === 0) return;
+                        let currentIndex = getCurrentIndex();
+                        currentIndex = (currentIndex + 1) % totalImages;
+                        backImgContainer.scrollTo({ left: currentIndex * containerWidth, behavior: 'smooth' });
+                    });
+                    
+                    setTimeout(function() {
+                        const containerHeight = backImgContainer.offsetHeight || 240;
+                        if (containerHeight > 0) {
+                            rightArrow.style.setProperty('top', (containerHeight / 2) + 'px', 'important');
+                            rightArrow.style.setProperty('transform', 'translateY(-50%)', 'important');
+                        }
+                    }, 10);
+                    
+                    back.appendChild(rightArrow);
+                }
+                
+                if (listing.featured) {
+                    const badge = document.createElement('div');
+                    badge.className = 'featured-badge';
+                    badge.textContent = 'FEATURED';
+                    badge.style.cssText = 'position: absolute; top: 10px; left: 10px; z-index: 10;';
+                    back.appendChild(badge);
+                }
+                
+                if (listing.private) {
+                    const badge = document.createElement('div');
+                    badge.className = 'private-badge';
+                    badge.textContent = 'PRIVATE';
+                    badge.style.cssText = 'position: absolute; top: 10px; left: ' + (listing.featured ? '100px' : '10px') + '; z-index: 10;';
+                    back.appendChild(badge);
+                }
+                
+                const backContent = document.createElement('div');
+                backContent.style.cssText = 'padding: 20px 0px 0px 0px; display: flex; flex-direction: column;';
+                backContent.innerHTML =
+                    categoryHTML +
+                    '<h3 style="font-size: 22px; margin-bottom: 10px; color: var(--text-primary);">' + listing.name + '</h3>' +
+                    backMetaBadgesHtml +
+                    backContactHtml +
                     backDescriptionHTML +
+                    amenitiesHtml +
                     backDetailedDescriptionHTML +
+                    accordionPanelsHtml +
                     backCustomHtmlPreview;
+                back.appendChild(backContent);
                 
                 // Add Edit and Delete buttons to the back of the card
                 const backActions = document.createElement('div');
