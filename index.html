@@ -1433,6 +1433,16 @@
             display: flex;
             width: auto;
         }
+
+        /* When there is only one image, force full width fill */
+        .card-front-image-scroll.single-image > div {
+            width: 100% !important;
+        }
+        .card-front-image-scroll.single-image img {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+        }
         
         .card-front-image-scroll img {
             position: relative;
@@ -6970,6 +6980,9 @@ function updateUnsavedChangesBadge() {
                 
                 // Count images
                 const imageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
+                if (imageCount <= 1) {
+                    imgContainer.classList.add('single-image');
+                }
                 
                 // Add image1 if it exists
                 if (listing.image1) {
@@ -7432,6 +7445,9 @@ function updateUnsavedChangesBadge() {
                 backImgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: auto; height: 100%; display: flex;';
                 
                 const backImageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
+                if (backImageCount <= 1) {
+                    backImgContainer.classList.add('single-image');
+                }
                 
                 if (listing.image1) {
                     const img1 = document.createElement('img');
