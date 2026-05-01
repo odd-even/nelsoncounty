@@ -3428,8 +3428,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>Slug</label>
-                    <input type="text" id="listingSlug" placeholder="Leave blank to auto-generate" />
+                    <label>Slug *</label>
+                    <input type="text" id="listingSlug" required placeholder="Leave blank to auto-generate" />
                 </div>
                 
                 <div class="form-row">
@@ -8823,26 +8823,87 @@ function updateUnsavedChangesBadge() {
             // Category: getValue('listingCategory') - same approach
             let categoryValue = getValue('listingCategory');
             
-            // Ensure category is never empty - assign default if missing
+            // Category is required (do not auto-assign silently)
             if (!categoryValue || categoryValue.trim() === '') {
-                // Try to get category from type
-                const typeValue = getValue('listingType');
-                if (typeValue) {
-                    const tempListing = { type: typeValue, category: existingListing ? existingListing.category : undefined };
-                    categoryValue = getCategoryForType(typeValue, tempListing);
+                alert('⚠️ Please select a Category (Taste / Stay / Outdoor / etc) before saving.');
+                const categorySelect = document.getElementById('listingCategory');
+                if (categorySelect) {
+                    categorySelect.focus();
+                    categorySelect.scrollIntoView({ block: 'center', behavior: 'smooth' });
                 }
+                return;
+            }
+
+            const hasMeaningfulRichText = function(value) {
+                if (value === undefined || value === null) return false;
+                const str = String(value).trim();
+                if (!str) return false;
+                // If it's HTML-ish, strip tags and check text content (Quill empty often = <p><br></p>)
+                if (str.includes('<') && str.includes('>')) {
+                    const tmp = document.createElement('div');
+                    tmp.innerHTML = str;
+                    const text = (tmp.textContent || '').replace(/\u00A0/g, ' ').trim();
+                    // Treat as meaningful if there is visible text OR an image/embed/link element
+                    if (text) return true;
+                    if (tmp.querySelector('img, video, iframe, embed, object, a')) return true;
+                    return false;
+                }
+                return true;
+            };
+
+            const requireAccordionTitlesIfContent = function() {
+                const panels = [
+                    { idx: 1, titleId: 'listingAccordionPanel1Title', getContent: () => (quillAccordionPanel1 ? quillAccordionPanel1.root.innerHTML : getValue('listingAccordionPanel1Content')) },
+                    { idx: 2, titleId: 'listingAccordionPanel2Title', getContent: () => (quillAccordionPanel2 ? quillAccordionPanel2.root.innerHTML : getValue('listingAccordionPanel2Content')) },
+                    { idx: 3, titleId: 'listingAccordionPanel3Title', getContent: () => (quillAccordionPanel3 ? quillAccordionPanel3.root.innerHTML : getValue('listingAccordionPanel3Content')) },
+                    { idx: 4, titleId: 'listingAccordionPanel4Title', getContent: () => (quillAccordionPanel4 ? quillAccordionPanel4.root.innerHTML : getValue('listingAccordionPanel4Content')) }
+                ];
                 
-                // If still no category, use first available category as fallback
-                if (!categoryValue || categoryValue.trim() === '') {
-                    const availableCategories = Object.keys(TYPE_CATEGORIES);
-                    if (availableCategories.length > 0) {
-                        categoryValue = availableCategories[0];
-                        alert('⚠️ No category selected. Assigned to: ' + (TYPE_CATEGORIES[categoryValue].name || categoryValue));
-                    } else {
-                        alert('⚠️ Error: No categories available. Please create a category first.');
-                        return;
+                for (const panel of panels) {
+                    const contentVal = panel.getContent();
+                    if (!hasMeaningfulRichText(contentVal)) continue;
+                    const titleEl = document.getElementById(panel.titleId);
+                    const titleVal = titleEl ? String(titleEl.value || '').trim() : '';
+                    if (!titleVal) {
+                        alert(`⚠️ Accordion Panel ${panel.idx} has content, but no title.\n\nPlease add a title or clear the panel content.`);
+                        if (titleEl) {
+                            titleEl.focus();
+                            titleEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        }
+                        return false;
                     }
                 }
+                return true;
+            };
+
+            const requireDocumentNamesIfUrlPresent = function() {
+                const docPairs = [
+                    { idx: 1, urlId: 'listingDocument1', nameId: 'listingDocument1Name' },
+                    { idx: 2, urlId: 'listingDocument2', nameId: 'listingDocument2Name' }
+                ];
+                
+                for (const doc of docPairs) {
+                    const urlVal = String(getValue(doc.urlId) || '').trim();
+                    if (!urlVal) continue;
+                    const nameEl = document.getElementById(doc.nameId);
+                    const nameVal = nameEl ? String(nameEl.value || '').trim() : '';
+                    if (!nameVal) {
+                        alert(`⚠️ Document ${doc.idx} has a URL, but no name.\n\nPlease add a name (button text) or clear the URL.`);
+                        if (nameEl) {
+                            nameEl.focus();
+                            nameEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        }
+                        return false;
+                    }
+                }
+                return true;
+            };
+
+            if (!requireAccordionTitlesIfContent()) {
+                return;
+            }
+            if (!requireDocumentNamesIfUrlPresent()) {
+                return;
             }
             
             // Get fileIds from dataset attributes (stored during upload or loaded from listing data)
