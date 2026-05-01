@@ -1744,9 +1744,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                linear-gradient(135deg, rgba(238,243,248,0.86) 0%, rgba(231,238,246,0.86) 60%, rgba(233,238,245,0.86) 100%),
-                url('icons/login-background.png');
+            background: url('icons/login-background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -1768,9 +1766,9 @@
         }
 
         #loginOverlay .login-ope-link {
-            position: absolute;
-            right: 12px;
-            bottom: 12px;
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
             width: 34px;
             height: 34px;
             border-radius: 999px;
@@ -1780,6 +1778,7 @@
             justify-content: center;
             box-shadow: 0 6px 18px rgba(0,0,0,0.18);
             text-decoration: none;
+            z-index: 10001;
         }
         #loginOverlay .login-ope-link:hover { background: #000000; }
         #loginOverlay .login-ope-link img {
@@ -1892,10 +1891,10 @@
 <body>
     <!-- Email OTP Login Overlay -->
     <div id="loginOverlay">
+        <a class="login-ope-link" href="https://oddpluseven.com" target="_blank" rel="noopener noreferrer" aria-label="OddPlusEven">
+            <img src="icons/oddpluseven.png" alt="" />
+        </a>
         <div class="login-container">
-            <a class="login-ope-link" href="https://oddpluseven.com" target="_blank" rel="noopener noreferrer" aria-label="OddPlusEven">
-                <img src="icons/oddpluseven.png" alt="" />
-            </a>
             <div style="text-align: center; margin-bottom: 30px;">
                 <h2>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
