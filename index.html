@@ -379,10 +379,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 5px 12px;
+            gap: 6px;
+            padding: 5px 9px;
             border-radius: 18px;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 400;
             text-decoration: none;
             line-height: 1;
@@ -394,9 +394,9 @@
             text-overflow: ellipsis;
         }
         .listing-action-buttons .action-pill svg {
-            width: 18px;
-            height: 18px;
-            flex: 0 0 18px;
+            width: 16px;
+            height: 16px;
+            flex: 0 0 16px;
         }
         .listing-action-buttons .action-pill--primary {
             background: #7AA862;
@@ -1782,8 +1782,8 @@
         }
         #loginOverlay .login-ope-link:hover { background: #000000; }
         #loginOverlay .login-ope-link img {
-            width: 22px;
-            height: 22px;
+            width: 33px;
+            height: 33px;
             display: block;
             object-fit: contain;
         }
@@ -1857,13 +1857,14 @@
         
         #loginError {
             display: none;
-            background: #f8d7da;
-            color: #721c24;
+            background: rgba(0,0,0,0.06);
+            color: rgba(0,0,0,0.75);
             padding: 12px;
-            border-radius: 6px;
-            font-size: 14px; 
+            border-radius: 10px;
+            font-size: 14px;
             text-align: center;
             margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.08);
         }
         
         /* Hide login overlay when logged in */
@@ -1933,7 +1934,7 @@
             <form id="otpForm" style="display: none;">
                 <div style="margin-bottom: 15px; text-align: center;">
                     <p style="color: #6c757d; margin: 0 0 10px 0;">Code sent to:</p>
-                    <p style="font-weight: 600; color: #4E6B52; margin: 0;" id="emailDisplay"></p>
+                    <p style="font-weight: 600; color: rgba(0,0,0,0.7); margin: 0;" id="emailDisplay"></p>
                 </div>
                 <div style="margin-bottom: 20px;">
                     <input 
@@ -1949,17 +1950,17 @@
                 </div>
                 <button 
                     type="submit" 
-                    style="width: 100%; padding: 12px 24px; background: #4E6B52; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 10px; transition: background 0.2s;"
-                    onmouseover="this.style.background='#3a5240'"
-                    onmouseout="this.style.background='#4E6B52'"
+                    style="width: 100%; padding: 12px 24px; background: #111111; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 10px; transition: background 0.2s;"
+                    onmouseover="this.style.background='#000000'"
+                    onmouseout="this.style.background='#111111'"
                 >
                     Verify Code
                 </button>
                 <button 
                     type="button" 
                     id="resendOTPButton"
-                    style="width: 100%; padding: 10px 24px; background: transparent; color: #4E6B52; border: 2px solid #4E6B52; border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s;"
-                    onmouseover="this.style.background='#f0f4f1'"
+                    style="width: 100%; padding: 10px 24px; background: transparent; color: rgba(0,0,0,0.75); border: 2px solid rgba(0,0,0,0.35); border-radius: 8px; font-size: 14px; cursor: pointer; transition: all 0.2s;"
+                    onmouseover="this.style.background='rgba(0,0,0,0.04)'"
                     onmouseout="this.style.background='transparent'"
                 >
                     Resend Code
@@ -7163,6 +7164,7 @@ function updateUnsavedChangesBadge() {
                     '<span class="badge badge-area" data-area="' + listing.area + '" onclick="filterByAdminBadge(event, \'area\', \'' + listing.area.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.area + '</span>' +
                     '</div>' +
                     descriptionHTML +
+                    actionButtonsHtml +
                     (listing.amenities && listing.amenities.length > 0 ? 
                     '<div class="listing-amenities">' +
                     listing.amenities.map(function(a) {
@@ -7170,8 +7172,7 @@ function updateUnsavedChangesBadge() {
                         return '<span class="amenity" onclick="filterByAdminBadge(event, \'amenity\', \'' + escapedAmenity + '\')" style="cursor: pointer;">' + a + '</span>';
                     }).join('') +
                     '</div>' : '') +
-                    contactHtml +
-                    actionButtonsHtml;
+                    contactHtml;
                 
                 // Edit and Delete buttons
                 const actions = document.createElement('div');
@@ -7434,8 +7435,8 @@ function updateUnsavedChangesBadge() {
                     '<h3 style="font-size: 22px; margin-bottom: 10px; color: var(--text-primary);">' + listing.name + '</h3>' +
                     backMetaBadgesHtml +
                     backContactHtml +
-                    actionButtonsHtml +
                     amenitiesHtml +
+                    actionButtonsHtml +
                     backDescriptionHTML +
                     backDetailedDescriptionHTML +
                     accordionPanelsHtml +
