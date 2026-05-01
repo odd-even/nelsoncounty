@@ -483,33 +483,88 @@
             background: var(--bg-primary) !important;
             color: var(--text-primary) !important;
             min-height: 150px;
-            font-size: 14px;
+            font-size: 12px;
             font-family: inherit;
         }
-        /* Rich text spacing in Accordion editors */
+        /* Rich text spacing in Accordion editors — body text smaller than headings */
         #listingAccordionPanel1ContentEditor .ql-editor p,
         #listingAccordionPanel2ContentEditor .ql-editor p,
         #listingAccordionPanel3ContentEditor .ql-editor p,
-        #listingAccordionPanel4ContentEditor .ql-editor p { margin: 0 0 0.65em 0; line-height: 1.45; }
+        #listingAccordionPanel4ContentEditor .ql-editor p {
+            margin: 0 0 0.65em 0;
+            line-height: 1.45;
+            font-size: 11.5px;
+            font-weight: 400;
+        }
         #listingAccordionPanel1ContentEditor .ql-editor p:last-child,
         #listingAccordionPanel2ContentEditor .ql-editor p:last-child,
         #listingAccordionPanel3ContentEditor .ql-editor p:last-child,
         #listingAccordionPanel4ContentEditor .ql-editor p:last-child { margin-bottom: 0; }
+        /* Accordion Quill: heading hierarchy (toolbar uses h3, h4, h6) */
         #listingAccordionPanel1ContentEditor .ql-editor h1,
         #listingAccordionPanel1ContentEditor .ql-editor h2,
         #listingAccordionPanel1ContentEditor .ql-editor h3,
+        #listingAccordionPanel1ContentEditor .ql-editor h4,
+        #listingAccordionPanel1ContentEditor .ql-editor h5,
+        #listingAccordionPanel1ContentEditor .ql-editor h6,
         #listingAccordionPanel2ContentEditor .ql-editor h1,
         #listingAccordionPanel2ContentEditor .ql-editor h2,
         #listingAccordionPanel2ContentEditor .ql-editor h3,
+        #listingAccordionPanel2ContentEditor .ql-editor h4,
+        #listingAccordionPanel2ContentEditor .ql-editor h5,
+        #listingAccordionPanel2ContentEditor .ql-editor h6,
         #listingAccordionPanel3ContentEditor .ql-editor h1,
         #listingAccordionPanel3ContentEditor .ql-editor h2,
         #listingAccordionPanel3ContentEditor .ql-editor h3,
+        #listingAccordionPanel3ContentEditor .ql-editor h4,
+        #listingAccordionPanel3ContentEditor .ql-editor h5,
+        #listingAccordionPanel3ContentEditor .ql-editor h6,
         #listingAccordionPanel4ContentEditor .ql-editor h1,
         #listingAccordionPanel4ContentEditor .ql-editor h2,
-        #listingAccordionPanel4ContentEditor .ql-editor h3 {
+        #listingAccordionPanel4ContentEditor .ql-editor h3,
+        #listingAccordionPanel4ContentEditor .ql-editor h4,
+        #listingAccordionPanel4ContentEditor .ql-editor h5,
+        #listingAccordionPanel4ContentEditor .ql-editor h6 {
             margin: 0.85em 0 0.4em 0;
-            line-height: 1.2;
-            font-weight: 650;
+            line-height: 1.25;
+            font-weight: 400 !important;
+        }
+        /* Sizes in px; all headings normal weight (Quill ql-bold on headers would otherwise look bold) */
+        #listingAccordionPanel1ContentEditor .ql-editor h1,
+        #listingAccordionPanel2ContentEditor .ql-editor h1,
+        #listingAccordionPanel3ContentEditor .ql-editor h1,
+        #listingAccordionPanel4ContentEditor .ql-editor h1 { font-size: 28px; font-weight: 400 !important; }
+        #listingAccordionPanel1ContentEditor .ql-editor h2,
+        #listingAccordionPanel2ContentEditor .ql-editor h2,
+        #listingAccordionPanel3ContentEditor .ql-editor h2,
+        #listingAccordionPanel4ContentEditor .ql-editor h2 { font-size: 24px; font-weight: 400 !important; }
+        #listingAccordionPanel1ContentEditor .ql-editor h3,
+        #listingAccordionPanel2ContentEditor .ql-editor h3,
+        #listingAccordionPanel3ContentEditor .ql-editor h3,
+        #listingAccordionPanel4ContentEditor .ql-editor h3 {
+            font-size: 26px;
+            font-weight: 400 !important;
+        }
+        #listingAccordionPanel1ContentEditor .ql-editor h4,
+        #listingAccordionPanel2ContentEditor .ql-editor h4,
+        #listingAccordionPanel3ContentEditor .ql-editor h4,
+        #listingAccordionPanel4ContentEditor .ql-editor h4 {
+            font-size: 18px;
+            font-weight: 400 !important;
+        }
+        #listingAccordionPanel1ContentEditor .ql-editor h5,
+        #listingAccordionPanel2ContentEditor .ql-editor h5,
+        #listingAccordionPanel3ContentEditor .ql-editor h5,
+        #listingAccordionPanel4ContentEditor .ql-editor h5 {
+            font-size: 16px;
+            font-weight: 400 !important;
+        }
+        #listingAccordionPanel1ContentEditor .ql-editor h6,
+        #listingAccordionPanel2ContentEditor .ql-editor h6,
+        #listingAccordionPanel3ContentEditor .ql-editor h6,
+        #listingAccordionPanel4ContentEditor .ql-editor h6 {
+            font-size: 15px;
+            font-weight: 400 !important;
         }
         #listingAccordionPanel1ContentEditor .ql-editor ul,
         #listingAccordionPanel1ContentEditor .ql-editor ol,
@@ -518,11 +573,15 @@
         #listingAccordionPanel3ContentEditor .ql-editor ul,
         #listingAccordionPanel3ContentEditor .ql-editor ol,
         #listingAccordionPanel4ContentEditor .ql-editor ul,
-        #listingAccordionPanel4ContentEditor .ql-editor ol { margin: 0 0 0.65em 1.2em; padding: 0; line-height: 1.45; }
+        #listingAccordionPanel4ContentEditor .ql-editor ol { margin: 0 0 0.65em 1.2em; padding: 0; line-height: 1.45; font-size: 11.5px; }
         #listingAccordionPanel1ContentEditor .ql-editor li,
         #listingAccordionPanel2ContentEditor .ql-editor li,
         #listingAccordionPanel3ContentEditor .ql-editor li,
-        #listingAccordionPanel4ContentEditor .ql-editor li { margin: 0.2em 0; }
+        #listingAccordionPanel4ContentEditor .ql-editor li { margin: 0.2em 0; font-size: 11.5px; font-weight: 400; }
+        #listingAccordionPanel1ContentEditor .ql-editor blockquote,
+        #listingAccordionPanel2ContentEditor .ql-editor blockquote,
+        #listingAccordionPanel3ContentEditor .ql-editor blockquote,
+        #listingAccordionPanel4ContentEditor .ql-editor blockquote { font-size: 11.5px; font-weight: 400; }
         #listingAccordionPanel1ContentEditor .ql-editor.ql-blank::before,
         #listingAccordionPanel2ContentEditor .ql-editor.ql-blank::before,
         #listingAccordionPanel3ContentEditor .ql-editor.ql-blank::before,
