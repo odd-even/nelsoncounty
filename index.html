@@ -371,20 +371,18 @@
         .listing-action-buttons {
             display: flex;
             gap: 12px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             margin: 10px 0 12px 0;
         }
         .listing-action-buttons .action-pill {
-            flex: 1 1 calc(50% - 6px);
-            max-width: calc(50% - 6px);
+            flex: 0 1 auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            height: 20px;
-            padding: 0 10px;
+            padding: 5px 12px;
             border-radius: 18px;
-            font-size: 8.5px;
+            font-size: 15px;
             font-weight: 650;
             text-decoration: none;
             line-height: 1;
@@ -396,9 +394,9 @@
             text-overflow: ellipsis;
         }
         .listing-action-buttons .action-pill svg {
-            width: 14px;
-            height: 14px;
-            flex: 0 0 14px;
+            width: 18px;
+            height: 18px;
+            flex: 0 0 18px;
         }
         .listing-action-buttons .action-pill--primary {
             background: #7AA35A;
@@ -1046,9 +1044,9 @@
             color: var(--text-primary);
         }
         .type-filter-btn.active { 
-            background: #007AFF; 
-            border-color: #007AFF; 
-            color: white; 
+            background: transparent;
+            border-color: #007AFF;
+            color: #007AFF;
         }
         .category-filter-btn {
             padding: 12px 14px;
