@@ -369,8 +369,8 @@
         .btn-edit:hover { background: #e4ebe7; }
         .btn-duplicate { background: #edf0f4; color: #46515f; padding: 8px 16px; border: none; border-radius: 0; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
         .btn-duplicate:hover { background: #e3e8ef; }
-        .btn-delete { background: #f3f1f0; color: #5a4f4b; padding: 8px 16px; border: none; border-radius: 0 8px 8px 0; font-size: 12px; font-weight: 600; cursor: pointer; }
-        .btn-delete:hover { background: #ece7e5; }
+        .btn-delete { background: #FDECF0; color: #5a4f4b; padding: 8px 16px; border: none; border-radius: 0 8px 8px 0; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .btn-delete:hover { background: #f8dfe6; }
 
         /* Card action buttons (Directions / Document) */
         .listing-action-buttons {
@@ -7219,9 +7219,11 @@ function updateUnsavedChangesBadge() {
                 if (deleteConfirmId === listing.slug) {
                     deleteBtn.textContent = 'Confirm Delete?';
                     deleteBtn.style.background = '#dc2626';
+                    deleteBtn.style.color = '#ffffff';
                 } else {
                     deleteBtn.textContent = 'Delete';
                     deleteBtn.style.background = '#c08475';
+                    deleteBtn.style.color = '';
                 }
                 
                 deleteBtn.addEventListener('click', function(e) {
@@ -7488,9 +7490,11 @@ function updateUnsavedChangesBadge() {
                 if (deleteConfirmId === listing.slug) {
                     backDeleteBtn.textContent = 'Confirm Delete?';
                     backDeleteBtn.style.background = '#dc2626';
+                    backDeleteBtn.style.color = '#ffffff';
                 } else {
                     backDeleteBtn.textContent = 'Delete';
                     backDeleteBtn.style.background = '#c08475';
+                    backDeleteBtn.style.color = '';
                 }
                 
                 backDeleteBtn.addEventListener('click', function(e) {
