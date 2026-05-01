@@ -729,7 +729,23 @@
         .checkbox-item { display: flex; align-items: center; gap: 6px; }
         .checkbox-item input[type="checkbox"] { width: auto; }
         
-        .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 30px; }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 30px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 5;
+            pointer-events: auto;
+            background: var(--card-bg);
+            padding-top: 12px;
+        }
+
+        /* Ensure scrollable form content never overlaps footer actions */
+        #listingModal .modal-content .form-scrollable {
+            padding-bottom: 24px;
+        }
         
         /* Dialog Modal for confirm/alert replacements */
         .dialog-modal {
