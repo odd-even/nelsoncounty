@@ -996,6 +996,19 @@
             line-height: 1;
             margin-right: 2px;
         }
+        .category-filter-btn .category-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 24px;
+        }
+        .category-filter-btn .category-icon img {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
         .category-filter-btn .category-name {
             flex: 1;
             font-weight: 500;
@@ -3017,7 +3030,7 @@
                             <div class="filter-section">
                                 <div class="type-quick-filters">
                                     <button class="type-filter-btn category-filter-btn active" data-type="" id="adminAllTypesBtn">
-                                        <span class="category-emoji">🌐</span>
+                                        <span class="category-icon"><img src="icons/all-types.svg" alt="All Types" style="width: 24px; height: 24px; display: block;" /></span>
                                         <span class="category-name">All Types</span>
                                     </button>
                                     <!-- Type filter buttons will be dynamically generated here based on data usage -->
@@ -7829,16 +7842,21 @@ function updateUnsavedChangesBadge() {
                 btn.setAttribute('data-category', categoryInfo.key);
                 btn.setAttribute('data-type', ''); // Empty to indicate it's a category
                 
-                // Create button content with emoji and name
-                const emojiSpan = document.createElement('span');
-                emojiSpan.className = 'category-emoji';
-                emojiSpan.textContent = categoryInfo.category.emoji;
+                // Create button content with icon and name (match frontpage_framer.html icons/<key>.svg)
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'category-icon';
+                const iconImg = document.createElement('img');
+                const baseKey = categoryInfo.key ? String(categoryInfo.key).toLowerCase().split(':')[0] : '';
+                iconImg.src = baseKey ? ('icons/' + baseKey + '.svg') : 'icons/all-types.svg';
+                iconImg.alt = categoryInfo.category && categoryInfo.category.name ? categoryInfo.category.name : toSentenceCase(categoryInfo.key);
+                iconImg.style.cssText = 'width: 24px; height: 24px; display: block;';
+                iconSpan.appendChild(iconImg);
                 
                 const nameSpan = document.createElement('span');
                 nameSpan.className = 'category-name';
                 nameSpan.textContent = toSentenceCase(categoryInfo.key);
                 
-                btn.appendChild(emojiSpan);
+                btn.appendChild(iconSpan);
                 btn.appendChild(nameSpan);
                 btn.title = categoryInfo.category.description;
                 
@@ -7888,15 +7906,20 @@ function updateUnsavedChangesBadge() {
                     btn.setAttribute('data-category', categoryInfo.key);
                     btn.setAttribute('data-type', '');
                     
-                    const emojiSpan = document.createElement('span');
-                    emojiSpan.className = 'category-emoji';
-                    emojiSpan.textContent = categoryInfo.category.emoji;
+                    const iconSpan = document.createElement('span');
+                    iconSpan.className = 'category-icon';
+                    const iconImg = document.createElement('img');
+                    const baseKey = categoryInfo.key ? String(categoryInfo.key).toLowerCase().split(':')[0] : '';
+                    iconImg.src = baseKey ? ('icons/' + baseKey + '.svg') : 'icons/all-types.svg';
+                    iconImg.alt = categoryInfo.category && categoryInfo.category.name ? categoryInfo.category.name : toSentenceCase(categoryInfo.key);
+                    iconImg.style.cssText = 'width: 24px; height: 24px; display: block;';
+                    iconSpan.appendChild(iconImg);
                     
                     const nameSpan = document.createElement('span');
                     nameSpan.className = 'category-name';
                     nameSpan.textContent = categoryInfo.category.name;
                     
-                    btn.appendChild(emojiSpan);
+                    btn.appendChild(iconSpan);
                     btn.appendChild(nameSpan);
                     btn.title = categoryInfo.category.description;
                     
