@@ -3325,9 +3325,9 @@
                         <tr class="filter-row">
                             <th><input type="text" class="filter-input" data-filter="name" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="slug" placeholder="Filter..." /></th>
-                            <th><select class="filter-select" data-filter="type"><option value="">All</option></select></th>
-                            <th><select class="filter-select" data-filter="category"><option value="">All</option></select></th>
-                            <th><select class="filter-select" data-filter="area"><option value="">All</option></select></th>
+                            <th><select class="filter-select" data-filter="type"><option value="">All</option><option value="empty">Empty</option></select></th>
+                            <th><select class="filter-select" data-filter="category"><option value="">All</option><option value="empty">Empty</option></select></th>
+                            <th><select class="filter-select" data-filter="area"><option value="">All</option><option value="empty">Empty</option></select></th>
                             <th><input type="text" class="filter-input" data-filter="description" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="detailedDescription" placeholder="Filter..." /></th>
                             <th><input type="text" class="filter-input" data-filter="customHtml" placeholder="Filter... (type 'has' for non-empty)" /></th>
@@ -5004,6 +5004,33 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             initializeQuillEditor();
             // Note: Accordion Quill editors initialize when modal opens (they're inside the modal)
         });
+
+        function registerQuillBreakAndShiftEnterOnce() {
+            try {
+                if (window.__quillShiftEnterBreakReady) return;
+                if (typeof Quill === 'undefined') return;
+                const Embed = Quill.import('blots/embed');
+                class BreakBlot extends Embed {}
+                BreakBlot.blotName = 'break';
+                BreakBlot.tagName = 'BR';
+                Quill.register(BreakBlot, true);
+                window.__quillShiftEnterBreakReady = true;
+            } catch (e) {
+                // If registration fails, we just won't override Shift+Enter
+                console.warn('Could not register Quill break blot:', e);
+            }
+        }
+
+        function enableShiftEnterBr(quillInstance) {
+            if (!quillInstance || !quillInstance.keyboard) return;
+            registerQuillBreakAndShiftEnterOnce();
+            if (!window.__quillShiftEnterBreakReady) return;
+            quillInstance.keyboard.addBinding({ key: 13, shiftKey: true }, function(range) {
+                this.quill.insertEmbed(range.index, 'break', true, Quill.sources.USER);
+                this.quill.setSelection(range.index + 1, Quill.sources.SILENT);
+                return false;
+            });
+        }
         
         // Initialize Quill editor for detailedDescription (same pattern as accordion: init ONCE, reuse)
         function initializeQuillEditor() {
@@ -5039,6 +5066,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
             });
+            enableShiftEnterBr(quillDetailedDescription);
             
             // Sync Quill content to hidden textarea on change
             quillDetailedDescription.on('text-change', function() {
@@ -5084,6 +5112,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
                 });
+                enableShiftEnterBr(quillAccordionPanel1);
                 console.log('✅ Accordion Panel 1: Quill initialized successfully');
                 quillAccordionPanel1.on('text-change', function() {
                     const html = quillAccordionPanel1.root.innerHTML;
@@ -5131,6 +5160,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
                 });
+                enableShiftEnterBr(quillAccordionPanel2);
                 console.log('✅ Accordion Panel 2: Quill initialized successfully');
                 quillAccordionPanel2.on('text-change', function() {
                     const html = quillAccordionPanel2.root.innerHTML;
@@ -5178,6 +5208,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
                 });
+                enableShiftEnterBr(quillAccordionPanel3);
                 console.log('✅ Accordion Panel 3: Quill initialized successfully');
                 quillAccordionPanel3.on('text-change', function() {
                     const html = quillAccordionPanel3.root.innerHTML;
@@ -5225,6 +5256,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 },
                 formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
                 });
+                enableShiftEnterBr(quillAccordionPanel4);
                 console.log('✅ Accordion Panel 4: Quill initialized successfully');
                 quillAccordionPanel4.on('text-change', function() {
                     const html = quillAccordionPanel4.root.innerHTML;
@@ -9798,6 +9830,12 @@ function updateUnsavedChangesBadge() {
         
         if (listingNameInput && listingSlugInput) {
             listingNameInput.addEventListener('input', function() {
+                // IMPORTANT: When editing an existing listing, never auto-change the slug.
+                // Slug stability prevents live URL 404s.
+                const editingIdEl = document.getElementById('editingId');
+                const isEditingExisting = !!(editingIdEl && String(editingIdEl.value || '').trim());
+                if (isEditingExisting) return;
+                
                 const name = this.value.trim();
                 // Only auto-generate slug if slug field is empty or matches a previously auto-generated slug
                 // This allows users to manually set a slug if they want
@@ -9812,6 +9850,10 @@ function updateUnsavedChangesBadge() {
             
             // Also update on blur if slug is empty
             listingNameInput.addEventListener('blur', function() {
+                const editingIdEl = document.getElementById('editingId');
+                const isEditingExisting = !!(editingIdEl && String(editingIdEl.value || '').trim());
+                if (isEditingExisting) return;
+                
                 const name = this.value.trim();
                 const currentSlug = listingSlugInput.value.trim();
                 if (name && !currentSlug) {
@@ -12837,25 +12879,24 @@ function updateUnsavedChangesBadge() {
                     } else if (field === 'amenities') {
                         listingValue = (Array.isArray(listing.amenities) ? listing.amenities.join(', ') : '').toLowerCase();
                         if (listingValue.indexOf(filterValue) === -1) return false;
+                    } else if (filterValue === 'has' || filterValue === 'empty') {
+                        // Universal presence filtering for ANY column
+                        const raw = listing[field];
+                        const isEmpty = (function() {
+                            if (raw === undefined || raw === null) return true;
+                            if (Array.isArray(raw)) return raw.length === 0;
+                            const s = String(raw).trim();
+                            return s === '';
+                        })();
+                        if (filterValue === 'has' && isEmpty) return false;
+                        if (filterValue === 'empty' && !isEmpty) return false;
                     } else if (field === 'category' || field === 'type' || field === 'area') {
                         listingValue = String(listing[field] || '').toLowerCase();
                         if (filterValue !== listingValue) return false;
                     } else {
-                        // Special handling for fields that can be filtered by presence
-                        const presenceFields = ['customHtml', 'image1', 'image2', 'image3', 'website', 'phone', 'address'];
-                        if (presenceFields.indexOf(field) > -1 && filterValue === 'has') {
-                            // Filter for listings that have this field (non-empty)
-                            const fieldValue = String(listing[field] || '').trim();
-                            if (!fieldValue) return false;
-                        } else if (presenceFields.indexOf(field) > -1 && filterValue === 'empty') {
-                            // Filter for listings that don't have this field (empty)
-                            const fieldValue = String(listing[field] || '').trim();
-                            if (fieldValue) return false;
-                        } else {
-                            // Normal text search
+                        // Normal text search
                         listingValue = String(listing[field] || '').toLowerCase();
                         if (listingValue.indexOf(filterValue) === -1) return false;
-                        }
                     }
                 }
                 return true;
