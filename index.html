@@ -344,7 +344,7 @@
         .listing-contact { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
         .listing-actions { 
             display: flex; 
-            gap: 10px; 
+            gap: 6px; 
             padding: 8px 20px 20px 20px; 
             margin-top: auto;
             margin-left: -20px;
@@ -352,6 +352,11 @@
             margin-bottom: 0;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px dotted rgba(0, 0, 0, 0.18);
+            border-top: none;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
         }
         /* Back of flip card uses a different content padding (15px) */
         .flip-card-back .listing-actions {
@@ -359,13 +364,14 @@
             padding-right: 15px;
             margin-left: 0;
             margin-right: 0;
+            border-top: 1px dotted rgba(0, 0, 0, 0.18);
         }
-        .btn-edit { background: #28a745; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
-        .btn-edit:hover { background: #218838; }
-        .btn-duplicate { background: #007AFF; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
-        .btn-duplicate:hover { background: #0056b3; }
-        .btn-delete { background: #E3795C; color: white; padding: 8px 16px; border: none; border-radius: 18px; font-size: 12px; font-weight: 600; cursor: pointer; }
-        .btn-delete:hover { background: #D65052; }
+        .btn-edit { background: #7f9486; color: #ffffff; padding: 8px 16px; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
+        .btn-edit:hover { background: #6f8376; }
+        .btn-duplicate { background: #7f8ea6; color: #ffffff; padding: 8px 16px; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; flex: 1; }
+        .btn-duplicate:hover { background: #6f7e95; }
+        .btn-delete { background: #c08475; color: #ffffff; padding: 8px 16px; border: none; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .btn-delete:hover { background: #b37567; }
 
         /* Card action buttons (Directions / Document) */
         .listing-action-buttons {
@@ -386,7 +392,7 @@
             justify-content: center;
             gap: 6px;
             padding: 5px 9px;
-            border-radius: 18px;
+            border-radius: 8px;
             font-size: 12px;
             font-weight: 400;
             text-decoration: none;
@@ -1067,7 +1073,7 @@
         .type-filter-btn.active { 
             background: transparent;
             border-color: #007AFF;
-            color: #007AFF;
+            color: var(--text-primary);
         }
         .category-filter-btn {
             padding: 12px 14px;
@@ -7216,7 +7222,7 @@ function updateUnsavedChangesBadge() {
                     deleteBtn.style.background = '#dc2626';
                 } else {
                     deleteBtn.textContent = 'Delete';
-                    deleteBtn.style.background = '#E3795C';
+                    deleteBtn.style.background = '#c08475';
                 }
                 
                 deleteBtn.addEventListener('click', function(e) {
@@ -7485,7 +7491,7 @@ function updateUnsavedChangesBadge() {
                     backDeleteBtn.style.background = '#dc2626';
                 } else {
                     backDeleteBtn.textContent = 'Delete';
-                    backDeleteBtn.style.background = '#E3795C';
+                    backDeleteBtn.style.background = '#c08475';
                 }
                 
                 backDeleteBtn.addEventListener('click', function(e) {
