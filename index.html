@@ -241,15 +241,9 @@
         .header:has(.unsaved-changes-badge.visible) + .tabs-sticky-stack {
             top: 30px;
         }
-        .header:has(#unsavedChangesBadge.unsaved-changes-badge--table-pending.visible) + .tabs-sticky-stack {
-            top: 42px;
-        }
         /* Fixed “Save to Sheets” bar doesn’t occupy flow — push title / top of header below it */
         .header:has(.unsaved-changes-badge.visible) .header-content {
             padding-top: 56px;
-        }
-        .header:has(#unsavedChangesBadge.unsaved-changes-badge--table-pending.visible) .header-content {
-            padding-top: 68px;
         }
         .unsaved-changes-badge {
             display: none;
@@ -296,6 +290,8 @@
         .unsaved-changes-badge.unsaved-changes-badge--table-pending {
             background: linear-gradient(to bottom, #2563eb 0%, #1d4ed8 100%);
             box-shadow: 0 2px 12px rgba(37, 99, 235, 0.35);
+            height: 30px;
+            min-height: 30px;
         }
         @keyframes table-pending-banner-pulse {
             0%, 100% { box-shadow: 0 3px 14px rgba(37, 99, 235, 0.45); }
@@ -5796,10 +5792,7 @@ function updateTabsStickyStackStuck() {
     var stack = document.querySelector('.tabs-sticky-stack');
     if (!stack) return;
     var badge = document.getElementById('unsavedChangesBadge');
-    var stickyTop = 0;
-    if (badge && badge.classList.contains('visible')) {
-        stickyTop = badge.classList.contains('unsaved-changes-badge--table-pending') ? 42 : 30;
-    }
+    var stickyTop = (badge && badge.classList.contains('visible')) ? 30 : 0;
     var rect = stack.getBoundingClientRect();
     var stuck = rect.top <= stickyTop + 0.75;
     stack.classList.toggle('is-stuck', stuck);
@@ -13798,6 +13791,14 @@ function updateTabsStickyStackStuck() {
                             } else {
                                 input.value = newValue; // Update the input field
                             }
+                        }
+                    } else if (field === 'latitude' || field === 'longitude') {
+                        const raw = String(input.value || '').trim();
+                        if (!raw) {
+                            newValue = null;
+                        } else {
+                            const num = parseFloat(raw);
+                            newValue = isNaN(num) ? null : num;
                         }
                     } else {
                         newValue = input.value;
