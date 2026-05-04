@@ -219,6 +219,28 @@
         .header-buttons .btn svg {
             stroke: currentColor;
         }
+        .tabs-sticky-stack {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            /* Full-bleed white behind the bar (body uses horizontal margin) */
+            width: 100vw;
+            max-width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-bottom: 15px;
+            padding: 0 30px;
+            background: #ffffff;
+            border: none;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        .tabs-sticky-stack.is-stuck {
+            /* Stuck only: drop shadow; no stroke (inner .tabs border cleared below) */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 8px 28px rgba(0, 0, 0, 0.16);
+        }
+        .header:has(.unsaved-changes-badge.visible) + .tabs-sticky-stack {
+            top: 30px;
+        }
         .unsaved-changes-badge {
             display: none;
             font-size: 12px;
@@ -258,8 +280,13 @@
             display: flex;
         }
         
-        .tabs { width: 100%; max-width: none; margin: 0 0 15px 0; padding: 8px 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; }
-        .tabs-main { flex: 0 1 auto; min-width: min-content; max-width: 640px; display: flex; align-items: stretch; }
+        .tabs { width: 100%; max-width: none; margin: 0; padding: 8px 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; }
+        .tabs-sticky-stack.is-stuck .tabs {
+            border: none;
+            border-radius: 0;
+        }
+        .tabs-main { flex: 0 1 auto; min-width: min-content; max-width: 720px; display: flex; align-items: stretch; }
+        .tabs-sheets-sync-badge { display: flex; align-items: center; flex-shrink: 0; }
         .tabs-sheets-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; flex: 1 1 220px; min-width: 0; }
         #sheetsActionStatus.tabs-action-status {
             margin-left: 0;
@@ -320,14 +347,28 @@
         .tabs-sheets-btn--save .tabs-sheets-btn__icon { color: #34a853; }
         .tabs-sheets-btn--csv .tabs-sheets-btn__icon { color: #7c3aed; }
         .tabs-sheets-btn--errors .tabs-sheets-btn__icon { color: #dc3545; }
-        .tabs-toggle-track { position: relative; display: flex; flex: 1; width: 100%; min-width: min-content; max-width: 640px; padding: 0; gap: 4px; background: linear-gradient(to bottom, #e8e8e8 0%, #f4f4f4 40%, #ffffff 100%); border-radius: 12px; border: 1px solid #e0e0e0; box-sizing: border-box; }
-        .tabs-toggle-thumb { position: absolute; top: 0; left: 0; right: auto; bottom: 0; width: calc((100% - 4px) / 2); border-radius: 10px; background: linear-gradient(to bottom, #333333 0%, #000000 100%); transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); z-index: 0; pointer-events: none; box-sizing: border-box; }
+        .tabs-toggle-track { position: relative; display: flex; flex: 1; width: 100%; min-width: min-content; max-width: 720px; padding: 0; gap: 4px; background: linear-gradient(to bottom, #e8e8e8 0%, #f4f4f4 40%, #ffffff 100%); border-radius: 12px; border: 1px solid #e0e0e0; box-sizing: border-box; }
+        .tabs-toggle-thumb { position: absolute; top: 0; left: 0; right: auto; bottom: 0; width: calc((100% - 4px) / 2); border-radius: 10px; background: linear-gradient(to bottom, #444444 0%, #222222 100%); transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); z-index: 0; pointer-events: none; box-sizing: border-box; }
         .tabs-toggle-track--data .tabs-toggle-thumb { transform: translateX(calc(100% + 4px)); }
-        .tabs-toggle-btn { position: relative; z-index: 1; flex: 1; border: none; background: transparent; padding: 10px 20px 10px 12px; cursor: pointer; font-size: 17px; font-weight: 400; border-radius: 10px; color: rgba(33, 37, 41, 0.72); transition: color 0.2s ease; display: flex; align-items: center; justify-content: flex-start; gap: 10px; text-align: left; white-space: nowrap; }
+        .tabs-toggle-btn { position: relative; z-index: 1; flex: 1; border: none; background: transparent; padding: 10px 30px 10px 12px; cursor: pointer; font-size: 17px; font-weight: 400; border-radius: 10px; color: rgba(33, 37, 41, 0.72); transition: color 0.2s ease; display: flex; align-items: center; justify-content: flex-start; gap: 10px; text-align: left; white-space: nowrap; }
+        .tabs-toggle-track > .tabs-toggle-btn:last-of-type { padding-left: 24px; }
         .tabs-toggle-btn .tabs-toggle-btn__label { flex-shrink: 0; }
         .tabs-toggle-btn .tabs-toggle-btn__icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .tabs-toggle-btn .tabs-toggle-btn__icon svg { display: block; width: 20px; height: 20px; }
         .tabs-toggle-btn.active { color: #ffffff; }
+        /* Active tab: icon colors only (labels stay white); thumb is sibling div so buttons are nth-child 2 and 3 */
+        .tabs-toggle-track > button:nth-child(2).active .tabs-toggle-btn__icon {
+            color: #22c55e;
+        }
+        .tabs-toggle-track > button:nth-child(2).active .tabs-toggle-btn__icon svg {
+            stroke: #22c55e;
+        }
+        .tabs-toggle-track > button:nth-child(3).active .tabs-toggle-btn__icon {
+            color: #0ea5e9;
+        }
+        .tabs-toggle-track > button:nth-child(3).active .tabs-toggle-btn__icon svg {
+            stroke: #0ea5e9;
+        }
         .tabs-toggle-btn:hover:not(.active) { color: rgba(33, 37, 41, 0.95); }
         .tabs-toggle-btn:focus-visible { outline: 2px solid #007AFF; outline-offset: 2px; }
         .tab-settings-btn { display: flex; align-items: center; justify-content: center; padding: 10px 12px; border: none; background: transparent; color: rgba(33,37,41,0.7); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; }
@@ -355,6 +396,47 @@
         .stats > .stat-card:first-child p,
         .stats > .stat-card:first-child h3 { color: #ffffff; }
         .google-sheets-status-section { width: 100%; margin: 0 0 24px 0; padding: 20px; background: #fff; border-radius: 18px; border: 1px solid #e0e0e0; }
+        .sheets-status-badge {
+            box-sizing: border-box;
+            padding: 6px 12px;
+            background: #ffffff;
+            color: #666666;
+            border: 1px solid #d0d0d0;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            line-height: 1.2;
+        }
+        .sheets-status-badge #sheetsStatusIcon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .sheets-status-badge #sheetsStatusIcon svg {
+            display: block;
+        }
+        .sheets-status-badge #sheetsStatusText {
+            max-width: min(420px, 42vw);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .sheets-status-badge--connected #sheetsStatusIcon { color: #34a853; }
+        .sheets-status-badge--connecting #sheetsStatusIcon { color: #888888; }
+        .sheets-status-badge--connecting {
+            border: none;
+        }
+        .sheets-status-badge--error {
+            border: none;
+        }
+        .sheets-status-badge--error #sheetsStatusIcon { color: #c62828; }
         .error-console-section {
             display: none;
             width: 100%;
@@ -1269,7 +1351,7 @@
         
         .preview-container { width: 100%; margin: 0; padding: 0; }
         .preview-content-wrapper { display: flex; gap: 0; align-items: stretch; }
-        .preview-sidebar { width: 280px; flex-shrink: 0; position: sticky; top: 50px; height: calc(100vh - 50px); align-self: flex-start; background: #ffffff; }
+        .preview-sidebar { width: 280px; flex-shrink: 0; position: sticky; top: 90px; height: calc(100vh - 90px); align-self: flex-start; background: #ffffff; }
         .preview-filters { background: #ffffff; padding: 0; border-radius: 0; box-shadow: none; height: 100%; display: flex; flex-direction: column; }
         .preview-filters h3 { font-size: 18px; color: var(--text-primary); margin-bottom: 0; padding: 20px 20px 15px; background: #ffffff; flex-shrink: 0; }
         .preview-main { flex: 1; min-width: 0; padding: 0 30px 30px 30px; }
@@ -1784,9 +1866,10 @@
                 justify-content: flex-start;
             }
             .map-collapsed .map-header {
-                left: 50%;
-                top: 1px;
-                transform: translateX(-50%);
+                position: relative;
+                left: auto;
+                top: auto;
+                transform: none;
                 justify-content: center;
             }
             .map-header h2 {
@@ -1801,7 +1884,7 @@
             .map-collapsed .map-toggle-btn {
                 width: auto !important;
                 padding: 10px 14px !important;
-                transform: translateY(-30px) !important;
+                transform: none !important;
                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
             }
             .map-toggle-text {
@@ -1814,8 +1897,8 @@
         }
         .map-collapsed {
             padding: 0;
-            margin-top: 0;
-            margin-bottom: -20px;
+            margin-top: 20px;
+            margin-bottom: 16px;
             background: transparent !important;
         }
         .map-header {
@@ -1832,13 +1915,14 @@
             justify-content: flex-start;
         }
         .map-collapsed .map-header {
+            position: relative;
             justify-content: center;
             gap: 12px;
-            margin-bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 999;
-            top: 23px;
+            margin-bottom: 4px;
+            left: auto;
+            top: auto;
+            transform: none;
+            z-index: 1;
         }
         .map-header h2 {
             font-size: 20px;
@@ -2175,6 +2259,7 @@
         
         /* Ensure content is hidden until logged in */
         body:not(.logged-in) .header,
+        body:not(.logged-in) .tabs-sticky-stack,
         body:not(.logged-in) .tabs,
         body:not(.logged-in) .tab-content {
             display: none;
@@ -2975,11 +3060,15 @@
                     
                     // Show admin content
                     const header = document.querySelector('.header');
+                    const tabsStack = document.querySelector('.tabs-sticky-stack');
                     const tabs = document.querySelector('.tabs');
                     const tabContent = document.querySelectorAll('.tab-content');
                     if (header) {
                         header.style.display = '';
                         console.log('✅ Header shown');
+                    }
+                    if (tabsStack) {
+                        tabsStack.style.display = '';
                     }
                     if (tabs) {
                         tabs.style.display = '';
@@ -3018,9 +3107,11 @@
                     
                     // Hide all admin content
                     const header = document.querySelector('.header');
+                    const tabsStack = document.querySelector('.tabs-sticky-stack');
                     const tabs = document.querySelector('.tabs');
                     const tabContent = document.querySelectorAll('.tab-content');
                     if (header) header.style.display = 'none';
+                    if (tabsStack) tabsStack.style.display = 'none';
                     if (tabs) tabs.style.display = 'none';
                     tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                 }
@@ -3229,9 +3320,11 @@
                             document.body.classList.remove('logged-in');
                             // Hide all admin content
                             const header = document.querySelector('.header');
+                            const tabsStack = document.querySelector('.tabs-sticky-stack');
                             const tabs = document.querySelector('.tabs');
                             const tabContent = document.querySelectorAll('.tab-content');
                             if (header) header.style.display = 'none';
+                            if (tabsStack) tabsStack.style.display = 'none';
                             if (tabs) tabs.style.display = 'none';
                             tabContent.forEach(function(tab) { tab.style.display = 'none'; });
                         }
@@ -3276,6 +3369,8 @@
                 </span>
             </div>
         </div>
+    </div>
+    <div class="tabs-sticky-stack">
         <div class="tabs">
             <div class="tabs-main">
                 <div class="tabs-toggle-track tabs-toggle-track--admin" id="adminDataToggle" role="tablist" aria-label="Grid view or table view">
@@ -3304,6 +3399,12 @@
                         </span>
                         <span class="tabs-toggle-btn__label">Table View</span>
                     </button>
+                </div>
+            </div>
+            <div class="tabs-sheets-sync-badge">
+                <div id="sheetsStatusBadge" class="sheets-status-badge sheets-status-badge--connecting">
+                    <span id="sheetsStatusIcon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></span>
+                    <span id="sheetsStatusText">Connecting...</span>
                 </div>
             </div>
             <div class="tabs-sheets-actions">
@@ -3376,38 +3477,6 @@
             <div class="stat-card">
                 <p id="typesCount">8</p>
                 <h3>Categories</h3>
-            </div>
-        </div>
-        
-        <!-- Google Sheets Status Section -->
-        <div class="google-sheets-status-section">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
-                <div>
-                    <h3 style="margin: 0 0 5px 0; color: #666; font-weight: 400; display: flex; align-items: center; gap: 8px;">
-                        Google Sheets Integration
-                    </h3>
-                    <p style="margin: 0; color: #666; font-size: 14px;">All changes sync to your Google Sheet.</p>
-                </div>
-                <div id="sheetsStatusBadge" style="padding: 6px 12px; background: #9aa0a6; color: white; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                    <span id="sheetsStatusIcon">⟳</span>
-                    <span id="sheetsStatusText">Connecting...</span>
-                </div>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 0; background: white; padding: 10px 0 0 0; border-radius: 6px;">
-                <div>
-                    <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Google App Script URL</label>
-                    <input type="text" id="sheetsScriptUrl" value="https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec" readonly
-                           style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; background: #f8f9fa; color: #333; cursor: text;"
-                           onclick="this.select();">
-                </div>
-                
-                <div>
-                    <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Last Sync</label>
-                    <div id="lastSyncTime" style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; display: flex; align-items: center;">
-                        Loading...
-                    </div>
-                </div>
             </div>
         </div>
         
@@ -3642,6 +3711,27 @@
     
     <div id="settingsTab" class="tab-content">
         <div class="settings-container" style="width: 100%; margin: 0; padding: 20px;">
+            <!-- Google Sheets Integration (Settings only; live status badge is in the tab bar) -->
+            <div class="google-sheets-status-section">
+                <div style="margin-bottom: 15px;">
+                    <h3 style="margin: 0 0 5px 0; color: #666; font-weight: 400;">Google Sheets Integration</h3>
+                    <p style="margin: 0; color: #666; font-size: 14px;">All changes sync to your Google Sheet.</p>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 0; background: white; padding: 10px 0 0 0; border-radius: 6px;">
+                    <div>
+                        <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Google App Script URL</label>
+                        <input type="text" id="sheetsScriptUrl" value="https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec" readonly
+                               style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; background: #f8f9fa; color: #333; cursor: text;"
+                               onclick="this.select();">
+                    </div>
+                    <div>
+                        <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Last Sync</label>
+                        <div id="lastSyncTime" style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; display: flex; align-items: center;">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style="margin-bottom: 30px;">
                 <h2 style="margin: 0 0 10px 0; color: #212529;">Field Configuration</h2>
                 <p style="color: #6c757d; margin: 0;">Manage the options available in the Add/Edit listing form. Changes are saved automatically.</p>
@@ -5274,6 +5364,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         
         document.addEventListener('DOMContentLoaded', function() {
             updateUnsavedChangesBadge();
+            updateTabsStickyStackStuck();
+            window.addEventListener('scroll', updateTabsStickyStackStuck, { passive: true });
+            window.addEventListener('resize', updateTabsStickyStackStuck);
             // Initialize Quill editor for detailedDescription
             initializeQuillEditor();
             // Note: Accordion Quill editors initialize when modal opens (they're inside the modal)
@@ -5590,6 +5683,19 @@ function updateUnsavedChangesBadge() {
     } else {
         badge.classList.remove('visible');
     }
+    if (typeof updateTabsStickyStackStuck === 'function') {
+        updateTabsStickyStackStuck();
+    }
+}
+
+function updateTabsStickyStackStuck() {
+    var stack = document.querySelector('.tabs-sticky-stack');
+    if (!stack) return;
+    var badge = document.getElementById('unsavedChangesBadge');
+    var stickyTop = (badge && badge.classList.contains('visible')) ? 30 : 0;
+    var rect = stack.getBoundingClientRect();
+    var stuck = rect.top <= stickyTop + 0.75;
+    stack.classList.toggle('is-stuck', stuck);
 }
 
         // Helper function to parse CSV/TSV text into array of objects
@@ -5947,16 +6053,20 @@ function updateUnsavedChangesBadge() {
             const actionStatus = document.getElementById('sheetsActionStatus');
             const lastSync = document.getElementById('lastSyncTime');
             
+            const sheetsCheckSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+            const sheetsConnectingSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>';
+            const sheetsErrorSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
             if (success) {
-                statusBadge.style.background = '#34a853';
-                statusIcon.textContent = '✓';
+                statusBadge.className = 'sheets-status-badge sheets-status-badge--connected';
+                statusIcon.innerHTML = sheetsCheckSvg;
+                statusText.removeAttribute('title');
                 
                 // Extract count from messages like "Loaded 390 listings" or "Loaded 390 listings (CSV)"
                 if (message) {
                     const countMatch = message.match(/(\d+)\s+listings?/);
                     if (countMatch) {
                         const count = countMatch[1];
-                        statusText.textContent = `Connected (${count} listings)`;
+                        statusText.textContent = 'Connected (' + count + ' listings)';
                     } else {
                 statusText.textContent = 'Connected';
                     }
@@ -5968,13 +6078,24 @@ function updateUnsavedChangesBadge() {
             } else {
                 // Check if it's a loading/connecting state or an error
                 if (message && (message.includes('Loading') || message.includes('Connecting'))) {
-                    statusBadge.style.background = '#9aa0a6';
-                    statusIcon.textContent = '⟳';
+                    statusBadge.className = 'sheets-status-badge sheets-status-badge--connecting';
+                    statusIcon.innerHTML = sheetsConnectingSvg;
+                    statusText.removeAttribute('title');
                     statusText.textContent = 'Connecting...';
                 } else {
-                    statusBadge.style.background = '#ea4335';
-                    statusIcon.textContent = '✗';
-                    statusText.textContent = 'Error';
+                    statusBadge.className = 'sheets-status-badge sheets-status-badge--error';
+                    statusIcon.innerHTML = sheetsErrorSvg;
+                    var errRaw = (message && String(message).trim()) ? String(message).trim() : '';
+                    var errLabel = errRaw || 'Error';
+                    if (errLabel.length > 140) {
+                        errLabel = errLabel.slice(0, 137) + '...';
+                    }
+                    statusText.textContent = errLabel;
+                    if (errRaw) {
+                        statusText.setAttribute('title', errRaw);
+                    } else {
+                        statusText.removeAttribute('title');
+                    }
                 }
             }
             
@@ -6733,6 +6854,9 @@ function updateUnsavedChangesBadge() {
         
         // Error Console Functions
         function showErrorConsole() {
+            if (typeof window.switchTab === 'function') {
+                window.switchTab('admin');
+            }
             document.getElementById('errorConsoleSection').style.display = 'block';
             document.body.classList.add('error-console-open');
             validateListings();
@@ -10152,6 +10276,7 @@ function updateUnsavedChangesBadge() {
             document.querySelectorAll('.tab-content').forEach(function(content) { content.classList.remove('active'); });
             
             const header = document.querySelector('.header');
+            const tabsStack = document.querySelector('.tabs-sticky-stack');
             
             if (tab === 'admin') {
                 if (settingsBtn) settingsBtn.classList.remove('active');
@@ -10166,6 +10291,7 @@ function updateUnsavedChangesBadge() {
                 }
                 document.getElementById('adminTab').classList.add('active');
                 if (header) header.style.display = 'block';
+                if (tabsStack) tabsStack.style.display = '';
             } else if (tab === 'data') {
                 if (settingsBtn) settingsBtn.classList.remove('active');
                 toggleBtns.forEach(function(btn, i) {
@@ -10179,11 +10305,13 @@ function updateUnsavedChangesBadge() {
                 }
                 document.getElementById('dataTab').classList.add('active');
                 if (header) header.style.display = 'block';
+                if (tabsStack) tabsStack.style.display = '';
                 renderDataTable();
             } else if (tab === 'settings') {
                 if (settingsBtn) settingsBtn.classList.add('active');
                 document.getElementById('settingsTab').classList.add('active');
                 if (header) header.style.display = 'block';
+                if (tabsStack) tabsStack.style.display = '';
                 renderSettings();
             }
             };
@@ -15033,5 +15161,3 @@ function updateUnsavedChangesBadge() {
 
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-
