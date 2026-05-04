@@ -292,19 +292,10 @@
             justify-content: center;
             gap: 10px;
         }
-        /* Table View: uncommitted cell edits — commit via Update Table before Sheets sync */
+        /* Table View: uncommitted cell edits — same size as green bar, just blue */
         .unsaved-changes-badge.unsaved-changes-badge--table-pending {
             background: linear-gradient(to bottom, #2563eb 0%, #1d4ed8 100%);
-            box-shadow: 0 3px 14px rgba(37, 99, 235, 0.45);
-            font-size: 13px;
-            font-weight: 600;
-            padding: 0 16px;
-            min-height: 36px;
-            height: auto;
-            white-space: normal;
-            text-align: center;
-            line-height: 1.35;
-            animation: table-pending-banner-pulse 2.2s ease-in-out infinite;
+            box-shadow: 0 2px 12px rgba(37, 99, 235, 0.35);
         }
         @keyframes table-pending-banner-pulse {
             0%, 100% { box-shadow: 0 3px 14px rgba(37, 99, 235, 0.45); }
@@ -5699,6 +5690,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         let deleteConfirmTimeout = null;
         /** Table View: cell edits in the DOM not yet applied with Update Table */
         let tableEditsPending = false;
+        let committingTableEdits = false;
         let unsavedChanges = false;
         let quillDetailedDescription = null;
         let quillAccordionPanel1 = null;
@@ -5718,6 +5710,7 @@ function resetUnsavedChanges() {
 }
 
 function markTableEditsPending() {
+    if (committingTableEdits) return;
     tableEditsPending = true;
     updateUnsavedChangesBadge();
 }
@@ -5728,7 +5721,7 @@ function clearTableEditsPending() {
 }
 
 var SHEETS_BANNER_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
-var TABLE_COMMIT_BANNER_SVG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>';
+var TABLE_COMMIT_BANNER_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>';
 
 function updateUnsavedChangesBadge() {
     const badge = document.getElementById('unsavedChangesBadge');
@@ -5741,7 +5734,7 @@ function updateUnsavedChangesBadge() {
         badge.classList.add('visible', 'unsaved-changes-badge--table-pending');
         badge.setAttribute('aria-label', 'Table edits not committed. Click to run Update Table, or use the Update Table button in Table View.');
         badge.innerHTML = TABLE_COMMIT_BANNER_SVG +
-            '<span>Table edits not committed — click here or <strong>Update Table</strong> in Table View first. Then the bar turns green for Save to Google Sheets.</span>';
+            '<span>Table edits not committed: update table</span>';
         badge.onclick = function() {
             saveTableChanges({ silent: true });
         };
@@ -13741,6 +13734,7 @@ function updateTabsStickyStackStuck() {
         
         function saveTableChanges(options) {
             options = options || {};
+            committingTableEdits = true;
             const rows = Array.from(document.querySelectorAll('#dataTableBody tr'));
             let changeCount = 0;
             
@@ -13824,6 +13818,7 @@ function updateTabsStickyStackStuck() {
                 }
             }
             updateUnsavedChangesBadge();
+            committingTableEdits = false;
         }
         
         function deleteFromTable(index) {
