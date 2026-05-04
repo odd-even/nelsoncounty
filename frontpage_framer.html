@@ -2774,6 +2774,13 @@
                 border: 1px solid #dddddd !important;
                 z-index: 1010 !important; /* Higher than preview-results (1005) and mobile-filter-bar (1002) */
             }
+            /* Expanded map: Close Map stays under sticky search / filter bar (1000–1002) */
+            .map-container:not(.map-collapsed) .map-header {
+                z-index: 990;
+            }
+            .map-container:not(.map-collapsed) .map-toggle-btn {
+                z-index: 990 !important;
+            }
             .map-toggle-text {
                 font-size: 12px;
             }
@@ -3933,7 +3940,7 @@
                             <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <input type="text" id="previewSearchInput" placeholder="Find your adventure">
+                            <input type="text" id="previewSearchInput" placeholder="Search...">
                         </div>
                     </div>
 
@@ -3945,7 +3952,7 @@
                                 <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
-                                <input type="text" id="previewSearchInputMobile" placeholder="Find your adventure">
+                                <input type="text" id="previewSearchInputMobile" placeholder="Search...">
                             </div>
                         </div>
                         <div class="mobile-filter-group mobile-category-filter-group">

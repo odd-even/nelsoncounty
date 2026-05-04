@@ -241,6 +241,10 @@
         .header:has(.unsaved-changes-badge.visible) + .tabs-sticky-stack {
             top: 30px;
         }
+        /* Fixed “Save to Sheets” bar doesn’t occupy flow — push title / top of header below it */
+        .header:has(.unsaved-changes-badge.visible) .header-content {
+            padding-top: 46px;
+        }
         .unsaved-changes-badge {
             display: none;
             font-size: 12px;
@@ -401,7 +405,7 @@
             padding: 6px 12px;
             background: #ffffff;
             color: #666666;
-            border: 1px solid #d0d0d0;
+            border: none;
             border-radius: 8px;
             font-size: 12px;
             font-weight: 500;
@@ -430,12 +434,6 @@
         }
         .sheets-status-badge--connected #sheetsStatusIcon { color: #34a853; }
         .sheets-status-badge--connecting #sheetsStatusIcon { color: #888888; }
-        .sheets-status-badge--connecting {
-            border: none;
-        }
-        .sheets-status-badge--error {
-            border: none;
-        }
         .sheets-status-badge--error #sheetsStatusIcon { color: #c62828; }
         .error-console-section {
             display: none;
@@ -1357,7 +1355,6 @@
         .preview-main { flex: 1; min-width: 0; padding: 0 30px 30px 30px; }
         
         .preview-search { margin-bottom: 20px; }
-        .preview-search label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
         .preview-search input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 18px; font-size: 14px; transition: border-color 0.2s; background: var(--bg-hover); }
         .preview-search input:focus { outline: none; border-color: #555555; background: var(--card-bg); }
         
@@ -1913,6 +1910,10 @@
             z-index: 1000;
             margin: 0;
             justify-content: flex-start;
+        }
+        /* Close Map: under sticky tabs bar (999) */
+        .map-container:not(.map-collapsed) .map-header {
+            z-index: 998;
         }
         .map-collapsed .map-header {
             position: relative;
@@ -3519,8 +3520,7 @@
                         <div class="filter-content">
                             <div class="filter-section search-section">
                                 <div class="preview-search">
-                                    <label>Search Listings</label>
-                                    <input type="text" id="adminSearchInput" placeholder="Search all fields (name, description, tags, amenities, contact info...)" onkeyup="filterListings()" />
+                                    <input type="text" id="adminSearchInput" placeholder="Search..." onkeyup="filterListings()" />
                                 </div>
                             </div>
                             
