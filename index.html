@@ -194,12 +194,31 @@
         
         /* Card info icons */
         
-        .header { background: #ffffff; color: #212529; padding: 0 20px 0 20px; transition: all 0.3s; width: 100%; }
+        .header { background: #ffffff; color: #212529; padding: 0; transition: all 0.3s; width: 100%; }
         .main-container { width: 100%; max-width: none; margin: 0; }
-        .header-content { width: 100%; max-width: none; margin: 0; padding: 30px 20px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-        .header h1 { font-size: 28px; margin-bottom: 10px; }
-        .header p { opacity: 0.9; font-size: 16px; }
+        .header-content { width: 100%; max-width: none; margin: 0; padding: 30px 0 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .header h1 { font-size: calc(28px * 1.3); margin-bottom: 10px; font-weight: 400; letter-spacing: -0.02em; }
+        .header h1 .header-title-brand { color: #000000; font-weight: 700; }
+        .header h1 .header-title-suffix { color: #555555; font-weight: 400; }
+        .header p { color: #666666; font-size: 14px; opacity: 1; }
         .header-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .header-buttons .btn {
+            border-radius: 12px;
+            background: #ffffff;
+            color: #6b7280;
+            border: 1px solid #e0e0e0;
+            box-shadow: none;
+        }
+        .header-buttons .btn:hover {
+            background: #f5f5f5;
+            color: #4b5563;
+            border-color: #d1d5db;
+            transform: none;
+            box-shadow: none;
+        }
+        .header-buttons .btn svg {
+            stroke: currentColor;
+        }
         .unsaved-changes-badge {
             display: none;
             font-size: 12px;
@@ -239,16 +258,82 @@
             display: flex;
         }
         
-        .tabs { width: 100%; max-width: none; margin: 0; padding: 8px 20px; display: flex; gap: 0; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .tab-btn { background: transparent; border: none; color: rgba(33,37,41,0.7); padding: 12px 24px; cursor: pointer; font-size: 14px; font-weight: 600; border-radius: 18px; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; position: relative; margin: 0 2px; }
-        .tab-btn:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%); width: 1px; height: 60%; background: #e0e0e0; }
-        .tab-btn svg { stroke: rgba(33,37,41,0.7); transition: stroke 0.3s; }
-        .tab-btn:hover { color: #ffffff; background: #007AFF; }
-        .tab-btn:hover svg { stroke: #ffffff; }
-        .tab-btn:hover::after { display: none; }
-        .tab-btn.active { color: #ffffff; background: #007AFF; }
-        .tab-btn.active svg { stroke: #ffffff; }
-        .tab-btn.active::after { display: none; }
+        .tabs { width: 100%; max-width: none; margin: 0 0 15px 0; padding: 8px 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 10px; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 18px; }
+        .tabs-main { flex: 0 1 auto; min-width: min-content; max-width: 640px; display: flex; align-items: stretch; }
+        .tabs-sheets-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; flex: 1 1 220px; min-width: 0; }
+        #sheetsActionStatus.tabs-action-status {
+            margin-left: 0;
+            font-size: 11px;
+            font-weight: 400;
+            color: #666666;
+            line-height: 1.35;
+            max-width: min(320px, 40vw);
+        }
+        #sheetsActionStatus.tabs-action-status.tabs-action-status--problem {
+            color: #c62828;
+        }
+        .tabs-sheets-btn {
+            box-sizing: border-box;
+            color: #555555;
+            border: 1px solid #d0d0d0;
+            padding: 5px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .tabs-sheets-btn--reload {
+            background: linear-gradient(to bottom, #ffffff 0%, #fafcff 45%, #f0f6ff 100%);
+        }
+        .tabs-sheets-btn--save {
+            background: linear-gradient(to bottom, #ffffff 0%, #fbfefc 45%, #eef6f1 100%);
+        }
+        .tabs-sheets-btn--csv {
+            background: linear-gradient(to bottom, #ffffff 0%, #fcfbff 45%, #f5f0ff 100%);
+        }
+        .tabs-sheets-btn--errors {
+            background: linear-gradient(to bottom, #ffffff 0%, #fffbfb 45%, #fff0f1 100%);
+        }
+        .tabs-sheets-btn:hover { border-color: #bbbbbb; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04); }
+        .tabs-sheets-btn--reload:hover {
+            background: linear-gradient(to bottom, #ffffff 0%, #f5f9ff 50%, #e8f1ff 100%);
+        }
+        .tabs-sheets-btn--save:hover {
+            background: linear-gradient(to bottom, #ffffff 0%, #f4faf6 50%, #e6f3eb 100%);
+        }
+        .tabs-sheets-btn--csv:hover {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8f4ff 50%, #eee6ff 100%);
+        }
+        .tabs-sheets-btn--errors:hover {
+            background: linear-gradient(to bottom, #ffffff 0%, #fff8f8 50%, #ffe8ea 100%);
+        }
+        .tabs-sheets-btn:focus-visible { outline: 2px solid #007AFF; outline-offset: 2px; }
+        .tabs-sheets-btn__icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tabs-sheets-btn__icon svg { display: block; width: 14px; height: 14px; }
+        .tabs-sheets-btn--reload .tabs-sheets-btn__icon { color: #4285f4; }
+        .tabs-sheets-btn--save .tabs-sheets-btn__icon { color: #34a853; }
+        .tabs-sheets-btn--csv .tabs-sheets-btn__icon { color: #7c3aed; }
+        .tabs-sheets-btn--errors .tabs-sheets-btn__icon { color: #dc3545; }
+        .tabs-toggle-track { position: relative; display: flex; flex: 1; width: 100%; min-width: min-content; max-width: 640px; padding: 0; gap: 4px; background: linear-gradient(to bottom, #e8e8e8 0%, #f4f4f4 40%, #ffffff 100%); border-radius: 12px; border: 1px solid #e0e0e0; box-sizing: border-box; }
+        .tabs-toggle-thumb { position: absolute; top: 0; left: 0; right: auto; bottom: 0; width: calc((100% - 4px) / 2); border-radius: 10px; background: linear-gradient(to bottom, #333333 0%, #000000 100%); transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1); z-index: 0; pointer-events: none; box-sizing: border-box; }
+        .tabs-toggle-track--data .tabs-toggle-thumb { transform: translateX(calc(100% + 4px)); }
+        .tabs-toggle-btn { position: relative; z-index: 1; flex: 1; border: none; background: transparent; padding: 10px 20px 10px 12px; cursor: pointer; font-size: 17px; font-weight: 400; border-radius: 10px; color: rgba(33, 37, 41, 0.72); transition: color 0.2s ease; display: flex; align-items: center; justify-content: flex-start; gap: 10px; text-align: left; white-space: nowrap; }
+        .tabs-toggle-btn .tabs-toggle-btn__label { flex-shrink: 0; }
+        .tabs-toggle-btn .tabs-toggle-btn__icon { display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .tabs-toggle-btn .tabs-toggle-btn__icon svg { display: block; width: 20px; height: 20px; }
+        .tabs-toggle-btn.active { color: #ffffff; }
+        .tabs-toggle-btn:hover:not(.active) { color: rgba(33, 37, 41, 0.95); }
+        .tabs-toggle-btn:focus-visible { outline: 2px solid #007AFF; outline-offset: 2px; }
+        .tab-settings-btn { display: flex; align-items: center; justify-content: center; padding: 10px 12px; border: none; background: transparent; color: rgba(33,37,41,0.7); border-radius: 12px; cursor: pointer; transition: all 0.3s ease; flex-shrink: 0; }
+        .tab-settings-btn svg { display: block; flex-shrink: 0; }
+        .tab-settings-btn:hover { color: #ffffff; background: #111111; }
+        .tab-settings-btn.active { color: #ffffff; background: #111111; }
         
         .btn { padding: 12px 24px; border: none; border-radius: 18px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
         .btn-success { background: #28a745; color: white; font-weight: 600; }
@@ -264,10 +349,145 @@
         .btn-info { background: #17a2b8; color: white; font-weight: 600; }
         .btn-info:hover { background: #138496; box-shadow: 0 4px 8px rgba(23, 162, 184, 0.3); }
         
-        .stats { width: 100%; margin: 30px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .stat-card { background: var(--card-bg); padding: 25px; border-radius: 12px; box-shadow: 0 2px 8px var(--shadow); border-left: 4px solid #007AFF; }
-        .stat-card h3 { font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; }
-        .stat-card p { font-size: 32px; font-weight: 700; color: #007AFF; }
+        .stats { width: 100%; margin: 0 0 15px 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .stat-card { background: var(--card-bg); padding: 22px; border-radius: 18px; border: 1px solid #e0e0e0; }
+        .stats > .stat-card:first-child { background: linear-gradient(to bottom, #555555 0%, #333333 100%); border-color: rgba(0, 0, 0, 0.2); }
+        .stats > .stat-card:first-child p,
+        .stats > .stat-card:first-child h3 { color: #ffffff; }
+        .google-sheets-status-section { width: 100%; margin: 0 0 24px 0; padding: 20px; background: #fff; border-radius: 18px; border: 1px solid #e0e0e0; }
+        .error-console-section {
+            display: none;
+            width: 100%;
+            margin: 0 0 24px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+        .error-console-section__header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .error-console-section__title {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-weight: 400;
+            font-size: 1.125rem;
+        }
+        .error-console-section__lead {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+        .error-console-section__actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .error-console-btn {
+            box-sizing: border-box;
+            border: 1px solid #d0d0d0;
+            background: #fff;
+            color: #555;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .error-console-btn:hover { background: #f7f7f7; border-color: #bbb; }
+        .error-console-btn--primary {
+            border-color: #dc3545;
+            color: #c62828;
+        }
+        .error-console-btn--primary:hover { background: #fff5f5; border-color: #c62828; }
+        .error-console-section__body {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .error-console-section__empty {
+            text-align: center;
+            padding: 32px 16px;
+            color: #999;
+            font-size: 14px;
+        }
+        .error-console-section__success-title {
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            color: #2e7d32;
+            font-weight: 400;
+        }
+        .error-console-section__success-lead { margin: 0; color: #666; font-size: 14px; }
+        .error-console-section__loading {
+            margin-top: 16px;
+            padding: 12px 14px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            color: #555;
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .error-console-section__summary {
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+        }
+        .error-console-section__group {
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            background: #fff;
+        }
+        .error-console-section__group-title {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+        .error-console-section__group-title--error { color: #c62828; }
+        .error-console-section__group-title--warning { color: #b45309; }
+        .error-console-section__row {
+            background: #f8f9fa;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #eee;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .error-console-section__row:hover {
+            background: #f0f1f3;
+            border-color: #ddd;
+        }
+        .error-console-section__row-name { font-weight: 600; color: #333; margin-bottom: 4px; font-size: 14px; }
+        .error-console-section__row-msg { color: #666; font-size: 13px; line-height: 1.4; font-weight: 400; }
+        .stat-card p {
+            font-size: calc(32px * 1.3 * 1.2 * 0.9);
+            font-weight: 200;
+            color: #555555;
+            margin: 0;
+            line-height: 1.05;
+            -webkit-font-smoothing: antialiased;
+        }
+        .stat-card h3 { font-size: 14px; color: var(--text-secondary); margin: 6px 0 0 0; font-weight: 400; }
         
         .container { width: 100%; margin: 0; padding: 30px 20px; }
         .section-title { font-size: 24px; margin-bottom: 25px; color: var(--text-primary); }
@@ -941,22 +1161,28 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            border: none;
-            background: rgba(0, 122, 255, 0.9);
-            color: white;
+            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            color: #555555;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            padding: 0;
             cursor: pointer;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
             z-index: 999;
-            transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .back-to-top svg {
+            display: block;
+            flex-shrink: 0;
         }
 
         .back-to-top:hover {
-            background: rgba(0, 122, 255, 1);
+            background: #fafafa;
+            border-color: #d1d5db;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
 
         .back-to-top.hidden {
@@ -1051,13 +1277,13 @@
         .preview-search { margin-bottom: 20px; }
         .preview-search label { display: block; font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
         .preview-search input { width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: 18px; font-size: 14px; transition: border-color 0.2s; background: var(--bg-hover); }
-        .preview-search input:focus { outline: none; border-color: #007AFF; background: var(--card-bg); }
+        .preview-search input:focus { outline: none; border-color: #555555; background: var(--card-bg); }
         
         .preview-filter-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
         .preview-filter-group label { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
         .preview-filter-group select { width: 100%; padding: 9px 12px; border: 1px solid var(--border-color); border-radius: 18px; font-size: 13px; background: var(--bg-hover); cursor: pointer; transition: all 0.2s; color: var(--text-primary); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
         .preview-filter-group select:hover { border-color: #cbd5e1; background: var(--card-bg); }
-        .preview-filter-group select:focus { outline: none; border-color: #007AFF; background: var(--card-bg); }
+        .preview-filter-group select:focus { outline: none; border-color: #555555; background: var(--card-bg); }
         
         /* Type dropdown - remove icon override to use default dropdown arrow only */
         #adminTypeFilter,
@@ -1100,12 +1326,12 @@
         }
         .type-filter-btn:hover { 
             background: var(--bg-hover); 
-            border-color: #007AFF;
+            border-color: #555555;
             color: var(--text-primary);
         }
         .type-filter-btn.active { 
             background: transparent;
-            border-color: #007AFF;
+            border-color: #555555;
             color: var(--text-primary);
         }
         .category-filter-btn {
@@ -3018,11 +3244,11 @@
     <div class="header">
         <div class="header-content">
             <div>
-                <h1>Adventure Directory Admin</h1>
+                <h1><span class="header-title-brand">Nelson County</span> <span class="header-title-suffix">Admin Panel</span></h1>
                 <p>Manage listings with full CRUD operations</p>
             </div>
             <div class="header-buttons">
-                <button class="btn btn-secondary" onclick="logout()" style="background: #dc3545; border-color: #dc3545;">
+                <button class="btn btn-secondary" onclick="logout()">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 6px;">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                         <polyline points="16 17 21 12 16 7"></polyline>
@@ -3033,7 +3259,12 @@
                 <button class="btn btn-success" onclick="openAddModal()">+ Add New Listing</button>
                 <input type="file" id="csvUploadMain" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)">
                 <button class="btn btn-primary" onclick="document.getElementById('csvUploadMain').click()">
-                    Upload CSV/TSV
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    Upload CSV
                 </button>
                 <span id="unsavedChangesBadge" class="unsaved-changes-badge" aria-live="polite" onclick="saveAllToSheets()" style="cursor: pointer;">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -3046,9 +3277,84 @@
             </div>
         </div>
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('admin')">Admin</button>
-            <button class="tab-btn" onclick="switchTab('data')">Data Table</button>
-            <button class="tab-btn" onclick="switchTab('settings')">Settings</button>
+            <div class="tabs-main">
+                <div class="tabs-toggle-track tabs-toggle-track--admin" id="adminDataToggle" role="tablist" aria-label="Grid view or table view">
+                    <div class="tabs-toggle-thumb" aria-hidden="true"></div>
+                    <button type="button" class="tabs-toggle-btn active" role="tab" aria-selected="true" onclick="switchTab('admin')">
+                        <span class="tabs-toggle-btn__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none"></rect>
+                                <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none"></rect>
+                                <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none"></rect>
+                                <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none"></rect>
+                            </svg>
+                        </span>
+                        <span class="tabs-toggle-btn__label">Grid View</span>
+                    </button>
+                    <button type="button" class="tabs-toggle-btn" role="tab" aria-selected="false" onclick="switchTab('data')">
+                        <span class="tabs-toggle-btn__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3" y2="18"></line>
+                                <line x1="21" y1="6" x2="21" y2="18"></line>
+                                <line x1="12" y1="6" x2="12" y2="18"></line>
+                            </svg>
+                        </span>
+                        <span class="tabs-toggle-btn__label">Table View</span>
+                    </button>
+                </div>
+            </div>
+            <div class="tabs-sheets-actions">
+                <button type="button" class="tabs-sheets-btn tabs-sheets-btn--reload" onclick="window.reloadFromSheets && window.reloadFromSheets()">
+                    <span class="tabs-sheets-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <polyline points="1 20 1 14 7 14"></polyline>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                        </svg>
+                    </span>
+                    Reload Source
+                </button>
+                <button type="button" class="tabs-sheets-btn tabs-sheets-btn--save" onclick="saveAllToSheets()">
+                    <span class="tabs-sheets-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                    </span>
+                    Save to Sheets
+                </button>
+                <button type="button" class="tabs-sheets-btn tabs-sheets-btn--csv" onclick="downloadCSV()">
+                    <span class="tabs-sheets-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </span>
+                    CSV Backup
+                </button>
+                <button type="button" class="tabs-sheets-btn tabs-sheets-btn--errors" onclick="showErrorConsole()">
+                    <span class="tabs-sheets-btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </span>
+                    Error Checking
+                </button>
+                <div id="sheetsActionStatus" class="tabs-action-status" role="status" aria-live="polite"></div>
+            </div>
+            <button type="button" class="tab-settings-btn" id="tabSettingsBtn" onclick="switchTab('settings')" aria-label="Settings" title="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
         </div>
     </div>
     
@@ -3056,31 +3362,31 @@
     <div id="adminTab" class="tab-content active">
         <div class="stats">
             <div class="stat-card">
-                <h3>Total Listings</h3>
                 <p id="totalListings">15</p>
+                <h3>Total Listings</h3>
             </div>
             <div class="stat-card">
-                <h3>Featured</h3>
                 <p id="featuredCount">5</p>
+                <h3>Featured</h3>
             </div>
             <div class="stat-card">
-                <h3>Areas Covered</h3>
                 <p id="areasCount">6</p>
+                <h3>Towns</h3>
             </div>
             <div class="stat-card">
-                <h3>Types</h3>
                 <p id="typesCount">8</p>
+                <h3>Categories</h3>
             </div>
         </div>
         
         <!-- Google Sheets Status Section -->
-        <div class="google-sheets-status-section" style="width: 100%; margin: 30px 0; padding: 20px; background: #fff; border-radius: 8px; border-left: 4px solid #34a853; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <div class="google-sheets-status-section">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
                 <div>
-                    <h3 style="margin: 0 0 5px 0; color: #34a853; display: flex; align-items: center; gap: 8px;">
+                    <h3 style="margin: 0 0 5px 0; color: #666; font-weight: 400; display: flex; align-items: center; gap: 8px;">
                         Google Sheets Integration
                     </h3>
-                    <p style="margin: 0; color: #666; font-size: 14px;">All changes sync to your Google Sheet. Make sure your Apps Script is configured to accept JSON POST requests.</p>
+                    <p style="margin: 0; color: #666; font-size: 14px;">All changes sync to your Google Sheet.</p>
                 </div>
                 <div id="sheetsStatusBadge" style="padding: 6px 12px; background: #9aa0a6; color: white; border-radius: 20px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
                     <span id="sheetsStatusIcon">⟳</span>
@@ -3088,86 +3394,41 @@
                 </div>
             </div>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; background: white; padding: 15px; border-radius: 6px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 0; background: white; padding: 10px 0 0 0; border-radius: 6px;">
                 <div>
-                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #333;">Apps Script URL:</label>
+                    <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Google App Script URL</label>
                     <input type="text" id="sheetsScriptUrl" value="https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec" readonly
-                           style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: monospace; font-size: 11px; background: #f8f9fa; cursor: text;"
+                           style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; background: #f8f9fa; color: #333; cursor: text;"
                            onclick="this.select();">
-                    <small style="color: #666;">Click to copy</small>
                 </div>
                 
                 <div>
-                    <label style="display: block; font-weight: 600; margin-bottom: 5px; color: #333;">Last Sync:</label>
-                    <div id="lastSyncTime" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; background: #f8f9fa; color: #666;">
+                    <label style="display: block; font-weight: 400; font-size: 12px; margin-bottom: 5px; color: #333;">Last Sync</label>
+                    <div id="lastSyncTime" style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; background: #f8f9fa; color: #333; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; line-height: 1.35; display: flex; align-items: center;">
                         Loading...
                     </div>
                 </div>
             </div>
-            
-            <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <button onclick="window.reloadFromSheets && window.reloadFromSheets()" 
-                        style="background: #4285f4; color: white; border: none; padding: 10px 20px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="23 4 23 10 17 10"></polyline>
-                        <polyline points="1 20 1 14 7 14"></polyline>
-                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                    </svg>
-                    Reload from Google Sheets
-                </button>
-                <button onclick="saveAllToSheets()"
-                        style="background: #34a853; color: white; border: none; padding: 10px 20px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                        <polyline points="7 3 7 8 15 8"></polyline>
-                    </svg>
-                    Save All to Google Sheets
-                </button>
-                <button onclick="downloadCSV()"
-                        style="background: #4E6B52; color: white; border: none; padding: 10px 20px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    Download CSV Backup
-                </button>
-                <button onclick="showErrorConsole()"
-                        style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
-                        <line x1="12" y1="9" x2="12" y2="13"></line>
-                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                    </svg>
-                    Check for Errors
-                </button>
-                <div id="sheetsActionStatus" style="margin-left: auto; font-weight: 600; color: #34a853;"></div>
-            </div>
         </div>
         
         <!-- Error Console Section -->
-        <div id="errorConsoleSection" class="error-console-section" style="width: 100%; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #fff5f5 0%, #ffe5e5 100%); border-radius: 8px; border-left: 4px solid #dc3545; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: none;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+        <div id="errorConsoleSection" class="error-console-section">
+            <div class="error-console-section__header">
                 <div>
-                    <h3 style="margin: 0 0 5px 0; color: #dc3545; display: flex; align-items: center; gap: 8px;">
-                        <span>⚠️</span> <span id="errorConsoleTitle">Framer Import Error Console</span>
-                    </h3>
-                    <p style="margin: 0; color: #666; font-size: 14px;">Issues that may prevent successful Framer Google Sheets import. Click on an error to navigate to the problematic listing.</p>
+                    <h3 class="error-console-section__title"><span id="errorConsoleTitle">Framer Import Error Console</span></h3>
+                    <p class="error-console-section__lead">Issues that may prevent successful Framer Google Sheets import. Click an error to open the listing.</p>
                 </div>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    <button onclick="validateListings()" 
-                            style="background: #dc3545; color: white; border: none; padding: 8px 16px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <div class="error-console-section__actions">
+                    <button type="button" class="error-console-btn error-console-btn--primary" onclick="validateListings()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <polyline points="23 4 23 10 17 10"></polyline>
                             <polyline points="1 20 1 14 7 14"></polyline>
                             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
                         </svg>
                         Re-validate
                     </button>
-                    <button onclick="hideErrorConsole()" 
-                            style="background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 18px; cursor: pointer; font-weight: 600; display: flex; align-items: center; justify-content: center;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <button type="button" class="error-console-btn" onclick="hideErrorConsole()" aria-label="Close error console">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
@@ -3175,9 +3436,9 @@
                 </div>
             </div>
             
-            <div id="errorConsoleContent" style="background: white; border-radius: 6px; padding: 15px; max-height: 500px; overflow-y: auto;">
-                <div style="text-align: center; padding: 40px; color: #999;">
-                    <p>Click "Re-validate" to check for errors</p>
+            <div id="errorConsoleContent" class="error-console-section__body">
+                <div class="error-console-section__empty">
+                    <p>Click Re-validate to check for errors.</p>
                 </div>
             </div>
         </div>
@@ -3266,10 +3527,10 @@
     <div id="dataTab" class="tab-content">
         <div class="data-container">
             <div class="data-header">
-                <h2>Data Table</h2>
+                <h2>Table View</h2>
                 <div class="data-actions">
                     <input type="file" id="csvUpload" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)" />
-                    <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV/TSV</button>
+                    <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV</button>
                     <button class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
                     <button class="btn btn-success" onclick="downloadTSV()" style="background: #2d8a4e;">Download TSV</button>
                     <button class="btn btn-success" onclick="saveTableChanges()" style="background: #4E6B52;">Update Table</button>
@@ -3373,7 +3634,11 @@
         </div>
     </div>
 
-    <button type="button" id="backToTopBtn" class="back-to-top hidden" aria-label="Back to top">⬆</button>
+    <button type="button" id="backToTopBtn" class="back-to-top hidden" aria-label="Back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 15 12 9l6 6"></path>
+        </svg>
+    </button>
     
     <div id="settingsTab" class="tab-content">
         <div class="settings-container" style="width: 100%; margin: 0; padding: 20px;">
@@ -4164,6 +4429,15 @@ function normalizeDate(dateStr) {
     }
     // If can't parse, return original (validation will catch it)
     return trimmed;
+}
+
+// Today's calendar date in local timezone (YYYY-MM-DD) for modified timestamps
+function getLocalDateYYYYMMDD() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return year + '-' + month + '-' + day;
 }
 
 // Load categories from localStorage (synced between admin and front page)
@@ -5677,7 +5951,7 @@ function updateUnsavedChangesBadge() {
                 statusBadge.style.background = '#34a853';
                 statusIcon.textContent = '✓';
                 
-                // Extract count from messages like "✅ Loaded 390 listings" or "✅ Loaded 390 listings (CSV)"
+                // Extract count from messages like "Loaded 390 listings" or "Loaded 390 listings (CSV)"
                 if (message) {
                     const countMatch = message.match(/(\d+)\s+listings?/);
                     if (countMatch) {
@@ -5693,7 +5967,7 @@ function updateUnsavedChangesBadge() {
                 lastSync.textContent = new Date().toLocaleTimeString();
             } else {
                 // Check if it's a loading/connecting state or an error
-                if (message && (message.includes('Loading') || message.includes('Connecting') || message.includes('🔄'))) {
+                if (message && (message.includes('Loading') || message.includes('Connecting'))) {
                     statusBadge.style.background = '#9aa0a6';
                     statusIcon.textContent = '⟳';
                     statusText.textContent = 'Connecting...';
@@ -5705,17 +5979,26 @@ function updateUnsavedChangesBadge() {
             }
             
             if (message) {
-                // Don't show "Loaded X listings" or "Connecting..." messages - they're redundant with the status badge
+                // Don't show "Loaded X listings" or "Connecting…" messages - they're redundant with the status badge
                 const isPermanentMessage = message.includes('Loaded') && message.match(/\d+\s+listings?/);
-                const isConnectingMessage = message.includes('Connecting') || message.includes('🔄');
+                const isConnectingMessage = message.includes('Connecting');
                 if (!isPermanentMessage && !isConnectingMessage) {
                 actionStatus.textContent = message;
+                const lower = (message || '').toLowerCase();
+                const isProblem = !success || (success && (
+                    lower.includes('not saved') ||
+                    lower.includes('sync failed') ||
+                    (lower.includes('failed') && !lower.includes('retrying'))
+                ));
+                actionStatus.className = 'tabs-action-status' + (isProblem ? ' tabs-action-status--problem' : '');
                 setTimeout(() => {
                     actionStatus.textContent = '';
+                    actionStatus.className = 'tabs-action-status';
                 }, 3000);
                 } else {
                     // Clear the action status for redundant messages
                     actionStatus.textContent = '';
+                    actionStatus.className = 'tabs-action-status';
                 }
             }
         }
@@ -5724,7 +6007,7 @@ function updateUnsavedChangesBadge() {
         // Tries Apps Script first (preferred), then CSV as fallback
         async function loadDataFromGoogleSheets() {
             // Set initial status to "Connecting..." (not "Connected" yet)
-            updateSyncStatus(false, '🔄 Connecting...');
+            updateSyncStatus(false, 'Connecting…');
             
             // Check if running from file:// protocol (local file)
             const isFileProtocol = window.location.protocol === 'file:';
@@ -5981,7 +6264,7 @@ function updateUnsavedChangesBadge() {
                             console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
                         }
                         
-                        updateSyncStatus(true, `✅ Loaded ${listings.length} listings`);
+                        updateSyncStatus(true, `Loaded ${listings.length} listings`);
                         renderListings();
                         populateAdminFilters();
                         updateStats();
@@ -5992,11 +6275,11 @@ function updateUnsavedChangesBadge() {
                     
                     // Check what type of error it is
                     if (error.message.includes('500')) {
-                        updateSyncStatus(false, '❌ Apps Script error (500) - falling back to CSV');
+                        updateSyncStatus(false, 'Apps Script error (500); using CSV backup.');
                         console.error('⚠️ Your Google Apps Script has an internal error. Check the Apps Script execution logs.');
                         console.error('   Error:', error.message);
                     } else if (error.message.includes('CORS') || error.message.includes('access control') || error.message.includes('Origin null')) {
-                        updateSyncStatus(false, '⚠️ CORS error - retrying...');
+                        updateSyncStatus(false, 'CORS error; retrying…');
                         // Only log CORS warning if it's a persistent issue
                         // (Suppress on first attempt, will retry via CSV fallback)
                         if (error.message.includes('Proxy also failed')) {
@@ -6010,7 +6293,7 @@ function updateUnsavedChangesBadge() {
                             console.log('⚠️ CORS blocked, trying proxy...');
                         }
                     } else {
-                        updateSyncStatus(false, '❌ Connection error - falling back to CSV');
+                        updateSyncStatus(false, 'Connection error; using CSV backup.');
                         console.error('   Error:', error.message);
                     }
                     
@@ -6199,7 +6482,7 @@ function updateUnsavedChangesBadge() {
                             console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
                         }
                         
-                        updateSyncStatus(true, `✅ Loaded ${listings.length} listings (CSV)`);
+                        updateSyncStatus(true, `Loaded ${listings.length} listings (CSV)`);
                         renderListings();
                         populateAdminFilters();
                         updateStats();
@@ -6207,13 +6490,13 @@ function updateUnsavedChangesBadge() {
                     }
                 } catch (error) {
                     console.error('❌ Error loading from CSV:', error);
-                    updateSyncStatus(false, '❌ CSV fetch failed');
+                    updateSyncStatus(false, 'CSV fetch failed.');
                 }
             }
             
             // If both fail, use initial data
             console.log('⚠️ Could not load from Google Sheets, using initial data');
-            updateSyncStatus(false, '⚠️ Using local data only');
+            updateSyncStatus(false, 'Using local data only.');
             updateTableHeaderLabelsFromSheet((data && data.sheetHeaders) || DEFAULT_TABLE_HEADERS);
             
             // Show warning if running from file://
@@ -6282,7 +6565,7 @@ function updateUnsavedChangesBadge() {
                             Cancel
                         </button>
                         <button id="backupDownloadBtn" style="padding: 10px 20px; border: none; background: #4E6B52; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">
-                            📥 Download CSV Backup First
+                            📥 CSV Backup First
                         </button>
                         <button id="backupProceedBtn" style="padding: 10px 20px; border: none; background: #34a853; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">
                             Proceed Without Backup
@@ -6359,7 +6642,7 @@ function updateUnsavedChangesBadge() {
             }
             
             // Show "in progress" status
-            updateSyncStatus(true, `💾 Saving ${data.listings.length} listings...`);
+            updateSyncStatus(true, `Saving ${data.listings.length} listings…`);
             
             try {
                 // Verify categories are in listings before saving
@@ -6427,7 +6710,7 @@ function updateUnsavedChangesBadge() {
                 }
                 
                 if (result.success) {
-            updateSyncStatus(true, `✅ Replaced all data in Google Sheets with ${data.listings.length} listings`);
+            updateSyncStatus(true, `Replaced all data in Google Sheets (${data.listings.length} listings).`);
             resetUnsavedChanges();
                     // Mark all listings as now persisted (no longer local-only)
                     if (data && Array.isArray(data.listings)) {
@@ -6440,7 +6723,7 @@ function updateUnsavedChangesBadge() {
                 }
             } catch (error) {
                 console.error('Error saving to Google Sheets:', error);
-                updateSyncStatus(false, '❌ Save failed');
+                updateSyncStatus(false, 'Save failed.');
                 alert('❌ Error saving to Google Sheets: ' + error.message);
             }
         }
@@ -6627,7 +6910,7 @@ function updateUnsavedChangesBadge() {
             
             // Show loading state
             const consoleContent = document.getElementById('errorConsoleContent');
-            const loadingHtml = consoleContent.innerHTML + '<div style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 4px; color: #1976d2;"><strong>Checking all images for 404 errors...</strong> <span id="imageCheckProgress">0</span> images checked. This may take a moment.</div>';
+            const loadingHtml = consoleContent.innerHTML + '<div class="error-console-section__loading">Checking images for broken URLs. <span id="imageCheckProgress">0</span> checked. This may take a moment.</div>';
             consoleContent.innerHTML = loadingHtml;
             
             // Collect ALL images to check from all listings
@@ -6761,8 +7044,8 @@ function updateUnsavedChangesBadge() {
             const consoleTitle = document.getElementById('errorConsoleTitle');
             
             if (errors.length === 0) {
-                consoleContent.innerHTML = '<div style="text-align: center; padding: 40px; color: #28a745;"><p style="font-size: 18px; font-weight: 600;">✅ No errors found!</p><p style="margin-top: 10px; color: #666;">All listings are ready for Framer Google Sheets import.</p></div>';
-                consoleTitle.textContent = 'Framer Import Error Console - No Errors';
+                consoleContent.innerHTML = '<div class="error-console-section__empty"><p class="error-console-section__success-title">No errors found</p><p class="error-console-section__success-lead">All listings are ready for Framer Google Sheets import.</p></div>';
+                consoleTitle.textContent = 'Framer Import Error Console — No errors';
                 return;
             }
             
@@ -6782,25 +7065,23 @@ function updateUnsavedChangesBadge() {
                 errorsByType[error.type].push(error);
             });
             
-            let html = '<div style="margin-bottom: 20px;"><strong style="color: #dc3545; font-size: 16px;">Total Issues: ' + errors.length + '</strong></div>';
+            let html = '<div class="error-console-section__summary">Total issues: ' + errors.length + '</div>';
             
             Object.keys(errorsByType).forEach(function(type) {
                 const typeErrors = errorsByType[type];
                 const severity = typeErrors[0].severity;
-                const severityColor = severity === 'error' ? '#dc3545' : '#ffc107';
-                const severityIcon = severity === 'error' ? '❌' : '⚠️';
+                const severityLabel = severity === 'error' ? 'Error' : 'Warning';
+                const typeLabel = type.replace(/-/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
                 
-                html += '<div style="margin-bottom: 20px; border-left: 4px solid ' + severityColor + '; padding-left: 15px;">';
-                html += '<h4 style="margin: 0 0 10px 0; color: ' + severityColor + ';">' + severityIcon + ' ' + type.replace(/-/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); }) + ' (' + typeErrors.length + ')</h4>';
+                html += '<div class="error-console-section__group">';
+                html += '<h4 class="error-console-section__group-title error-console-section__group-title--' + severity + '">' + severityLabel + ': ' + typeLabel + ' (' + typeErrors.length + ')</h4>';
                 
                 typeErrors.forEach(function(error) {
                     const listingName = error.listing.name || 'Unnamed Listing';
                     
-                    html += '<div style="background: #f8f9fa; padding: 12px; margin: 8px 0; border-radius: 4px; cursor: pointer; transition: background 0.2s;" ';
-                    html += 'onmouseover="this.style.background=\'#e9ecef\'" onmouseout="this.style.background=\'#f8f9fa\'" ';
-                    html += 'onclick="navigateToListing(' + error.index + ')">';
-                    html += '<div style="font-weight: 600; color: #333; margin-bottom: 4px;">' + listingName + '</div>';
-                    html += '<div style="color: #666; font-size: 14px;">' + error.message + '</div>';
+                    html += '<div class="error-console-section__row" onclick="navigateToListing(' + error.index + ')">';
+                    html += '<div class="error-console-section__row-name">' + listingName + '</div>';
+                    html += '<div class="error-console-section__row-msg">' + error.message + '</div>';
                     html += '</div>';
                 });
                 
@@ -6808,7 +7089,7 @@ function updateUnsavedChangesBadge() {
             });
             
             consoleContent.innerHTML = html;
-            consoleTitle.textContent = 'Framer Import Error Console - ' + errors.length + ' Issue' + (errors.length !== 1 ? 's' : '');
+            consoleTitle.textContent = 'Framer Import Error Console — ' + errors.length + ' issue' + (errors.length !== 1 ? 's' : '');
         }
         
         function navigateToListing(index) {
@@ -7178,15 +7459,15 @@ function updateUnsavedChangesBadge() {
                     '</div>' +
                     '<div class="card-info-text">' + authorWithDate + '</div>' +
                     '</div>' : '') +
-                    // Published Date
-                    (listing.publishedDate ? 
+                    // Modified date (replaces published/created on card preview)
+                    (listing.modifiedDate ? 
                     '<div class="card-info-item" onclick="event.stopPropagation();">' +
                     '<div class="card-info-icon">' +
                     '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
                     '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />' +
                     '</svg>' +
                     '</div>' +
-                    '<div class="card-info-text">Published: ' + listing.publishedDate + '</div>' +
+                    '<div class="card-info-text">Modified: ' + escapeHtml(listing.modifiedDate) + '</div>' +
                     '</div>' : '') +
                     // Phone with icon
                     (listing.phone ? 
@@ -8784,7 +9065,7 @@ function updateUnsavedChangesBadge() {
                     });
                     const afterCount = data.listings.length;
                     console.log('🗑️ Local-only delete: ' + beforeCount + ' → ' + afterCount + ' listings');
-                    updateSyncStatus(true, '🗑️ Deleted locally (not yet saved to Google Sheets)');
+                    updateSyncStatus(true, 'Deleted locally; not saved to Google Sheets yet.');
                     showUnsavedChangesBadge();
                     // Preserve current filter state by re-filtering instead of full render
                     filterListings();
@@ -8858,7 +9139,7 @@ function updateUnsavedChangesBadge() {
                                 }));
                             }
                             
-                            updateSyncStatus(true, '✅ Deleted from Google Sheets');
+                            updateSyncStatus(true, 'Deleted from Google Sheets.');
                             
                             // DON'T reload from Google Sheets - we've already updated local data
                             // The delete is already saved to Google Sheets, reloading would be redundant
@@ -8884,7 +9165,7 @@ function updateUnsavedChangesBadge() {
                     } catch (error) {
                         console.error('❌ Error deleting from Google Sheets:', error);
                         console.error('Error details:', error.message, error.stack);
-                        updateSyncStatus(false, '❌ Delete failed: ' + error.message);
+                        updateSyncStatus(false, 'Delete failed: ' + error.message);
                         
                         // IMPORTANT: Do NOT delete locally if Google Sheets delete failed
                         // This prevents the listing from coming back when data is reloaded
@@ -8902,7 +9183,7 @@ function updateUnsavedChangesBadge() {
                 } else {
                     // No Google Sheets configured - delete locally only
                     data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
-                    updateSyncStatus(false, '⚠️ Deleted locally only (Google Sheets not configured)');
+                    updateSyncStatus(false, 'Deleted locally only (Google Sheets not configured).');
                     alert('Deleted "' + listing.name + '" (Local only - configure Google Sheets to sync)');
                     
                     // Refresh the display (preserve filter state)
@@ -8959,7 +9240,7 @@ function updateUnsavedChangesBadge() {
             // Re-render the list to show the new duplicate
             renderListings();
             showUnsavedChangesBadge();
-            updateSyncStatus(true, '✅ "' + duplicate.name + '" duplicated locally');
+            updateSyncStatus(true, '"' + duplicate.name + '" duplicated locally.');
             
             // Optionally open the duplicate for editing
             setTimeout(function() {
@@ -9123,7 +9404,7 @@ function updateUnsavedChangesBadge() {
                 private: getChecked('listingPrivate'),
                 authorName: getValue('listingAuthorName'),
                 publishedDate: getValue('listingPublishedDate'),
-                modifiedDate: getValue('listingModifiedDate'),
+                modifiedDate: getLocalDateYYYYMMDD(),
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
                 videoLink: getValue('listingVideoLink'),
@@ -9148,23 +9429,23 @@ function updateUnsavedChangesBadge() {
                 listing.slug = slugify(listing.name);
             }
             
-            // Save locally only - user must click "Save All to Google Sheets" to sync
+            // Save locally only - user must click "Save to Sheets" to sync
                         if (isUpdate) {
                             const index = data.listings.findIndex(function(l) { return l.slug === editingSlug; });
                             if (index >= 0) {
                                 data.listings[index] = listing;
-                    updateSyncStatus(true, '✅ "' + listing.name + '" updated locally');
+                    updateSyncStatus(true, '"' + listing.name + '" updated locally.');
                     // Success message removed per user request
                         } else {
                             listing._localOnly = true; // Not yet saved to Google Sheets
                             data.listings.push(listing);
-                    updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
+                    updateSyncStatus(true, '"' + listing.name + '" added locally.');
                     // Success message removed per user request
                 }
                     } else {
                         listing._localOnly = true; // Not yet saved to Google Sheets
                         data.listings.push(listing);
-                updateSyncStatus(true, '✅ "' + listing.name + '" added locally');
+                updateSyncStatus(true, '"' + listing.name + '" added locally.');
                 // Success message removed per user request
             }
             
@@ -9410,7 +9691,7 @@ function updateUnsavedChangesBadge() {
             URL.revokeObjectURL(url);
             // Update status AFTER download completes
             setTimeout(() => {
-                updateSyncStatus(true, '💾 JSON backup downloaded');
+                updateSyncStatus(true, 'JSON backup downloaded.');
             }, 100);
         }
         
@@ -9865,24 +10146,44 @@ function updateUnsavedChangesBadge() {
         // Define switchTab early so it's available for onclick handlers
         if (typeof window.switchTab === 'undefined') {
         window.switchTab = function switchTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach(function(btn) { btn.classList.remove('active'); });
+            var settingsBtn = document.getElementById('tabSettingsBtn');
+            var toggleTrack = document.getElementById('adminDataToggle');
+            var toggleBtns = document.querySelectorAll('.tabs-toggle-btn');
             document.querySelectorAll('.tab-content').forEach(function(content) { content.classList.remove('active'); });
             
             const header = document.querySelector('.header');
             
             if (tab === 'admin') {
-                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                if (settingsBtn) settingsBtn.classList.remove('active');
+                toggleBtns.forEach(function(btn, i) {
+                    var on = i === 0;
+                    btn.classList.toggle('active', on);
+                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+                if (toggleTrack) {
+                    toggleTrack.classList.remove('tabs-toggle-track--data');
+                    toggleTrack.classList.add('tabs-toggle-track--admin');
+                }
                 document.getElementById('adminTab').classList.add('active');
-                header.style.display = 'block';
+                if (header) header.style.display = 'block';
             } else if (tab === 'data') {
-                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                if (settingsBtn) settingsBtn.classList.remove('active');
+                toggleBtns.forEach(function(btn, i) {
+                    var on = i === 1;
+                    btn.classList.toggle('active', on);
+                    btn.setAttribute('aria-selected', on ? 'true' : 'false');
+                });
+                if (toggleTrack) {
+                    toggleTrack.classList.remove('tabs-toggle-track--admin');
+                    toggleTrack.classList.add('tabs-toggle-track--data');
+                }
                 document.getElementById('dataTab').classList.add('active');
-                header.style.display = 'block';
+                if (header) header.style.display = 'block';
                 renderDataTable();
             } else if (tab === 'settings') {
-                document.querySelectorAll('.tab-btn')[2].classList.add('active');
+                if (settingsBtn) settingsBtn.classList.add('active');
                 document.getElementById('settingsTab').classList.add('active');
-                header.style.display = 'block';
+                if (header) header.style.display = 'block';
                 renderSettings();
             }
             };
@@ -10659,7 +10960,7 @@ function updateUnsavedChangesBadge() {
             // Push changes to Google Sheets
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                 try {
-                    updateSyncStatus(true, '💾 Syncing category edit to Google Sheets...');
+                    updateSyncStatus(true, 'Syncing category edit to Google Sheets…');
                     
                     // Save categories first
                     const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
@@ -10694,16 +10995,16 @@ function updateUnsavedChangesBadge() {
                                 body: listingsData
                             });
                             
-                            updateSyncStatus(true, '✅ Category edited and changes synced to Google Sheets');
+                            updateSyncStatus(true, 'Category edited; changes synced to Google Sheets.');
                             alert('✅ Category edited:\n' +
                                   (keyChanged ? '  Key: "' + oldKey + '" → "' + trimmedNewKey + '"\n' : '  Key: "' + oldKey + '" (unchanged)\n') +
                                   (affectedListings.length > 0 ? '  Updated ' + affectedListings.length + ' listing(s).\n' : '') +
                                   '\nChanges have been synced to Google Sheets.');
                         } catch (e) {
                             console.warn('⚠️ Could not sync category edit to Google Sheets:', e);
-                            updateSyncStatus(false, '⚠️ Category edited locally (sync failed)');
+                            updateSyncStatus(false, 'Category edited locally (sync failed).');
                             alert('⚠️ Category edited locally, but sync to Google Sheets failed.\n\n' +
-                                  'Please click "Save All to Google Sheets" to sync changes.');
+                                  'Please click "Save to Sheets" to sync changes.');
                         }
                     } else {
                         // No listings, just save categories
@@ -10714,22 +11015,22 @@ function updateUnsavedChangesBadge() {
                                 headers: { 'Content-Type': 'application/json' },
                                 body: categoriesData
                             });
-                            updateSyncStatus(true, '✅ Category edited and synced to Google Sheets');
+                            updateSyncStatus(true, 'Category edited and synced to Google Sheets.');
                             alert('✅ Category edited:\n' +
                                   (keyChanged ? '  Key: "' + oldKey + '" → "' + trimmedNewKey + '"\n' : '  Key: "' + oldKey + '" (unchanged)\n') +
                                   '\nChanges have been synced to Google Sheets.');
                         } catch (e) {
                             console.warn('⚠️ Could not sync category edit to Google Sheets:', e);
-                            updateSyncStatus(false, '⚠️ Category edited locally (sync failed)');
+                            updateSyncStatus(false, 'Category edited locally (sync failed).');
                             alert('⚠️ Category edited locally, but sync to Google Sheets failed.\n\n' +
-                                  'Please click "Save All to Google Sheets" to sync changes.');
+                                  'Please click "Save to Sheets" to sync changes.');
                         }
                     }
                 } catch (error) {
                     console.error('Error syncing category edit to Google Sheets:', error);
-                    updateSyncStatus(false, '⚠️ Category edited locally (sync failed)');
+                    updateSyncStatus(false, 'Category edited locally (sync failed).');
                     alert('⚠️ Category edited locally, but sync to Google Sheets failed.\n\n' +
-                          'Please click "Save All to Google Sheets" to sync changes.');
+                          'Please click "Save to Sheets" to sync changes.');
                 }
             } else {
                 alert('✅ Category edited:\n' +
@@ -10783,7 +11084,7 @@ function updateUnsavedChangesBadge() {
             
             // Save to Google Sheets
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
-                updateSyncStatus(true, '💾 Syncing new category to Google Sheets...');
+                updateSyncStatus(true, 'Syncing new category to Google Sheets…');
                 const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                 const postData = JSON.stringify({
                     action: 'saveCategories',
@@ -10801,14 +11102,14 @@ function updateUnsavedChangesBadge() {
                 })
                 .then(function(result) {
                     if (result.success) {
-                        updateSyncStatus(true, '✅ Category added and synced to Google Sheets');
+                        updateSyncStatus(true, 'Category added and synced to Google Sheets.');
                     } else {
-                        updateSyncStatus(false, '⚠️ Category added locally (sync failed)');
+                        updateSyncStatus(false, 'Category added locally (sync failed).');
                     }
                 })
                 .catch(function(e) {
                     console.warn('⚠️ Could not sync new category to Google Sheets:', e);
-                    updateSyncStatus(false, '⚠️ Category added locally (sync failed)');
+                    updateSyncStatus(false, 'Category added locally (sync failed).');
                 });
             }
         }
@@ -10897,7 +11198,7 @@ function updateUnsavedChangesBadge() {
                 // Push changes to Google Sheets
                 if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                     try {
-                        updateSyncStatus(true, '💾 Syncing category deletion to Google Sheets...');
+                        updateSyncStatus(true, 'Syncing category deletion to Google Sheets…');
                         
                         // Save updated categories and listings
                         const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
@@ -10929,21 +11230,21 @@ function updateUnsavedChangesBadge() {
                                 body: listingsData
                             });
                             
-                            updateSyncStatus(true, '✅ Category deleted and changes synced to Google Sheets');
+                            updateSyncStatus(true, 'Category deleted; changes synced to Google Sheets.');
                             alert('✅ Category "' + (category.name || categoryKey) + '" deleted.\n\n' +
                                   'Updated ' + affectedListings.length + ' listing(s) to use "' + (newCategory.name || newCategoryKey) + '"\n\n' +
                                   'Changes have been synced to Google Sheets.');
                         } catch (e) {
                             console.warn('⚠️ Could not sync category deletion to Google Sheets:', e);
-                            updateSyncStatus(false, '⚠️ Category deleted locally (sync failed)');
+                            updateSyncStatus(false, 'Category deleted locally (sync failed).');
                             alert('⚠️ Category deleted locally, but sync to Google Sheets failed.\n\n' +
-                                  'Please click "Save All to Google Sheets" to sync changes.');
+                                  'Please click "Save to Sheets" to sync changes.');
                         }
                     } catch (error) {
                         console.error('Error syncing category deletion to Google Sheets:', error);
-                        updateSyncStatus(false, '⚠️ Category deleted locally (sync failed)');
+                        updateSyncStatus(false, 'Category deleted locally (sync failed).');
                         alert('⚠️ Category deleted locally, but sync to Google Sheets failed.\n\n' +
-                              'Please click "Save All to Google Sheets" to sync changes.');
+                              'Please click "Save to Sheets" to sync changes.');
                     }
                 } else {
                     alert('✅ Category "' + (category.name || categoryKey) + '" deleted.\n\n' +
@@ -10966,7 +11267,7 @@ function updateUnsavedChangesBadge() {
                     // Save to Google Sheets
                     if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                         try {
-                            updateSyncStatus(true, '💾 Syncing category deletion to Google Sheets...');
+                            updateSyncStatus(true, 'Syncing category deletion to Google Sheets…');
                             const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
                             const postData = JSON.stringify({
                                 action: 'saveCategories',
@@ -10981,13 +11282,13 @@ function updateUnsavedChangesBadge() {
                             });
                             const result = await response.json();
                             if (result.success) {
-                                updateSyncStatus(true, '✅ Category deleted and synced to Google Sheets');
+                                updateSyncStatus(true, 'Category deleted and synced to Google Sheets.');
                             } else {
-                                updateSyncStatus(false, '⚠️ Category deleted locally (sync failed)');
+                                updateSyncStatus(false, 'Category deleted locally (sync failed).');
                             }
                         } catch (e) {
                             console.warn('⚠️ Could not sync category deletion to Google Sheets:', e);
-                            updateSyncStatus(false, '⚠️ Category deleted locally (sync failed)');
+                            updateSyncStatus(false, 'Category deleted locally (sync failed).');
                         }
                     }
                 }
@@ -11237,7 +11538,7 @@ function updateUnsavedChangesBadge() {
             // Save to localStorage
             localStorage.setItem('nelsonCounty_filterOptions', JSON.stringify(data.filterOptions));
             // Show green banner for settings changes
-            updateSyncStatus(true, '✅ Settings updated');
+            updateSyncStatus(true, 'Settings updated.');
         }
         
         // ===========================================
@@ -11287,7 +11588,7 @@ function updateUnsavedChangesBadge() {
             // Automatically push category definitions to Google Sheets
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                 try {
-                    updateSyncStatus(true, '💾 Syncing category definitions to Google Sheets...');
+                    updateSyncStatus(true, 'Syncing category definitions to Google Sheets…');
                     
                     // Save all categories to Google Sheets Categories sheet
                     const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
@@ -11307,18 +11608,18 @@ function updateUnsavedChangesBadge() {
                         
                         const result = await response.json();
                         if (result.success) {
-                            updateSyncStatus(true, '✅ Category definitions synced to Google Sheets');
+                            updateSyncStatus(true, 'Category definitions synced to Google Sheets.');
                             console.log('✅ Category "' + category.name + '" updated and synced to Google Sheets');
                         } else {
                             throw new Error(result.error || 'Unknown error');
                         }
                     } catch (e) {
                         console.warn('⚠️ Could not sync category definitions to Google Sheets:', e);
-                        updateSyncStatus(false, '⚠️ Category saved locally (sync failed)');
+                        updateSyncStatus(false, 'Category saved locally (sync failed).');
                     }
                 } catch (error) {
                     console.error('Error syncing category to Google Sheets:', error);
-                    updateSyncStatus(false, '⚠️ Category saved locally (sync failed)');
+                    updateSyncStatus(false, 'Category saved locally (sync failed).');
                 }
             }
         };
@@ -13245,10 +13546,10 @@ function updateUnsavedChangesBadge() {
             applyFilterOptionCleanup();
             renderListings();
             
-            // Changes saved locally only - user must click "Save All to Google Sheets" to sync
+            // Changes saved locally only - user must click "Save to Sheets" to sync
             if (changeCount > 0) {
                 showUnsavedChangesBadge();
-                alert('Table updated! ' + changeCount + ' field(s) changed locally.\n\n💾 Click "Save All to Google Sheets" to sync changes.');
+                alert('Table updated! ' + changeCount + ' field(s) changed locally.\n\n💾 Click "Save to Sheets" to sync changes.');
             } else {
                 alert('No changes detected.');
             }
@@ -13381,11 +13682,11 @@ function updateUnsavedChangesBadge() {
                 // Update status AFTER download completes
                 // Use setTimeout to ensure download has started
                 setTimeout(() => {
-                    updateSyncStatus(true, '✅ CSV backup downloaded');
+                    updateSyncStatus(true, 'CSV backup downloaded.');
                 }, 100);
             } catch (error) {
                 console.error('Error downloading CSV:', error);
-                updateSyncStatus(false, '❌ CSV download failed');
+                updateSyncStatus(false, 'CSV download failed.');
                 alert('Error downloading CSV: ' + error.message);
             }
         }
@@ -13477,11 +13778,11 @@ function updateUnsavedChangesBadge() {
                 URL.revokeObjectURL(url);
                 
                 setTimeout(() => {
-                    updateSyncStatus(true, '✅ TSV backup downloaded');
+                    updateSyncStatus(true, 'TSV backup downloaded.');
                 }, 100);
             } catch (error) {
                 console.error('Error downloading TSV:', error);
-                updateSyncStatus(false, '❌ TSV download failed');
+                updateSyncStatus(false, 'TSV download failed.');
                 alert('Error downloading TSV: ' + error.message);
             }
         }
@@ -13620,7 +13921,7 @@ function updateUnsavedChangesBadge() {
                             if (parsed.warnings && parsed.warnings.length > 0) {
                                 successMsg += `\n\n⚠️ ${parsed.warnings.length} warning(s) during parsing (check console for details)`;
                             }
-                            successMsg += '\n\n💾 Click "Save All to Google Sheets" to sync changes.';
+                            successMsg += '\n\n💾 Click "Save to Sheets" to sync changes.';
                             alert(successMsg);
                         }
                         
