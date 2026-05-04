@@ -5722,6 +5722,18 @@ function clearTableEditsPending() {
 
 var SHEETS_BANNER_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
 var TABLE_COMMIT_BANNER_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>';
+var TABLE_COMMITTED_BANNER_SVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+var tableCommittedFlashUntil = 0;
+
+function flashTableCommittedBanner() {
+    tableCommittedFlashUntil = Date.now() + 1400;
+    updateUnsavedChangesBadge();
+    setTimeout(function() {
+        if (Date.now() >= tableCommittedFlashUntil) {
+            updateUnsavedChangesBadge();
+        }
+    }, 1500);
+}
 
 function updateUnsavedChangesBadge() {
     const badge = document.getElementById('unsavedChangesBadge');
@@ -5730,18 +5742,31 @@ function updateUnsavedChangesBadge() {
     badge.onclick = null;
     badge.onkeydown = null;
 
+    const now = Date.now();
+    if (tableCommittedFlashUntil && now < tableCommittedFlashUntil) {
+        badge.classList.add('visible');
+        badge.setAttribute('aria-label', 'Table updated. You can now save to Google Sheets.');
+        badge.innerHTML = TABLE_COMMITTED_BANNER_SVG + '<span>Table updated ✓ Now save to Google Sheets</span>';
+        badge.onclick = function() { saveAllToSheets(); };
+        badge.onkeydown = function(ev) {
+            if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); saveAllToSheets(); }
+        };
+        if (typeof updateTabsStickyStackStuck === 'function') updateTabsStickyStackStuck();
+        return;
+    }
+
     if (tableEditsPending) {
         badge.classList.add('visible', 'unsaved-changes-badge--table-pending');
         badge.setAttribute('aria-label', 'Table edits not committed. Click to run Update Table, or use the Update Table button in Table View.');
         badge.innerHTML = TABLE_COMMIT_BANNER_SVG +
             '<span>Table edits not committed: update table</span>';
         badge.onclick = function() {
-            saveTableChanges({ silent: true });
+            saveTableChanges({ silent: true, fromBanner: true });
         };
         badge.onkeydown = function(ev) {
             if (ev.key === 'Enter' || ev.key === ' ') {
                 ev.preventDefault();
-                saveTableChanges({ silent: true });
+                saveTableChanges({ silent: true, fromBanner: true });
             }
         };
     } else if (unsavedChanges) {
@@ -13811,6 +13836,9 @@ function updateTabsStickyStackStuck() {
                 showUnsavedChangesBadge();
                 if (!options.silent) {
                     alert('Table updated — ' + changeCount + ' field(s) saved to local data.\n\nThe top bar is now green: use Save to Google Sheets when you are ready to sync.');
+                }
+                if (options.fromBanner) {
+                    flashTableCommittedBanner();
                 }
             } else {
                 if (!options.silent) {
