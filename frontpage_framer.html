@@ -546,6 +546,25 @@
         .btn-secondary:hover { background: #4b5563; }
         .btn-clear { background: var(--clear-color); color: white; }
         .btn-clear:hover { background: var(--clear-hover); transform: translateY(-2px); }
+
+        /* Desktop Clear Filters button: black with red trash icon */
+        #clearFiltersBtn {
+            background: #000 !important;
+            color: #fff !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+        }
+        #clearFiltersBtn:hover {
+            background: #111 !important;
+        }
+        #clearFiltersBtn .trash-icon {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+            fill: #D65052; /* red */
+        }
         
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .badge-type { background: #ffffff !important; color: #212529 !important; box-shadow: none !important; }
@@ -3917,7 +3936,12 @@
                                 </select>
                                 </div>
 
-                                <button id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;">Clear Filters</button>
+                                <button id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;">
+                                    <svg class="trash-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                        <path d="M9 3h6l1 2h4v2H4V5h4l1-2Zm1 6h2v10h-2V9Zm4 0h2v10h-2V9ZM7 9h2v10H7V9Zm-1 12h12a2 2 0 0 0 2-2V7H4v12a2 2 0 0 0 2 2Z"/>
+                                    </svg>
+                                    <span>Clear Filters</span>
+                                </button>
                             </div>
                         </div>
                     </div>
