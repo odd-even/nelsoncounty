@@ -552,18 +552,20 @@
             background: #000 !important;
             color: #fff !important;
             /* Don't force display; JS controls show/hide */
+            display: inline-flex;
             align-items: center !important;
             justify-content: flex-start !important;
             gap: 10px !important;
             text-align: left !important;
             font-weight: 400 !important;
+            line-height: 1.1;
         }
         #clearFiltersBtn:hover {
             background: #111 !important;
         }
         #clearFiltersBtn .trash-icon {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             flex: 0 0 auto;
             display: block;
         }
@@ -7902,7 +7904,7 @@ function filterPreview() {
     const clearBtn = document.getElementById('clearFiltersBtn');
     const mobileClearBtn = document.getElementById('mobileClearFiltersBtn');
     if (clearBtn) {
-        clearBtn.style.display = hasActiveFilters ? 'block' : 'none';
+        clearBtn.style.display = hasActiveFilters ? 'inline-flex' : 'none';
     }
     if (mobileClearBtn) {
         mobileClearBtn.style.display = hasActiveFilters ? 'block' : 'none';
@@ -8419,7 +8421,7 @@ function filterByListingName(listingName) {
     // Show clear button (both desktop and mobile)
     const clearBtn = document.getElementById('clearFiltersBtn');
     const mobileClearBtn = document.getElementById('mobileClearFiltersBtn');
-    if (clearBtn) clearBtn.style.display = 'block';
+    if (clearBtn) clearBtn.style.display = 'inline-flex';
     if (mobileClearBtn) mobileClearBtn.style.display = 'block';
     
     // Ensure sort dropdown is set to default if not already set
