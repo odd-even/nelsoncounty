@@ -6583,7 +6583,12 @@ function loadDataFromListingsJSON() {
             }
 
             const filterOptions = extractFilterOptions(publicListings);
-            return { listings: publicListings, filterOptions: filterOptions };
+            const generatedAt = (payload && payload.generatedAt) || 'unknown';
+            return {
+                listings: publicListings,
+                filterOptions: filterOptions,
+                _source: 'data/listings.json (generated ' + generatedAt + ')'
+            };
         });
 }
 
@@ -6744,7 +6749,8 @@ function loadDataFromGoogleSheets() {
             
             return {
                 listings: publicListings,
-                filterOptions: filterOptions
+                filterOptions: filterOptions,
+                _source: 'Google Sheets (live CSV)'
             };
         })
         .catch(error => {
@@ -6796,19 +6802,23 @@ function loadCategoriesFromGoogleSheets() {
 // Function to load data from GitHub (fallback)
 function loadDataFromGitHub() {
     console.log('📡 Attempting to load from GitHub...');
+    const tag = function(result, source) {
+        if (result && typeof result === 'object') result._source = source;
+        return result;
+    };
     return fetch(GITHUB_JSON_URL)
         .then(response => {
             console.log('📡 GitHub Response Status:', response.status, response.statusText);
             if (!response.ok) {
                 console.warn('⚠️ Could not fetch from GitHub (status ' + response.status + '), using embedded fallback data');
-                return filterPrivateListings(fallbackData);
+                return tag(filterPrivateListings(fallbackData), 'embedded fallback');
             }
             console.log('✅ Successfully fetched from GitHub');
             // Ensure UTF-8 encoding is handled properly
             return response.text().then(text => {
                 try {
                     const data = JSON.parse(text);
-                    return filterPrivateListings(data);
+                    return tag(filterPrivateListings(data), 'GitHub config.json');
                 } catch (e) {
                     console.error('Error parsing JSON:', e);
                     // Try to fix common encoding issues
@@ -6822,14 +6832,14 @@ function loadDataFromGitHub() {
                         .replace(/\u00C3\u00BC/g, '\u00FC') // Fix ü
                         .replace(/\u00C3\u00B6/g, '\u00F6'); // Fix ö
                     const data = JSON.parse(fixedText);
-                    return filterPrivateListings(data);
+                    return tag(filterPrivateListings(data), 'GitHub config.json (re-decoded)');
                 }
             });
         })
         .catch(error => {
             console.warn('⚠️ GitHub fetch failed:', error);
             console.log('💾 Using embedded fallback data');
-            return filterPrivateListings(fallbackData);
+            return tag(filterPrivateListings(fallbackData), 'embedded fallback');
         });
 }
 
@@ -6866,7 +6876,7 @@ loadDataFromListingsJSON()
         };
         
         console.log('✅ Adventure data loaded successfully');
-        console.log('📊 Source: Google Sheets');
+        console.log('📊 Source:', loadedData._source || 'unknown');
         console.log('📊 Listings count (public):', data.listings.length);
         console.log('📊 First listing name:', data.listings[0]?.name || 'N/A');
         console.log('📊 Last listing name:', data.listings[data.listings.length - 1]?.name || 'N/A');
@@ -7517,7 +7527,7 @@ function updateStructuredData(listings) {
             '@type': 'TouristDestination',
             name: 'Nelson County',
             description: 'Explore ' + listings.length + ' adventures in Nelson County, Virginia including breweries, wineries, hiking trails, and outdoor activities in the Blue Ridge Mountains.',
-            url: 'https://nelsoncounty-va.gov/',
+            url: 'https://nelsoncounty.com',
             geo: {
                 '@type': 'GeoCoordinates',
                 latitude: '37.8',
