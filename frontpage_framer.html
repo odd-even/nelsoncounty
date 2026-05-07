@@ -4420,6 +4420,12 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu1ukNV
 // Fetch adventure data from Google Sheets (or GitHub as fallback)
 const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/odd-even/nelsoncounty/main/data/config.json';
 
+// Static JSON exported from the Google Sheet by the export-sheet GitHub Action.
+// Primary data source at runtime: served same-origin from GitHub Pages, no CORS,
+// no Sheets call, and updated every ~15 min by the scheduled workflow.
+// Resolved relative to the document URL (works under file:// and https://).
+const LISTINGS_JSON_URL = 'data/listings.json';
+
 console.log('🔍 Adventure Directory Loading...');
 console.log('📍 Google Sheet URL:', GOOGLE_SHEET_CSV_URL);
 console.log('📍 GitHub URL (fallback):', GITHUB_JSON_URL);
@@ -6525,6 +6531,59 @@ function handleUrlParameters() {
     }
 }
 
+// Function to load data from the static JSON exported by GitHub Actions.
+// The file is an array of row objects with the same shape that parseCSV()
+// produces in the browser, so we run the same mapCSVRowToListing pipeline.
+function loadDataFromListingsJSON() {
+    if (!LISTINGS_JSON_URL) {
+        return Promise.reject(new Error('LISTINGS_JSON_URL not configured'));
+    }
+
+    const cacheBustUrl = LISTINGS_JSON_URL + (LISTINGS_JSON_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+    console.log('📦 Attempting to load static listings JSON:', cacheBustUrl);
+
+    return fetch(cacheBustUrl, {
+        method: 'GET',
+        cache: 'no-cache',
+        credentials: 'omit'
+    })
+        .then(function(response) {
+            console.log('📡 listings.json response:', response.status, response.statusText);
+            if (!response.ok) {
+                throw new Error('listings.json fetch failed: ' + response.status + ' ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(function(payload) {
+            // Accept either { rows: [...] } (new exporter) or a bare array
+            // (in case the file ever gets simplified manually).
+            const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
+            if (!Array.isArray(rows) || rows.length === 0) {
+                throw new Error('listings.json contained no rows');
+            }
+            console.log('✅ Loaded', rows.length, 'rows from static listings.json (generated', (payload && payload.generatedAt) || 'unknown', ')');
+
+            const listings = rows.map(function(row, index) { return mapCSVRowToListing(row, index); });
+
+            const publicListings = listings.filter(function(listing) {
+                const isPrivate = listing.private === true ||
+                                 listing.private === 'true' ||
+                                 listing.private === 'TRUE' ||
+                                 listing.private === '1' ||
+                                 String(listing.private || '').toLowerCase() === 'yes';
+                return !isPrivate;
+            });
+
+            const privateCount = listings.length - publicListings.length;
+            if (privateCount > 0) {
+                console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+            }
+
+            const filterOptions = extractFilterOptions(publicListings);
+            return { listings: publicListings, filterOptions: filterOptions };
+        });
+}
+
 // Fetch data from GitHub and initialize
 // Function to load data from Google Sheets
 function loadDataFromGoogleSheets() {
@@ -6771,8 +6830,13 @@ function loadDataFromGitHub() {
         });
 }
 
-// Load data: Try Google Sheets first, then GitHub, then fallback
-loadDataFromGoogleSheets()
+// Load data: Try static listings.json first (fast, same-origin, no Sheets call),
+// then Google Sheets, then GitHub config.json, then embedded fallback.
+loadDataFromListingsJSON()
+    .catch(function(err) {
+        console.warn('⚠️ Static listings.json failed, falling back to Google Sheets:', err && err.message);
+        return loadDataFromGoogleSheets();
+    })
     .then(loadedData => {
         if (!loadedData || !loadedData.listings) {
             throw new Error('Loaded data is empty or missing listings');

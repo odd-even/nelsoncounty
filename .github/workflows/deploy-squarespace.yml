@@ -3,7 +3,11 @@ name: Deploy JSON to Squarespace
 on:
   push:
     paths:
-      - 'data/*.json'   # runs when a JSON file changes
+      - 'data/*.json'
+      # Don't redeploy when the listings.json snapshot from the
+      # Google Sheet exporter is refreshed; that file is consumed
+      # directly by frontpage_framer.html, not by Squarespace.
+      - '!data/listings.json'
 
 jobs:
   deploy:
@@ -15,7 +19,13 @@ jobs:
         env:
           SQUARESPACE_TOKEN: ${{ secrets.SQUARESPACE_TOKEN }}
         run: |
+          shopt -s nullglob
           for file in data/*.json; do
+            # Skip the listings snapshot produced by the Sheet exporter.
+            if [ "$(basename "$file")" = "listings.json" ]; then
+              echo "Skipping $file (consumed by frontpage_framer, not Squarespace)"
+              continue
+            fi
             echo "Deploying $file ..."
             curl -X POST "https://api.squarespace.com/1.0/commerce/products" \
               -H "Authorization: Bearer $SQUARESPACE_TOKEN" \

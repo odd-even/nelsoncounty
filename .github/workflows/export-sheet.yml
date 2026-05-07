@@ -1,0 +1,49 @@
+name: Export Google Sheet to data/listings.json
+
+on:
+  schedule:
+    # Every 5 minutes. GitHub may delay schedules during heavy load,
+    # and Google's published-CSV cache also adds a few minutes of lag,
+    # so real-world freshness ends up in the ~3-8 minute range.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/sheets_csv_to_json.mjs"
+      - ".github/workflows/export-sheet.yml"
+
+concurrency:
+  group: export-sheet
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run exporter
+        run: node scripts/sheets_csv_to_json.mjs
+
+      - name: Commit data/listings.json if changed
+        run: |
+          if [ -z "$(git status --porcelain data/listings.json)" ]; then
+            echo "No changes to data/listings.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/listings.json
+          git commit -m "chore(data): refresh listings.json from Google Sheet"
+          git push
