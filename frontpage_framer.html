@@ -546,6 +546,29 @@
         .btn-secondary:hover { background: #4b5563; }
         .btn-clear { background: var(--clear-color); color: white; }
         .btn-clear:hover { background: var(--clear-hover); transform: translateY(-2px); }
+
+        /* Desktop Clear Filters button: black with red trash icon */
+        #clearFiltersBtn {
+            background: #000 !important;
+            color: #fff !important;
+            /* Don't force display; JS controls show/hide */
+            display: inline-flex;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 10px !important;
+            text-align: left !important;
+            font-weight: 400 !important;
+            line-height: 1.1;
+        }
+        #clearFiltersBtn:hover {
+            background: #111 !important;
+        }
+        #clearFiltersBtn .trash-icon {
+            width: 14px;
+            height: 14px;
+            flex: 0 0 auto;
+            display: block;
+        }
         
         .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
         .badge-type { background: #ffffff !important; color: #212529 !important; box-shadow: none !important; }
@@ -3917,7 +3940,10 @@
                                 </select>
                                 </div>
 
-                                <button id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;">Clear Filters</button>
+                                <button id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;">
+                                    <img class="trash-icon" src="icons/red-trash-can-icon.svg" alt="" aria-hidden="true" />
+                                    <span>Clear Filters</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -7878,7 +7904,7 @@ function filterPreview() {
     const clearBtn = document.getElementById('clearFiltersBtn');
     const mobileClearBtn = document.getElementById('mobileClearFiltersBtn');
     if (clearBtn) {
-        clearBtn.style.display = hasActiveFilters ? 'block' : 'none';
+        clearBtn.style.display = hasActiveFilters ? 'inline-flex' : 'none';
     }
     if (mobileClearBtn) {
         mobileClearBtn.style.display = hasActiveFilters ? 'block' : 'none';
@@ -8395,7 +8421,7 @@ function filterByListingName(listingName) {
     // Show clear button (both desktop and mobile)
     const clearBtn = document.getElementById('clearFiltersBtn');
     const mobileClearBtn = document.getElementById('mobileClearFiltersBtn');
-    if (clearBtn) clearBtn.style.display = 'block';
+    if (clearBtn) clearBtn.style.display = 'inline-flex';
     if (mobileClearBtn) mobileClearBtn.style.display = 'block';
     
     // Ensure sort dropdown is set to default if not already set
