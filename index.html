@@ -3596,14 +3596,14 @@
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
                         <div id="listingsCount" style="font-size: 14px; color: var(--text-secondary); font-weight: 500;"></div>
                         <select id="adminSortDropdown" onchange="sortAdminListings()" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 18px; background: var(--bg-primary); color: var(--text-primary); font-size: 14px; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
-                            <option value="default" selected>Default (Area → Type → Name)</option>
+                            <option value="default">Default (Area → Type → Name)</option>
                             <option value="name-asc">Name (A-Z)</option>
                             <option value="name-desc">Name (Z-A)</option>
                             <option value="area-asc">Area (A-Z)</option>
                             <option value="type-asc">Type (A-Z)</option>
                             <option value="publishedDate-desc">Published Date (Newest First)</option>
                             <option value="publishedDate-asc">Published Date (Oldest First)</option>
-                            <option value="modifiedDate-desc">Modified Date (Newest First)</option>
+                            <option value="modifiedDate-desc" selected>Modified Date (Newest First)</option>
                             <option value="modifiedDate-asc">Modified Date (Oldest First)</option>
                         </select>
                     </div>
@@ -6951,8 +6951,8 @@ function updateTabsStickyStackStuck() {
             }
         }
         
-        // Store current sort value (default: Area → Type → Name)
-        let currentAdminSort = 'default';
+        // Store current sort value (default: modified date, newest first)
+        let currentAdminSort = 'modifiedDate-desc';
         
         // Error Console Functions
         function showErrorConsole() {
