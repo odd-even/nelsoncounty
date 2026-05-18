@@ -1503,45 +1503,149 @@
         .data-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
         .data-header h2 { font-size: 24px; color: var(--text-primary); }
         .data-actions { display: flex; gap: 10px; }
-        .table-wrapper { background: var(--card-bg); border-radius: 12px; overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 150px); box-shadow: 0 2px 8px rgba(0,0,0,0.08); width: 100%; }
-        .data-table { width: 100%; border-collapse: collapse; }
+        .table-wrapper {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow-x: auto;
+            overflow-y: auto;
+            max-height: calc(100vh - 150px);
+            width: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+        .data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
         .data-table thead { background: #1a1a1a; color: white; }
         .data-table thead tr:first-child th { position: sticky; top: 0; z-index: 10; background: #1a1a1a; }
         .data-table thead tr:first-child th:first-child { position: sticky; left: 0; z-index: 20; background: #1a1a1a; font-size: 16px; font-weight: 700; min-width: 250px; border-right: 2px solid #444; }
         .data-table thead tr.filter-row th:first-child { position: sticky; left: 0; z-index: 20; background: #2a2a2a; border-right: 2px solid #444; }
-        .data-table th { padding: 14px 12px; text-align: left; font-size: 13px; font-weight: 600; white-space: nowrap; position: relative; cursor: pointer; user-select: none; }
+        .data-table th {
+            padding: 12px 10px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: normal;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            line-height: 1.35;
+            vertical-align: bottom;
+            min-width: 0;
+            cursor: pointer;
+            user-select: none;
+        }
         .data-table th:hover { background: #2a2a2a; }
         .data-table thead tr:first-child th:hover { background: #2a2a2a; }
         .data-table th.sortable::after { content: ' ↕'; opacity: 0.5; margin-left: 5px; }
         .data-table th.sort-asc::after { content: ' ↑'; opacity: 1; }
         .data-table th.sort-desc::after { content: ' ↓'; opacity: 1; }
         .data-table thead tr.filter-row { background: #2a2a2a; }
-        .data-table thead tr.filter-row th { position: sticky; top: 48px; z-index: 10; padding: 8px 12px; background: #2a2a2a; cursor: default; }
+        .data-table thead tr.filter-row th {
+            position: sticky;
+            top: var(--data-table-header-row1-height, 52px);
+            z-index: 10;
+            padding: 8px 12px;
+            background: #2a2a2a;
+            cursor: default;
+            user-select: auto;
+        }
         .data-table thead tr.filter-row th:hover { background: #2a2a2a; }
-        .data-table .filter-input { width: 100%; padding: 4px 6px; border: 1px solid #444; border-radius: 4px; font-size: 12px; background: #333; color: white; cursor: help; }
-        .data-table .filter-input:focus { outline: none; border-color: #007AFF; background: #3a3a3a; cursor: text; }
-        .data-table .filter-select { width: 100%; padding: 4px 6px; border: 1px solid #444; border-radius: 18px; font-size: 12px; background: #333; color: white; cursor: help; }
-        .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; }
-        .data-table tbody tr { border-bottom: 1px solid var(--border-color); transition: background 0.2s; }
+        .data-table .filter-input { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; }
+        .data-table .filter-input:focus { outline: none; border-color: #007AFF; background: #3a3a3a; cursor: text; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
+        .data-table .filter-select { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+        .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
+        .data-table tbody tr { border-bottom: 1px solid var(--border-color); transition: background 0.15s ease; }
         .data-table tbody tr:hover { background: var(--bg-hover); }
         .data-table tbody tr:hover .cell-name { background: var(--bg-hover); }
-        .data-table td { padding: 12px; font-size: 13px; color: var(--text-primary); }
-        .data-table td input, .data-table td textarea { width: 100%; padding: 6px 8px; border: 1px solid var(--border-color); border-radius: 4px; font-size: 13px; background: var(--bg-primary); color: var(--text-primary); }
-        .data-table td input:focus, .data-table td textarea:focus { outline: none; border-color: #007AFF; }
+        .data-table td { padding: 10px 12px; font-size: 13px; color: var(--text-primary); vertical-align: top; }
+        .data-table td input:not([type="checkbox"]),
+        .data-table td textarea {
+            width: 100%;
+            padding: 9px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.45;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .data-table td input:not([type="checkbox"]):hover,
+        .data-table td textarea:hover { border-color: #c9d1da; }
+        .data-table td input:not([type="checkbox"]):focus,
+        .data-table td textarea:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.04);
+            background: #fff;
+        }
+        .data-table td input[type="checkbox"] {
+            width: 1.125rem;
+            height: 1.125rem;
+            accent-color: #007AFF;
+            cursor: pointer;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+        .data-table td select {
+            width: 100%;
+            padding: 8px 32px 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.35;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        .data-table td select:hover { border-color: #c9d1da; }
+        .data-table td select:focus {
+            outline: none;
+            border-color: #007AFF;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+        .data-table td input[readonly] {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: default;
+            box-shadow: none;
+        }
+        .data-table td input[readonly]:focus {
+            border-color: var(--border-color);
+            box-shadow: none;
+            background: var(--bg-secondary);
+        }
+        .data-table td input[type="date"] { min-height: 40px; }
         .data-table td textarea { min-height: 100px; resize: vertical; }
         .data-table .cell-image-desc { min-width: 200px; max-width: 300px; }
-        .data-table .cell-image-desc textarea { min-height: 50px; font-size: 12px; }
+        .data-table .cell-image-desc textarea { min-height: 52px; font-size: 12px; }
         .data-table .cell-id { color: var(--text-secondary); font-weight: 600; }
         .data-table .cell-name { font-weight: 700; min-width: 250px; font-size: 15px; position: sticky; left: 0; z-index: 15; background: var(--card-bg); border-right: 2px solid var(--border-color); }
         .data-table .cell-name input { font-weight: 700; font-size: 15px; }
         .data-table .cell-slug { min-width: 180px; }
         .data-table .cell-type, .data-table .cell-area, .data-table .cell-category { min-width: 120px; }
         .data-table .cell-description { min-width: 400px; max-width: 600px; }
-        .data-table .cell-description textarea { min-height: 150px; white-space: pre-wrap; }
         .data-table .cell-description-detailed { min-width: 500px; max-width: 700px; }
-        .data-table .cell-description-detailed textarea { min-height: 200px; white-space: pre-wrap; }
+        .data-table .cell-description textarea,
+        .data-table .cell-description-detailed textarea {
+            min-height: 50px;
+            height: 50px;
+            max-height: none;
+            resize: vertical;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
         .data-table .cell-customHtml { min-width: 500px; max-width: 700px; }
         .data-table .cell-customHtml textarea { min-height: 200px; white-space: pre-wrap; font-family: 'Courier New', monospace; font-size: 12px; }
+        .data-table .cell-custom-html { min-width: 500px; max-width: 700px; }
+        .data-table .cell-custom-html textarea { min-height: 200px; white-space: pre-wrap; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 12px; }
         .data-table .cell-image { min-width: 200px; }
         .data-table .cell-image input { font-size: 11px; }
         .data-table .cell-website { min-width: 250px; }
@@ -1549,19 +1653,52 @@
         .data-table .cell-address { min-width: 250px; }
         .data-table .cell-coord { min-width: 95px; max-width: 100px; }
         .data-table .cell-coord input { text-align: right; }
-        .data-table .cell-amenities { min-width: 250px; max-width: 400px; font-size: 12px; }
-        .data-table .cell-amenities textarea { min-height: 80px; }
-        .data-table .cell-featured { text-align: center; }
-        .data-table .cell-private { text-align: center; }
+        .data-table .cell-amenities { min-width: 280px; max-width: 440px; font-size: 12px; }
+        .data-table .amenities-cell { display: flex; flex-direction: column; gap: 8px; }
+        .data-table .amenities-pills-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+            min-height: 28px;
+            padding: 2px 0;
+        }
+        .data-table .amenity-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.25;
+            background: linear-gradient(180deg, rgba(0, 122, 255, 0.16) 0%, rgba(0, 122, 255, 0.08) 100%);
+            color: #0a58a8;
+            border: 1px solid rgba(0, 122, 255, 0.28);
+            box-shadow: 0 1px 2px rgba(0, 82, 180, 0.08);
+        }
+        .data-table .amenity-pill--muted {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-color: var(--border-color);
+            font-weight: 400;
+            box-shadow: none;
+        }
+        .data-table .amenities-raw-input {
+            min-height: 56px !important;
+            font-size: 12px;
+            resize: vertical;
+        }
+        .data-table .cell-featured { text-align: center; vertical-align: middle; }
+        .data-table .cell-private { text-align: center; vertical-align: middle; }
         .data-table .cell-accordion-title { min-width: 200px; max-width: 300px; }
         .data-table .cell-accordion-title input { font-size: 12px; }
         .data-table .cell-accordion-content { min-width: 800px; max-width: 1200px; }
         .data-table .cell-accordion-content textarea { min-height: 200px; white-space: pre-wrap; font-size: 12px; resize: vertical; }
-        .data-table .cell-actions { white-space: nowrap; }
-        .data-table .btn-table-save { background: #007AFF; color: white; padding: 6px 12px; border: none; border-radius: 18px; font-size: 12px; cursor: pointer; margin-right: 5px; }
-        .data-table .btn-table-save:hover { background: #0051D5; }
-        .data-table .btn-table-delete { background: #E3795C; color: white; padding: 6px 12px; border: none; border-radius: 18px; font-size: 12px; cursor: pointer; }
-        .data-table .btn-table-delete:hover { background: #D65052; }
+        .data-table .cell-actions { white-space: nowrap; vertical-align: middle; }
+        .data-table .btn-table-save { background: #007AFF; color: white; padding: 8px 14px; border: none; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; margin-right: 5px; box-shadow: 0 1px 3px rgba(0, 122, 255, 0.35); transition: background 0.15s ease, transform 0.1s ease; }
+        .data-table .btn-table-save:hover { background: #0051D5; transform: translateY(-1px); }
+        .data-table .btn-table-delete { background: #E3795C; color: white; padding: 8px 14px; border: none; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 1px 3px rgba(227, 121, 92, 0.35); transition: background 0.15s ease, transform 0.1s ease; }
+        .data-table .btn-table-delete:hover { background: #D65052; transform: translateY(-1px); }
         
         
         .code-container { width: 100%; margin: 0; padding: 30px 20px; }
@@ -4495,6 +4632,33 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+// Table View: live pill preview above the comma-separated amenities field
+function syncTableAmenitiesPillsPreview(textarea) {
+    if (!textarea || textarea.getAttribute('data-field') !== 'amenities') return;
+    const wrap = textarea.closest('.amenities-cell');
+    if (!wrap) return;
+    const preview = wrap.querySelector('.amenities-pills-preview');
+    if (!preview) return;
+    const parts = String(textarea.value || '').split(',').map(function(s) { return s.trim(); }).filter(function(s) { return s.length > 0; });
+    if (parts.length === 0) {
+        preview.innerHTML = '<span class="amenity-pill amenity-pill--muted">Comma-separated list below…</span>';
+        return;
+    }
+    preview.innerHTML = parts.map(function(a) {
+        return '<span class="amenity-pill">' + escapeHtml(a) + '</span>';
+    }).join('');
+}
+
+// Keep filter-row sticky offset under the (possibly wrapped) sort header row
+function syncDataTableStickyHeaderOffset() {
+    const table = document.getElementById('dataTable');
+    if (!table) return;
+    const sortRow = table.querySelector('thead tr:first-child');
+    if (!sortRow) return;
+    const h = sortRow.getBoundingClientRect().height;
+    table.style.setProperty('--data-table-header-row1-height', Math.max(Math.ceil(h), 40) + 'px');
+}
+
 function sanitizeCustomHtml(html) {
     if (!html) return '';
     const template = document.createElement('template');
@@ -5356,6 +5520,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             th.textContent = header;
         });
     });
+    requestAnimationFrame(function() {
+        requestAnimationFrame(syncDataTableStickyHeaderOffset);
+    });
 }
 
 // =================================
@@ -5678,6 +5845,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             if (target.closest('#listingForm')) {
                 showUnsavedChangesBadge();
             } else if (target.closest('#dataTableBody') && target.matches('[data-field]')) {
+                if (target.matches('textarea[data-field="amenities"]')) {
+                    syncTableAmenitiesPillsPreview(target);
+                }
                 markTableEditsPending();
             }
         });
@@ -13533,6 +13703,8 @@ function updateTabsStickyStackStuck() {
                     window._tableAccordionDebugLogged = true;
                 }
                 
+                const amenitiesRaw = safeArray(listing.amenities).join(', ');
+                
                 row.innerHTML = 
                     '<td class="cell-name"><input type="text" value="' + safe(listing.name) + '" data-field="name" /></td>' +
                     '<td class="cell-slug"><input type="text" value="' + safe(listing.slug) + '" data-field="slug" placeholder="auto" /></td>' +
@@ -13545,13 +13717,13 @@ function updateTabsStickyStackStuck() {
                     '</select></td>' +
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
                     '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
-                    '<td class="cell-custom-html"><textarea data-field="customHtml" style="font-family: \'SFMono-Regular\', Menlo, Monaco, Consolas, \'Liberation Mono\', \'Courier New\', monospace;">' + safe(listing.customHtml || '') + '</textarea></td>' +
+                    '<td class="cell-custom-html"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image1Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2">' + safe(listing.image1Desc || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image2Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2">' + safe(listing.image2Desc || '') + '</textarea></td>' +
                     '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
-                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2" style="width: 100%; padding: 4px; font-size: 12px; resize: vertical;">' + safe(listing.image3Desc || '') + '</textarea></td>' +
+                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2">' + safe(listing.image3Desc || '') + '</textarea></td>' +
                     '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
                     '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
@@ -13566,7 +13738,7 @@ function updateTabsStickyStackStuck() {
                     '<td class="cell-document-name"><input type="text" value="' + safe(listing.document1Name || '') + '" data-field="document1Name" placeholder="Document name..." /></td>' +
                     '<td class="cell-document"><input type="url" value="' + safe(listing.document2 || '') + '" data-field="document2" placeholder="PDF URL..." /></td>' +
                     '<td class="cell-document-name"><input type="text" value="' + safe(listing.document2Name || '') + '" data-field="document2Name" placeholder="Document name..." /></td>' +
-                    '<td class="cell-amenities"><textarea data-field="amenities">' + safeArray(listing.amenities).join(', ') + '</textarea></td>' +
+                    '<td class="cell-amenities"><div class="amenities-cell"><div class="amenities-pills-preview" aria-hidden="true"></div><textarea data-field="amenities" class="amenities-raw-input" rows="2" spellcheck="false" placeholder="Wi-Fi, Parking, Pet friendly…">' + escapeHtml(amenitiesRaw) + '</textarea></div></td>' +
                     '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
                     '<td class="cell-private"><input type="checkbox" ' + (listing.private ? 'checked' : '') + ' data-field="private" /></td>' +
                     '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
@@ -13584,6 +13756,8 @@ function updateTabsStickyStackStuck() {
                         '</button>' +
                     '</td>';
                 tbody.appendChild(row);
+                const amenitiesTa = row.querySelector('textarea.amenities-raw-input');
+                if (amenitiesTa) syncTableAmenitiesPillsPreview(amenitiesTa);
             });
             
             // Update sort indicators
@@ -13597,6 +13771,9 @@ function updateTabsStickyStackStuck() {
             // Populate filter dropdowns
             updateTableFilterDropdowns();
             clearTableEditsPending();
+            requestAnimationFrame(function() {
+                requestAnimationFrame(syncDataTableStickyHeaderOffset);
+            });
         }
         
         function updateTableFilterDropdowns() {
@@ -13760,6 +13937,12 @@ function updateTabsStickyStackStuck() {
                 }
             });
             initDataTableFilterTooltips();
+            var headerStickyResizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(headerStickyResizeTimer);
+                headerStickyResizeTimer = setTimeout(syncDataTableStickyHeaderOffset, 120);
+            });
+            syncDataTableStickyHeaderOffset();
         }, 100);
         
         function saveTableChanges(options) {
