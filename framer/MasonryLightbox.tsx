@@ -3,11 +3,10 @@ import { createPortal } from "react-dom"
 import { addPropertyControls, ControlType, RenderTarget } from "framer"
 
 type ObjectFit = "cover" | "contain" | "fill" | "scale-down"
-type SortMode = "newest" | "oldest" | "manual"
-type FilterMode = "none" | "range"
 type ColumnsMode = "responsive" | "fixed"
 type ToolbarPosition = "top" | "bottom"
-type FilterLabelMode = "auto" | "date" | "custom"
+type HoverEasing = "smooth" | "snappy" | "linear"
+type ComponentOverflow = "visible" | "hidden" | "clip" | "scroll" | "auto"
 
 type PhotoItem = {
     id?: string
@@ -15,7 +14,102 @@ type PhotoItem = {
     alt?: string
     caption?: string
     date?: string
+    tag?: string
     link?: string
+}
+
+function MasonryItem(props: any) {
+    const {
+        p,
+        i,
+        enableParallax,
+        parallaxStrength,
+        scrollY,
+        revealOnScroll,
+        revealDuration,
+        revealOnce,
+        revealVisibleStyle,
+        revealHiddenStyle,
+        itemStyle,
+        enableLightbox,
+        setOpenIndex,
+        clickableStyle,
+        imgStyle,
+        showCaptions,
+        captionStyle,
+        hoverIndex,
+        setHoverIndex,
+        hoverFocusScale,
+        hoverOthersScale,
+        hoverFluidDuration,
+        hoverFluidBezier,
+        hoverScale,
+    } = props
+
+    const parallax = enableParallax ? (i % 7) * 0.03 * parallaxStrength : 0
+    const ty = enableParallax ? (scrollY * parallax) / 100 : 0
+    const outer: React.CSSProperties = ty ? { transform: `translate3d(0, ${ty}px, 0)` } : undefined
+
+    const { ref, inView } = useInView({ rootMargin: "200px 0px", threshold: 0.08, once: revealOnce })
+    const revealStyle = revealOnScroll
+        ? {
+              transition: `opacity ${revealDuration}s ease, transform ${revealDuration}s cubic-bezier(0.2, 0.8, 0.2, 1)`,
+              willChange: "opacity, transform",
+              ...(inView ? revealVisibleStyle : revealHiddenStyle),
+          }
+        : undefined
+
+    const onClick = (e: React.MouseEvent) => {
+        if (!enableLightbox) return
+        e.preventDefault()
+        setOpenIndex(i)
+    }
+
+    const href = enableLightbox ? "#" : p.link || undefined
+    const scale = hoverIndex === i ? hoverFocusScale : hoverIndex !== null ? hoverOthersScale : 1
+
+    return (
+        <div
+            key={p.id}
+            ref={ref as any}
+            style={{ ...itemStyle, ...outer, ...(revealStyle || {}) }}
+            onMouseEnter={() => setHoverIndex(i)}
+            onMouseLeave={() => setHoverIndex(null)}
+        >
+            <div
+                style={{
+                    transform: `scale(${scale})`,
+                    transition: `transform ${Math.max(0, hoverFluidDuration)}s ${hoverFluidBezier}`,
+                    transformOrigin: "center",
+                    willChange: "transform",
+                }}
+            >
+                <a
+                    href={href}
+                    style={clickableStyle}
+                    onClick={onClick}
+                    onMouseEnter={(e) => {
+                        if (hoverScale <= 1) return
+                        const img = (e.currentTarget as HTMLAnchorElement).querySelector("img")
+                        if (img) (img as HTMLImageElement).style.transform = `scale(${hoverScale})`
+                    }}
+                    onMouseLeave={(e) => {
+                        const img = (e.currentTarget as HTMLAnchorElement).querySelector("img")
+                        if (img) (img as HTMLImageElement).style.transform = "scale(1)"
+                    }}
+                    aria-label={p.alt || "Open image"}
+                >
+                    <img src={p.image} alt={p.alt} style={imgStyle} loading="lazy" decoding="async" />
+                </a>
+                {showCaptions && (p.caption || p.date) ? (
+                    <div style={captionStyle}>
+                        {p.caption ? <div>{p.caption}</div> : null}
+                        {p.date ? <div style={{ opacity: 0.75 }}>{p.date}</div> : null}
+                    </div>
+                ) : null}
+            </div>
+        </div>
+    )
 }
 
 function useInView(options: { rootMargin?: string; threshold?: number; once?: boolean } = {}) {
@@ -59,21 +153,60 @@ function useInView(options: { rootMargin?: string; threshold?: number; once?: bo
     return { ref, inView }
 }
 
-function asDateMs(value?: string) {
-    if (!value) return undefined
-    const t = Date.parse(value)
-    return Number.isFinite(t) ? t : undefined
+function parseLabelMap(raw: string) {
+    const map = new Map<string, string>()
+    const normalized = (raw || "").replace(/\\n/g, "\n")
+    // Accept either newline-separated or comma-separated pairs.
+    for (const line of normalized.split(/[\r\n]+|,/g)) {
+        const t = line.trim()
+        if (!t) continue
+        const [k, ...rest] = t.split("|")
+        const key = (k || "").trim()
+        const label = rest.join("|").trim()
+        if (!key || !label) continue
+        map.set(key, label)
+    }
+    return map
+}
+
+function normalizeTag(value?: string) {
+    const raw = (value || "").trim()
+    if (!raw) return ""
+    // Normalize so variants like "Day 1", "day1", "DAY-1" all match.
+    return raw.toLowerCase().replace(/[^a-z0-9]+/g, "")
+}
+
+function sortTagKeys(a: string, b: string) {
+    const na = /^\s*(?:day\s*)?(\d+)\s*$/i.exec(a)?.[1]
+    const nb = /^\s*(?:day\s*)?(\d+)\s*$/i.exec(b)?.[1]
+    if (na && nb) return Number(na) - Number(nb)
+    if (na && !nb) return -1
+    if (!na && nb) return 1
+    return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" })
 }
 
 function formatMonthDay(dateStr: string) {
-    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr.trim())
-    if (!m) return dateStr
-    const y = Number(m[1])
-    const mo = Number(m[2]) - 1
-    const d = Number(m[3])
-    const dt = new Date(Date.UTC(y, mo, d))
+    const raw = (dateStr || "").trim()
+    if (!raw) return dateStr
+
+    // Preserve "date-only" strings as UTC so they don't shift by timezone.
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(raw)
+    if (m) {
+        const y = Number(m[1])
+        const mo = Number(m[2]) - 1
+        const d = Number(m[3])
+        const dt = new Date(Date.UTC(y, mo, d))
+        try {
+            return new Intl.DateTimeFormat(undefined, { month: "long", day: "numeric" }).format(dt)
+        } catch {
+            return dateStr
+        }
+    }
+
+    const t = Date.parse(raw)
+    if (!Number.isFinite(t)) return dateStr
     try {
-        return new Intl.DateTimeFormat(undefined, { month: "long", day: "numeric" }).format(dt)
+        return new Intl.DateTimeFormat(undefined, { month: "long", day: "numeric" }).format(new Date(t))
     } catch {
         return dateStr
     }
@@ -137,15 +270,12 @@ function getColumnsForWidth(width: number, cols: { mobile: number; tablet: numbe
 
 export function MasonryLightbox(props: {
     photos: PhotoItem[]
-    sort: SortMode
-    filterMode: FilterMode
-    filterStart: string
-    filterEnd: string
     showFilterBar: boolean
     filterBarPosition: ToolbarPosition
     filterAllLabel: string
-    filterLabelMode: FilterLabelMode
-    filterCustomLabels: string
+    filterDropdownLabels: string
+    minComponentHeight: number
+    componentOverflow: ComponentOverflow
     filterDropdownWidth: number
     filterDropdownHeight: number
     filterDropdownRadius: number
@@ -176,6 +306,10 @@ export function MasonryLightbox(props: {
     captionSize: number
     hoverScale: number
     hoverDuration: number
+    hoverFocusScale: number
+    hoverOthersScale: number
+    hoverFluidDuration: number
+    hoverFluidEasing: HoverEasing
     revealOnScroll: boolean
     revealDuration: number
     revealScaleFrom: number
@@ -193,15 +327,12 @@ export function MasonryLightbox(props: {
 }) {
     const {
         photos,
-        sort,
-        filterMode,
-        filterStart,
-        filterEnd,
         showFilterBar,
         filterBarPosition,
         filterAllLabel,
-        filterLabelMode,
-        filterCustomLabels,
+        filterDropdownLabels,
+        minComponentHeight,
+        componentOverflow,
         filterDropdownWidth,
         filterDropdownHeight,
         filterDropdownRadius,
@@ -232,6 +363,10 @@ export function MasonryLightbox(props: {
         captionSize,
         hoverScale,
         hoverDuration,
+        hoverFocusScale,
+        hoverOthersScale,
+        hoverFluidDuration,
+        hoverFluidEasing,
         revealOnScroll,
         revealDuration,
         revealScaleFrom,
@@ -257,119 +392,68 @@ export function MasonryLightbox(props: {
     })
     const columns = columnsMode === "fixed" ? columnsFixed : columnsResponsive
 
-    const uniqueDays = React.useMemo(() => {
+    const uniqueTags = React.useMemo(() => {
         const set = new Set<string>()
         for (const p of photos || []) {
-            const d = (p?.date || "").trim()
-            if (!d) continue
-            set.add(d)
+            const k = normalizeTag(p?.tag)
+            if (!k) continue
+            set.add(k)
         }
-        const days = Array.from(set)
-        days.sort((a, b) => (asDateMs(b) ?? 0) - (asDateMs(a) ?? 0))
-        return days
+        const tags = Array.from(set)
+        tags.sort(sortTagKeys)
+        return tags
     }, [photos])
 
     const ALL_KEY = "__all__"
     const [uiSelectedKey, setUiSelectedKey] = React.useState<string>(ALL_KEY)
     React.useEffect(() => setUiSelectedKey(ALL_KEY), [filterAllLabel])
 
-    const customLabelMap = React.useMemo(() => {
-        const map = new Map<string, string>()
-        const raw = (filterCustomLabels || "").split("\n")
-        for (const line of raw) {
-            const t = line.trim()
-            if (!t) continue
-            const [k, ...rest] = t.split("|")
-            const key = (k || "").trim()
-            const label = rest.join("|").trim()
-            if (!key || !label) continue
-            map.set(key, label)
-        }
-        return map
-    }, [filterCustomLabels])
+    const dropdownLabelMap = React.useMemo(() => {
+        const raw = parseLabelMap(filterDropdownLabels)
+        const normalized = new Map<string, string>()
+        for (const [k, v] of raw) normalized.set(normalizeTag(k), v)
+        return normalized
+    }, [filterDropdownLabels])
 
     const filterOptions = React.useMemo(() => {
         const opts: Array<{ key: string; label: string }> = [{ key: ALL_KEY, label: filterAllLabel }]
-        for (const day of uniqueDays) {
-            let label = day
-            if (filterLabelMode === "auto") label = formatMonthDay(day)
-            if (filterLabelMode === "custom") label = customLabelMap.get(day) ?? formatMonthDay(day)
-            opts.push({ key: day, label })
+        for (const tag of uniqueTags) {
+            opts.push({ key: tag, label: dropdownLabelMap.get(tag) ?? tag })
         }
         return opts
-    }, [uniqueDays, filterAllLabel, filterLabelMode, customLabelMap])
+    }, [uniqueTags, filterAllLabel, dropdownLabelMap])
 
-    const [filterOpen, setFilterOpen] = React.useState(false)
-    const filterWrapRef = React.useRef<HTMLDivElement | null>(null)
-
-    React.useEffect(() => {
-        if (!filterOpen) return
-        const onDown = (e: MouseEvent) => {
-            const target = e.target as Node | null
-            if (!target) return
-            if (filterWrapRef.current && !filterWrapRef.current.contains(target)) setFilterOpen(false)
-        }
-        window.addEventListener("mousedown", onDown)
-        return () => window.removeEventListener("mousedown", onDown)
-    }, [filterOpen])
-
-    useKeydown(
-        filterOpen,
-        React.useCallback(
-            (e: KeyboardEvent) => {
-                if (e.key === "Escape") {
-                    e.preventDefault()
-                    setFilterOpen(false)
-                }
-            },
-            [setFilterOpen]
-        )
-    )
-
-    const effectiveSort: SortMode = sort
-    const selectedDay = showFilterBar && uiSelectedKey !== ALL_KEY ? uiSelectedKey.trim() : ""
-
-    const startMs = filterMode === "range" ? asDateMs(filterStart) : undefined
-    const endMs = filterMode === "range" ? asDateMs(filterEnd) : undefined
+    const selectedTag = showFilterBar && uiSelectedKey !== ALL_KEY ? uiSelectedKey.trim() : ""
 
     const normalized = React.useMemo(() => {
-        const list = (photos || []).map((p, i) => ({
+        const list = (photos || []).map((p, i) => {
+            const dateRaw = (p.date ?? "").trim()
+            const tagKey = normalizeTag(p.tag)
+            return {
             id: p.id ?? `${i}`,
             image: p.image,
             alt: p.alt ?? "",
             caption: p.caption ?? "",
             link: p.link ?? "",
-            date: (p.date ?? "").trim(),
-            dateMs: asDateMs(p.date),
+            date: dateRaw,
+            tagKey,
             index: i,
-        }))
+            }
+        })
 
-        const filtered = selectedDay
-            ? list.filter((p) => p.date === selectedDay)
-            : filterMode === "range" && (startMs !== undefined || endMs !== undefined)
-              ? list.filter((p) => {
-                    const t = p.dateMs
-                    if (t === undefined) return false
-                    if (startMs !== undefined && t < startMs) return false
-                    if (endMs !== undefined && t > endMs) return false
-                    return true
-                })
-              : list
-
-        const sorted =
-            effectiveSort === "manual"
-                ? filtered
-                : [...filtered].sort((a, b) => {
-                      const at = a.dateMs ?? 0
-                      const bt = b.dateMs ?? 0
-                      return effectiveSort === "newest" ? bt - at : at - bt
-                  })
-
-        return sorted
-    }, [photos, selectedDay, filterMode, startMs, endMs, effectiveSort])
+        return selectedTag ? list.filter((p) => p.tagKey === selectedTag) : list
+    }, [photos, selectedTag])
 
     const [openIndex, setOpenIndex] = React.useState<number | null>(null)
     const isOpen = enableLightbox && openIndex !== null
+    const [hoverIndex, setHoverIndex] = React.useState<number | null>(null)
+
+    const hoverFluidBezier =
+        hoverFluidEasing === "linear"
+            ? "linear"
+            : hoverFluidEasing === "snappy"
+              ? "cubic-bezier(0.22, 1, 0.36, 1)"
+              : "cubic-bezier(0.2, 0.8, 0.2, 1)"
 
     useLockedBodyScroll(isOpen && RenderTarget.current() !== RenderTarget.canvas)
 
@@ -426,15 +510,25 @@ export function MasonryLightbox(props: {
 
     const wrapStyle: React.CSSProperties = {
         width: "100%",
-        height: "100%",
+        // In Framer "Fit content" layouts, `height: 100%` can collapse to 0
+        // when the masonry has no items (e.g. an empty filter result),
+        // which makes the filter bar disappear too.
+        height: "auto",
+        minHeight: Math.max(
+            0,
+            minComponentHeight || 0,
+            showFilterBar ? filterDropdownHeight + Math.max(8, Math.min(24, gap)) : 0
+        ),
         position: "relative",
         fontFamily: "Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
+        overflow: componentOverflow,
     }
 
     const filterBarStyle: React.CSSProperties = {
-        position: "sticky",
-        top: filterBarPosition === "top" ? 0 : undefined,
-        bottom: filterBarPosition === "bottom" ? 0 : undefined,
+        // NOTE: `position: sticky` can behave strangely in Framer "Fit content" frames
+        // (especially when the filtered result is empty). Keep it in normal flow so
+        // the filter UI never disappears.
+        position: "relative",
         zIndex: filterBarZIndex,
         width: filterDropdownWidth,
         marginBottom: filterBarPosition === "top" ? Math.max(8, Math.min(24, gap)) : 0,
@@ -448,17 +542,18 @@ export function MasonryLightbox(props: {
         borderRadius: filterDropdownRadius,
         background: filterDropdownBackground,
         color: filterDropdownText,
-        border: "none",
+        border: "1px solid rgba(255,255,255,0.12)",
         outline: "none",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         font: "inherit",
         fontSize: filterDropdownFontSize,
-        padding: "0 14px 0 16px",
+        padding: "0 16px 0 16px",
         cursor: "pointer",
         boxShadow: filterDropdownShadow,
         userSelect: "none",
+        backdropFilter: "blur(10px)",
     }
 
     const filterIconWrapStyle: React.CSSProperties = {
@@ -471,6 +566,33 @@ export function MasonryLightbox(props: {
         flex: "0 0 auto",
     }
 
+    const [filterOpen, setFilterOpen] = React.useState(false)
+    const filterWrapRef = React.useRef<HTMLDivElement | null>(null)
+
+    React.useEffect(() => {
+        if (!filterOpen) return
+        const onDown = (e: MouseEvent) => {
+            const target = e.target as Node | null
+            if (!target) return
+            if (filterWrapRef.current && !filterWrapRef.current.contains(target)) setFilterOpen(false)
+        }
+        window.addEventListener("mousedown", onDown)
+        return () => window.removeEventListener("mousedown", onDown)
+    }, [filterOpen])
+
+    useKeydown(
+        filterOpen,
+        React.useCallback(
+            (e: KeyboardEvent) => {
+                if (e.key === "Escape") {
+                    e.preventDefault()
+                    setFilterOpen(false)
+                }
+            },
+            [setFilterOpen]
+        )
+    )
+
     const filterMenuStyle: React.CSSProperties = {
         position: "absolute",
         left: 0,
@@ -481,6 +603,8 @@ export function MasonryLightbox(props: {
         padding: filterMenuPadding,
         boxShadow: filterMenuShadow,
         zIndex: filterBarZIndex + 1,
+        overflow: "hidden",
+        backdropFilter: "blur(10px)",
     }
 
     const masonryStyle: React.CSSProperties = {
@@ -512,7 +636,8 @@ export function MasonryLightbox(props: {
         width: "100%",
         display: "block",
         borderRadius: radius,
-        overflow: "hidden",
+        // Don't clip hover zoom transforms at the frame edge.
+        overflow: "visible",
         cursor: enableLightbox ? "zoom-in" : "pointer",
         textDecoration: "none",
         color: "inherit",
@@ -522,6 +647,7 @@ export function MasonryLightbox(props: {
         width: "100%",
         height: "auto",
         display: "block",
+        borderRadius: radius,
         objectFit,
         transform: "scale(1)",
         transformOrigin: "center",
@@ -578,9 +704,10 @@ export function MasonryLightbox(props: {
     }
 
     const arrowBase: React.CSSProperties = {
-        position: "absolute",
+        position: "fixed",
         top: "50%",
         transform: "translateY(-50%)",
+        zIndex: 2147483647,
         width: 44,
         height: 44,
         borderRadius: 999,
@@ -594,6 +721,12 @@ export function MasonryLightbox(props: {
         pointerEvents: "auto",
         backdropFilter: "blur(8px)",
     }
+
+    const arrowPad = Math.max(12, lightboxPadding)
+    // Place arrows near the viewport edges (outside the centered image column),
+    // instead of hugging the image box inside the 1100px frame.
+    const arrowLeft = `clamp(${arrowPad}px, calc((100vw - 1100px) / 2 - 64px), 120px)`
+    const arrowRight = arrowLeft
 
     const counterStyle: React.CSSProperties = {
         position: "absolute",
@@ -628,7 +761,7 @@ export function MasonryLightbox(props: {
                     {showArrows && normalized.length > 1 ? (
                         <button
                             type="button"
-                            style={{ ...arrowBase, left: 0 }}
+                            style={{ ...arrowBase, left: arrowLeft }}
                             onClick={() => prev()}
                             aria-label="Previous"
                         >
@@ -649,7 +782,7 @@ export function MasonryLightbox(props: {
                     </div>
 
                     {showArrows && normalized.length > 1 ? (
-                        <button type="button" style={{ ...arrowBase, right: 0 }} onClick={() => next()} aria-label="Next">
+                        <button type="button" style={{ ...arrowBase, right: arrowRight }} onClick={() => next()} aria-label="Next">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
                                 <path
                                     d="M9 6l6 6-6 6"
@@ -667,163 +800,163 @@ export function MasonryLightbox(props: {
 
     return (
         <div style={wrapStyle}>
-            {showFilterBar ? (
-                <div style={filterBarStyle} aria-label="Gallery filter" ref={filterWrapRef as any}>
-                    <button
-                        type="button"
-                        style={filterButtonStyle}
-                        onClick={() => setFilterOpen((v) => !v)}
-                        aria-haspopup="listbox"
-                        aria-expanded={filterOpen}
-                    >
-                        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                            {filterOptions.find((o) => o.key === uiSelectedKey)?.label ?? filterAllLabel}
-                        </span>
-                        <span style={filterIconWrapStyle} aria-hidden="true">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                                <path
-                                    d={filterOpen ? "M7 14l5-5 5 5" : "M7 10l5 5 5-5"}
-                                    stroke={filterDropdownIconColor}
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                />
-                            </svg>
-                        </span>
-                    </button>
+                {showFilterBar ? (
+                    <div style={filterBarStyle} aria-label="Gallery filter" ref={filterWrapRef as any}>
+                        <button
+                            type="button"
+                            style={{
+                                ...filterButtonStyle,
+                                transition:
+                                    "transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease",
+                            }}
+                            onClick={() => setFilterOpen((v) => !v)}
+                            onMouseDown={(e) => {
+                                ;(e.currentTarget as HTMLButtonElement).style.transform = "scale(0.99)"
+                            }}
+                            onMouseUp={(e) => {
+                                ;(e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"
+                            }}
+                            onMouseLeave={(e) => {
+                                ;(e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"
+                            }}
+                            aria-haspopup="listbox"
+                            aria-expanded={filterOpen}
+                        >
+                            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                {filterOptions.find((o) => o.key === uiSelectedKey)?.label ?? filterAllLabel}
+                            </span>
+                            <span
+                                style={{
+                                    ...filterIconWrapStyle,
+                                    pointerEvents: "none",
+                                    transform: filterOpen ? "rotate(180deg)" : "none",
+                                    transition: "transform 160ms ease",
+                                }}
+                                aria-hidden="true"
+                            >
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path
+                                        d="M7 10l5 5 5-5"
+                                        stroke={filterDropdownIconColor}
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </svg>
+                            </span>
+                        </button>
 
-                    {filterOpen ? (
-                        <div style={filterMenuStyle} role="listbox" aria-label="Filter options">
-                            {filterOptions.map((opt) => {
-                                const selected = opt.key === uiSelectedKey
-                                return (
-                                    <button
-                                        key={opt.key}
-                                        type="button"
-                                        onClick={() => {
-                                            setUiSelectedKey(opt.key)
-                                            setFilterOpen(false)
-                                        }}
-                                        style={{
-                                            width: "100%",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            gap: 12,
-                                            padding: "14px 16px",
-                                            border: "none",
-                                            background: "transparent",
-                                            color: selected ? filterMenuAccent : filterDropdownText,
-                                            font: "inherit",
-                                            fontSize: filterDropdownFontSize,
-                                            textAlign: "left",
-                                            cursor: "pointer",
-                                            borderRadius: Math.max(10, Math.floor(filterMenuRadius * 0.55)),
-                                        }}
-                                        onMouseEnter={(e) => {
-                                            ;(e.currentTarget as HTMLButtonElement).style.background = filterMenuItemHoverBackground
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            ;(e.currentTarget as HTMLButtonElement).style.background = "transparent"
-                                        }}
-                                        role="option"
-                                        aria-selected={selected}
-                                    >
-                                        <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                                            {opt.label}
-                                        </span>
-                                        {selected ? (
-                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path
-                                                    d="M20 6L9 17l-5-5"
-                                                    stroke={filterMenuAccent}
-                                                    strokeWidth="2.5"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                />
-                                            </svg>
-                                        ) : (
-                                            <span style={{ width: 18, height: 18 }} />
-                                        )}
-                                    </button>
-                                )
-                            })}
+                        {filterOpen ? (
+                            <div style={filterMenuStyle} role="listbox" aria-label="Filter options">
+                                {filterOptions.map((opt) => {
+                                    const selected = opt.key === uiSelectedKey
+                                    return (
+                                        <button
+                                            key={opt.key}
+                                            type="button"
+                                            onClick={() => {
+                                                setUiSelectedKey(opt.key)
+                                                setFilterOpen(false)
+                                            }}
+                                            style={{
+                                                width: "100%",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "space-between",
+                                                gap: 12,
+                                                padding: "12px 14px",
+                                                border: "none",
+                                                background: "transparent",
+                                                color: selected ? filterMenuAccent : filterDropdownText,
+                                                font: "inherit",
+                                                fontSize: filterDropdownFontSize,
+                                                textAlign: "left",
+                                                cursor: "pointer",
+                                                borderRadius: Math.max(10, Math.floor(filterMenuRadius * 0.55)),
+                                                outline: "none",
+                                                transition: "background 120ms ease, transform 120ms ease",
+                                            }}
+                                            onMouseEnter={(e) => {
+                                                ;(e.currentTarget as HTMLButtonElement).style.background = filterMenuItemHoverBackground
+                                            }}
+                                            onMouseLeave={(e) => {
+                                                ;(e.currentTarget as HTMLButtonElement).style.background = "transparent"
+                                            }}
+                                            onMouseDown={(e) => {
+                                                ;(e.currentTarget as HTMLButtonElement).style.transform = "scale(0.99)"
+                                            }}
+                                            onMouseUp={(e) => {
+                                                ;(e.currentTarget as HTMLButtonElement).style.transform = "scale(1)"
+                                            }}
+                                            role="option"
+                                            aria-selected={selected}
+                                        >
+                                            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                                                {opt.label}
+                                            </span>
+                                            {selected ? (
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                    <path
+                                                        d="M20 6L9 17l-5-5"
+                                                        stroke={filterMenuAccent}
+                                                        strokeWidth="2.5"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                            ) : (
+                                                <span style={{ width: 18, height: 18 }} />
+                                            )}
+                                        </button>
+                                    )
+                                })}
+                            </div>
+                        ) : null}
+                    </div>
+                ) : null}
+
+                <div style={masonryStyle}>
+                    {selectedTag && !normalized.length ? (
+                        <div style={{ padding: 12, opacity: 0.75, fontSize: 12 }}>
+                            No photos match this filter.
                         </div>
                     ) : null}
-                </div>
-            ) : null}
-
-            <div style={masonryStyle}>
-                {normalized.map((p, i) => {
-                    const parallax =
-                        enableParallax && RenderTarget.current() !== RenderTarget.canvas
-                            ? (i % 7) * 0.03 * parallaxStrength
-                            : 0
-                    const ty = enableParallax ? (scrollY * parallax) / 100 : 0
-                    const outer: React.CSSProperties = ty ? { transform: `translate3d(0, ${ty}px, 0)` } : undefined
-                    const { ref, inView } = useInView({ rootMargin: "200px 0px", threshold: 0.08, once: revealOnce })
-                    const revealStyle =
-                        revealOnScroll && RenderTarget.current() !== RenderTarget.canvas
-                            ? {
-                                  transition: `opacity ${revealDuration}s ease, transform ${revealDuration}s cubic-bezier(0.2, 0.8, 0.2, 1)`,
-                                  willChange: "opacity, transform",
-                                  ...(inView ? revealVisibleStyle : revealHiddenStyle),
-                              }
-                            : undefined
-
-                    const onClick = (e: React.MouseEvent) => {
-                        if (!enableLightbox) return
-                        e.preventDefault()
-                        setOpenIndex(i)
-                    }
-
-                    const href = enableLightbox ? "#" : p.link || undefined
-
-                    return (
-                        <div
+                    {normalized.map((p, i) => (
+                        <MasonryItem
                             key={p.id}
-                            ref={ref as any}
-                            style={{ ...itemStyle, ...outer, ...(revealStyle || {}) }}
-                        >
-                            <a
-                                href={href}
-                                style={clickableStyle}
-                                onClick={onClick}
-                                onMouseEnter={(e) => {
-                                    if (hoverScale === 1) return
-                                    const img = (e.currentTarget as HTMLAnchorElement).querySelector("img")
-                                    if (img) (img as HTMLImageElement).style.transform = `scale(${hoverScale})`
-                                }}
-                                onMouseLeave={(e) => {
-                                    const img = (e.currentTarget as HTMLAnchorElement).querySelector("img")
-                                    if (img) (img as HTMLImageElement).style.transform = "scale(1)"
-                                }}
-                                aria-label={p.alt || "Open image"}
-                            >
-                                <img
-                                    src={p.image}
-                                    alt={p.alt}
-                                    style={imgStyle}
-                                    loading="lazy"
-                                    decoding="async"
-                                />
-                            </a>
-                            {showCaptions && (p.caption || p.date) ? (
-                                <div style={captionStyle}>
-                                    {p.caption ? <div>{p.caption}</div> : null}
-                                    {p.date ? <div style={{ opacity: 0.75 }}>{p.date}</div> : null}
-                                </div>
-                            ) : null}
-                        </div>
-                    )
-                })}
-            </div>
+                            p={p}
+                            i={i}
+                            enableParallax={enableParallax && RenderTarget.current() !== RenderTarget.canvas}
+                            parallaxStrength={parallaxStrength}
+                            scrollY={scrollY}
+                            revealOnScroll={revealOnScroll && RenderTarget.current() !== RenderTarget.canvas}
+                            revealDuration={revealDuration}
+                            revealOnce={revealOnce}
+                            revealVisibleStyle={revealVisibleStyle}
+                            revealHiddenStyle={revealHiddenStyle}
+                            itemStyle={itemStyle}
+                            enableLightbox={enableLightbox}
+                            setOpenIndex={setOpenIndex}
+                            clickableStyle={clickableStyle}
+                            imgStyle={imgStyle}
+                            showCaptions={showCaptions}
+                            captionStyle={captionStyle}
+                            hoverIndex={hoverIndex}
+                            setHoverIndex={setHoverIndex}
+                            hoverFocusScale={hoverFocusScale}
+                            hoverOthersScale={hoverOthersScale}
+                            hoverFluidDuration={hoverFluidDuration}
+                            hoverFluidBezier={hoverFluidBezier}
+                            hoverScale={hoverScale}
+                        />
+                    ))}
+                </div>
 
-            {RenderTarget.current() === RenderTarget.canvas
-                ? lightbox
-                : typeof document !== "undefined" && lightbox
-                  ? createPortal(lightbox, document.body)
-                  : null}
+                {RenderTarget.current() === RenderTarget.canvas
+                    ? lightbox
+                    : typeof document !== "undefined" && lightbox
+                      ? createPortal(lightbox, document.body)
+                      : null}
         </div>
     )
 }
@@ -835,29 +968,29 @@ MasonryLightbox.defaultProps = {
             alt: "Sample photo",
             caption: "Drop in your images",
             date: "2026-05-01",
+            tag: "day1",
         },
         {
             image: "https://framerusercontent.com/images/p8xKXr8eG2cJm9d2bLx1tqQmV8w.jpg",
             alt: "Sample photo 2",
             caption: "Reorder them in the Photos list",
             date: "2026-05-03",
+            tag: "day2",
         },
         {
             image: "https://framerusercontent.com/images/1x7Zg2s3vWQw7GZ0qv0uX9h8oHg.jpg",
             alt: "Sample photo 3",
             caption: "Filter by date range",
             date: "2026-05-05",
+            tag: "day3",
         },
     ],
-    sort: "manual",
-    filterMode: "none",
-    filterStart: "2026-01-01",
-    filterEnd: "2026-12-31",
     showFilterBar: true,
     filterBarPosition: "top",
     filterAllLabel: "All",
-    filterLabelMode: "auto",
-    filterCustomLabels: "",
+    filterDropdownLabels: "day1|Day 1\nday2|Day 2\nday3|Day 3",
+    minComponentHeight: 320,
+    componentOverflow: "visible",
     filterDropdownWidth: 150,
     filterDropdownHeight: 56,
     filterDropdownRadius: 28,
@@ -886,8 +1019,12 @@ MasonryLightbox.defaultProps = {
     showCaptions: false,
     captionColor: "rgba(255,255,255,0.85)",
     captionSize: 12,
-    hoverScale: 1.02,
+    hoverScale: 1,
     hoverDuration: 0.18,
+    hoverFocusScale: 1.04,
+    hoverOthersScale: 0.96,
+    hoverFluidDuration: 0.22,
+    hoverFluidEasing: "smooth",
     revealOnScroll: true,
     revealDuration: 0.38,
     revealScaleFrom: 0.98,
@@ -914,39 +1051,12 @@ addPropertyControls(MasonryLightbox, {
                 image: { type: ControlType.Image, title: "Image" },
                 alt: { type: ControlType.String, title: "Alt" },
                 caption: { type: ControlType.String, title: "Caption" },
-                date: { type: ControlType.String, title: "Date (YYYY-MM-DD)" },
+                date: { type: ControlType.String, title: "Date" },
+                tag: { type: ControlType.String, title: "Tag" },
                 link: { type: ControlType.Link, title: "Link" },
             },
         },
         defaultValue: MasonryLightbox.defaultProps.photos as any,
-    },
-
-    sort: {
-        type: ControlType.Enum,
-        title: "Sort",
-        options: ["manual", "newest", "oldest"],
-        optionTitles: ["Manual", "Newest", "Oldest"],
-        defaultValue: "manual",
-    },
-
-    filterMode: {
-        type: ControlType.Enum,
-        title: "Filter",
-        options: ["none", "range"],
-        optionTitles: ["None", "Date range"],
-        defaultValue: "none",
-    },
-    filterStart: {
-        type: ControlType.String,
-        title: "From",
-        defaultValue: "2026-01-01",
-        hidden: (p) => p.filterMode !== "range",
-    },
-    filterEnd: {
-        type: ControlType.String,
-        title: "To",
-        defaultValue: "2026-12-31",
-        hidden: (p) => p.filterMode !== "range",
     },
 
     showFilterBar: { type: ControlType.Boolean, title: "Filter bar", defaultValue: true },
@@ -956,20 +1066,28 @@ addPropertyControls(MasonryLightbox, {
         defaultValue: "All",
         hidden: (p) => !p.showFilterBar,
     },
-    filterLabelMode: {
-        type: ControlType.Enum,
-        title: "Labels",
-        options: ["auto", "date", "custom"],
-        optionTitles: ["Auto (April 3)", "Raw date (YYYY-MM-DD)", "Custom map"],
-        defaultValue: "auto",
+    filterDropdownLabels: {
+        type: ControlType.String,
+        title: "Dropdown labels",
+        defaultValue: "day1|Day 1\nday2|Day 2\nday3|Day 3",
+        placeholder: "day1|Day 1",
+        displayTextArea: true,
         hidden: (p) => !p.showFilterBar,
     },
-    filterCustomLabels: {
-        type: ControlType.String,
-        title: "Custom labels",
-        defaultValue: "",
-        placeholder: "YYYY-MM-DD|April 3",
-        hidden: (p) => !p.showFilterBar || p.filterLabelMode !== "custom",
+    minComponentHeight: {
+        type: ControlType.Number,
+        title: "Min height",
+        min: 0,
+        max: 2000,
+        step: 10,
+        defaultValue: 320,
+    },
+    componentOverflow: {
+        type: ControlType.Enum,
+        title: "Overflow",
+        options: ["visible", "hidden", "clip", "scroll", "auto"],
+        optionTitles: ["Visible", "Hidden", "Clip", "Scroll", "Auto"],
+        defaultValue: "visible",
     },
     filterBarPosition: {
         type: ControlType.Enum,
@@ -1177,7 +1295,7 @@ addPropertyControls(MasonryLightbox, {
         hidden: (p) => !p.showCaptions,
     },
 
-    hoverScale: { type: ControlType.Number, title: "Hover zoom", min: 1, max: 1.2, step: 0.01, defaultValue: 1.02 },
+    hoverScale: { type: ControlType.Number, title: "Hover zoom", min: 0.85, max: 1.25, step: 0.01, defaultValue: 1 },
     hoverDuration: {
         type: ControlType.Number,
         title: "Hover animation (s)",
@@ -1185,6 +1303,37 @@ addPropertyControls(MasonryLightbox, {
         max: 1,
         step: 0.01,
         defaultValue: 0.18,
+    },
+    hoverFocusScale: {
+        type: ControlType.Number,
+        title: "Hover focus",
+        min: 1,
+        max: 1.25,
+        step: 0.01,
+        defaultValue: 1.04,
+    },
+    hoverOthersScale: {
+        type: ControlType.Number,
+        title: "Hover others",
+        min: 0.5,
+        max: 1,
+        step: 0.01,
+        defaultValue: 0.96,
+    },
+    hoverFluidDuration: {
+        type: ControlType.Number,
+        title: "Hover fluid (s)",
+        min: 0,
+        max: 1,
+        step: 0.01,
+        defaultValue: 0.22,
+    },
+    hoverFluidEasing: {
+        type: ControlType.Enum,
+        title: "Hover easing",
+        options: ["smooth", "snappy", "linear"],
+        optionTitles: ["Smooth", "Snappy", "Linear"],
+        defaultValue: "smooth",
     },
 
     revealOnScroll: { type: ControlType.Boolean, title: "Reveal", defaultValue: true },

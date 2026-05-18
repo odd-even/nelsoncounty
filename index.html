@@ -4024,7 +4024,8 @@
                     </div>
                     <div class="form-group">
                         <label>Modified Date</label>
-                        <input type="date" id="listingModifiedDate" />
+                        <input type="date" id="listingModifiedDate" readonly title="Set automatically when you save" />
+                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Updates to today when you save changes.</small>
                     </div>
                 </div>
 
@@ -4548,6 +4549,20 @@ function getLocalDateYYYYMMDD() {
     const month = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
     return year + '-' + month + '-' + day;
+}
+
+// Set modifiedDate to today when a listing is edited; returns true if the date changed
+function bumpListingModifiedDate(listing, rowEl) {
+    if (!listing) return false;
+    const today = getLocalDateYYYYMMDD();
+    const current = normalizeDate(listing.modifiedDate || '');
+    if (current === today) return false;
+    listing.modifiedDate = today;
+    if (rowEl) {
+        const modInput = rowEl.querySelector('[data-field="modifiedDate"]');
+        if (modInput) modInput.value = today;
+    }
+    return true;
 }
 
 // Load categories from localStorage (synced between admin and front page)
@@ -9063,9 +9078,9 @@ function updateTabsStickyStackStuck() {
             const authorNameInput = document.getElementById('listingAuthorName');
             if (authorNameInput) authorNameInput.value = listing.authorName || '';
             const publishedInput = document.getElementById('listingPublishedDate');
-            if (publishedInput) publishedInput.value = listing.publishedDate || '';
+            if (publishedInput) publishedInput.value = listing.publishedDate ? normalizeDate(listing.publishedDate) : '';
             const modifiedInput = document.getElementById('listingModifiedDate');
-            if (modifiedInput) modifiedInput.value = listing.modifiedDate || '';
+            if (modifiedInput) modifiedInput.value = listing.modifiedDate ? normalizeDate(listing.modifiedDate) : '';
             const directionsInput = document.getElementById('listingDirectionsLink');
             // If directions link is empty but address exists, auto-generate it
             // Skip if address is the booking site placeholder
@@ -13543,8 +13558,8 @@ function updateTabsStickyStackStuck() {
                     '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.latitude || '') + '" data-field="latitude" style="width: 90px; font-family: monospace; font-size: 11px;" /></td>' +
                     '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.longitude || '') + '" data-field="longitude" style="width: 90px; font-family: monospace; font-size: 11px;" /></td>' +
                     '<td class="cell-author"><input type="text" value="' + safe(listing.authorName) + '" data-field="authorName" placeholder="Author name" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.publishedDate) + '" data-field="publishedDate" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate) + '" data-field="modifiedDate" /></td>' +
+                    '<td class="cell-date"><input type="date" value="' + safe(listing.publishedDate ? normalizeDate(listing.publishedDate) : '') + '" data-field="publishedDate" /></td>' +
+                    '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate ? normalizeDate(listing.modifiedDate) : '') + '" data-field="modifiedDate" readonly title="Set automatically when the row is saved" /></td>' +
                     '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
                     '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
                     '<td class="cell-document"><input type="url" value="' + safe(listing.document1 || '') + '" data-field="document1" placeholder="PDF URL..." /></td>' +
@@ -13756,11 +13771,13 @@ function updateTabsStickyStackStuck() {
             rows.forEach(function(row) {
                 const index = parseInt(row.getAttribute('data-index'));
                 const listing = data.listings[index];
+                let rowEdited = false;
                 
                 // Get all input fields
                 const inputs = row.querySelectorAll('[data-field]');
                 inputs.forEach(function(input) {
                     const field = input.getAttribute('data-field');
+                    if (field === 'modifiedDate') return;
                     let newValue;
                     
                     if (input.type === 'checkbox') {
@@ -13806,6 +13823,7 @@ function updateTabsStickyStackStuck() {
                         if (JSON.stringify(listing[field]) !== JSON.stringify(newValue)) {
                             listing[field] = newValue;
                             changeCount++;
+                            rowEdited = true;
                         }
                     } else if (field === 'category') {
                         // Ensure category is never empty
@@ -13814,6 +13832,7 @@ function updateTabsStickyStackStuck() {
                         if (currentCategory !== newCategory) {
                             listing[field] = newCategory; // Always has a value (validated above)
                             changeCount++;
+                            rowEdited = true;
                         }
                     } else if (listing[field] !== newValue) {
                         listing[field] = newValue;
@@ -13821,8 +13840,13 @@ function updateTabsStickyStackStuck() {
                             listing.googleMapsUrl = newValue;
                         }
                         changeCount++;
+                        rowEdited = true;
                     }
                 });
+                
+                if (rowEdited && bumpListingModifiedDate(listing, row)) {
+                    changeCount++;
+                }
             });
             
             // Update all views
