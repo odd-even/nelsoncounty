@@ -1701,8 +1701,42 @@
             font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
             font-size: 12px;
         }
-        .data-table .cell-image { min-width: 200px; }
-        .data-table .cell-image input { font-size: 12px; }
+        .data-table .cell-image { min-width: 220px; max-width: 320px; padding: 4px 8px; }
+        .data-table .table-image-cell {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            height: 100%;
+            min-height: 72px;
+        }
+        .data-table .table-image-preview {
+            flex-shrink: 0;
+            width: 75px;
+            height: 75px;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+        }
+        .data-table .table-image-preview--empty {
+            background: var(--bg-secondary);
+        }
+        .data-table .table-image-preview--error {
+            background: var(--bg-secondary);
+        }
+        .data-table .table-image-preview-img {
+            display: block;
+            width: 75px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .data-table .table-image-url-input {
+            flex: 1;
+            min-width: 0;
+            font-size: 12px;
+        }
         .data-table .cell-website { min-width: 250px; }
         .data-table .cell-phone { min-width: 140px; }
         .data-table .cell-address { min-width: 250px; }
@@ -1718,7 +1752,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 5px;
+            gap: 3px;
             height: 68px;
             max-height: 68px;
             overflow: hidden;
@@ -1734,72 +1768,36 @@
         .data-table .amenities-pills-preview {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 2px;
             align-items: center;
-            max-height: 36px;
+            max-height: 22px;
             overflow: hidden;
             flex-shrink: 0;
+            line-height: 0;
         }
         .data-table .amenity-pill {
             display: inline-flex;
             align-items: center;
-            padding: 3px 10px;
+            padding: 2px 5px;
             border-radius: 999px;
-            font-size: 11px;
+            font-size: 9px;
             font-weight: 500;
-            line-height: 1.2;
+            line-height: 1.15;
             white-space: nowrap;
-            background: linear-gradient(180deg, rgba(0, 122, 255, 0.16) 0%, rgba(0, 122, 255, 0.08) 100%);
+            background: linear-gradient(180deg, rgba(0, 122, 255, 0.14) 0%, rgba(0, 122, 255, 0.06) 100%);
             color: #0a58a8;
-            border: 1px solid rgba(0, 122, 255, 0.28);
-            box-shadow: 0 1px 2px rgba(0, 82, 180, 0.08);
+            border: 1px solid rgba(0, 122, 255, 0.22);
         }
         .data-table .amenity-pill--muted {
             background: var(--bg-secondary);
             color: var(--text-secondary);
             border-color: var(--border-color);
             font-weight: 400;
-            box-shadow: none;
         }
         .data-table tbody td textarea.amenities-raw-input {
-            flex-shrink: 0;
-            width: 100%;
-            height: 26px !important;
-            min-height: 26px !important;
-            max-height: 26px;
-            padding: 4px 12px !important;
-            margin: 0;
-            border-radius: 999px !important;
-            border: 1px solid rgba(0, 122, 255, 0.32) !important;
-            background: linear-gradient(180deg, rgba(0, 122, 255, 0.12) 0%, rgba(0, 122, 255, 0.05) 100%) !important;
-            font-size: 11px !important;
-            font-weight: 500;
-            line-height: 1.25 !important;
-            color: #0a58a8;
-            resize: none !important;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            box-shadow: none !important;
-        }
-        .data-table tbody td textarea.amenities-raw-input::placeholder {
-            color: rgba(10, 88, 168, 0.55);
-            opacity: 1;
-        }
-        .data-table tbody td textarea.amenities-raw-input:focus {
-            white-space: normal;
-            overflow: auto;
-            height: auto !important;
-            min-height: 26px !important;
-            max-height: 64px;
-            border-radius: 14px !important;
-            resize: both !important;
-            background: var(--card-bg) !important;
-            box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.06) !important;
-        }
-        .data-table tbody td textarea.amenities-raw-input:focus::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.55;
+            flex: 1;
+            min-height: 42px;
+            height: 42px;
         }
         .data-table .cell-featured { text-align: center; vertical-align: middle; }
         .data-table .cell-private { text-align: center; vertical-align: middle; }
@@ -4745,6 +4743,64 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
+// Table View: thumbnail beside image URL fields
+function buildDataTableImageCell(field, urlValue) {
+    const val = urlValue != null ? String(urlValue) : '';
+    const trimmed = val.trim();
+    const attrVal = escapeHtml(val);
+    const src = trimmed ? escapeHtml(getAdminImageUrl(trimmed)) : '';
+    const previewClass = 'table-image-preview' + (src ? '' : ' table-image-preview--empty');
+    const imgTag = src
+        ? '<img class="table-image-preview-img" src="' + src + '" alt="" loading="lazy" />'
+        : '';
+    return '<td class="cell-image"><div class="table-image-cell">' +
+        '<div class="' + previewClass + '">' + imgTag + '</div>' +
+        '<input type="text" class="table-image-url-input" value="' + attrVal + '" data-field="' + field + '" placeholder="Image URL" />' +
+        '</div></td>';
+}
+
+function syncTableImagePreview(input) {
+    if (!input || !input.getAttribute('data-field')) return;
+    const field = input.getAttribute('data-field');
+    if (field !== 'image1' && field !== 'image2' && field !== 'image3') return;
+    const wrap = input.closest('.table-image-cell');
+    if (!wrap) return;
+    const preview = wrap.querySelector('.table-image-preview');
+    if (!preview) return;
+    const val = (input.value || '').trim();
+    let img = preview.querySelector('.table-image-preview-img');
+    preview.classList.remove('table-image-preview--error');
+    if (!val) {
+        preview.classList.add('table-image-preview--empty');
+        if (img) img.remove();
+        return;
+    }
+    preview.classList.remove('table-image-preview--empty');
+    if (!img) {
+        img = document.createElement('img');
+        img.className = 'table-image-preview-img';
+        img.alt = '';
+        img.loading = 'lazy';
+        preview.appendChild(img);
+    }
+    img.onload = function() {
+        preview.classList.remove('table-image-preview--error');
+        img.style.display = 'block';
+    };
+    img.onerror = function() {
+        preview.classList.add('table-image-preview--error');
+        img.style.display = 'none';
+    };
+    img.src = getAdminImageUrl(val);
+}
+
+function syncTableImagePreviewsInRow(row) {
+    if (!row) return;
+    row.querySelectorAll('input[data-field="image1"], input[data-field="image2"], input[data-field="image3"]').forEach(function(input) {
+        syncTableImagePreview(input);
+    });
+}
+
 // Table View: live pill preview above the comma-separated amenities field
 function syncTableAmenitiesPillsPreview(textarea) {
     if (!textarea || textarea.getAttribute('data-field') !== 'amenities') return;
@@ -5997,6 +6053,8 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             } else if (target.closest('#dataTableBody') && target.matches('[data-field]')) {
                 if (target.matches('textarea[data-field="amenities"]')) {
                     syncTableAmenitiesPillsPreview(target);
+                } else if (target.matches('input[data-field="image1"], input[data-field="image2"], input[data-field="image3"]')) {
+                    syncTableImagePreview(target);
                 }
                 markTableEditsPending();
             }
@@ -13868,11 +13926,11 @@ function updateTabsStickyStackStuck() {
                     '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
                     '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
                     '<td class="cell-custom-html"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
-                    '<td class="cell-image"><input type="text" value="' + safe(listing.image1) + '" data-field="image1" placeholder="Image URL or base64" /></td>' +
+                    buildDataTableImageCell('image1', listing.image1) +
                     '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2">' + safe(listing.image1Desc || '') + '</textarea></td>' +
-                    '<td class="cell-image"><input type="text" value="' + safe(listing.image2) + '" data-field="image2" placeholder="Image URL or base64" /></td>' +
+                    buildDataTableImageCell('image2', listing.image2) +
                     '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2">' + safe(listing.image2Desc || '') + '</textarea></td>' +
-                    '<td class="cell-image"><input type="text" value="' + safe(listing.image3) + '" data-field="image3" placeholder="Image URL or base64" /></td>' +
+                    buildDataTableImageCell('image3', listing.image3) +
                     '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2">' + safe(listing.image3Desc || '') + '</textarea></td>' +
                     '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
                     '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
@@ -13908,6 +13966,7 @@ function updateTabsStickyStackStuck() {
                 tbody.appendChild(row);
                 const amenitiesTa = row.querySelector('textarea.amenities-raw-input');
                 if (amenitiesTa) syncTableAmenitiesPillsPreview(amenitiesTa);
+                syncTableImagePreviewsInRow(row);
             });
             
             // Update sort indicators
