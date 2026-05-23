@@ -1552,8 +1552,8 @@
         .data-table .filter-input:focus { outline: none; border-color: #007AFF; background: #3a3a3a; cursor: text; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
         .data-table .filter-select { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
         .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
-        .data-table tbody tr {
-            border-bottom: 1px solid var(--border-color);
+        .data-table tbody tr:not(.data-table-spacer) {
+            border-bottom: 1px solid #ced4da;
             transition: background 0.15s ease;
             min-height: 100px;
             height: 100px;
@@ -1756,6 +1756,40 @@
             flex: 1;
             min-width: 0;
             font-size: 12px;
+        }
+        .data-table:not(.data-table--thumbnails) .table-image-preview {
+            display: none;
+        }
+        .data-table:not(.data-table--thumbnails) .table-image-cell {
+            min-height: 0;
+        }
+        .data-table tbody tr.data-table-spacer,
+        .data-table tbody tr.data-table-spacer td {
+            border: none !important;
+            padding: 0 !important;
+            background: transparent !important;
+            pointer-events: none;
+        }
+        .data-table-thumbnails-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+        .data-table-thumbnails-toggle input {
+            width: 1rem;
+            height: 1rem;
+            accent-color: #007AFF;
+            cursor: pointer;
         }
         .data-table .cell-website { min-width: 250px; }
         .data-table .cell-phone { min-width: 140px; }
@@ -3901,6 +3935,10 @@
             <div class="data-header">
                 <h2>Table View</h2>
                 <div class="data-actions">
+                    <label class="data-table-thumbnails-toggle" title="Load image thumbnails in the table (uses more bandwidth)">
+                        <input type="checkbox" id="dataTableShowThumbnails" onchange="setDataTableShowThumbnails(this.checked)" />
+                        Show image previews
+                    </label>
                     <input type="file" id="csvUpload" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)" />
                     <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV</button>
                     <button class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
@@ -4721,7 +4759,60 @@ const REMOVED_LISTING_FIELDS = [
     'missingFields'
 ];
 
-const ADMIN_IMAGE_TRANSFORM_WIDTH = 400;
+const ADMIN_IMAGE_TRANSFORM_WIDTH = 95;
+const DATA_TABLE_ROW_HEIGHT = 100;
+const DATA_TABLE_VIRTUAL_OVERSCAN = 6;
+const TABLE_THUMBNAILS_STORAGE_KEY = 'nelsonCounty_tableShowThumbnails';
+
+let dataTableShowThumbnails = false;
+let dataTableSortedListings = [];
+let tableRowDrafts = {};
+let _dataTableImageObserver = null;
+let _dataTableScrollRaf = null;
+let _dataTableColCount = 0;
+
+function loadDataTableShowThumbnails() {
+    try {
+        const v = localStorage.getItem(TABLE_THUMBNAILS_STORAGE_KEY);
+        if (v === '1' || v === 'true') return true;
+        if (v === '0' || v === 'false') return false;
+    } catch (e) { /* ignore */ }
+    return false;
+}
+
+function saveDataTableShowThumbnails(on) {
+    dataTableShowThumbnails = !!on;
+    try {
+        localStorage.setItem(TABLE_THUMBNAILS_STORAGE_KEY, on ? '1' : '0');
+    } catch (e) { /* ignore */ }
+    const table = document.getElementById('dataTable');
+    if (table) {
+        table.classList.toggle('data-table--thumbnails', dataTableShowThumbnails);
+    }
+}
+
+window.setDataTableShowThumbnails = function setDataTableShowThumbnails(enabled) {
+    saveDataTableShowThumbnails(enabled);
+    if (_dataTableImageObserver) {
+        _dataTableImageObserver.disconnect();
+        _dataTableImageObserver = null;
+    }
+    if (typeof renderDataTableVirtualWindow === 'function') {
+        renderDataTableVirtualWindow();
+    }
+};
+
+function getDataTableColumnCount() {
+    if (_dataTableColCount) return _dataTableColCount;
+    const table = document.getElementById('dataTable');
+    if (!table) return 42;
+    _dataTableColCount = table.querySelectorAll('thead tr:first-child th').length || 42;
+    return _dataTableColCount;
+}
+
+function isDataTableThumbnailsEnabled() {
+    return dataTableShowThumbnails;
+}
 
 function getAdminImageUrl(url) {
     if (!url || typeof url !== 'string') return url;
@@ -4778,20 +4869,61 @@ function escapeHtml(value) {
         .replace(/'/g, '&#39;');
 }
 
-// Table View: thumbnail beside image URL fields
+// Table View: thumbnail beside image URL fields (loaded via Intersection Observer when enabled)
 function buildDataTableImageCell(field, urlValue) {
     const val = urlValue != null ? String(urlValue) : '';
     const trimmed = val.trim();
     const attrVal = escapeHtml(val);
-    const src = trimmed ? escapeHtml(getAdminImageUrl(trimmed)) : '';
-    const previewClass = 'table-image-preview' + (src ? '' : ' table-image-preview--empty');
-    const imgTag = src
-        ? '<img class="table-image-preview-img" src="' + src + '" alt="" loading="lazy" />'
-        : '';
+    const previewClass = 'table-image-preview' + (trimmed ? '' : ' table-image-preview--empty');
+    const pendingAttr = trimmed ? ' data-pending-url="' + escapeHtml(trimmed) + '"' : '';
     return '<td class="cell-image"><div class="table-image-cell">' +
-        '<div class="' + previewClass + '">' + imgTag + '</div>' +
+        '<div class="' + previewClass + '"' + pendingAttr + '></div>' +
         '<input type="text" class="table-image-url-input" value="' + attrVal + '" data-field="' + field + '" placeholder="Image URL" />' +
         '</div></td>';
+}
+
+function setTableImagePreviewSrc(preview, url) {
+    if (!preview || !url) return;
+    let img = preview.querySelector('.table-image-preview-img');
+    if (!img) {
+        img = document.createElement('img');
+        img.className = 'table-image-preview-img';
+        img.alt = '';
+        preview.appendChild(img);
+    }
+    const src = getAdminImageUrl(url);
+    if (img.getAttribute('data-loaded-src') === src) return;
+    img.onload = function() {
+        preview.classList.remove('table-image-preview--error');
+        img.style.display = 'block';
+    };
+    img.onerror = function() {
+        preview.classList.add('table-image-preview--error');
+        img.style.display = 'none';
+    };
+    img.setAttribute('data-loaded-src', src);
+    img.src = src;
+}
+
+function initDataTableImageObserver() {
+    if (_dataTableImageObserver) return;
+    const root = document.querySelector('.table-wrapper');
+    _dataTableImageObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (!entry.isIntersecting || !isDataTableThumbnailsEnabled()) return;
+            const preview = entry.target;
+            const url = preview.getAttribute('data-pending-url');
+            if (url) setTableImagePreviewSrc(preview, url);
+        });
+    }, { root: root || null, rootMargin: '160px 0px', threshold: 0.01 });
+}
+
+function observeDataTableImagePreviews(scope) {
+    if (!isDataTableThumbnailsEnabled()) return;
+    initDataTableImageObserver();
+    (scope || document).querySelectorAll('.table-image-preview[data-pending-url]').forEach(function(el) {
+        _dataTableImageObserver.observe(el);
+    });
 }
 
 function syncTableImagePreview(input) {
@@ -4803,37 +4935,241 @@ function syncTableImagePreview(input) {
     const preview = wrap.querySelector('.table-image-preview');
     if (!preview) return;
     const val = (input.value || '').trim();
-    let img = preview.querySelector('.table-image-preview-img');
+    const img = preview.querySelector('.table-image-preview-img');
     preview.classList.remove('table-image-preview--error');
     if (!val) {
         preview.classList.add('table-image-preview--empty');
+        preview.removeAttribute('data-pending-url');
         if (img) img.remove();
         return;
     }
     preview.classList.remove('table-image-preview--empty');
-    if (!img) {
-        img = document.createElement('img');
-        img.className = 'table-image-preview-img';
-        img.alt = '';
-        img.loading = 'lazy';
-        preview.appendChild(img);
+    preview.setAttribute('data-pending-url', val);
+    if (img) img.remove();
+    if (isDataTableThumbnailsEnabled()) {
+        observeDataTableImagePreviews(wrap);
     }
-    img.onload = function() {
-        preview.classList.remove('table-image-preview--error');
-        img.style.display = 'block';
-    };
-    img.onerror = function() {
-        preview.classList.add('table-image-preview--error');
-        img.style.display = 'none';
-    };
-    img.src = getAdminImageUrl(val);
 }
 
 function syncTableImagePreviewsInRow(row) {
-    if (!row) return;
+    if (!row || !isDataTableThumbnailsEnabled()) return;
     row.querySelectorAll('input[data-field="image1"], input[data-field="image2"], input[data-field="image3"]').forEach(function(input) {
         syncTableImagePreview(input);
     });
+}
+
+function getTableRowFieldValue(listing, dataIndex, field) {
+    const draft = tableRowDrafts[dataIndex];
+    if (draft && Object.prototype.hasOwnProperty.call(draft, field)) {
+        return draft[field];
+    }
+    return listing[field];
+}
+
+function captureTableRowDraft(row) {
+    if (!row || !row.getAttribute('data-index')) return;
+    const index = parseInt(row.getAttribute('data-index'), 10);
+    if (isNaN(index) || !data.listings[index]) return;
+    const draft = tableRowDrafts[index] || {};
+    row.querySelectorAll('[data-field]').forEach(function(input) {
+        const field = input.getAttribute('data-field');
+        if (field === 'modifiedDate') return;
+        if (input.type === 'checkbox') {
+            draft[field] = input.checked;
+        } else if (field === 'amenities') {
+            draft[field] = input.value.split(',').map(function(a) { return a.trim(); }).filter(function(a) { return a.length > 0; });
+        } else if (field === 'latitude' || field === 'longitude') {
+            const raw = String(input.value || '').trim();
+            if (!raw) draft[field] = null;
+            else {
+                const num = parseFloat(raw);
+                draft[field] = isNaN(num) ? null : num;
+            }
+        } else {
+            draft[field] = input.value;
+        }
+    });
+    tableRowDrafts[index] = draft;
+}
+
+function captureAllVisibleTableRowDrafts() {
+    document.querySelectorAll('#dataTableBody tr[data-index]').forEach(captureTableRowDraft);
+}
+
+function applyTableRowFieldsToListing(listing, fields, rowEl) {
+    let rowEdited = false;
+    let changeCount = 0;
+    Object.keys(fields).forEach(function(field) {
+        if (field === 'modifiedDate') return;
+        const newValue = fields[field];
+        if (field === 'amenities') {
+            if (JSON.stringify(listing[field]) !== JSON.stringify(newValue)) {
+                listing[field] = newValue;
+                changeCount++;
+                rowEdited = true;
+            }
+        } else if (field === 'category') {
+            const currentCategory = listing[field] || '';
+            const newCategory = newValue || '';
+            if (currentCategory !== newCategory) {
+                listing[field] = newCategory;
+                changeCount++;
+                rowEdited = true;
+            }
+        } else if (listing[field] !== newValue) {
+            listing[field] = newValue;
+            if (field === 'directionsLink') {
+                listing.googleMapsUrl = newValue;
+            }
+            changeCount++;
+            rowEdited = true;
+        }
+    });
+    if (rowEdited && bumpListingModifiedDate(listing, rowEl)) {
+        changeCount++;
+    }
+    return changeCount;
+}
+
+function applyAllTableRowDrafts() {
+    let changeCount = 0;
+    Object.keys(tableRowDrafts).forEach(function(key) {
+        const index = parseInt(key, 10);
+        const listing = data.listings[index];
+        const draft = tableRowDrafts[key];
+        if (!listing || !draft) return;
+        changeCount += applyTableRowFieldsToListing(listing, draft, null);
+    });
+    return changeCount;
+}
+
+function bindDataTableVirtualScroll() {
+    const wrapper = document.querySelector('.table-wrapper');
+    if (!wrapper || wrapper.dataset.virtualBound === '1') return;
+    wrapper.dataset.virtualBound = '1';
+    wrapper.addEventListener('scroll', function() {
+        if (_dataTableScrollRaf) cancelAnimationFrame(_dataTableScrollRaf);
+        _dataTableScrollRaf = requestAnimationFrame(renderDataTableVirtualWindow);
+    }, { passive: true });
+}
+
+function buildDataTableRowHtml(listing, index) {
+    const safe = function(value) { return (value === undefined || value === null) ? '' : value; };
+    const safeArray = function(value) { return Array.isArray(value) ? value : []; };
+    const val = function(field) {
+        const v = getTableRowFieldValue(listing, index, field);
+        return v === undefined || v === null ? '' : v;
+    };
+    const valBool = function(field) {
+        return !!getTableRowFieldValue(listing, index, field);
+    };
+    const categoryKeys = Object.keys(TYPE_CATEGORIES);
+    const categoryKeysSet = new Set(categoryKeys);
+    let categoryOptions = '<option value="">Select Category</option>' +
+        categoryKeys.map(function(categoryKey) {
+            const category = TYPE_CATEGORIES[categoryKey];
+            const isSelected = safe(val('category')) === categoryKey;
+            return '<option value="' + escapeHtml(categoryKey) + '" ' + (isSelected ? 'selected' : '') + '>' + escapeHtml(category.emoji || '') + ' ' + escapeHtml(category.name) + '</option>';
+        }).join('');
+    const listingCategory = safe(val('category'));
+    if (listingCategory && listingCategory.trim() !== '' && !categoryKeysSet.has(listingCategory)) {
+        categoryOptions += '<option value="' + escapeHtml(listingCategory) + '" selected>' + escapeHtml(listingCategory) + ' (from Google Sheets)</option>';
+    }
+    const amenitiesRaw = safeArray(getTableRowFieldValue(listing, index, 'amenities')).join(', ');
+    return '<tr data-index="' + index + '">' +
+        '<td class="cell-name"><textarea data-field="name" rows="2">' + escapeHtml(val('name')) + '</textarea></td>' +
+        '<td class="cell-slug"><input type="text" value="' + escapeHtml(val('slug')) + '" data-field="slug" placeholder="auto" /></td>' +
+        '<td class="cell-type"><select data-field="type">' +
+            data.filterOptions.types.map(function(t) { return '<option value="' + escapeHtml(t) + '" ' + (safe(val('type')) === t ? 'selected' : '') + '>' + escapeHtml(t) + '</option>'; }).join('') +
+        '</select></td>' +
+        '<td class="cell-category"><select data-field="category">' + categoryOptions + '</select></td>' +
+        '<td class="cell-area"><select data-field="area">' +
+            data.filterOptions.areas.map(function(a) { return '<option value="' + escapeHtml(a) + '" ' + (safe(val('area')) === a ? 'selected' : '') + '>' + escapeHtml(a) + '</option>'; }).join('') +
+        '</select></td>' +
+        '<td class="cell-description"><textarea data-field="description">' + escapeHtml(val('description')) + '</textarea></td>' +
+        '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + escapeHtml(val('detailedDescription')) + '</textarea></td>' +
+        '<td class="cell-custom-html"><textarea data-field="customHtml">' + escapeHtml(val('customHtml')) + '</textarea></td>' +
+        buildDataTableImageCell('image1', val('image1')) +
+        '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2">' + escapeHtml(val('image1Desc')) + '</textarea></td>' +
+        buildDataTableImageCell('image2', val('image2')) +
+        '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2">' + escapeHtml(val('image2Desc')) + '</textarea></td>' +
+        buildDataTableImageCell('image3', val('image3')) +
+        '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2">' + escapeHtml(val('image3Desc')) + '</textarea></td>' +
+        '<td class="cell-website"><input type="text" value="' + escapeHtml(val('website')) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
+        '<td class="cell-phone"><input type="tel" value="' + escapeHtml(val('phone')) + '" data-field="phone" /></td>' +
+        '<td class="cell-address"><input type="text" value="' + escapeHtml(val('address')) + '" data-field="address" /></td>' +
+        '<td class="cell-coord"><input type="number" step="any" value="' + escapeHtml(val('latitude') || '') + '" data-field="latitude" /></td>' +
+        '<td class="cell-coord"><input type="number" step="any" value="' + escapeHtml(val('longitude') || '') + '" data-field="longitude" /></td>' +
+        '<td class="cell-author"><input type="text" value="' + escapeHtml(val('authorName')) + '" data-field="authorName" placeholder="Author name" /></td>' +
+        '<td class="cell-date"><input type="date" value="' + escapeHtml(val('publishedDate') ? normalizeDate(val('publishedDate')) : '') + '" data-field="publishedDate" /></td>' +
+        '<td class="cell-date"><input type="date" value="' + escapeHtml(val('modifiedDate') ? normalizeDate(val('modifiedDate')) : '') + '" data-field="modifiedDate" readonly title="Set automatically when the row is saved" /></td>' +
+        '<td class="cell-directions"><input type="url" value="' + escapeHtml(val('directionsLink')) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
+        '<td class="cell-video"><input type="url" value="' + escapeHtml(val('videoLink')) + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
+        '<td class="cell-document"><input type="url" value="' + escapeHtml(val('document1')) + '" data-field="document1" placeholder="PDF URL..." /></td>' +
+        '<td class="cell-document-name"><input type="text" value="' + escapeHtml(val('document1Name')) + '" data-field="document1Name" placeholder="Document name..." /></td>' +
+        '<td class="cell-document"><input type="url" value="' + escapeHtml(val('document2')) + '" data-field="document2" placeholder="PDF URL..." /></td>' +
+        '<td class="cell-document-name"><input type="text" value="' + escapeHtml(val('document2Name')) + '" data-field="document2Name" placeholder="Document name..." /></td>' +
+        '<td class="cell-amenities"><div class="amenities-cell"><div class="amenities-pills-preview"></div><textarea data-field="amenities" class="amenities-raw-input" rows="1" spellcheck="false" placeholder="Wi-Fi, Parking, Pet friendly…">' + escapeHtml(amenitiesRaw) + '</textarea></div></td>' +
+        '<td class="cell-featured"><input type="checkbox" ' + (valBool('featured') ? 'checked' : '') + ' data-field="featured" /></td>' +
+        '<td class="cell-private"><input type="checkbox" ' + (valBool('private') ? 'checked' : '') + ' data-field="private" /></td>' +
+        '<td class="cell-googlemaps"><input type="url" value="' + escapeHtml(val('googleMapsUrl')) + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
+        '<td class="cell-accordion-title"><input type="text" value="' + escapeHtml(val('accordionPanel1Title')) + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
+        '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + escapeHtml(val('accordionPanel1Content')) + '</textarea></td>' +
+        '<td class="cell-accordion-title"><input type="text" value="' + escapeHtml(val('accordionPanel2Title')) + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
+        '<td class="cell-accordion-content"><textarea data-field="accordionPanel2Content" placeholder="Panel 2 Content">' + escapeHtml(val('accordionPanel2Content')) + '</textarea></td>' +
+        '<td class="cell-accordion-title"><input type="text" value="' + escapeHtml(val('accordionPanel3Title')) + '" data-field="accordionPanel3Title" placeholder="Panel 3 Title" /></td>' +
+        '<td class="cell-accordion-content"><textarea data-field="accordionPanel3Content" placeholder="Panel 3 Content">' + escapeHtml(val('accordionPanel3Content')) + '</textarea></td>' +
+        '<td class="cell-accordion-title"><input type="text" value="' + escapeHtml(val('accordionPanel4Title')) + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
+        '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + escapeHtml(val('accordionPanel4Content')) + '</textarea></td>' +
+        '<td class="cell-actions">' +
+            '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
+            (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
+            '</button>' +
+        '</td>' +
+    '</tr>';
+}
+
+function renderDataTableVirtualWindow() {
+    const wrapper = document.querySelector('.table-wrapper');
+    const tbody = document.getElementById('dataTableBody');
+    if (!wrapper || !tbody) return;
+
+    const total = dataTableSortedListings.length;
+    if (total === 0) {
+        tbody.innerHTML = '';
+        return;
+    }
+
+    captureAllVisibleTableRowDrafts();
+
+    const scrollTop = wrapper.scrollTop;
+    const viewHeight = wrapper.clientHeight || 600;
+    const start = Math.max(0, Math.floor(scrollTop / DATA_TABLE_ROW_HEIGHT) - DATA_TABLE_VIRTUAL_OVERSCAN);
+    const visibleCount = Math.ceil(viewHeight / DATA_TABLE_ROW_HEIGHT) + DATA_TABLE_VIRTUAL_OVERSCAN * 2;
+    const end = Math.min(total, start + visibleCount);
+
+    const colSpan = getDataTableColumnCount();
+    const topPad = start * DATA_TABLE_ROW_HEIGHT;
+    const bottomPad = Math.max(0, (total - end) * DATA_TABLE_ROW_HEIGHT);
+
+    let html = '';
+    if (topPad > 0) {
+        html += '<tr class="data-table-spacer" aria-hidden="true"><td colspan="' + colSpan + '" style="height:' + topPad + 'px;padding:0;border:none;background:transparent;"></td></tr>';
+    }
+    for (let i = start; i < end; i++) {
+        const item = dataTableSortedListings[i];
+        html += buildDataTableRowHtml(item.listing, item.dataIndex);
+    }
+    if (bottomPad > 0) {
+        html += '<tr class="data-table-spacer" aria-hidden="true"><td colspan="' + colSpan + '" style="height:' + bottomPad + 'px;padding:0;border:none;background:transparent;"></td></tr>';
+    }
+    tbody.innerHTML = html;
+
+    tbody.querySelectorAll('textarea.amenities-raw-input').forEach(function(ta) {
+        syncTableAmenitiesPillsPreview(ta);
+    });
+    observeDataTableImagePreviews(tbody);
+    syncDataTableResizableRows();
 }
 
 // Table View: live pill preview above the comma-separated amenities field
@@ -6091,6 +6427,8 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 } else if (target.matches('input[data-field="image1"], input[data-field="image2"], input[data-field="image3"]')) {
                     syncTableImagePreview(target);
                 }
+                const tableRow = target.closest('tr[data-index]');
+                if (tableRow) captureTableRowDraft(tableRow);
                 markTableEditsPending();
             }
         });
@@ -6101,6 +6439,8 @@ function updateTableHeaderLabelsFromSheet(headersList) {
             if (target.closest('#listingForm')) {
                 showUnsavedChangesBadge();
             } else if (target.closest('#dataTableBody') && target.matches('[data-field]')) {
+                const tableRow = target.closest('tr[data-index]');
+                if (tableRow) captureTableRowDraft(tableRow);
                 markTableEditsPending();
             }
         });
@@ -13799,8 +14139,9 @@ function updateTabsStickyStackStuck() {
         let tableFilters = {};
         
         function renderDataTable() {
+            captureAllVisibleTableRowDrafts();
             const tbody = document.getElementById('dataTableBody');
-            tbody.innerHTML = '';
+            if (tbody) tbody.innerHTML = '';
             
             // Get filter values
             const filterInputs = document.querySelectorAll('.data-table .filter-input, .data-table .filter-select');
@@ -13910,100 +14251,15 @@ function updateTabsStickyStackStuck() {
                 return tableSortDirection === 'asc' ? result : -result;
             });
             
-            sortedListings.forEach(function(listing, originalIndex) {
-                // Find the original index in the unsorted array for data manipulation
-                const index = data.listings.indexOf(listing);
-                const safe = (value) => (value === undefined || value === null) ? '' : value;
-                const safeArray = (value) => Array.isArray(value) ? value : [];
-                
-                const row = document.createElement('tr');
-                row.setAttribute('data-index', index);
-                
-                // Build category dropdown options
-                // Include all categories from TYPE_CATEGORIES
-                const categoryKeys = Object.keys(TYPE_CATEGORIES);
-                const categoryKeysSet = new Set(categoryKeys);
-                let categoryOptions = '<option value="">Select Category</option>' +
-                    categoryKeys.map(function(categoryKey) {
-                        const category = TYPE_CATEGORIES[categoryKey];
-                        const isSelected = safe(listing.category) === categoryKey;
-                        return '<option value="' + escapeHtml(categoryKey) + '" ' + (isSelected ? 'selected' : '') + '>' + escapeHtml(category.emoji || '') + ' ' + escapeHtml(category.name) + '</option>';
-                    }).join('');
-                
-                // If this listing has a custom category not in TYPE_CATEGORIES, add it to the dropdown
-                const listingCategory = safe(listing.category);
-                if (listingCategory && listingCategory.trim() !== '' && !categoryKeysSet.has(listingCategory)) {
-                    categoryOptions += '<option value="' + escapeHtml(listingCategory) + '" selected>' + escapeHtml(listingCategory) + ' (from Google Sheets)</option>';
-                    console.log('📋 Adding custom category to table dropdown:', listingCategory, 'for listing:', listing.name);
-                }
-                
-                // Debug: Log accordion data for first listing when rendering table
-                if (index === 0 && listing.name && !window._tableAccordionDebugLogged) {
-                    console.log('🎯 renderDataTable (index-sheets.html) - First listing accordion data:', listing.name);
-                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
-                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
-                    console.log('   All accordion keys in listing:', Object.keys(listing).filter(k => k.includes('accordion')));
-                    window._tableAccordionDebugLogged = true;
-                }
-                
-                const amenitiesRaw = safeArray(listing.amenities).join(', ');
-                
-                row.innerHTML = 
-                    '<td class="cell-name"><textarea data-field="name" rows="2">' + safe(listing.name) + '</textarea></td>' +
-                    '<td class="cell-slug"><input type="text" value="' + safe(listing.slug) + '" data-field="slug" placeholder="auto" /></td>' +
-                    '<td class="cell-type"><select data-field="type">' +
-                        data.filterOptions.types.map(function(t) { return '<option value="' + t + '" ' + (safe(listing.type) === t ? 'selected' : '') + '>' + t + '</option>'; }).join('') +
-                    '</select></td>' +
-                    '<td class="cell-category"><select data-field="category">' + categoryOptions + '</select></td>' +
-                    '<td class="cell-area"><select data-field="area">' +
-                        data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
-                    '</select></td>' +
-                    '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
-                    '<td class="cell-custom-html"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image1', listing.image1) +
-                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2">' + safe(listing.image1Desc || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image2', listing.image2) +
-                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2">' + safe(listing.image2Desc || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image3', listing.image3) +
-                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2">' + safe(listing.image3Desc || '') + '</textarea></td>' +
-                    '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
-                    '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
-                    '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
-                    '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.latitude || '') + '" data-field="latitude" /></td>' +
-                    '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.longitude || '') + '" data-field="longitude" /></td>' +
-                    '<td class="cell-author"><input type="text" value="' + safe(listing.authorName) + '" data-field="authorName" placeholder="Author name" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.publishedDate ? normalizeDate(listing.publishedDate) : '') + '" data-field="publishedDate" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate ? normalizeDate(listing.modifiedDate) : '') + '" data-field="modifiedDate" readonly title="Set automatically when the row is saved" /></td>' +
-                    '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
-                    '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
-                    '<td class="cell-document"><input type="url" value="' + safe(listing.document1 || '') + '" data-field="document1" placeholder="PDF URL..." /></td>' +
-                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document1Name || '') + '" data-field="document1Name" placeholder="Document name..." /></td>' +
-                    '<td class="cell-document"><input type="url" value="' + safe(listing.document2 || '') + '" data-field="document2" placeholder="PDF URL..." /></td>' +
-                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document2Name || '') + '" data-field="document2Name" placeholder="Document name..." /></td>' +
-                    '<td class="cell-amenities"><div class="amenities-cell"><div class="amenities-pills-preview"></div><textarea data-field="amenities" class="amenities-raw-input" rows="1" spellcheck="false" placeholder="Wi-Fi, Parking, Pet friendly…">' + escapeHtml(amenitiesRaw) + '</textarea></div></td>' +
-                    '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
-                    '<td class="cell-private"><input type="checkbox" ' + (listing.private ? 'checked' : '') + ' data-field="private" /></td>' +
-                    '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel2Title || '') + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel2Content" placeholder="Panel 2 Content">' + safe(listing.accordionPanel2Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel3Title || '') + '" data-field="accordionPanel3Title" placeholder="Panel 3 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel3Content" placeholder="Panel 3 Content">' + safe(listing.accordionPanel3Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
-                    '<td class="cell-actions">' +
-                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
-                        (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
-                        '</button>' +
-                    '</td>';
-                tbody.appendChild(row);
-                const amenitiesTa = row.querySelector('textarea.amenities-raw-input');
-                if (amenitiesTa) syncTableAmenitiesPillsPreview(amenitiesTa);
-                syncTableImagePreviewsInRow(row);
+            dataTableSortedListings = sortedListings.map(function(listing) {
+                return { listing: listing, dataIndex: data.listings.indexOf(listing) };
             });
-            
+
+            bindDataTableVirtualScroll();
+            const wrapper = document.querySelector('.table-wrapper');
+            if (wrapper) wrapper.scrollTop = 0;
+            renderDataTableVirtualWindow();
+
             // Update sort indicators
             document.querySelectorAll('.data-table th.sortable').forEach(function(th) {
                 th.classList.remove('sort-asc', 'sort-desc');
@@ -14015,7 +14271,6 @@ function updateTabsStickyStackStuck() {
             // Populate filter dropdowns
             updateTableFilterDropdowns();
             clearTableEditsPending();
-            syncDataTableResizableRows();
             requestAnimationFrame(function() {
                 requestAnimationFrame(syncDataTableStickyHeaderOffset);
             });
@@ -14182,10 +14437,17 @@ function updateTabsStickyStackStuck() {
                 }
             });
             initDataTableFilterTooltips();
+            dataTableShowThumbnails = loadDataTableShowThumbnails();
+            saveDataTableShowThumbnails(dataTableShowThumbnails);
+            const thumbToggle = document.getElementById('dataTableShowThumbnails');
+            if (thumbToggle) thumbToggle.checked = dataTableShowThumbnails;
             var headerStickyResizeTimer;
             window.addEventListener('resize', function() {
                 clearTimeout(headerStickyResizeTimer);
-                headerStickyResizeTimer = setTimeout(syncDataTableStickyHeaderOffset, 120);
+                headerStickyResizeTimer = setTimeout(function() {
+                    syncDataTableStickyHeaderOffset();
+                    renderDataTableVirtualWindow();
+                }, 120);
             });
             syncDataTableStickyHeaderOffset();
         }, 100);
@@ -14193,94 +14455,42 @@ function updateTabsStickyStackStuck() {
         function saveTableChanges(options) {
             options = options || {};
             committingTableEdits = true;
-            const rows = Array.from(document.querySelectorAll('#dataTableBody tr'));
-            let changeCount = 0;
-            
-            rows.forEach(function(row) {
-                const index = parseInt(row.getAttribute('data-index'));
+            captureAllVisibleTableRowDrafts();
+
+            // Category fallback for visible rows with empty category (same as before)
+            document.querySelectorAll('#dataTableBody tr[data-index]').forEach(function(row) {
+                const index = parseInt(row.getAttribute('data-index'), 10);
                 const listing = data.listings[index];
-                let rowEdited = false;
-                
-                // Get all input fields
-                const inputs = row.querySelectorAll('[data-field]');
-                inputs.forEach(function(input) {
-                    const field = input.getAttribute('data-field');
-                    if (field === 'modifiedDate') return;
-                    let newValue;
-                    
-                    if (input.type === 'checkbox') {
-                        newValue = input.checked;
-                    } else if (field === 'amenities') {
-                        // Convert comma-separated string to array
-                        newValue = input.value.split(',').map(function(a) { return a.trim(); }).filter(function(a) { return a.length > 0; });
-                    } else if (field === 'category') {
-                        // Handle category: ensure it's never empty
-                        newValue = input.value.trim();
-                        if (!newValue) {
-                            // Try to get category from type
-                            const typeValue = listing.type;
-                            if (typeValue) {
-                                newValue = getCategoryForType(typeValue, listing);
-                            }
-                            // If still no category, use first available category as fallback
-                            if (!newValue) {
-                                const availableCategories = Object.keys(TYPE_CATEGORIES);
-                                if (availableCategories.length > 0) {
-                                    newValue = availableCategories[0];
-                                    input.value = newValue; // Update the input field
-                                    alert('⚠️ Listing "' + listing.name + '" had no category. Assigned to: ' + (TYPE_CATEGORIES[newValue].name || newValue));
-                                }
-                            } else {
-                                input.value = newValue; // Update the input field
-                            }
-                        }
-                    } else if (field === 'latitude' || field === 'longitude') {
-                        const raw = String(input.value || '').trim();
-                        if (!raw) {
-                            newValue = null;
-                        } else {
-                            const num = parseFloat(raw);
-                            newValue = isNaN(num) ? null : num;
+                if (!listing) return;
+                const categoryInput = row.querySelector('[data-field="category"]');
+                if (!categoryInput) return;
+                let newValue = categoryInput.value.trim();
+                if (!newValue) {
+                    const typeValue = listing.type;
+                    if (typeValue) newValue = getCategoryForType(typeValue, listing);
+                    if (!newValue) {
+                        const availableCategories = Object.keys(TYPE_CATEGORIES);
+                        if (availableCategories.length > 0) {
+                            newValue = availableCategories[0];
+                            categoryInput.value = newValue;
+                            alert('⚠️ Listing "' + listing.name + '" had no category. Assigned to: ' + (TYPE_CATEGORIES[newValue].name || newValue));
                         }
                     } else {
-                        newValue = input.value;
+                        categoryInput.value = newValue;
                     }
-                    
-                    // Compare arrays properly for amenities
-                    if (field === 'amenities') {
-                        if (JSON.stringify(listing[field]) !== JSON.stringify(newValue)) {
-                            listing[field] = newValue;
-                            changeCount++;
-                            rowEdited = true;
-                        }
-                    } else if (field === 'category') {
-                        // Ensure category is never empty
-                        const currentCategory = listing[field] || '';
-                        const newCategory = newValue || '';
-                        if (currentCategory !== newCategory) {
-                            listing[field] = newCategory; // Always has a value (validated above)
-                            changeCount++;
-                            rowEdited = true;
-                        }
-                    } else if (listing[field] !== newValue) {
-                        listing[field] = newValue;
-                        if (field === 'directionsLink') {
-                            listing.googleMapsUrl = newValue;
-                        }
-                        changeCount++;
-                        rowEdited = true;
+                    if (newValue) {
+                        if (!tableRowDrafts[index]) tableRowDrafts[index] = {};
+                        tableRowDrafts[index].category = newValue;
                     }
-                });
-                
-                if (rowEdited && bumpListingModifiedDate(listing, row)) {
-                    changeCount++;
                 }
             });
-            
-            // Update all views
+
+            let changeCount = applyAllTableRowDrafts();
+            tableRowDrafts = {};
+
             applyFilterOptionCleanup();
             renderListings();
-            
+
             tableEditsPending = false;
             if (changeCount > 0) {
                 showUnsavedChangesBadge();
@@ -14298,13 +14508,16 @@ function updateTabsStickyStackStuck() {
             updateUnsavedChangesBadge();
             committingTableEdits = false;
         }
-        
+
         function deleteFromTable(index) {
             const listing = data.listings[index];
             
             // Check if this is the confirmation click
             if (deleteConfirmId === listing.slug) {
                 // Confirmed - delete it
+                captureAllVisibleTableRowDrafts();
+                applyAllTableRowDrafts();
+                tableRowDrafts = {};
                 data.listings.splice(index, 1);
                 deleteConfirmId = null;
                 if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
