@@ -4769,7 +4769,9 @@ const REMOVED_LISTING_FIELDS = [
     'missingFields'
 ];
 
-const ADMIN_IMAGE_TRANSFORM_WIDTH = 95;
+// Admin card/table image transform width. Kept fairly large so grid images
+// don't look blurry when cards render ~350-450px wide.
+const ADMIN_IMAGE_TRANSFORM_WIDTH = 900;
 const DATA_TABLE_ROW_HEIGHT = 100;
 const DATA_TABLE_VIRTUAL_OVERSCAN = 6;
 const TABLE_THUMBNAILS_STORAGE_KEY = 'nelsonCounty_tableShowThumbnails';
