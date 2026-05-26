@@ -1556,12 +1556,7 @@
         .data-table .filter-input:focus { outline: none; border-color: #007AFF; background: #3a3a3a; cursor: text; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
         .data-table .filter-select { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
         .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
-<<<<<<< HEAD
-        .data-table tbody tr {
-=======
         .data-table tbody tr:not(.data-table-spacer) {
-            border-bottom: 1px solid #ced4da;
->>>>>>> d128ca9579c2efde277eb2999418b8db60b615fe
             transition: background 0.15s ease;
             min-height: 100px;
             height: 100px;
@@ -14238,103 +14233,8 @@ function updateTabsStickyStackStuck() {
                 return tableSortDirection === 'asc' ? result : -result;
             });
             
-<<<<<<< HEAD
-            sortedListings.forEach(function(listing, originalIndex) {
-                // Find the original index in the unsorted array for data manipulation
-                const index = data.listings.indexOf(listing);
-                const safe = (value) => (value === undefined || value === null) ? '' : value;
-                const safeArray = (value) => Array.isArray(value) ? value : [];
-                
-                const row = document.createElement('tr');
-                row.setAttribute('data-index', index);
-                
-                // Build category dropdown options
-                // Include all categories from TYPE_CATEGORIES
-                const categoryKeys = Object.keys(TYPE_CATEGORIES);
-                const categoryKeysSet = new Set(categoryKeys);
-                let categoryOptions = '<option value="">Select Category</option>' +
-                    categoryKeys.map(function(categoryKey) {
-                        const category = TYPE_CATEGORIES[categoryKey];
-                        const isSelected = safe(listing.category) === categoryKey;
-                        return '<option value="' + escapeHtml(categoryKey) + '" ' + (isSelected ? 'selected' : '') + '>' + escapeHtml(category.name || categoryKey) + '</option>';
-                    }).join('');
-                
-                // If this listing has a custom category not in TYPE_CATEGORIES, add it to the dropdown
-                const listingCategory = safe(listing.category);
-                if (listingCategory && listingCategory.trim() !== '' && !categoryKeysSet.has(listingCategory)) {
-                    categoryOptions += '<option value="' + escapeHtml(listingCategory) + '" selected>' + escapeHtml(listingCategory) + ' (from Google Sheets)</option>';
-                    console.log('📋 Adding custom category to table dropdown:', listingCategory, 'for listing:', listing.name);
-                }
-                
-                // Debug: Log accordion data for first listing when rendering table
-                if (index === 0 && listing.name && !window._tableAccordionDebugLogged) {
-                    console.log('🎯 renderDataTable (index-sheets.html) - First listing accordion data:', listing.name);
-                    console.log('   accordionPanel1Title:', listing.accordionPanel1Title?.substring(0, 50) || '(empty)');
-                    console.log('   accordionPanel1Content:', listing.accordionPanel1Content?.substring(0, 50) || '(empty)');
-                    console.log('   All accordion keys in listing:', Object.keys(listing).filter(k => k.includes('accordion')));
-                    window._tableAccordionDebugLogged = true;
-                }
-                
-                const amenitiesRaw = safeArray(listing.amenities).join(', ');
-                
-                row.innerHTML = 
-                    '<td class="cell-name"><textarea data-field="name" rows="2">' + safe(listing.name) + '</textarea></td>' +
-                    '<td class="cell-slug"><input type="text" value="' + safe(listing.slug) + '" data-field="slug" placeholder="auto" /></td>' +
-                    '<td class="cell-type"><select data-field="type">' +
-                        data.filterOptions.types.map(function(t) { return '<option value="' + t + '" ' + (safe(listing.type) === t ? 'selected' : '') + '>' + t + '</option>'; }).join('') +
-                    '</select></td>' +
-                    '<td class="cell-category"><select data-field="category">' + categoryOptions + '</select></td>' +
-                    '<td class="cell-area"><select data-field="area">' +
-                        data.filterOptions.areas.map(function(a) { return '<option value="' + a + '" ' + (safe(listing.area) === a ? 'selected' : '') + '>' + a + '</option>'; }).join('') +
-                    '</select></td>' +
-                    '<td class="cell-description"><textarea data-field="description">' + safe(listing.description) + '</textarea></td>' +
-                    '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + safe(listing.detailedDescription || '') + '</textarea></td>' +
-                    '<td class="cell-custom-html"><textarea data-field="customHtml">' + safe(listing.customHtml || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image1', listing.image1) +
-                    '<td class="cell-image-desc"><textarea data-field="image1Desc" rows="2">' + safe(listing.image1Desc || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image2', listing.image2) +
-                    '<td class="cell-image-desc"><textarea data-field="image2Desc" rows="2">' + safe(listing.image2Desc || '') + '</textarea></td>' +
-                    buildDataTableImageCell('image3', listing.image3) +
-                    '<td class="cell-image-desc"><textarea data-field="image3Desc" rows="2">' + safe(listing.image3Desc || '') + '</textarea></td>' +
-                    '<td class="cell-website"><input type="text" value="' + safe(listing.website) + '" data-field="website" placeholder="www.example.com or https://..." /></td>' +
-                    '<td class="cell-phone"><input type="tel" value="' + safe(listing.phone) + '" data-field="phone" /></td>' +
-                    '<td class="cell-address"><input type="text" value="' + safe(listing.address) + '" data-field="address" /></td>' +
-                    '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.latitude || '') + '" data-field="latitude" /></td>' +
-                    '<td class="cell-coord"><input type="number" step="any" value="' + safe(listing.longitude || '') + '" data-field="longitude" /></td>' +
-                    '<td class="cell-author"><input type="text" value="' + safe(listing.authorName) + '" data-field="authorName" placeholder="Author name" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.publishedDate ? normalizeDate(listing.publishedDate) : '') + '" data-field="publishedDate" /></td>' +
-                    '<td class="cell-date"><input type="date" value="' + safe(listing.modifiedDate ? normalizeDate(listing.modifiedDate) : '') + '" data-field="modifiedDate" readonly title="Set automatically when the row is saved" /></td>' +
-                    '<td class="cell-directions"><input type="url" value="' + safe(listing.directionsLink) + '" data-field="directionsLink" placeholder="https://..." /></td>' +
-                    '<td class="cell-video"><input type="url" value="' + safe(listing.videoLink || '') + '" data-field="videoLink" placeholder="https://youtube.com/..." /></td>' +
-                    '<td class="cell-document"><input type="url" value="' + safe(listing.document1 || '') + '" data-field="document1" placeholder="PDF URL..." /></td>' +
-                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document1Name || '') + '" data-field="document1Name" placeholder="Document name..." /></td>' +
-                    '<td class="cell-document"><input type="url" value="' + safe(listing.document2 || '') + '" data-field="document2" placeholder="PDF URL..." /></td>' +
-                    '<td class="cell-document-name"><input type="text" value="' + safe(listing.document2Name || '') + '" data-field="document2Name" placeholder="Document name..." /></td>' +
-                    '<td class="cell-amenities"><div class="amenities-cell"><div class="amenities-pills-preview"></div><textarea data-field="amenities" class="amenities-raw-input" rows="1" spellcheck="false" placeholder="Wi-Fi, Parking, Pet friendly…">' + escapeHtml(amenitiesRaw) + '</textarea></div></td>' +
-                    '<td class="cell-featured"><input type="checkbox" ' + (listing.featured ? 'checked' : '') + ' data-field="featured" /></td>' +
-                    '<td class="cell-private"><input type="checkbox" ' + (listing.private ? 'checked' : '') + ' data-field="private" /></td>' +
-                    '<td class="cell-googlemaps"><input type="url" value="' + safe(listing.googleMapsUrl || '') + '" data-field="googleMapsUrl" placeholder="Google Maps URL" /></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel1Title || '') + '" data-field="accordionPanel1Title" placeholder="Panel 1 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel1Content" placeholder="Panel 1 Content">' + safe(listing.accordionPanel1Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel2Title || '') + '" data-field="accordionPanel2Title" placeholder="Panel 2 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel2Content" placeholder="Panel 2 Content">' + safe(listing.accordionPanel2Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel3Title || '') + '" data-field="accordionPanel3Title" placeholder="Panel 3 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel3Content" placeholder="Panel 3 Content">' + safe(listing.accordionPanel3Content || '') + '</textarea></td>' +
-                    '<td class="cell-accordion-title"><input type="text" value="' + safe(listing.accordionPanel4Title || '') + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
-                    '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + safe(listing.accordionPanel4Content || '') + '</textarea></td>' +
-                    '<td class="cell-actions">' +
-                        '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
-                        (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
-                        '</button>' +
-                    '</td>';
-                tbody.appendChild(row);
-                const amenitiesTa = row.querySelector('textarea.amenities-raw-input');
-                if (amenitiesTa) syncTableAmenitiesPillsPreview(amenitiesTa);
-                syncTableImagePreviewsInRow(row);
-=======
             dataTableSortedListings = sortedListings.map(function(listing) {
                 return { listing: listing, dataIndex: data.listings.indexOf(listing) };
->>>>>>> d128ca9579c2efde277eb2999418b8db60b615fe
             });
 
             bindDataTableVirtualScroll();
@@ -16041,9 +15941,6 @@ function updateTabsStickyStackStuck() {
     
     <!-- Flip Overlay -->
     <div id="flipOverlay"></div>
-
-    <!-- Load admin.js for authentication and admin functionality -->
-    <script src="admin.js"></script>
 
 </body>
 </html>
