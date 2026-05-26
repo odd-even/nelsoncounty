@@ -1546,6 +1546,10 @@
             background: #2a2a2a;
             cursor: default;
             user-select: auto;
+            border-bottom: 2px solid #555;
+        }
+        .data-table thead tr:first-child th {
+            border-bottom: 1px solid #444;
         }
         .data-table thead tr.filter-row th:hover { background: #2a2a2a; }
         .data-table .filter-input { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; }
@@ -1553,7 +1557,6 @@
         .data-table .filter-select { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
         .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
         .data-table tbody tr {
-            border-bottom: 1px solid var(--border-color);
             transition: background 0.15s ease;
             min-height: 100px;
             height: 100px;
@@ -1572,6 +1575,7 @@
             height: 100px;
             overflow: visible;
             border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             box-sizing: border-box;
         }
         .data-table tbody tr.data-table-row-expanded td {
@@ -1767,14 +1771,21 @@
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 12px;
         }
-        .data-table .cell-amenities { min-width: 420px; max-width: 620px; font-size: 12px; }
+        .data-table tbody td.cell-amenities {
+            min-width: 420px;
+            max-width: 620px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+        }
         .data-table .amenities-cell {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: stretch;
             gap: 4px;
-            height: 96px;
-            max-height: 96px;
+            width: 100%;
+            max-height: 92px;
             overflow: hidden;
         }
         .data-table tbody td input[type="number"] {
@@ -1789,11 +1800,11 @@
             display: flex;
             flex-wrap: wrap;
             gap: 2px;
-            align-items: flex-start;
-            align-content: flex-start;
-            flex: 1 1 auto;
-            min-height: 0;
-            max-height: 68px;
+            align-items: center;
+            align-content: center;
+            justify-content: flex-start;
+            flex: 0 0 auto;
+            max-height: 52px;
             overflow: hidden;
             line-height: 0;
         }
@@ -1819,20 +1830,18 @@
         .data-table tbody td textarea.amenities-raw-input {
             flex: 0 0 auto;
             min-height: 22px;
-            height: 22px;
-            max-height: 22px;
+            height: auto;
+            max-height: 36px;
             resize: none;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.25;
         }
         .data-table tbody td textarea.amenities-raw-input:focus {
-            white-space: normal;
-            overflow: auto;
-            height: auto !important;
-            min-height: 22px;
-            max-height: 64px;
-            resize: both;
+            max-height: 48px;
+            resize: vertical;
         }
         .data-table .cell-featured { text-align: center; vertical-align: middle; }
         .data-table .cell-private { text-align: center; vertical-align: middle; }
@@ -2044,9 +2053,10 @@
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
             height: 100%;
             display: flex;
-            width: auto;
+            width: 100%;
         }
 
         /* When there is only one image, force full width fill */
@@ -4740,6 +4750,33 @@ function getAdminImageUrl(url) {
     }) : [];
     query.push(transformParam);
     return base + '?' + query.join('&');
+}
+
+function layoutAdminCardImageStrip(imgContainer, imgWrapper, imageCount) {
+    if (!imgContainer || !imgWrapper) return;
+    if (imageCount <= 1) {
+        imgContainer.classList.add('single-image');
+        imgWrapper.style.width = '100%';
+        return;
+    }
+    imgContainer.classList.remove('single-image');
+    function apply() {
+        const containerWidth = imgContainer.offsetWidth || imgContainer.clientWidth;
+        if (containerWidth <= 0) return false;
+        imgWrapper.style.width = (containerWidth * imageCount) + 'px';
+        imgWrapper.querySelectorAll('img').forEach(function(img) {
+            img.style.width = containerWidth + 'px';
+            img.style.minWidth = containerWidth + 'px';
+            img.style.maxWidth = containerWidth + 'px';
+            img.style.height = '240px';
+        });
+        return true;
+    }
+    if (apply()) return;
+    requestAnimationFrame(function() {
+        if (apply()) return;
+        requestAnimationFrame(apply);
+    });
 }
 
 function sanitizeListing(listing) {
@@ -7943,13 +7980,10 @@ function updateTabsStickyStackStuck() {
                 imgContainer.style.setProperty('-ms-overflow-style', 'none');
                 
                 const imgWrapper = document.createElement('div');
-                imgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: auto; height: 100%; display: flex;';
+                imgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;';
                 
                 // Count images
                 const imageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
-                if (imageCount <= 1) {
-                    imgContainer.classList.add('single-image');
-                }
                 
                 // Add image1 if it exists
                 if (listing.image1) {
@@ -7990,23 +8024,6 @@ function updateTabsStickyStackStuck() {
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
                     img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     imgWrapper.appendChild(img);
-                }
-                
-                // Set wrapper and image widths to accommodate all images side by side
-                if (imageCount > 1) {
-                    setTimeout(function() {
-                        const containerWidth = imgContainer.offsetWidth || imgContainer.clientWidth;
-                        if (containerWidth > 0) {
-                            imgWrapper.style.width = (containerWidth * imageCount) + 'px';
-                            const images = imgWrapper.querySelectorAll('img');
-                            images.forEach(function(img) {
-                                img.style.width = containerWidth + 'px';
-                                img.style.minWidth = containerWidth + 'px';
-                                img.style.maxWidth = containerWidth + 'px';
-                                img.style.height = '240px';
-                            });
-                        }
-                    }, 10);
                 }
                 
                 imgContainer.appendChild(imgWrapper);
@@ -8409,12 +8426,9 @@ function updateTabsStickyStackStuck() {
                 backImgContainer.style.setProperty('-ms-overflow-style', 'none');
                 
                 const backImgWrapper = document.createElement('div');
-                backImgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: auto; height: 100%; display: flex;';
+                backImgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;';
                 
                 const backImageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
-                if (backImageCount <= 1) {
-                    backImgContainer.classList.add('single-image');
-                }
                 
                 if (listing.image1) {
                     const img1 = document.createElement('img');
@@ -8442,22 +8456,6 @@ function updateTabsStickyStackStuck() {
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
                     img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     backImgWrapper.appendChild(img);
-                }
-                
-                if (backImageCount > 1) {
-                    setTimeout(function() {
-                        const containerWidth = backImgContainer.offsetWidth || backImgContainer.clientWidth;
-                        if (containerWidth > 0) {
-                            backImgWrapper.style.width = (containerWidth * backImageCount) + 'px';
-                            const images = backImgWrapper.querySelectorAll('img');
-                            images.forEach(function(img) {
-                                img.style.width = containerWidth + 'px';
-                                img.style.minWidth = containerWidth + 'px';
-                                img.style.maxWidth = containerWidth + 'px';
-                                img.style.height = '240px';
-                            });
-                        }
-                    }, 10);
                 }
                 
                 backImgContainer.appendChild(backImgWrapper);
@@ -8601,6 +8599,8 @@ function updateTabsStickyStackStuck() {
                 inner.appendChild(back);
                 card.appendChild(inner);
                 grid.appendChild(card);
+                layoutAdminCardImageStrip(imgContainer, imgWrapper, imageCount);
+                layoutAdminCardImageStrip(backImgContainer, backImgWrapper, backImageCount);
             });
             
             updateStats(listings);
@@ -13569,7 +13569,7 @@ function updateTabsStickyStackStuck() {
                 imgContainer.style.setProperty('-ms-overflow-style', 'none');
                 
                 const imgWrapper = document.createElement('div');
-                imgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: auto; height: 100%; display: flex;';
+                imgWrapper.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex;';
                 
                 // Count images
                 const imageCount = (listing.image1 ? 1 : 0) + (listing.image2 ? 1 : 0) + (listing.image3 ? 1 : 0);
@@ -13613,25 +13613,6 @@ function updateTabsStickyStackStuck() {
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
                     img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     imgWrapper.appendChild(img);
-                }
-                
-                // Set wrapper and image widths to accommodate all images side by side
-                if (imageCount > 1) {
-                    // Wait for container to have dimensions, then set wrapper and image widths
-                    setTimeout(function() {
-                        const containerWidth = imgContainer.offsetWidth || imgContainer.clientWidth;
-                        if (containerWidth > 0) {
-                            imgWrapper.style.width = (containerWidth * imageCount) + 'px';
-                            // Set each image to be exactly the container width
-                            const images = imgWrapper.querySelectorAll('img');
-                            images.forEach(function(img) {
-                                img.style.width = containerWidth + 'px';
-                                img.style.minWidth = containerWidth + 'px';
-                                img.style.maxWidth = containerWidth + 'px';
-                                img.style.height = '240px';
-                            });
-                        }
-                    }, 10);
                 }
                 
                 imgContainer.appendChild(imgWrapper);
@@ -13717,6 +13698,7 @@ function updateTabsStickyStackStuck() {
                 inner.appendChild(back);
                 card.appendChild(inner);
                 grid.appendChild(card);
+                layoutAdminCardImageStrip(imgContainer, imgWrapper, imageCount);
             });
         }
         
@@ -13927,7 +13909,7 @@ function updateTabsStickyStackStuck() {
                     categoryKeys.map(function(categoryKey) {
                         const category = TYPE_CATEGORIES[categoryKey];
                         const isSelected = safe(listing.category) === categoryKey;
-                        return '<option value="' + escapeHtml(categoryKey) + '" ' + (isSelected ? 'selected' : '') + '>' + escapeHtml(category.emoji || '') + ' ' + escapeHtml(category.name) + '</option>';
+                        return '<option value="' + escapeHtml(categoryKey) + '" ' + (isSelected ? 'selected' : '') + '>' + escapeHtml(category.name || categoryKey) + '</option>';
                     }).join('');
                 
                 // If this listing has a custom category not in TYPE_CATEGORIES, add it to the dropdown
@@ -14069,8 +14051,9 @@ function updateTabsStickyStackStuck() {
                 uniqueCategories.forEach(function(category) {
                     const option = document.createElement('option');
                     option.value = category;
-                    option.textContent = TYPE_CATEGORIES && TYPE_CATEGORIES[category] ? 
-                        TYPE_CATEGORIES[category].emoji + ' ' + TYPE_CATEGORIES[category].name : category;
+                    option.textContent = TYPE_CATEGORIES && TYPE_CATEGORIES[category]
+                        ? (TYPE_CATEGORIES[category].name || category)
+                        : category;
                     categoryFilter.appendChild(option);
                 });
                 categoryFilter.dataset.populated = 'true';
