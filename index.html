@@ -7718,24 +7718,46 @@ function updateTabsStickyStackStuck() {
                         result = { success: true }; // Assume success if no response
                     }
                 } catch (corsError) {
-                    console.log('Direct POST failed due to CORS, trying no-cors mode...');
-                    
-                    // Try no-cors mode - sends request but can't read response
-                    try {
-                        await fetch(GOOGLE_APPS_SCRIPT_URL, {
-                            method: 'POST',
-                            mode: 'no-cors',
-                            body: postData  // Send raw JSON string
-                        });
+                    const isWindows = typeof navigator !== 'undefined' && /Windows/i.test(navigator.userAgent || '');
+                    if (isWindows) {
+                        console.warn('Direct POST failed on Windows (likely CORS/preflight). Trying text/plain POST...');
+                        try {
+                            const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                                method: 'POST',
+                                mode: 'cors',
+                                // text/plain avoids the CORS preflight that some Windows browser setups block
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                                body: postData
+                            });
+                            const responseText = await response.text();
+                            result = responseText ? JSON.parse(responseText) : { success: true };
+                        } catch (e) {
+                            console.error('Windows fallback POST failed:', e);
+                            result = {
+                                success: false,
+                                error: 'Save blocked by browser/network policy on Windows. Try a different browser (Chrome), disable strict tracking protection for this site, or have an admin run the save.'
+                            };
+                        }
+                    } else {
+                        console.log('Direct POST failed due to CORS, trying no-cors mode...');
                         
-                        // With no-cors, we can't read response, so assume success
-                        result = { success: true };
-                        console.log('Sent via no-cors mode (can\'t verify response)');
-                    } catch (e) {
-                        console.error('No-cors also failed:', e);
-                        result = { success: false, error: 'Failed to connect to Google Sheets' };
-                        alert('⚠️ Unable to save to Google Sheets. Changes saved locally only.\n\n' +
-                              'This may be due to CORS restrictions. Your Apps Script may need to be configured to allow CORS.');
+                        // Try no-cors mode - sends request but can't read response
+                        try {
+                            await fetch(GOOGLE_APPS_SCRIPT_URL, {
+                                method: 'POST',
+                                mode: 'no-cors',
+                                body: postData  // Send raw JSON string
+                            });
+                            
+                            // With no-cors, we can't read response, so assume success
+                            result = { success: true };
+                            console.log('Sent via no-cors mode (can\'t verify response)');
+                        } catch (e) {
+                            console.error('No-cors also failed:', e);
+                            result = { success: false, error: 'Failed to connect to Google Sheets' };
+                            alert('⚠️ Unable to save to Google Sheets. Changes saved locally only.\n\n' +
+                                  'This may be due to CORS restrictions. Your Apps Script may need to be configured to allow CORS.');
+                        }
                     }
                 }
                 
