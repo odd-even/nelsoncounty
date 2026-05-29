@@ -2752,16 +2752,12 @@
                     console.log('⚠️ No emails found in localStorage, using defaults (for display only)');
                     console.log('ℹ️  NOTE: Server has the actual authorization list - localStorage is just for UI display');
                 }
-                // Default emails (fallback for display only)
-                const defaults = [
-                'ernest@oddplusevenstudio.com',
-                'ernest@oddpluseven.com',
-                'adam@oddpluseven.com',
-                'rj@oddpluseven.com',
-                'bniemeyer@nelsoncounty.org',
-                'makelley@nelsoncounty.org',
-                'esther@oddpluseven.com',
-            ];
+                // Default emails (fallback for display only).
+                // Intentionally empty: the authorized list lives server-side in the
+                // Google Apps Script (PropertiesService) and is the source of truth for
+                // login. This client-side array only pre-populates the admin "manage
+                // emails" panel for display and is NOT used to grant access.
+                const defaults = [];
                 console.log('📋 Returning default emails (for display only):', defaults);
                 console.log('ℹ️  Server will check actual authorization when you try to log in');
                 return defaults;
@@ -2801,6 +2797,20 @@
                 };
                 localStorage.setItem('adminAuthSession', JSON.stringify(sessionData));
             }
+
+            // Synchronously read the current session token (for authenticated requests).
+            // Returns the token string, or null if there is no stored session.
+            function getAdminSessionToken() {
+                try {
+                    const raw = localStorage.getItem('adminAuthSession');
+                    if (!raw) return null;
+                    const parsed = JSON.parse(raw);
+                    return (parsed && parsed.token) ? parsed.token : null;
+                } catch (e) {
+                    return null;
+                }
+            }
+            window.getAdminSessionToken = getAdminSessionToken;
             
             async function getAuthSession() {
                 try {
@@ -11598,7 +11608,8 @@ function updateTabsStickyStackStuck() {
                     scriptUrl = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
                 }
                 
-                const url = scriptUrl + '?action=getAuthorizedEmails';
+                const emailsToken = getAdminSessionToken();
+                const url = scriptUrl + '?action=getAuthorizedEmails' + (emailsToken ? '&token=' + encodeURIComponent(emailsToken) : '');
                 console.log('🔍 Checking server emails:', url);
                 
                 const response = await fetch(url, { method: 'GET', mode: 'cors' });
@@ -12769,7 +12780,9 @@ function updateTabsStickyStackStuck() {
         }
 
         async function fetchImageKitUploadParams() {
-            const urlWithQuery = GOOGLE_APPS_SCRIPT_URL + '?action=' + encodeURIComponent(IMAGEKIT_AUTH_ACTION) + '&t=' + Date.now();
+            const imagekitToken = getAdminSessionToken();
+            const tokenQuery = imagekitToken ? '&token=' + encodeURIComponent(imagekitToken) : '';
+            const urlWithQuery = GOOGLE_APPS_SCRIPT_URL + '?action=' + encodeURIComponent(IMAGEKIT_AUTH_ACTION) + tokenQuery + '&t=' + Date.now();
             
             try {
                 console.log('Fetching ImageKit params via GET from:', urlWithQuery);
@@ -12808,7 +12821,7 @@ function updateTabsStickyStackStuck() {
                     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: 'action=' + encodeURIComponent(IMAGEKIT_AUTH_ACTION)
+                        body: 'action=' + encodeURIComponent(IMAGEKIT_AUTH_ACTION) + (imagekitToken ? '&token=' + encodeURIComponent(imagekitToken) : '')
                     });
                     if (!response.ok) {
                         const errorText = await response.text();
@@ -12862,6 +12875,8 @@ function updateTabsStickyStackStuck() {
                     imageUrl: imageUrl,
                     t: Date.now().toString() // Cache busting
                 });
+                const aiToken = getAdminSessionToken();
+                if (aiToken) params.append('token', aiToken);
                 
                 const requestUrl = GOOGLE_APPS_SCRIPT_URL + '?' + params.toString();
                 console.log('Request URL:', requestUrl);
@@ -13045,6 +13060,8 @@ function updateTabsStickyStackStuck() {
                     customMetadata: JSON.stringify({ description: description }),
                     t: Date.now().toString()
                 });
+                const metadataToken = getAdminSessionToken();
+                if (metadataToken) params.append('token', metadataToken);
                 
                 // If we have fileId, pass it directly to avoid search
                 if (fileId) {
@@ -15108,13 +15125,10 @@ function updateTabsStickyStackStuck() {
         // 🔐 AUTHORIZED EMAILS: List of Google email addresses that can access the admin panel
         // SECURITY NOTE: For better security, move this list to your Google Apps Script
         // and fetch it via an API call instead of storing it in the client code.
-        const AUTHORIZED_EMAILS = [
-            'ernest@oddplusevenstudio.com',
-            // Add more authorized emails here (one per line, comma-separated)
-            // Example: 'admin@example.com',
-            // Example: 'user@example.com',
-            // Example: 'team-member@example.com',
-        ];
+        // Used only by the legacy Google OAuth flow (ENABLE_GOOGLE_AUTH, currently
+        // false). Left empty so no admin addresses are exposed in public source.
+        // The active OTP login enforces authorization server-side in the Apps Script.
+        const AUTHORIZED_EMAILS = [];
         
         // Parse JWT token to get user info
         function parseJwt(token) {
