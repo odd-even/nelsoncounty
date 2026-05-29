@@ -2789,7 +2789,7 @@
 
             // Build/deployment marker — bump this string whenever you deploy so you
             // can confirm (via console) the browser loaded the latest version.
-            const ADMIN_BUILD_VERSION = 'v2026.05.29-secure-5 (expose getAuthSession to outer scope)';
+            const ADMIN_BUILD_VERSION = 'v2026.05.29-secure-6 (clean build, token auth working)';
             console.log('%c🚀 NELSON COUNTY ADMIN BUILD ' + ADMIN_BUILD_VERSION, 'background:#4E6B52;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold;font-size:13px;');
             
             // Helper functions for persistent session storage with SERVER-VALIDATED tokens
@@ -10118,26 +10118,8 @@ function updateTabsStickyStackStuck() {
                         // GET requests don't trigger CORS preflight, so they work even if OPTIONS fails
                         try {
                             const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
-                            // TEMP DIAGNOSTIC: reveal exactly why the token may be missing.
-                            let __rawAuth = null;
-                            try { __rawAuth = JSON.parse(localStorage.getItem('adminAuthSession') || 'null'); } catch (e) {}
-                            console.log('🔐 DELETE AUTH DIAG:', {
-                                rawSessionExists: !!__rawAuth,
-                                rawTokenExists: !!(__rawAuth && __rawAuth.token),
-                                rawTokenSigned: !!(__rawAuth && __rawAuth.token && String(__rawAuth.token).includes('.')),
-                                rawExpires: __rawAuth && __rawAuth.expires ? new Date(__rawAuth.expires).toISOString() : null,
-                                getAuthSessionReturned: !!session,
-                                getAuthSessionHasToken: !!(session && session.token),
-                                sessionStorageLoggedIn: sessionStorage.getItem('adminLoggedIn')
-                            });
                             const tokenParam = session && session.token ? ('&token=' + encodeURIComponent(session.token)) : '';
                             const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + tokenParam + '&t=' + Date.now();
-                            // TEMP DIAGNOSTIC: did the token make it into the request URL?
-                            console.log('🔐 DELETE URL DIAG:', {
-                                tokenParamLength: tokenParam.length,
-                                urlHasTokenParam: deleteUrl.indexOf('&token=') !== -1,
-                                urlLength: deleteUrl.length
-                            });
                             const response = await fetch(deleteUrl, {
                                 method: 'GET',
                                 mode: 'cors'
