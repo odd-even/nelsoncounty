@@ -2786,6 +2786,11 @@
             
             // Session expiration: 1 day (24 hours)
             const SESSION_EXPIRATION_MS = 24 * 60 * 60 * 1000;
+
+            // Build/deployment marker — bump this string whenever you deploy so you
+            // can confirm (via console) the browser loaded the latest version.
+            const ADMIN_BUILD_VERSION = 'v2026.05.29-secure-2 (signed tokens + text/plain CORS)';
+            console.log('%c🚀 NELSON COUNTY ADMIN BUILD ' + ADMIN_BUILD_VERSION, 'background:#4E6B52;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold;font-size:13px;');
             
             // Helper functions for persistent session storage with SERVER-VALIDATED tokens
             function setAuthSession(email, sessionToken) {
