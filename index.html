@@ -7717,7 +7717,7 @@ function updateTabsStickyStackStuck() {
                     const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                         method: 'POST',
                         mode: 'cors',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                         body: postData
                     });
                     
@@ -12006,7 +12006,7 @@ function updateTabsStickyStackStuck() {
                             await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: categoriesData
                             });
                             
@@ -12014,7 +12014,7 @@ function updateTabsStickyStackStuck() {
                             await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: listingsData
                             });
                             
@@ -12035,7 +12035,7 @@ function updateTabsStickyStackStuck() {
                             await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: categoriesData
                             });
                             updateSyncStatus(true, 'Category edited and synced to Google Sheets.');
@@ -12117,7 +12117,7 @@ function updateTabsStickyStackStuck() {
                 fetch(GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
                     mode: 'cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: postData
                 })
                 .then(function(response) {
@@ -12241,7 +12241,7 @@ function updateTabsStickyStackStuck() {
                             await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: categoriesData
                             });
                             
@@ -12249,7 +12249,7 @@ function updateTabsStickyStackStuck() {
                             await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: listingsData
                             });
                             
@@ -12300,7 +12300,7 @@ function updateTabsStickyStackStuck() {
                             const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                                 method: 'POST',
                                 mode: 'cors',
-                                headers: { 'Content-Type': 'application/json' },
+                                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                                 body: postData
                             });
                             const result = await response.json();
@@ -12625,7 +12625,7 @@ function updateTabsStickyStackStuck() {
                         const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
                             method: 'POST',
                             mode: 'cors',
-                            headers: { 'Content-Type': 'application/json' },
+                            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                             body: postData
                         });
                         
