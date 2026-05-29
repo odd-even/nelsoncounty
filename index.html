@@ -2789,7 +2789,7 @@
 
             // Build/deployment marker — bump this string whenever you deploy so you
             // can confirm (via console) the browser loaded the latest version.
-            const ADMIN_BUILD_VERSION = 'v2026.05.29-secure-4 (delete auth + url diagnostic)';
+            const ADMIN_BUILD_VERSION = 'v2026.05.29-secure-5 (expose getAuthSession to outer scope)';
             console.log('%c🚀 NELSON COUNTY ADMIN BUILD ' + ADMIN_BUILD_VERSION, 'background:#4E6B52;color:#fff;padding:4px 8px;border-radius:4px;font-weight:bold;font-size:13px;');
             
             // Helper functions for persistent session storage with SERVER-VALIDATED tokens
@@ -2902,6 +2902,10 @@
                     return null;
                 }
             }
+            // Expose to the outer scope: deleteListing/saveListing etc. live outside
+            // this IIFE, so without this they see `typeof getAuthSession !== 'function'`
+            // and silently send requests with no session token.
+            window.getAuthSession = getAuthSession;
             
             function clearAuthSession() {
                 localStorage.removeItem('adminAuthSession');
