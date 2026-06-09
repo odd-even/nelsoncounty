@@ -6507,6 +6507,66 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         
         let deleteConfirmId = null;
         let deleteConfirmTimeout = null;
+        const DELETE_CONFIRM_MS = 15000;
+        const DELETE_BTN_HTML =
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+            '<path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 16H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/>' +
+            '</svg>Delete';
+
+        function setCardDeleteButtonState(btn, isPending) {
+            if (isPending) {
+                btn.textContent = 'Confirm Delete?';
+                btn.style.background = '#dc2626';
+                btn.style.color = '#ffffff';
+            } else {
+                btn.innerHTML = DELETE_BTN_HTML;
+                btn.style.background = '#FDECF0';
+                btn.style.color = '';
+            }
+        }
+
+        function updateDeleteConfirmButtons() {
+            const pendingSlug = deleteConfirmId;
+            document.querySelectorAll('#listingsGrid .flip-card[data-slug]').forEach(function(card) {
+                const slug = card.getAttribute('data-slug');
+                const isPending = !!(pendingSlug && slug === pendingSlug);
+                card.querySelectorAll('.btn-delete').forEach(function(btn) {
+                    setCardDeleteButtonState(btn, isPending);
+                });
+            });
+            document.querySelectorAll('#dataTableBody tr[data-index]').forEach(function(row) {
+                const idx = parseInt(row.getAttribute('data-index'), 10);
+                const listing = data.listings[idx];
+                if (!listing) return;
+                const btn = row.querySelector('.btn-table-delete');
+                if (!btn) return;
+                const isPending = pendingSlug === listing.slug;
+                btn.textContent = isPending ? 'Confirm?' : 'Delete';
+                btn.style.background = isPending ? '#dc2626' : '#E3795C';
+            });
+        }
+
+        function beginDeleteConfirm(slug) {
+            deleteConfirmId = slug;
+            if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
+            updateDeleteConfirmButtons();
+            deleteConfirmTimeout = setTimeout(function() {
+                deleteConfirmId = null;
+                updateDeleteConfirmButtons();
+            }, DELETE_CONFIRM_MS);
+        }
+
+        function clearDeleteConfirm() {
+            deleteConfirmId = null;
+            if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
+            deleteConfirmTimeout = null;
+        }
+
+        function refreshListingsAfterDelete() {
+            applyFilterOptionCleanup();
+            filterListings();
+            if (typeof renderDataTable === 'function') renderDataTable();
+        }
         /** Table View: cell edits in the DOM not yet applied with Update Table */
         let tableEditsPending = false;
         let committingTableEdits = false;
@@ -8229,6 +8289,7 @@ function updateTabsStickyStackStuck() {
         function renderListings(listings) {
             if (!listings) listings = data.listings;
             const grid = document.getElementById('listingsGrid');
+            const scrollY = window.scrollY;
             grid.innerHTML = '';
             
             // Sort listings based on current sort value
@@ -8998,6 +9059,12 @@ function updateTabsStickyStackStuck() {
             // Update map markers with the listings
             if (typeof updateMapMarkers === 'function') {
                 updateMapMarkers(listings);
+            }
+
+            if (scrollY > 0) {
+                requestAnimationFrame(function() {
+                    window.scrollTo(0, scrollY);
+                });
             }
         }
         
@@ -10091,8 +10158,10 @@ function updateTabsStickyStackStuck() {
             // Check if this is the confirmation click
             if (deleteConfirmId === slug) {
                 // Confirmed - delete it
-                deleteConfirmId = null;
-                if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
+                clearDeleteConfirm();
+                captureAllVisibleTableRowDrafts();
+                applyAllTableRowDrafts();
+                tableRowDrafts = {};
 
                 // Local-only listing (not yet saved to Google Sheets): delete locally only
                 if (listing._localOnly) {
@@ -10104,8 +10173,8 @@ function updateTabsStickyStackStuck() {
                     console.log('🗑️ Local-only delete: ' + beforeCount + ' → ' + afterCount + ' listings');
                     updateSyncStatus(true, 'Deleted locally; not saved to Google Sheets yet.');
                     showUnsavedChangesBadge();
-                    // Preserve current filter state by re-filtering instead of full render
-                    filterListings();
+                    refreshListingsAfterDelete();
+                    alert('✅ "' + listing.name + '" deleted locally.\n\nClick Save to Sheets when you are ready to sync.');
                     return;
                 }
                 
@@ -10186,9 +10255,7 @@ function updateTabsStickyStackStuck() {
                         showUnsavedChangesBadge();
                             
                             // Refresh the display immediately with updated local data
-                            // Use filterListings() to preserve current filter/search state
-                            applyFilterOptionCleanup();
-                            filterListings();
+                            refreshListingsAfterDelete();
                             
                             // Show success message
                             alert('✅ "' + listing.name + '" has been deleted from Google Sheets.');
@@ -10212,37 +10279,18 @@ function updateTabsStickyStackStuck() {
                               'If the problem persists, you can delete it directly in Google Sheets.');
                         
                         // Do NOT remove from local data - keep it in sync with Google Sheets
-                        // Refresh the display to show the listing is still there
-                        // Use filterListings() to preserve current filter/search state
-                        applyFilterOptionCleanup();
-                        filterListings();
+                        refreshListingsAfterDelete();
                     }
                 } else {
                     // No Google Sheets configured - delete locally only
                     data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
                     updateSyncStatus(false, 'Deleted locally only (Google Sheets not configured).');
-                    alert('Deleted "' + listing.name + '" (Local only - configure Google Sheets to sync)');
-                    
-                    // Refresh the display (preserve filter state)
-                    applyFilterOptionCleanup();
-                    filterListings();
+                    refreshListingsAfterDelete();
+                    alert('✅ "' + listing.name + '" deleted locally (Google Sheets not configured).');
                 }
                 
             } else {
-                // First click - set confirmation needed
-                deleteConfirmId = slug;
-                
-                // Clear any existing timeout
-                if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
-                
-                // Re-render to update button text (preserve filter state)
-                filterListings();
-                
-                // Reset after 3 seconds
-                deleteConfirmTimeout = setTimeout(function() {
-                    deleteConfirmId = null;
-                    filterListings();
-                }, 3000);
+                beginDeleteConfirm(slug);
             }
         }
         
@@ -14544,39 +14592,8 @@ function updateTabsStickyStackStuck() {
 
         function deleteFromTable(index) {
             const listing = data.listings[index];
-            
-            // Check if this is the confirmation click
-            if (deleteConfirmId === listing.slug) {
-                // Confirmed - delete it
-                captureAllVisibleTableRowDrafts();
-                applyAllTableRowDrafts();
-                tableRowDrafts = {};
-                data.listings.splice(index, 1);
-                deleteConfirmId = null;
-                if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
-                
-                applyFilterOptionCleanup();
-                renderDataTable();
-                renderListings();
-                
-                showUnsavedChangesBadge();
-                alert('Deleted: ' + listing.name);
-            } else {
-                // First click - set confirmation needed
-                deleteConfirmId = listing.slug;
-                
-                // Clear any existing timeout
-                if (deleteConfirmTimeout) clearTimeout(deleteConfirmTimeout);
-                
-                // Re-render to update button text
-                renderDataTable();
-                
-                // Reset after 3 seconds
-                deleteConfirmTimeout = setTimeout(function() {
-                    deleteConfirmId = null;
-                    renderDataTable();
-                }, 3000);
-            }
+            if (!listing) return;
+            deleteListing(listing.slug);
         }
         
         window.downloadCSV = function downloadCSV() {
