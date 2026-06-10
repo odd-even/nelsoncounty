@@ -1,4 +1,4 @@
-window.NELSON_ADMIN_BUILD = '20260610b';
+window.NELSON_ADMIN_BUILD = '20260610c';
 console.info(
     '%c[Nelson Admin] BUILD ' + window.NELSON_ADMIN_BUILD + ' — admin-auth.js',
     'color:#4E6B52;font-weight:bold'

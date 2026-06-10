@@ -5642,11 +5642,13 @@ function updateTabsStickyStackStuck() {
             const total = listingsGridSortedListings.length;
             if (total === 0) {
                 grid.innerHTML = '';
+                listingsGridVirtualState = null;
                 return;
             }
 
             if (options.fullReset) {
                 grid.innerHTML = '';
+                listingsGridVirtualState = null;
             }
 
             const columns = getListingsGridColumnCount(grid);
@@ -5664,6 +5666,23 @@ function updateTabsStickyStackStuck() {
             const topPad = startRow * rowHeight;
             const bottomPad = Math.max(0, (totalRows - endRow) * rowHeight);
 
+            const prev = listingsGridVirtualState;
+            if (!options.fullReset && prev &&
+                prev.startIndex === startIndex && prev.endIndex === endIndex &&
+                prev.topPad === topPad && prev.bottomPad === bottomPad &&
+                prev.columns === columns) {
+                return;
+            }
+
+            const neededSlugs = new Set();
+            const windowListings = [];
+            for (let i = startIndex; i < endIndex; i++) {
+                const listing = listingsGridSortedListings[i];
+                if (!listing) continue;
+                if (listing.slug) neededSlugs.add(listing.slug);
+                windowListings.push(listing);
+            }
+
             let topSpacer = grid.querySelector('.listings-grid-spacer-top');
             if (topPad > 0) {
                 if (!topSpacer) {
@@ -5677,15 +5696,6 @@ function updateTabsStickyStackStuck() {
             } else if (topSpacer) {
                 topSpacer.remove();
                 topSpacer = null;
-            }
-
-            const neededSlugs = new Set();
-            const windowListings = [];
-            for (let i = startIndex; i < endIndex; i++) {
-                const listing = listingsGridSortedListings[i];
-                if (!listing) continue;
-                if (listing.slug) neededSlugs.add(listing.slug);
-                windowListings.push(listing);
             }
 
             grid.querySelectorAll('.flip-card[data-slug]').forEach(function(card) {
@@ -5709,10 +5719,9 @@ function updateTabsStickyStackStuck() {
                 if (!card) {
                     card = buildListingCardElement(listing, { eagerImages: true });
                     if (!card) continue;
-                }
-                const insertBefore = anchor ? anchor.nextSibling : grid.firstChild;
-                if (card.parentNode !== grid || card.previousSibling !== anchor) {
-                    grid.insertBefore(card, insertBefore);
+                    grid.insertBefore(card, anchor ? anchor.nextSibling : grid.firstChild);
+                } else if (card.previousSibling !== anchor) {
+                    grid.insertBefore(card, anchor ? anchor.nextSibling : grid.firstChild);
                 }
                 anchor = card;
             }
@@ -5732,12 +5741,24 @@ function updateTabsStickyStackStuck() {
                 const sampleCard = grid.querySelector('.flip-card');
                 if (sampleCard) {
                     const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
-                    if (measured > 0 && Math.abs(measured - rowHeight) > 40) {
+                    if (measured > 0) {
                         listingsGridMeasuredRowHeight = measured;
-                        scheduleListingsGridVirtualRefresh();
+                        if (Math.abs(measured - rowHeight) > 40) {
+                            listingsGridVirtualState = null;
+                            renderListingsVirtualWindow();
+                            return;
+                        }
                     }
                 }
             }
+
+            listingsGridVirtualState = {
+                startIndex: startIndex,
+                endIndex: endIndex,
+                topPad: topPad,
+                bottomPad: bottomPad,
+                columns: columns
+            };
         }
 
         function refreshListingCardInGrid(listing, oldSlug) {
@@ -5816,6 +5837,7 @@ function updateTabsStickyStackStuck() {
         const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 3;
         let listingsGridSortedListings = [];
         let listingsGridMeasuredRowHeight = 0;
+        let listingsGridVirtualState = null;
         let listingsGridScrollRaf = null;
         let pendingListingsGridRefresh = false;
         let mapMarkersUpdateTimer = null;
@@ -5880,10 +5902,7 @@ function updateTabsStickyStackStuck() {
                 const card = grid.querySelector('.flip-card');
                 if (card) {
                     const h = Math.ceil(card.getBoundingClientRect().height);
-                    if (h > 0) {
-                        listingsGridMeasuredRowHeight = h + 20;
-                        return listingsGridMeasuredRowHeight;
-                    }
+                    if (h > 0) return h + 20;
                 }
             }
             return LISTINGS_GRID_CARD_ROW_HEIGHT;
@@ -12349,7 +12368,7 @@ function updateTabsStickyStackStuck() {
         // Ensure all functions are available immediately
         (function logAdminBuildTag() {
             var authBuild = window.NELSON_ADMIN_BUILD || '(auth not loaded)';
-            var jsBuild = '20260610b';
+            var jsBuild = '20260610c';
             var match = authBuild === jsBuild;
             console.info(
                 '%c[Nelson Admin] BUILD ' + jsBuild + ' — admin.js' + (match ? '' : ' ⚠️ mismatch auth=' + authBuild),
