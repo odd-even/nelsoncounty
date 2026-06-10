@@ -1904,6 +1904,20 @@
             padding: 20px 0;
             align-items: stretch;
         }
+
+        .listings-grid-loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 56px 20px;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .listings-grid-spacer {
+            grid-column: 1 / -1;
+            pointer-events: none;
+        }
         
         .flip-card {
             cursor: pointer;
@@ -7795,6 +7809,242 @@ function updateTabsStickyStackStuck() {
         
         // Store current sort value (default: modified date, newest first)
         let currentAdminSort = 'modifiedDate-desc';
+
+        const LISTINGS_GRID_CARD_ROW_HEIGHT = 680;
+        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 2;
+        let listingsGridSortedListings = [];
+        let listingsGridMeasuredRowHeight = 0;
+        let listingsGridScrollRaf = null;
+        let mapMarkersUpdateTimer = null;
+
+        function compareListingsForAdminSort(a, b) {
+            const aName = (a.name || '').trim().toLowerCase();
+            const bName = (b.name || '').trim().toLowerCase();
+            const aArea = (a.area || '').trim().toLowerCase();
+            const bArea = (b.area || '').trim().toLowerCase();
+            const aType = (a.type || '').trim().toLowerCase();
+            const bType = (b.type || '').trim().toLowerCase();
+
+            switch (currentAdminSort) {
+                case 'default': {
+                    const areaCompare = aArea.localeCompare(bArea);
+                    if (areaCompare !== 0) return areaCompare;
+                    const typeCompare = aType.localeCompare(bType);
+                    if (typeCompare !== 0) return typeCompare;
+                    return aName.localeCompare(bName);
+                }
+                case 'name-asc':
+                    return aName.localeCompare(bName);
+                case 'name-desc':
+                    return bName.localeCompare(aName);
+                case 'area-asc':
+                    return aArea.localeCompare(bArea);
+                case 'type-asc':
+                    return aType.localeCompare(bType);
+                case 'publishedDate-asc': {
+                    const parseDate = function(dateStr) {
+                        if (!dateStr) return 0;
+                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                        if (dateMatch) {
+                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
+                        }
+                        const parsed = new Date(dateStr);
+                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                    };
+                    return parseDate(a.publishedDate) - parseDate(b.publishedDate);
+                }
+                case 'publishedDate-desc': {
+                    const parseDateDesc = function(dateStr) {
+                        if (!dateStr) return 0;
+                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                        if (dateMatch) {
+                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
+                        }
+                        const parsed = new Date(dateStr);
+                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                    };
+                    return parseDateDesc(b.publishedDate) - parseDateDesc(a.publishedDate);
+                }
+                case 'modifiedDate-asc': {
+                    const parseModDate = function(dateStr) {
+                        if (!dateStr) return 0;
+                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                        if (dateMatch) {
+                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
+                        }
+                        const parsed = new Date(dateStr);
+                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                    };
+                    return parseModDate(a.modifiedDate) - parseModDate(b.modifiedDate);
+                }
+                case 'modifiedDate-desc': {
+                    const parseModDateDesc = function(dateStr) {
+                        if (!dateStr) return 0;
+                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                        if (dateMatch) {
+                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
+                        }
+                        const parsed = new Date(dateStr);
+                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+                    };
+                    return parseModDateDesc(b.modifiedDate) - parseModDateDesc(a.modifiedDate);
+                }
+                default: {
+                    const areaCompareDefault = aArea.localeCompare(bArea);
+                    if (areaCompareDefault !== 0) return areaCompareDefault;
+                    const typeCompareDefault = aType.localeCompare(bType);
+                    if (typeCompareDefault !== 0) return typeCompareDefault;
+                    return aName.localeCompare(bName);
+                }
+            }
+        }
+
+        function sortListingsForGrid(listings) {
+            return listings.slice().sort(compareListingsForAdminSort);
+        }
+
+        function getListingsGridColumnCount(grid) {
+            if (!grid) return 1;
+            const width = grid.clientWidth || 0;
+            if (width === 0) return 1;
+            return Math.max(1, Math.floor((width + 20) / 380));
+        }
+
+        function getListingsGridRowHeight(grid) {
+            if (listingsGridMeasuredRowHeight > 0) return listingsGridMeasuredRowHeight;
+            if (grid) {
+                const card = grid.querySelector('.flip-card');
+                if (card) {
+                    const h = Math.ceil(card.getBoundingClientRect().height);
+                    if (h > 0) {
+                        listingsGridMeasuredRowHeight = h + 20;
+                        return listingsGridMeasuredRowHeight;
+                    }
+                }
+            }
+            return LISTINGS_GRID_CARD_ROW_HEIGHT;
+        }
+
+        function ensureListingsGridScrollListeners() {
+            if (window.__listingsGridScrollListenersReady) return;
+            window.__listingsGridScrollListenersReady = true;
+            window.addEventListener('scroll', scheduleListingsGridVirtualRefresh, { passive: true });
+            window.addEventListener('resize', scheduleListingsGridVirtualRefresh);
+        }
+
+        function scheduleListingsGridVirtualRefresh() {
+            if (listingsGridScrollRaf) return;
+            listingsGridScrollRaf = requestAnimationFrame(function() {
+                listingsGridScrollRaf = null;
+                const adminTab = document.getElementById('adminTab');
+                if (!adminTab || !adminTab.classList.contains('active')) return;
+                if (!listingsGridSortedListings.length) return;
+                renderListingsVirtualWindow();
+            });
+        }
+
+        function showListingsGridLoading(message) {
+            const grid = document.getElementById('listingsGrid');
+            if (!grid) return;
+            grid.innerHTML = '<div class="listings-grid-loading" aria-live="polite">' + (message || 'Loading listings…') + '</div>';
+        }
+
+        function updateListingsGridStats(listings) {
+            updateStats(listings);
+            const countDisplay = document.getElementById('listingsCount');
+            if (countDisplay) {
+                const count = listings.length;
+                countDisplay.textContent = count === 1 ? '1 listing' : count + ' listings';
+            }
+        }
+
+        function scheduleMapMarkersUpdate(listings) {
+            if (mapMarkersUpdateTimer) clearTimeout(mapMarkersUpdateTimer);
+            mapMarkersUpdateTimer = setTimeout(function() {
+                mapMarkersUpdateTimer = null;
+                if (!mapVisible || !map || typeof updateMapMarkers !== 'function') return;
+                updateMapMarkers(listings || listingsGridSortedListings || data.listings);
+            }, 400);
+        }
+
+        function renderListingsVirtualWindow() {
+            const grid = document.getElementById('listingsGrid');
+            if (!grid) return;
+            ensureListingsGridScrollListeners();
+
+            const total = listingsGridSortedListings.length;
+            if (total === 0) {
+                grid.innerHTML = '';
+                return;
+            }
+
+            const columns = getListingsGridColumnCount(grid);
+            const rowHeight = getListingsGridRowHeight(grid);
+            const totalRows = Math.ceil(total / columns);
+            const gridTop = grid.getBoundingClientRect().top + window.scrollY;
+            const viewTop = window.scrollY;
+            const viewBottom = viewTop + window.innerHeight;
+            const relativeTop = Math.max(0, viewTop - gridTop);
+            const relativeBottom = Math.max(0, viewBottom - gridTop);
+            const startRow = Math.max(0, Math.floor(relativeTop / rowHeight) - LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS);
+            const endRow = Math.min(totalRows, Math.ceil(relativeBottom / rowHeight) + LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS);
+            const startIndex = startRow * columns;
+            const endIndex = Math.min(total, endRow * columns);
+            const topPad = startRow * rowHeight;
+            const bottomPad = Math.max(0, (totalRows - endRow) * rowHeight);
+
+            grid.innerHTML = '';
+            if (topPad > 0) {
+                const topSpacer = document.createElement('div');
+                topSpacer.className = 'listings-grid-spacer';
+                topSpacer.style.height = topPad + 'px';
+                grid.appendChild(topSpacer);
+            }
+            for (let i = startIndex; i < endIndex; i++) {
+                const card = buildListingCardElement(listingsGridSortedListings[i]);
+                if (card) grid.appendChild(card);
+            }
+            if (bottomPad > 0) {
+                const bottomSpacer = document.createElement('div');
+                bottomSpacer.className = 'listings-grid-spacer';
+                bottomSpacer.style.height = bottomPad + 'px';
+                grid.appendChild(bottomSpacer);
+            }
+
+            if (!listingsGridMeasuredRowHeight) {
+                const sampleCard = grid.querySelector('.flip-card');
+                if (sampleCard) {
+                    const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
+                    if (measured > 0 && Math.abs(measured - rowHeight) > 40) {
+                        listingsGridMeasuredRowHeight = measured;
+                    }
+                }
+            }
+        }
+
+        function renderListings(listings) {
+            if (!listings) listings = data.listings;
+            const grid = document.getElementById('listingsGrid');
+            if (!grid) return;
+
+            listingsGridSortedListings = sortListingsForGrid(listings);
+            listingsGridMeasuredRowHeight = 0;
+            ensureListingsGridScrollListeners();
+            updateListingsGridStats(listingsGridSortedListings);
+
+            function paintGrid() {
+                renderListingsVirtualWindow();
+                scheduleMapMarkersUpdate(listingsGridSortedListings);
+            }
+
+            if (grid.clientWidth === 0) {
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(paintGrid);
+                });
+            } else {
+                paintGrid();
+            }
+        }
         
         // Error Console Functions
         function showErrorConsole() {
@@ -8220,106 +8470,7 @@ function updateTabsStickyStackStuck() {
             }
         }
         
-        function renderListings(listings) {
-            if (!listings) listings = data.listings;
-            const grid = document.getElementById('listingsGrid');
-            const scrollY = window.scrollY;
-            grid.innerHTML = '';
-            
-            // Sort listings based on current sort value
-            const sortedListings = listings.slice().sort(function(a, b) {
-                const aName = (a.name || '').trim().toLowerCase();
-                const bName = (b.name || '').trim().toLowerCase();
-                const aArea = (a.area || '').trim().toLowerCase();
-                const bArea = (b.area || '').trim().toLowerCase();
-                const aCategory = (a.category || '').trim().toLowerCase();
-                const bCategory = (b.category || '').trim().toLowerCase();
-                const aType = (a.type || '').trim().toLowerCase();
-                const bType = (b.type || '').trim().toLowerCase();
-                
-                switch(currentAdminSort) {
-                    case 'default':
-                        // Default sort: Area → Type → Name (all A-Z)
-                        const areaCompare = aArea.localeCompare(bArea);
-                        if (areaCompare !== 0) return areaCompare;
-                        const typeCompare = aType.localeCompare(bType);
-                        if (typeCompare !== 0) return typeCompare;
-                        return aName.localeCompare(bName);
-                    case 'name-asc':
-                        return aName.localeCompare(bName);
-                    case 'name-desc':
-                        return bName.localeCompare(aName);
-                    case 'area-asc':
-                        return aArea.localeCompare(bArea);
-                    case 'type-asc':
-                        return aType.localeCompare(bType);
-                    case 'publishedDate-asc':
-                        // Sort by published date (oldest first)
-                        const parseDate = function(dateStr) {
-                            if (!dateStr) return 0;
-                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                            if (dateMatch) {
-                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
-                            }
-                            const parsed = new Date(dateStr);
-                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                        };
-                        const aPubDate = parseDate(a.publishedDate);
-                        const bPubDate = parseDate(b.publishedDate);
-                        return aPubDate - bPubDate;
-                    case 'publishedDate-desc':
-                        // Sort by published date (newest first)
-                        const parseDateDesc = function(dateStr) {
-                            if (!dateStr) return 0;
-                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                            if (dateMatch) {
-                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
-                            }
-                            const parsed = new Date(dateStr);
-                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                        };
-                        const aPubDateDesc = parseDateDesc(a.publishedDate);
-                        const bPubDateDesc = parseDateDesc(b.publishedDate);
-                        return bPubDateDesc - aPubDateDesc;
-                    case 'modifiedDate-asc':
-                        // Sort by modified date (oldest first)
-                        const parseModDate = function(dateStr) {
-                            if (!dateStr) return 0;
-                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                            if (dateMatch) {
-                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
-                            }
-                            const parsed = new Date(dateStr);
-                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                        };
-                        const aModDate = parseModDate(a.modifiedDate);
-                        const bModDate = parseModDate(b.modifiedDate);
-                        return aModDate - bModDate;
-                    case 'modifiedDate-desc':
-                        // Sort by modified date (newest first)
-                        const parseModDateDesc = function(dateStr) {
-                            if (!dateStr) return 0;
-                            const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                            if (dateMatch) {
-                                return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
-                            }
-                            const parsed = new Date(dateStr);
-                            return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                        };
-                        const aModDateDesc = parseModDateDesc(a.modifiedDate);
-                        const bModDateDesc = parseModDateDesc(b.modifiedDate);
-                        return bModDateDesc - aModDateDesc;
-                    default:
-                        // Fallback to default sort: Area → Type → Name
-                        const areaCompareDefault = aArea.localeCompare(bArea);
-                        if (areaCompareDefault !== 0) return areaCompareDefault;
-                        const typeCompareDefault = aType.localeCompare(bType);
-                        if (typeCompareDefault !== 0) return typeCompareDefault;
-                        return aName.localeCompare(bName);
-                }
-            });
-            
-            sortedListings.forEach(function(listing) {
+        function buildListingCardElement(listing) {
                 const card = document.createElement('div');
                 card.className = 'flip-card';
                 // Add data attributes for navigation
@@ -8976,30 +9127,9 @@ function updateTabsStickyStackStuck() {
                 inner.appendChild(front);
                 inner.appendChild(back);
                 card.appendChild(inner);
-                grid.appendChild(card);
                 layoutAdminCardImageStrip(imgContainer, imgWrapper, imageCount);
                 layoutAdminCardImageStrip(backImgContainer, backImgWrapper, backImageCount);
-            });
-            
-            updateStats(listings);
-            
-            // Update listings count display
-            const countDisplay = document.getElementById('listingsCount');
-            if (countDisplay) {
-                const count = listings.length;
-                countDisplay.textContent = count === 1 ? '1 listing' : count + ' listings';
-            }
-            
-            // Update map markers only when the map is open and initialized
-            if (mapVisible && map && typeof updateMapMarkers === 'function') {
-                updateMapMarkers(listings);
-            }
-
-            if (scrollY > 0) {
-                requestAnimationFrame(function() {
-                    window.scrollTo(0, scrollY);
-                });
-            }
+                return card;
         }
         
         function updateStats(listings) {
@@ -11177,6 +11307,9 @@ function updateTabsStickyStackStuck() {
                 document.getElementById('adminTab').classList.add('active');
                 if (header) header.style.display = 'block';
                 if (tabsStack) tabsStack.style.display = '';
+                if (typeof scheduleListingsGridVirtualRefresh === 'function') {
+                    scheduleListingsGridVirtualRefresh();
+                }
             } else if (tab === 'data') {
                 if (settingsBtn) settingsBtn.classList.remove('active');
                 toggleBtns.forEach(function(btn, i) {
@@ -14888,6 +15021,7 @@ function updateTabsStickyStackStuck() {
             if (!document.body.classList.contains('logged-in')) return;
             window._adminBootstrapped = true;
 
+            showListingsGridLoading();
             await new Promise(function(resolve) { setTimeout(resolve, 100); });
             await loadDataFromGoogleSheets();
 
