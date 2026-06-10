@@ -1,3 +1,9 @@
+window.NELSON_ADMIN_BUILD = '20260609e';
+console.info(
+    '%c[Nelson Admin] BUILD ' + window.NELSON_ADMIN_BUILD + ' — admin-auth.js',
+    'color:#4E6B52;font-weight:bold'
+);
+
 // IMMEDIATE: Check for valid session before showing login overlay
         // This allows sessions to persist across page reloads
         (function() {
