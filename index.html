@@ -14,8 +14,7 @@
         // Google's script looks for g_id_onload function or element
         // Email OTP authentication - no external scripts needed
     </script>
-    <!-- Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ&libraries=places&callback=initMap" async defer></script>
+    <!-- Google Maps API loaded on demand when the map is opened -->
     <!-- Quill.js Rich Text Editor -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -3236,14 +3235,19 @@
                             console.log('✅ Login overlay hidden immediately');
                         }
                         document.body.classList.add('logged-in');
-                        console.log('✅ Added logged-in class to body before reload');
-                        
-                        // Reload page to initialize admin.js with authenticated session
-                        setTimeout(function() {
-                            console.log('🔄 Reloading page with authenticated session...');
-                            console.log('🔄 Session token before reload:', localStorage.getItem('adminAuthSession') ? 'exists' : 'missing');
-                            location.reload();
-                        }, 500);
+                        console.log('✅ Added logged-in class to body after OTP verification');
+
+                        try {
+                            if (typeof window.enforceAuth === 'function') {
+                                await window.enforceAuth();
+                            } else if (typeof window.requestAdminBootstrap === 'function') {
+                                window.requestAdminBootstrap();
+                            } else {
+                                window._pendingAdminBootstrap = true;
+                            }
+                        } catch (bootstrapError) {
+                            console.error('❌ Post-login bootstrap error:', bootstrapError);
+                        }
                     } else {
                         errorText.textContent = result.error || 'Invalid verification code.';
                         errorText.style.color = '#dc3545';
@@ -3294,6 +3298,14 @@
                 location.reload();
             };
             
+            window.requestAdminBootstrap = function requestAdminBootstrap() {
+                if (typeof window.bootstrapAdminAppIfNeeded === 'function') {
+                    window.bootstrapAdminAppIfNeeded();
+                } else {
+                    window._pendingAdminBootstrap = true;
+                }
+            };
+
             // CRITICAL: Enforce authentication immediately (with server validation)
             async function enforceAuth() {
                 try {
@@ -3302,6 +3314,7 @@
                         document.body.classList.add('logged-in');
                         const overlay = document.getElementById('loginOverlay');
                         if (overlay) overlay.style.display = 'none';
+                        window.requestAdminBootstrap();
                         return;
                     }
                     
@@ -3448,7 +3461,7 @@
                         tabs.style.display = '';
                         console.log('✅ Tabs shown');
                     }
-                    // Don't force hide tab content - let admin.js handle it
+                    window.requestAdminBootstrap();
                 } else {
                     // NOT logged in - show login overlay
                     console.log('❌ Not authenticated - showing login overlay');
@@ -3498,7 +3511,9 @@
                 }
             }
             
-            // Run immediately (async)
+            window.enforceAuth = enforceAuth;
+
+            // Run once when DOM is ready (avoid duplicate runs on window load)
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', function() {
                     enforceAuth();
@@ -3506,9 +3521,6 @@
             } else {
                 enforceAuth();
             }
-            window.addEventListener('load', function() {
-                enforceAuth();
-            });
             
             // Verify functions are accessible
             console.log('🔍 Authentication functions loaded:', {
@@ -3926,14 +3938,14 @@
                 </aside>
                 
                 <main class="preview-main">
-                    <div class="map-container" id="mapContainer">
+                    <div class="map-container map-collapsed" id="mapContainer">
                         <div class="map-header">
                             <h2 style="display: none;">Map View</h2>
                             <button class="map-toggle-btn" onclick="toggleMap()">
                                 <svg id="mapToggleIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>
                                 </svg>
-                                <span class="map-toggle-text">Close Map</span>
+                                <span class="map-toggle-text">Open Map</span>
                             </button>
                         </div>
                         <div id="map"></div>
@@ -6170,6 +6182,8 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         // Step 2: Your Google Apps Script Web App URL (REQUIRED for read/write)
         // This URL is already configured and working!
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
+        const LISTINGS_JSON_URL = 'data/listings.json';
+        const GOOGLE_MAPS_API_KEY = 'AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ';
         const IMAGEKIT_PUBLIC_KEY = 'public_bEXbACd1Av+LMd7EASiu/x25f4o=';
         const IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/OE';
         const IMAGEKIT_AUTH_ACTION = 'getImageKitUploadParams';
@@ -7108,13 +7122,147 @@ function updateTabsStickyStackStuck() {
         }
         
         // Load data from Google Sheets on page load
-        // Tries Apps Script first (preferred), then CSV as fallback
-        async function loadDataFromGoogleSheets() {
+        // Tries static listings.json first, then Apps Script, then CSV as fallback
+        function syncTypeCategoriesAfterListingsLoad(listings) {
+            const categoriesFromData = [...new Set(listings.map(function(l) { return l.category; }).filter(Boolean))];
+            console.log('📋 Categories found in loaded data:', categoriesFromData);
+
+            const categoriesFromStorage = loadCategoriesFromStorage();
+            let addedCustomCategories = false;
+            categoriesFromData.forEach(function(categoryKey) {
+                if (categoryKey && categoryKey.trim() && !TYPE_CATEGORIES[categoryKey]) {
+                    let categoryData = null;
+                    if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
+                        categoryData = categoriesFromStorage[categoryKey];
+                        console.log('✅ Found category in localStorage (from admin):', categoryKey, 'with emoji:', categoryData.emoji);
+                    } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
+                        categoryData = DEFAULT_TYPE_CATEGORIES[categoryKey];
+                        console.log('✅ Found category in DEFAULT_TYPE_CATEGORIES:', categoryKey, 'with emoji:', categoryData.emoji);
+                    }
+
+                    TYPE_CATEGORIES[categoryKey] = categoryData ? {
+                        name: categoryData.name || categoryKey,
+                        emoji: categoryData.emoji || '',
+                        description: categoryData.description || 'Custom category from Google Sheets',
+                        types: categoryData.types || [],
+                        icon: categoryData.icon || ''
+                    } : {
+                        name: categoryKey,
+                        emoji: '⭐',
+                        description: 'Custom category from Google Sheets',
+                        types: []
+                    };
+                    addedCustomCategories = true;
+                    console.log('✅ Added category from loaded data to TYPE_CATEGORIES:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
+                } else if (TYPE_CATEGORIES[categoryKey]) {
+                    if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
+                        const storageCategory = categoriesFromStorage[categoryKey];
+                        if (storageCategory.emoji) {
+                            TYPE_CATEGORIES[categoryKey].emoji = storageCategory.emoji;
+                            console.log('🔄 Synced emoji for category', categoryKey, 'from admin:', storageCategory.emoji);
+                        }
+                        if (storageCategory.name) {
+                            TYPE_CATEGORIES[categoryKey].name = storageCategory.name;
+                            console.log('🔄 Synced name for category', categoryKey, 'from admin:', storageCategory.name);
+                        }
+                        if (storageCategory.description) {
+                            TYPE_CATEGORIES[categoryKey].description = storageCategory.description;
+                        }
+                        if (storageCategory.icon) {
+                            TYPE_CATEGORIES[categoryKey].icon = storageCategory.icon;
+                        }
+                    } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
+                        const defaultCategory = DEFAULT_TYPE_CATEGORIES[categoryKey];
+                        if (defaultCategory.emoji && !TYPE_CATEGORIES[categoryKey].emoji) {
+                            TYPE_CATEGORIES[categoryKey].emoji = defaultCategory.emoji;
+                            console.log('🔄 Using default emoji for category', categoryKey, ':', defaultCategory.emoji);
+                        }
+                    }
+                }
+            });
+
+            if (categoriesFromStorage) {
+                Object.keys(categoriesFromStorage).forEach(function(categoryKey) {
+                    if (!TYPE_CATEGORIES[categoryKey]) {
+                        TYPE_CATEGORIES[categoryKey] = JSON.parse(JSON.stringify(categoriesFromStorage[categoryKey]));
+                        console.log('✅ Preserved custom category from localStorage:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
+                    }
+                });
+            }
+
+            saveCategoriesToStorage(TYPE_CATEGORIES);
+
+            if (addedCustomCategories) {
+                console.log('📋 TYPE_CATEGORIES after adding loaded categories:', Object.keys(TYPE_CATEGORIES).length, 'categories');
+                console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
+            }
+        }
+
+        function finalizeAdminListingsLoad(listings, sheetHeaders, statusMessage) {
+            if (typeof data === 'undefined' || !data) {
+                data = JSON.parse(JSON.stringify(initialData));
+            }
+            const existingFilterOptions = data.filterOptions || initialData.filterOptions;
+            const sanitizedFilterOptions = sanitizeFilterOptions(existingFilterOptions, listings);
+            const headers = sanitizeSheetHeaders(sheetHeaders || (data && data.sheetHeaders));
+
+            data = {
+                listings: listings,
+                filterOptions: sanitizedFilterOptions,
+                sheetHeaders: headers
+            };
+            resetUnsavedChanges();
+            updateTableHeaderLabelsFromSheet(headers);
+            applyFilterOptionCleanup(sanitizedFilterOptions);
+            syncTypeCategoriesAfterListingsLoad(listings);
+            updateSyncStatus(true, statusMessage);
+            renderListings();
+            populateAdminFilters();
+            updateStats();
+        }
+
+        async function loadDataFromGoogleSheets(options) {
+            options = options || {};
+            const skipJson = !!options.skipJson;
             // Set initial status to "Connecting..." (not "Connected" yet)
             updateSyncStatus(false, 'Connecting…');
             
             // Check if running from file:// protocol (local file)
             const isFileProtocol = window.location.protocol === 'file:';
+
+            // Try static listings.json first (fast path for hosted admin panel)
+            if (LISTINGS_JSON_URL && !isFileProtocol && !skipJson) {
+                try {
+                    const jsonUrl = LISTINGS_JSON_URL + (LISTINGS_JSON_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+                    console.log('📦 Attempting to load static listings JSON:', jsonUrl);
+                    const jsonResponse = await fetch(jsonUrl, {
+                        method: 'GET',
+                        cache: 'no-cache',
+                        credentials: 'omit'
+                    });
+
+                    if (jsonResponse.ok) {
+                        const payload = await jsonResponse.json();
+                        const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
+                        if (rows.length > 0) {
+                            const listings = rows
+                                .map(function(row, index) { return mapCSVRowToListing(row, index); })
+                                .filter(function(listing) { return listing.name; });
+                            const generatedAt = (payload && payload.generatedAt) || 'unknown';
+                            console.log('✅ Loaded ' + listings.length + ' listings from static listings.json (generated ' + generatedAt + ')');
+                            finalizeAdminListingsLoad(
+                                listings,
+                                (payload && payload.headers) || null,
+                                'Loaded ' + listings.length + ' listings (JSON)'
+                            );
+                            return;
+                        }
+                    }
+                    console.log('⚠️ listings.json unavailable or empty, falling back to Google Sheets');
+                } catch (jsonError) {
+                    console.log('⚠️ listings.json fetch failed, falling back to Google Sheets:', jsonError.message);
+                }
+            }
             
             // Try Apps Script first (better format, already working)
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
@@ -7259,119 +7407,12 @@ function updateTabsStickyStackStuck() {
                         if (typeof data === 'undefined' || !data) {
                             data = JSON.parse(JSON.stringify(initialData));
                         }
-                        const existingFilterOptions = data.filterOptions || initialData.filterOptions;
-                        const sanitizedFilterOptions = sanitizeFilterOptions(existingFilterOptions, listings);
-                        
-                        const sheetHeaders = sanitizeSheetHeaders(result.headers || result.sheetHeaders || (data && data.sheetHeaders));
-                        
-                        data = {
-                            listings: listings,
-                            filterOptions: sanitizedFilterOptions,
-                            sheetHeaders: sheetHeaders
-                        };
-                        resetUnsavedChanges();
-                        
-                        updateTableHeaderLabelsFromSheet(sheetHeaders);
-                        
-                        applyFilterOptionCleanup(sanitizedFilterOptions);
-                        
                         console.log('✅ Loaded ' + listings.length + ' listings from Google Sheets (Apps Script)');
-                        
-                        // Extract categories from Google Sheets data and ensure they're in TYPE_CATEGORIES
-                        // This ensures custom categories from Google Sheets show up even if not in localStorage
-                        const categoriesFromData = [...new Set(listings.map(l => l.category).filter(Boolean))];
-                        console.log('📋 Categories found in Google Sheets data:', categoriesFromData);
-                        
-                        // Load categories from localStorage to get latest emoji/name updates from admin
-                        const categoriesFromStorage = loadCategoriesFromStorage();
-                        
-                        // Add any missing categories from Google Sheets to TYPE_CATEGORIES
-                        // Use emoji/name from localStorage (admin) if available
-                        let addedCustomCategories = false;
-                        categoriesFromData.forEach(function(categoryKey) {
-                            if (categoryKey && categoryKey.trim() && !TYPE_CATEGORIES[categoryKey]) {
-                                // Check if category exists in localStorage (from admin)
-                                let categoryData = null;
-                                if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
-                                    categoryData = categoriesFromStorage[categoryKey];
-                                    console.log('✅ Found category in localStorage (from admin):', categoryKey, 'with emoji:', categoryData.emoji);
-                                } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
-                                    categoryData = DEFAULT_TYPE_CATEGORIES[categoryKey];
-                                    console.log('✅ Found category in DEFAULT_TYPE_CATEGORIES:', categoryKey, 'with emoji:', categoryData.emoji);
-                                }
-                                
-                                // Use data from admin/localStorage if available, otherwise create minimal entry
-                                TYPE_CATEGORIES[categoryKey] = categoryData ? {
-                                    name: categoryData.name || categoryKey,
-                                    emoji: categoryData.emoji || '',
-                                    description: categoryData.description || 'Custom category from Google Sheets',
-                                    types: categoryData.types || [],
-                                    icon: categoryData.icon || ''
-                                } : {
-                                    name: categoryKey,
-                                    emoji: '⭐',
-                                    description: 'Custom category from Google Sheets',
-                                    types: []
-                                };
-                                addedCustomCategories = true;
-                                console.log('✅ Added category from Google Sheets to TYPE_CATEGORIES:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
-                            } else if (TYPE_CATEGORIES[categoryKey]) {
-                                // Category already exists - ALWAYS sync emoji/name from localStorage/admin
-                                // Google Sheets only stores the category key, not the emoji
-                                if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
-                                    const storageCategory = categoriesFromStorage[categoryKey];
-                                    // Always update emoji from admin if it exists (even if currently empty)
-                                    if (storageCategory.emoji) {
-                                        TYPE_CATEGORIES[categoryKey].emoji = storageCategory.emoji;
-                                        console.log('🔄 Synced emoji for category', categoryKey, 'from admin:', storageCategory.emoji);
-                                    }
-                                    // Always update name from admin if it exists
-                                    if (storageCategory.name) {
-                                        TYPE_CATEGORIES[categoryKey].name = storageCategory.name;
-                                        console.log('🔄 Synced name for category', categoryKey, 'from admin:', storageCategory.name);
-                                    }
-                                    // Sync other properties too
-                                    if (storageCategory.description) {
-                                        TYPE_CATEGORIES[categoryKey].description = storageCategory.description;
-                                    }
-                                    if (storageCategory.icon) {
-                                        TYPE_CATEGORIES[categoryKey].icon = storageCategory.icon;
-                                    }
-                                } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
-                                    // Fallback to defaults if not in localStorage
-                                    const defaultCategory = DEFAULT_TYPE_CATEGORIES[categoryKey];
-                                    if (defaultCategory.emoji && !TYPE_CATEGORIES[categoryKey].emoji) {
-                                        TYPE_CATEGORIES[categoryKey].emoji = defaultCategory.emoji;
-                                        console.log('🔄 Using default emoji for category', categoryKey, ':', defaultCategory.emoji);
-                                    }
-                                }
-                            }
-                        });
-                        
-                        // CRITICAL: Preserve ALL categories from localStorage, not just ones found in listings
-                        // This ensures custom categories added in admin are never lost
-                        if (categoriesFromStorage) {
-                            Object.keys(categoriesFromStorage).forEach(function(categoryKey) {
-                                if (!TYPE_CATEGORIES[categoryKey]) {
-                                    // This is a custom category from admin that's not in Google Sheets yet
-                                    TYPE_CATEGORIES[categoryKey] = JSON.parse(JSON.stringify(categoriesFromStorage[categoryKey]));
-                                    console.log('✅ Preserved custom category from localStorage:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
-                                }
-                            });
-                        }
-                        
-                        // Save updated TYPE_CATEGORIES to localStorage to ensure persistence
-                        saveCategoriesToStorage(TYPE_CATEGORIES);
-                        
-                        if (addedCustomCategories) {
-                            console.log('📋 TYPE_CATEGORIES after adding Google Sheets categories:', Object.keys(TYPE_CATEGORIES).length, 'categories');
-                            console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
-                        }
-                        
-                        updateSyncStatus(true, `Loaded ${listings.length} listings`);
-                        renderListings();
-                        populateAdminFilters();
-                        updateStats();
+                        finalizeAdminListingsLoad(
+                            listings,
+                            result.headers || result.sheetHeaders || null,
+                            'Loaded ' + listings.length + ' listings'
+                        );
                         return;
                     }
                 } catch (error) {
@@ -7474,122 +7515,12 @@ function updateTabsStickyStackStuck() {
                             .filter(listing => listing.name); // Only keep listings with names
                         
                         // Extract filter options from listings
-                        // Preserve existing filterOptions when loading from CSV
-                        // Ensure data is initialized before accessing it
-                        if (typeof data === 'undefined' || !data) {
-                            data = JSON.parse(JSON.stringify(initialData));
-                        }
-                        const existingFilterOptions = data.filterOptions || initialData.filterOptions;
-                        const sanitizedFilterOptions = sanitizeFilterOptions(existingFilterOptions, listings);
-                        
-                        const sheetHeaders = sanitizeSheetHeaders(parsed.headers || (data && data.sheetHeaders));
-                        
-                        data = {
-                            listings: listings,
-                            filterOptions: sanitizedFilterOptions,
-                            sheetHeaders: sheetHeaders
-                        };
-                        applyFilterOptionCleanup(sanitizedFilterOptions);
-                        updateTableHeaderLabelsFromSheet(sheetHeaders);
-                        resetUnsavedChanges();
-                        resetUnsavedChanges();
                         console.log('✅ Loaded ' + listings.length + ' listings from Google Sheets (CSV)');
-                        
-                        // Extract categories from Google Sheets data and ensure they're in TYPE_CATEGORIES
-                        // This ensures custom categories from Google Sheets show up even if not in localStorage
-                        const categoriesFromData = [...new Set(listings.map(l => l.category).filter(Boolean))];
-                        console.log('📋 Categories found in Google Sheets data:', categoriesFromData);
-                        
-                        // Load categories from localStorage to get latest emoji/name updates from admin
-                        const categoriesFromStorage = loadCategoriesFromStorage();
-                        
-                        // Add any missing categories from Google Sheets to TYPE_CATEGORIES
-                        // Use emoji/name from localStorage (admin) if available
-                        let addedCustomCategories = false;
-                        categoriesFromData.forEach(function(categoryKey) {
-                            if (categoryKey && categoryKey.trim() && !TYPE_CATEGORIES[categoryKey]) {
-                                // Check if category exists in localStorage (from admin)
-                                let categoryData = null;
-                                if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
-                                    categoryData = categoriesFromStorage[categoryKey];
-                                    console.log('✅ Found category in localStorage (from admin):', categoryKey, 'with emoji:', categoryData.emoji);
-                                } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
-                                    categoryData = DEFAULT_TYPE_CATEGORIES[categoryKey];
-                                    console.log('✅ Found category in DEFAULT_TYPE_CATEGORIES:', categoryKey, 'with emoji:', categoryData.emoji);
-                                }
-                                
-                                // Use data from admin/localStorage if available, otherwise create minimal entry
-                                TYPE_CATEGORIES[categoryKey] = categoryData ? {
-                                    name: categoryData.name || categoryKey,
-                                    emoji: categoryData.emoji || '',
-                                    description: categoryData.description || 'Custom category from Google Sheets',
-                                    types: categoryData.types || [],
-                                    icon: categoryData.icon || ''
-                                } : {
-                                    name: categoryKey,
-                                    emoji: '⭐',
-                                    description: 'Custom category from Google Sheets',
-                                    types: []
-                                };
-                                addedCustomCategories = true;
-                                console.log('✅ Added category from Google Sheets to TYPE_CATEGORIES:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
-                            } else if (TYPE_CATEGORIES[categoryKey]) {
-                                // Category already exists - ALWAYS sync emoji/name from localStorage/admin
-                                // Google Sheets only stores the category key, not the emoji
-                                if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
-                                    const storageCategory = categoriesFromStorage[categoryKey];
-                                    // Always update emoji from admin if it exists (even if currently empty)
-                                    if (storageCategory.emoji) {
-                                        TYPE_CATEGORIES[categoryKey].emoji = storageCategory.emoji;
-                                        console.log('🔄 Synced emoji for category', categoryKey, 'from admin:', storageCategory.emoji);
-                                    }
-                                    // Always update name from admin if it exists
-                                    if (storageCategory.name) {
-                                        TYPE_CATEGORIES[categoryKey].name = storageCategory.name;
-                                        console.log('🔄 Synced name for category', categoryKey, 'from admin:', storageCategory.name);
-                                    }
-                                    // Sync other properties too
-                                    if (storageCategory.description) {
-                                        TYPE_CATEGORIES[categoryKey].description = storageCategory.description;
-                                    }
-                                    if (storageCategory.icon) {
-                                        TYPE_CATEGORIES[categoryKey].icon = storageCategory.icon;
-                                    }
-                                } else if (DEFAULT_TYPE_CATEGORIES[categoryKey]) {
-                                    // Fallback to defaults if not in localStorage
-                                    const defaultCategory = DEFAULT_TYPE_CATEGORIES[categoryKey];
-                                    if (defaultCategory.emoji && !TYPE_CATEGORIES[categoryKey].emoji) {
-                                        TYPE_CATEGORIES[categoryKey].emoji = defaultCategory.emoji;
-                                        console.log('🔄 Using default emoji for category', categoryKey, ':', defaultCategory.emoji);
-                                    }
-                                }
-                            }
-                        });
-                        
-                        // CRITICAL: Preserve ALL categories from localStorage, not just ones found in listings
-                        // This ensures custom categories added in admin are never lost
-                        if (categoriesFromStorage) {
-                            Object.keys(categoriesFromStorage).forEach(function(categoryKey) {
-                                if (!TYPE_CATEGORIES[categoryKey]) {
-                                    // This is a custom category from admin that's not in Google Sheets yet
-                                    TYPE_CATEGORIES[categoryKey] = JSON.parse(JSON.stringify(categoriesFromStorage[categoryKey]));
-                                    console.log('✅ Preserved custom category from localStorage:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
-                                }
-                            });
-                        }
-                        
-                        // Save updated TYPE_CATEGORIES to localStorage to ensure persistence
-                        saveCategoriesToStorage(TYPE_CATEGORIES);
-                        
-                        if (addedCustomCategories) {
-                            console.log('📋 TYPE_CATEGORIES after adding Google Sheets categories:', Object.keys(TYPE_CATEGORIES).length, 'categories');
-                            console.log('📋 Category keys:', Object.keys(TYPE_CATEGORIES));
-                        }
-                        
-                        updateSyncStatus(true, `Loaded ${listings.length} listings (CSV)`);
-                        renderListings();
-                        populateAdminFilters();
-                        updateStats();
+                        finalizeAdminListingsLoad(
+                            listings,
+                            parsed.headers || null,
+                            'Loaded ' + listings.length + ' listings (CSV)'
+                        );
                         return;
                     }
                 } catch (error) {
@@ -7598,10 +7529,13 @@ function updateTabsStickyStackStuck() {
                 }
             }
             
-            // If both fail, use initial data
+            // If all sources fail, use initial data and still render the UI
             console.log('⚠️ Could not load from Google Sheets, using initial data');
             updateSyncStatus(false, 'Using local data only.');
             updateTableHeaderLabelsFromSheet((data && data.sheetHeaders) || DEFAULT_TABLE_HEADERS);
+            renderListings();
+            populateAdminFilters();
+            updateStats();
             
             // Show warning if running from file://
             if (isFileProtocol) {
@@ -7636,7 +7570,7 @@ function updateTabsStickyStackStuck() {
                 return;
             }
             // Status will be updated by loadDataFromGoogleSheets()
-            await loadDataFromGoogleSheets();
+            await loadDataFromGoogleSheets({ skipJson: true });
         }
         
         /**
@@ -9056,8 +8990,8 @@ function updateTabsStickyStackStuck() {
                 countDisplay.textContent = count === 1 ? '1 listing' : count + ' listings';
             }
             
-            // Update map markers with the listings
-            if (typeof updateMapMarkers === 'function') {
+            // Update map markers only when the map is open and initialized
+            if (mapVisible && map && typeof updateMapMarkers === 'function') {
                 updateMapMarkers(listings);
             }
 
@@ -14949,27 +14883,25 @@ function updateTabsStickyStackStuck() {
             }
         }
         
-        window.addEventListener("DOMContentLoaded", async function() {
-            // Small delay to ensure everything is ready (especially important when script is external)
-            await new Promise(resolve => setTimeout(resolve, 100));
+        window.bootstrapAdminAppIfNeeded = async function bootstrapAdminAppIfNeeded() {
+            if (window._adminBootstrapped) return;
+            if (!document.body.classList.contains('logged-in')) return;
+            window._adminBootstrapped = true;
+
+            await new Promise(function(resolve) { setTimeout(resolve, 100); });
             await loadDataFromGoogleSheets();
-            
-            // Diagnostic: Check which types don't have categories assigned
+
             checkUnassignedTypes();
-            
-            // Initialize form dropdowns with dynamic options
             updateTypeDropdown();
             updateAreaDropdown();
             renderAmenitiesCheckboxes();
-            renderListings();
-            updateStats();
-            populateAdminFilters();
             populatePreviewFilters();
             initImageUploadButtons();
             initDataTableFilterTooltips();
-            
+
             const backToTopBtn = document.getElementById('backToTopBtn');
-            if (backToTopBtn) {
+            if (backToTopBtn && !backToTopBtn.dataset.bound) {
+                backToTopBtn.dataset.bound = '1';
                 backToTopBtn.addEventListener('click', function() {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
@@ -14982,27 +14914,31 @@ function updateTabsStickyStackStuck() {
                     }
                 });
             }
-            
-            // Add event listeners to quick filter buttons in admin tab
-            // Skip category buttons (they have data-category attribute) - they have their own handlers
+
             document.querySelectorAll('#adminTab .type-filter-btn:not([data-category])').forEach(function(btn) {
-                // Only handle buttons without data-category (like "All Types" button)
-                // Category buttons are handled by their own onclick handlers set in renderAdminTypeFilterButtons
-                
-                // Remove any existing onclick handlers to avoid conflicts
+                if (btn.dataset.adminFilterBound) return;
+                btn.dataset.adminFilterBound = '1';
                 btn.onclick = null;
-                
                 btn.addEventListener('click', function() {
-                    // Check if this is the "All Types" button
                     if (this.dataset.type === '' && !this.dataset.category) {
                         filterAdminByType('');
                     } else {
-                        // Legacy individual type button (shouldn't exist with category system)
                         const type = this.dataset.type || '';
                         filterAdminByType(type);
                     }
                 });
             });
+        };
+
+        if (window._pendingAdminBootstrap) {
+            window._pendingAdminBootstrap = false;
+            window.bootstrapAdminAppIfNeeded();
+        }
+
+        window.addEventListener('DOMContentLoaded', async function() {
+            if (document.body.classList.contains('logged-in')) {
+                await bootstrapAdminAppIfNeeded();
+            }
         });
         
         // ===========================================
@@ -15619,12 +15555,46 @@ function updateTabsStickyStackStuck() {
             }, 2000);
         });
         
-        // Google Maps functionality
+        // Google Maps functionality (lazy-loaded when map is opened)
         let map = null;
         let markers = [];
         let markerCluster = null;
-        let mapVisible = true; // Start visible
+        let mapVisible = false;
         let infoWindow = null;
+        let mapsScriptLoading = false;
+        let mapsScriptLoaded = false;
+        let mapsScriptLoadPromise = null;
+
+        function loadGoogleMapsScript() {
+            if (typeof google !== 'undefined' && google.maps && google.maps.Map) {
+                mapsScriptLoaded = true;
+                return Promise.resolve();
+            }
+            if (mapsScriptLoadPromise) {
+                return mapsScriptLoadPromise;
+            }
+
+            mapsScriptLoadPromise = new Promise(function(resolve, reject) {
+                mapsScriptLoading = true;
+                var script = document.createElement('script');
+                script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(GOOGLE_MAPS_API_KEY) + '&libraries=places';
+                script.async = true;
+                script.defer = true;
+                script.onload = function() {
+                    mapsScriptLoaded = true;
+                    mapsScriptLoading = false;
+                    resolve();
+                };
+                script.onerror = function() {
+                    mapsScriptLoading = false;
+                    mapsScriptLoadPromise = null;
+                    reject(new Error('Failed to load Google Maps'));
+                };
+                document.head.appendChild(script);
+            });
+
+            return mapsScriptLoadPromise;
+        }
         
         function escapeHtml(text) {
             if (!text) return '';
@@ -15981,22 +15951,30 @@ function updateTabsStickyStackStuck() {
             
             if (mapVisible) {
                 container.classList.add('map-collapsed');
-                // Change to plus icon
                 toggleIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>';
-                // Change text to "Open Map"
                 if (toggleText) toggleText.textContent = 'Open Map';
                 mapVisible = false;
             } else {
                 container.classList.remove('map-collapsed');
-                // Change to X icon
                 toggleIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>';
-                // Change text to "Close Map"
                 if (toggleText) toggleText.textContent = 'Close Map';
                 mapVisible = true;
-                // Trigger resize to fix display issues
-                setTimeout(function() {
-                    if (map) google.maps.event.trigger(map, 'resize');
-                }, 100);
+
+                loadGoogleMapsScript().then(function() {
+                    if (!map) {
+                        initMap();
+                    }
+                    setTimeout(function() {
+                        if (map && typeof google !== 'undefined' && google.maps) {
+                            google.maps.event.trigger(map, 'resize');
+                        }
+                        if (map && data && data.listings && typeof updateMapMarkers === 'function') {
+                            updateMapMarkers(data.listings);
+                        }
+                    }, 150);
+                }).catch(function(err) {
+                    console.error('Failed to load Google Maps:', err);
+                });
             }
         }
     </script>
