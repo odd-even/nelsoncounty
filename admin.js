@@ -571,7 +571,19 @@
             };
             
             // CRITICAL: Enforce authentication immediately (with server validation)
+            let enforceAuthInFlight = null;
+
             async function enforceAuth() {
+                if (enforceAuthInFlight) return enforceAuthInFlight;
+                enforceAuthInFlight = enforceAuthImpl();
+                try {
+                    await enforceAuthInFlight;
+                } finally {
+                    enforceAuthInFlight = null;
+                }
+            }
+
+            async function enforceAuthImpl() {
                 try {
                     if (!ENABLE_EMAIL_OTP) {
                         localStorage.setItem('skipAuth', 'true');
@@ -723,6 +735,9 @@
                     if (tabs) {
                         tabs.style.display = '';
                         console.log('✅ Tabs shown');
+                    }
+                    if (typeof window.bootstrapAdminAppIfNeeded === 'function') {
+                        window.bootstrapAdminAppIfNeeded();
                     }
                     // Don't force hide tab content - let admin.js handle it
                 } else {
@@ -936,11 +951,6 @@
                     // Check if properly authenticated
                     const isValidAuth = isLoggedIn && adminEmail;
                     
-                    // Check if session exists in storage (even if validation hasn't completed)
-                    const sessionStorageLoggedIn = sessionStorage.getItem('adminLoggedIn');
-                    const sessionData = localStorage.getItem('adminAuthSession');
-                    const hasSessionData = sessionStorageLoggedIn || sessionData;
-                    
                     // If valid, ensure overlay is hidden and logged-in class is set
                     if (isValidAuth) {
                         // Only log once when first detected, not every 5 seconds
@@ -953,13 +963,6 @@
                         }
                         document.body.classList.add('logged-in');
                         // Don't clear session - it's valid!
-                    } else if (hasSessionData) {
-                        // Session data exists but might be expired - keep overlay hidden if data exists
-                        if (overlay && overlay.style.display !== 'none') {
-                            overlay.style.display = 'none';
-                            overlay.setAttribute('style', 'display: none !important;');
-                        }
-                        document.body.classList.add('logged-in');
                     } else {
                             // No session anywhere - show login
                         // Only log and show if overlay isn't already showing (avoid spam)
@@ -5635,8 +5638,9 @@ function updateTabsStickyStackStuck() {
 
         function renderListingsVirtualWindow(options) {
             options = options || {};
+            if (!document.body.classList.contains('logged-in')) return;
             const grid = document.getElementById('listingsGrid');
-            if (!grid) return;
+            if (!grid || grid.clientWidth === 0) return;
             ensureListingsGridScrollListeners();
 
             const total = listingsGridSortedListings.length;
@@ -5741,13 +5745,8 @@ function updateTabsStickyStackStuck() {
                 const sampleCard = grid.querySelector('.flip-card');
                 if (sampleCard) {
                     const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
-                    if (measured > 0) {
+                    if (measured > 200) {
                         listingsGridMeasuredRowHeight = measured;
-                        if (Math.abs(measured - rowHeight) > 40) {
-                            listingsGridVirtualState = null;
-                            renderListingsVirtualWindow();
-                            return;
-                        }
                     }
                 }
             }
@@ -5803,6 +5802,7 @@ function updateTabsStickyStackStuck() {
             if (!listings) listings = data.listings;
             const grid = document.getElementById('listingsGrid');
             if (!grid) return;
+            if (!document.body.classList.contains('logged-in') && !options.force) return;
 
             listingsGridSortedListings = sortListingsForGrid(listings);
             listingsGridMeasuredRowHeight = 0;
@@ -5938,6 +5938,7 @@ function updateTabsStickyStackStuck() {
 
         function scheduleListingsGridVirtualRefresh() {
             if (listingsGridScrollRaf) return;
+            if (!document.body.classList.contains('logged-in')) return;
             listingsGridScrollRaf = requestAnimationFrame(function() {
                 listingsGridScrollRaf = null;
                 const adminTab = document.getElementById('adminTab');
@@ -11732,22 +11733,25 @@ function updateTabsStickyStackStuck() {
             }
         }
         
-        window.addEventListener("DOMContentLoaded", async function() {
-            // Small delay to ensure everything is ready (especially important when script is external)
-            await new Promise(resolve => setTimeout(resolve, 100));
+        window.bootstrapAdminAppIfNeeded = async function bootstrapAdminAppIfNeeded() {
+            if (window.__adminAppBootstrapped) return;
+            window.__adminAppBootstrapped = true;
             await loadDataFromGoogleSheets();
-            
-            // Diagnostic: Check which types don't have categories assigned
             checkUnassignedTypes();
-            
-            // Initialize form dropdowns with dynamic options
             updateTypeDropdown();
             updateAreaDropdown();
             renderAmenitiesCheckboxes();
             populatePreviewFilters();
             initImageUploadButtons();
             initDataTableFilterTooltips();
-            
+        };
+
+        window.addEventListener("DOMContentLoaded", async function() {
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            if (document.body.classList.contains('logged-in')) {
+                await window.bootstrapAdminAppIfNeeded();
+            }
             const backToTopBtn = document.getElementById('backToTopBtn');
             if (backToTopBtn) {
                 backToTopBtn.addEventListener('click', function() {
@@ -12368,7 +12372,7 @@ function updateTabsStickyStackStuck() {
         // Ensure all functions are available immediately
         (function logAdminBuildTag() {
             var authBuild = window.NELSON_ADMIN_BUILD || '(auth not loaded)';
-            var jsBuild = '20260610c';
+            var jsBuild = '20260610d';
             var match = authBuild === jsBuild;
             console.info(
                 '%c[Nelson Admin] BUILD ' + jsBuild + ' — admin.js' + (match ? '' : ' ⚠️ mismatch auth=' + authBuild),
