@@ -5631,22 +5631,59 @@ function updateTabsStickyStackStuck() {
             return listings.slice().sort(compareListingsForAdminSort);
         }
 
-        function renderListingsGridAll() {
+        function renderListingsVirtualWindow() {
             const grid = document.getElementById('listingsGrid');
             if (!grid) return;
+            ensureListingsGridScrollListeners();
 
-            const scrollY = window.scrollY;
+            const total = listingsGridSortedListings.length;
+            if (total === 0) {
+                grid.innerHTML = '';
+                return;
+            }
+
+            const columns = getListingsGridColumnCount(grid);
+            const rowHeight = getListingsGridRowHeight(grid);
+            const totalRows = Math.ceil(total / columns);
+            const gridTop = grid.getBoundingClientRect().top + window.scrollY;
+            const viewTop = window.scrollY;
+            const viewBottom = viewTop + window.innerHeight;
+            const relativeTop = Math.max(0, viewTop - gridTop);
+            const relativeBottom = Math.max(0, viewBottom - gridTop);
+            const startRow = Math.max(0, Math.floor(relativeTop / rowHeight) - LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS);
+            const endRow = Math.min(totalRows, Math.ceil(relativeBottom / rowHeight) + LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS);
+            const startIndex = startRow * columns;
+            const endIndex = Math.min(total, endRow * columns);
+            const topPad = startRow * rowHeight;
+            const bottomPad = Math.max(0, (totalRows - endRow) * rowHeight);
+
             grid.innerHTML = '';
-
-            listingsGridSortedListings.forEach(function(listing) {
-                const card = buildListingCardElement(listing);
+            if (topPad > 0) {
+                const topSpacer = document.createElement('div');
+                topSpacer.className = 'listings-grid-spacer';
+                topSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + topPad + 'px; pointer-events: none;';
+                grid.appendChild(topSpacer);
+            }
+            for (let i = startIndex; i < endIndex; i++) {
+                const card = buildListingCardElement(listingsGridSortedListings[i]);
                 if (card) grid.appendChild(card);
-            });
+            }
+            if (bottomPad > 0) {
+                const bottomSpacer = document.createElement('div');
+                bottomSpacer.className = 'listings-grid-spacer';
+                bottomSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + bottomPad + 'px; pointer-events: none;';
+                grid.appendChild(bottomSpacer);
+            }
 
-            if (scrollY > 0) {
-                requestAnimationFrame(function() {
-                    window.scrollTo(0, scrollY);
-                });
+            if (!listingsGridMeasuredRowHeight) {
+                const sampleCard = grid.querySelector('.flip-card');
+                if (sampleCard) {
+                    const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
+                    if (measured > 0 && Math.abs(measured - rowHeight) > 40) {
+                        listingsGridMeasuredRowHeight = measured;
+                        scheduleListingsGridVirtualRefresh();
+                    }
+                }
             }
         }
 
@@ -5673,7 +5710,7 @@ function updateTabsStickyStackStuck() {
                 scheduleMapMarkersUpdate(listingsGridSortedListings);
                 return;
             }
-            renderListingsGridAll();
+            renderListingsVirtualWindow();
             updateListingsGridStats(listingsGridSortedListings);
             scheduleMapMarkersUpdate(listingsGridSortedListings);
         }
@@ -5694,6 +5731,8 @@ function updateTabsStickyStackStuck() {
             if (!grid) return;
 
             listingsGridSortedListings = sortListingsForGrid(listings);
+            listingsGridMeasuredRowHeight = 0;
+            ensureListingsGridScrollListeners();
 
             if (isListingModalOpen() && !options.force) {
                 pendingListingsGridRefresh = true;
@@ -5702,7 +5741,7 @@ function updateTabsStickyStackStuck() {
             }
 
             pendingListingsGridRefresh = false;
-            renderListingsGridAll();
+            renderListingsVirtualWindow();
             updateListingsGridStats(listingsGridSortedListings);
             scheduleMapMarkersUpdate(listingsGridSortedListings);
         }
@@ -5720,7 +5759,11 @@ function updateTabsStickyStackStuck() {
         }
         
         let currentAdminTypeFilter = '';
+        const LISTINGS_GRID_CARD_ROW_HEIGHT = 680;
+        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 2;
         let listingsGridSortedListings = [];
+        let listingsGridMeasuredRowHeight = 0;
+        let listingsGridScrollRaf = null;
         let pendingListingsGridRefresh = false;
         let mapMarkersUpdateTimer = null;
         let lastAdminFilteredListings = null;
@@ -5772,6 +5815,34 @@ function updateTabsStickyStackStuck() {
             (listings || []).forEach(updateListingSearchCache);
         }
 
+        function getListingsGridColumnCount(grid) {
+            if (!grid) return 1;
+            const width = grid.clientWidth || 1200;
+            return Math.max(1, Math.floor((width + 20) / 320));
+        }
+
+        function getListingsGridRowHeight(grid) {
+            if (listingsGridMeasuredRowHeight > 0) return listingsGridMeasuredRowHeight;
+            if (grid) {
+                const card = grid.querySelector('.flip-card');
+                if (card) {
+                    const h = Math.ceil(card.getBoundingClientRect().height);
+                    if (h > 0) {
+                        listingsGridMeasuredRowHeight = h + 20;
+                        return listingsGridMeasuredRowHeight;
+                    }
+                }
+            }
+            return LISTINGS_GRID_CARD_ROW_HEIGHT;
+        }
+
+        function ensureListingsGridScrollListeners() {
+            if (window.__listingsGridScrollListenersReady) return;
+            window.__listingsGridScrollListenersReady = true;
+            window.addEventListener('scroll', scheduleListingsGridVirtualRefresh, { passive: true });
+            window.addEventListener('resize', scheduleListingsGridVirtualRefresh);
+        }
+
         function updateListingsGridStats(listings) {
             updateStats(listings);
             const countDisplay = document.getElementById('listingsCount');
@@ -5791,6 +5862,18 @@ function updateTabsStickyStackStuck() {
                     updateMapMarkers(listings || listingsGridSortedListings || data.listings);
                 }
             }, 400);
+        }
+
+        function scheduleListingsGridVirtualRefresh() {
+            if (listingsGridScrollRaf) return;
+            listingsGridScrollRaf = requestAnimationFrame(function() {
+                listingsGridScrollRaf = null;
+                const adminTab = document.getElementById('adminTab');
+                if (!adminTab || !adminTab.classList.contains('active')) return;
+                if (isListingModalOpen()) return;
+                if (!listingsGridSortedListings.length) return;
+                renderListingsVirtualWindow();
+            });
         }
 
         function panelHasAccordionContent(title, content) {
@@ -11629,6 +11712,7 @@ function updateTabsStickyStackStuck() {
                 });
             });
 
+            ensureListingsGridScrollListeners();
         });
         
         // ===========================================
@@ -12212,7 +12296,7 @@ function updateTabsStickyStackStuck() {
         // Ensure all functions are available immediately
         (function logAdminBuildTag() {
             var authBuild = window.NELSON_ADMIN_BUILD || '(auth not loaded)';
-            var jsBuild = '20260609e';
+            var jsBuild = '20260610a';
             var match = authBuild === jsBuild;
             console.info(
                 '%c[Nelson Admin] BUILD ' + jsBuild + ' — admin.js' + (match ? '' : ' ⚠️ mismatch auth=' + authBuild),
