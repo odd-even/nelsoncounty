@@ -2457,48 +2457,13 @@ function updateTabsStickyStackStuck() {
 
         async function loadDataFromGoogleSheets(options) {
             options = options || {};
-            const skipJson = !!options.skipJson;
             // Set initial status to "Connecting..." (not "Connected" yet)
             updateSyncStatus(false, 'Connecting…');
             
             // Check if running from file:// protocol (local file)
             const isFileProtocol = window.location.protocol === 'file:';
-
-            // Try static listings.json first (fast path for hosted admin panel)
-            if (LISTINGS_JSON_URL && !isFileProtocol && !skipJson) {
-                try {
-                    const jsonUrl = LISTINGS_JSON_URL + (LISTINGS_JSON_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
-                    console.log('📦 Attempting to load static listings JSON:', jsonUrl);
-                    const jsonResponse = await fetch(jsonUrl, {
-                        method: 'GET',
-                        cache: 'no-cache',
-                        credentials: 'omit'
-                    });
-
-                    if (jsonResponse.ok) {
-                        const payload = await jsonResponse.json();
-                        const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
-                        if (rows.length > 0) {
-                            const listings = rows
-                                .map(function(row, index) { return mapCSVRowToListing(row, index); })
-                                .filter(function(listing) { return listing.name; });
-                            const generatedAt = (payload && payload.generatedAt) || 'unknown';
-                            console.log('✅ Loaded ' + listings.length + ' listings from static listings.json (generated ' + generatedAt + ')');
-                            finalizeAdminListingsLoad(
-                                listings,
-                                (payload && payload.headers) || null,
-                                'Loaded ' + listings.length + ' listings (JSON)'
-                            );
-                            return;
-                        }
-                    }
-                    console.log('⚠️ listings.json unavailable or empty, falling back to Google Sheets');
-                } catch (jsonError) {
-                    console.log('⚠️ listings.json fetch failed, falling back to Google Sheets:', jsonError.message);
-                }
-            }
             
-            // Try Apps Script first (better format, already working)
+            // Try Apps Script first (live Google Sheets — preferred for admin)
             if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
                 try {
                     console.log('📊 Loading data from Google Sheets via Apps Script...');
@@ -2762,6 +2727,39 @@ function updateTabsStickyStackStuck() {
                     updateSyncStatus(false, 'CSV fetch failed.');
                 }
             }
+
+            // Fallback to static listings.json if Google Sheets is unreachable
+            if (LISTINGS_JSON_URL && !isFileProtocol) {
+                try {
+                    const jsonUrl = LISTINGS_JSON_URL + (LISTINGS_JSON_URL.includes('?') ? '&' : '?') + 't=' + Date.now();
+                    console.log('📦 Google Sheets unavailable — trying static listings.json:', jsonUrl);
+                    const jsonResponse = await fetch(jsonUrl, {
+                        method: 'GET',
+                        cache: 'no-cache',
+                        credentials: 'omit'
+                    });
+
+                    if (jsonResponse.ok) {
+                        const payload = await jsonResponse.json();
+                        const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
+                        if (rows.length > 0) {
+                            const listings = rows
+                                .map(function(row, index) { return mapCSVRowToListing(row, index); })
+                                .filter(function(listing) { return listing.name; });
+                            const generatedAt = (payload && payload.generatedAt) || 'unknown';
+                            console.log('✅ Loaded ' + listings.length + ' listings from static listings.json (generated ' + generatedAt + ')');
+                            finalizeAdminListingsLoad(
+                                listings,
+                                (payload && payload.headers) || null,
+                                'Loaded ' + listings.length + ' listings (JSON fallback)'
+                            );
+                            return;
+                        }
+                    }
+                } catch (jsonError) {
+                    console.log('⚠️ listings.json fallback failed:', jsonError.message);
+                }
+            }
             
             // If all sources fail, use initial data and still render the UI
             console.log('⚠️ Could not load from Google Sheets, using initial data');
@@ -2804,7 +2802,7 @@ function updateTabsStickyStackStuck() {
                 return;
             }
             // Status will be updated by loadDataFromGoogleSheets()
-            await loadDataFromGoogleSheets({ skipJson: true });
+            await loadDataFromGoogleSheets();
         }
         
         /**
