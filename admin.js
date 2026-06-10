@@ -5634,6 +5634,8 @@ function updateTabsStickyStackStuck() {
         function renderListingsVirtualWindow() {
             const grid = document.getElementById('listingsGrid');
             if (!grid) return;
+            ensureListingsGridScrollListeners();
+
             const total = listingsGridSortedListings.length;
             const scrollYPreserve = window.scrollY;
 
@@ -5643,12 +5645,11 @@ function updateTabsStickyStackStuck() {
             }
 
             const columns = getListingsGridColumnCount(grid);
-            const rowHeight = LISTINGS_GRID_CARD_ROW_HEIGHT;
+            const rowHeight = getListingsGridRowHeight(grid);
             const totalRows = Math.ceil(total / columns);
-            const gridRect = grid.getBoundingClientRect();
-            const gridTop = scrollYPreserve + gridRect.top;
-            const viewTop = scrollYPreserve;
-            const viewBottom = scrollYPreserve + window.innerHeight;
+            const gridTop = grid.getBoundingClientRect().top + window.scrollY;
+            const viewTop = window.scrollY;
+            const viewBottom = viewTop + window.innerHeight;
             const relativeTop = Math.max(0, viewTop - gridTop);
             const relativeBottom = Math.max(0, viewBottom - gridTop);
             const startRow = Math.max(0, Math.floor(relativeTop / rowHeight) - LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS);
@@ -5662,7 +5663,7 @@ function updateTabsStickyStackStuck() {
             if (topPad > 0) {
                 const topSpacer = document.createElement('div');
                 topSpacer.className = 'listings-grid-spacer';
-                topSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + topPad + 'px;';
+                topSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + topPad + 'px; pointer-events: none;';
                 grid.appendChild(topSpacer);
             }
             for (let i = startIndex; i < endIndex; i++) {
@@ -5672,9 +5673,21 @@ function updateTabsStickyStackStuck() {
             if (bottomPad > 0) {
                 const bottomSpacer = document.createElement('div');
                 bottomSpacer.className = 'listings-grid-spacer';
-                bottomSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + bottomPad + 'px;';
+                bottomSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + bottomPad + 'px; pointer-events: none;';
                 grid.appendChild(bottomSpacer);
             }
+
+            if (!listingsGridMeasuredRowHeight) {
+                const sampleCard = grid.querySelector('.flip-card');
+                if (sampleCard) {
+                    const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
+                    if (measured > 0 && Math.abs(measured - rowHeight) > 40) {
+                        listingsGridMeasuredRowHeight = measured;
+                        scheduleListingsGridVirtualRefresh();
+                    }
+                }
+            }
+
             if (scrollYPreserve > 0) {
                 requestAnimationFrame(function() {
                     window.scrollTo(0, scrollYPreserve);
@@ -5726,6 +5739,8 @@ function updateTabsStickyStackStuck() {
             if (!grid) return;
 
             listingsGridSortedListings = sortListingsForGrid(listings);
+            listingsGridMeasuredRowHeight = 0;
+            ensureListingsGridScrollListeners();
 
             if (isListingModalOpen() && !options.force) {
                 pendingListingsGridRefresh = true;
@@ -5752,9 +5767,10 @@ function updateTabsStickyStackStuck() {
         }
         
         let currentAdminTypeFilter = '';
-        const LISTINGS_GRID_CARD_ROW_HEIGHT = 520;
+        const LISTINGS_GRID_CARD_ROW_HEIGHT = 680;
         const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 2;
         let listingsGridSortedListings = [];
+        let listingsGridMeasuredRowHeight = 0;
         let listingsGridScrollRaf = null;
         let pendingListingsGridRefresh = false;
         let mapMarkersUpdateTimer = null;
@@ -5810,7 +5826,29 @@ function updateTabsStickyStackStuck() {
         function getListingsGridColumnCount(grid) {
             if (!grid) return 1;
             const width = grid.clientWidth || 1200;
-            return Math.max(1, Math.floor(width / 320));
+            return Math.max(1, Math.floor((width + 20) / 320));
+        }
+
+        function getListingsGridRowHeight(grid) {
+            if (listingsGridMeasuredRowHeight > 0) return listingsGridMeasuredRowHeight;
+            if (grid) {
+                const card = grid.querySelector('.flip-card');
+                if (card) {
+                    const h = Math.ceil(card.getBoundingClientRect().height);
+                    if (h > 0) {
+                        listingsGridMeasuredRowHeight = h + 20;
+                        return listingsGridMeasuredRowHeight;
+                    }
+                }
+            }
+            return LISTINGS_GRID_CARD_ROW_HEIGHT;
+        }
+
+        function ensureListingsGridScrollListeners() {
+            if (window.__listingsGridScrollListenersReady) return;
+            window.__listingsGridScrollListenersReady = true;
+            window.addEventListener('scroll', scheduleListingsGridVirtualRefresh, { passive: true });
+            window.addEventListener('resize', scheduleListingsGridVirtualRefresh);
         }
 
         function updateListingsGridStats(listings) {
@@ -11681,6 +11719,8 @@ function updateTabsStickyStackStuck() {
                     }
                 });
             });
+
+            ensureListingsGridScrollListeners();
         });
         
         // ===========================================
