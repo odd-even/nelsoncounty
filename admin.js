@@ -4874,7 +4874,9 @@ function updateTabsStickyStackStuck() {
             }
         }
         
-        function buildListingCardElement(listing) {
+        function buildListingCardElement(listing, options) {
+                options = options || {};
+                const imgLoading = options.eagerImages ? 'eager' : 'lazy';
                 const card = document.createElement('div');
                 card.className = 'flip-card';
                 // Add data attributes for navigation
@@ -4921,7 +4923,7 @@ function updateTabsStickyStackStuck() {
                 // Add image1 if it exists
                 if (listing.image1) {
                     const img1 = document.createElement('img');
-                    img1.loading = 'lazy';
+                    img1.loading = imgLoading;
                     img1.src = getAdminImageUrl(listing.image1);
                     img1.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     img1.onerror = function() {
@@ -4933,7 +4935,7 @@ function updateTabsStickyStackStuck() {
                 // Add image2 if it exists
                 if (listing.image2) {
                     const img2 = document.createElement('img');
-                    img2.loading = 'lazy';
+                    img2.loading = imgLoading;
                     img2.src = getAdminImageUrl(listing.image2);
                     img2.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     img2.onerror = function() {
@@ -4945,7 +4947,7 @@ function updateTabsStickyStackStuck() {
                 // Add image3 if it exists
                 if (listing.image3) {
                     const img3 = document.createElement('img');
-                    img3.loading = 'lazy';
+                    img3.loading = imgLoading;
                     img3.src = getAdminImageUrl(listing.image3);
                     img3.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     img3.onerror = function() {
@@ -4957,7 +4959,7 @@ function updateTabsStickyStackStuck() {
                 // If no images, add fallback
                 if (imageCount === 0) {
                     const img = document.createElement('img');
-                    img.loading = 'lazy';
+                    img.loading = imgLoading;
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
                     img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px; flex-shrink: 0; scroll-snap-align: start;';
                     imgWrapper.appendChild(img);
@@ -5369,7 +5371,7 @@ function updateTabsStickyStackStuck() {
                 
                 if (listing.image1) {
                     const img1 = document.createElement('img');
-                    img1.src.loading = 'lazy';
+                    img1.loading = imgLoading;
                     img1.src = getAdminImageUrl(listing.image1);
                     img1.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img1.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
@@ -5377,7 +5379,7 @@ function updateTabsStickyStackStuck() {
                 }
                 if (listing.image2) {
                     const img2 = document.createElement('img');
-                    img2.src.loading = 'lazy';
+                    img2.loading = imgLoading;
                     img2.src = getAdminImageUrl(listing.image2);
                     img2.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img2.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
@@ -5385,7 +5387,7 @@ function updateTabsStickyStackStuck() {
                 }
                 if (listing.image3) {
                     const img3 = document.createElement('img');
-                    img3.src.loading = 'lazy';
+                    img3.loading = imgLoading;
                     img3.src = getAdminImageUrl(listing.image3);
                     img3.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     img3.onerror = function() { this.src = 'https://via.placeholder.com/400x400?text=No+Image'; };
@@ -5393,7 +5395,7 @@ function updateTabsStickyStackStuck() {
                 }
                 if (backImageCount === 0) {
                     const img = document.createElement('img');
-                    img.src.loading = 'lazy';
+                    img.loading = imgLoading;
                     img.src = 'https://via.placeholder.com/400x400?text=No+Image';
                     img.style.cssText = 'position: relative; width: 100%; min-width: 100%; max-width: 100%; height: 240px; object-fit: cover; display: block; border-radius: 12px 12px 0 0; flex-shrink: 0; scroll-snap-align: start;';
                     backImgWrapper.appendChild(img);
@@ -5631,7 +5633,8 @@ function updateTabsStickyStackStuck() {
             return listings.slice().sort(compareListingsForAdminSort);
         }
 
-        function renderListingsVirtualWindow() {
+        function renderListingsVirtualWindow(options) {
+            options = options || {};
             const grid = document.getElementById('listingsGrid');
             if (!grid) return;
             ensureListingsGridScrollListeners();
@@ -5640,6 +5643,10 @@ function updateTabsStickyStackStuck() {
             if (total === 0) {
                 grid.innerHTML = '';
                 return;
+            }
+
+            if (options.fullReset) {
+                grid.innerHTML = '';
             }
 
             const columns = getListingsGridColumnCount(grid);
@@ -5657,20 +5664,66 @@ function updateTabsStickyStackStuck() {
             const topPad = startRow * rowHeight;
             const bottomPad = Math.max(0, (totalRows - endRow) * rowHeight);
 
-            grid.innerHTML = '';
+            let topSpacer = grid.querySelector('.listings-grid-spacer-top');
             if (topPad > 0) {
-                const topSpacer = document.createElement('div');
-                topSpacer.className = 'listings-grid-spacer';
+                if (!topSpacer) {
+                    topSpacer = document.createElement('div');
+                    topSpacer.className = 'listings-grid-spacer listings-grid-spacer-top';
+                }
                 topSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + topPad + 'px; pointer-events: none;';
-                grid.appendChild(topSpacer);
+                if (grid.firstChild !== topSpacer) {
+                    grid.insertBefore(topSpacer, grid.firstChild);
+                }
+            } else if (topSpacer) {
+                topSpacer.remove();
+                topSpacer = null;
             }
+
+            const neededSlugs = new Set();
+            const windowListings = [];
             for (let i = startIndex; i < endIndex; i++) {
-                const card = buildListingCardElement(listingsGridSortedListings[i]);
-                if (card) grid.appendChild(card);
+                const listing = listingsGridSortedListings[i];
+                if (!listing) continue;
+                if (listing.slug) neededSlugs.add(listing.slug);
+                windowListings.push(listing);
             }
+
+            grid.querySelectorAll('.flip-card[data-slug]').forEach(function(card) {
+                if (!neededSlugs.has(card.getAttribute('data-slug'))) {
+                    card.remove();
+                }
+            });
+
+            const existingBySlug = new Map();
+            grid.querySelectorAll('.flip-card[data-slug]').forEach(function(card) {
+                existingBySlug.set(card.getAttribute('data-slug'), card);
+            });
+
+            let bottomSpacer = grid.querySelector('.listings-grid-spacer-bottom');
+            if (bottomSpacer) bottomSpacer.remove();
+
+            let anchor = topSpacer || null;
+            for (let idx = 0; idx < windowListings.length; idx++) {
+                const listing = windowListings[idx];
+                let card = listing.slug ? existingBySlug.get(listing.slug) : null;
+                if (!card) {
+                    card = buildListingCardElement(listing, { eagerImages: true });
+                    if (!card) continue;
+                }
+                const insertBefore = anchor ? anchor.nextSibling : grid.firstChild;
+                if (card.parentNode !== grid || card.previousSibling !== anchor) {
+                    grid.insertBefore(card, insertBefore);
+                }
+                anchor = card;
+            }
+
+            grid.querySelectorAll('.listings-grid-spacer:not(.listings-grid-spacer-top)').forEach(function(spacer) {
+                spacer.remove();
+            });
+
             if (bottomPad > 0) {
-                const bottomSpacer = document.createElement('div');
-                bottomSpacer.className = 'listings-grid-spacer';
+                bottomSpacer = document.createElement('div');
+                bottomSpacer.className = 'listings-grid-spacer listings-grid-spacer-bottom';
                 bottomSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + bottomPad + 'px; pointer-events: none;';
                 grid.appendChild(bottomSpacer);
             }
@@ -5741,7 +5794,7 @@ function updateTabsStickyStackStuck() {
             }
 
             pendingListingsGridRefresh = false;
-            renderListingsVirtualWindow();
+            renderListingsVirtualWindow({ fullReset: true });
             updateListingsGridStats(listingsGridSortedListings);
             scheduleMapMarkersUpdate(listingsGridSortedListings);
         }
@@ -5760,7 +5813,7 @@ function updateTabsStickyStackStuck() {
         
         let currentAdminTypeFilter = '';
         const LISTINGS_GRID_CARD_ROW_HEIGHT = 680;
-        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 2;
+        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 3;
         let listingsGridSortedListings = [];
         let listingsGridMeasuredRowHeight = 0;
         let listingsGridScrollRaf = null;
@@ -12296,7 +12349,7 @@ function updateTabsStickyStackStuck() {
         // Ensure all functions are available immediately
         (function logAdminBuildTag() {
             var authBuild = window.NELSON_ADMIN_BUILD || '(auth not loaded)';
-            var jsBuild = '20260610a';
+            var jsBuild = '20260610b';
             var match = authBuild === jsBuild;
             console.info(
                 '%c[Nelson Admin] BUILD ' + jsBuild + ' — admin.js' + (match ? '' : ' ⚠️ mismatch auth=' + authBuild),
