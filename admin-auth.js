@@ -596,12 +596,13 @@
                         }
                         document.body.classList.add('logged-in');
                         console.log('✅ Added logged-in class to body after OTP verification');
+                        showAdminPanelContent();
 
                         try {
                             if (typeof window.enforceAuth === 'function') {
                                 await window.enforceAuth();
                             } else if (typeof window.requestAdminBootstrap === 'function') {
-                                window.requestAdminBootstrap();
+                                await window.requestAdminBootstrap();
                             } else {
                                 window._pendingAdminBootstrap = true;
                             }
@@ -658,12 +659,25 @@
                 location.reload();
             };
             
+            function showAdminPanelContent() {
+                const header = document.querySelector('.header');
+                const tabsStack = document.querySelector('.tabs-sticky-stack');
+                const tabs = document.querySelector('.tabs');
+                const tabContent = document.querySelectorAll('.tab-content');
+                if (header) header.style.display = '';
+                if (tabsStack) tabsStack.style.display = '';
+                if (tabs) tabs.style.display = '';
+                tabContent.forEach(function(tab) {
+                    tab.style.removeProperty('display');
+                });
+            }
+
             window.requestAdminBootstrap = function requestAdminBootstrap() {
                 if (typeof window.bootstrapAdminAppIfNeeded === 'function') {
-                    window.bootstrapAdminAppIfNeeded();
-                } else {
-                    window._pendingAdminBootstrap = true;
+                    return window.bootstrapAdminAppIfNeeded();
                 }
+                window._pendingAdminBootstrap = true;
+                return Promise.resolve();
             };
 
             // CRITICAL: Enforce authentication immediately (with server validation)
@@ -805,23 +819,9 @@
                         console.log('✅ SessionStorage updated');
                     }
                     
-                    // Show admin content
-                    const header = document.querySelector('.header');
-                    const tabsStack = document.querySelector('.tabs-sticky-stack');
-                    const tabs = document.querySelector('.tabs');
-                    const tabContent = document.querySelectorAll('.tab-content');
-                    if (header) {
-                        header.style.display = '';
-                        console.log('✅ Header shown');
-                    }
-                    if (tabsStack) {
-                        tabsStack.style.display = '';
-                    }
-                    if (tabs) {
-                        tabs.style.display = '';
-                        console.log('✅ Tabs shown');
-                    }
-                    window.requestAdminBootstrap();
+                    showAdminPanelContent();
+                    console.log('✅ Admin panel content shown');
+                    await window.requestAdminBootstrap();
                 } else {
                     // NOT logged in - show login overlay
                     console.log('❌ Not authenticated - showing login overlay');

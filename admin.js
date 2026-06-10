@@ -3252,18 +3252,18 @@ function updateTabsStickyStackStuck() {
             ensureListingsGridScrollListeners();
             updateListingsGridStats(listingsGridSortedListings);
 
-            function paintGrid() {
+            function paintGrid(attempt) {
+                attempt = attempt || 0;
                 renderListingsVirtualWindow();
                 scheduleMapMarkersUpdate(listingsGridSortedListings);
+                if (grid.clientWidth === 0 && attempt < 15) {
+                    requestAnimationFrame(function() {
+                        paintGrid(attempt + 1);
+                    });
+                }
             }
 
-            if (grid.clientWidth === 0) {
-                requestAnimationFrame(function() {
-                    requestAnimationFrame(paintGrid);
-                });
-            } else {
-                paintGrid();
-            }
+            paintGrid(0);
         }
         
         // Error Console Functions
@@ -10282,6 +10282,12 @@ function updateTabsStickyStackStuck() {
                     }
                 });
             });
+
+            if (data && data.listings && data.listings.length) {
+                requestAnimationFrame(function() {
+                    renderListings(data.listings);
+                });
+            }
         };
 
         if (window._pendingAdminBootstrap) {
