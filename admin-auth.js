@@ -1,10 +1,9 @@
-window.NELSON_ADMIN_BUILD = '20260610d';
+window.NELSON_ADMIN_BUILD = '20260611a';
 console.info(
     '%c[Nelson Admin] BUILD ' + window.NELSON_ADMIN_BUILD + ' — admin-auth.js',
     'color:#4E6B52;font-weight:bold'
 );
 
-// Keep login visible until admin.js confirms auth — do not toggle logged-in here.
 (function() {
     'use strict';
 
@@ -23,20 +22,25 @@ console.info(
     localStorage.removeItem('skipAuth');
     localStorage.removeItem('adminLoggedIn');
 
-    function showLoginOverlayIfNeeded() {
-        if (hasValidSession()) return;
+    function applyEarlyAuthState() {
         const overlay = document.getElementById('loginOverlay');
+        if (hasValidSession()) {
+            if (overlay) {
+                overlay.style.display = 'none';
+                overlay.setAttribute('style', 'display: none !important;');
+            }
+            if (document.body) document.body.classList.add('logged-in');
+            return;
+        }
         if (overlay) {
             overlay.style.display = 'flex';
             overlay.style.zIndex = '10000';
         }
-        if (document.body) {
-            document.body.classList.remove('logged-in');
-        }
+        if (document.body) document.body.classList.remove('logged-in');
     }
 
-    showLoginOverlayIfNeeded();
+    applyEarlyAuthState();
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', showLoginOverlayIfNeeded);
+        document.addEventListener('DOMContentLoaded', applyEarlyAuthState);
     }
 })();

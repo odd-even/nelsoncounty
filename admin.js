@@ -512,14 +512,12 @@
                             console.log('✅ Login overlay hidden immediately');
                         }
                         document.body.classList.add('logged-in');
-                        console.log('✅ Added logged-in class to body before reload');
+                        console.log('✅ Added logged-in class to body');
                         
-                        // Reload page to initialize admin.js with authenticated session
-                        setTimeout(function() {
-                            console.log('🔄 Reloading page with authenticated session...');
-                            console.log('🔄 Session token before reload:', localStorage.getItem('adminAuthSession') ? 'exists' : 'missing');
-                            location.reload();
-                        }, 500);
+                        // Initialize admin data without a full page reload
+                        if (typeof window.bootstrapAdminAppIfNeeded === 'function') {
+                            window.bootstrapAdminAppIfNeeded();
+                        }
                     } else {
                         errorText.textContent = result.error || 'Invalid verification code.';
                         errorText.style.color = '#dc3545';
@@ -789,15 +787,8 @@
                 }
             }
             
-            // Run immediately (async)
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', function() {
-                    enforceAuth();
-                });
-            } else {
-                enforceAuth();
-            }
-            window.addEventListener('load', function() {
+            // Run once after the full admin.js bundle has parsed (defer + DOMContentLoaded).
+            document.addEventListener('DOMContentLoaded', function() {
                 enforceAuth();
             });
             
@@ -5636,23 +5627,16 @@ function updateTabsStickyStackStuck() {
             return listings.slice().sort(compareListingsForAdminSort);
         }
 
-        function renderListingsVirtualWindow(options) {
-            options = options || {};
+        function renderListingsVirtualWindow() {
             if (!document.body.classList.contains('logged-in')) return;
             const grid = document.getElementById('listingsGrid');
-            if (!grid || grid.clientWidth === 0) return;
+            if (!grid) return;
             ensureListingsGridScrollListeners();
 
             const total = listingsGridSortedListings.length;
             if (total === 0) {
                 grid.innerHTML = '';
-                listingsGridVirtualState = null;
                 return;
-            }
-
-            if (options.fullReset) {
-                grid.innerHTML = '';
-                listingsGridVirtualState = null;
             }
 
             const columns = getListingsGridColumnCount(grid);
@@ -5670,73 +5654,20 @@ function updateTabsStickyStackStuck() {
             const topPad = startRow * rowHeight;
             const bottomPad = Math.max(0, (totalRows - endRow) * rowHeight);
 
-            const prev = listingsGridVirtualState;
-            if (!options.fullReset && prev &&
-                prev.startIndex === startIndex && prev.endIndex === endIndex &&
-                prev.topPad === topPad && prev.bottomPad === bottomPad &&
-                prev.columns === columns) {
-                return;
-            }
-
-            const neededSlugs = new Set();
-            const windowListings = [];
-            for (let i = startIndex; i < endIndex; i++) {
-                const listing = listingsGridSortedListings[i];
-                if (!listing) continue;
-                if (listing.slug) neededSlugs.add(listing.slug);
-                windowListings.push(listing);
-            }
-
-            let topSpacer = grid.querySelector('.listings-grid-spacer-top');
+            grid.innerHTML = '';
             if (topPad > 0) {
-                if (!topSpacer) {
-                    topSpacer = document.createElement('div');
-                    topSpacer.className = 'listings-grid-spacer listings-grid-spacer-top';
-                }
+                const topSpacer = document.createElement('div');
+                topSpacer.className = 'listings-grid-spacer';
                 topSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + topPad + 'px; pointer-events: none;';
-                if (grid.firstChild !== topSpacer) {
-                    grid.insertBefore(topSpacer, grid.firstChild);
-                }
-            } else if (topSpacer) {
-                topSpacer.remove();
-                topSpacer = null;
+                grid.appendChild(topSpacer);
             }
-
-            grid.querySelectorAll('.flip-card[data-slug]').forEach(function(card) {
-                if (!neededSlugs.has(card.getAttribute('data-slug'))) {
-                    card.remove();
-                }
-            });
-
-            const existingBySlug = new Map();
-            grid.querySelectorAll('.flip-card[data-slug]').forEach(function(card) {
-                existingBySlug.set(card.getAttribute('data-slug'), card);
-            });
-
-            let bottomSpacer = grid.querySelector('.listings-grid-spacer-bottom');
-            if (bottomSpacer) bottomSpacer.remove();
-
-            let anchor = topSpacer || null;
-            for (let idx = 0; idx < windowListings.length; idx++) {
-                const listing = windowListings[idx];
-                let card = listing.slug ? existingBySlug.get(listing.slug) : null;
-                if (!card) {
-                    card = buildListingCardElement(listing, { eagerImages: true });
-                    if (!card) continue;
-                    grid.insertBefore(card, anchor ? anchor.nextSibling : grid.firstChild);
-                } else if (card.previousSibling !== anchor) {
-                    grid.insertBefore(card, anchor ? anchor.nextSibling : grid.firstChild);
-                }
-                anchor = card;
+            for (let i = startIndex; i < endIndex; i++) {
+                const card = buildListingCardElement(listingsGridSortedListings[i]);
+                if (card) grid.appendChild(card);
             }
-
-            grid.querySelectorAll('.listings-grid-spacer:not(.listings-grid-spacer-top)').forEach(function(spacer) {
-                spacer.remove();
-            });
-
             if (bottomPad > 0) {
-                bottomSpacer = document.createElement('div');
-                bottomSpacer.className = 'listings-grid-spacer listings-grid-spacer-bottom';
+                const bottomSpacer = document.createElement('div');
+                bottomSpacer.className = 'listings-grid-spacer';
                 bottomSpacer.style.cssText = 'grid-column: 1 / -1; height: ' + bottomPad + 'px; pointer-events: none;';
                 grid.appendChild(bottomSpacer);
             }
@@ -5745,19 +5676,11 @@ function updateTabsStickyStackStuck() {
                 const sampleCard = grid.querySelector('.flip-card');
                 if (sampleCard) {
                     const measured = Math.ceil(sampleCard.getBoundingClientRect().height) + 20;
-                    if (measured > 200) {
+                    if (measured > 0 && Math.abs(measured - rowHeight) > 40) {
                         listingsGridMeasuredRowHeight = measured;
                     }
                 }
             }
-
-            listingsGridVirtualState = {
-                startIndex: startIndex,
-                endIndex: endIndex,
-                topPad: topPad,
-                bottomPad: bottomPad,
-                columns: columns
-            };
         }
 
         function refreshListingCardInGrid(listing, oldSlug) {
@@ -5815,7 +5738,7 @@ function updateTabsStickyStackStuck() {
             }
 
             pendingListingsGridRefresh = false;
-            renderListingsVirtualWindow({ fullReset: true });
+            renderListingsVirtualWindow();
             updateListingsGridStats(listingsGridSortedListings);
             scheduleMapMarkersUpdate(listingsGridSortedListings);
         }
@@ -5834,10 +5757,9 @@ function updateTabsStickyStackStuck() {
         
         let currentAdminTypeFilter = '';
         const LISTINGS_GRID_CARD_ROW_HEIGHT = 680;
-        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 3;
+        const LISTINGS_GRID_VIRTUAL_OVERSCAN_ROWS = 2;
         let listingsGridSortedListings = [];
         let listingsGridMeasuredRowHeight = 0;
-        let listingsGridVirtualState = null;
         let listingsGridScrollRaf = null;
         let pendingListingsGridRefresh = false;
         let mapMarkersUpdateTimer = null;
@@ -5902,7 +5824,10 @@ function updateTabsStickyStackStuck() {
                 const card = grid.querySelector('.flip-card');
                 if (card) {
                     const h = Math.ceil(card.getBoundingClientRect().height);
-                    if (h > 0) return h + 20;
+                    if (h > 0) {
+                        listingsGridMeasuredRowHeight = h + 20;
+                        return listingsGridMeasuredRowHeight;
+                    }
                 }
             }
             return LISTINGS_GRID_CARD_ROW_HEIGHT;
@@ -5929,7 +5854,7 @@ function updateTabsStickyStackStuck() {
             mapMarkersUpdateTimer = setTimeout(function() {
                 mapMarkersUpdateTimer = null;
                 const mapContainer = document.getElementById('mapContainer');
-                if (!mapContainer || mapContainer.classList.contains('map-collapsed')) return;
+                if (!mapContainer || mapContainer.classList.contains('map-collapsed') || !mapVisible || !map) return;
                 if (typeof updateMapMarkers === 'function') {
                     updateMapMarkers(listings || listingsGridSortedListings || data.listings);
                 }
@@ -5938,7 +5863,6 @@ function updateTabsStickyStackStuck() {
 
         function scheduleListingsGridVirtualRefresh() {
             if (listingsGridScrollRaf) return;
-            if (!document.body.classList.contains('logged-in')) return;
             listingsGridScrollRaf = requestAnimationFrame(function() {
                 listingsGridScrollRaf = null;
                 const adminTab = document.getElementById('adminTab');
@@ -12372,7 +12296,7 @@ function updateTabsStickyStackStuck() {
         // Ensure all functions are available immediately
         (function logAdminBuildTag() {
             var authBuild = window.NELSON_ADMIN_BUILD || '(auth not loaded)';
-            var jsBuild = '20260610d';
+            var jsBuild = '20260611a';
             var match = authBuild === jsBuild;
             console.info(
                 '%c[Nelson Admin] BUILD ' + jsBuild + ' — admin.js' + (match ? '' : ' ⚠️ mismatch auth=' + authBuild),
