@@ -262,6 +262,56 @@ function syncTableImagePreviewsInRow(row) {
     });
 }
 
+var LISTING_IMAGE_INPUT_IDS = ['listingImage1', 'listingImage2', 'listingImage3'];
+
+function syncListingImagePreview(inputId) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(inputId + 'Preview');
+    if (!input || !preview) return;
+    const url = (input.value || '').trim();
+    preview.classList.remove('listing-image-preview--error');
+    preview.classList.toggle('listing-image-preview--empty', !url);
+    preview.setAttribute('aria-hidden', url ? 'false' : 'true');
+    if (!url) {
+        preview.innerHTML = '';
+        return;
+    }
+    let img = preview.querySelector('.listing-image-preview-img');
+    if (!img) {
+        img = document.createElement('img');
+        img.className = 'listing-image-preview-img';
+        img.alt = 'Image preview';
+        preview.appendChild(img);
+    }
+    const src = getAdminImageUrl(url);
+    if (img.getAttribute('data-loaded-src') === src) return;
+    img.onload = function() {
+        preview.classList.remove('listing-image-preview--error');
+        img.style.display = 'block';
+    };
+    img.onerror = function() {
+        preview.classList.add('listing-image-preview--error');
+        img.style.display = 'none';
+    };
+    img.setAttribute('data-loaded-src', src);
+    img.src = src;
+}
+
+function syncAllListingImagePreviews() {
+    LISTING_IMAGE_INPUT_IDS.forEach(syncListingImagePreview);
+}
+
+function initListingImagePreviewListeners() {
+    if (window.__listingImagePreviewBound) return;
+    window.__listingImagePreviewBound = true;
+    LISTING_IMAGE_INPUT_IDS.forEach(function(id) {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.addEventListener('input', function() { syncListingImagePreview(id); });
+        input.addEventListener('change', function() { syncListingImagePreview(id); });
+    });
+}
+
 function getTableRowFieldValue(listing, dataIndex, field) {
     const draft = tableRowDrafts[dataIndex];
     if (draft && Object.prototype.hasOwnProperty.call(draft, field)) {
@@ -5015,6 +5065,8 @@ function updateTabsStickyStackStuck() {
             updateCategoryDropdown();
             renderAmenitiesCheckboxes();
             
+            syncAllListingImagePreviews();
+            
             // Set default category (first available category)
             const categoryInput = document.getElementById('listingCategory');
             if (categoryInput) {
@@ -5180,6 +5232,8 @@ function updateTabsStickyStackStuck() {
                     console.log('Loaded image3FileId from listing:', listing.image3FileId);
                 }
             }
+            
+            syncAllListingImagePreviews();
             
             // Set image descriptions
             const image1DescInput = document.getElementById('listingImage1Desc');
@@ -8633,6 +8687,8 @@ function updateTabsStickyStackStuck() {
         }
 
         function initImageUploadButtons() {
+            initListingImagePreviewListeners();
+            syncAllListingImagePreviews();
             document.querySelectorAll('.btn-upload-image').forEach(function(button) {
                 // Skip if already initialized (check for data attribute)
                 if (button.dataset.uploadInitialized === 'true') {
@@ -8693,6 +8749,7 @@ function updateTabsStickyStackStuck() {
                                     const fileId = result.fileId || null; // Store fileId from upload response
                                     if (imageUrl) {
                                         input.value = imageUrl;
+                                        syncListingImagePreview(targetId);
                                         
                                         // Store fileId as a data attribute for later use
                                         if (fileId) {

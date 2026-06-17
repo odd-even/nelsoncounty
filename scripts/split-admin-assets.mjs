@@ -6,7 +6,7 @@
  */
 import fs from 'fs';
 
-const ADMIN_BUILD = '20260610a';
+const ADMIN_BUILD = '20260610d';
 const html = fs.readFileSync('index.html', 'utf8');
 const lines = html.split('\n');
 

@@ -19,11 +19,11 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
-    <link rel="stylesheet" href="admin.css?v=20260610c">
-    <link rel="preload" href="admin-data.js?v=20260610c" as="script">
-    <link rel="preload" href="admin.js?v=20260610c" as="script">
-    <script src="admin-auth.js?v=20260610c" defer></script>
-    <script src="admin-data.js?v=20260610c" defer></script>
+    <link rel="stylesheet" href="admin.css?v=20260610d">
+    <link rel="preload" href="admin-data.js?v=20260610d" as="script">
+    <link rel="preload" href="admin.js?v=20260610d" as="script">
+    <script src="admin-auth.js?v=20260610d" defer></script>
+    <script src="admin-data.js?v=20260610d" defer></script>
 </head>
 <body>
     <!-- Email OTP Login Overlay -->
@@ -668,6 +668,7 @@
                             <input type="text" id="listingImage1" required placeholder="https:// or data:image..." />
                             <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage1">Upload</button>
                         </div>
+                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage1Preview" aria-hidden="true"></div>
                         <div style="position: relative; margin-top: 8px;">
                             <textarea id="listingImage1Desc" placeholder="Image description (optional)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
                             <button type="button" class="btn-generate-desc" data-image="listingImage1" data-desc="listingImage1Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
@@ -689,6 +690,7 @@
                             <input type="text" id="listingImage2" placeholder="https:// or data:image..." />
                             <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage2">Upload</button>
                         </div>
+                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage2Preview" aria-hidden="true"></div>
                         <div style="position: relative; margin-top: 8px;">
                             <textarea id="listingImage2Desc" placeholder="Image description (optional)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
                             <button type="button" class="btn-generate-desc" data-image="listingImage2" data-desc="listingImage2Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
@@ -709,6 +711,7 @@
                             <input type="text" id="listingImage3" placeholder="https:// or data:image..." />
                             <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage3">Upload</button>
                         </div>
+                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage3Preview" aria-hidden="true"></div>
                         <div style="position: relative; margin-top: 8px;">
                             <textarea id="listingImage3Desc" placeholder="Image description (optional)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
                             <button type="button" class="btn-generate-desc" data-image="listingImage3" data-desc="listingImage3Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
@@ -935,7 +938,7 @@
         </div>
     </div>
     
-    <script src="admin.js?v=20260610c" defer></script>
+    <script src="admin.js?v=20260610d" defer></script>
     
     </div> <!-- End main-container -->
     
