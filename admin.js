@@ -2856,72 +2856,76 @@ function updateTabsStickyStackStuck() {
         }
         
         /**
-         * Shows a confirmation dialog recommending CSV backup before saving to Sheets
-         * @param {number} listingCount - Number of listings to be saved
-         * @returns {Promise<boolean>} - true if user confirmed, false if cancelled
+         * Save-to-Sheets confirmation. Optional CSV backup uses an explicit
+         * "Continue" step so a browser download prompt cannot skip the save.
+         * @param {number} listingCount
+         * @returns {Promise<boolean>} true to proceed with save, false to cancel
          */
         function showBackupConfirmation(listingCount) {
-            return new Promise((resolve) => {
-                // Create modal overlay
+            return new Promise(function(resolve) {
                 const overlay = document.createElement('div');
                 overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
-                
-                // Create modal dialog
+
                 const modal = document.createElement('div');
-                modal.style.cssText = 'background: white; padding: 30px; border-radius: 8px; max-width: 500px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
-                
-                modal.innerHTML = `
-                    <div style="margin-bottom: 20px;">
-                        <h2 style="margin: 0 0 15px 0; color: #212529; font-size: 24px;">⚠️ Backup Recommended</h2>
-                        <p style="margin: 0 0 15px 0; color: #6c757d; line-height: 1.6;">
-                            You're about to replace <strong>all existing data</strong> in Google Sheets with ${listingCount} listing(s).
-                        </p>
-                        <p style="margin: 0 0 20px 0; color: #6c757d; line-height: 1.6;">
-                            <strong>We recommend downloading a CSV backup first</strong> in case you need to restore the previous data.
-                        </p>
-                    </div>
-                    <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
-                        <button id="backupCancelBtn" style="padding: 10px 20px; border: 1px solid #dee2e6; background: white; color: #212529; border-radius: 18px; cursor: pointer; font-weight: 500;">
-                            Cancel
-                        </button>
-                        <button id="backupDownloadBtn" style="padding: 10px 20px; border: none; background: #4E6B52; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">
-                            📥 CSV Backup First
-                        </button>
-                        <button id="backupProceedBtn" style="padding: 10px 20px; border: none; background: #84FBA9; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">
-                            Proceed Without Backup
-                        </button>
-                    </div>
-                `;
-                
+                modal.style.cssText = 'background: white; padding: 30px; border-radius: 8px; max-width: 520px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3);';
+
+                function closeModal(result) {
+                    if (overlay.parentNode) {
+                        document.body.removeChild(overlay);
+                    }
+                    resolve(result);
+                }
+
+                function showContinueAfterBackup() {
+                    modal.innerHTML = ''
+                        + '<div style="margin-bottom: 20px;">'
+                        + '<h2 style="margin: 0 0 15px 0; color: #212529; font-size: 24px;">CSV backup started</h2>'
+                        + '<p style="margin: 0 0 15px 0; color: #6c757d; line-height: 1.6;">'
+                        + 'Your browser may ask whether to view or download the file. Handle that prompt, then click below to save '
+                        + listingCount + ' listing(s) to Google Sheets.'
+                        + '</p>'
+                        + '<p style="margin: 0; color: #856404; line-height: 1.6; font-size: 14px;">'
+                        + 'This replaces all existing sheet data and cannot be undone.'
+                        + '</p>'
+                        + '</div>'
+                        + '<div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">'
+                        + '<button type="button" id="backupCancelBtn" style="padding: 10px 20px; border: 1px solid #dee2e6; background: white; color: #212529; border-radius: 18px; cursor: pointer; font-weight: 500;">Cancel</button>'
+                        + '<button type="button" id="backupContinueBtn" style="padding: 10px 20px; border: none; background: #4E6B52; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">Save to Google Sheets</button>'
+                        + '</div>';
+                    document.getElementById('backupCancelBtn').onclick = function() { closeModal(false); };
+                    document.getElementById('backupContinueBtn').onclick = function() { closeModal(true); };
+                }
+
+                modal.innerHTML = ''
+                    + '<div style="margin-bottom: 20px;">'
+                    + '<h2 style="margin: 0 0 15px 0; color: #212529; font-size: 24px;">Save to Google Sheets?</h2>'
+                    + '<p style="margin: 0 0 15px 0; color: #6c757d; line-height: 1.6;">'
+                    + 'You are about to replace <strong>all existing data</strong> in Google Sheets with '
+                    + listingCount + ' listing(s). This cannot be undone.'
+                    + '</p>'
+                    + '<p style="margin: 0; color: #6c757d; line-height: 1.6;">'
+                    + 'We recommend downloading a CSV backup first.'
+                    + '</p>'
+                    + '</div>'
+                    + '<div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">'
+                    + '<button type="button" id="backupCancelBtn" style="padding: 10px 20px; border: 1px solid #dee2e6; background: white; color: #212529; border-radius: 18px; cursor: pointer; font-weight: 500;">Cancel</button>'
+                    + '<button type="button" id="backupDownloadBtn" style="padding: 10px 20px; border: none; background: #4E6B52; color: white; border-radius: 18px; cursor: pointer; font-weight: 600;">Download CSV backup</button>'
+                    + '<button type="button" id="backupProceedBtn" style="padding: 10px 20px; border: none; background: #84FBA9; color: #212529; border-radius: 18px; cursor: pointer; font-weight: 600;">Save without backup</button>'
+                    + '</div>';
+
                 overlay.appendChild(modal);
                 document.body.appendChild(overlay);
-                
-                // Button handlers
-                document.getElementById('backupCancelBtn').onclick = () => {
-                    document.body.removeChild(overlay);
-                    resolve(false);
-                };
-                
-                document.getElementById('backupDownloadBtn').onclick = () => {
-                    // Download CSV backup
+
+                document.getElementById('backupCancelBtn').onclick = function() { closeModal(false); };
+                document.getElementById('backupDownloadBtn').onclick = function() {
                     downloadCSV();
-                    // Wait a moment for download to start, then proceed
-                    setTimeout(() => {
-                        document.body.removeChild(overlay);
-                        resolve(true);
-                    }, 500);
+                    showContinueAfterBackup();
                 };
-                
-                document.getElementById('backupProceedBtn').onclick = () => {
-                    document.body.removeChild(overlay);
-                    resolve(true);
-                };
-                
-                // Close on overlay click
-                overlay.onclick = (e) => {
+                document.getElementById('backupProceedBtn').onclick = function() { closeModal(true); };
+
+                overlay.onclick = function(e) {
                     if (e.target === overlay) {
-                        document.body.removeChild(overlay);
-                        resolve(false);
+                        closeModal(false);
                     }
                 };
             });
@@ -2943,27 +2947,9 @@ function updateTabsStickyStackStuck() {
                 saveTableChanges({ silent: true });
             }
             
-            // Show confirmation dialog asking if they want to download CSV backup first
-            const wantBackup = confirm('⚠️ You are about to replace ALL data in Google Sheets.\n\n' +
-                                 'Would you like to download a CSV backup first?\n\n' +
-                                 'Click OK to download CSV backup before saving\n' +
-                                 'Click Cancel to skip backup and continue');
-            
-            if (wantBackup) {
-                // Download CSV backup
-                downloadCSV();
-                // Wait a moment for download to start
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-            
-            // Now ask for confirmation to overwrite
-            const confirmed = confirm('⚠️ Final Confirmation\n\n' +
-                                    `You are about to replace all data in Google Sheets with ${data.listings.length} listing(s).\n\n` +
-                                    'This action cannot be undone.\n\n' +
-                                    'Click OK to save all listings to Google Sheets and overwrite existing data\n' +
-                                    'Click Cancel to abort and keep Google Sheets unchanged');
+            const confirmed = await showBackupConfirmation(data.listings.length);
             if (!confirmed) {
-                return; // User cancelled
+                return;
             }
             
             // Show "in progress" status
