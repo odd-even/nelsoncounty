@@ -1,0 +1,68 @@
+%% Check Into Nelson — Campaign Landing Page Flow
+%% Source: docs/Nelson County Tourism_ Landing Page.docx
+%% Companion: docs/nelson-county-tourism-landing-page.md
+%% Render: https://mermaid.live (paste this file) or docs/check-into-nelson-flow.html
+
+flowchart TB
+
+  subgraph IN["Traffic in"]
+    direction LR
+    ADS["Paid ads"]
+    SOC["Organic social"]
+    PAR["Partner promotion"]
+  end
+
+  LAND["Check Into Nelson<br/>campaign landing page<br/>Central conversion hub"]
+
+  subgraph PAGE["On-page journey"]
+    direction TB
+    H1["1. Hero<br/>Campaign name · overnight value · primary CTA · image/video"]
+    H2["2. Campaign intro<br/>What it is · who it's for · why overnight · easier planning"]
+    H3["3. Featured itinerary<br/>Hub + spokes: Check in · Sip · Explore · Create · Dine · Get around"]
+    H4["4. Partner features<br/>Image · description · role · location · booking CTA · offer"]
+    H5["5. Promo code<br/>CHECKINTONELSON — what / where / how to redeem"]
+    H6["6. Plan or book<br/>Lodging · partners · map · digital passport"]
+    H7["7. Footer<br/>Nelson County Tourism · Virginia is for Lovers · Virginia.org"]
+  end
+
+  subgraph OUT["Visitor actions"]
+    direction TB
+    L["Book lodging<br/>Farmhouse / campground"]
+    P["Visit partner sites<br/>Sip · create · explore · dine · ride"]
+    C["Use CHECKINTONELSON<br/>at participating businesses"]
+    D["Digital passport<br/>LoyalBrew — link / explain / stamp"]
+  end
+
+  TRACK["Analytics + grant reporting<br/>Engagement · outbound clicks · conversions · UTMs"]
+
+  ADS --> LAND
+  SOC --> LAND
+  PAR --> LAND
+
+  LAND --> H1
+  H1 --> H2 --> H3 --> H4 --> H5 --> H6 --> H7
+
+  H1 --> L
+  H6 --> L
+  H4 --> P
+  H6 --> P
+  H5 --> C
+  H6 --> D
+
+  L --> TRACK
+  P --> TRACK
+  C --> TRACK
+  D --> TRACK
+  LAND --> TRACK
+
+  classDef hub fill:#d8efe0,stroke:#2f8c4c,stroke-width:2px,color:#1a4d2a
+  classDef page fill:#e7f3ec,stroke:#3a7d4c,stroke-width:1.4px,color:#1d3d27
+  classDef in fill:#fff4e0,stroke:#c8861f,stroke-width:1.4px,color:#5c3d0a
+  classDef out fill:#e3edff,stroke:#3a5fa3,stroke-width:1.4px,color:#1c2e57
+  classDef track fill:#f5ebf2,stroke:#8e4a78,stroke-width:1.6px,color:#3f1a36
+
+  class LAND,H3 hub
+  class H1,H2,H4,H5,H6,H7 page
+  class ADS,SOC,PAR in
+  class L,P,C,D out
+  class TRACK track

@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check Into Nelson — Visit Nelson County</title>
+  <meta name="description" content="Check Into Nelson — Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #333333;
+      --black: #111111;
+      --muted: #666666;
+      --line: #ececec;
+      --white: #ffffff;
+      --nelson-green: #2d6a4f;
+      --panel: rgba(0, 0, 0, 0.42);
+      --max: 1120px;
+      --radius: 20px;
+      --pill: 999px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --font: Satoshi, "Satoshi Placeholder", system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    .skip {
+      position: absolute;
+      left: -9999px;
+    }
+    .skip:focus {
+      left: 1rem;
+      top: 1rem;
+      z-index: 100;
+      background: var(--white);
+      padding: 0.5rem 1rem;
+    }
+
+    .sample-banner {
+      background: #f5f5f5;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 40;
+    }
+
+    /* —— Header (Visit Nelson County pattern) —— */
+    .site-bar {
+      position: absolute;
+      top: 2.4rem;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      color: var(--white);
+      text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+    }
+    .site-bar > * {
+      position: relative;
+      z-index: 1;
+    }
+    .site-bar::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -2.5rem;
+      height: 8.5rem;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.28) 50%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    .logo {
+      display: grid;
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .logo span:first-child {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+    }
+    .logo span:last-child {
+      font-size: 0.95rem;
+    }
+    .site-nav {
+      display: none;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+    .site-nav a { opacity: 0.95; }
+    .site-nav a:hover { opacity: 1; }
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.55rem 1rem;
+      border-radius: var(--pill);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    @media (min-width: 860px) {
+      .site-nav { display: flex; }
+      .site-bar { padding: 1.25rem 2rem; }
+    }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      min-height: min(92svh, 860px);
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+    .hero__media {
+      position: absolute;
+      inset: 0;
+    }
+    .hero__slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.1s ease;
+      will-change: opacity;
+    }
+    .hero__slide.is-active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .hero__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: scale(1.02);
+      transition: transform 7.5s var(--ease);
+    }
+    .hero__slide.is-active img {
+      transform: scale(1.08);
+    }
+    .hero__dots {
+      display: flex;
+      gap: 0.45rem;
+      margin-top: 1.35rem;
+    }
+    .hero__dot {
+      width: 0.55rem;
+      height: 0.55rem;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s var(--ease);
+    }
+    .hero__dot.is-active {
+      background: var(--white);
+      transform: scale(1.2);
+    }
+    .hero__dot:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero__slide { transition: none; }
+      .hero__slide img,
+      .hero__slide.is-active img {
+        transform: none;
+        transition: none;
+      }
+    }
+    .hero__shade {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 14%, rgba(0, 0, 0, 0.08) 28%, rgba(0, 0, 0, 0) 40%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.18) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.55) 100%);
+    }
+    .hero__content {
+      position: relative;
+      z-index: 3;
+      width: min(100% - 2.5rem, var(--max));
+      margin: 0 auto;
+      padding: 0 0 4.5rem;
+      display: grid;
+      gap: 1.75rem;
+      align-items: end;
+      animation: riseIn 0.9s var(--ease) both;
+    }
+    @media (min-width: 860px) {
+      .hero__content {
+        grid-template-columns: 1fr minmax(15rem, 18.5rem);
+        gap: 2.5rem;
+      }
+    }
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: none; }
+    }
+    .hero__main {
+      min-width: 0;
+    }
+    .hero__campaign {
+      font-size: clamp(2.6rem, 7vw, 4.75rem);
+      font-weight: 500;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      max-width: 11ch;
+      margin-bottom: 0.65rem;
+    }
+    .hero__tagline {
+      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+      font-weight: 500;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.85rem;
+      color: rgba(255, 255, 255, 0.96);
+    }
+    .hero__lede {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      font-weight: 400;
+      max-width: 36ch;
+      color: rgba(255, 255, 255, 0.92);
+      margin-bottom: 1.5rem;
+    }
+    .hero__promo {
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 1.15rem 1.2rem 1.25rem;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      justify-self: start;
+    }
+    @media (min-width: 860px) {
+      .hero__promo {
+        justify-self: stretch;
+      }
+    }
+    .hero__promo-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .hero__promo-title {
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+    .hero__promo-copy {
+      font-size: 0.88rem;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+    .hero__promo .promo-code--sm {
+      margin-bottom: 0;
+      width: 100%;
+      border-color: #d8d8d8;
+      box-shadow: none;
+    }
+    .hero__promo .promo-code__value {
+      flex: 1;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1.35rem;
+      border-radius: var(--pill);
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn--light {
+      background: var(--white);
+      color: var(--black);
+    }
+    .btn--light:hover { opacity: 0.92; }
+    .btn--ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+    }
+    .btn--ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--white);
+    }
+    .btn--dark {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .btn--dark:hover { background: var(--black); }
+    .btn--outline {
+      background: var(--white);
+      color: var(--ink);
+      border: 1.5px solid #d8d8d8;
+    }
+    .btn--outline:hover { border-color: var(--ink); }
+
+    /* —— Shared —— */
+    section { padding: clamp(3.5rem, 8vw, 6rem) 0; background: var(--white); }
+    .wrap {
+      width: min(100% - 2.5rem, var(--max));
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 2.7rem);
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      max-width: 18ch;
+      margin-bottom: 0.9rem;
+    }
+    .section-copy {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 46ch;
+      line-height: 1.55;
+    }
+
+    /* —— Intro —— */
+    .intro__grid {
+      display: grid;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (min-width: 820px) {
+      .intro__grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 4rem;
+        align-items: end;
+      }
+    }
+    .intro__aside {
+      font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      padding-top: 0.25rem;
+    }
+
+    /* —— Hub / Stay —— */
+    .stay-grid {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 2.25rem;
+    }
+    @media (min-width: 820px) {
+      .stay-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+    }
+    .stay-card {
+      display: grid;
+      gap: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      scroll-margin-top: 5.5rem;
+    }
+    .stay-card__media {
+      aspect-ratio: 16 / 11;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .stay-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .stay-card__body {
+      padding: 0 1.25rem 1.35rem;
+    }
+    .stay-card__offer {
+      display: inline-block;
+      margin-bottom: 0.55rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--nelson-green);
+    }
+    .stay-card__title {
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.55rem;
+    }
+    .stay-card__copy {
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .hub__layout {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    @media (min-width: 900px) {
+      .hub__layout {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: stretch;
+      }
+    }
+    .hub__photo {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background: #f0f0f0;
+    }
+    .hub__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hub__photo-label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--pill);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .spokes {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--line);
+    }
+    .spoke {
+      display: grid;
+      grid-template-columns: 4.25rem 4.5rem 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      padding: 1.15rem 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+      transition: opacity 0.2s ease;
+    }
+    .spoke:hover { opacity: 0.72; }
+    .spoke__role {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .spoke__name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+    .spoke__note {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .spoke__arrow {
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+    .spoke__thumb {
+      width: 4.5rem;
+      height: 4.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .spoke__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .promo-perks {
+      list-style: none;
+      max-width: 40rem;
+      margin: 0 auto 1.5rem;
+      text-align: left;
+      display: grid;
+      gap: 0.65rem;
+    }
+    .promo-perks li {
+      position: relative;
+      padding-left: 1.35rem;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+    .promo-perks li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--nelson-green);
+    }
+
+    /* —— Partner strip + showcase ads —— */
+    .partner-strip {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 1.25rem 0;
+      background: #fafafa;
+    }
+    .partner-strip__label {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.85rem;
+    }
+    .partner-strip__row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem 0.65rem;
+    }
+    .partner-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.85rem 0.45rem 0.45rem;
+      border-radius: var(--pill);
+      background: var(--white);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.2s ease, transform 0.2s var(--ease);
+    }
+    .partner-chip:hover {
+      border-color: #bdbdbd;
+      transform: translateY(-1px);
+    }
+    .partner-chip img {
+      width: 1.85rem;
+      height: 1.85rem;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .showcase {
+      border-top: 1px solid var(--line);
+    }
+    .showcase__head {
+      margin-bottom: 2.25rem;
+    }
+    .partner-feature {
+      display: grid;
+      gap: 1.35rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 5.5rem;
+    }
+    .partner-feature:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+    @media (min-width: 860px) {
+      .partner-feature {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 2.5rem;
+        align-items: center;
+        padding: 2.75rem 0;
+      }
+      .partner-feature:nth-child(even) .partner-feature__media {
+        order: 2;
+      }
+    }
+    .partner-feature__media {
+      position: relative;
+      aspect-ratio: 16 / 11;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .partner-feature__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .partner-feature__badge {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: var(--pill);
+      background: rgba(255, 255, 255, 0.94);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .partner-feature__role {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+    .partner-feature__title {
+      font-size: clamp(1.55rem, 3vw, 2.1rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 0.75rem;
+    }
+    .partner-feature__copy {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.55;
+      max-width: 40ch;
+      margin-bottom: 1rem;
+    }
+    .partner-feature__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.1rem;
+      font-size: 0.9rem;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 1.25rem;
+    }
+    .partner-feature__meta span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .partner-feature__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* —— Itinerary —— */
+    .itinerary__head { margin-bottom: 2rem; }
+    .day-tabs {
+      display: inline-flex;
+      gap: 0.35rem;
+      margin-top: 1.5rem;
+      padding: 0.3rem;
+      background: #f4f4f4;
+      border-radius: var(--pill);
+    }
+    .day-tabs button {
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--pill);
+      cursor: pointer;
+      color: var(--muted);
+    }
+    .day-tabs button[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    /* —— Date calendar cards —— */
+    .date-picker {
+      margin-top: 2rem;
+      padding: 1.35rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fafafa;
+    }
+    .date-picker__top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+    .date-picker__label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    .date-picker__hint {
+      font-size: 0.95rem;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .date-picker__custom {
+      display: grid;
+      gap: 0.35rem;
+    }
+    .date-picker__custom input[type="date"] {
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+      border: 1.5px solid #d8d8d8;
+      border-radius: 12px;
+      padding: 0.65rem 0.85rem;
+      background: var(--white);
+      min-width: 11.5rem;
+    }
+    .date-picker__custom input[type="date"]:focus {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+    }
+    .date-scroller {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(7.25rem, 1fr);
+      gap: 0.65rem;
+      overflow-x: auto;
+      padding-bottom: 0.35rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .date-card {
+      scroll-snap-align: start;
+      appearance: none;
+      border: 1.5px solid #e2e2e2;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 0.9rem 0.7rem 0.85rem;
+      text-align: center;
+      cursor: pointer;
+      font: inherit;
+      color: var(--ink);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s ease;
+      min-height: 7.25rem;
+      display: grid;
+      align-content: center;
+      gap: 0.15rem;
+    }
+    .date-card:hover {
+      border-color: #bdbdbd;
+      transform: translateY(-2px);
+    }
+    .date-card.is-selected {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--white);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
+    .date-card.is-weekend {
+      opacity: 0.72;
+    }
+    .date-card.is-weekend.is-selected {
+      opacity: 1;
+    }
+    .date-card__dow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+    .date-card__day {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .date-card__month {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .date-card__tag {
+      margin-top: 0.35rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .date-card.is-selected .date-card__tag {
+      opacity: 0.85;
+    }
+    .date-picker__note {
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .date-picker__note strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .plan-board {
+      display: grid;
+      gap: 0.75rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    @media (min-width: 700px) {
+      .plan-board {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 980px) {
+      .plan-board {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .plan-day {
+      appearance: none;
+      border: 1.5px solid var(--line);
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.15rem 1.2rem;
+      text-align: left;
+      cursor: pointer;
+      font: inherit;
+      color: var(--ink);
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      display: grid;
+      gap: 0.35rem;
+    }
+    .plan-day:hover { border-color: #cfcfcf; }
+    .plan-day.is-active {
+      border-color: var(--ink);
+      box-shadow: inset 0 0 0 1px var(--ink);
+    }
+    .plan-day__kicker {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .plan-day__date {
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .plan-day__summary {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .plan-day.is-active .plan-day__kicker {
+      color: var(--ink);
+    }
+
+    .day-divider {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      margin: 0 0 1rem;
+      padding: 0 0 0.85rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .timeline-day + .timeline-day .day-divider {
+      margin-top: 2rem;
+      padding-top: 0.25rem;
+      border-top: none;
+    }
+    .day-divider__title {
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .day-divider__meta {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .timeline-help {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 0.5rem 0 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .timeline-help strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .timeline-reset {
+      appearance: none;
+      border: none;
+      background: transparent;
+      font: inherit;
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+    }
+    .timeline-day {
+      min-width: 0;
+    }
+    .timeline-day.is-filtered-out {
+      display: none;
+    }
+    .timeline-list {
+      position: relative;
+      display: grid;
+      gap: 0;
+      min-height: 1.5rem;
+      padding-left: 0.25rem;
+    }
+    .timeline-list.is-drop-target {
+      background: rgba(0, 0, 0, 0.02);
+      border-radius: 16px;
+      outline: 1.5px dashed #cfcfcf;
+      outline-offset: 4px;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.85rem;
+      padding: 0.35rem 0;
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+      touch-action: pan-y;
+    }
+    .timeline-item.is-in {
+      opacity: 1;
+      transform: none;
+    }
+    .timeline-item.is-dragging {
+      display: none !important;
+    }
+    .timeline-placeholder {
+      height: 6.5rem;
+      margin: 0.35rem 0 0.35rem 2.85rem;
+      border: 1.5px dashed #bdbdbd;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.03);
+      pointer-events: none;
+    }
+    .timeline-ghost {
+      position: fixed;
+      z-index: 80;
+      pointer-events: none;
+      width: min(28rem, calc(100vw - 2rem));
+      opacity: 0.95;
+      transform: rotate(1deg);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      border-radius: 18px;
+      background: var(--white);
+    }
+    .timeline-ghost .timeline-item__handle {
+      display: none;
+    }
+
+    /* —— Passport / LoyalBrew —— */
+    .timeline-item__rail {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .timeline-item__rail::before {
+      content: "";
+      position: absolute;
+      top: 2.1rem;
+      bottom: -0.35rem;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: #e4e4e4;
+    }
+    .timeline-day .timeline-item:last-child .timeline-item__rail::before {
+      display: none;
+    }
+    .timeline-item__dot {
+      position: relative;
+      z-index: 1;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-top: 1.15rem;
+    }
+    .timeline-item__card {
+      display: grid;
+      gap: 0.9rem;
+      align-items: start;
+      background: var(--white);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 0.95rem;
+      cursor: default;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease);
+    }
+    .timeline-item__card:active {
+      cursor: default;
+    }
+    .timeline-item__card:hover {
+      border-color: #cfcfcf;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    @media (min-width: 720px) {
+      .timeline-item__card {
+        grid-template-columns: 1fr 8.5rem;
+        padding: 1rem 1rem 1rem 0.85rem;
+      }
+    }
+    .timeline-item__main {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.65rem;
+      align-items: start;
+      min-width: 0;
+    }
+    .timeline-item__handle {
+      appearance: none;
+      border: none;
+      background: #f4f4f4;
+      color: var(--muted);
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 8px;
+      cursor: grab;
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      letter-spacing: -0.08em;
+      line-height: 1;
+      padding: 0;
+      margin-top: 0.15rem;
+      user-select: none;
+    }
+    .timeline-item__handle:active { cursor: grabbing; }
+    .timeline-item__content { min-width: 0; }
+    .timeline-item__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.15rem;
+    }
+    .timeline-item__beat {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .timeline-item__title {
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-item__copy {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 0.85rem;
+    }
+    .timeline-item__media {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    @media (min-width: 720px) {
+      .timeline-item__media {
+        width: 8.5rem;
+        aspect-ratio: 1;
+      }
+    }
+    .timeline-item__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* —— Passport / LoyalBrew —— */
+    .passport {
+      border-top: 1px solid var(--line);
+    }
+    .passport__grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2.25rem;
+    }
+    @media (min-width: 900px) {
+      .passport__grid {
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 2.75rem;
+        align-items: start;
+      }
+    }
+    .passport__steps {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .passport__step {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr;
+      gap: 0.9rem;
+      align-items: start;
+    }
+    .passport__step-num {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: #f4f4f4;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .passport__step h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .passport__step p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .passport__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+    .passport__note {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .passport__note a {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .passport-card {
+      background: #f7f7f7;
+      border-radius: var(--radius);
+      padding: 1.35rem 1.25rem 1.25rem;
+    }
+    .passport-card__top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.15rem;
+    }
+    .passport-card__title {
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+    .passport-card__progress {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .stamp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    @media (min-width: 520px) {
+      .stamp-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .stamp {
+      appearance: none;
+      border: 1.5px dashed #d0d0d0;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 1rem 0.75rem;
+      text-align: center;
+      cursor: pointer;
+      font: inherit;
+      color: var(--ink);
+      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease);
+      min-height: 7.5rem;
+      display: grid;
+      align-content: center;
+      gap: 0.35rem;
+    }
+    .stamp:hover {
+      border-color: #bdbdbd;
+      transform: translateY(-1px);
+    }
+    .stamp.is-claimed {
+      border-style: solid;
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--white);
+    }
+    .stamp__role {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .stamp.is-claimed .stamp__role { opacity: 0.75; }
+    .stamp__name {
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+    .stamp__status {
+      font-size: 0.72rem;
+      font-weight: 500;
+      opacity: 0.65;
+    }
+    .passport-card__footer {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e4e4e4;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .passport-card__reward {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 28ch;
+    }
+    .passport-card__reward strong {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* —— Promo —— */
+    .promo {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+    .promo .section-title {
+      max-width: none;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .promo .section-copy {
+      margin: 0 auto 1.5rem;
+    }
+    .promo-code {
+      display: inline-flex;
+      align-items: stretch;
+      overflow: hidden;
+      border-radius: var(--pill);
+      border: 1.5px solid #d8d8d8;
+      background: var(--white);
+      margin-bottom: 0.85rem;
+    }
+    .promo-code__value {
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.85rem 1.2rem;
+      color: var(--nelson-green);
+    }
+    .code-green {
+      color: var(--nelson-green);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .promo-code__copy {
+      border: none;
+      border-left: 1.5px solid #d8d8d8;
+      background: var(--ink);
+      color: var(--white);
+      font: inherit;
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0 1.25rem;
+      cursor: pointer;
+    }
+    .promo-code__copy:hover { background: var(--black); }
+    .promo-code--sm {
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      border-color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+    }
+    .promo-code--sm .promo-code__value {
+      font-size: 0.88rem;
+      padding: 0.55rem 0.9rem;
+    }
+    .promo-code--sm .promo-code__copy {
+      font-size: 0.78rem;
+      padding: 0 0.95rem;
+    }
+    .promo__fine a {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .promo__fine {
+      font-size: 0.88rem;
+      color: var(--muted);
+      max-width: 42ch;
+      margin: 0 auto;
+    }
+
+    /* —— Book —— */
+    .book__panel {
+      display: grid;
+      gap: 1.5rem;
+      padding: clamp(2rem, 5vw, 3rem);
+      border-radius: var(--radius);
+      background: #f7f7f7;
+    }
+    @media (min-width: 800px) {
+      .book__panel {
+        grid-template-columns: 1.3fr 0.7fr;
+        align-items: end;
+      }
+    }
+    .book__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+    }
+    .book__links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .book__links a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      color: var(--ink);
+    }
+
+    /* —— Footer —— */
+    .campaign-footer {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      padding: 2.75rem 0 2.25rem;
+      font-size: 0.9rem;
+    }
+    .campaign-footer__grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 700px) {
+      .campaign-footer__grid {
+        grid-template-columns: 1.2fr 1fr;
+        align-items: start;
+      }
+    }
+    .campaign-footer strong {
+      display: block;
+      color: var(--ink);
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+    }
+    .campaign-footer a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .campaign-footer__legal {
+      margin-top: 1.75rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.8rem;
+      max-width: 70ch;
+    }
+
+    /* —— Sticky —— */
+    .sticky-promo {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid var(--line);
+      backdrop-filter: blur(10px);
+      transform: translateY(110%);
+      transition: transform 0.35s var(--ease);
+    }
+    .sticky-promo.is-visible { transform: none; }
+    .sticky-promo__code {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: 0.9rem;
+      color: var(--nelson-green);
+    }
+    .sticky-promo .btn {
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+    }
+    @media (min-width: 900px) {
+      .sticky-promo { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="sample-banner">Interactive version · Check Into Nelson · <a href="check-into-nelson-script.html">View script-faithful alternate</a></div>
+
+
+  <header class="site-bar">
+    <a class="logo" href="https://nelsoncounty.com/">
+      <span>Visit</span>
+      <span>Nelson County</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="https://nelsoncounty.com/calendar-of-events">Events</a>
+      <a href="https://nelsoncounty.com/blog">Blog</a>
+      <a href="https://nelsoncounty.com/about">About</a>
+      <a href="https://nelsoncounty.com/contact">Contact</a>
+      <a href="#stay">Stay</a>
+      <a href="#experience">Experience</a>
+      <a href="#passport">Passport</a>
+      <a class="nav-pill" href="#itinerary">Sample stay</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="Campaign hero">
+      <div class="hero__media" aria-hidden="true">
+        <div class="hero__slide is-active">
+          <img
+            src="assets/check-into-nelson/farmhouse-veritas.jpg"
+            alt=""
+            width="1024"
+            height="682"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/blue-ridge-tunnel.jpg"
+            alt=""
+            width="1024"
+            height="768"
+            loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/devils-backbone.jpg"
+            alt=""
+            width="1024"
+            height="794"
+            loading="lazy"
+          />
+        </div>
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__content">
+        <div class="hero__main">
+          <h1 class="hero__campaign">Check Into Nelson</h1>
+          <p class="hero__tagline">Stay Longer. Experience More.</p>
+          <p class="hero__lede">Trade the rushed day trip for a few days of Blue Ridge views, local wine, creative experiences, and outdoor adventure — with room to slow down.</p>
+          <div class="cta-row">
+            <a class="btn btn--light" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
+            <a class="btn btn--ghost" href="#experience" data-track="cta_explore_experience">Explore the Experience</a>
+          </div>
+          <div class="hero__dots" role="tablist" aria-label="Hero images">
+            <button type="button" class="hero__dot is-active" role="tab" aria-selected="true" aria-label="Farmhouse at Veritas" data-hero-slide="0"></button>
+            <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="1"></button>
+            <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="2"></button>
+          </div>
+        </div>
+        <aside class="hero__promo" aria-label="Campaign promo code">
+          <p class="hero__promo-label">Promo code</p>
+          <p class="hero__promo-title">Save with CHECKINTONELSON</p>
+          <p class="hero__promo-copy">Get 15% off participating lodging, plus offers from wineries, experiences, and rides. Copy it before you book.</p>
+          <div class="promo-code promo-code--sm" role="group" aria-label="Promotional code">
+            <span class="promo-code__value">CHECKINTONELSON</span>
+            <button type="button" class="promo-code__copy" id="copyPromoHero" data-track="copy_promo_code">Copy</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="partner-strip" aria-label="Participating partners">
+      <div class="wrap">
+        <p class="partner-strip__label">Participating partners</p>
+        <div class="partner-strip__row">
+          <a class="partner-chip" href="#feature-farmhouse">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Farmhouse at Veritas
+          </a>
+          <a class="partner-chip" href="#feature-devils-backbone-camp">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-camp-image1_pHe83b4NS?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Devils Backbone Campground
+          </a>
+          <a class="partner-chip" href="#feature-flying-fox">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Flying Fox Vineyard
+          </a>
+          <a class="partner-chip" href="#feature-glass-hollow">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Glass Hollow Studio
+          </a>
+          <a class="partner-chip" href="#feature-tunnel">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Blue Ridge Tunnel
+          </a>
+          <a class="partner-chip" href="#feature-rides">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            Reliable Rides
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="about">
+      <div class="wrap intro__grid">
+        <div>
+          <p class="eyebrow">The getaway</p>
+          <h2 class="section-title">A Blue Ridge getaway that gives you time to enjoy it</h2>
+          <p class="section-copy">
+            Nelson County is close enough for an easy drive, but it deserves more than a quick visit.
+            Check in during the week, settle into the scenery, and experience the county at your own pace —
+            tasting local wine, visiting makers, exploring the outdoors, and discovering places worth lingering over.
+          </p>
+        </div>
+        <p class="intro__aside">
+          With participating lodging, attractions, and experiences gathered in one place, planning your stay is simple.
+        </p>
+      </div>
+    </section>
+
+    <section class="hub" id="stay" aria-labelledby="stay-title">
+      <div class="wrap">
+        <p class="eyebrow">Choose your stay</p>
+        <h2 class="section-title" id="stay-title">Two home bases. One promo code.</h2>
+        <p class="section-copy">Plan a two-night escape or settle in for three or four days. Use CHECKINTONELSON for 15% off participating lodging.</p>
+
+        <div class="stay-grid">
+          <article class="stay-card" id="feature-farmhouse">
+            <div class="stay-card__media">
+              <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-1000,h-700,fo-auto,q-75" alt="Farmhouse at Veritas" width="1000" height="700" loading="lazy" />
+            </div>
+            <div class="stay-card__body">
+              <span class="stay-card__offer">15% off with CHECKINTONELSON</span>
+              <h3 class="stay-card__title">Farmhouse at Veritas</h3>
+              <p class="stay-card__copy">Wake up in the heart of Virginia wine country. Vineyard views, thoughtful hospitality, and an ideal home base for exploring Nelson County.</p>
+              <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
+            </div>
+          </article>
+
+          <article class="stay-card" id="feature-devils-backbone-camp">
+            <div class="stay-card__media">
+              <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-camp-image1_pHe83b4NS?tr=w-1000,h-700,fo-auto,q-75" alt="Devils Backbone Campground" width="1000" height="700" loading="lazy" />
+            </div>
+            <div class="stay-card__body">
+              <span class="stay-card__offer">15% off with CHECKINTONELSON</span>
+              <h3 class="stay-card__title">Devils Backbone Campground</h3>
+              <p class="stay-card__copy">Settle into the Blue Ridge where outdoor stays, mountain scenery, craft beverage experiences, and on-site agritourism come together.</p>
+              <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Your Stay</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <div class="showcase__head">
+          <p class="eyebrow">Build your experience</p>
+          <h2 class="section-title" id="experience-title">Stay longer. Choose what fits your pace.</h2>
+          <p class="section-copy">Stay for two nights or make it a three- to four-day getaway. Mix sip, create, explore, and get-around stops into a trip that feels like your own.</p>
+        </div>
+
+        <article class="partner-feature" id="feature-flying-fox">
+          <div class="partner-feature__media">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-1200,h-820,fo-auto,q-75" alt="Flying Fox Vineyard" width="1200" height="820" loading="lazy" />
+            <span class="partner-feature__badge">Sip</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Wine country</p>
+            <h3 class="partner-feature__title">Flying Fox Vineyard</h3>
+            <p class="partner-feature__copy">Discover thoughtfully made Virginia wine in a relaxed, character-filled setting. Stop in for a tasting, take in the atmosphere, and enjoy another side of Nelson County wine country.</p>
+            <div class="partner-feature__meta">
+              <div><span class="code-green">CHECKINTONELSON</span> <span>· Participating offer</span></div>
+            </div>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox Vineyard</a>
+              <a class="btn btn--outline" href="https://nelsoncounty.com/explore/flying-fox-vineyards">View on nelsoncounty.com</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-glass-hollow">
+          <div class="partner-feature__media">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-1200,h-820,fo-auto,q-75" alt="Glass Hollow Studio" width="1200" height="820" loading="lazy" />
+            <span class="partner-feature__badge">Create</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Hands-on artistry</p>
+            <h3 class="partner-feature__title">Glass Hollow Studio</h3>
+            <p class="partner-feature__copy">Add something hands-on to your stay. Experience local artistry, explore the glassblowing process, and create a memorable stop beyond the traditional tasting room.</p>
+            <div class="partner-feature__meta">
+              <div><span class="code-green">CHECKINTONELSON</span> <span>· When booking your experience</span></div>
+            </div>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow Studio</a>
+              <a class="btn btn--outline" href="https://nelsoncounty.com/explore/glasshollow">View on nelsoncounty.com</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-tunnel">
+          <div class="partner-feature__media">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-1200,h-820,fo-auto,q-75" alt="Blue Ridge Tunnel" width="1200" height="820" loading="lazy" />
+            <span class="partner-feature__badge">Explore</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Historic outdoors</p>
+            <h3 class="partner-feature__title">Blue Ridge Tunnel</h3>
+            <p class="partner-feature__copy">Walk through one of Nelson County’s most distinctive historic attractions — a memorable mix of mountain scenery, local history, and outdoor exploration.</p>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
+              <a class="btn btn--outline" href="#itinerary">Add to your sample stay</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-devils-backbone">
+          <div class="partner-feature__media">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-1200,h-820,fo-auto,q-75" alt="Devils Backbone" width="1200" height="820" loading="lazy" />
+            <span class="partner-feature__badge">Experience more</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Craft &amp; agritourism</p>
+            <h3 class="partner-feature__title">Devils Backbone</h3>
+            <p class="partner-feature__copy">Beyond the campground, explore agricultural and craft beverage culture — working greenhouses, locally grown ingredients, and the Basecamp experience.</p>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
+              <a class="btn btn--outline" href="https://nelsoncounty.com/explore/devils-backbone-brewing-company">View on nelsoncounty.com</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-rides">
+          <div class="partner-feature__media">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-1200,h-820,fo-auto,q-75" alt="Getting around Nelson County" width="1200" height="820" loading="lazy" />
+            <span class="partner-feature__badge">Get around</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Get Around</p>
+            <h3 class="partner-feature__title">Reliable Rides</h3>
+            <p class="partner-feature__copy">Spend less time thinking about transportation and more time enjoying your stay. Travel safely and conveniently between participating stops.</p>
+            <div class="partner-feature__meta">
+              <div><span class="code-green">CHECKINTONELSON</span> <span>· When arranging your ride</span></div>
+            </div>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
+              <a class="btn btn--outline" href="#itinerary">See it on the timeline</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="itinerary" id="itinerary" aria-labelledby="itin-title">
+      <div class="wrap">
+        <div class="itinerary__head">
+          <p class="eyebrow">Need a place to start?</p>
+          <h2 class="section-title" id="itin-title">A sample three-day stay</h2>
+          <p class="section-copy">Pick your check-in date, then drag experiences to reshape the sample plan — within a day or between days. Nelson moves at your speed.</p>
+        </div>
+
+        <div class="date-picker" id="datePicker">
+          <div class="date-picker__top">
+            <div>
+              <p class="date-picker__label">Check-in date</p>
+              <p class="date-picker__hint" id="selectedRangeLabel">Select a start date to build your plan</p>
+            </div>
+            <label class="date-picker__custom">
+              <span class="date-picker__label">Or enter your own</span>
+              <input type="date" id="customStartDate" />
+            </label>
+          </div>
+          <div class="date-scroller" id="dateScroller" role="listbox" aria-label="Suggested check-in dates"></div>
+          <p class="date-picker__note" id="datePickerNote">Weekday cards are highlighted. Midweek usually means more room to slow down.</p>
+        </div>
+
+        <div class="plan-board" id="planBoard" hidden>
+          <button type="button" class="plan-day is-active" data-filter="all" id="planDayAll">
+            <span class="plan-day__kicker">Full trip</span>
+            <span class="plan-day__date" id="planAllDate">Your 3-day plan</span>
+            <span class="plan-day__summary" id="planAllSummary">Settle in · Taste &amp; create · Head outdoors</span>
+          </button>
+          <button type="button" class="plan-day" data-filter="1" id="planDay1">
+            <span class="plan-day__kicker">Day 1</span>
+            <span class="plan-day__date" id="planDay1Date">—</span>
+            <span class="plan-day__summary" id="planDay1Summary">Settle in</span>
+          </button>
+          <button type="button" class="plan-day" data-filter="2" id="planDay2">
+            <span class="plan-day__kicker">Day 2</span>
+            <span class="plan-day__date" id="planDay2Date">—</span>
+            <span class="plan-day__summary" id="planDay2Summary">Taste, create &amp; explore</span>
+          </button>
+          <button type="button" class="plan-day" data-filter="3" id="planDay3">
+            <span class="plan-day__kicker">Day 3</span>
+            <span class="plan-day__date" id="planDay3Date">—</span>
+            <span class="plan-day__summary" id="planDay3Summary">Head outdoors</span>
+          </button>
+        </div>
+
+        <div class="timeline-help">
+          <p><strong>Drag</strong> any experience to change the order — within a day or between days.</p>
+          <button type="button" class="timeline-reset" id="resetTimeline">Reset sequence</button>
+        </div>
+
+        <div class="timeline" id="timeline">
+          <div class="timeline-day" data-day="1" id="timelineDay1">
+            <div class="day-divider" data-divider="1">
+              <h3 class="day-divider__title" data-divider-title>Day 1</h3>
+              <span class="day-divider__meta" data-divider-meta>Settle in and let the mountains do their thing</span>
+            </div>
+            <div class="timeline-list" data-drop-day="1" id="listDay1">
+              <article class="timeline-item" data-id="checkin" data-role="Settle in" data-default-day="1" data-default-order="1" id="stop-checkin">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">1</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Settle in · Day 1</p>
+                      <h3 class="timeline-item__title">Farmhouse at Veritas or Devils Backbone Campground</h3>
+                      <p class="timeline-item__copy">Arrive, unpack, pour something local, and let Blue Ridge views set the pace. No agenda tonight — just good scenery and room to slow down.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
+                        <a class="btn btn--outline" href="#feature-farmhouse">Lodging options</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="timeline-day" data-day="2" id="timelineDay2">
+            <div class="day-divider" data-divider="2">
+              <h3 class="day-divider__title" data-divider-title>Day 2</h3>
+              <span class="day-divider__meta" data-divider-meta>Taste, create, and explore</span>
+            </div>
+            <div class="timeline-list" data-drop-day="2" id="listDay2">
+              <article class="timeline-item" data-id="sip" data-role="Sip" data-default-day="2" data-default-order="2" id="stop-sip">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">2</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Sip · Day 2</p>
+                      <h3 class="timeline-item__title">Flying Fox Vineyard</h3>
+                      <p class="timeline-item__copy">A pour with a view — thoughtfully made Virginia wine in a relaxed, character-filled setting. Let the day unfold without a rush back to anywhere.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox</a>
+                        <a class="btn btn--outline" href="#feature-flying-fox">About Flying Fox</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item" data-id="create" data-role="Create" data-default-day="2" data-default-order="3" id="stop-create">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">3</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Create · Day 2</p>
+                      <h3 class="timeline-item__title">Glass Hollow Studio</h3>
+                      <p class="timeline-item__copy">Get hands-on with local artistry and the glassblowing process — a memorable stop beyond the tasting room.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow</a>
+                        <a class="btn btn--outline" href="#feature-glass-hollow">About Glass Hollow</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item" data-id="backbone" data-role="Experience" data-default-day="2" data-default-order="4" id="stop-backbone">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">4</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Experience · Day 2</p>
+                      <h3 class="timeline-item__title">Devils Backbone</h3>
+                      <p class="timeline-item__copy">Explore craft beverage culture and on-site agritourism — greenhouses, locally grown ingredients, and the Basecamp experience.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
+                        <a class="btn btn--outline" href="#feature-devils-backbone">About Devils Backbone</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="timeline-day" data-day="3" id="timelineDay3">
+            <div class="day-divider" data-divider="3">
+              <h3 class="day-divider__title" data-divider-title>Day 3</h3>
+              <span class="day-divider__meta" data-divider-meta>Head outdoors before taking the long way home</span>
+            </div>
+            <div class="timeline-list" data-drop-day="3" id="listDay3">
+              <article class="timeline-item" data-id="explore" data-role="Explore" data-default-day="3" data-default-order="5" id="stop-explore">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">5</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <h3 class="timeline-item__title">Blue Ridge Tunnel</h3>
+                      <p class="timeline-item__copy">Nelson’s coolest hike: a nearly mile-long passage carved through greenstone in the 1850s, reopened as a trail in 2020. Want more? Chase cascades at Crabtree Falls, Spy Rock, or the Tye River.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
+                        <a class="btn btn--outline" href="#feature-tunnel">About the Tunnel</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="timeline-day" data-day="anytime" id="timelineDayAnytime">
+            <div class="day-divider" data-divider="anytime">
+              <h3 class="day-divider__title" data-divider-title>Anytime during your stay</h3>
+              <span class="day-divider__meta" data-divider-meta></span>
+            </div>
+            <div class="timeline-list" data-drop-day="anytime" id="listAnytime">
+              <article class="timeline-item" data-id="rides" data-role="Get around" data-default-day="anytime" data-default-order="6" id="stop-rides">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">6</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Get around · Anytime</p>
+                      <h3 class="timeline-item__title">Reliable Rides</h3>
+                      <p class="timeline-item__copy">Travel safely between stops so you can enjoy tastings and experiences without worrying about the drive. Use CHECKINTONELSON when arranging your ride.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
+                        <a class="btn btn--outline" href="#feature-rides">About Reliable Rides</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+        <p class="section-copy" style="margin-top:2rem;max-width:46ch;">Not ready to leave? Add a night. Nelson moves at your speed, not the other way around.</p>
+      </div>
+    </section>
+
+
+    <section class="passport" id="passport" aria-labelledby="passport-title">
+      <div class="wrap">
+        <p class="eyebrow">Loyalty · Powered by LoyalBrew</p>
+        <h2 class="section-title" id="passport-title">Collect stamps while you stay longer</h2>
+        <p class="section-copy">
+          A free digital passport for Check Into Nelson. Check in at participating stops, earn stamps,
+          and unlock a campaign reward — no app download required.
+        </p>
+
+        <div class="passport__grid">
+          <div>
+            <div class="passport__steps">
+              <div class="passport__step">
+                <div class="passport__step-num" aria-hidden="true">1</div>
+                <div>
+                  <h3>Open your passport</h3>
+                  <p>Launch the Check Into Nelson passport in LoyalBrew from this page or a partner QR code.</p>
+                </div>
+              </div>
+              <div class="passport__step">
+                <div class="passport__step-num" aria-hidden="true">2</div>
+                <div>
+                  <h3>Check in at each stop</h3>
+                  <p>GPS check-in or photo upload claims a stamp at lodging, sip, create, explore, and ride stops.</p>
+                </div>
+              </div>
+              <div class="passport__step">
+                <div class="passport__step-num" aria-hidden="true">3</div>
+                <div>
+                  <h3>Earn your reward</h3>
+                  <p>Complete the passport to unlock the campaign gift. Pair visits with code CHECKINTONELSON for partner offers.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="passport__actions">
+              <a class="btn btn--dark" id="openPassport" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Open digital passport</a>
+              <a class="btn btn--outline" href="#itinerary">See sample stay</a>
+            </div>
+            <p class="passport__note">
+              Sample setup: replace the passport link with the live Check Into Nelson LoyalBrew URL when the trail goes live.
+              Learn more at <a href="https://www.loyalbrew.com/" target="_blank" rel="noopener">loyalbrew.com</a>.
+            </p>
+          </div>
+
+          <div class="passport-card" aria-label="Digital passport preview">
+            <div class="passport-card__top">
+              <h3 class="passport-card__title">Your Nelson passport</h3>
+              <p class="passport-card__progress"><span id="stampCount">0</span> / 6 stamps</p>
+            </div>
+            <div class="stamp-grid" id="stampGrid">
+              <button type="button" class="stamp" data-stamp="lodging" aria-pressed="false">
+                <span class="stamp__role">Stay</span>
+                <span class="stamp__name">Your lodging</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+              <button type="button" class="stamp" data-stamp="flying-fox" aria-pressed="false">
+                <span class="stamp__role">Sip</span>
+                <span class="stamp__name">Flying Fox</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+              <button type="button" class="stamp" data-stamp="glass-hollow" aria-pressed="false">
+                <span class="stamp__role">Create</span>
+                <span class="stamp__name">Glass Hollow</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+              <button type="button" class="stamp" data-stamp="tunnel" aria-pressed="false">
+                <span class="stamp__role">Explore</span>
+                <span class="stamp__name">Blue Ridge Tunnel</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+              <button type="button" class="stamp" data-stamp="devils-backbone" aria-pressed="false">
+                <span class="stamp__role">Experience</span>
+                <span class="stamp__name">Devils Backbone</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+              <button type="button" class="stamp" data-stamp="rides" aria-pressed="false">
+                <span class="stamp__role">Ride</span>
+                <span class="stamp__name">Reliable Rides</span>
+                <span class="stamp__status">Tap to preview</span>
+              </button>
+            </div>
+            <div class="passport-card__footer">
+              <p class="passport-card__reward" id="passportReward">
+                Preview only — live stamps are claimed in LoyalBrew at each stop.
+              </p>
+              <a class="btn btn--dark" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Start passport</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promo" id="promo" aria-labelledby="promo-title">
+      <div class="wrap">
+        <p class="eyebrow">Participating offers</p>
+        <h2 class="section-title" id="promo-title">Save with <span class="code-green">CHECKINTONELSON</span></h2>
+        <p class="section-copy">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County.</p>
+        <ul class="promo-perks">
+          <li>Receive 15% off participating lodging</li>
+          <li>Access additional offers from participating wineries, experiences, and transportation partners</li>
+          <li>Enter or mention the code when booking or checking out through each partner</li>
+        </ul>
+        <div class="promo-code" role="group" aria-label="Promotional code">
+          <span class="promo-code__value" id="promoCodeValue">CHECKINTONELSON</span>
+          <button type="button" class="promo-code__copy" id="copyPromo" data-track="copy_promo_code">Copy</button>
+        </div>
+        <p class="promo__fine"><a href="#experience">View all participating partners</a> · Offers, availability, and redemption instructions vary by partner.</p>
+      </div>
+    </section>
+
+    <section class="book" id="book">
+      <div class="wrap">
+        <div class="book__panel">
+          <div>
+            <p class="eyebrow">Stay Midweek. See More.</p>
+            <h2 class="section-title">Ready when you are</h2>
+            <p class="section-copy">
+              Weekday travel gives you more room to slow down, explore, and enjoy Nelson County at a different pace.
+              Plan a two-night stay or extend to three or four days — then use CHECKINTONELSON when booking with participating partners.
+            </p>
+            <div class="book__actions">
+              <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
+              <a class="btn btn--outline" href="#experience" data-track="cta_explore_partners">Explore Participating Partners</a>
+            </div>
+          </div>
+          <div class="book__links">
+            <a href="#feature-farmhouse">Farmhouse at Veritas</a>
+            <a href="#feature-devils-backbone-camp">Devils Backbone Campground</a>
+            <a href="#feature-flying-fox">Flying Fox</a>
+            <a href="#feature-glass-hollow">Glass Hollow</a>
+            <a href="#feature-tunnel">Blue Ridge Tunnel</a>
+            <a href="#feature-devils-backbone">Devils Backbone</a>
+            <a href="#feature-rides">Reliable Rides</a>
+            <a href="#promo">Copy promo code</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="campaign-footer">
+    <div class="wrap campaign-footer__grid">
+      <div>
+        <strong>Check Into Nelson</strong>
+        Presented by Nelson County Tourism in partnership with participating Nelson County businesses.
+        Use promo code CHECKINTONELSON when booking with participating partners.
+      </div>
+      <div>
+        <a href="#experience">Partners</a>
+        ·
+        <a href="https://nelsoncounty.com/">nelsoncounty.com</a>
+        ·
+        <a href="https://www.virginia.org/" rel="noopener">Virginia.org</a>
+        <br />
+        Virginia is for Lovers branding to be applied per VTC guidelines.
+      </div>
+    </div>
+    <div class="wrap">
+      <p class="campaign-footer__legal">
+        Sample design for internal review. Source copy: docs/check-into-nelson-website-copy.md.
+        Photography placeholders use existing Nelson County listing images; final campaign assets may replace these.
+        Offers, Reliable Rides details, and digital passport integration pending confirmation.
+      </p>
+    </div>
+  </footer>
+
+  <div class="sticky-promo" id="stickyPromo" aria-hidden="true">
+    <span class="sticky-promo__code">CHECKINTONELSON</span>
+    <div class="cta-row">
+      <button type="button" class="btn btn--dark" id="stickyCopy">Copy</button>
+      <a class="btn btn--outline" href="#passport" data-track="cta_open_passport">Passport</a>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var LOYALBREW_PASSPORT_URL = "https://www.loyalbrew.com/";
+
+      (function initHeroSlideshow() {
+        var slides = Array.prototype.slice.call(document.querySelectorAll(".hero__slide"));
+        var dots = Array.prototype.slice.call(document.querySelectorAll("[data-hero-slide]"));
+        if (slides.length < 2) return;
+
+        var index = 0;
+        var timer = null;
+        var intervalMs = 5500;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function show(next) {
+          index = (next + slides.length) % slides.length;
+          slides.forEach(function (slide, i) {
+            slide.classList.toggle("is-active", i === index);
+          });
+          dots.forEach(function (dot, i) {
+            var on = i === index;
+            dot.classList.toggle("is-active", on);
+            dot.setAttribute("aria-selected", on ? "true" : "false");
+          });
+        }
+
+        function start() {
+          if (reduceMotion || timer) return;
+          timer = window.setInterval(function () {
+            show(index + 1);
+          }, intervalMs);
+        }
+
+        function stop() {
+          if (!timer) return;
+          window.clearInterval(timer);
+          timer = null;
+        }
+
+        dots.forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            var next = Number(dot.getAttribute("data-hero-slide"));
+            if (Number.isNaN(next)) return;
+            stop();
+            show(next);
+            start();
+          });
+        });
+
+        var heroEl = document.querySelector(".hero");
+        if (heroEl) {
+          heroEl.addEventListener("mouseenter", stop);
+          heroEl.addEventListener("mouseleave", start);
+          heroEl.addEventListener("focusin", stop);
+          heroEl.addEventListener("focusout", function (e) {
+            if (!heroEl.contains(e.relatedTarget)) start();
+          });
+        }
+
+        show(0);
+        start();
+      })();
+
+      document.querySelectorAll('a[href="https://www.loyalbrew.com/"]').forEach(function (link) {
+        link.setAttribute("href", LOYALBREW_PASSPORT_URL);
+      });
+
+      var stampCountEl = document.getElementById("stampCount");
+      var rewardEl = document.getElementById("passportReward");
+      var stamps = document.querySelectorAll(".stamp");
+
+      function updatePassportPreview() {
+        var claimed = document.querySelectorAll(".stamp.is-claimed").length;
+        if (stampCountEl) stampCountEl.textContent = String(claimed);
+        if (!rewardEl) return;
+        if (claimed >= 6) {
+          rewardEl.innerHTML = "<strong>Passport complete (preview).</strong> In LoyalBrew, this unlocks the campaign reward.";
+        } else if (claimed > 0) {
+          rewardEl.innerHTML = "<strong>" + claimed + " stamp" + (claimed === 1 ? "" : "s") + " previewed.</strong> Live check-ins happen in LoyalBrew.";
+        } else {
+          rewardEl.textContent = "Preview only — live stamps are claimed in LoyalBrew at each stop.";
+        }
+      }
+
+      stamps.forEach(function (stamp) {
+        stamp.addEventListener("click", function () {
+          var on = stamp.classList.toggle("is-claimed");
+          stamp.setAttribute("aria-pressed", on ? "true" : "false");
+          var status = stamp.querySelector(".stamp__status");
+          if (status) status.textContent = on ? "Stamped" : "Tap to preview";
+          updatePassportPreview();
+        });
+      });
+
+      /* —— Interactive weekday calendar + draggable timeline —— */
+      var timeline = document.getElementById("timeline");
+      var listDay1 = document.getElementById("listDay1");
+      var listDay2 = document.getElementById("listDay2");
+      var listDay3 = document.getElementById("listDay3");
+      var listAnytime = document.getElementById("listAnytime");
+      var lists = [listDay1, listDay2, listDay3, listAnytime].filter(Boolean);
+      var dateScroller = document.getElementById("dateScroller");
+      var customStartDate = document.getElementById("customStartDate");
+      var selectedRangeLabel = document.getElementById("selectedRangeLabel");
+      var datePickerNote = document.getElementById("datePickerNote");
+      var planBoard = document.getElementById("planBoard");
+      var activeFilter = "all";
+      var startDate = null;
+      var dragItem = null;
+      var dragGhost = null;
+      var dragPlaceholder = null;
+      var dragPointerId = null;
+      var lastDropKey = "";
+
+      var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var dayNamesLong = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+      function startOfDay(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      }
+      function addDays(d, n) {
+        var x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        x.setDate(x.getDate() + n);
+        return x;
+      }
+      function toISODate(d) {
+        var m = String(d.getMonth() + 1).padStart(2, "0");
+        var day = String(d.getDate()).padStart(2, "0");
+        return d.getFullYear() + "-" + m + "-" + day;
+      }
+      function parseISODate(value) {
+        if (!value) return null;
+        var parts = value.split("-");
+        if (parts.length !== 3) return null;
+        return new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+      }
+      function isWeekend(d) {
+        var day = d.getDay();
+        return day === 0 || day === 6;
+      }
+      function formatShort(d) {
+        return dayNames[d.getDay()] + ", " + monthNames[d.getMonth()] + " " + d.getDate();
+      }
+      function formatCardMonth(d) {
+        return monthNames[d.getMonth()];
+      }
+      function formatLong(d) {
+        return dayNamesLong[d.getDay()] + ", " + monthNames[d.getMonth()] + " " + d.getDate();
+      }
+      function getItems() {
+        return Array.prototype.slice.call(document.querySelectorAll(".timeline-item:not(.is-dragging)"));
+      }
+      function rolesInList(list) {
+        return Array.prototype.map.call(list.querySelectorAll(".timeline-item:not(.is-dragging)"), function (item) {
+          return item.getAttribute("data-role");
+        }).join(" · ");
+      }
+
+      function nextWeekdaySuggestions(count) {
+        var list = [];
+        var cursor = addDays(startOfDay(new Date()), 1);
+        var guard = 0;
+        while (list.length < count && guard < 60) {
+          list.push(new Date(cursor));
+          cursor = addDays(cursor, 1);
+          guard += 1;
+        }
+        return list;
+      }
+
+      function renderDateCards() {
+        if (!dateScroller) return;
+        dateScroller.innerHTML = "";
+        nextWeekdaySuggestions(14).forEach(function (date) {
+          var weekend = isWeekend(date);
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "date-card" + (weekend ? " is-weekend" : "");
+          btn.setAttribute("role", "option");
+          btn.setAttribute("aria-selected", "false");
+          btn.dataset.date = toISODate(date);
+          btn.innerHTML =
+            '<span class="date-card__dow">' + dayNames[date.getDay()] + "</span>" +
+            '<span class="date-card__day">' + date.getDate() + "</span>" +
+            '<span class="date-card__month">' + formatCardMonth(date) + "</span>" +
+            '<span class="date-card__tag">' + (weekend ? "Often full" : "Weekday") + "</span>";
+          btn.addEventListener("click", function () { setStartDate(date, true); });
+          dateScroller.appendChild(btn);
+        });
+      }
+
+      function syncDateCardSelection(iso) {
+        if (!dateScroller) return;
+        Array.prototype.forEach.call(dateScroller.querySelectorAll(".date-card"), function (card) {
+          var selected = card.dataset.date === iso;
+          card.classList.toggle("is-selected", selected);
+          card.setAttribute("aria-selected", selected ? "true" : "false");
+        });
+      }
+
+      function refreshTimelineMeta() {
+        var day1 = startDate ? startOfDay(startDate) : null;
+        var day2 = day1 ? addDays(day1, 1) : null;
+        var day3 = day1 ? addDays(day1, 2) : null;
+        var items = getItems();
+        items.forEach(function (item, index) {
+          var num = item.querySelector(".timeline-item__num");
+          if (num) num.textContent = String(index + 1);
+          var list = item.closest(".timeline-list");
+          var day = list ? list.getAttribute("data-drop-day") : "1";
+          item.dataset.day = day;
+          var role = item.getAttribute("data-role") || "";
+          var beat = item.querySelector(".timeline-item__beat");
+          if (!beat) return;
+          if (!day1) {
+            beat.textContent = role + " · Day " + (day === "anytime" ? "flex" : day);
+            return;
+          }
+          if (day === "1") beat.textContent = role + " · " + formatShort(day1);
+          else if (day === "2") beat.textContent = role + " · " + formatShort(day2);
+          else if (day === "3") beat.textContent = role + " · " + formatShort(day3);
+          else beat.textContent = role + " · " + formatShort(day1) + "–" + dayNames[day3.getDay()];
+        });
+
+        document.querySelectorAll(".day-divider").forEach(function (divider) {
+          var key = divider.getAttribute("data-divider");
+          var title = divider.querySelector("[data-divider-title]");
+          var meta = divider.querySelector("[data-divider-meta]");
+          var list = divider.parentElement && divider.parentElement.querySelector(".timeline-list");
+          var summary = list ? rolesInList(list) : "";
+          if (key === "1") {
+            if (title) title.textContent = day1 ? ("Day 1 · " + formatShort(day1)) : "Day 1";
+            if (meta) meta.textContent = summary || "Settle in and let the mountains do their thing";
+          } else if (key === "2") {
+            if (title) title.textContent = day2 ? ("Day 2 · " + formatShort(day2)) : "Day 2";
+            if (meta) meta.textContent = summary || "Taste, create, and explore";
+          } else if (key === "3") {
+            if (title) title.textContent = day3 ? ("Day 3 · " + formatShort(day3)) : "Day 3";
+            if (meta) meta.textContent = summary || "Head outdoors before taking the long way home";
+          } else if (key === "anytime") {
+            if (title) title.textContent = "Anytime during your stay";
+            if (meta) meta.textContent = day1 ? (formatShort(day1) + " – " + formatShort(day3)) : summary;
+          }
+        });
+
+        var s1 = document.getElementById("planDay1Summary");
+        var s2 = document.getElementById("planDay2Summary");
+        var s3 = document.getElementById("planDay3Summary");
+        var sAll = document.getElementById("planAllSummary");
+        if (s1) s1.textContent = rolesInList(listDay1) || "No stops yet";
+        if (s2) s2.textContent = rolesInList(listDay2) || "No stops yet";
+        if (s3) s3.textContent = rolesInList(listDay3) || "No stops yet";
+        if (sAll && day1) {
+          sAll.textContent = formatShort(day1) + " → " + formatShort(day3);
+        }
+        requestAnimationFrame(observeItems);
+      }
+
+      function applyFilter(filter) {
+        activeFilter = filter;
+        document.querySelectorAll(".plan-day").forEach(function (card) {
+          card.classList.toggle("is-active", card.getAttribute("data-filter") === filter);
+        });
+        document.querySelectorAll(".timeline-day").forEach(function (dayEl) {
+          var day = dayEl.getAttribute("data-day");
+          var show = filter === "all" || day === filter || (filter !== "all" && day === "anytime");
+          dayEl.classList.toggle("is-filtered-out", !show);
+        });
+        requestAnimationFrame(observeItems);
+      }
+
+      function updateItineraryForDate(date) {
+        var day1 = startOfDay(date);
+        var day2 = addDays(day1, 1);
+        var day3 = addDays(day1, 2);
+        var iso = toISODate(day1);
+
+        if (selectedRangeLabel) selectedRangeLabel.textContent = formatShort(day1) + " → " + formatShort(day3);
+        if (datePickerNote) {
+          if (isWeekend(day1) || isWeekend(day2) || isWeekend(day3)) {
+            datePickerNote.innerHTML = "<strong>Note:</strong> Part of this stay lands on a weekend — lodging often fills then. Midweek usually gives you more room to slow down.";
+          } else {
+            datePickerNote.innerHTML = "<strong>Nice pick.</strong> This is a weekday-leaning stay — typically easier for lodging and a calmer pace.";
+          }
+        }
+        if (planBoard) planBoard.hidden = false;
+
+        var planAllDate = document.getElementById("planAllDate");
+        var planDay1Date = document.getElementById("planDay1Date");
+        var planDay2Date = document.getElementById("planDay2Date");
+        var planDay3Date = document.getElementById("planDay3Date");
+        if (planAllDate) planAllDate.textContent = monthNames[day1.getMonth()] + " " + day1.getDate() + "–" + day3.getDate();
+        if (planDay1Date) planDay1Date.textContent = formatLong(day1);
+        if (planDay2Date) planDay2Date.textContent = formatLong(day2);
+        if (planDay3Date) planDay3Date.textContent = formatLong(day3);
+
+        syncDateCardSelection(iso);
+        if (customStartDate) customStartDate.value = iso;
+        refreshTimelineMeta();
+        applyFilter(activeFilter);
+      }
+
+      function setStartDate(date, scrollPlan) {
+        if (!date || isNaN(date.getTime())) return;
+        startDate = startOfDay(date);
+        updateItineraryForDate(startDate);
+        if (scrollPlan && planBoard) planBoard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      function findTargetList(clientY) {
+        var hit = null;
+        lists.forEach(function (list) {
+          var dayEl = list.closest(".timeline-day");
+          if (dayEl && dayEl.classList.contains("is-filtered-out")) return;
+          var rect = list.getBoundingClientRect();
+          if (clientY >= rect.top - 40 && clientY <= rect.bottom + 40) hit = list;
+        });
+        if (hit) return hit;
+        var best = null;
+        lists.forEach(function (list) {
+          var dayEl = list.closest(".timeline-day");
+          if (dayEl && dayEl.classList.contains("is-filtered-out")) return;
+          var rect = list.getBoundingClientRect();
+          var mid = (rect.top + rect.bottom) / 2;
+          var dist = Math.abs(clientY - mid);
+          if (!best || dist < best.dist) best = { list: list, dist: dist };
+        });
+        return best ? best.list : null;
+      }
+
+      function getDragReference(list, y) {
+        var elements = Array.prototype.slice.call(list.querySelectorAll(".timeline-item:not(.is-dragging)"));
+        for (var i = 0; i < elements.length; i++) {
+          var box = elements[i].getBoundingClientRect();
+          if (y < box.top + box.height / 2) {
+            return { node: elements[i], key: "before:" + (elements[i].id || i) };
+          }
+        }
+        return { node: null, key: "end:" + (list.id || "list") };
+      }
+
+      function movePlaceholder(clientY) {
+        if (!dragPlaceholder) return;
+        var targetList = findTargetList(clientY);
+        if (!targetList) return;
+        var ref = getDragReference(targetList, clientY);
+        if (ref.key === lastDropKey) return;
+        lastDropKey = ref.key;
+        lists.forEach(function (list) { list.classList.remove("is-drop-target"); });
+        targetList.classList.add("is-drop-target");
+        if (ref.node) targetList.insertBefore(dragPlaceholder, ref.node);
+        else targetList.appendChild(dragPlaceholder);
+      }
+
+      function cleanupDragListeners() {
+        document.removeEventListener("pointermove", onPointerMove);
+        document.removeEventListener("pointerup", onPointerUp);
+        document.removeEventListener("pointercancel", onPointerUp);
+      }
+
+      function endDrag() {
+        if (!dragItem) return;
+        cleanupDragListeners();
+
+        if (dragPlaceholder && dragPlaceholder.parentNode) {
+          dragPlaceholder.parentNode.insertBefore(dragItem, dragPlaceholder);
+          dragPlaceholder.parentNode.removeChild(dragPlaceholder);
+        }
+        dragPlaceholder = null;
+
+        dragItem.classList.remove("is-dragging");
+        dragItem.classList.add("is-in");
+        dragItem = null;
+        lastDropKey = "";
+
+        if (dragGhost && dragGhost.parentNode) dragGhost.parentNode.removeChild(dragGhost);
+        dragGhost = null;
+        dragPointerId = null;
+
+        lists.forEach(function (list) { list.classList.remove("is-drop-target"); });
+        refreshTimelineMeta();
+      }
+
+      function onPointerMove(e) {
+        if (!dragItem) return;
+        if (dragPointerId != null && e.pointerId !== dragPointerId) return;
+        e.preventDefault();
+        if (dragGhost) {
+          dragGhost.style.left = Math.max(8, e.clientX - 28) + "px";
+          dragGhost.style.top = Math.max(8, e.clientY - 28) + "px";
+        }
+        movePlaceholder(e.clientY);
+      }
+
+      function onPointerUp(e) {
+        if (dragPointerId != null && e.pointerId !== dragPointerId) return;
+        endDrag();
+      }
+
+      function beginDrag(item, e) {
+        if (dragItem) return;
+        if (e.button != null && e.button !== 0) return;
+
+        dragItem = item;
+        dragPointerId = e.pointerId;
+        lastDropKey = "";
+
+        var height = Math.round(item.getBoundingClientRect().height);
+        dragPlaceholder = document.createElement("div");
+        dragPlaceholder.className = "timeline-placeholder";
+        dragPlaceholder.style.height = Math.max(72, height) + "px";
+        item.parentNode.insertBefore(dragPlaceholder, item);
+        item.classList.add("is-dragging");
+
+        var card = item.querySelector(".timeline-item__card");
+        dragGhost = card ? card.cloneNode(true) : item.cloneNode(true);
+        dragGhost.classList.add("timeline-ghost");
+        dragGhost.style.width = Math.min(440, window.innerWidth - 24) + "px";
+        dragGhost.style.left = Math.max(8, e.clientX - 28) + "px";
+        dragGhost.style.top = Math.max(8, e.clientY - 28) + "px";
+        document.body.appendChild(dragGhost);
+
+        try {
+          e.currentTarget.setPointerCapture(e.pointerId);
+        } catch (err) {}
+
+        document.addEventListener("pointermove", onPointerMove, { passive: false });
+        document.addEventListener("pointerup", onPointerUp);
+        document.addEventListener("pointercancel", onPointerUp);
+      }
+
+      function initDrag() {
+        getItems().forEach(function (item) {
+          var handle = item.querySelector(".timeline-item__handle");
+          if (!handle) return;
+          handle.addEventListener("pointerdown", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            beginDrag(item, e);
+          });
+        });
+      }
+
+      function resetTimeline() {
+        if (dragItem) endDrag();
+        var items = getItems().slice().sort(function (a, b) {
+          return Number(a.getAttribute("data-default-order")) - Number(b.getAttribute("data-default-order"));
+        });
+        items.forEach(function (item) {
+          var day = item.getAttribute("data-default-day");
+          var list = document.querySelector('.timeline-list[data-drop-day="' + day + '"]');
+          if (list) list.appendChild(item);
+          item.classList.add("is-in");
+        });
+        refreshTimelineMeta();
+      }
+
+      renderDateCards();
+      initDrag();
+
+      var resetBtn = document.getElementById("resetTimeline");
+      if (resetBtn) resetBtn.addEventListener("click", resetTimeline);
+
+      if (customStartDate) {
+        var min = addDays(startOfDay(new Date()), 1);
+        customStartDate.min = toISODate(min);
+        customStartDate.addEventListener("change", function () {
+          var parsed = parseISODate(customStartDate.value);
+          if (parsed) setStartDate(parsed, true);
+        });
+      }
+
+      document.querySelectorAll(".plan-day").forEach(function (card) {
+        card.addEventListener("click", function () {
+          applyFilter(card.getAttribute("data-filter") || "all");
+        });
+      });
+
+      (function selectDefault() {
+        var cursor = addDays(startOfDay(new Date()), 1);
+        while (isWeekend(cursor)) cursor = addDays(cursor, 1);
+        setStartDate(cursor, false);
+      })();
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) entry.target.classList.add("is-in");
+        });
+      }, { threshold: 0.08, rootMargin: "40px 0px" });
+
+      function observeItems() {
+        getItems().forEach(function (item) {
+          // Keep visible after reorder — never strip is-in (that was blanking the list)
+          item.classList.add("is-in");
+          observer.observe(item);
+        });
+      }
+      observeItems();
+
+      function copyCode(btn) {
+        var code = "CHECKINTONELSON";
+        var done = function () {
+          var original = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = original; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(done).catch(function () {
+            window.prompt("Copy code:", code);
+          });
+        } else {
+          window.prompt("Copy code:", code);
+          done();
+        }
+      }
+
+      var copyPromo = document.getElementById("copyPromo");
+      var copyPromoHero = document.getElementById("copyPromoHero");
+      var stickyCopy = document.getElementById("stickyCopy");
+      if (copyPromo) copyPromo.addEventListener("click", function () { copyCode(copyPromo); });
+      if (copyPromoHero) copyPromoHero.addEventListener("click", function () { copyCode(copyPromoHero); });
+      if (stickyCopy) stickyCopy.addEventListener("click", function () { copyCode(stickyCopy); });
+
+      var sticky = document.getElementById("stickyPromo");
+      var promo = document.getElementById("promo");
+      var hero = document.querySelector(".hero");
+      function updateSticky() {
+        if (!sticky || !hero) return;
+        var pastHero = window.scrollY > hero.offsetHeight * 0.65;
+        var nearPromo = false;
+        if (promo) {
+          var r = promo.getBoundingClientRect();
+          nearPromo = r.top < window.innerHeight && r.bottom > 0;
+        }
+        var show = pastHero && !nearPromo;
+        sticky.classList.toggle("is-visible", show);
+        sticky.setAttribute("aria-hidden", show ? "false" : "true");
+      }
+      window.addEventListener("scroll", updateSticky, { passive: true });
+      updateSticky();
+    })();
+  </script>
+</body>
+</html>
