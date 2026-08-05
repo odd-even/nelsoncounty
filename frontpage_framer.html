@@ -3957,10 +3957,35 @@
             appearance: none;
             -webkit-appearance: none;
             border: none;
-            font: inherit;
             font-family: inherit;
             text-align: inherit;
             margin: 0;
+            cursor: pointer;
+        }
+        /* Keep original badge sizing — do not use font:inherit (it blew up type/area tags) */
+        button.badge-type,
+        button.badge-area {
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #212529;
+            background: transparent;
+            box-shadow: none;
+        }
+        button.badge-type {
+            padding: 0;
+        }
+        button.badge-area {
+            padding: 0 0 0 20px;
+            background: #ffffff;
+        }
+        button.badge-featured {
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            padding: 4px 10px;
         }
         button.amenity {
             font-size: 12px;
