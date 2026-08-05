@@ -4772,7 +4772,11 @@ function mapCSVRowToListing(row, index) {
         longitude: parseFloat(getField('Longitude', ['longitude', 'lng', 'lon'])) || null,
         amenities: amenities,
         featured: featured,
-        private: isPrivate
+        private: isPrivate,
+        document1: getField('Document1', ['document1', 'Document 1', 'document1link', 'Document 1 URL']) || '',
+        document1Name: getField('Document1Name', ['document1Name', 'Document 1 Name', 'document 1 name']) || '',
+        document2: getField('Document2', ['document2', 'Document 2', 'document2link', 'Document 2 URL']) || '',
+        document2Name: getField('Document2Name', ['document2Name', 'Document 2 Name', 'document 2 name']) || ''
     };
 }
 
@@ -7471,6 +7475,178 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+// —— PDF link accessibility (ADA / WCAG best practice) ——
+// Warn users before a link opens a PDF reader (and when it opens a new window).
+function isPdfHref(href) {
+    if (!href) return false;
+    const raw = String(href).trim();
+    if (!raw || raw.charAt(0) === '#') return false;
+    try {
+        const url = new URL(raw, window.location.href);
+        if (/\.pdf$/i.test(url.pathname)) return true;
+    } catch (e) {
+        // Fall through to loose check
+    }
+    return /\.pdf($|[?#])/i.test(raw);
+}
+
+function pdfAccessibleWarningText(opensNewWindow) {
+    return opensNewWindow ? 'PDF, opens in a new window' : 'PDF';
+}
+
+function pdfLinkAlreadyWarned(text) {
+    const t = String(text || '').toLowerCase();
+    return /\bpdf\b/.test(t) || t.indexOf('portable document') !== -1;
+}
+
+function pdfLinkHasNewWindowWarning(text) {
+    const t = String(text || '').toLowerCase();
+    return t.indexOf('opens in a new window') !== -1 || t.indexOf('opens in a new tab') !== -1;
+}
+
+function derivePdfLinkNameFromHref(href) {
+    try {
+        const url = new URL(String(href), window.location.href);
+        let file = decodeURIComponent(url.pathname.split('/').pop() || '');
+        file = file.replace(/\.pdf$/i, '').replace(/[-_]+/g, ' ').replace(/\s+/g, ' ').trim();
+        return file || 'Document';
+    } catch (e) {
+        return 'Document';
+    }
+}
+
+function getPdfLinkVisibleText(link) {
+    if (!link) return '';
+    const clone = link.cloneNode(true);
+    clone.querySelectorAll('.sr-only, .pdf-link-warning, script, style').forEach(function(el) {
+        el.remove();
+    });
+    return String(clone.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+function formatPdfAccessibleName(baseName, opensNewWindow) {
+    const name = String(baseName || 'Document').trim() || 'Document';
+    const cleaned = name
+        .replace(/\s*\(\s*PDF\s*\)/gi, '')
+        .replace(/,?\s*opens in a new (window|tab)/gi, '')
+        .trim() || 'Document';
+    return cleaned + ' (' + pdfAccessibleWarningText(opensNewWindow) + ')';
+}
+
+function buildPdfLinkSrOnlyWarning(opensNewWindow) {
+    return '<span class="sr-only pdf-link-warning"> (' + pdfAccessibleWarningText(opensNewWindow) + ')</span>';
+}
+
+/**
+ * Annotate PDF links so assistive tech announces file type / PDF reader behavior.
+ * Safe to call repeatedly; marks links with data-pdf-a11y="true".
+ */
+function enhanceAccessiblePdfLinks(root) {
+    const scope = root || document;
+    if (!scope || !scope.querySelectorAll) return 0;
+
+    let updated = 0;
+    const links = scope.querySelectorAll('a[href]');
+    links.forEach(function(link) {
+        if (!link || link.getAttribute('data-pdf-a11y') === 'true') return;
+
+        const hrefAttr = link.getAttribute('href') || '';
+        if (!isPdfHref(hrefAttr) && !isPdfHref(link.href)) return;
+
+        const opensNewWindow = link.target === '_blank' || link.target === '_new';
+        const visibleText = getPdfLinkVisibleText(link);
+        const existingLabel = (link.getAttribute('aria-label') || '').trim();
+        const baseName = existingLabel
+            ? existingLabel
+                .replace(/\s*\(\s*PDF\s*\)/gi, '')
+                .replace(/,?\s*opens in a new (window|tab)/gi, '')
+                .trim()
+            : (visibleText || derivePdfLinkNameFromHref(hrefAttr || link.href));
+
+        const accessibleProbe = (existingLabel || visibleText || '').trim();
+        const needsPdfWarn = !pdfLinkAlreadyWarned(accessibleProbe);
+        const needsWindowWarn = opensNewWindow && !pdfLinkHasNewWindowWarning(accessibleProbe);
+
+        if (!visibleText) {
+            // Icon-only / unlabeled links (common in Framer) need an explicit accessible name.
+            link.setAttribute('aria-label', formatPdfAccessibleName(baseName, opensNewWindow));
+        } else if (existingLabel && (needsPdfWarn || needsWindowWarn)) {
+            // Preserve author-provided aria-label but ensure PDF / new-window warning is included.
+            link.setAttribute('aria-label', formatPdfAccessibleName(baseName, opensNewWindow));
+        }
+
+        if (!link.querySelector('.pdf-link-warning')) {
+            var warnText = '';
+            if (!visibleText) {
+                // aria-label carries the warning; keep a matching sr-only cue for consistency
+                warnText = ' (' + pdfAccessibleWarningText(opensNewWindow) + ')';
+            } else if (needsPdfWarn) {
+                warnText = ' (' + pdfAccessibleWarningText(opensNewWindow) + ')';
+            } else if (needsWindowWarn) {
+                warnText = ', opens in a new window';
+            }
+            if (warnText) {
+                const warn = document.createElement('span');
+                warn.className = 'sr-only pdf-link-warning';
+                warn.textContent = warnText;
+                link.appendChild(warn);
+            }
+        }
+
+        if (opensNewWindow) {
+            const rel = (link.getAttribute('rel') || '').toLowerCase();
+            if (rel.indexOf('noopener') === -1 || rel.indexOf('noreferrer') === -1) {
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        }
+
+        link.setAttribute('data-pdf-a11y', 'true');
+        updated += 1;
+    });
+    return updated;
+}
+
+function enhanceAccessiblePdfLinksEverywhere() {
+    enhanceAccessiblePdfLinks(document);
+    // When this embed is same-origin with the Framer parent, also fix parent-page PDF links
+    // (e.g. Bus Tour Flyer / Visitor Card icon links flagged by ADA scanners).
+    try {
+        if (window.parent && window.parent !== window && window.parent.document) {
+            enhanceAccessiblePdfLinks(window.parent.document);
+        }
+    } catch (e) {
+        // Cross-origin parent — cannot reach Framer page links from the iframe
+    }
+}
+
+function initPdfLinkAccessibility() {
+    enhanceAccessiblePdfLinksEverywhere();
+
+    if (window.__pdfLinkA11yObserver) return;
+    try {
+        window.__pdfLinkA11yObserver = new MutationObserver(function() {
+            if (window.__pdfLinkA11yTimer) clearTimeout(window.__pdfLinkA11yTimer);
+            window.__pdfLinkA11yTimer = setTimeout(enhanceAccessiblePdfLinksEverywhere, 250);
+        });
+        window.__pdfLinkA11yObserver.observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
+        try {
+            if (window.parent && window.parent !== window && window.parent.document && window.parent.document.documentElement) {
+                window.__pdfLinkA11yObserver.observe(window.parent.document.documentElement, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        } catch (e) {
+            // Cross-origin parent
+        }
+    } catch (e) {
+        console.warn('PDF link accessibility observer unavailable:', e);
+    }
+}
+
 // Function to format text with line breaks and paragraphs preserved
 function formatDescriptionWithLineBreaks(text) {
     if (!text) return '';
@@ -9511,6 +9687,10 @@ function renderPreview(filteredListings, appendMode) {
             let displayWebsite = listing.website;
             displayWebsite = displayWebsite.replace(/^https?:\/\//i, ''); // Remove http:// or https://
             displayWebsite = displayWebsite.replace(/^www\./i, ''); // Remove www.
+            const websiteIsPdf = isPdfHref(listing.website);
+            const websitePdfWarning = websiteIsPdf
+                ? '<span class="sr-only pdf-link-warning">, opens in a new window</span>'
+                : '';
             
             const websiteDiv = document.createElement('div');
             websiteDiv.className = 'card-info-item';
@@ -9520,15 +9700,52 @@ function renderPreview(filteredListings, appendMode) {
             });
             websiteDiv.innerHTML = 
                 '<div class="card-info-icon" style="width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px;">' +
-                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; stroke: #3b82f6;">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; stroke: #3b82f6;" aria-hidden="true">' +
                 '<path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />' +
                 '</svg>' +
                 '</div>' +
                 '<div style="flex: 1; padding-top: 6px; line-height: 0.85;">' +
-                '<a href="' + escapeHtml(listing.website) + '" style="font-size: 12px; color: var(--text-primary); text-decoration: none; word-break: break-all; line-height: 0.85;" target="_blank" rel="noopener noreferrer">' + escapeHtml(fixEncoding(displayWebsite)) + '</a>' +
+                '<a href="' + escapeHtml(listing.website) + '" style="font-size: 12px; color: var(--text-primary); text-decoration: none; word-break: break-all; line-height: 0.85;" target="_blank" rel="noopener noreferrer"' + (websiteIsPdf ? ' data-pdf-a11y="true"' : '') + '>' + escapeHtml(fixEncoding(displayWebsite)) + (websiteIsPdf ? ' (PDF)' : '') + websitePdfWarning + '</a>' +
                 '</div>';
             backContent.appendChild(websiteDiv);
         }
+
+        // Documents (PDFs) — always warn that the link opens a PDF (and new window when target=_blank)
+        [
+            { url: listing.document1, name: listing.document1Name },
+            { url: listing.document2, name: listing.document2Name }
+        ].forEach(function(doc) {
+            const docUrl = doc.url && String(doc.url).trim();
+            if (!docUrl) return;
+            const docIsPdf = isPdfHref(docUrl);
+            const docName = (doc.name && String(doc.name).trim())
+                ? String(doc.name).trim()
+                : (docIsPdf ? derivePdfLinkNameFromHref(docUrl) : 'Document');
+            const opensNew = true;
+            const visibleSuffix = docIsPdf ? ' (PDF)' : '';
+
+            const docDiv = document.createElement('div');
+            docDiv.className = 'card-info-item';
+            docDiv.style.cssText = 'display: flex; align-items: flex-start; gap: 10px; margin-bottom: 1px;';
+            docDiv.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            docDiv.innerHTML =
+                '<div class="card-info-icon" style="width: 32px; height: 32px; flex-shrink: 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 6px;">' +
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px; stroke: #6b7280;" aria-hidden="true">' +
+                '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />' +
+                '</svg>' +
+                '</div>' +
+                '<div style="flex: 1; padding-top: 6px; line-height: 0.85;">' +
+                '<a href="' + escapeHtml(docUrl) + '" style="font-size: 12px; color: var(--text-primary); text-decoration: underline; line-height: 0.85;" target="_blank" rel="noopener noreferrer" data-pdf-a11y="' + (docIsPdf ? 'true' : 'false') + '">' +
+                escapeHtml(fixEncoding(docName)) + escapeHtml(visibleSuffix) +
+                '<span class="sr-only pdf-link-warning">' +
+                (docIsPdf ? ', opens in a new window' : ' (opens in a new window)') +
+                '</span>' +
+                '</a>' +
+                '</div>';
+            backContent.appendChild(docDiv);
+        });
         
         // Amenities
         if (listing.amenities && listing.amenities.length > 0) {
@@ -9948,6 +10165,7 @@ function renderPreview(filteredListings, appendMode) {
         adjustTitleSizes();
         adjustBackDescriptions();
         adjustBackTextSizes();
+        try { enhanceAccessiblePdfLinksEverywhere(); } catch (e) {}
     }, 100);
     
     // Recalculate on window resize (debounced) - only trigger on actual resize, not scroll
@@ -11328,6 +11546,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     syncFilterButtonAria();
+
+    // ADA: warn users when links open a PDF reader (and new window when applicable)
+    initPdfLinkAccessibility();
+    // Framer parent links may hydrate after the iframe loads
+    setTimeout(enhanceAccessiblePdfLinksEverywhere, 1000);
+    setTimeout(enhanceAccessiblePdfLinksEverywhere, 3000);
 
     document.addEventListener('keydown', function(e) {
         if (e.key !== 'Escape') return;

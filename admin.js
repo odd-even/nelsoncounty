@@ -3471,6 +3471,26 @@ function updateTabsStickyStackStuck() {
                         }
                     }
                 });
+
+                // Alt text required whenever an image URL is present
+                [
+                    { urlField: 'image1', descField: 'image1Desc', label: 'Image 1' },
+                    { urlField: 'image2', descField: 'image2Desc', label: 'Image 2' },
+                    { urlField: 'image3', descField: 'image3Desc', label: 'Image 3' }
+                ].forEach(function(pair) {
+                    const imageUrl = listing[pair.urlField];
+                    if (!imageUrl || String(imageUrl).trim() === '') return;
+                    const desc = listing[pair.descField];
+                    if (!desc || String(desc).trim() === '') {
+                        errors.push({
+                            type: 'missing-image-desc',
+                            severity: 'error',
+                            message: pair.label + ' has a URL but no alt text',
+                            listing: listing,
+                            index: index
+                        });
+                    }
+                });
             });
             
             // Display errors first (synchronous checks)
@@ -5759,10 +5779,37 @@ function updateTabsStickyStackStuck() {
                 return true;
             };
 
+            const requireImageDescsIfUrlPresent = function() {
+                const imagePairs = [
+                    { idx: 1, urlId: 'listingImage1', descId: 'listingImage1Desc' },
+                    { idx: 2, urlId: 'listingImage2', descId: 'listingImage2Desc' },
+                    { idx: 3, urlId: 'listingImage3', descId: 'listingImage3Desc' }
+                ];
+
+                for (const img of imagePairs) {
+                    const urlVal = String(getValue(img.urlId) || '').trim();
+                    if (!urlVal) continue;
+                    const descEl = document.getElementById(img.descId);
+                    const descVal = descEl ? String(descEl.value || '').trim() : '';
+                    if (!descVal) {
+                        alert(`⚠️ Image ${img.idx} has a URL, but no alt text.\n\nPlease add alt text (or use Generate ALT text) or clear the image URL.`);
+                        if (descEl) {
+                            descEl.focus();
+                            descEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                        }
+                        return false;
+                    }
+                }
+                return true;
+            };
+
             if (!requireAccordionTitlesIfContent()) {
                 return;
             }
             if (!requireDocumentNamesIfUrlPresent()) {
+                return;
+            }
+            if (!requireImageDescsIfUrlPresent()) {
                 return;
             }
             
