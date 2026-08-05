@@ -2625,8 +2625,9 @@
         if (slides.length < 2) return;
 
         var index = 0;
-        var timer = null;
         var intervalMs = 5500;
+        var lastTick = 0;
+        var rafId = 0;
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         function show(next) {
@@ -2641,38 +2642,38 @@
           });
         }
 
-        function start() {
-          if (reduceMotion || timer) return;
-          timer = window.setInterval(function () {
-            show(index + 1);
-          }, intervalMs);
+        function tick(now) {
+          rafId = window.requestAnimationFrame(tick);
+          if (document.hidden || reduceMotion) {
+            lastTick = now;
+            return;
+          }
+          if (!lastTick) lastTick = now;
+          if (now - lastTick < intervalMs) return;
+          lastTick = now;
+          show(index + 1);
         }
 
-        function stop() {
-          if (!timer) return;
-          window.clearInterval(timer);
-          timer = null;
+        function start() {
+          if (rafId || reduceMotion) return;
+          lastTick = 0;
+          rafId = window.requestAnimationFrame(tick);
         }
 
         dots.forEach(function (dot) {
           dot.addEventListener("click", function () {
             var next = Number(dot.getAttribute("data-hero-slide"));
             if (Number.isNaN(next)) return;
-            stop();
             show(next);
-            start();
+            lastTick = performance.now();
           });
         });
 
-        var heroEl = document.querySelector(".hero");
-        if (heroEl) {
-          heroEl.addEventListener("mouseenter", stop);
-          heroEl.addEventListener("mouseleave", start);
-          heroEl.addEventListener("focusin", stop);
-          heroEl.addEventListener("focusout", function (e) {
-            if (!heroEl.contains(e.relatedTarget)) start();
-          });
-        }
+        // Do not pause on hero hover/focus — in Framer iframes the cursor
+        // sits on the banner continuously and would freeze autoplay.
+        document.addEventListener("visibilitychange", function () {
+          if (!document.hidden) lastTick = performance.now();
+        });
 
         show(0);
         start();
