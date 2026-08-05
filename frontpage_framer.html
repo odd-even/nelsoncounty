@@ -2926,14 +2926,6 @@
             display: none !important;
         }
         
-        /* Hide keyboard shortcuts notice (specific button) */
-        .gm-style button[title*="keyboard" i],
-        .gm-style button[title*="Keyboard" i],
-        .gm-style button[aria-label*="keyboard" i],
-        .gm-style button[aria-label*="Keyboard" i] {
-            display: none !important;
-        }
-        
         /* Hide specific attribution links - be very specific */
         .gm-style a[href*="terms"],
         .gm-style a[href*="Report a map error"],
@@ -3896,26 +3888,124 @@
             width: 100%;
             overflow-x: hidden;
         }
+
+        /* —— Accessibility (non-visual / focus / motion) —— */
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+        a.skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0.75rem;
+            z-index: 10000;
+            background: #ffffff;
+            color: #212529;
+            padding: 0.55rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid #dddddd;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        a.skip-link:focus {
+            left: 0.75rem;
+            outline: 2px solid var(--theme-primary, #2d6a4f);
+            outline-offset: 2px;
+        }
+        :focus {
+            outline: none;
+        }
+        :focus-visible {
+            outline: 2px solid var(--theme-primary, #2d6a4f);
+            outline-offset: 2px;
+        }
+        .preview-filter-group select:focus-visible,
+        .top-search-container input:focus-visible,
+        .mobile-filter-bar .top-search-container input:focus-visible,
+        .mobile-filter-group select:focus-visible,
+        .mobile-filter-bar > .mobile-category-filter-group select:focus-visible,
+        #sortDropdown:focus-visible,
+        .type-filter-btn:focus-visible,
+        .sidebar-toggle-btn:focus-visible,
+        .show-sidebar-btn:focus-visible,
+        .map-toggle-btn:focus-visible,
+        .btn:focus-visible,
+        .mobile-clear-btn:focus-visible,
+        .mobile-submenu-chip:focus-visible,
+        .submenu-item:focus-visible,
+        .badge-type:focus-visible,
+        .badge-area:focus-visible,
+        .badge-featured:focus-visible,
+        .amenity:focus-visible,
+        .card-close-btn:focus-visible,
+        .flip-card:focus-visible {
+            outline: 2px solid var(--theme-primary, #2d6a4f);
+            outline-offset: 2px;
+        }
+        button.badge-type,
+        button.badge-area,
+        button.badge-featured,
+        button.amenity {
+            appearance: none;
+            -webkit-appearance: none;
+            border: none;
+            font: inherit;
+            font-family: inherit;
+            text-align: inherit;
+            margin: 0;
+        }
+        button.amenity {
+            font-size: 12px;
+            padding: 2px 6px;
+            background: #f3f4f6;
+            color: var(--text-primary);
+            border-radius: 6px;
+            display: inline-block;
+            line-height: 1.2;
+            cursor: pointer;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .flip-card-inner {
+                transition: none !important;
+            }
+        }
     </style>
 </head>
 <body>
+        <a class="skip-link" href="#previewGrid">Skip to listings</a>
 
         <div class="preview-container">
             <div class="preview-content-wrapper">
                 <aside class="preview-sidebar">
                     <div class="preview-filters">
                         <div class="sidebar-header">
-                            <button class="sidebar-toggle-btn" onclick="toggleSidebar()">
-                                <svg id="sidebarToggleIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <button type="button" class="sidebar-toggle-btn" onclick="toggleSidebar()" aria-label="Hide filters" aria-expanded="true" aria-controls="directoryFilterContent">
+                                <svg id="sidebarToggleIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                                 </svg>
                             </button>
                         </div>
-                        <div class="filter-content">
+                        <div class="filter-content" id="directoryFilterContent">
                             <div class="filter-section">
-                                <div class="type-quick-filters" id="typeQuickFilters">
-                                    <button class="type-filter-btn category-filter-btn active" data-type="">
-                                        <span class="category-icon"><img src="icons/all-types.svg" alt="All" style="width: 24px; height: 24px; display: block;" /></span>
+                                <div class="type-quick-filters" id="typeQuickFilters" role="group" aria-label="Categories">
+                                    <button type="button" class="type-filter-btn category-filter-btn active" data-type="" aria-pressed="true">
+                                        <span class="category-icon"><img src="icons/all-types.svg" alt="" aria-hidden="true" style="width: 24px; height: 24px; display: block;" /></span>
                                         <span class="category-name">All</span>
                                     </button>
                                     <!-- Type filter buttons will be dynamically generated here based on data usage -->
@@ -3924,26 +4014,29 @@
 
                             <div class="filter-section sidebar-dropdown-section">
                                 <div class="preview-filter-group">
-                                    <select id="previewTypeFilter" onchange="handleTypeFilter()">
+                                    <label class="sr-only" for="previewTypeFilter">Filter by type</label>
+                                    <select id="previewTypeFilter" onchange="handleTypeFilter()" aria-label="Filter by type">
                                         <option value="">All Types</option>
                                     </select>
                                 </div>
 
                                 <div class="preview-filter-group">
-                                    <select id="previewAreaFilter" onchange="filterPreview()">
+                                    <label class="sr-only" for="previewAreaFilter">Filter by area</label>
+                                    <select id="previewAreaFilter" onchange="filterPreview()" aria-label="Filter by area">
                                         <option value="">All Areas</option>
                                     <option value="Afton">Afton</option><option value="Wintergreen">Wintergreen</option><option value="Lovingston">Lovingston</option><option value="Nellysford">Nellysford</option><option value="Montebello">Montebello</option><option value="Arrington">Arrington</option><option value="Roseland">Roseland</option><option value="Seymour">Seymour</option>
                                 </select>
                                 </div>
 
                                 <div class="preview-filter-group">
-                                    <select id="previewAmenityFilter" onchange="filterPreview()">
+                                    <label class="sr-only" for="previewAmenityFilter">Filter by amenity</label>
+                                    <select id="previewAmenityFilter" onchange="filterPreview()" aria-label="Filter by amenity">
                                         <option value="">All Amenities</option>
                                     <option value="Kid-Friendly">Kid-Friendly</option><option value="Pet-Friendly">Pet-Friendly</option><option value="Wheelchair Accessible">Wheelchair Accessible</option><option value="Free">Free</option><option value="Seasonal">Seasonal</option><option value="Outdoor Seating">Outdoor Seating</option><option value="Food Available">Food Available</option><option value="Live Music">Live Music</option><option value="Tours Available">Tours Available</option><option value="Events">Events</option><option value="Photography">Photography</option><option value="Scenic Views">Scenic Views</option><option value="Biking">Biking</option><option value="Appalachian Trail">Appalachian Trail</option><option value="Pro Shop">Pro Shop</option><option value="Lessons Available">Lessons Available</option><option value="Cart Rental">Cart Rental</option><option value="Lifeguards">Lifeguards</option>
                                 </select>
                                 </div>
 
-                                <button id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;">
+                                <button type="button" id="clearFiltersBtn" class="btn btn-clear" onclick="clearPreviewFilters()" style="display: none;" aria-label="Clear all filters">
                                     <img class="trash-icon" src="icons/red-trash-can-icon.svg" alt="" aria-hidden="true" />
                                     <span>Clear Filters</span>
                                 </button>
@@ -3952,24 +4045,25 @@
                     </div>
                 </aside>
 
-                <main class="preview-main">
+                <main class="preview-main" id="directoryMain">
                     <!-- Floating button to show sidebar when collapsed -->
-                    <button class="show-sidebar-btn" onclick="toggleSidebar()">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;">
+                    <button type="button" class="show-sidebar-btn" onclick="toggleSidebar()" aria-label="Show filters" aria-expanded="false" aria-controls="directoryFilterContent">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 
                     <!-- Blur Bar (Mobile Only) -->
-                    <div class="mobile-blur-bar"></div>
+                    <div class="mobile-blur-bar" aria-hidden="true"></div>
                 
                     <!-- Search Bar (Desktop) -->
                     <div class="top-search-container">
                         <div class="search-input-wrapper">
-                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
-                            <input type="text" id="previewSearchInput" placeholder="Search...">
+                            <label class="sr-only" for="previewSearchInput">Search listings</label>
+                            <input type="search" id="previewSearchInput" placeholder="Search..." aria-label="Search listings" autocomplete="off">
                         </div>
                     </div>
 
@@ -3978,14 +4072,16 @@
                         <!-- Search bar inside mobile filter bar -->
                         <div class="top-search-container">
                             <div class="search-input-wrapper">
-                                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
-                                <input type="text" id="previewSearchInputMobile" placeholder="Search...">
+                                <label class="sr-only" for="previewSearchInputMobile">Search listings</label>
+                                <input type="search" id="previewSearchInputMobile" placeholder="Search..." aria-label="Search listings" autocomplete="off">
                             </div>
                         </div>
                         <div class="mobile-filter-group mobile-category-filter-group">
-                            <select id="mobileCategoryFilter" onchange="handleMobileCategoryFilter()">
+                            <label class="sr-only" for="mobileCategoryFilter">Filter by category</label>
+                            <select id="mobileCategoryFilter" onchange="handleMobileCategoryFilter()" aria-label="Filter by category">
                                 <option value="">All</option>
                             </select>
                         </div>
@@ -4012,12 +4108,14 @@
                         </div>
                         <div class="mobile-filters-wrapper">
                         <div class="mobile-filter-group">
-                            <select id="mobileTypeFilter" onchange="handleMobileTypeFilter()">
+                            <label class="sr-only" for="mobileTypeFilter">Filter by type</label>
+                            <select id="mobileTypeFilter" onchange="handleMobileTypeFilter()" aria-label="Filter by type">
                                 <option value="">Types</option>
                             </select>
                         </div>
                         <div class="mobile-filter-group">
-                            <select id="mobileAreaFilter" onchange="handleMobileAreaFilter()">
+                            <label class="sr-only" for="mobileAreaFilter">Filter by area</label>
+                            <select id="mobileAreaFilter" onchange="handleMobileAreaFilter()" aria-label="Filter by area">
                                 <option value="">Area</option>
                             </select>
                         </div>
@@ -4028,8 +4126,8 @@
                             </select>
                             </div> -->
                         </div>
-                        <button id="mobileClearFiltersBtn" class="mobile-clear-btn" onclick="clearPreviewFilters()" style="display: none;">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <button type="button" id="mobileClearFiltersBtn" class="mobile-clear-btn" onclick="clearPreviewFilters()" style="display: none;" aria-label="Clear all filters">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
                             <span>Clear</span>
@@ -4039,20 +4137,21 @@
                     <!-- Map Container (collapsed by default; open via toggleMap) -->
                     <div class="map-container map-collapsed" id="mapContainer">
                         <div class="map-header">
-                            <h2 style="display: none;">Map View</h2>
-                            <button class="map-toggle-btn" onclick="toggleMap()">
-                                <svg id="mapToggleIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;">
+                            <h2 style="display: none;" id="mapViewHeading">Map View</h2>
+                            <button type="button" class="map-toggle-btn" onclick="toggleMap()" aria-expanded="false" aria-controls="map" aria-label="Open map">
+                                <svg id="mapToggleIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width: 20px; height: 20px;" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>
                                 </svg>
                                 <span class="map-toggle-text">Open Map</span>
                             </button>
                         </div>
-                        <div id="map"></div>
+                        <div id="map" role="region" aria-label="Map of Nelson County listings"></div>
                     </div>
 
                     <div class="preview-results" style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="previewResultsCount">Showing 15 listings</span>
-                        <select id="sortDropdown" onchange="sortListings()" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary); font-size: 14px; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;">
+                        <span id="previewResultsCount" aria-live="polite" aria-atomic="true">Showing 15 listings</span>
+                        <label class="sr-only" for="sortDropdown">Sort listings</label>
+                        <select id="sortDropdown" onchange="sortListings()" aria-label="Sort listings" style="padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; background: var(--bg-primary); color: var(--text-primary); font-size: 14px; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;">
                             <option value="default" selected style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;">Default</option>
                             <option value="name-asc" style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;">Name (A-Z)</option>
                             <option value="name-desc" style="font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;">Name (Z-A)</option>
@@ -4061,10 +4160,10 @@
                         </select>
                     </div>
 
-                    <div id="previewGrid" class="preview-grid"></div>
+                    <div id="previewGrid" class="preview-grid" role="list" aria-label="Directory listings"></div>
 
                     <!-- Overlay for flipped cards -->
-                    <div id="flipOverlay" class="flip-overlay" onclick="closeAllFlippedCards()"></div>
+                    <div id="flipOverlay" class="flip-overlay" onclick="closeAllFlippedCards()" aria-hidden="true"></div>
                 </main>
             </div>
         </div>
@@ -5761,9 +5860,11 @@ function getCategorySVGIconSync(categoryKey) {
 
 function createCategoryFilterButton(categoryKey, category) {
     const btn = document.createElement('button');
+    btn.type = 'button';
     btn.className = 'type-filter-btn category-filter-btn';
     btn.setAttribute('data-category', categoryKey);
     btn.setAttribute('data-type', ''); // Empty to indicate it's a category, not a specific type
+    btn.setAttribute('aria-pressed', 'false');
     
     // Create button content with SVG icon and name
     const iconSpan = document.createElement('span');
@@ -5772,7 +5873,8 @@ function createCategoryFilterButton(categoryKey, category) {
     // Use img tag to load SVG from file
     const img = document.createElement('img');
     img.src = `icons/${categoryKey.toLowerCase()}.svg`;
-    img.alt = toSentenceCase(categoryKey);
+    img.alt = '';
+    img.setAttribute('aria-hidden', 'true');
     img.style.width = '24px';
     img.style.height = '24px';
     img.style.display = 'block';
@@ -5787,8 +5889,20 @@ function createCategoryFilterButton(categoryKey, category) {
     
     // Add title attribute with description for tooltip
     btn.title = category.description;
+    btn.setAttribute('aria-label', toSentenceCase(categoryKey) + (category.description ? '. ' + category.description : ''));
     
     return btn;
+}
+
+function syncFilterButtonAria() {
+    document.querySelectorAll('.type-filter-btn').forEach(function(b) {
+        b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false');
+    });
+    document.querySelectorAll('.mobile-submenu-chip, .submenu-item').forEach(function(b) {
+        if (b.hasAttribute('aria-pressed') || b.classList.contains('active') || b.classList.contains('is-active')) {
+            b.setAttribute('aria-pressed', (b.classList.contains('active') || b.classList.contains('is-active')) ? 'true' : 'false');
+        }
+    });
 }
 
 // Attach click handler to a category filter button
@@ -5885,6 +5999,7 @@ function attachCategoryFilterButtonHandler(btn, categoryKey, category) {
             }
         }
         
+        syncFilterButtonAria();
         filterPreview();
     });
 }
@@ -7708,10 +7823,12 @@ function sortListings() {
 function closeAllFlippedCards() {
     document.querySelectorAll('.flip-card.flipped').forEach(function(card) {
         card.classList.remove('flipped');
+        card.setAttribute('aria-expanded', 'false');
     });
     const overlay = document.getElementById('flipOverlay');
     if (overlay) {
         overlay.classList.remove('active');
+        overlay.setAttribute('aria-hidden', 'true');
     }
     document.body.style.overflow = '';
 }
@@ -8984,8 +9101,11 @@ function renderPreview(filteredListings, appendMode) {
     const countEl = document.getElementById('previewResultsCount');
     if (countEl) {
         const totalCount = listingsToRender.length;
-        countEl.textContent = totalCount + ' listing' + (totalCount !== 1 ? 's' : '');
+        const label = totalCount + ' listing' + (totalCount !== 1 ? 's' : '');
+        countEl.textContent = label;
+        countEl.setAttribute('aria-label', label + ' shown');
     }
+    syncFilterButtonAria();
     
     // Update map markers (use all filtered listings for map, not just current page)
     updateMapMarkers(listingsToRender);
@@ -9017,6 +9137,10 @@ function renderPreview(filteredListings, appendMode) {
         const card = document.createElement('div');
         card.className = 'flip-card';
         card.setAttribute('data-listing-id', listing.id);
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-expanded', 'false');
+        card.setAttribute('aria-label', 'View details for ' + (listing.name || 'listing'));
         if (listing.category) {
             card.setAttribute('data-category', listing.category);
         }
@@ -9062,6 +9186,7 @@ function renderPreview(filteredListings, appendMode) {
             document.querySelectorAll('.flip-card.flipped').forEach(function(otherCard) {
                 if (otherCard !== card) {
                     otherCard.classList.remove('flipped');
+                    otherCard.setAttribute('aria-expanded', 'false');
                 }
             });
             
@@ -9069,6 +9194,7 @@ function renderPreview(filteredListings, appendMode) {
             const wasFlipped = card.classList.contains('flipped');
             card.classList.toggle('flipped');
             const isNowFlipped = card.classList.contains('flipped');
+            card.setAttribute('aria-expanded', isNowFlipped ? 'true' : 'false');
             
             // On mobile, scroll card into view when flipped
             if (isNowFlipped && !wasFlipped && window.innerWidth < 969) {
@@ -9081,6 +9207,13 @@ function renderPreview(filteredListings, appendMode) {
                 }, 100); // Small delay to allow flip animation to start
             }
         });
+
+        card.addEventListener('keydown', function(e) {
+            if (e.target !== card) return;
+            if (e.key !== 'Enter' && e.key !== ' ') return;
+            e.preventDefault();
+            card.click();
+        });
         
         const front = document.createElement('div');
         front.className = 'flip-card-front';
@@ -9091,9 +9224,11 @@ function renderPreview(filteredListings, appendMode) {
         imgContainer.style.cssText = 'position: relative; width: 100%; height: 0; padding-bottom: 100%; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none;';
         imgContainer.style.setProperty('-ms-overflow-style', 'none');
         if (listing.featured) {
-            const featuredTag = document.createElement('span');
+            const featuredTag = document.createElement('button');
+            featuredTag.type = 'button';
             featuredTag.className = 'badge-featured card-featured-tag';
             featuredTag.textContent = 'Featured';
+            featuredTag.setAttribute('aria-label', 'Filter by featured listings');
             featuredTag.addEventListener('click', function(e) {
                 filterByBadge(e, 'featured', 'true');
             });
@@ -9232,8 +9367,8 @@ function renderPreview(filteredListings, appendMode) {
         const backDescriptionText = removeLineBreaksForDisplay(fixedDescription);
         
         let badgesHtml = 
-            '<span class="badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + escapeHtml(listing.type) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'type\', \'' + escapeHtml(listing.type) + '\'); return false;">' + escapeHtml(fixedType) + '</span>' +
-            '<span class="badge-area" data-area="' + escapeHtml(listing.area) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'area\', \'' + escapeHtml(listing.area) + '\'); return false;">' + escapeHtml(fixedArea) + '</span>';
+            '<button type="button" class="badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + escapeHtml(listing.type) + '" aria-label="Filter by type ' + escapeHtml(fixedType) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'type\', \'' + escapeHtml(listing.type) + '\'); return false;">' + escapeHtml(fixedType) + '</button>' +
+            '<button type="button" class="badge-area" data-area="' + escapeHtml(listing.area) + '" aria-label="Filter by area ' + escapeHtml(fixedArea) + '" onclick="event.preventDefault(); event.stopPropagation(); filterByBadge(event, \'area\', \'' + escapeHtml(listing.area) + '\'); return false;">' + escapeHtml(fixedArea) + '</button>';
         contentDiv.innerHTML = 
             '<h3 style="font-size: 18px; font-weight: 400; margin-bottom: 10px; color: var(--text-primary); line-height: 1.2;">' + escapeHtml(fixedName) + '</h3>' +
             '<div style="display: flex; gap: 8px; margin-bottom: 10px; align-items: center;">' +
@@ -9248,13 +9383,17 @@ function renderPreview(filteredListings, appendMode) {
         
         // Add close button (X icon) in top right corner
         const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
         closeBtn.className = 'card-close-btn';
+        closeBtn.setAttribute('aria-label', 'Close listing details');
         closeBtn.style.cssText = 'position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border: 1px solid #dddddd; background: rgba(255, 255, 255, 0.9); border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; transition: background 0.2s ease;';
-        closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+        closeBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: #6b7280;" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
         closeBtn.onclick = function(e) {
             e.preventDefault();
             e.stopPropagation();
             card.classList.remove('flipped');
+            card.setAttribute('aria-expanded', 'false');
+            card.focus();
         };
         closeBtn.onmouseenter = function() {
             this.style.background = 'rgba(255, 255, 255, 1)';
@@ -9271,7 +9410,7 @@ function renderPreview(filteredListings, appendMode) {
         const backTitle = document.createElement('a');
         backTitle.href = CMS_BASE_URL + '/explore/' + slug;
         backTitle.target = '_parent';
-        backTitle.style.cssText = 'font-size: 13px; font-weight: 500; margin-bottom: 15px; color: #a1a1aa; line-height: 1.2; text-transform: uppercase; letter-spacing: 1px; orphans: 2; widows: 2; text-align: left; text-decoration: none; display: block; cursor: pointer; max-width: 90%;';
+        backTitle.style.cssText = 'font-size: 13px; font-weight: 500; margin-bottom: 15px; color: #6b7280; line-height: 1.2; text-transform: uppercase; letter-spacing: 1px; orphans: 2; widows: 2; text-align: left; text-decoration: none; display: block; cursor: pointer; max-width: 90%;';
         backTitle.textContent = fixedName;
         backTitle.onclick = function(e) {
             e.stopPropagation(); // Prevent card flip
@@ -9416,10 +9555,12 @@ function renderPreview(filteredListings, appendMode) {
             
             // Add all amenities
             listing.amenities.forEach(function(amenity) {
-                const amenitySpan = document.createElement('span');
+                const amenitySpan = document.createElement('button');
+                amenitySpan.type = 'button';
                 amenitySpan.className = 'amenity';
                 amenitySpan.style.cssText = 'font-size: 12px; padding: 2px 6px; background: #f3f4f6; color: var(--text-primary); border-radius: 6px; display: inline-block; margin: 0; line-height: 1.2; cursor: pointer;';
                 amenitySpan.textContent = fixEncoding(amenity);
+                amenitySpan.setAttribute('aria-label', 'Filter by amenity ' + fixEncoding(amenity));
                 amenitySpan.onclick = function(e) {
                     e.preventDefault();
                     e.stopPropagation();
@@ -9465,6 +9606,7 @@ function renderPreview(filteredListings, appendMode) {
                         moreSpan.target = '_parent';
                         moreSpan.style.cssText = 'font-size: 12px; padding: 2px 6px; background: #f3f4f6; color: var(--text-primary); border-radius: 6px; display: inline-block; margin: 0; line-height: 1.2; cursor: pointer; font-weight: 600; text-decoration: none;';
                         moreSpan.textContent = '+ ' + hiddenCount + ' more';
+                        moreSpan.setAttribute('aria-label', 'View ' + hiddenCount + ' more amenities for ' + (listing.name || 'this listing'));
                         moreSpan.onclick = function(e) {
                             e.stopPropagation(); // Prevent card flip, but allow navigation
                             // Don't prevent default - let the link navigate
@@ -10526,10 +10668,11 @@ function updateMapMarkers(listings) {
                     var cardHeight = cardWidth; // Square
                     var fontSize = (window.innerWidth < 969) ? 12 : 14;
                     var gradientHeight = (window.innerWidth < 969) ? 50 : 60;
-                    var simpleContent = '<div style="padding: 0 12px 16px 12px !important; margin: 0 !important; text-align: center; cursor: pointer; width: ' + cardWidth + 'px; height: ' + cardHeight + 'px; position: relative; overflow: hidden; border-radius: 12px; line-height: 0; font-size: 0; background-image: url(\'' + imageUrl + '\'); background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; display: flex; flex-direction: column; justify-content: flex-end; border: 4px solid #ffffff; outline: 0; box-sizing: border-box; min-width: ' + cardWidth + 'px; min-height: ' + cardHeight + 'px;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">' + 
+                    var listingLabel = escapeHtml(fixEncoding(listing.name));
+                    var simpleContent = '<button type="button" aria-label="View listing ' + listingLabel + '" style="appearance:none;-webkit-appearance:none;padding: 0 12px 16px 12px !important; margin: 0 !important; text-align: center; cursor: pointer; width: ' + cardWidth + 'px; height: ' + cardHeight + 'px; position: relative; overflow: hidden; border-radius: 12px; line-height: 0; font-size: 0; background-image: url(\'' + imageUrl + '\'); background-size: cover !important; background-position: center center !important; background-repeat: no-repeat !important; display: flex; flex-direction: column; justify-content: flex-end; border: 4px solid #ffffff; box-sizing: border-box; min-width: ' + cardWidth + 'px; min-height: ' + cardHeight + 'px; font-family: inherit;" onclick="filterByListingName(\'' + escapeHtml(fixEncoding(listing.name)).replace(/'/g, "\\'") + '\'); google.maps.event.trigger(map, \'click\');">' + 
                         '<div style="position: absolute; bottom: 0; left: 0; right: 0; height: ' + gradientHeight + 'px; background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0)); pointer-events: none; z-index: 1; margin: 0; padding: 0;"></div>' +
-                        '<div style="font-size: ' + fontSize + 'px; font-weight: 600; color: #ffffff; line-height: 1.1; padding: 0 10px 18px 10px; margin: 0; position: relative; z-index: 2; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">' + escapeHtml(fixEncoding(listing.name)) + '</div>' +
-                        '</div>';
+                        '<div style="font-size: ' + fontSize + 'px; font-weight: 600; color: #ffffff; line-height: 1.1; padding: 0 10px 18px 10px; margin: 0; position: relative; z-index: 2; text-shadow: 0 1px 2px rgba(0,0,0,0.5);">' + listingLabel + '</div>' +
+                        '</button>';
                     infoWindow.setContent(simpleContent);
                     infoWindow.open(map, marker);
                 });
@@ -10757,17 +10900,29 @@ function geocodeAddress(listing, callback) {
 function toggleMap() {
     var container = document.getElementById('mapContainer');
     var toggleIcon = document.getElementById('mapToggleIcon');
+    var toggleBtn = document.querySelector('.map-toggle-btn');
+    var toggleText = document.querySelector('.map-toggle-text');
     
     if (mapVisible) {
         container.classList.add('map-collapsed');
         // Change to plus icon
         toggleIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m7-7H5"></path>';
         mapVisible = false;
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('aria-label', 'Open map');
+        }
+        if (toggleText) toggleText.textContent = 'Open Map';
     } else {
         container.classList.remove('map-collapsed');
         // Change to X icon
         toggleIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>';
         mapVisible = true;
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'true');
+            toggleBtn.setAttribute('aria-label', 'Close map');
+        }
+        if (toggleText) toggleText.textContent = 'Close Map';
         // Trigger resize to fix display issues
         setTimeout(function() {
             if (map) google.maps.event.trigger(map, 'resize');
@@ -10797,6 +10952,7 @@ function toggleSidebar() {
     var sidebar = document.querySelector('.preview-sidebar');
     var toggleIcon = document.getElementById('sidebarToggleIcon');
     var showSidebarBtn = document.querySelector('.show-sidebar-btn');
+    var hideSidebarBtn = document.querySelector('.sidebar-toggle-btn');
     
     if (sidebarVisible) {
         sidebar.classList.add('collapsed');
@@ -10808,6 +10964,11 @@ function toggleSidebar() {
             showSidebarBtn.style.visibility = 'visible';
             showSidebarBtn.style.opacity = '1';
             showSidebarBtn.style.zIndex = '2000';
+            showSidebarBtn.setAttribute('aria-expanded', 'false');
+        }
+        if (hideSidebarBtn) {
+            hideSidebarBtn.setAttribute('aria-expanded', 'false');
+            hideSidebarBtn.setAttribute('aria-label', 'Show filters');
         }
     } else {
         sidebar.classList.remove('collapsed');
@@ -10820,6 +10981,11 @@ function toggleSidebar() {
         // Hide show-sidebar button when sidebar is visible
         if (showSidebarBtn) {
             showSidebarBtn.style.display = 'none';
+            showSidebarBtn.setAttribute('aria-expanded', 'true');
+        }
+        if (hideSidebarBtn) {
+            hideSidebarBtn.setAttribute('aria-expanded', 'true');
+            hideSidebarBtn.setAttribute('aria-label', 'Hide filters');
         }
     }
     
@@ -11160,6 +11326,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'manual';
     }
+
+    syncFilterButtonAria();
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape') return;
+        if (document.querySelector('.flip-card.flipped')) {
+            closeAllFlippedCards();
+        }
+    });
     
     // Try to inherit font-family from parent Framer site (if in iframe)
     // This will override the default Satoshi if parent has a different font
