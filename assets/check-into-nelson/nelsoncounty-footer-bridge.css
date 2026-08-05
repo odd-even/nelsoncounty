@@ -1,0 +1,56 @@
+/* Bridge styles for nelsoncounty.com footer embed on Check Into Nelson */
+.nc-site-footer-source {
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+}
+.nc-site-footer-source > footer.framer-tgosD {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+.nc-site-footer-source .framer-tgosD.framer-cew2e8,
+.nc-site-footer-source .framer-tgosD.framer-v-g21wlg.framer-cew2e8,
+.nc-site-footer-source .framer-tgosD.framer-v-19swfjr.framer-cew2e8,
+.nc-site-footer-source .framer-tgosD.framer-v-4na5j.framer-cew2e8 {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.nc-site-footer-source .framer-17l8nai {
+  width: 100% !important;
+  max-width: min(1500px, 100%) !important;
+  padding-left: clamp(16px, 4vw, 48px) !important;
+  padding-right: clamp(16px, 4vw, 48px) !important;
+  box-sizing: border-box;
+}
+#nc-footer-sprites {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+/* Framer Subscribe chip: restore vertical centering (translateY was stripped on import) */
+.nc-site-footer-source .framer-kfeozs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nc-site-footer-source .framer-1pxke5b {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  width: 100%;
+  text-align: center;
+}
+:root {
+  --token-c15e335c-2943-4606-bfd3-4f0c61dc2c33: #557645;
+  --token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d: #dddddd;
+  --token-34b9b87f-2cde-4c48-853a-6a9145e82288: #333333;
+  --token-0b8ff057-a861-49f8-adec-93c2ff401d9f: #ffffff;
+  --token-fc57e299-9463-4c02-a314-8bb420d0c676: #000000;
+  --token-d08b46da-39f8-44d2-8ee0-f3c3723c3b7e: #1f1f1f;
+  --token-1a98a94d-102b-41c3-b833-a997ed219fca: #ababab;
+  --token-75a406c3-4c8b-4f56-910f-07926478b00c: #808080;
+}
