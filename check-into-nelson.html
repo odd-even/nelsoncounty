@@ -3978,6 +3978,63 @@
       window.addEventListener("scroll", updateSticky, { passive: true });
       updateSticky();
 
+      // Framer iframe: keep in-page anchors inside the embed; open everything
+      // else out of the frame so links aren't trapped (or silently blocked).
+      (function fixEmbedLinks() {
+        if (!document.documentElement.classList.contains("is-embed")) return;
+
+        function isInPageHref(href) {
+          if (!href) return true;
+          if (href.charAt(0) === "#") return true;
+          if (/^(mailto:|tel:|sms:|javascript:)/i.test(href)) return false;
+          try {
+            var url = new URL(href, window.location.href);
+            return (
+              url.origin === window.location.origin &&
+              url.pathname === window.location.pathname &&
+              !!url.hash
+            );
+          } catch (err) {
+            return false;
+          }
+        }
+
+        function isNelsonCountyHost(hostname) {
+          return /(^|\.)nelsoncounty\.com$/i.test(hostname || "");
+        }
+
+        document.querySelectorAll("a[href]").forEach(function (link) {
+          var href = link.getAttribute("href");
+          if (!href || href.charAt(0) === "#") return;
+          if (/^(mailto:|tel:|sms:)/i.test(href)) {
+            link.target = "_top";
+            return;
+          }
+          if (isInPageHref(href)) return;
+          if (link.target === "_blank" || link.target === "_top" || link.target === "_parent") {
+            if (link.target === "_blank") {
+              var rel = (link.getAttribute("rel") || "").toLowerCase();
+              if (rel.indexOf("noopener") === -1) {
+                link.setAttribute("rel", "noopener noreferrer");
+              }
+            }
+            return;
+          }
+
+          try {
+            var url = new URL(href, window.location.href);
+            if (isNelsonCountyHost(url.hostname)) {
+              // Same Framer site — navigate the parent page, not the iframe.
+              link.target = "_top";
+              return;
+            }
+          } catch (err) {}
+
+          link.target = "_blank";
+          link.setAttribute("rel", "noopener noreferrer");
+        });
+      })();
+
       function postEmbedHeight() {
         if (!document.documentElement.classList.contains("is-embed")) return;
         var height = Math.ceil(Math.max(
