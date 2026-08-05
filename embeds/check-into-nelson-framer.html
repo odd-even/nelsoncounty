@@ -1,0 +1,34 @@
+<!--
+  Check Into Nelson — Framer Embed
+  --------------------------------
+  1. In Framer, add an Embed component (or Custom Code).
+  2. Paste everything below this comment into the embed.
+  3. After GitHub Pages publishes this branch, the iframe src below will work at:
+     https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1
+
+  Optional: if Framer strips <script>, keep the iframe only — it still works with a tall min-height.
+-->
+<div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
+  <iframe
+    id="check-into-nelson-frame"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1"
+    title="Check Into Nelson — Stay Longer. Experience More."
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allow="clipboard-write"
+    style="width:100%;border:0;display:block;min-height:3200px;background:#ffffff;"
+  ></iframe>
+</div>
+<script>
+  (function () {
+    var frame = document.getElementById("check-into-nelson-frame");
+    if (!frame) return;
+    window.addEventListener("message", function (event) {
+      var data = event && event.data;
+      if (!data || data.type !== "checkIntoNelsonHeight") return;
+      var height = Number(data.height);
+      if (!height || height < 600) return;
+      frame.style.height = Math.ceil(height) + "px";
+    });
+  })();
+</script>

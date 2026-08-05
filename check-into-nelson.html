@@ -22,6 +22,29 @@
       --pill: 999px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
       --font: Satoshi, "Satoshi Placeholder", system-ui, -apple-system, sans-serif;
+
+      /* Frontpage category accents (icons/*.svg) */
+      --cat-stay: #57d1ae;
+      --cat-taste: #e5675c;
+      --cat-culture: #8b5cf6;
+      --cat-experience: #f1b918;
+      --cat-community: #a3bb12;
+      --cat-outdoor: #7575b5;
+      --cat-all: #356dff;
+      /* Darker text-safe variants */
+      --cat-stay-text: #1a7a62;
+      --cat-taste-text: #b33a32;
+      --cat-culture-text: #5b21b6;
+      --cat-experience-text: #8a6500;
+      --cat-community-text: #5c6b0a;
+      --cat-outdoor-text: #45458a;
+      --cat-all-text: #1a4fc4;
+      --accent: var(--cat-stay);
+      --accent-in: var(--cat-stay);
+      --accent-out: var(--cat-outdoor);
+      --accent-text: var(--cat-stay-text);
+      --accent-in-text: var(--cat-stay-text);
+      --accent-out-text: var(--cat-outdoor-text);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -441,7 +464,7 @@
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--nelson-green);
+      color: var(--cat-stay-text);
     }
     .stay-card__title {
       font-size: 1.35rem;
@@ -672,6 +695,18 @@
       color: var(--muted);
       margin-bottom: 0.45rem;
     }
+    .partner-feature[data-cat="taste"] .partner-feature__role,
+    .partner-feature[data-cat="taste"] .partner-feature__badge { color: var(--cat-taste-text); }
+    .partner-feature[data-cat="culture"] .partner-feature__role,
+    .partner-feature[data-cat="culture"] .partner-feature__badge { color: var(--cat-culture-text); }
+    .partner-feature[data-cat="outdoor"] .partner-feature__role,
+    .partner-feature[data-cat="outdoor"] .partner-feature__badge { color: var(--cat-outdoor-text); }
+    .partner-feature[data-cat="experience"] .partner-feature__role,
+    .partner-feature[data-cat="experience"] .partner-feature__badge { color: var(--cat-experience-text); }
+    .partner-feature[data-cat="community"] .partner-feature__role,
+    .partner-feature[data-cat="community"] .partner-feature__badge { color: var(--cat-community-text); }
+    .partner-feature[data-cat="stay"] .partner-feature__role,
+    .partner-feature[data-cat="stay"] .partner-feature__badge { color: var(--cat-stay-text); }
     .partner-feature__title {
       font-size: clamp(1.55rem, 3vw, 2.1rem);
       font-weight: 500;
@@ -731,149 +766,261 @@
       color: var(--white);
     }
 
-    /* —— Date calendar cards —— */
-    .date-picker {
-      margin-top: 2rem;
-      padding: 1.35rem;
+    /* —— Airbnb-style date range —— */
+    .range-picker {
+      margin-top: 1.25rem;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fafafa;
-    }
-    .date-picker__top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.15rem;
-    }
-    .date-picker__label {
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-    }
-    .date-picker__hint {
-      font-size: 0.95rem;
-      color: var(--ink);
-      font-weight: 500;
-    }
-    .date-picker__custom {
-      display: grid;
-      gap: 0.35rem;
-    }
-    .date-picker__custom input[type="date"] {
-      font: inherit;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--ink);
-      border: 1.5px solid #d8d8d8;
-      border-radius: 12px;
-      padding: 0.65rem 0.85rem;
+      border-radius: 14px;
       background: var(--white);
-      min-width: 11.5rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
     }
-    .date-picker__custom input[type="date"]:focus {
-      outline: 2px solid var(--ink);
-      outline-offset: 1px;
-    }
-    .date-scroller {
+    .range-picker__fields {
       display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(7.25rem, 1fr);
-      gap: 0.65rem;
-      overflow-x: auto;
-      padding-bottom: 0.35rem;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.25rem;
+      padding: 0.3rem;
+      border-bottom: 1px solid var(--line);
     }
-    .date-card {
-      scroll-snap-align: start;
+    .range-picker__field {
       appearance: none;
-      border: 1.5px solid #e2e2e2;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 0.9rem 0.7rem 0.85rem;
-      text-align: center;
+      border: 1.5px solid transparent;
+      background: transparent;
+      text-align: left;
+      padding: 0.5rem 0.7rem;
       cursor: pointer;
       font: inherit;
       color: var(--ink);
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s ease;
-      min-height: 7.25rem;
-      display: grid;
-      align-content: center;
-      gap: 0.15rem;
+      min-width: 0;
+      border-radius: 10px;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
     }
-    .date-card:hover {
-      border-color: #bdbdbd;
-      transform: translateY(-2px);
+    .range-picker__field + .range-picker__field {
+      border-left: 1.5px solid transparent;
     }
-    .date-card.is-selected {
-      border-color: var(--ink);
-      background: var(--ink);
-      color: var(--white);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    .range-picker__field:hover:not(.is-active) {
+      background: #fafafa;
     }
-    .date-card.is-weekend {
-      opacity: 0.72;
+    .range-picker__field.is-active {
+      background: var(--white);
+      border-color: var(--accent-in);
+      box-shadow: 0 0 0 1px var(--accent-in);
     }
-    .date-card.is-weekend.is-selected {
-      opacity: 1;
+    .range-picker__field[data-range-field="out"].is-active {
+      border-color: var(--accent-out);
+      box-shadow: 0 0 0 1px var(--accent-out);
     }
-    .date-card__dow {
-      font-size: 0.72rem;
-      font-weight: 500;
+    .range-picker__field.is-active .range-picker__field-label {
+      color: var(--accent-in-text);
+    }
+    .range-picker__field[data-range-field="out"].is-active .range-picker__field-label {
+      color: var(--accent-out-text);
+    }
+    .range-picker__field-label {
+      display: block;
+      font-size: 0.6rem;
+      font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      opacity: 0.65;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
     }
-    .date-card__day {
-      font-size: 1.85rem;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.03em;
-    }
-    .date-card__month {
-      font-size: 0.85rem;
+    .range-picker__field-value {
+      display: block;
+      font-size: 0.88rem;
       font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .date-card__tag {
-      margin-top: 0.35rem;
-      font-size: 0.68rem;
+    .range-picker__field-value.is-placeholder {
+      color: #999;
+      font-weight: 400;
+    }
+    .range-picker__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem 0.85rem;
+      padding: 0.45rem 0.85rem;
+      border-bottom: 1px solid var(--line);
+      background: #fafafa;
+    }
+    .range-picker__nights {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent-text);
+    }
+    .range-picker__note {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+    .range-picker__note strong { color: var(--ink); font-weight: 500; }
+    .cal {
+      padding: 0.65rem 0.7rem 0.8rem;
+    }
+    .cal__nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      margin-bottom: 0.45rem;
+      padding: 0;
+    }
+    .cal__month {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    .cal__nav-btn {
+      appearance: none;
+      width: 2.15rem;
+      height: 2.15rem;
+      border: 1px solid #e4e4e4;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--ink);
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
+    }
+    .cal__nav-btn svg {
+      width: 1.1rem;
+      height: 1.1rem;
+      display: block;
+    }
+    .cal__nav-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent-text);
+      background: #fafafa;
+    }
+    .cal__nav-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+    }
+    .cal__weekdays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 0.15rem;
+      text-align: center;
+      font-size: 0.62rem;
       font-weight: 500;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      opacity: 0.7;
-    }
-    .date-card.is-selected .date-card__tag {
-      opacity: 0.85;
-    }
-    .date-picker__note {
-      margin-top: 0.85rem;
-      font-size: 0.85rem;
       color: var(--muted);
+      padding: 0;
     }
-    .date-picker__note strong {
-      color: var(--ink);
+    .cal__weekdays span {
+      padding: 0.1rem 0;
+    }
+    .cal__grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.1rem 0;
+    }
+    .cal__day {
+      --day-size: 2rem;
+      appearance: none;
+      border: none;
+      background: transparent;
+      position: relative;
+      height: var(--day-size);
+      padding: 0;
+      margin: 0;
+      font: inherit;
+      font-size: 0.82rem;
       font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+    }
+    .cal__day::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: transparent;
+    }
+    .cal__day span {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--day-size);
+      height: var(--day-size);
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 1.5px solid transparent;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+    .cal__day:hover:not(:disabled):not(.is-selected) span {
+      border-color: var(--ink);
+    }
+    .cal__day:disabled {
+      color: #c8c8c8;
+      cursor: default;
+    }
+    .cal__day.is-outside {
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .cal__day.is-in-range::before {
+      background: #f0f0f0;
+    }
+    .cal__day.is-range-start.has-fill::before {
+      background: #f0f0f0;
+      left: 50%;
+      border-radius: 0;
+    }
+    .cal__day.is-range-end.has-fill::before {
+      background: #f0f0f0;
+      right: 50%;
+      border-radius: 0;
+    }
+    .cal__day.is-range-start.is-range-end::before {
+      background: transparent;
+    }
+    .cal__day.is-selected span {
+      background: var(--accent-in);
+      color: var(--white);
+      border-color: var(--accent-in);
+    }
+    .cal__day.is-range-end.is-selected span {
+      background: var(--accent-out);
+      border-color: var(--accent-out);
+    }
+    .cal__day.is-selected:hover:not(:disabled) span {
+      border-color: transparent;
+    }
+    .cal__day.is-today:not(.is-selected) span {
+      font-weight: 700;
+      color: var(--accent-text);
+      border-color: color-mix(in srgb, var(--accent) 55%, #ddd);
+    }
+    .cal__day.is-preview-end:not(.is-selected) span {
+      border-color: var(--accent-out);
+    }
+    .timeline-day.is-length-hidden {
+      display: none;
+    }
+    .plan-day.is-length-hidden {
+      display: none;
     }
 
     .plan-board {
-      display: grid;
-      gap: 0.75rem;
-      margin: 1.5rem 0 0.5rem;
-    }
-    @media (min-width: 700px) {
-      .plan-board {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 980px) {
-      .plan-board {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      display: none !important;
     }
     .plan-day {
       appearance: none;
@@ -891,8 +1038,8 @@
     }
     .plan-day:hover { border-color: #cfcfcf; }
     .plan-day.is-active {
-      border-color: var(--ink);
-      box-shadow: inset 0 0 0 1px var(--ink);
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
     }
     .plan-day__kicker {
       font-size: 0.72rem;
@@ -912,7 +1059,7 @@
       line-height: 1.4;
     }
     .plan-day.is-active .plan-day__kicker {
-      color: var(--ink);
+      color: var(--accent-text);
     }
 
     .day-divider {
@@ -955,17 +1102,65 @@
       color: var(--ink);
       font-weight: 500;
     }
+    .timeline-help__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .timeline-share,
     .timeline-reset {
       appearance: none;
-      border: none;
-      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
       font: inherit;
+      font-size: 0.82rem;
       font-weight: 500;
-      color: var(--ink);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      line-height: 1.2;
+      padding: 0.5rem 0.95rem;
+      border-radius: var(--pill);
       cursor: pointer;
-      padding: 0;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s var(--ease);
+    }
+    .timeline-share {
+      border: 1.5px solid var(--ink);
+      background: var(--ink);
+      color: var(--white);
+    }
+    .timeline-share:hover {
+      background: var(--black);
+      border-color: var(--black);
+      transform: translateY(-1px);
+    }
+    .timeline-reset {
+      border: 1.5px solid #d8d8d8;
+      background: var(--white);
+      color: var(--ink);
+    }
+    .timeline-reset:hover {
+      border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+    .timeline-share:focus-visible,
+    .timeline-reset:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .timeline-share-status {
+      font-size: 0.8rem;
+      color: var(--muted);
+      min-height: 1.2em;
+      width: 100%;
+    }
+    @media (min-width: 640px) {
+      .timeline-share-status {
+        width: auto;
+        margin-left: 0.25rem;
+      }
     }
 
     .timeline {
@@ -986,10 +1181,28 @@
       padding-left: 0.25rem;
     }
     .timeline-list.is-drop-target {
-      background: rgba(0, 0, 0, 0.02);
+      background: transparent;
       border-radius: 16px;
-      outline: 1.5px dashed #cfcfcf;
+      outline: 1.5px dashed color-mix(in srgb, var(--accent) 45%, #cfcfcf);
       outline-offset: 4px;
+    }
+    .timeline-day-empty {
+      display: none;
+      padding: 1.25rem 0 1.75rem 2.85rem;
+      max-width: 34rem;
+    }
+    .timeline-day-empty.is-visible {
+      display: grid;
+      gap: 1rem;
+      justify-items: start;
+    }
+    .timeline-day-empty__copy {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      color: var(--ink);
     }
 
     .timeline-item {
@@ -1066,7 +1279,35 @@
       font-weight: 700;
       margin-top: 1.15rem;
     }
+    .timeline-item[data-id="checkin"] .timeline-item__dot { background: var(--cat-stay); }
+    .timeline-item[data-id="sip"] .timeline-item__dot { background: var(--cat-taste); }
+    .timeline-item[data-id="create"] .timeline-item__dot { background: var(--cat-culture); }
+    .timeline-item[data-id="backbone"] .timeline-item__dot { background: var(--cat-experience); }
+    .timeline-item[data-id="explore"] .timeline-item__dot,
+    .timeline-item[data-id="crabtree"] .timeline-item__dot,
+    .timeline-item[data-id="spyrock"] .timeline-item__dot,
+    .timeline-item[data-id="tyeriver"] .timeline-item__dot { background: var(--cat-outdoor); }
+    .timeline-item[data-id="rides"] .timeline-item__dot { background: var(--cat-community); }
+    .timeline-item[data-id="checkin"] .timeline-item__beat { color: var(--cat-stay-text); }
+    .timeline-item[data-id="sip"] .timeline-item__beat { color: var(--cat-taste-text); }
+    .timeline-item[data-id="create"] .timeline-item__beat { color: var(--cat-culture-text); }
+    .timeline-item[data-id="backbone"] .timeline-item__beat { color: var(--cat-experience-text); }
+    .timeline-item[data-id="explore"] .timeline-item__beat,
+    .timeline-item[data-id="crabtree"] .timeline-item__beat,
+    .timeline-item[data-id="spyrock"] .timeline-item__beat,
+    .timeline-item[data-id="tyeriver"] .timeline-item__beat { color: var(--cat-outdoor-text); }
+    .timeline-item[data-id="rides"] .timeline-item__beat { color: var(--cat-community-text); }
+    .timeline-item[data-id="checkin"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-stay) 55%, #cfcfcf); }
+    .timeline-item[data-id="sip"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-taste) 55%, #cfcfcf); }
+    .timeline-item[data-id="create"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-culture) 55%, #cfcfcf); }
+    .timeline-item[data-id="backbone"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-experience) 55%, #cfcfcf); }
+    .timeline-item[data-id="explore"] .timeline-item__card:hover,
+    .timeline-item[data-id="crabtree"] .timeline-item__card:hover,
+    .timeline-item[data-id="spyrock"] .timeline-item__card:hover,
+    .timeline-item[data-id="tyeriver"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-outdoor) 55%, #cfcfcf); }
+    .timeline-item[data-id="rides"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-community) 55%, #cfcfcf); }
     .timeline-item__card {
+      position: relative;
       display: grid;
       gap: 0.9rem;
       align-items: start;
@@ -1076,6 +1317,41 @@
       padding: 0.95rem;
       cursor: default;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease);
+    }
+    .timeline-item.is-removed {
+      display: none !important;
+    }
+    .timeline-item__remove {
+      appearance: none;
+      position: absolute;
+      top: 0.55rem;
+      right: 0.55rem;
+      z-index: 2;
+      width: 1.75rem;
+      height: 1.75rem;
+      border: 1.5px solid #e2e2e2;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--muted);
+      font: inherit;
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      padding: 0;
+      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+    }
+    .timeline-item__remove:hover,
+    .timeline-item__remove:focus-visible {
+      border-color: #c9c9c9;
+      color: var(--ink);
+      background: #f7f7f7;
+    }
+    .timeline-item__remove:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
     }
     .timeline-item__card:active {
       cursor: default;
@@ -1116,7 +1392,10 @@
       user-select: none;
     }
     .timeline-item__handle:active { cursor: grabbing; }
-    .timeline-item__content { min-width: 0; }
+    .timeline-item__content {
+      min-width: 0;
+      padding-right: 1.6rem;
+    }
     .timeline-item__actions {
       display: flex;
       flex-wrap: wrap;
@@ -1144,6 +1423,65 @@
       line-height: 1.45;
       margin-bottom: 0.85rem;
     }
+    .timeline-item__offer {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.4;
+      margin: -0.35rem 0 0.85rem;
+    }
+    .timeline-item__offer .code-green {
+      font-size: 0.95em;
+    }
+    .stay-choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.45rem;
+      margin: 0 0 0.85rem;
+    }
+    .stay-choice__btn {
+      appearance: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.15rem;
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border: 1.5px solid #e2e2e2;
+      border-radius: 12px;
+      background: #fafafa;
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .stay-choice__btn:hover {
+      border-color: #bdbdbd;
+      background: var(--white);
+    }
+    .stay-choice__btn.is-selected {
+      border-color: var(--cat-stay);
+      background: var(--white);
+      box-shadow: 0 0 0 1px var(--cat-stay);
+    }
+    .stay-choice__btn.is-selected .stay-choice__label {
+      color: var(--cat-stay-text);
+    }
+    .stay-choice__label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .stay-choice__name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
     .timeline-item__media {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -1165,7 +1503,7 @@
 
     /* —— Passport / LoyalBrew —— */
     .passport {
-      border-top: 1px solid var(--line);
+      display: none !important;
     }
     .passport__grid {
       display: grid;
@@ -1281,8 +1619,8 @@
     .stamp.is-claimed {
       border-style: solid;
       border-color: var(--ink);
-      background: var(--ink);
-      color: var(--white);
+      background: var(--white);
+      color: var(--ink);
     }
     .stamp__role {
       font-size: 0.68rem;
@@ -1291,7 +1629,19 @@
       text-transform: uppercase;
       opacity: 0.7;
     }
-    .stamp.is-claimed .stamp__role { opacity: 0.75; }
+    .stamp.is-claimed .stamp__role { opacity: 1; }
+    .stamp[data-stamp="lodging"].is-claimed { border-color: var(--cat-stay); }
+    .stamp[data-stamp="lodging"].is-claimed .stamp__role { color: var(--cat-stay-text); }
+    .stamp[data-stamp="flying-fox"].is-claimed { border-color: var(--cat-taste); }
+    .stamp[data-stamp="flying-fox"].is-claimed .stamp__role { color: var(--cat-taste-text); }
+    .stamp[data-stamp="glass-hollow"].is-claimed { border-color: var(--cat-culture); }
+    .stamp[data-stamp="glass-hollow"].is-claimed .stamp__role { color: var(--cat-culture-text); }
+    .stamp[data-stamp="tunnel"].is-claimed { border-color: var(--cat-outdoor); }
+    .stamp[data-stamp="tunnel"].is-claimed .stamp__role { color: var(--cat-outdoor-text); }
+    .stamp[data-stamp="devils-backbone"].is-claimed { border-color: var(--cat-experience); }
+    .stamp[data-stamp="devils-backbone"].is-claimed .stamp__role { color: var(--cat-experience-text); }
+    .stamp[data-stamp="rides"].is-claimed { border-color: var(--cat-community); }
+    .stamp[data-stamp="rides"].is-claimed .stamp__role { color: var(--cat-community-text); }
     .stamp__name {
       font-size: 0.92rem;
       font-weight: 500;
@@ -1345,17 +1695,111 @@
       background: var(--white);
       margin-bottom: 0.85rem;
     }
-    .promo-code__value {
-      font-size: clamp(1.05rem, 3vw, 1.35rem);
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 0.85rem 1.2rem;
+    .code-green,
+    .promo-code__value,
+    .sticky-promo__code {
       color: var(--nelson-green);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+    .cin-nelson {
+      font-weight: 800;
     }
     .code-green {
-      color: var(--nelson-green);
-      font-weight: 700;
+      display: inline-flex;
+      align-items: stretch;
+      vertical-align: -0.08em;
+      margin: 0;
+      padding: 0;
+      border: 1.5px solid transparent;
+      border-radius: var(--pill);
+      background: transparent;
+      font: inherit;
+      font-weight: 500;
       letter-spacing: 0.04em;
+      color: var(--nelson-green);
+      cursor: pointer;
+      overflow: hidden;
+      line-height: 1.25;
+      max-width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+    }
+    .code-green:hover,
+    .code-green:focus-visible,
+    .code-green.is-copied {
+      border-color: #d8d8d8;
+      background: var(--white);
+      text-decoration: none;
+    }
+    .code-green:focus-visible {
+      outline: 2px solid var(--nelson-green);
+      outline-offset: 2px;
+    }
+    .code-green__label {
+      padding: 0;
+      white-space: nowrap;
+      transition: padding 0.18s ease;
+    }
+    .code-green:hover .code-green__label,
+    .code-green:focus-visible .code-green__label,
+    .code-green.is-copied .code-green__label {
+      padding: 0.12em 0.55em;
+    }
+    .code-green__hint {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 0;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      opacity: 0;
+      border: none;
+      border-left: 0 solid #d8d8d8;
+      background: var(--ink);
+      color: var(--white);
+      font-size: 0.72em;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      white-space: nowrap;
+      transition: max-width 0.2s var(--ease), padding 0.2s var(--ease), opacity 0.15s ease, border-width 0.2s ease;
+    }
+    .code-green:hover .code-green__hint,
+    .code-green:focus-visible .code-green__hint,
+    .code-green.is-copied .code-green__hint {
+      max-width: 4.75rem;
+      padding: 0 0.55em;
+      opacity: 1;
+      border-left-width: 1.5px;
+    }
+    .code-green.is-copied {
+      border-color: var(--nelson-green);
+    }
+    .code-green--plain {
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      transition: none;
+    }
+    .code-green--plain:hover,
+    .code-green--plain:focus-visible,
+    .code-green--plain.is-copied {
+      border: none;
+      background: transparent;
+    }
+    .code-green--plain:focus-visible {
+      outline: 2px solid var(--nelson-green);
+      outline-offset: 3px;
+    }
+    .promo-code__value {
+      font-size: clamp(1.05rem, 3vw, 1.35rem);
+      letter-spacing: 0.06em;
+      padding: 0.85rem 1.2rem;
+    }
+    .sticky-promo__code {
+      font-size: 0.9rem;
     }
     .promo-code__copy {
       border: none;
@@ -1484,12 +1928,6 @@
       transition: transform 0.35s var(--ease);
     }
     .sticky-promo.is-visible { transform: none; }
-    .sticky-promo__code {
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      font-size: 0.9rem;
-      color: var(--nelson-green);
-    }
     .sticky-promo .btn {
       padding: 0.6rem 1rem;
       font-size: 0.85rem;
@@ -1498,7 +1936,35 @@
       .sticky-promo { display: none; }
     }
 
+    /* Framer / iframe embed */
+    html.is-embed .sample-banner,
+    html.is-embed .site-bar {
+      display: none !important;
+    }
+    html.is-embed .campaign-footer {
+      padding-bottom: 2rem;
+    }
+    html.is-embed .sticky-promo {
+      left: 50%;
+      right: auto;
+      transform: translate(-50%, 120%);
+      max-width: calc(100% - 1.5rem);
+    }
+    html.is-embed .sticky-promo.is-visible {
+      transform: translate(-50%, 0);
+    }
+
   </style>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var inFrame = false;
+      try { inFrame = window.self !== window.top; } catch (err) { inFrame = true; }
+      if (params.get("embed") === "1" || params.get("embed") === "true" || inFrame) {
+        document.documentElement.classList.add("is-embed");
+      }
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -1517,7 +1983,6 @@
       <a href="https://nelsoncounty.com/contact">Contact</a>
       <a href="#stay">Stay</a>
       <a href="#experience">Experience</a>
-      <a href="#passport">Passport</a>
       <a class="nav-pill" href="#itinerary">Sample stay</a>
     </nav>
   </header>
@@ -1571,10 +2036,10 @@
         </div>
         <aside class="hero__promo" aria-label="Campaign promo code">
           <p class="hero__promo-label">Promo code</p>
-          <p class="hero__promo-title">Save with CHECKINTONELSON</p>
-          <p class="hero__promo-copy">Get 15% off participating lodging, plus offers from wineries, experiences, and rides. Copy it before you book.</p>
+          <p class="hero__promo-title">Save with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
+          <p class="hero__promo-copy">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County. Copy the code before you book.</p>
           <div class="promo-code promo-code--sm" role="group" aria-label="Promotional code">
-            <span class="promo-code__value">CHECKINTONELSON</span>
+            <span class="promo-code__value"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
             <button type="button" class="promo-code__copy" id="copyPromoHero" data-track="copy_promo_code">Copy</button>
           </div>
         </aside>
@@ -1586,11 +2051,11 @@
         <p class="partner-strip__label">Participating partners</p>
         <div class="partner-strip__row">
           <a class="partner-chip" href="#feature-farmhouse">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="80" height="80" loading="lazy" />
             Farmhouse at Veritas
           </a>
           <a class="partner-chip" href="#feature-devils-backbone-camp">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-camp-image1_pHe83b4NS?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/devils-backbone.jpg" alt="" width="80" height="80" loading="lazy" />
             Devils Backbone Campground
           </a>
           <a class="partner-chip" href="#feature-flying-fox">
@@ -1634,15 +2099,15 @@
       <div class="wrap">
         <p class="eyebrow">Choose your stay</p>
         <h2 class="section-title" id="stay-title">Two home bases. One promo code.</h2>
-        <p class="section-copy">Plan a two-night escape or settle in for three or four days. Use CHECKINTONELSON for 15% off participating lodging.</p>
+        <p class="section-copy">Plan a two-night escape or settle in for three or four days. Participating businesses offer special incentives with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to help you stay longer and experience more.</p>
 
         <div class="stay-grid">
           <article class="stay-card" id="feature-farmhouse">
             <div class="stay-card__media">
-              <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-1000,h-700,fo-auto,q-75" alt="Farmhouse at Veritas" width="1000" height="700" loading="lazy" />
+              <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="Farmhouse at Veritas" width="1000" height="700" loading="lazy" />
             </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">15% off with CHECKINTONELSON</span>
+              <span class="stay-card__offer">Special incentive with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></span>
               <h3 class="stay-card__title">Farmhouse at Veritas</h3>
               <p class="stay-card__copy">Wake up in the heart of Virginia wine country. Vineyard views, thoughtful hospitality, and an ideal home base for exploring Nelson County.</p>
               <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
@@ -1651,10 +2116,10 @@
 
           <article class="stay-card" id="feature-devils-backbone-camp">
             <div class="stay-card__media">
-              <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-camp-image1_pHe83b4NS?tr=w-1000,h-700,fo-auto,q-75" alt="Devils Backbone Campground" width="1000" height="700" loading="lazy" />
+              <img src="assets/check-into-nelson/devils-backbone.jpg" alt="Devils Backbone Campground" width="1000" height="700" loading="lazy" />
             </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">15% off with CHECKINTONELSON</span>
+              <span class="stay-card__offer">Special incentive with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></span>
               <h3 class="stay-card__title">Devils Backbone Campground</h3>
               <p class="stay-card__copy">Settle into the Blue Ridge where outdoor stays, mountain scenery, craft beverage experiences, and on-site agritourism come together.</p>
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Your Stay</a>
@@ -1672,7 +2137,7 @@
           <p class="section-copy">Stay for two nights or make it a three- to four-day getaway. Mix sip, create, explore, and get-around stops into a trip that feels like your own.</p>
         </div>
 
-        <article class="partner-feature" id="feature-flying-fox">
+        <article class="partner-feature" id="feature-flying-fox" data-cat="taste">
           <div class="partner-feature__media">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-1200,h-820,fo-auto,q-75" alt="Flying Fox Vineyard" width="1200" height="820" loading="lazy" />
             <span class="partner-feature__badge">Sip</span>
@@ -1682,7 +2147,7 @@
             <h3 class="partner-feature__title">Flying Fox Vineyard</h3>
             <p class="partner-feature__copy">Discover thoughtfully made Virginia wine in a relaxed, character-filled setting. Stop in for a tasting, take in the atmosphere, and enjoy another side of Nelson County wine country.</p>
             <div class="partner-feature__meta">
-              <div><span class="code-green">CHECKINTONELSON</span> <span>· Participating offer</span></div>
+              <div><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> <span>· Special incentive</span></div>
             </div>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox Vineyard</a>
@@ -1691,7 +2156,7 @@
           </div>
         </article>
 
-        <article class="partner-feature" id="feature-glass-hollow">
+        <article class="partner-feature" id="feature-glass-hollow" data-cat="culture">
           <div class="partner-feature__media">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-1200,h-820,fo-auto,q-75" alt="Glass Hollow Studio" width="1200" height="820" loading="lazy" />
             <span class="partner-feature__badge">Create</span>
@@ -1701,7 +2166,7 @@
             <h3 class="partner-feature__title">Glass Hollow Studio</h3>
             <p class="partner-feature__copy">Add something hands-on to your stay. Experience local artistry, explore the glassblowing process, and create a memorable stop beyond the traditional tasting room.</p>
             <div class="partner-feature__meta">
-              <div><span class="code-green">CHECKINTONELSON</span> <span>· When booking your experience</span></div>
+              <div><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> <span>· Special incentive when booking</span></div>
             </div>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow Studio</a>
@@ -1710,7 +2175,7 @@
           </div>
         </article>
 
-        <article class="partner-feature" id="feature-tunnel">
+        <article class="partner-feature" id="feature-tunnel" data-cat="outdoor">
           <div class="partner-feature__media">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-1200,h-820,fo-auto,q-75" alt="Blue Ridge Tunnel" width="1200" height="820" loading="lazy" />
             <span class="partner-feature__badge">Explore</span>
@@ -1726,7 +2191,7 @@
           </div>
         </article>
 
-        <article class="partner-feature" id="feature-devils-backbone">
+        <article class="partner-feature" id="feature-devils-backbone" data-cat="experience">
           <div class="partner-feature__media">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-1200,h-820,fo-auto,q-75" alt="Devils Backbone" width="1200" height="820" loading="lazy" />
             <span class="partner-feature__badge">Experience more</span>
@@ -1742,7 +2207,7 @@
           </div>
         </article>
 
-        <article class="partner-feature" id="feature-rides">
+        <article class="partner-feature" id="feature-rides" data-cat="community">
           <div class="partner-feature__media">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-1200,h-820,fo-auto,q-75" alt="Getting around Nelson County" width="1200" height="820" loading="lazy" />
             <span class="partner-feature__badge">Get around</span>
@@ -1752,7 +2217,7 @@
             <h3 class="partner-feature__title">Reliable Rides</h3>
             <p class="partner-feature__copy">Spend less time thinking about transportation and more time enjoying your stay. Travel safely and conveniently between participating stops.</p>
             <div class="partner-feature__meta">
-              <div><span class="code-green">CHECKINTONELSON</span> <span>· When arranging your ride</span></div>
+              <div><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> <span>· Special incentive when arranging your ride</span></div>
             </div>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
@@ -1766,30 +2231,51 @@
     <section class="itinerary" id="itinerary" aria-labelledby="itin-title">
       <div class="wrap">
         <div class="itinerary__head">
-          <p class="eyebrow">Need a place to start?</p>
-          <h2 class="section-title" id="itin-title">A sample three-day stay</h2>
-          <p class="section-copy">Pick your check-in date, then drag experiences to reshape the sample plan — within a day or between days. Nelson moves at your speed.</p>
+          <p class="eyebrow">Build your itinerary</p>
+          <h2 class="section-title" id="itin-title">Build a flexible stay</h2>
+          <p class="section-copy">Pick your check-in and check-out dates, then drag experiences to reshape the plan. Nelson moves at your speed.</p>
         </div>
 
-        <div class="date-picker" id="datePicker">
-          <div class="date-picker__top">
-            <div>
-              <p class="date-picker__label">Check-in date</p>
-              <p class="date-picker__hint" id="selectedRangeLabel">Select a start date to build your plan</p>
-            </div>
-            <label class="date-picker__custom">
-              <span class="date-picker__label">Or enter your own</span>
-              <input type="date" id="customStartDate" />
-            </label>
+        <div class="range-picker" id="rangePicker">
+          <div class="range-picker__fields">
+            <button type="button" class="range-picker__field is-active" id="fieldCheckIn" data-range-field="in">
+              <span class="range-picker__field-label">Check-in</span>
+              <span class="range-picker__field-value is-placeholder" id="checkInLabel">Add date</span>
+            </button>
+            <button type="button" class="range-picker__field" id="fieldCheckOut" data-range-field="out">
+              <span class="range-picker__field-label">Checkout</span>
+              <span class="range-picker__field-value is-placeholder" id="checkOutLabel">Add date</span>
+            </button>
           </div>
-          <div class="date-scroller" id="dateScroller" role="listbox" aria-label="Suggested check-in dates"></div>
-          <p class="date-picker__note" id="datePickerNote">Weekday cards are highlighted. Midweek usually means more room to slow down.</p>
+          <div class="range-picker__meta">
+            <span class="range-picker__nights" id="rangeNightsLabel">Select dates</span>
+            <span class="range-picker__note" id="datePickerNote">Midweek stays usually leave more room to slow down.</span>
+          </div>
+          <div class="cal" id="cal">
+            <div class="cal__nav">
+              <button type="button" class="cal__nav-btn" id="calPrev" aria-label="Previous month">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M14.5 5.5L8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <div class="cal__month" id="calMonthLabel">August 2026</div>
+              <button type="button" class="cal__nav-btn" id="calNext" aria-label="Next month">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M9.5 5.5L16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <div class="cal__weekdays" aria-hidden="true">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="cal__grid" id="calGrid" role="grid" aria-label="Stay dates"></div>
+          </div>
         </div>
 
         <div class="plan-board" id="planBoard" hidden>
           <button type="button" class="plan-day is-active" data-filter="all" id="planDayAll">
             <span class="plan-day__kicker">Full trip</span>
-            <span class="plan-day__date" id="planAllDate">Your 3-day plan</span>
+            <span class="plan-day__date" id="planAllDate">Your plan</span>
             <span class="plan-day__summary" id="planAllSummary">Settle in · Taste &amp; create · Head outdoors</span>
           </button>
           <button type="button" class="plan-day" data-filter="1" id="planDay1">
@@ -1807,11 +2293,25 @@
             <span class="plan-day__date" id="planDay3Date">—</span>
             <span class="plan-day__summary" id="planDay3Summary">Head outdoors</span>
           </button>
+          <button type="button" class="plan-day is-length-hidden" data-filter="4" id="planDay4">
+            <span class="plan-day__kicker">Day 4</span>
+            <span class="plan-day__date" id="planDay4Date">—</span>
+            <span class="plan-day__summary" id="planDay4Summary">Extra day</span>
+          </button>
+          <button type="button" class="plan-day is-length-hidden" data-filter="5" id="planDay5">
+            <span class="plan-day__kicker">Day 5</span>
+            <span class="plan-day__date" id="planDay5Date">—</span>
+            <span class="plan-day__summary" id="planDay5Summary">Extra day</span>
+          </button>
         </div>
 
         <div class="timeline-help">
-          <p><strong>Drag</strong> any experience to change the order — within a day or between days.</p>
-          <button type="button" class="timeline-reset" id="resetTimeline">Reset sequence</button>
+          <p><strong>Drag</strong> any experience to change the order.</p>
+          <div class="timeline-help__actions">
+            <button type="button" class="timeline-share" id="copyPlanLink">Copy plan link</button>
+            <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
+            <span class="timeline-share-status" id="planShareStatus" aria-live="polite"></span>
+          </div>
         </div>
 
         <div class="timeline" id="timeline">
@@ -1821,23 +2321,34 @@
               <span class="day-divider__meta" data-divider-meta>Settle in and let the mountains do their thing</span>
             </div>
             <div class="timeline-list" data-drop-day="1" id="listDay1">
-              <article class="timeline-item" data-id="checkin" data-role="Settle in" data-default-day="1" data-default-order="1" id="stop-checkin">
+              <article class="timeline-item" data-id="checkin" data-role="Settle in" data-default-day="1" data-default-order="1" data-stay="farmhouse" id="stop-checkin">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">1</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat">Settle in · Day 1</p>
-                      <h3 class="timeline-item__title">Farmhouse at Veritas or Devils Backbone Campground</h3>
-                      <p class="timeline-item__copy">Arrive, unpack, pour something local, and let Blue Ridge views set the pace. No agenda tonight — just good scenery and room to slow down.</p>
+                      <h3 class="timeline-item__title" id="checkinTitle">Farmhouse at Veritas</h3>
+                      <div class="stay-choice" role="radiogroup" aria-label="Choose your lodging">
+                        <button type="button" class="stay-choice__btn is-selected" role="radio" aria-checked="true" data-stay-option="farmhouse" id="stayOptFarmhouse">
+                          <span class="stay-choice__label">Wine country</span>
+                          <span class="stay-choice__name">Farmhouse at Veritas</span>
+                        </button>
+                        <button type="button" class="stay-choice__btn" role="radio" aria-checked="false" data-stay-option="backbone" id="stayOptBackbone">
+                          <span class="stay-choice__label">Camp &amp; outdoors</span>
+                          <span class="stay-choice__name">Devils Backbone Campground</span>
+                        </button>
+                      </div>
+                      <p class="timeline-item__copy" id="checkinCopy">Wake up in Virginia wine country. Unpack, pour something local, and let vineyard views set the pace for the days ahead.</p>
+                      <p class="timeline-item__offer">15% off participating lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> — mention the code when you book.</p>
                       <div class="timeline-item__actions">
-                        <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
-                        <a class="btn btn--outline" href="#feature-farmhouse">Lodging options</a>
+                        <a class="btn btn--dark" id="checkinBook" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
+                        <a class="btn btn--outline" id="checkinAbout" href="#feature-farmhouse">About this stay</a>
                       </div>
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/the-farmhouse-at-veritas-image1_LBC9TWPstE?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img id="checkinImage" src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="Farmhouse at Veritas" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -1859,6 +2370,7 @@
                       <p class="timeline-item__beat">Sip · Day 2</p>
                       <h3 class="timeline-item__title">Flying Fox Vineyard</h3>
                       <p class="timeline-item__copy">A pour with a view — thoughtfully made Virginia wine in a relaxed, character-filled setting. Let the day unfold without a rush back to anywhere.</p>
+                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the participating offer.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox</a>
                         <a class="btn btn--outline" href="#feature-flying-fox">About Flying Fox</a>
@@ -1880,6 +2392,7 @@
                       <p class="timeline-item__beat">Create · Day 2</p>
                       <h3 class="timeline-item__title">Glass Hollow Studio</h3>
                       <p class="timeline-item__copy">Get hands-on with local artistry and the glassblowing process — a memorable stop beyond the tasting room.</p>
+                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking your experience.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow</a>
                         <a class="btn btn--outline" href="#feature-glass-hollow">About Glass Hollow</a>
@@ -1901,6 +2414,7 @@
                       <p class="timeline-item__beat">Experience · Day 2</p>
                       <h3 class="timeline-item__title">Devils Backbone</h3>
                       <p class="timeline-item__copy">Explore craft beverage culture and on-site agritourism — greenhouses, locally grown ingredients, and the Basecamp experience.</p>
+                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the participating offer.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
                         <a class="btn btn--outline" href="#feature-devils-backbone">About Devils Backbone</a>
@@ -1921,6 +2435,10 @@
               <span class="day-divider__meta" data-divider-meta>Head outdoors before taking the long way home</span>
             </div>
             <div class="timeline-list" data-drop-day="3" id="listDay3">
+              <div class="timeline-day-empty" data-day-empty="3">
+                <p class="timeline-day-empty__copy">There’s so much to do in Nelson County.</p>
+                <a class="btn btn--dark" href="https://nelsoncounty.com/find-your-adventure" target="_blank" rel="noopener noreferrer" data-track="see_all_activities">See all activities</a>
+              </div>
               <article class="timeline-item" data-id="explore" data-role="Explore" data-default-day="3" data-default-order="5" id="stop-explore">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">5</span></span></div>
                 <div class="timeline-item__card">
@@ -1929,7 +2447,7 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat">Explore · Day 3</p>
                       <h3 class="timeline-item__title">Blue Ridge Tunnel</h3>
-                      <p class="timeline-item__copy">Nelson’s coolest hike: a nearly mile-long passage carved through greenstone in the 1850s, reopened as a trail in 2020. Want more? Chase cascades at Crabtree Falls, Spy Rock, or the Tye River.</p>
+                      <p class="timeline-item__copy">Nelson’s coolest hike: a nearly mile-long passage carved by hand through solid greenstone in the 1850s, later reopened as a trail in 2020 after the railroad outgrew it.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
                         <a class="btn btn--outline" href="#feature-tunnel">About the Tunnel</a>
@@ -1937,10 +2455,99 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-400,h-400,fo-auto,q-75" alt="Blue Ridge Tunnel" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
+
+              <article class="timeline-item" data-id="crabtree" data-role="Explore" data-default-day="3" data-default-order="6" id="stop-crabtree">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">6</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <h3 class="timeline-item__title">Crabtree Falls</h3>
+                      <p class="timeline-item__copy">Chase the cascades at the highest waterfall series east of the Mississippi — five major drops totaling 1,200 feet, with overlooks from an easy paved path to a strenuous 3-mile trail.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/crabtree-falls" data-track="partner_outbound" data-partner="crabtree-falls">Plan Your Visit</a>
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer">View on nelsoncounty.com</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/crabtree-falls-image1_IXQ2lOEKu?tr=w-400,h-400,fo-auto,q-75" alt="Crabtree Falls" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item" data-id="spyrock" data-role="Explore" data-default-day="3" data-default-order="7" id="stop-spyrock">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">7</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <h3 class="timeline-item__title">Spy Rock</h3>
+                      <p class="timeline-item__copy">Keep the boots on for panoramic Blue Ridge views from a granite summit — a moderate-to-strenuous hike with rocky scrambles and sweeping overlooks.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" data-track="partner_outbound" data-partner="spy-rock">Plan Your Visit</a>
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer">View on nelsoncounty.com</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/spy-rock-image1_1KwRYk5CN?tr=w-400,h-400,fo-auto,q-75" alt="Spy Rock" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+
+              <article class="timeline-item" data-id="tyeriver" data-role="Explore" data-default-day="3" data-default-order="8" id="stop-tyeriver">
+                <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">8</span></span></div>
+                <div class="timeline-item__card">
+                  <div class="timeline-item__main">
+                    <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
+                    <div class="timeline-item__content">
+                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <h3 class="timeline-item__title">Tye River</h3>
+                      <p class="timeline-item__copy">Cast a line or paddle a Blue Ridge stream — 34 miles of mountain scenery with seasonal whitewater and trout fishing along Route 56.</p>
+                      <div class="timeline-item__actions">
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/tye-river" data-track="partner_outbound" data-partner="tye-river">Plan Your Visit</a>
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/fishing-the-tye-river" target="_blank" rel="noopener noreferrer">Fishing the Tye</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item__media">
+                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-400,h-400,fo-auto,q-75" alt="Tye River" width="400" height="400" loading="lazy" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="timeline-day is-length-hidden" data-day="4" id="timelineDay4">
+            <div class="day-divider" data-divider="4">
+              <h3 class="day-divider__title" data-divider-title>Day 4</h3>
+              <span class="day-divider__meta" data-divider-meta>Another day to linger</span>
+            </div>
+            <div class="timeline-list" data-drop-day="4" id="listDay4">
+              <div class="timeline-day-empty" data-day-empty="4">
+                <p class="timeline-day-empty__copy">There’s so much to do in Nelson County.</p>
+                <a class="btn btn--dark" href="https://nelsoncounty.com/find-your-adventure" target="_blank" rel="noopener noreferrer" data-track="see_all_activities">See all activities</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-day is-length-hidden" data-day="5" id="timelineDay5">
+            <div class="day-divider" data-divider="5">
+              <h3 class="day-divider__title" data-divider-title>Day 5</h3>
+              <span class="day-divider__meta" data-divider-meta>Take the long way home</span>
+            </div>
+            <div class="timeline-list" data-drop-day="5" id="listDay5">
+              <div class="timeline-day-empty" data-day-empty="5">
+                <p class="timeline-day-empty__copy">There’s so much to do in Nelson County.</p>
+                <a class="btn btn--dark" href="https://nelsoncounty.com/find-your-adventure" target="_blank" rel="noopener noreferrer" data-track="see_all_activities">See all activities</a>
+              </div>
             </div>
           </div>
 
@@ -1950,7 +2557,7 @@
               <span class="day-divider__meta" data-divider-meta></span>
             </div>
             <div class="timeline-list" data-drop-day="anytime" id="listAnytime">
-              <article class="timeline-item" data-id="rides" data-role="Get around" data-default-day="anytime" data-default-order="6" id="stop-rides">
+              <article class="timeline-item" data-id="rides" data-role="Get around" data-default-day="anytime" data-default-order="9" id="stop-rides">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">6</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
@@ -1958,7 +2565,8 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat">Get around · Anytime</p>
                       <h3 class="timeline-item__title">Reliable Rides</h3>
-                      <p class="timeline-item__copy">Travel safely between stops so you can enjoy tastings and experiences without worrying about the drive. Use CHECKINTONELSON when arranging your ride.</p>
+                      <p class="timeline-item__copy">Travel safely between stops so you can enjoy tastings and experiences without worrying about the drive.</p>
+                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when arranging your ride.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
                         <a class="btn btn--outline" href="#feature-rides">About Reliable Rides</a>
@@ -2008,7 +2616,7 @@
                 <div class="passport__step-num" aria-hidden="true">3</div>
                 <div>
                   <h3>Earn your reward</h3>
-                  <p>Complete the passport to unlock the campaign gift. Pair visits with code CHECKINTONELSON for partner offers.</p>
+                  <p>Complete the passport to unlock the campaign gift. Pair visits with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for special partner incentives.</p>
                 </div>
               </div>
             </div>
@@ -2074,7 +2682,7 @@
     <section class="promo" id="promo" aria-labelledby="promo-title">
       <div class="wrap">
         <p class="eyebrow">Participating offers</p>
-        <h2 class="section-title" id="promo-title">Save with <span class="code-green">CHECKINTONELSON</span></h2>
+        <h2 class="section-title" id="promo-title">Save with <span class="code-green code-green--plain"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></h2>
         <p class="section-copy">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County.</p>
         <ul class="promo-perks">
           <li>Receive 15% off participating lodging</li>
@@ -2082,7 +2690,7 @@
           <li>Enter or mention the code when booking or checking out through each partner</li>
         </ul>
         <div class="promo-code" role="group" aria-label="Promotional code">
-          <span class="promo-code__value" id="promoCodeValue">CHECKINTONELSON</span>
+          <span class="promo-code__value" id="promoCodeValue"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
           <button type="button" class="promo-code__copy" id="copyPromo" data-track="copy_promo_code">Copy</button>
         </div>
         <p class="promo__fine"><a href="#experience">View all participating partners</a> · Offers, availability, and redemption instructions vary by partner.</p>
@@ -2097,7 +2705,7 @@
             <h2 class="section-title">Ready when you are</h2>
             <p class="section-copy">
               Weekday travel gives you more room to slow down, explore, and enjoy Nelson County at a different pace.
-              Plan a two-night stay or extend to three or four days — then use CHECKINTONELSON when booking with participating partners.
+              Plan a two-night stay or extend to three or four days — then use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking with participating partners.
             </p>
             <div class="book__actions">
               <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
@@ -2124,7 +2732,7 @@
       <div>
         <strong>Check Into Nelson</strong>
         Presented by Nelson County Tourism in partnership with participating Nelson County businesses.
-        Use promo code CHECKINTONELSON when booking with participating partners.
+        Use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking with participating partners.
       </div>
       <div>
         <a href="#experience">Partners</a>
@@ -2146,10 +2754,10 @@
   </footer>
 
   <div class="sticky-promo" id="stickyPromo" aria-hidden="true">
-    <span class="sticky-promo__code">CHECKINTONELSON</span>
+    <span class="sticky-promo__code"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
     <div class="cta-row">
       <button type="button" class="btn btn--dark" id="stickyCopy">Copy</button>
-      <a class="btn btn--outline" href="#passport" data-track="cta_open_passport">Passport</a>
+      <a class="btn btn--outline" href="#itinerary" data-track="cta_sample_stay">Sample stay</a>
     </div>
   </div>
 
@@ -2252,20 +2860,72 @@
       var listDay1 = document.getElementById("listDay1");
       var listDay2 = document.getElementById("listDay2");
       var listDay3 = document.getElementById("listDay3");
+      var listDay4 = document.getElementById("listDay4");
+      var listDay5 = document.getElementById("listDay5");
       var listAnytime = document.getElementById("listAnytime");
-      var lists = [listDay1, listDay2, listDay3, listAnytime].filter(Boolean);
-      var dateScroller = document.getElementById("dateScroller");
-      var customStartDate = document.getElementById("customStartDate");
-      var selectedRangeLabel = document.getElementById("selectedRangeLabel");
+      var lists = [listDay1, listDay2, listDay3, listDay4, listDay5, listAnytime].filter(Boolean);
       var datePickerNote = document.getElementById("datePickerNote");
       var planBoard = document.getElementById("planBoard");
+      var checkInLabel = document.getElementById("checkInLabel");
+      var checkOutLabel = document.getElementById("checkOutLabel");
+      var rangeNightsLabel = document.getElementById("rangeNightsLabel");
+      var fieldCheckIn = document.getElementById("fieldCheckIn");
+      var fieldCheckOut = document.getElementById("fieldCheckOut");
+      var calGrid = document.getElementById("calGrid");
+      var calMonthLabel = document.getElementById("calMonthLabel");
+      var calPrev = document.getElementById("calPrev");
+      var calNext = document.getElementById("calNext");
       var activeFilter = "all";
       var startDate = null;
+      var endDate = null;
+      var tripNights = 2;
+      var rangeSelecting = "in";
+      var hoverDate = null;
+      var nowInit = new Date();
+      var calMonth = new Date(nowInit.getFullYear(), nowInit.getMonth(), 1);
+      var MIN_NIGHTS = 2;
+      var MAX_NIGHTS = 4;
+      var PROMO_END_DATE = new Date(2026, 11, 31); // Dec 31, 2026
       var dragItem = null;
       var dragGhost = null;
       var dragPlaceholder = null;
       var dragPointerId = null;
       var lastDropKey = "";
+      var suppressPlanPersist = false;
+      var PLAN_STORAGE_KEY = "checkIntoNelson.plan.v4";
+      var VALID_STOP_IDS = { checkin: 1, sip: 1, create: 1, backbone: 1, explore: 1, crabtree: 1, spyrock: 1, tyeriver: 1, rides: 1 };
+      var VALID_DAY_KEYS = { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1, anytime: 1 };
+      var DAY_URL_KEYS = { "1": "d1", "2": "d2", "3": "d3", "4": "d4", "5": "d5", anytime: "a" };
+      var DAY_NUMBERS = ["1", "2", "3", "4", "5"];
+      var LENGTH_DEFAULTS = {
+        1: { "1": ["checkin"], "2": ["sip", "create", "backbone", "explore", "crabtree", "spyrock", "tyeriver"], "3": [], "4": [], "5": [], anytime: ["rides"] },
+        2: { "1": ["checkin"], "2": ["sip", "create", "backbone"], "3": ["explore", "crabtree", "spyrock", "tyeriver"], "4": [], "5": [], anytime: ["rides"] },
+        3: { "1": ["checkin"], "2": ["sip", "create"], "3": ["backbone", "explore", "crabtree", "spyrock", "tyeriver"], "4": [], "5": [], anytime: ["rides"] },
+        4: { "1": ["checkin"], "2": ["sip", "create"], "3": ["backbone", "explore"], "4": ["crabtree", "spyrock", "tyeriver"], "5": [], anytime: ["rides"] }
+      };
+      var STAY_OPTIONS = {
+        farmhouse: {
+          id: "farmhouse",
+          title: "Farmhouse at Veritas",
+          copy: "Wake up in Virginia wine country. Unpack, pour something local, and let vineyard views set the pace for the days ahead.",
+          image: "assets/check-into-nelson/farmhouse-veritas.jpg",
+          bookHref: "https://www.veritasfarmhouse.com/",
+          bookLabel: "Book the Farmhouse",
+          aboutHref: "#feature-farmhouse",
+          partner: "farmhouse"
+        },
+        backbone: {
+          id: "backbone",
+          title: "Devils Backbone Campground",
+          copy: "Settle into the Blue Ridge — mountain scenery, craft beverage culture, and on-site agritourism right outside your door.",
+          image: "assets/check-into-nelson/devils-backbone.jpg",
+          bookHref: "https://www.dbbrewingcompany.com/camp-at-basecamp",
+          bookLabel: "Book Your Stay",
+          aboutHref: "#feature-devils-backbone-camp",
+          partner: "devils-backbone-camp"
+        }
+      };
+      var selectedStay = "farmhouse";
 
       var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -2294,70 +2954,637 @@
         var day = d.getDay();
         return day === 0 || day === 6;
       }
+      function applyStayChoice(stayId, skipPersist) {
+        var option = STAY_OPTIONS[stayId] || STAY_OPTIONS.farmhouse;
+        selectedStay = option.id;
+        var checkin = document.getElementById("stop-checkin");
+        if (checkin) checkin.setAttribute("data-stay", selectedStay);
+
+        var title = document.getElementById("checkinTitle");
+        var copy = document.getElementById("checkinCopy");
+        var image = document.getElementById("checkinImage");
+        var book = document.getElementById("checkinBook");
+        var about = document.getElementById("checkinAbout");
+        if (title) title.textContent = option.title;
+        if (copy) copy.textContent = option.copy;
+        if (image) {
+          image.src = option.image;
+          image.alt = option.title;
+        }
+        if (book) {
+          book.href = option.bookHref;
+          book.textContent = option.bookLabel;
+          book.setAttribute("data-partner", option.partner);
+        }
+        if (about) about.href = option.aboutHref;
+
+        document.querySelectorAll("[data-stay-option]").forEach(function (btn) {
+          var on = btn.getAttribute("data-stay-option") === selectedStay;
+          btn.classList.toggle("is-selected", on);
+          btn.setAttribute("aria-checked", on ? "true" : "false");
+        });
+
+        if (!skipPersist) persistPlan();
+      }
+
+      function tripDays() {
+        return tripNights + 1;
+      }
+      function endDateFromStart(start) {
+        return addDays(startOfDay(start), tripNights);
+      }
+      function listByDayKey(day) {
+        if (day === "1") return listDay1;
+        if (day === "2") return listDay2;
+        if (day === "3") return listDay3;
+        if (day === "4") return listDay4;
+        if (day === "5") return listDay5;
+        if (day === "anytime") return listAnytime;
+        return null;
+      }
+      function dateForDayIndex(dayKey) {
+        if (!startDate) return null;
+        if (dayKey === "anytime") return null;
+        var idx = Number(dayKey) - 1;
+        if (isNaN(idx) || idx < 0) return null;
+        return addDays(startOfDay(startDate), idx);
+      }
+      function syncLengthUI(opts) {
+        opts = opts || {};
+        var days = tripDays();
+        var hasRange = !!(startDate && endDate);
+        var checkout = hasRange ? endDate : null;
+        var previewNights = null;
+        var previewOut = null;
+        if (startDate && rangeSelecting === "out" && hoverDate) {
+          var preview = nightsBetween(startDate, hoverDate);
+          var maxPreview = maxNightsFromCheckIn(startDate);
+          if (preview >= MIN_NIGHTS && preview <= maxPreview) {
+            previewNights = preview;
+            previewOut = hoverDate;
+          }
+        }
+
+        if (checkInLabel) {
+          if (startDate) {
+            checkInLabel.textContent = formatLong(startDate);
+            checkInLabel.classList.remove("is-placeholder");
+          } else {
+            checkInLabel.textContent = "Add date";
+            checkInLabel.classList.add("is-placeholder");
+          }
+        }
+        if (checkOutLabel) {
+          if (previewOut) {
+            checkOutLabel.textContent = formatLong(previewOut);
+            checkOutLabel.classList.remove("is-placeholder");
+          } else if (checkout) {
+            checkOutLabel.textContent = formatLong(checkout);
+            checkOutLabel.classList.remove("is-placeholder");
+          } else {
+            checkOutLabel.textContent = "Add date";
+            checkOutLabel.classList.add("is-placeholder");
+          }
+        }
+        if (fieldCheckIn) fieldCheckIn.classList.toggle("is-active", rangeSelecting === "in");
+        if (fieldCheckOut) fieldCheckOut.classList.toggle("is-active", rangeSelecting === "out");
+
+        if (rangeNightsLabel) {
+          if (previewNights != null) {
+            rangeNightsLabel.textContent = previewNights + " night" + (previewNights === 1 ? "" : "s");
+          } else if (hasRange) {
+            rangeNightsLabel.textContent = tripNights + " night" + (tripNights === 1 ? "" : "s");
+          } else if (startDate) {
+            rangeNightsLabel.textContent = "Select checkout";
+          } else {
+            rangeNightsLabel.textContent = "Select dates";
+          }
+        }
+
+        var title = document.getElementById("itin-title");
+        if (title && hasRange) {
+          title.textContent = "Your " + tripNights + " night stay";
+        } else if (title && !startDate) {
+          title.textContent = "Build a flexible stay";
+        }
+
+        DAY_NUMBERS.forEach(function (day) {
+          var visible = Number(day) <= days;
+          var planBtn = document.getElementById("planDay" + day);
+          var timelineDay = document.getElementById("timelineDay" + day);
+          if (planBtn) planBtn.classList.toggle("is-length-hidden", !visible);
+          if (timelineDay) timelineDay.classList.toggle("is-length-hidden", !visible);
+        });
+
+        if (activeFilter !== "all" && Number(activeFilter) > days) {
+          applyFilter("all");
+        }
+        if (opts.paintOnly && calGrid && calGrid.querySelector(".cal__day[data-date]")) {
+          paintCalendarSelection();
+        } else {
+          renderCalendar();
+        }
+      }
+      function consolidateHiddenDays() {
+        var days = tripDays();
+        var lastList = listByDayKey(String(days));
+        if (!lastList) return;
+        DAY_NUMBERS.forEach(function (day) {
+          if (Number(day) <= days) return;
+          var list = listByDayKey(day);
+          if (!list) return;
+          Array.prototype.slice.call(list.querySelectorAll(".timeline-item:not(.is-removed)")).forEach(function (item) {
+            lastList.appendChild(item);
+          });
+        });
+      }
+      function applyLengthDefaults(force) {
+        var preset = LENGTH_DEFAULTS[tripNights] || LENGTH_DEFAULTS[2];
+        document.querySelectorAll(".timeline-item.is-removed").forEach(function (item) {
+          item.classList.remove("is-removed");
+        });
+        if (!force) {
+          // Only place stops that currently sit on hidden days or are missing from visible lists
+          consolidateHiddenDays();
+          return;
+        }
+        Object.keys(preset).forEach(function (day) {
+          var list = listByDayKey(day);
+          if (!list) return;
+          preset[day].forEach(function (id) {
+            var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
+            if (item) {
+              item.classList.remove("is-removed");
+              list.appendChild(item);
+            }
+          });
+        });
+      }
+      function setTripNights(nights, opts) {
+        opts = opts || {};
+        var next = Number(nights);
+        if (isNaN(next) || next < MIN_NIGHTS) next = MIN_NIGHTS;
+        if (next > MAX_NIGHTS) next = MAX_NIGHTS;
+        var prev = tripNights;
+        tripNights = next;
+        if (startDate) endDate = endDateFromStart(startDate);
+        if (opts.resetLayout || next < prev) {
+          if (opts.resetLayout) applyLengthDefaults(true);
+          else consolidateHiddenDays();
+        }
+        syncLengthUI();
+        if (startDate) updateItineraryForDate(startDate);
+        else refreshTimelineMeta();
+        if (!opts.skipPersist) persistPlan();
+      }
+
+      function nightsBetween(a, b) {
+        var ms = startOfDay(b).getTime() - startOfDay(a).getTime();
+        return Math.round(ms / 86400000);
+      }
+
+      function setRangeSelecting(which) {
+        rangeSelecting = which === "out" ? "out" : "in";
+        if (fieldCheckIn) fieldCheckIn.classList.toggle("is-active", rangeSelecting === "in");
+        if (fieldCheckOut) fieldCheckOut.classList.toggle("is-active", rangeSelecting === "out");
+      }
+
+      function applyDateRange(checkIn, checkOut, opts) {
+        opts = opts || {};
+        if (!checkIn || isNaN(checkIn.getTime())) return;
+        var inDate = startOfDay(checkIn);
+        if (inDate.getTime() > PROMO_END_DATE.getTime()) return;
+        var outDate = checkOut && !isNaN(checkOut.getTime()) ? startOfDay(checkOut) : null;
+        if (outDate && outDate.getTime() > PROMO_END_DATE.getTime()) outDate = new Date(PROMO_END_DATE);
+        var maxAllowed = maxNightsFromCheckIn(inDate);
+        if (maxAllowed < MIN_NIGHTS) return;
+        var nights = outDate ? nightsBetween(inDate, outDate) : tripNights;
+        if (nights < MIN_NIGHTS) nights = MIN_NIGHTS;
+        if (nights > maxAllowed) {
+          nights = maxAllowed;
+          outDate = addDays(inDate, nights);
+        }
+        var prev = tripNights;
+        startDate = inDate;
+        tripNights = nights;
+        endDate = outDate || endDateFromStart(inDate);
+        if (endDate.getTime() > PROMO_END_DATE.getTime()) {
+          endDate = new Date(PROMO_END_DATE);
+          tripNights = nightsBetween(inDate, endDate);
+        }
+        if (opts.resetLayout || nights < prev) {
+          if (opts.resetLayout) applyLengthDefaults(true);
+          else consolidateHiddenDays();
+        }
+        calMonth = new Date(inDate.getFullYear(), inDate.getMonth(), 1);
+        updateItineraryForDate(startDate);
+        if (!opts.skipPersist) persistPlan();
+      }
+
+      function maxNightsFromCheckIn(checkIn) {
+        var remaining = nightsBetween(checkIn, PROMO_END_DATE);
+        if (remaining < MIN_NIGHTS) return 0;
+        return Math.min(MAX_NIGHTS, remaining);
+      }
+
+      function onCalendarDayClick(iso) {
+        var picked = parseISODate(iso);
+        if (!picked) return;
+        picked = startOfDay(picked);
+        var today = startOfDay(new Date());
+        if (picked.getTime() < today.getTime()) return;
+        if (picked.getTime() > PROMO_END_DATE.getTime()) return;
+
+        if (rangeSelecting === "in" || !startDate) {
+          if (maxNightsFromCheckIn(picked) < MIN_NIGHTS) return;
+          startDate = picked;
+          endDate = null;
+          hoverDate = null;
+          setRangeSelecting("out");
+          syncLengthUI();
+          return;
+        }
+
+        // Selecting checkout
+        if (picked.getTime() <= startDate.getTime()) {
+          if (maxNightsFromCheckIn(picked) < MIN_NIGHTS) return;
+          startDate = picked;
+          endDate = null;
+          hoverDate = null;
+          setRangeSelecting("out");
+          syncLengthUI();
+          return;
+        }
+
+        var nights = nightsBetween(startDate, picked);
+        var maxAllowed = maxNightsFromCheckIn(startDate);
+        if (nights < MIN_NIGHTS) return;
+        if (nights > maxAllowed) return;
+        hoverDate = null;
+        setRangeSelecting("in");
+        applyDateRange(startDate, picked, { resetLayout: nights !== tripNights });
+      }
+
+      function getRangeEndForPaint() {
+        var committedEnd = startDate && endDate ? endDate : null;
+        var previewEnd = null;
+        if (startDate && rangeSelecting === "out" && hoverDate) {
+          var hoverNights = nightsBetween(startDate, hoverDate);
+          var maxAllowed = maxNightsFromCheckIn(startDate);
+          if (hoverNights >= MIN_NIGHTS && hoverNights <= maxAllowed) previewEnd = hoverDate;
+        }
+        return { committedEnd: committedEnd, previewEnd: previewEnd, rangeEnd: previewEnd || committedEnd };
+      }
+
+      function paintDayButton(btn, date, today, range) {
+        var iso = toISODate(date);
+        var committedEnd = range.committedEnd;
+        var previewEnd = range.previewEnd;
+        var rangeEnd = range.rangeEnd;
+        var disabled = date.getTime() < today.getTime() || date.getTime() > PROMO_END_DATE.getTime();
+        if (!disabled && rangeSelecting === "in") {
+          if (maxNightsFromCheckIn(date) < MIN_NIGHTS) disabled = true;
+        }
+        if (!disabled && startDate && rangeSelecting === "out" && date.getTime() > startDate.getTime()) {
+          var n = nightsBetween(startDate, date);
+          var maxAllowed = maxNightsFromCheckIn(startDate);
+          if (n < MIN_NIGHTS || n > maxAllowed) disabled = true;
+        }
+        if (!disabled && startDate && rangeSelecting === "out" && date.getTime() === startDate.getTime()) {
+          disabled = true;
+        }
+        var isStart = !!(startDate && toISODate(startDate) === iso);
+        var isEnd = !!(rangeEnd && toISODate(rangeEnd) === iso);
+        if (isStart && isEnd && toISODate(startDate) !== toISODate(rangeEnd)) isEnd = false;
+        var inRange = false;
+        if (startDate && rangeEnd) {
+          inRange = date.getTime() > startDate.getTime() && date.getTime() < rangeEnd.getTime();
+        }
+        var hasFill = !!(startDate && rangeEnd && toISODate(startDate) !== toISODate(rangeEnd));
+        var classes = ["cal__day"];
+        if (disabled) classes.push("is-disabled");
+        if (isStart) {
+          classes.push("is-selected", "is-range-start");
+          if (hasFill) classes.push("has-fill");
+        }
+        if (isEnd) {
+          classes.push("is-selected", "is-range-end");
+          if (hasFill) classes.push("has-fill");
+          if (previewEnd && (!committedEnd || toISODate(previewEnd) !== toISODate(committedEnd))) {
+            classes.push("is-preview-end");
+          }
+        }
+        if (inRange) classes.push("is-in-range");
+        if (toISODate(today) === iso) classes.push("is-today");
+        btn.className = classes.join(" ");
+        btn.disabled = !!disabled;
+        if (disabled) btn.setAttribute("disabled", "");
+        else btn.removeAttribute("disabled");
+        if (isStart || (isEnd && committedEnd && !previewEnd)) btn.setAttribute("aria-pressed", "true");
+        else btn.removeAttribute("aria-pressed");
+      }
+
+      function paintCalendarSelection() {
+        if (!calGrid) return;
+        var today = startOfDay(new Date());
+        var range = getRangeEndForPaint();
+        Array.prototype.forEach.call(calGrid.querySelectorAll(".cal__day[data-date]"), function (btn) {
+          var date = parseISODate(btn.getAttribute("data-date"));
+          if (!date) return;
+          paintDayButton(btn, date, today, range);
+        });
+      }
+
+      function renderCalendar() {
+        if (!calGrid || !calMonthLabel) return;
+        var monthNamesFull = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        calMonthLabel.textContent = monthNamesFull[calMonth.getMonth()] + " " + calMonth.getFullYear();
+
+        var today = startOfDay(new Date());
+        var first = new Date(calMonth.getFullYear(), calMonth.getMonth(), 1);
+        var startPad = first.getDay();
+        var daysInMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 0).getDate();
+        var minMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        var maxMonth = new Date(PROMO_END_DATE.getFullYear(), PROMO_END_DATE.getMonth(), 1);
+        if (calMonth.getTime() > maxMonth.getTime()) {
+          calMonth = new Date(maxMonth.getFullYear(), maxMonth.getMonth(), 1);
+          calMonthLabel.textContent = monthNamesFull[calMonth.getMonth()] + " " + calMonth.getFullYear();
+        }
+        if (calPrev) calPrev.disabled = calMonth.getTime() <= minMonth.getTime();
+        if (calNext) calNext.disabled = calMonth.getTime() >= maxMonth.getTime();
+
+        var html = "";
+        for (var i = 0; i < startPad; i++) {
+          html += '<button type="button" class="cal__day is-outside" disabled tabindex="-1"><span></span></button>';
+        }
+        for (var day = 1; day <= daysInMonth; day++) {
+          var date = new Date(calMonth.getFullYear(), calMonth.getMonth(), day);
+          var iso = toISODate(date);
+          html += '<button type="button" class="cal__day" data-date="' + iso + '" aria-label="' + formatLong(date) + '"><span>' + day + "</span></button>";
+        }
+        calGrid.innerHTML = html;
+        paintCalendarSelection();
+      }
+
+      function collectPlanState() {
+        if (!startDate) return null;
+        var days = { "1": [], "2": [], "3": [], "4": [], "5": [], anytime: [] };
+        Object.keys(days).forEach(function (day) {
+          var list = listByDayKey(day);
+          if (!list) return;
+          Array.prototype.forEach.call(list.querySelectorAll(".timeline-item:not(.is-removed)"), function (item) {
+            var id = item.getAttribute("data-id");
+            if (id && VALID_STOP_IDS[id]) days[day].push(id);
+          });
+        });
+        return { start: toISODate(startDate), nights: tripNights, stay: selectedStay, days: days };
+      }
+
+      function sanitizePlanState(raw) {
+        if (!raw || typeof raw !== "object") return null;
+        var start = parseISODate(raw.start);
+        if (!start || isNaN(start.getTime())) return null;
+        start = startOfDay(start);
+        if (start.getTime() > PROMO_END_DATE.getTime()) return null;
+        var stay = STAY_OPTIONS[raw.stay] ? raw.stay : "farmhouse";
+        var nights = Number(raw.nights);
+        if (nights < MIN_NIGHTS || nights > MAX_NIGHTS || isNaN(nights)) {
+          nights = 2;
+        }
+        var maxAllowed = maxNightsFromCheckIn(start);
+        if (maxAllowed < MIN_NIGHTS) return null;
+        if (nights > maxAllowed) nights = maxAllowed;
+        var days = { "1": [], "2": [], "3": [], "4": [], "5": [], anytime: [] };
+        var seen = {};
+        var sourceDays = raw.days && typeof raw.days === "object" ? raw.days : {};
+        var sourceHadDays = Object.keys(days).some(function (day) {
+          return Array.isArray(sourceDays[day]) && sourceDays[day].length > 0;
+        });
+        Object.keys(days).forEach(function (day) {
+          var arr = Array.isArray(sourceDays[day]) ? sourceDays[day] : [];
+          arr.forEach(function (id) {
+            if (!VALID_STOP_IDS[id] || seen[id]) return;
+            seen[id] = true;
+            days[day].push(id);
+          });
+        });
+        if (!sourceHadDays) {
+          document.querySelectorAll(".timeline-item").forEach(function (item) {
+            var id = item.getAttribute("data-id");
+            if (!id || seen[id] || !VALID_STOP_IDS[id]) return;
+            var day = item.getAttribute("data-default-day") || "1";
+            if (!VALID_DAY_KEYS[day]) day = "1";
+            days[day].push(id);
+            seen[id] = true;
+          });
+        }
+        return { start: toISODate(startOfDay(start)), nights: nights, stay: stay, days: days };
+      }
+
+      function applyPlanState(plan) {
+        var clean = sanitizePlanState(plan);
+        if (!clean) return false;
+        suppressPlanPersist = true;
+        try {
+          tripNights = clean.nights;
+          applyStayChoice(clean.stay, true);
+          var placed = {};
+          Object.keys(clean.days).forEach(function (day) {
+            var list = listByDayKey(day);
+            if (!list) return;
+            clean.days[day].forEach(function (id) {
+              var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
+              if (item) {
+                item.classList.remove("is-removed");
+                list.appendChild(item);
+                item.classList.add("is-in");
+                placed[id] = true;
+              }
+            });
+          });
+          document.querySelectorAll(".timeline-item[data-id]").forEach(function (item) {
+            var id = item.getAttribute("data-id");
+            item.classList.toggle("is-removed", !placed[id]);
+          });
+          consolidateHiddenDays();
+          syncLengthUI();
+          setStartDate(parseISODate(clean.start), false);
+        } finally {
+          suppressPlanPersist = false;
+        }
+        return true;
+      }
+
+      function readPlanFromStorage() {
+        try {
+          var raw = window.localStorage.getItem(PLAN_STORAGE_KEY);
+          if (!raw) return null;
+          return sanitizePlanState(JSON.parse(raw));
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function writePlanToStorage(plan) {
+        try {
+          window.localStorage.setItem(PLAN_STORAGE_KEY, JSON.stringify(plan));
+        } catch (err) {}
+      }
+
+      function readPlanFromUrl() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var start = params.get("start");
+          if (!start) return null;
+          var stay = params.get("stay") || "farmhouse";
+          var nights = params.get("nights");
+          var days = { "1": [], "2": [], "3": [], "4": [], "5": [], anytime: [] };
+          Object.keys(DAY_URL_KEYS).forEach(function (day) {
+            var key = DAY_URL_KEYS[day];
+            var value = params.get(key);
+            if (!value) return;
+            value.split(/[|,]/).forEach(function (id) {
+              id = String(id || "").trim();
+              if (id) days[day].push(id);
+            });
+          });
+          return sanitizePlanState({ start: start, stay: stay, nights: nights, days: days });
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function planToSearchParams(plan) {
+        var params = new URLSearchParams();
+        params.set("start", plan.start);
+        if (plan.nights && plan.nights !== 2) params.set("nights", String(plan.nights));
+        if (plan.stay && plan.stay !== "farmhouse") params.set("stay", plan.stay);
+        Object.keys(DAY_URL_KEYS).forEach(function (day) {
+          var ids = plan.days[day] || [];
+          if (ids.length) params.set(DAY_URL_KEYS[day], ids.join(","));
+        });
+        return params;
+      }
+
+      function writePlanToUrl(plan, replace) {
+        try {
+          var params = planToSearchParams(plan);
+          var next = window.location.pathname + "?" + params.toString() + window.location.hash;
+          if (replace !== false) window.history.replaceState(null, "", next);
+          else window.history.pushState(null, "", next);
+        } catch (err) {}
+      }
+
+      function buildShareablePlanUrl(plan) {
+        var params = planToSearchParams(plan);
+        var url = new URL(window.location.href);
+        url.search = params.toString();
+        url.hash = "itinerary";
+        return url.toString();
+      }
+
+      function persistPlan() {
+        if (suppressPlanPersist) return;
+        var plan = collectPlanState();
+        if (!plan) return;
+        writePlanToStorage(plan);
+        writePlanToUrl(plan, true);
+      }
+
+      function setPlanShareStatus(message) {
+        var el = document.getElementById("planShareStatus");
+        if (el) el.textContent = message || "";
+      }
+
+      function copyPlanLink() {
+        var plan = collectPlanState();
+        if (!plan) {
+          setPlanShareStatus("Pick a check-in date first.");
+          return;
+        }
+        persistPlan();
+        var link = buildShareablePlanUrl(plan);
+        var done = function () {
+          setPlanShareStatus("Link copied — share or bookmark it.");
+          setTimeout(function () { setPlanShareStatus(""); }, 2200);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(done).catch(function () {
+            window.prompt("Copy plan link:", link);
+            done();
+          });
+        } else {
+          window.prompt("Copy plan link:", link);
+          done();
+        }
+      }
+
+      function restorePlanOnLoad() {
+        var fromUrl = readPlanFromUrl();
+        if (fromUrl && applyPlanState(fromUrl)) {
+          writePlanToStorage(fromUrl);
+          return true;
+        }
+        var fromStorage = readPlanFromStorage();
+        if (fromStorage && applyPlanState(fromStorage)) {
+          writePlanToUrl(fromStorage, true);
+          return true;
+        }
+        return false;
+      }
+
+      function urlHasDayLayoutParams() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          return ["d1", "d2", "d3", "d4", "d5", "a"].some(function (key) {
+            return params.has(key);
+          });
+        } catch (err) {
+          return false;
+        }
+      }
+
+      function applySampleScheduleOnLoad() {
+        applyLengthDefaults(true);
+        if (startDate) {
+          endDate = endDateFromStart(startDate);
+          syncLengthUI();
+          updateItineraryForDate(startDate);
+        } else {
+          syncLengthUI();
+          refreshTimelineMeta();
+        }
+        persistPlan();
+      }
+
       function formatShort(d) {
         return dayNames[d.getDay()] + ", " + monthNames[d.getMonth()] + " " + d.getDate();
-      }
-      function formatCardMonth(d) {
-        return monthNames[d.getMonth()];
       }
       function formatLong(d) {
         return dayNamesLong[d.getDay()] + ", " + monthNames[d.getMonth()] + " " + d.getDate();
       }
       function getItems() {
-        return Array.prototype.slice.call(document.querySelectorAll(".timeline-item:not(.is-dragging)"));
+        return Array.prototype.slice.call(document.querySelectorAll(".timeline-item:not(.is-dragging):not(.is-removed)"));
       }
       function rolesInList(list) {
-        return Array.prototype.map.call(list.querySelectorAll(".timeline-item:not(.is-dragging)"), function (item) {
-          return item.getAttribute("data-role");
-        }).join(" · ");
-      }
-
-      function nextWeekdaySuggestions(count) {
-        var list = [];
-        var cursor = addDays(startOfDay(new Date()), 1);
-        var guard = 0;
-        while (list.length < count && guard < 60) {
-          list.push(new Date(cursor));
-          cursor = addDays(cursor, 1);
-          guard += 1;
-        }
-        return list;
-      }
-
-      function renderDateCards() {
-        if (!dateScroller) return;
-        dateScroller.innerHTML = "";
-        nextWeekdaySuggestions(14).forEach(function (date) {
-          var weekend = isWeekend(date);
-          var btn = document.createElement("button");
-          btn.type = "button";
-          btn.className = "date-card" + (weekend ? " is-weekend" : "");
-          btn.setAttribute("role", "option");
-          btn.setAttribute("aria-selected", "false");
-          btn.dataset.date = toISODate(date);
-          btn.innerHTML =
-            '<span class="date-card__dow">' + dayNames[date.getDay()] + "</span>" +
-            '<span class="date-card__day">' + date.getDate() + "</span>" +
-            '<span class="date-card__month">' + formatCardMonth(date) + "</span>" +
-            '<span class="date-card__tag">' + (weekend ? "Often full" : "Weekday") + "</span>";
-          btn.addEventListener("click", function () { setStartDate(date, true); });
-          dateScroller.appendChild(btn);
+        var seen = {};
+        var roles = [];
+        Array.prototype.forEach.call(list.querySelectorAll(".timeline-item:not(.is-dragging):not(.is-removed)"), function (item) {
+          var role = item.getAttribute("data-role");
+          if (!role || seen[role]) return;
+          seen[role] = true;
+          roles.push(role);
         });
-      }
-
-      function syncDateCardSelection(iso) {
-        if (!dateScroller) return;
-        Array.prototype.forEach.call(dateScroller.querySelectorAll(".date-card"), function (card) {
-          var selected = card.dataset.date === iso;
-          card.classList.toggle("is-selected", selected);
-          card.setAttribute("aria-selected", selected ? "true" : "false");
-        });
+        return roles.join(" · ");
       }
 
       function refreshTimelineMeta() {
-        var day1 = startDate ? startOfDay(startDate) : null;
-        var day2 = day1 ? addDays(day1, 1) : null;
-        var day3 = day1 ? addDays(day1, 2) : null;
+        var daysCount = tripDays();
+        var dayDates = {};
+        DAY_NUMBERS.forEach(function (day) {
+          dayDates[day] = dateForDayIndex(day);
+        });
+        var checkout = startDate ? endDateFromStart(startDate) : null;
         var items = getItems();
         items.forEach(function (item, index) {
           var num = item.querySelector(".timeline-item__num");
@@ -2368,14 +3595,17 @@
           var role = item.getAttribute("data-role") || "";
           var beat = item.querySelector(".timeline-item__beat");
           if (!beat) return;
-          if (!day1) {
+          if (!startDate) {
             beat.textContent = role + " · Day " + (day === "anytime" ? "flex" : day);
             return;
           }
-          if (day === "1") beat.textContent = role + " · " + formatShort(day1);
-          else if (day === "2") beat.textContent = role + " · " + formatShort(day2);
-          else if (day === "3") beat.textContent = role + " · " + formatShort(day3);
-          else beat.textContent = role + " · " + formatShort(day1) + "–" + dayNames[day3.getDay()];
+          if (day === "anytime") {
+            beat.textContent = role + " · " + formatShort(startDate) + "–" + formatShort(checkout);
+          } else if (dayDates[day]) {
+            beat.textContent = role + " · " + formatShort(dayDates[day]);
+          } else {
+            beat.textContent = role;
+          }
         });
 
         document.querySelectorAll(".day-divider").forEach(function (divider) {
@@ -2384,32 +3614,46 @@
           var meta = divider.querySelector("[data-divider-meta]");
           var list = divider.parentElement && divider.parentElement.querySelector(".timeline-list");
           var summary = list ? rolesInList(list) : "";
-          if (key === "1") {
-            if (title) title.textContent = day1 ? ("Day 1 · " + formatShort(day1)) : "Day 1";
-            if (meta) meta.textContent = summary || "Settle in and let the mountains do their thing";
-          } else if (key === "2") {
-            if (title) title.textContent = day2 ? ("Day 2 · " + formatShort(day2)) : "Day 2";
-            if (meta) meta.textContent = summary || "Taste, create, and explore";
-          } else if (key === "3") {
-            if (title) title.textContent = day3 ? ("Day 3 · " + formatShort(day3)) : "Day 3";
-            if (meta) meta.textContent = summary || "Head outdoors before taking the long way home";
-          } else if (key === "anytime") {
+          if (key === "anytime") {
             if (title) title.textContent = "Anytime during your stay";
-            if (meta) meta.textContent = day1 ? (formatShort(day1) + " – " + formatShort(day3)) : summary;
+            if (meta) meta.textContent = startDate ? (formatShort(startDate) + " – " + formatShort(checkout)) : summary;
+          } else if (DAY_NUMBERS.indexOf(key) !== -1) {
+            var d = dayDates[key];
+            if (title) title.textContent = d ? ("Day " + key + " · " + formatShort(d)) : ("Day " + key);
+            if (meta) {
+              if (summary) meta.textContent = summary;
+              else if (key === "1") meta.textContent = "Settle in and let the mountains do their thing";
+              else if (key === String(daysCount)) meta.textContent = "Browse more to fill the day";
+              else meta.textContent = "Taste, create, and explore";
+            }
           }
         });
 
-        var s1 = document.getElementById("planDay1Summary");
-        var s2 = document.getElementById("planDay2Summary");
-        var s3 = document.getElementById("planDay3Summary");
+        updateLastDayEmptyState();
+
+        DAY_NUMBERS.forEach(function (day) {
+          var summaryEl = document.getElementById("planDay" + day + "Summary");
+          var list = listByDayKey(day);
+          if (summaryEl) summaryEl.textContent = list ? (rolesInList(list) || "No stops yet") : "No stops yet";
+        });
         var sAll = document.getElementById("planAllSummary");
-        if (s1) s1.textContent = rolesInList(listDay1) || "No stops yet";
-        if (s2) s2.textContent = rolesInList(listDay2) || "No stops yet";
-        if (s3) s3.textContent = rolesInList(listDay3) || "No stops yet";
-        if (sAll && day1) {
-          sAll.textContent = formatShort(day1) + " → " + formatShort(day3);
+        if (sAll && startDate) {
+          sAll.textContent = formatShort(startDate) + " → " + formatShort(checkout);
         }
         requestAnimationFrame(observeItems);
+      }
+
+      function updateLastDayEmptyState() {
+        var days = tripDays();
+        DAY_NUMBERS.forEach(function (day) {
+          var list = listByDayKey(day);
+          if (!list) return;
+          var empty = list.querySelector(".timeline-day-empty");
+          if (!empty) return;
+          var isLast = Number(day) === days;
+          var hasItems = !!list.querySelector(".timeline-item:not(.is-removed)");
+          empty.classList.toggle("is-visible", isLast && !hasItems);
+        });
       }
 
       function applyFilter(filter) {
@@ -2418,6 +3662,10 @@
           card.classList.toggle("is-active", card.getAttribute("data-filter") === filter);
         });
         document.querySelectorAll(".timeline-day").forEach(function (dayEl) {
+          if (dayEl.classList.contains("is-length-hidden")) {
+            dayEl.classList.add("is-filtered-out");
+            return;
+          }
           var day = dayEl.getAttribute("data-day");
           var show = filter === "all" || day === filter || (filter !== "all" && day === "anytime");
           dayEl.classList.toggle("is-filtered-out", !show);
@@ -2427,47 +3675,55 @@
 
       function updateItineraryForDate(date) {
         var day1 = startOfDay(date);
-        var day2 = addDays(day1, 1);
-        var day3 = addDays(day1, 2);
-        var iso = toISODate(day1);
+        startDate = day1;
+        endDate = endDateFromStart(day1);
+        var checkout = endDate;
+        var daysCount = tripDays();
 
-        if (selectedRangeLabel) selectedRangeLabel.textContent = formatShort(day1) + " → " + formatShort(day3);
         if (datePickerNote) {
-          if (isWeekend(day1) || isWeekend(day2) || isWeekend(day3)) {
-            datePickerNote.innerHTML = "<strong>Note:</strong> Part of this stay lands on a weekend — lodging often fills then. Midweek usually gives you more room to slow down.";
+          var touchesWeekend = false;
+          for (var i = 0; i <= tripNights; i++) {
+            if (isWeekend(addDays(day1, i))) { touchesWeekend = true; break; }
+          }
+          if (touchesWeekend) {
+            datePickerNote.innerHTML = "Includes a weekend — lodging often fills then.";
           } else {
-            datePickerNote.innerHTML = "<strong>Nice pick.</strong> This is a weekday-leaning stay — typically easier for lodging and a calmer pace.";
+            datePickerNote.innerHTML = "Weekday-leaning stay — usually easier for lodging.";
           }
         }
-        if (planBoard) planBoard.hidden = false;
+        if (planBoard) planBoard.hidden = true;
 
         var planAllDate = document.getElementById("planAllDate");
-        var planDay1Date = document.getElementById("planDay1Date");
-        var planDay2Date = document.getElementById("planDay2Date");
-        var planDay3Date = document.getElementById("planDay3Date");
-        if (planAllDate) planAllDate.textContent = monthNames[day1.getMonth()] + " " + day1.getDate() + "–" + day3.getDate();
-        if (planDay1Date) planDay1Date.textContent = formatLong(day1);
-        if (planDay2Date) planDay2Date.textContent = formatLong(day2);
-        if (planDay3Date) planDay3Date.textContent = formatLong(day3);
+        if (planAllDate) {
+          planAllDate.textContent = tripNights + " night" + (tripNights === 1 ? "" : "s") + " · " +
+            monthNames[day1.getMonth()] + " " + day1.getDate() + "–" +
+            monthNames[checkout.getMonth()] + " " + checkout.getDate();
+        }
+        DAY_NUMBERS.forEach(function (day) {
+          var el = document.getElementById("planDay" + day + "Date");
+          var d = addDays(day1, Number(day) - 1);
+          if (el) el.textContent = Number(day) <= daysCount ? formatLong(d) : "—";
+        });
 
-        syncDateCardSelection(iso);
-        if (customStartDate) customStartDate.value = iso;
+        syncLengthUI();
         refreshTimelineMeta();
         applyFilter(activeFilter);
       }
 
       function setStartDate(date, scrollPlan) {
         if (!date || isNaN(date.getTime())) return;
-        startDate = startOfDay(date);
-        updateItineraryForDate(startDate);
-        if (scrollPlan && planBoard) planBoard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        applyDateRange(date, addDays(startOfDay(date), tripNights), { skipPersist: false });
+        if (scrollPlan) {
+          var timeline = document.getElementById("timeline");
+          if (timeline) timeline.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
 
       function findTargetList(clientY) {
         var hit = null;
         lists.forEach(function (list) {
           var dayEl = list.closest(".timeline-day");
-          if (dayEl && dayEl.classList.contains("is-filtered-out")) return;
+          if (dayEl && (dayEl.classList.contains("is-filtered-out") || dayEl.classList.contains("is-length-hidden"))) return;
           var rect = list.getBoundingClientRect();
           if (clientY >= rect.top - 40 && clientY <= rect.bottom + 40) hit = list;
         });
@@ -2475,7 +3731,7 @@
         var best = null;
         lists.forEach(function (list) {
           var dayEl = list.closest(".timeline-day");
-          if (dayEl && dayEl.classList.contains("is-filtered-out")) return;
+          if (dayEl && (dayEl.classList.contains("is-filtered-out") || dayEl.classList.contains("is-length-hidden"))) return;
           var rect = list.getBoundingClientRect();
           var mid = (rect.top + rect.bottom) / 2;
           var dist = Math.abs(clientY - mid);
@@ -2485,7 +3741,7 @@
       }
 
       function getDragReference(list, y) {
-        var elements = Array.prototype.slice.call(list.querySelectorAll(".timeline-item:not(.is-dragging)"));
+        var elements = Array.prototype.slice.call(list.querySelectorAll(".timeline-item:not(.is-dragging):not(.is-removed)"));
         for (var i = 0; i < elements.length; i++) {
           var box = elements[i].getBoundingClientRect();
           if (y < box.top + box.height / 2) {
@@ -2535,6 +3791,7 @@
 
         lists.forEach(function (list) { list.classList.remove("is-drop-target"); });
         refreshTimelineMeta();
+        persistPlan();
       }
 
       function onPointerMove(e) {
@@ -2585,6 +3842,35 @@
         document.addEventListener("pointercancel", onPointerUp);
       }
 
+      function removeTimelineItem(item) {
+        if (!item || item.classList.contains("is-removed")) return;
+        item.classList.add("is-removed");
+        refreshTimelineMeta();
+        persistPlan();
+      }
+
+      function initRemoveButtons() {
+        document.querySelectorAll(".timeline-item").forEach(function (item) {
+          var card = item.querySelector(".timeline-item__card");
+          if (!card || card.querySelector(".timeline-item__remove")) return;
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "timeline-item__remove";
+          btn.setAttribute("aria-label", "Remove from itinerary");
+          btn.title = "Remove from itinerary";
+          btn.textContent = "×";
+          btn.addEventListener("pointerdown", function (e) {
+            e.stopPropagation();
+          });
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            removeTimelineItem(item);
+          });
+          card.appendChild(btn);
+        });
+      }
+
       function initDrag() {
         getItems().forEach(function (item) {
           var handle = item.querySelector(".timeline-item__handle");
@@ -2599,32 +3885,103 @@
 
       function resetTimeline() {
         if (dragItem) endDrag();
-        var items = getItems().slice().sort(function (a, b) {
-          return Number(a.getAttribute("data-default-order")) - Number(b.getAttribute("data-default-order"));
-        });
-        items.forEach(function (item) {
-          var day = item.getAttribute("data-default-day");
-          var list = document.querySelector('.timeline-list[data-drop-day="' + day + '"]');
-          if (list) list.appendChild(item);
-          item.classList.add("is-in");
-        });
-        refreshTimelineMeta();
+        tripNights = 2;
+        applyLengthDefaults(true);
+        if (startDate) {
+          endDate = endDateFromStart(startDate);
+          syncLengthUI();
+          updateItineraryForDate(startDate);
+        } else {
+          syncLengthUI();
+          refreshTimelineMeta();
+        }
+        applyFilter("all");
+        persistPlan();
       }
 
-      renderDateCards();
+      function updateHoverFromEvent(e) {
+        if (!(startDate && rangeSelecting === "out")) {
+          if (hoverDate) {
+            hoverDate = null;
+            syncLengthUI({ paintOnly: true });
+          }
+          return;
+        }
+        var btn = e.target.closest(".cal__day[data-date]");
+        var next = null;
+        if (btn && !btn.disabled) {
+          next = parseISODate(btn.getAttribute("data-date"));
+          if (next) next = startOfDay(next);
+        }
+        var nextIso = next ? toISODate(next) : null;
+        var prevIso = hoverDate ? toISODate(hoverDate) : null;
+        if (nextIso === prevIso) return;
+        hoverDate = next;
+        syncLengthUI({ paintOnly: true });
+      }
+
+      function initRangePicker() {
+        if (calGrid) {
+          calGrid.addEventListener("click", function (e) {
+            var btn = e.target.closest(".cal__day[data-date]");
+            if (!btn || btn.disabled) return;
+            onCalendarDayClick(btn.getAttribute("data-date"));
+          });
+          calGrid.addEventListener("pointermove", updateHoverFromEvent);
+          calGrid.addEventListener("pointerleave", function () {
+            if (!hoverDate) return;
+            hoverDate = null;
+            syncLengthUI({ paintOnly: true });
+          });
+        }
+        if (calPrev) {
+          calPrev.addEventListener("click", function () {
+            calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() - 1, 1);
+            renderCalendar();
+          });
+        }
+        if (calNext) {
+          calNext.addEventListener("click", function () {
+            calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1);
+            renderCalendar();
+          });
+        }
+        if (fieldCheckIn) {
+          fieldCheckIn.addEventListener("click", function () {
+            hoverDate = null;
+            setRangeSelecting("in");
+            syncLengthUI();
+          });
+        }
+        if (fieldCheckOut) {
+          fieldCheckOut.addEventListener("click", function () {
+            hoverDate = null;
+            if (!startDate) setRangeSelecting("in");
+            else setRangeSelecting("out");
+            syncLengthUI();
+          });
+        }
+      }
+
+      initRangePicker();
+      initRemoveButtons();
       initDrag();
+      applyStayChoice(selectedStay, true);
+      document.querySelectorAll("[data-stay-option]").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applyStayChoice(btn.getAttribute("data-stay-option") || "farmhouse");
+        });
+        btn.addEventListener("pointerdown", function (e) {
+          e.stopPropagation();
+        });
+      });
 
       var resetBtn = document.getElementById("resetTimeline");
       if (resetBtn) resetBtn.addEventListener("click", resetTimeline);
-
-      if (customStartDate) {
-        var min = addDays(startOfDay(new Date()), 1);
-        customStartDate.min = toISODate(min);
-        customStartDate.addEventListener("change", function () {
-          var parsed = parseISODate(customStartDate.value);
-          if (parsed) setStartDate(parsed, true);
-        });
-      }
+      var copyPlanBtn = document.getElementById("copyPlanLink");
+      if (copyPlanBtn) copyPlanBtn.addEventListener("click", copyPlanLink);
 
       document.querySelectorAll(".plan-day").forEach(function (card) {
         card.addEventListener("click", function () {
@@ -2633,9 +3990,17 @@
       });
 
       (function selectDefault() {
+        var keepCustomLayout = urlHasDayLayoutParams();
+        if (restorePlanOnLoad()) {
+          if (!keepCustomLayout) applySampleScheduleOnLoad();
+          setRangeSelecting("in");
+          return;
+        }
         var cursor = addDays(startOfDay(new Date()), 1);
         while (isWeekend(cursor)) cursor = addDays(cursor, 1);
-        setStartDate(cursor, false);
+        tripNights = 2;
+        applyDateRange(cursor, addDays(cursor, 2), { resetLayout: true, skipPersist: false });
+        setRangeSelecting("in");
       })();
 
       var observer = new IntersectionObserver(function (entries) {
@@ -2670,6 +4035,69 @@
         }
       }
 
+      function copyInlineCode(el) {
+        var code = "CHECKINTONELSON";
+        var hint = el.querySelector(".code-green__hint");
+        var done = function () {
+          el.classList.add("is-copied");
+          if (hint) hint.textContent = "Copied";
+          setTimeout(function () {
+            el.classList.remove("is-copied");
+            if (hint) hint.textContent = "Copy";
+          }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code).then(done).catch(function () {
+            window.prompt("Copy code:", code);
+            done();
+          });
+        } else {
+          window.prompt("Copy code:", code);
+          done();
+        }
+      }
+
+      function enhanceInlineCodes() {
+        document.querySelectorAll(".code-green").forEach(function (el) {
+          if (el.closest(".promo-code") || el.closest(".sticky-promo")) return;
+          if (el.querySelector(".code-green__hint")) return;
+          var tag = el.tagName.toLowerCase();
+          if (tag === "span") {
+            el.setAttribute("role", "button");
+            el.setAttribute("tabindex", "0");
+          }
+          el.setAttribute("aria-label", "Copy promo code CHECKINTONELSON");
+          el.setAttribute("title", "Copy promo code");
+
+          var isPlain = el.classList.contains("code-green--plain");
+          if (!isPlain) {
+            var label = document.createElement("span");
+            label.className = "code-green__label";
+            label.innerHTML = '<span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span>';
+            el.textContent = "";
+            el.appendChild(label);
+
+            var hint = document.createElement("span");
+            hint.className = "code-green__hint";
+            hint.setAttribute("aria-hidden", "true");
+            hint.textContent = "Copy";
+            el.appendChild(hint);
+          }
+
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            copyInlineCode(el);
+          });
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              copyInlineCode(el);
+            }
+          });
+        });
+      }
+      enhanceInlineCodes();
+
       var copyPromo = document.getElementById("copyPromo");
       var copyPromoHero = document.getElementById("copyPromoHero");
       var stickyCopy = document.getElementById("stickyCopy");
@@ -2694,6 +4122,25 @@
       }
       window.addEventListener("scroll", updateSticky, { passive: true });
       updateSticky();
+
+      function postEmbedHeight() {
+        if (!document.documentElement.classList.contains("is-embed")) return;
+        var height = Math.ceil(Math.max(
+          document.documentElement.scrollHeight,
+          document.body ? document.body.scrollHeight : 0
+        ));
+        try {
+          window.parent.postMessage({ type: "checkIntoNelsonHeight", height: height }, "*");
+        } catch (err) {}
+      }
+      window.addEventListener("load", postEmbedHeight);
+      window.addEventListener("resize", postEmbedHeight);
+      if (typeof ResizeObserver !== "undefined" && document.body) {
+        var embedRo = new ResizeObserver(function () { postEmbedHeight(); });
+        embedRo.observe(document.body);
+      }
+      setTimeout(postEmbedHeight, 400);
+      setTimeout(postEmbedHeight, 1200);
     })();
   </script>
 </body>
