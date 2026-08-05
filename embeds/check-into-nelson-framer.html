@@ -3,15 +3,18 @@
   --------------------------------
   1. In Framer, add an Embed component (or Custom Code).
   2. Paste everything below this comment into the embed.
-  3. After GitHub Pages publishes this branch, the iframe src below will work at:
+  3. Live URL (GitHub Pages):
      https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1
 
-  Optional: if Framer strips <script>, keep the iframe only — it still works with a tall min-height.
+  Notes:
+  - Page ships without its own site header/nav (Framer provides that).
+  - Bump &v= if Framer caches an old iframe after a deploy.
+  - If Framer strips <script>, keep the iframe only — it still works with a tall min-height.
 -->
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805b"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
