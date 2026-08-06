@@ -150,7 +150,8 @@ function sanitizeListing(listing) {
         listing.publishedDate = normalizeDate(listing.publishedDate);
     }
     if (listing.modifiedDate && typeof listing.modifiedDate === 'string') {
-        listing.modifiedDate = normalizeDate(listing.modifiedDate);
+        // Keep time when present so same-day edits sort correctly
+        listing.modifiedDate = normalizeModifiedTimestamp(listing.modifiedDate);
     }
     
     REMOVED_LISTING_FIELDS.forEach(function(field) {
@@ -625,6 +626,11 @@ function normalizeDate(dateStr) {
     if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
         return trimmed;
     }
+    // Datetime → calendar date for <input type="date"> / display
+    const datePart = trimmed.match(/^(\d{4}-\d{2}-\d{2})/);
+    if (datePart) {
+        return datePart[1];
+    }
     // Try to parse as Date object (handles Google Sheets date format)
     const date = new Date(trimmed);
     if (!isNaN(date.getTime())) {
@@ -637,7 +643,21 @@ function normalizeDate(dateStr) {
     return trimmed;
 }
 
-// Today's calendar date in local timezone (YYYY-MM-DD) for modified timestamps
+// Preserve YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss for modifiedDate sorting
+function normalizeModifiedTimestamp(dateStr) {
+    if (!dateStr || typeof dateStr !== 'string') {
+        return dateStr || '';
+    }
+    const trimmed = dateStr.trim();
+    if (!trimmed) return '';
+    const dtMatch = trimmed.match(/^(\d{4}-\d{2}-\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?/);
+    if (dtMatch) {
+        return dtMatch[1] + 'T' + dtMatch[2] + ':' + dtMatch[3] + ':' + (dtMatch[4] || '00');
+    }
+    return normalizeDate(trimmed);
+}
+
+// Today's calendar date in local timezone (YYYY-MM-DD) for published dates
 function getLocalDateYYYYMMDD() {
     const d = new Date();
     const year = d.getFullYear();
@@ -646,16 +666,55 @@ function getLocalDateYYYYMMDD() {
     return year + '-' + month + '-' + day;
 }
 
-// Set modifiedDate to today when a listing is edited; returns true if the date changed
+// Local timestamp for modifiedDate so same-day edits sort newest-first
+function getLocalDateTimeISO() {
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    const seconds = String(d.getSeconds()).padStart(2, '0');
+    return year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds;
+}
+
+function parseListingTimestamp(dateStr) {
+    if (!dateStr) return 0;
+    const s = String(dateStr).trim();
+    if (!s) return 0;
+    const dtMatch = s.match(/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::(\d{2}))?/);
+    if (dtMatch) {
+        return new Date(
+            parseInt(dtMatch[1], 10),
+            parseInt(dtMatch[2], 10) - 1,
+            parseInt(dtMatch[3], 10),
+            parseInt(dtMatch[4], 10),
+            parseInt(dtMatch[5], 10),
+            parseInt(dtMatch[6] || '0', 10)
+        ).getTime();
+    }
+    const dateMatch = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (dateMatch) {
+        // Date-only → local midnight (sorts below same-day timed edits)
+        return new Date(
+            parseInt(dateMatch[1], 10),
+            parseInt(dateMatch[2], 10) - 1,
+            parseInt(dateMatch[3], 10)
+        ).getTime();
+    }
+    const parsed = new Date(s);
+    return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
+}
+
+// Set modifiedDate to now when a listing is edited; returns true if changed
 function bumpListingModifiedDate(listing, rowEl) {
     if (!listing) return false;
-    const today = getLocalDateYYYYMMDD();
-    const current = normalizeDate(listing.modifiedDate || '');
-    if (current === today) return false;
-    listing.modifiedDate = today;
+    const now = getLocalDateTimeISO();
+    if (listing.modifiedDate === now) return false;
+    listing.modifiedDate = now;
     if (rowEl) {
         const modInput = rowEl.querySelector('[data-field="modifiedDate"]');
-        if (modInput) modInput.value = today;
+        if (modInput) modInput.value = normalizeDate(now);
     }
     return true;
 }
@@ -2329,7 +2388,7 @@ function updateTabsStickyStackStuck() {
                 })(),
                 modifiedDate: (function() {
                     const date = getField('modifiedDate', ['Modified Date', 'Updated Date', 'updatedDate', 'Date Updated', 'editedDate', 'Edited Date', 'last updated', 'last modified'], true);
-                    return date ? normalizeDate(date) : date;
+                    return date ? normalizeModifiedTimestamp(date) : date;
                 })(),
                 directionsLink: directionsLinkField || googleMapsUrlField || '',
                 videoLink: videoLinkField || '',
@@ -2904,6 +2963,78 @@ function updateTabsStickyStackStuck() {
         }
         
         /**
+         * Styled notice modal (replaces native alert for key admin messages).
+         * @param {{ title: string, body: string, tone?: 'success'|'warning', buttonLabel?: string }} opts
+         * @returns {Promise<void>}
+         */
+        function showAdminNotice(opts) {
+            const options = opts || {};
+            const title = options.title || 'Notice';
+            const body = options.body || '';
+            const tone = options.tone === 'warning' ? 'warning' : 'success';
+            const buttonLabel = options.buttonLabel || 'Got it';
+
+            return new Promise(function(resolve) {
+                const existing = document.querySelector('.admin-notice-overlay');
+                if (existing && existing.parentNode) {
+                    existing.parentNode.removeChild(existing);
+                }
+
+                const overlay = document.createElement('div');
+                overlay.className = 'admin-notice-overlay';
+                overlay.setAttribute('role', 'presentation');
+
+                const dialog = document.createElement('div');
+                dialog.className = 'admin-notice admin-notice--' + tone;
+                dialog.setAttribute('role', 'alertdialog');
+                dialog.setAttribute('aria-modal', 'true');
+                dialog.setAttribute('aria-labelledby', 'adminNoticeTitle');
+                dialog.setAttribute('aria-describedby', 'adminNoticeBody');
+
+                const iconSvg = tone === 'warning'
+                    ? '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>'
+                    : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+
+                dialog.innerHTML = ''
+                    + '<div class="admin-notice__icon">' + iconSvg + '</div>'
+                    + '<h2 class="admin-notice__title" id="adminNoticeTitle"></h2>'
+                    + '<p class="admin-notice__body" id="adminNoticeBody"></p>'
+                    + '<div class="admin-notice__actions">'
+                    + '<button type="button" class="admin-notice__btn admin-notice__btn--primary" id="adminNoticeOk"></button>'
+                    + '</div>';
+
+                dialog.querySelector('#adminNoticeTitle').textContent = title;
+                dialog.querySelector('#adminNoticeBody').innerHTML = body;
+                const okBtn = dialog.querySelector('#adminNoticeOk');
+                okBtn.textContent = buttonLabel;
+
+                function close() {
+                    document.removeEventListener('keydown', onKey);
+                    if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                    resolve();
+                }
+
+                function onKey(e) {
+                    if (e.key === 'Escape' || e.key === 'Enter') {
+                        e.preventDefault();
+                        close();
+                    }
+                }
+
+                okBtn.addEventListener('click', close);
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) close();
+                });
+                document.addEventListener('keydown', onKey);
+
+                overlay.appendChild(dialog);
+                document.body.appendChild(overlay);
+                okBtn.focus();
+            });
+        }
+        window.showAdminNotice = showAdminNotice;
+
+        /**
          * Save-to-Sheets confirmation. Optional CSV backup uses an explicit
          * "Continue" step so a browser download prompt cannot skip the save.
          * @param {number} listingCount
@@ -3168,28 +3299,10 @@ function updateTabsStickyStackStuck() {
                     return parseDateDesc(b.publishedDate) - parseDateDesc(a.publishedDate);
                 }
                 case 'modifiedDate-asc': {
-                    const parseModDate = function(dateStr) {
-                        if (!dateStr) return 0;
-                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                        if (dateMatch) {
-                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
-                        }
-                        const parsed = new Date(dateStr);
-                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                    };
-                    return parseModDate(a.modifiedDate) - parseModDate(b.modifiedDate);
+                    return parseListingTimestamp(a.modifiedDate) - parseListingTimestamp(b.modifiedDate);
                 }
                 case 'modifiedDate-desc': {
-                    const parseModDateDesc = function(dateStr) {
-                        if (!dateStr) return 0;
-                        const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
-                        if (dateMatch) {
-                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
-                        }
-                        const parsed = new Date(dateStr);
-                        return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
-                    };
-                    return parseModDateDesc(b.modifiedDate) - parseModDateDesc(a.modifiedDate);
+                    return parseListingTimestamp(b.modifiedDate) - parseListingTimestamp(a.modifiedDate);
                 }
                 default: {
                     const areaCompareDefault = aArea.localeCompare(bArea);
@@ -3449,19 +3562,18 @@ function updateTabsStickyStackStuck() {
                 }
                 
                 if (listing.modifiedDate && listing.modifiedDate.trim() !== '') {
-                    // Normalize the date before validation
-                    const normalizedDate = normalizeDate(listing.modifiedDate);
-                    if (!/^\d{4}-\d{2}-\d{2}$/.test(normalizedDate)) {
+                    const normalizedTs = normalizeModifiedTimestamp(listing.modifiedDate);
+                    const dateOnly = normalizeDate(normalizedTs);
+                    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateOnly)) {
                         errors.push({
                             type: 'invalid-date',
                             severity: 'warning',
-                            message: 'Invalid date format for modifiedDate: "' + listing.modifiedDate + '" (expected YYYY-MM-DD)',
+                            message: 'Invalid date format for modifiedDate: "' + listing.modifiedDate + '" (expected YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss)',
                             listing: listing,
                             index: index
                         });
-                    } else if (normalizedDate !== listing.modifiedDate) {
-                        // Update the listing with normalized date
-                        listing.modifiedDate = normalizedDate;
+                    } else if (normalizedTs !== listing.modifiedDate) {
+                        listing.modifiedDate = normalizedTs;
                     }
                 }
                 
@@ -3989,7 +4101,12 @@ function updateTabsStickyStackStuck() {
                     '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />' +
                     '</svg>' +
                     '</div>' +
-                    '<div class="card-info-text">Modified: ' + escapeHtml(listing.modifiedDate) + '</div>' +
+                    '<div class="card-info-text">Modified: ' + escapeHtml((function(dateStr) {
+                        const day = normalizeDate(dateStr || '');
+                        const full = normalizeModifiedTimestamp(dateStr || '');
+                        const tm = String(full).match(/T(\d{2}):(\d{2})/);
+                        return tm ? (day + ' ' + tm[1] + ':' + tm[2]) : day;
+                    })(listing.modifiedDate)) + '</div>' +
                     '</div>' : '') +
                     // Phone with icon
                     (listing.phone ? 
@@ -5586,7 +5703,12 @@ function updateTabsStickyStackStuck() {
                         updateSyncStatus(true, 'Deleted locally; not saved to Google Sheets yet.');
                         showUnsavedChangesBadge();
                         refreshListingsAfterDelete();
-                        alert('✅ "' + listingName + '" deleted locally.\n\nClick Save to Sheets when you are ready to sync.');
+                        showAdminNotice({
+                            tone: 'success',
+                            title: 'Deleted locally',
+                            body: '<strong>' + escapeHtml(listingName) + '</strong> was removed from this admin view.<br><br>Click <strong>Save to Sheets</strong> when you are ready to sync.',
+                            buttonLabel: 'Got it'
+                        });
                         return;
                     }
                     
@@ -5677,7 +5799,12 @@ function updateTabsStickyStackStuck() {
                         removeListingFromLocalData(slug);
                         updateSyncStatus(false, 'Deleted locally only (Google Sheets not configured).');
                         refreshListingsAfterDelete();
-                        alert('✅ "' + listingName + '" deleted locally (Google Sheets not configured).');
+                        showAdminNotice({
+                            tone: 'warning',
+                            title: 'Deleted locally',
+                            body: '<strong>' + escapeHtml(listingName) + '</strong> was removed from this admin view only.<br><br>Google Sheets is not configured, so this change was not synced.',
+                            buttonLabel: 'Got it'
+                        });
                     }
                 } finally {
                     delete deletingSlugs[slug];
@@ -5723,7 +5850,7 @@ function updateTabsStickyStackStuck() {
             
             // Fresh timestamps for the new listing
             duplicate.publishedDate = getLocalDateYYYYMMDD();
-            duplicate.modifiedDate = getLocalDateYYYYMMDD();
+            duplicate.modifiedDate = getLocalDateTimeISO();
 
             // Add to the listings array
             duplicate._localOnly = true; // Not yet saved to Google Sheets
@@ -5982,7 +6109,7 @@ function updateTabsStickyStackStuck() {
                 private: getChecked('listingPrivate'),
                 authorName: getValue('listingAuthorName'),
                 publishedDate: getValue('listingPublishedDate'),
-                modifiedDate: getLocalDateYYYYMMDD(),
+                modifiedDate: getLocalDateTimeISO(),
                 directionsLink: getValue('listingDirectionsLink'),
                 googleMapsUrl: getValue('listingDirectionsLink'),
                 videoLink: getValue('listingVideoLink'),
@@ -9836,21 +9963,21 @@ function updateTabsStickyStackStuck() {
                 } else if (tableSortField === 'amenities') {
                     aValue = Array.isArray(aValue) ? aValue.join(', ') : '';
                     bValue = Array.isArray(bValue) ? bValue.join(', ') : '';
-                } else if (tableSortField === 'publishedDate' || tableSortField === 'modifiedDate') {
-                    // Parse dates for proper sorting
+                } else if (tableSortField === 'publishedDate') {
                     const parseDate = function(dateStr) {
                         if (!dateStr) return 0;
-                        // Try to parse YYYY-MM-DD format
                         const dateMatch = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
                         if (dateMatch) {
-                            return new Date(parseInt(dateMatch[1]), parseInt(dateMatch[2]) - 1, parseInt(dateMatch[3])).getTime();
+                            return new Date(parseInt(dateMatch[1], 10), parseInt(dateMatch[2], 10) - 1, parseInt(dateMatch[3], 10)).getTime();
                         }
-                        // Try to parse as Date object
                         const parsed = new Date(dateStr);
                         return isNaN(parsed.getTime()) ? 0 : parsed.getTime();
                     };
                     aValue = parseDate(aValue);
                     bValue = parseDate(bValue);
+                } else if (tableSortField === 'modifiedDate') {
+                    aValue = parseListingTimestamp(aValue);
+                    bValue = parseListingTimestamp(bValue);
                 } else {
                     aValue = (aValue || '').toString().toLowerCase();
                     bValue = (bValue || '').toString().toLowerCase();

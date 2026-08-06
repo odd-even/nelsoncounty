@@ -2560,3 +2560,105 @@
         .settings-card:has(#categoriesList) {
             display: none !important;
         }
+
+        /* Admin notice modal (replaces browser alert for key confirmations) */
+        .admin-notice-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10050;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background: rgba(17, 24, 20, 0.48);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: admin-notice-fade-in 0.18s ease-out;
+        }
+        .admin-notice {
+            width: min(100%, 26rem);
+            background: var(--bg-primary, #fff);
+            border: 1px solid var(--border-color, #dee2e6);
+            border-radius: 16px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+            padding: 1.5rem 1.5rem 1.25rem;
+            animation: admin-notice-rise 0.22s ease-out;
+        }
+        .admin-notice__icon {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            margin-bottom: 1rem;
+        }
+        .admin-notice--success .admin-notice__icon {
+            background: rgba(78, 107, 82, 0.12);
+            color: #4E6B52;
+        }
+        .admin-notice--warning .admin-notice__icon {
+            background: rgba(214, 80, 82, 0.12);
+            color: #D65052;
+        }
+        .admin-notice__icon svg {
+            width: 1.35rem;
+            height: 1.35rem;
+        }
+        .admin-notice__title {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary, #212529);
+            line-height: 1.25;
+        }
+        .admin-notice__body {
+            margin: 0 0 1.35rem;
+            font-size: 0.95rem;
+            line-height: 1.55;
+            color: var(--text-secondary, #6c757d);
+        }
+        .admin-notice__body strong {
+            color: var(--text-primary, #212529);
+            font-weight: 600;
+        }
+        .admin-notice__actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.65rem;
+        }
+        .admin-notice__btn {
+            appearance: none;
+            border: none;
+            border-radius: 18px;
+            padding: 0.65rem 1.15rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background 0.15s ease, transform 0.15s ease;
+        }
+        .admin-notice__btn:hover {
+            transform: translateY(-1px);
+        }
+        .admin-notice__btn--primary {
+            background: #4E6B52;
+            color: #fff;
+        }
+        .admin-notice__btn--primary:hover {
+            background: #3f5743;
+        }
+        @keyframes admin-notice-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes admin-notice-rise {
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .admin-notice-overlay,
+            .admin-notice {
+                animation: none;
+            }
+        }
