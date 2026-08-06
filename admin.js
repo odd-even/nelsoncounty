@@ -5091,6 +5091,9 @@ function updateTabsStickyStackStuck() {
             // Reset address type dropdown
             const addressTypeSelect = document.getElementById('listingAddressType');
             if (addressTypeSelect) addressTypeSelect.value = 'full';
+            if (typeof syncListingAddressTypeUi === 'function') {
+                syncListingAddressTypeUi();
+            }
             // Clear coordinates for new listing
             const latInput = document.getElementById('listingLatitude');
             const lngInput = document.getElementById('listingLongitude');
@@ -5320,6 +5323,9 @@ function updateTabsStickyStackStuck() {
                     addressInput.value = listing.address || '';
                     addressInput.style.display = 'block';
                 }
+            }
+            if (typeof syncListingAddressTypeUi === 'function') {
+                syncListingAddressTypeUi();
             }
             // Populate latitude/longitude if available
             const latInput = document.getElementById('listingLatitude');
@@ -5682,6 +5688,19 @@ function updateTabsStickyStackStuck() {
             }
         }
         
+        function uniqueCopySlug(baseSlug) {
+            const root = String(baseSlug || 'listing').trim().replace(/-copy(-\d+)?$/, '') || 'listing';
+            let candidate = root + '-copy';
+            let n = 2;
+            while (data.listings.some(function(l) {
+                return String(l.slug || '').trim() === candidate;
+            })) {
+                candidate = root + '-copy-' + n;
+                n += 1;
+            }
+            return candidate;
+        }
+
         function duplicateListing(slug) {
             const listing = data.listings.find(function(l) { return l.slug === slug; });
             
@@ -5696,36 +5715,79 @@ function updateTabsStickyStackStuck() {
             // Modify the name to indicate it's a duplicate
             duplicate.name = (listing.name || 'Untitled Listing') + ' (Copy)';
             
-            // Generate a new slug if it exists
-            if (duplicate.slug) {
-                duplicate.slug = duplicate.slug + '-copy';
-            } else if (duplicate.name) {
-                // Generate slug from name if it doesn't exist
-                duplicate.slug = duplicate.name.toLowerCase()
-                    .replace(/[^a-z0-9]+/g, '-')
-                    .replace(/^-+|-+$/g, '');
-            }
+            // Generate a unique slug so repeated duplicates don't collide
+            const baseSlug = listing.slug || (listing.name
+                ? String(listing.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+                : 'listing');
+            duplicate.slug = uniqueCopySlug(baseSlug);
             
+            // Fresh timestamps for the new listing
+            duplicate.publishedDate = getLocalDateYYYYMMDD();
+            duplicate.modifiedDate = getLocalDateYYYYMMDD();
+
             // Add to the listings array
             duplicate._localOnly = true; // Not yet saved to Google Sheets
             data.listings.push(duplicate);
             
             // Re-render the list to show the new duplicate
-            renderListings();
+            try {
+                if (typeof filterListings === 'function') filterListings();
+                else renderListings();
+            } catch (err) {
+                console.warn('Duplicate refresh failed:', err);
+                renderListings(data.listings);
+            }
             showUnsavedChangesBadge();
-            updateSyncStatus(true, '"' + duplicate.name + '" duplicated locally.');
+            updateSyncStatus(true, '"' + duplicate.name + '" duplicated locally. Save the form, then Save to Sheets.');
             
-            // Optionally open the duplicate for editing
+            // Open the duplicate for editing (skip blocking alert so Save works immediately)
             setTimeout(function() {
                 editListing(duplicate.slug);
-            }, 100);
-            
-            alert('✅ Duplicated "' + listing.name + '"');
+            }, 50);
         }
+        window.duplicateListing = duplicateListing;
         
         function saveListing(event) {
-            event.preventDefault();
-            
+            if (event && typeof event.preventDefault === 'function') {
+                event.preventDefault();
+            }
+
+            // Booking-site mode must not leave a hidden required address field.
+            if (typeof syncListingAddressTypeUi === 'function') {
+                syncListingAddressTypeUi();
+            }
+
+            const form = document.getElementById('listingForm');
+            // Prefer focusing the first invalid *visible* control (avoids
+            // "invalid form control … is not focusable" on hidden fields).
+            if (form) {
+                const invalid = form.querySelector(':invalid');
+                if (invalid) {
+                    const hidden = invalid.offsetParent === null ||
+                        (invalid.style && invalid.style.display === 'none') ||
+                        invalid.getAttribute('aria-hidden') === 'true';
+                    if (hidden) {
+                        invalid.required = false;
+                        invalid.removeAttribute('required');
+                    } else {
+                        if (typeof form.reportValidity === 'function') {
+                            form.reportValidity();
+                        } else if (typeof invalid.focus === 'function') {
+                            invalid.focus();
+                        }
+                        return;
+                    }
+                    // Re-check after clearing a hidden required control
+                    const stillInvalid = form.querySelector(':invalid');
+                    if (stillInvalid) {
+                        if (typeof form.reportValidity === 'function') {
+                            form.reportValidity();
+                        }
+                        return;
+                    }
+                }
+            }
+
             const getValue = function(id) {
                 const el = document.getElementById(id);
                 return el ? el.value : '';
@@ -5735,6 +5797,22 @@ function updateTabsStickyStackStuck() {
                 const el = document.getElementById(id);
                 return el ? el.checked : false;
             };
+
+            // Address is required only for "Full Address" mode (not booking-site).
+            const addressTypeEl = document.getElementById('listingAddressType');
+            const addressType = addressTypeEl ? addressTypeEl.value : 'full';
+            if (addressType !== 'booking') {
+                const addressVal = String(getValue('listingAddress') || '').trim();
+                if (!addressVal) {
+                    alert('⚠️ Please enter an address, or choose "Full address available on booking site".');
+                    const addressInput = document.getElementById('listingAddress');
+                    if (addressInput) {
+                        addressInput.focus();
+                        addressInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                    }
+                    return;
+                }
+            }
             
             const checkboxes = document.querySelectorAll('#amenitiesCheckboxes input[type="checkbox"]:checked');
             const selectedAmenities = [];
@@ -5928,25 +6006,27 @@ function updateTabsStickyStackStuck() {
             if (!listing.slug && listing.name) {
                 listing.slug = slugify(listing.name);
             }
+
+            // Preserve local-only flag for duplicates / new listings until Save to Sheets
+            if (existingListing && existingListing._localOnly) {
+                listing._localOnly = true;
+            }
             
             // Save locally only - user must click "Save to Sheets" to sync
-                        if (isUpdate) {
-                            const index = data.listings.findIndex(function(l) { return l.slug === editingSlug; });
-                            if (index >= 0) {
-                                data.listings[index] = listing;
+            if (isUpdate) {
+                const index = data.listings.findIndex(function(l) { return l.slug === editingSlug; });
+                if (index >= 0) {
+                    data.listings[index] = listing;
                     updateSyncStatus(true, '"' + listing.name + '" updated locally.');
-                    // Success message removed per user request
-                        } else {
-                            listing._localOnly = true; // Not yet saved to Google Sheets
-                            data.listings.push(listing);
+                } else {
+                    listing._localOnly = true;
+                    data.listings.push(listing);
                     updateSyncStatus(true, '"' + listing.name + '" added locally.');
-                    // Success message removed per user request
                 }
-                    } else {
-                        listing._localOnly = true; // Not yet saved to Google Sheets
-                        data.listings.push(listing);
+            } else {
+                listing._localOnly = true;
+                data.listings.push(listing);
                 updateSyncStatus(true, '"' + listing.name + '" added locally.');
-                // Success message removed per user request
             }
             
             // Update ImageKit metadata for all images that have descriptions and ImageKit URLs
@@ -6006,14 +6086,21 @@ function updateTabsStickyStackStuck() {
                 console.warn('Some ImageKit metadata syncs may have failed:', error);
             });
             
-            // Update filter options, refresh display, and close modal
-            applyFilterOptionCleanup();
-            renderListings();
-            showUnsavedChangesBadge();
-            // Clear original data since we saved
+            // Clear original data since we saved — always close even if refresh throws
             listingFormOriginalData = null;
+            try {
+                applyFilterOptionCleanup();
+                if (typeof filterListings === 'function') filterListings();
+                else renderListings();
+                showUnsavedChangesBadge();
+            } catch (refreshErr) {
+                console.error('Post-save refresh failed:', refreshErr);
+                try { renderListings(data.listings); } catch (e2) {}
+                try { showUnsavedChangesBadge(); } catch (e3) {}
+            }
             closeModal(true); // Force close since we just saved
         }
+        window.saveListing = saveListing;
         
         // Capture current form data as a snapshot
         function captureFormData() {
@@ -6308,6 +6395,24 @@ function updateTabsStickyStackStuck() {
             });
         }
         
+        // Keep address required state in sync with Full vs booking-site mode.
+        // Hidden + required fields silently block Save (no visible validation UI).
+        function syncListingAddressTypeUi() {
+            const addressTypeSelect = document.getElementById('listingAddressType');
+            const addressInput = document.getElementById('listingAddress');
+            if (!addressTypeSelect || !addressInput) return;
+            if (addressTypeSelect.value === 'booking') {
+                addressInput.style.display = 'none';
+                addressInput.required = false;
+                addressInput.removeAttribute('required');
+            } else {
+                addressInput.style.display = 'block';
+                addressInput.required = true;
+                addressInput.setAttribute('required', '');
+            }
+        }
+        window.syncListingAddressTypeUi = syncListingAddressTypeUi;
+
         // Helper function to generate Google Maps URL from address (always reads current value)
         function generateGoogleMapsUrlFromAddress() {
             const addressTypeSelect = document.getElementById('listingAddressType');
@@ -6338,20 +6443,20 @@ function updateTabsStickyStackStuck() {
                 console.warn('Address input or type select not found');
                 return;
             }
+
+            syncListingAddressTypeUi();
             
-            // Handle address type dropdown change
-            addressTypeSelect.addEventListener('change', function() {
-                if (this.value === 'booking') {
-                    addressInput.value = '';
-                    addressInput.style.display = 'none';
-                    addressInput.required = false;
-                    if (directionsLinkInput) directionsLinkInput.value = '';
-                } else {
-                    addressInput.style.display = 'block';
-                    addressInput.required = true;
-                }
-            });
-            
+            // Handle address type dropdown change (bind once — modal re-inits often)
+            if (!addressTypeSelect.dataset.boundAddressTypeChange) {
+                addressTypeSelect.dataset.boundAddressTypeChange = '1';
+                addressTypeSelect.addEventListener('change', function() {
+                    if (this.value === 'booking') {
+                        addressInput.value = '';
+                        if (directionsLinkInput) directionsLinkInput.value = '';
+                    }
+                    syncListingAddressTypeUi();
+                });
+            }
             // Set up Nominatim autocomplete
             if (!addressInputHandlersInitialized) {
                 let debounceTimer;

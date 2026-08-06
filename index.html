@@ -21,7 +21,7 @@
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
     <link rel="stylesheet" href="admin.css?v=20260610e">
     <link rel="preload" href="admin-data.js?v=20260610e" as="script">
-    <link rel="preload" href="admin.js?v=20260806b" as="script">
+    <link rel="preload" href="admin.js?v=20260806d" as="script">
     <script src="admin-auth.js?v=20260610e" defer></script>
     <script src="admin-data.js?v=20260610e" defer></script>
 </head>
@@ -603,7 +603,7 @@
                 <button class="close-modal" onclick="closeModal()" title="Close (will prompt if unsaved changes)">&times;</button>
             </div>
             
-            <form id="listingForm" onsubmit="saveListing(event)">
+            <form id="listingForm" onsubmit="saveListing(event)" novalidate>
                 <input type="hidden" id="editingId" />
                 
                 <div class="form-scrollable">
@@ -747,7 +747,7 @@
                             <option value="full">Full Address</option>
                             <option value="booking">Full address available on booking site</option>
                         </select>
-                        <input type="text" id="listingAddress" required autocomplete="off" />
+                        <input type="text" id="listingAddress" autocomplete="off" />
                         <div class="address-autocomplete-dropdown" id="addressAutocompleteDropdown"></div>
                     </div>
                     <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">Select "Full address available on booking site" for Airbnb-type listings that don't show addresses until booking.</small>
@@ -938,7 +938,7 @@
         </div>
     </div>
     
-    <script src="admin.js?v=20260806b" defer></script>
+    <script src="admin.js?v=20260806d" defer></script>
     
     </div> <!-- End main-container -->
     
