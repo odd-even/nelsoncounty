@@ -1857,7 +1857,7 @@
     .exit-intent {
       position: fixed;
       inset: 0;
-      z-index: 80;
+      z-index: 10000;
       display: grid;
       place-items: center;
       padding: 1.25rem;
@@ -1878,6 +1878,9 @@
       left: 0;
       right: 0;
       width: 100%;
+    }
+    .exit-intent[hidden] {
+      display: none !important;
     }
     .exit-intent__panel {
       position: relative;
@@ -2065,17 +2068,18 @@
       position: absolute;
       top: 0.75rem;
       right: 0.75rem;
-      width: 2.25rem;
-      height: 2.25rem;
+      z-index: 3;
+      width: 2.5rem;
+      height: 2.5rem;
       border: none;
       border-radius: 50%;
-      background: transparent;
-      color: var(--muted);
+      background: #f0f0f0;
+      color: var(--ink);
       font-size: 1.35rem;
       line-height: 1;
       cursor: pointer;
     }
-    .exit-intent__close:hover { color: var(--ink); background: #f0f0f0; }
+    .exit-intent__close:hover { color: var(--ink); background: #e4e4e4; }
     @media (prefers-reduced-motion: reduce) {
       .exit-intent,
       .exit-intent__panel { transition: none; }
@@ -2868,7 +2872,7 @@
       <div class="exit-intent__list" role="list">
         <button type="button" role="listitem" data-track="exit_origin" data-origin="charlottesville">Charlottesville <span>Nearby</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="richmond">Richmond <span>~1.5 hrs</span></button>
-        <button type="button" role="listitem" data-track="exit_origin" data-origin="dc-nova">Washington, D.C. / NoVA <span>~2.5 hrs</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="dc-nova">Washington, D.C. / Northern Virginia <span>~2.5 hrs</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="lynchburg">Lynchburg <span>~1 hr</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="roanoke">Roanoke <span>~1.5 hrs</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="elsewhere-va">Elsewhere in Virginia <span></span></button>
@@ -4408,10 +4412,14 @@
         var isEmbed = document.documentElement.classList.contains("is-embed");
         var armed = false;
         var shown = false;
+        var closing = false;
         var lastFocus = null;
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var params = new URLSearchParams(window.location.search);
+        var forceShow = params.get("showExit") === "1" || params.get("preview") === "exit";
 
         function alreadyHandled() {
+          if (forceShow) return false;
           try {
             return !!window.localStorage.getItem(STORAGE_KEY);
           } catch (err) {
@@ -4455,7 +4463,11 @@
         }
 
         function placeForEmbed(viewportTop, viewportHeight) {
-          if (!isEmbed) return;
+          if (!isEmbed) {
+            root.style.top = "";
+            root.style.height = "";
+            return;
+          }
           var top = Math.max(0, Number(viewportTop) || 0);
           var height = Math.max(320, Number(viewportHeight) || window.innerHeight || 640);
           root.style.top = top + "px";
@@ -4463,27 +4475,53 @@
         }
 
         function openExit(viewportTop, viewportHeight) {
+          if (closing) return;
           if (shown || alreadyHandled()) return;
           shown = true;
           armed = false;
+          closing = false;
           placeForEmbed(viewportTop, viewportHeight);
           lastFocus = document.activeElement;
+          // Clear any leftover preview/inline styles that would block hide.
+          root.style.opacity = "";
+          root.style.visibility = "";
+          root.style.pointerEvents = "";
+          root.style.display = "";
+          root.style.position = "";
+          root.style.inset = "";
+          root.style.zIndex = "";
+          root.style.background = "";
           root.hidden = false;
+          root.removeAttribute("hidden");
           root.setAttribute("aria-hidden", "false");
           root.classList.add("is-open");
           root.classList.remove("is-thanks");
-          var closeBtn = document.getElementById("exitIntentClose");
-          if (closeBtn) closeBtn.focus();
         }
 
         function closeExit(mark) {
+          if (!root.classList.contains("is-open") && root.hidden) return;
+          closing = true;
+          shown = true; // prevent immediate re-open from mouseout
           if (mark) remember(mark);
-          else if (!alreadyHandled()) remember("dismissed");
+          else if (!forceShow) remember("dismissed");
           root.classList.remove("is-open");
           root.classList.remove("is-thanks");
           root.setAttribute("aria-hidden", "true");
+          // Hide immediately — don't rely only on opacity transition.
+          root.hidden = true;
+          root.setAttribute("hidden", "");
+          root.style.top = "";
+          root.style.height = "";
+          root.style.opacity = "";
+          root.style.visibility = "";
+          root.style.pointerEvents = "";
+          root.style.display = "";
+          root.style.position = "";
+          root.style.inset = "";
+          root.style.zIndex = "";
+          root.style.background = "";
           window.setTimeout(function () {
-            root.hidden = true;
+            closing = false;
           }, reduceMotion ? 0 : 280);
           if (lastFocus && typeof lastFocus.focus === "function") {
             try { lastFocus.focus(); } catch (err) {}
@@ -4491,7 +4529,7 @@
         }
 
         function selectOrigin(origin, label, customLabel) {
-          if (!origin) return;
+          if (!origin || closing) return;
           var storeValue = customLabel ? ("custom:" + customLabel) : origin;
           remember(storeValue);
           trackOrigin(origin, customLabel || "");
@@ -4510,56 +4548,43 @@
           armed = true;
         }
 
-        if (alreadyHandled()) return;
+        // Always bind UI handlers (even if already answered) so Close / Prefer not
+        // to say keep working if the dialog is opened for preview or by the parent.
+        root.addEventListener("click", function (e) {
+          var t = e.target;
+          if (!t || !t.closest) return;
 
-        window.setTimeout(arm, MIN_ENGAGE_MS);
-
-        document.addEventListener("mouseout", function (e) {
-          if (!armed || shown) return;
-          if (e.relatedTarget || e.toElement) return;
-          if (typeof e.clientY === "number" && e.clientY > 12) return;
-          if (isEmbed) {
-            openExit(0, Math.min(window.innerHeight || 700, 900));
+          if (t === root) {
+            e.preventDefault();
+            closeExit("dismissed");
             return;
           }
-          openExit();
-        });
 
-        var coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-        if (coarse) {
-          window.setTimeout(function () {
-            if (!armed || shown) return;
-            openExit(0, window.innerHeight || 700);
-          }, MOBILE_DELAY_MS);
-        }
+          if (t.closest("#exitIntentClose") || t.closest("#exitIntentDismiss")) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeExit("dismissed");
+            return;
+          }
 
-        window.addEventListener("message", function (event) {
-          var data = event && event.data;
-          if (!data || data.type !== "checkIntoNelsonShowExit") return;
-          if (!armed && !alreadyHandled()) arm();
-          openExit(data.viewportTop, data.viewportHeight);
-        });
-
-        var dismiss = document.getElementById("exitIntentDismiss");
-        var closeBtn = document.getElementById("exitIntentClose");
-        if (dismiss) dismiss.addEventListener("click", function () { closeExit("dismissed"); });
-        if (closeBtn) closeBtn.addEventListener("click", function () { closeExit("dismissed"); });
-        root.addEventListener("click", function (e) {
-          if (e.target === root) closeExit("dismissed");
-        });
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && root.classList.contains("is-open")) closeExit("dismissed");
-        });
-
-        root.querySelectorAll("[data-track='exit_origin']").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            var origin = btn.getAttribute("data-origin") || "";
-            var label = (btn.getAttribute("aria-label") || "").trim();
+          var originBtn = t.closest("[data-track='exit_origin']");
+          if (originBtn && root.contains(originBtn)) {
+            e.preventDefault();
+            e.stopPropagation();
+            var origin = originBtn.getAttribute("data-origin") || "";
+            var label = (originBtn.getAttribute("aria-label") || "").trim();
             if (!label) {
-              label = (btn.childNodes[0] && btn.childNodes[0].textContent || "").trim();
+              label = (originBtn.childNodes[0] && originBtn.childNodes[0].textContent || "").trim();
             }
             selectOrigin(origin, label);
-          });
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && root.classList.contains("is-open")) {
+            e.preventDefault();
+            closeExit("dismissed");
+          }
         });
 
         var customForm = document.getElementById("exitIntentCustomForm");
@@ -4586,6 +4611,41 @@
             }
             selectOrigin("custom", label, label);
           });
+        }
+
+        if (alreadyHandled() && !forceShow) return;
+
+        window.setTimeout(arm, forceShow ? 0 : MIN_ENGAGE_MS);
+
+        document.addEventListener("mouseout", function (e) {
+          if (!armed || shown) return;
+          if (e.relatedTarget || e.toElement) return;
+          if (typeof e.clientY === "number" && e.clientY > 12) return;
+          if (isEmbed) {
+            openExit(0, Math.min(window.innerHeight || 700, 900));
+            return;
+          }
+          openExit();
+        });
+
+        var coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+        if (coarse && !forceShow) {
+          window.setTimeout(function () {
+            if (!armed || shown) return;
+            openExit(0, window.innerHeight || 700);
+          }, MOBILE_DELAY_MS);
+        }
+
+        window.addEventListener("message", function (event) {
+          var data = event && event.data;
+          if (!data || data.type !== "checkIntoNelsonShowExit") return;
+          if (!armed && !alreadyHandled()) arm();
+          openExit(data.viewportTop, data.viewportHeight);
+        });
+
+        if (forceShow) {
+          arm();
+          openExit(0, window.innerHeight || 700);
         }
       })();
     })();
