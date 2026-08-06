@@ -11,11 +11,12 @@
   - Bump &v= if Framer caches an old iframe after a deploy.
   - If Framer strips <script>, keep the iframe only — it still works with a tall min-height.
   - Outbound / nelsoncounty.com links break out of the iframe (_blank / _top).
+  - In-page #anchors post a scroll request so the Framer parent page moves.
 -->
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805d"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805e"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="eager"
     referrerpolicy="no-referrer-when-downgrade"
@@ -27,12 +28,26 @@
   (function () {
     var frame = document.getElementById("check-into-nelson-frame");
     if (!frame) return;
+    var HEADER_OFFSET = 96;
+
     window.addEventListener("message", function (event) {
       var data = event && event.data;
-      if (!data || data.type !== "checkIntoNelsonHeight") return;
-      var height = Number(data.height);
-      if (!height || height < 600) return;
-      frame.style.height = Math.ceil(height) + "px";
+      if (!data || !data.type) return;
+
+      if (data.type === "checkIntoNelsonHeight") {
+        var height = Number(data.height);
+        if (!height || height < 600) return;
+        frame.style.height = Math.ceil(height) + "px";
+        return;
+      }
+
+      if (data.type === "checkIntoNelsonScrollTo") {
+        var y = Number(data.y);
+        if (!isFinite(y)) return;
+        var rect = frame.getBoundingClientRect();
+        var top = window.scrollY + rect.top + y - HEADER_OFFSET;
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+      }
     });
   })();
 </script>

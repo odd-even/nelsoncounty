@@ -4003,6 +4003,62 @@
           return /(^|\.)nelsoncounty\.com$/i.test(hostname || "");
         }
 
+        function hashFromHref(href) {
+          if (!href) return "";
+          if (href.charAt(0) === "#") return href.slice(1);
+          try {
+            var url = new URL(href, window.location.href);
+            if (
+              url.origin === window.location.origin &&
+              url.pathname === window.location.pathname &&
+              url.hash
+            ) {
+              return decodeURIComponent(url.hash.slice(1));
+            }
+          } catch (err) {}
+          return "";
+        }
+
+        function resolveHashTarget(hash) {
+          if (!hash) return null;
+          var el = document.getElementById(hash);
+          if (el) return el;
+          try {
+            return document.querySelector('[name="' + hash.replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"]');
+          } catch (err) {
+            return null;
+          }
+        }
+
+        // Tall full-height iframe: the parent Framer page scrolls, not the iframe.
+        // Native #hash jumps do nothing visible — ask the parent to scroll instead.
+        function scrollParentToHash(hash) {
+          var el = resolveHashTarget(hash);
+          if (!el) return false;
+          var y = Math.round(el.getBoundingClientRect().top);
+          try {
+            window.parent.postMessage({
+              type: "checkIntoNelsonScrollTo",
+              y: y,
+              id: hash
+            }, "*");
+          } catch (err) {}
+          try {
+            history.replaceState(null, "", "#" + hash);
+          } catch (err2) {}
+          return true;
+        }
+
+        document.addEventListener("click", function (e) {
+          var link = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+          if (!link || e.defaultPrevented || e.button !== 0) return;
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          var hash = hashFromHref(link.getAttribute("href"));
+          if (!hash) return;
+          if (!scrollParentToHash(hash)) return;
+          e.preventDefault();
+        });
+
         document.querySelectorAll("a[href]").forEach(function (link) {
           var href = link.getAttribute("href");
           if (!href || href.charAt(0) === "#") return;
