@@ -1931,6 +1931,39 @@
       font-weight: 500;
       color: var(--muted);
     }
+    .exit-intent__states {
+      display: grid;
+      gap: 0.4rem;
+      margin: 0 0 0.85rem;
+    }
+    .exit-intent__states-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .exit-intent__states-row {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.35rem;
+    }
+    .exit-intent__states-row button {
+      height: 2.4rem;
+      padding: 0 0.25rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+    .exit-intent__states-row button:hover {
+      border-color: var(--ink);
+      background: #f7f7f7;
+    }
     .exit-intent__custom {
       display: grid;
       gap: 0.55rem;
@@ -1989,6 +2022,7 @@
     }
     .exit-intent.is-thanks .exit-intent__copy,
     .exit-intent.is-thanks .exit-intent__list,
+    .exit-intent.is-thanks .exit-intent__states,
     .exit-intent.is-thanks .exit-intent__custom,
     .exit-intent.is-thanks .exit-intent__dismiss {
       display: none;
@@ -2832,7 +2866,17 @@
         <button type="button" role="listitem" data-track="exit_origin" data-origin="lynchburg">Lynchburg <span>~1 hr</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="roanoke">Roanoke <span>~1.5 hrs</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="elsewhere-va">Elsewhere in Virginia <span></span></button>
-        <button type="button" role="listitem" data-track="exit_origin" data-origin="out-of-state">Out of state <span></span></button>
+      </div>
+      <div class="exit-intent__states">
+        <p class="exit-intent__states-label">Surrounding states</p>
+        <div class="exit-intent__states-row" role="list" aria-label="Surrounding states">
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="md" aria-label="Maryland">MD</button>
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="wv" aria-label="West Virginia">WV</button>
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="nc" aria-label="North Carolina">NC</button>
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="pa" aria-label="Pennsylvania">PA</button>
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="tn" aria-label="Tennessee">TN</button>
+          <button type="button" role="listitem" data-track="exit_origin" data-origin="ky" aria-label="Kentucky">KY</button>
+        </div>
       </div>
       <form class="exit-intent__custom" id="exitIntentCustomForm" autocomplete="off">
         <label class="exit-intent__custom-label" for="exitIntentCustomInput">Or type another location</label>
@@ -4504,7 +4548,10 @@
         root.querySelectorAll("[data-track='exit_origin']").forEach(function (btn) {
           btn.addEventListener("click", function () {
             var origin = btn.getAttribute("data-origin") || "";
-            var label = (btn.childNodes[0] && btn.childNodes[0].textContent || "").trim();
+            var label = (btn.getAttribute("aria-label") || "").trim();
+            if (!label) {
+              label = (btn.childNodes[0] && btn.childNodes[0].textContent || "").trim();
+            }
             selectOrigin(origin, label);
           });
         });
