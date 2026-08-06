@@ -1902,26 +1902,47 @@
       gap: 0.5rem;
       margin-bottom: 0.85rem;
     }
-    .exit-intent__list a {
+    .exit-intent__list button {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
+      width: 100%;
       padding: 0.85rem 1rem;
       border: 1px solid var(--line);
       border-radius: 14px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
       font-size: 0.98rem;
       font-weight: 500;
+      text-align: left;
+      cursor: pointer;
       transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
     }
-    .exit-intent__list a:hover {
+    .exit-intent__list button:hover {
       border-color: var(--ink);
       background: #f7f7f7;
     }
-    .exit-intent__list a span {
+    .exit-intent__list button span {
       font-size: 0.82rem;
       font-weight: 500;
       color: var(--muted);
+    }
+    .exit-intent__thanks {
+      display: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      line-height: 1.35;
+      padding: 0.5rem 0 0.25rem;
+    }
+    .exit-intent.is-thanks .exit-intent__copy,
+    .exit-intent.is-thanks .exit-intent__list,
+    .exit-intent.is-thanks .exit-intent__dismiss {
+      display: none;
+    }
+    .exit-intent.is-thanks .exit-intent__thanks {
+      display: block;
     }
     .exit-intent__dismiss {
       display: block;
@@ -2748,18 +2769,21 @@
   >
     <div class="exit-intent__panel">
       <button type="button" class="exit-intent__close" id="exitIntentClose" aria-label="Close">&times;</button>
-      <p class="exit-intent__eyebrow">Before you go</p>
-      <h2 class="exit-intent__title" id="exitIntentTitle">Where in Nelson are you headed?</h2>
-      <p class="exit-intent__copy">Pick a spot and we’ll show you what’s nearby — lodging, tastes, and things to do.</p>
+      <p class="exit-intent__eyebrow">Quick question</p>
+      <h2 class="exit-intent__title" id="exitIntentTitle">Where are you traveling from?</h2>
+      <p class="exit-intent__copy">Helps Nelson County Tourism understand who’s planning a Check Into Nelson stay.</p>
+      <p class="exit-intent__thanks" id="exitIntentThanks" aria-live="polite">Thanks — that helps us plan better for visitors like you.</p>
       <div class="exit-intent__list" role="list">
-        <a role="listitem" href="https://nelsoncounty.com/locations/afton" data-track="exit_location" data-location="afton">Afton <span>Wine country · Tunnel</span></a>
-        <a role="listitem" href="https://nelsoncounty.com/locations/nellysford" data-track="exit_location" data-location="nellysford">Nellysford <span>Rockfish Valley</span></a>
-        <a role="listitem" href="https://nelsoncounty.com/locations/wintergreen-resort" data-track="exit_location" data-location="wintergreen">Wintergreen <span>Resort &amp; outdoors</span></a>
-        <a role="listitem" href="https://nelsoncounty.com/locations/lovingston" data-track="exit_location" data-location="lovingston">Lovingston <span>County seat</span></a>
-        <a role="listitem" href="https://nelsoncounty.com/locations/roseland" data-track="exit_location" data-location="roseland">Roseland <span>Devils Backbone</span></a>
-        <a role="listitem" href="https://nelsoncounty.com/find-your-adventure" data-track="exit_location" data-location="explore-all">Not sure yet <span>Explore all</span></a>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="charlottesville">Charlottesville <span>Nearby</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="richmond">Richmond <span>~1.5 hrs</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="dc-nova">Washington, D.C. / NoVA <span>~2.5 hrs</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="lynchburg">Lynchburg <span>~1 hr</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="roanoke">Roanoke <span>~1.5 hrs</span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="elsewhere-va">Elsewhere in Virginia <span></span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="out-of-state">Out of state <span></span></button>
+        <button type="button" role="listitem" data-track="exit_origin" data-origin="local">Already in Nelson <span>Local / here now</span></button>
       </div>
-      <button type="button" class="exit-intent__dismiss" id="exitIntentDismiss">No thanks, keep browsing</button>
+      <button type="button" class="exit-intent__dismiss" id="exitIntentDismiss">Prefer not to say</button>
     </div>
   </div>
 
@@ -4262,7 +4286,7 @@
         var root = document.getElementById("exitIntent");
         if (!root) return;
 
-        var STORAGE_KEY = "cin_exit_intent_v1";
+        var STORAGE_KEY = "cin_travel_from_v1";
         var MIN_ENGAGE_MS = 12000;
         var MOBILE_DELAY_MS = 28000;
         var isEmbed = document.documentElement.classList.contains("is-embed");
@@ -4273,16 +4297,40 @@
 
         function alreadyHandled() {
           try {
-            return window.localStorage.getItem(STORAGE_KEY) === "1";
+            return !!window.localStorage.getItem(STORAGE_KEY);
           } catch (err) {
             return false;
           }
         }
 
-        function remember() {
+        function remember(value) {
           try {
-            window.localStorage.setItem(STORAGE_KEY, "1");
+            window.localStorage.setItem(STORAGE_KEY, value || "dismissed");
           } catch (err) {}
+        }
+
+        function trackOrigin(origin) {
+          var payload = {
+            type: "checkIntoNelsonTravelFrom",
+            origin: origin,
+            ts: Date.now()
+          };
+          try {
+            window.parent.postMessage(payload, "*");
+          } catch (err) {}
+          try {
+            if (window.dataLayer && typeof window.dataLayer.push === "function") {
+              window.dataLayer.push({
+                event: "cin_travel_from",
+                travel_from: origin
+              });
+            }
+          } catch (err2) {}
+          try {
+            if (typeof window.gtag === "function") {
+              window.gtag("event", "cin_travel_from", { travel_from: origin });
+            }
+          } catch (err3) {}
         }
 
         function placeForEmbed(viewportTop, viewportHeight) {
@@ -4302,13 +4350,16 @@
           root.hidden = false;
           root.setAttribute("aria-hidden", "false");
           root.classList.add("is-open");
-          remember();
+          root.classList.remove("is-thanks");
           var closeBtn = document.getElementById("exitIntentClose");
           if (closeBtn) closeBtn.focus();
         }
 
-        function closeExit() {
+        function closeExit(mark) {
+          if (mark) remember(mark);
+          else if (!alreadyHandled()) remember("dismissed");
           root.classList.remove("is-open");
+          root.classList.remove("is-thanks");
           root.setAttribute("aria-hidden", "true");
           window.setTimeout(function () {
             root.hidden = true;
@@ -4316,6 +4367,20 @@
           if (lastFocus && typeof lastFocus.focus === "function") {
             try { lastFocus.focus(); } catch (err) {}
           }
+        }
+
+        function selectOrigin(origin, label) {
+          if (!origin) return;
+          remember(origin);
+          trackOrigin(origin);
+          root.classList.add("is-thanks");
+          var thanks = document.getElementById("exitIntentThanks");
+          if (thanks && label) {
+            thanks.textContent = "Thanks — noted you’re coming from " + label + ".";
+          }
+          window.setTimeout(function () {
+            closeExit(origin);
+          }, reduceMotion ? 600 : 1400);
         }
 
         function arm() {
@@ -4338,7 +4403,6 @@
           openExit();
         });
 
-        // Mobile / touch: delayed prompt after engagement time
         var coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
         if (coarse) {
           window.setTimeout(function () {
@@ -4347,7 +4411,6 @@
           }, MOBILE_DELAY_MS);
         }
 
-        // Framer parent can detect true exit intent and tell us where the viewport is
         window.addEventListener("message", function (event) {
           var data = event && event.data;
           if (!data || data.type !== "checkIntoNelsonShowExit") return;
@@ -4357,18 +4420,20 @@
 
         var dismiss = document.getElementById("exitIntentDismiss");
         var closeBtn = document.getElementById("exitIntentClose");
-        if (dismiss) dismiss.addEventListener("click", closeExit);
-        if (closeBtn) closeBtn.addEventListener("click", closeExit);
+        if (dismiss) dismiss.addEventListener("click", function () { closeExit("dismissed"); });
+        if (closeBtn) closeBtn.addEventListener("click", function () { closeExit("dismissed"); });
         root.addEventListener("click", function (e) {
-          if (e.target === root) closeExit();
+          if (e.target === root) closeExit("dismissed");
         });
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape" && root.classList.contains("is-open")) closeExit();
+          if (e.key === "Escape" && root.classList.contains("is-open")) closeExit("dismissed");
         });
 
-        root.querySelectorAll("a[data-track='exit_location']").forEach(function (link) {
-          link.addEventListener("click", function () {
-            remember();
+        root.querySelectorAll("[data-track='exit_origin']").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            var origin = btn.getAttribute("data-origin") || "";
+            var label = (btn.childNodes[0] && btn.childNodes[0].textContent || "").trim();
+            selectOrigin(origin, label);
           });
         });
       })();
