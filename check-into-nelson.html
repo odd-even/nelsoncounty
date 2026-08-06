@@ -1866,6 +1866,8 @@
     .exit-intent__panel {
       position: relative;
       width: min(100%, 26rem);
+      max-height: min(92vh, 40rem);
+      overflow: auto;
       background: var(--white);
       color: var(--ink);
       border-radius: var(--radius);
@@ -1929,6 +1931,55 @@
       font-weight: 500;
       color: var(--muted);
     }
+    .exit-intent__custom {
+      display: grid;
+      gap: 0.55rem;
+      margin: 0 0 0.85rem;
+      padding-top: 0.15rem;
+    }
+    .exit-intent__custom-label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .exit-intent__custom-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+    }
+    .exit-intent__custom-input {
+      width: 100%;
+      min-width: 0;
+      padding: 0.8rem 0.95rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .exit-intent__custom-input:focus {
+      outline: 2px solid var(--ink);
+      outline-offset: 1px;
+    }
+    .exit-intent__custom-submit {
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 14px;
+      background: var(--ink);
+      color: var(--white);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .exit-intent__custom-submit:hover { background: var(--black); }
+    .exit-intent__custom-submit:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
     .exit-intent__thanks {
       display: none;
       font-size: 1.05rem;
@@ -1938,6 +1989,7 @@
     }
     .exit-intent.is-thanks .exit-intent__copy,
     .exit-intent.is-thanks .exit-intent__list,
+    .exit-intent.is-thanks .exit-intent__custom,
     .exit-intent.is-thanks .exit-intent__dismiss {
       display: none;
     }
@@ -2781,8 +2833,22 @@
         <button type="button" role="listitem" data-track="exit_origin" data-origin="roanoke">Roanoke <span>~1.5 hrs</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="elsewhere-va">Elsewhere in Virginia <span></span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="out-of-state">Out of state <span></span></button>
-        <button type="button" role="listitem" data-track="exit_origin" data-origin="local">Already in Nelson <span>Local / here now</span></button>
       </div>
+      <form class="exit-intent__custom" id="exitIntentCustomForm" autocomplete="off">
+        <label class="exit-intent__custom-label" for="exitIntentCustomInput">Or type another location</label>
+        <div class="exit-intent__custom-row">
+          <input
+            class="exit-intent__custom-input"
+            id="exitIntentCustomInput"
+            type="text"
+            name="travel_from_custom"
+            maxlength="80"
+            placeholder="City, region, or state"
+            enterkeyhint="done"
+          />
+          <button type="submit" class="exit-intent__custom-submit" id="exitIntentCustomSubmit" disabled>Save</button>
+        </div>
+      </form>
       <button type="button" class="exit-intent__dismiss" id="exitIntentDismiss">Prefer not to say</button>
     </div>
   </div>
@@ -4309,10 +4375,11 @@
           } catch (err) {}
         }
 
-        function trackOrigin(origin) {
+        function trackOrigin(origin, customLabel) {
           var payload = {
             type: "checkIntoNelsonTravelFrom",
             origin: origin,
+            custom: customLabel || "",
             ts: Date.now()
           };
           try {
@@ -4322,13 +4389,17 @@
             if (window.dataLayer && typeof window.dataLayer.push === "function") {
               window.dataLayer.push({
                 event: "cin_travel_from",
-                travel_from: origin
+                travel_from: origin,
+                travel_from_custom: customLabel || ""
               });
             }
           } catch (err2) {}
           try {
             if (typeof window.gtag === "function") {
-              window.gtag("event", "cin_travel_from", { travel_from: origin });
+              window.gtag("event", "cin_travel_from", {
+                travel_from: origin,
+                travel_from_custom: customLabel || ""
+              });
             }
           } catch (err3) {}
         }
@@ -4369,17 +4440,18 @@
           }
         }
 
-        function selectOrigin(origin, label) {
+        function selectOrigin(origin, label, customLabel) {
           if (!origin) return;
-          remember(origin);
-          trackOrigin(origin);
+          var storeValue = customLabel ? ("custom:" + customLabel) : origin;
+          remember(storeValue);
+          trackOrigin(origin, customLabel || "");
           root.classList.add("is-thanks");
           var thanks = document.getElementById("exitIntentThanks");
           if (thanks && label) {
             thanks.textContent = "Thanks — noted you’re coming from " + label + ".";
           }
           window.setTimeout(function () {
-            closeExit(origin);
+            closeExit(storeValue);
           }, reduceMotion ? 600 : 1400);
         }
 
@@ -4436,6 +4508,32 @@
             selectOrigin(origin, label);
           });
         });
+
+        var customForm = document.getElementById("exitIntentCustomForm");
+        var customInput = document.getElementById("exitIntentCustomInput");
+        var customSubmit = document.getElementById("exitIntentCustomSubmit");
+
+        function syncCustomSubmit() {
+          if (!customInput || !customSubmit) return;
+          customSubmit.disabled = !customInput.value.trim();
+        }
+
+        if (customInput) {
+          customInput.addEventListener("input", syncCustomSubmit);
+          syncCustomSubmit();
+        }
+
+        if (customForm && customInput) {
+          customForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var label = customInput.value.replace(/\s+/g, " ").trim();
+            if (!label) {
+              customInput.focus();
+              return;
+            }
+            selectOrigin("custom", label, label);
+          });
+        }
       })();
     })();
   </script>

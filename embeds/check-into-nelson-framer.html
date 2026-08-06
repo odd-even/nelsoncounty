@@ -17,7 +17,7 @@
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805g"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805i"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="eager"
     referrerpolicy="no-referrer-when-downgrade"
@@ -83,13 +83,17 @@
           if (window.dataLayer && typeof window.dataLayer.push === "function") {
             window.dataLayer.push({
               event: "cin_travel_from",
-              travel_from: data.origin
+              travel_from: data.origin,
+              travel_from_custom: data.custom || ""
             });
           }
         } catch (err) {}
         try {
           if (typeof window.gtag === "function") {
-            window.gtag("event", "cin_travel_from", { travel_from: data.origin });
+            window.gtag("event", "cin_travel_from", {
+              travel_from: data.origin,
+              travel_from_custom: data.custom || ""
+            });
           }
         } catch (err2) {}
       }
