@@ -60,6 +60,7 @@
       background: var(--white);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
@@ -1836,6 +1837,127 @@
       transform: translate(-50%, 0);
     }
 
+    /* —— Exit-intent location picker —— */
+    .exit-intent {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      background: rgba(17, 17, 17, 0.48);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease), visibility 0.28s;
+    }
+    .exit-intent.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    html.is-embed .exit-intent {
+      position: absolute;
+      inset: auto;
+      left: 0;
+      right: 0;
+      width: 100%;
+    }
+    .exit-intent__panel {
+      position: relative;
+      width: min(100%, 26rem);
+      background: var(--white);
+      color: var(--ink);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.35rem 1.25rem;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+      transform: translateY(12px);
+      transition: transform 0.28s var(--ease);
+    }
+    .exit-intent.is-open .exit-intent__panel {
+      transform: none;
+    }
+    .exit-intent__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+    .exit-intent__title {
+      font-size: clamp(1.35rem, 3vw, 1.65rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.45rem;
+    }
+    .exit-intent__copy {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.15rem;
+    }
+    .exit-intent__list {
+      display: grid;
+      gap: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .exit-intent__list a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      font-size: 0.98rem;
+      font-weight: 500;
+      transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+    }
+    .exit-intent__list a:hover {
+      border-color: var(--ink);
+      background: #f7f7f7;
+    }
+    .exit-intent__list a span {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .exit-intent__dismiss {
+      display: block;
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.65rem;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .exit-intent__dismiss:hover { color: var(--ink); }
+    .exit-intent__close {
+      position: absolute;
+      top: 0.75rem;
+      right: 0.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: none;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .exit-intent__close:hover { color: var(--ink); background: #f0f0f0; }
+    @media (prefers-reduced-motion: reduce) {
+      .exit-intent,
+      .exit-intent__panel { transition: none; }
+    }
+
   </style>
   <script>
     (function () {
@@ -2612,6 +2734,32 @@
     <div class="cta-row">
       <button type="button" class="btn btn--dark" id="stickyCopy">Copy</button>
       <a class="btn btn--outline" href="#itinerary" data-track="cta_sample_stay">Sample stay</a>
+    </div>
+  </div>
+
+  <div
+    class="exit-intent"
+    id="exitIntent"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="exitIntentTitle"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="exit-intent__panel">
+      <button type="button" class="exit-intent__close" id="exitIntentClose" aria-label="Close">&times;</button>
+      <p class="exit-intent__eyebrow">Before you go</p>
+      <h2 class="exit-intent__title" id="exitIntentTitle">Where in Nelson are you headed?</h2>
+      <p class="exit-intent__copy">Pick a spot and we’ll show you what’s nearby — lodging, tastes, and things to do.</p>
+      <div class="exit-intent__list" role="list">
+        <a role="listitem" href="https://nelsoncounty.com/locations/afton" data-track="exit_location" data-location="afton">Afton <span>Wine country · Tunnel</span></a>
+        <a role="listitem" href="https://nelsoncounty.com/locations/nellysford" data-track="exit_location" data-location="nellysford">Nellysford <span>Rockfish Valley</span></a>
+        <a role="listitem" href="https://nelsoncounty.com/locations/wintergreen-resort" data-track="exit_location" data-location="wintergreen">Wintergreen <span>Resort &amp; outdoors</span></a>
+        <a role="listitem" href="https://nelsoncounty.com/locations/lovingston" data-track="exit_location" data-location="lovingston">Lovingston <span>County seat</span></a>
+        <a role="listitem" href="https://nelsoncounty.com/locations/roseland" data-track="exit_location" data-location="roseland">Roseland <span>Devils Backbone</span></a>
+        <a role="listitem" href="https://nelsoncounty.com/find-your-adventure" data-track="exit_location" data-location="explore-all">Not sure yet <span>Explore all</span></a>
+      </div>
+      <button type="button" class="exit-intent__dismiss" id="exitIntentDismiss">No thanks, keep browsing</button>
     </div>
   </div>
 
@@ -4109,6 +4257,121 @@
       }
       setTimeout(postEmbedHeight, 400);
       setTimeout(postEmbedHeight, 1200);
+
+      (function initExitIntent() {
+        var root = document.getElementById("exitIntent");
+        if (!root) return;
+
+        var STORAGE_KEY = "cin_exit_intent_v1";
+        var MIN_ENGAGE_MS = 12000;
+        var MOBILE_DELAY_MS = 28000;
+        var isEmbed = document.documentElement.classList.contains("is-embed");
+        var armed = false;
+        var shown = false;
+        var lastFocus = null;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function alreadyHandled() {
+          try {
+            return window.localStorage.getItem(STORAGE_KEY) === "1";
+          } catch (err) {
+            return false;
+          }
+        }
+
+        function remember() {
+          try {
+            window.localStorage.setItem(STORAGE_KEY, "1");
+          } catch (err) {}
+        }
+
+        function placeForEmbed(viewportTop, viewportHeight) {
+          if (!isEmbed) return;
+          var top = Math.max(0, Number(viewportTop) || 0);
+          var height = Math.max(320, Number(viewportHeight) || window.innerHeight || 640);
+          root.style.top = top + "px";
+          root.style.height = height + "px";
+        }
+
+        function openExit(viewportTop, viewportHeight) {
+          if (shown || alreadyHandled()) return;
+          shown = true;
+          armed = false;
+          placeForEmbed(viewportTop, viewportHeight);
+          lastFocus = document.activeElement;
+          root.hidden = false;
+          root.setAttribute("aria-hidden", "false");
+          root.classList.add("is-open");
+          remember();
+          var closeBtn = document.getElementById("exitIntentClose");
+          if (closeBtn) closeBtn.focus();
+        }
+
+        function closeExit() {
+          root.classList.remove("is-open");
+          root.setAttribute("aria-hidden", "true");
+          window.setTimeout(function () {
+            root.hidden = true;
+          }, reduceMotion ? 0 : 280);
+          if (lastFocus && typeof lastFocus.focus === "function") {
+            try { lastFocus.focus(); } catch (err) {}
+          }
+        }
+
+        function arm() {
+          if (shown || alreadyHandled()) return;
+          armed = true;
+        }
+
+        if (alreadyHandled()) return;
+
+        window.setTimeout(arm, MIN_ENGAGE_MS);
+
+        document.addEventListener("mouseout", function (e) {
+          if (!armed || shown) return;
+          if (e.relatedTarget || e.toElement) return;
+          if (typeof e.clientY === "number" && e.clientY > 12) return;
+          if (isEmbed) {
+            openExit(0, Math.min(window.innerHeight || 700, 900));
+            return;
+          }
+          openExit();
+        });
+
+        // Mobile / touch: delayed prompt after engagement time
+        var coarse = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+        if (coarse) {
+          window.setTimeout(function () {
+            if (!armed || shown) return;
+            openExit(0, window.innerHeight || 700);
+          }, MOBILE_DELAY_MS);
+        }
+
+        // Framer parent can detect true exit intent and tell us where the viewport is
+        window.addEventListener("message", function (event) {
+          var data = event && event.data;
+          if (!data || data.type !== "checkIntoNelsonShowExit") return;
+          if (!armed && !alreadyHandled()) arm();
+          openExit(data.viewportTop, data.viewportHeight);
+        });
+
+        var dismiss = document.getElementById("exitIntentDismiss");
+        var closeBtn = document.getElementById("exitIntentClose");
+        if (dismiss) dismiss.addEventListener("click", closeExit);
+        if (closeBtn) closeBtn.addEventListener("click", closeExit);
+        root.addEventListener("click", function (e) {
+          if (e.target === root) closeExit();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && root.classList.contains("is-open")) closeExit();
+        });
+
+        root.querySelectorAll("a[data-track='exit_location']").forEach(function (link) {
+          link.addEventListener("click", function () {
+            remember();
+          });
+        });
+      })();
     })();
   </script>
 </body>

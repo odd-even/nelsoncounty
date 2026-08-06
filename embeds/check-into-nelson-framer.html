@@ -12,11 +12,12 @@
   - If Framer strips <script>, keep the iframe only — it still works with a tall min-height.
   - Outbound / nelsoncounty.com links break out of the iframe (_blank / _top).
   - In-page #anchors post a scroll request so the Framer parent page moves.
+  - Exit-intent location popup is triggered from this parent script in Framer.
 -->
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805e"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805f"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="eager"
     referrerpolicy="no-referrer-when-downgrade"
@@ -29,6 +30,33 @@
     var frame = document.getElementById("check-into-nelson-frame");
     if (!frame) return;
     var HEADER_OFFSET = 96;
+    var exitArmed = false;
+    var exitShown = false;
+
+    window.setTimeout(function () { exitArmed = true; }, 12000);
+
+    function showExitIntent() {
+      if (!exitArmed || exitShown) return;
+      if (!frame.contentWindow) return;
+      exitShown = true;
+      var rect = frame.getBoundingClientRect();
+      var viewportTop = Math.max(0, -rect.top);
+      var viewportHeight = window.innerHeight || 700;
+      try {
+        frame.contentWindow.postMessage({
+          type: "checkIntoNelsonShowExit",
+          viewportTop: viewportTop,
+          viewportHeight: viewportHeight
+        }, "*");
+      } catch (err) {}
+    }
+
+    document.addEventListener("mouseout", function (e) {
+      if (!exitArmed || exitShown) return;
+      if (e.relatedTarget || e.toElement) return;
+      if (typeof e.clientY === "number" && e.clientY > 12) return;
+      showExitIntent();
+    });
 
     window.addEventListener("message", function (event) {
       var data = event && event.data;
