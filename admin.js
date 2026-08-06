@@ -1805,6 +1805,7 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         
         let deleteConfirmId = null;
         let deleteConfirmTimeout = null;
+        const deletingSlugs = Object.create(null);
         const DELETE_CONFIRM_MS = 15000;
         const DELETE_BTN_HTML =
             '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
@@ -1861,9 +1862,56 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         }
 
         function refreshListingsAfterDelete() {
-            applyFilterOptionCleanup();
-            filterListings();
-            if (typeof renderDataTable === 'function') renderDataTable();
+            try {
+                applyFilterOptionCleanup();
+            } catch (err) {
+                console.warn('applyFilterOptionCleanup after delete:', err);
+            }
+            try {
+                filterListings();
+            } catch (err) {
+                console.error('filterListings after delete failed; forcing full grid refresh:', err);
+                renderListings(data.listings);
+            }
+            try {
+                if (typeof renderDataTable === 'function') renderDataTable();
+            } catch (err) {
+                console.warn('renderDataTable after delete:', err);
+            }
+        }
+
+        function removeListingFromLocalData(slug) {
+            const target = String(slug || '').trim();
+            const beforeCount = data.listings.length;
+            data.listings = data.listings.filter(function(l) {
+                return String(l.slug).trim() !== target;
+            });
+            return beforeCount - data.listings.length;
+        }
+
+        function restoreListingToLocalData(listing, index) {
+            if (!listing) return;
+            const target = String(listing.slug || '').trim();
+            if (data.listings.some(function(l) { return String(l.slug).trim() === target; })) {
+                return;
+            }
+            const insertAt = Math.max(0, Math.min(
+                typeof index === 'number' && !isNaN(index) ? index : data.listings.length,
+                data.listings.length
+            ));
+            data.listings.splice(insertAt, 0, listing);
+        }
+
+        function isSheetsDeleteAlreadyGoneError(message) {
+            const m = String(message || '').toLowerCase();
+            return (
+                m.indexOf('not found') !== -1 ||
+                m.indexOf("wasn't found") !== -1 ||
+                m.indexOf('was not found') !== -1 ||
+                m.indexOf('does not exist') !== -1 ||
+                m.indexOf('no matching') !== -1 ||
+                m.indexOf('already deleted') !== -1
+            );
         }
         /** Table View: cell edits in the DOM not yet applied with Update Table */
         let tableEditsPending = false;
@@ -2358,11 +2406,11 @@ function updateTabsStickyStackStuck() {
                 lastSync.textContent = new Date().toLocaleTimeString();
             } else {
                 // Check if it's a loading/connecting state or an error
-                if (message && (message.includes('Loading') || message.includes('Connecting'))) {
+                if (message && (message.includes('Loading') || message.includes('Connecting') || message.includes('Deleting'))) {
                     statusBadge.className = 'sheets-status-badge sheets-status-badge--connecting';
                     statusIcon.innerHTML = sheetsConnectingSvg;
                     statusText.removeAttribute('title');
-                    statusText.textContent = 'Connecting...';
+                    statusText.textContent = message.includes('Deleting') ? 'Deleting...' : 'Connecting...';
                 } else {
                     statusBadge.className = 'sheets-status-badge sheets-status-badge--error';
                     statusIcon.innerHTML = sheetsErrorSvg;
@@ -2383,7 +2431,7 @@ function updateTabsStickyStackStuck() {
             if (message) {
                 // Don't show "Loaded X listings" or "Connecting…" messages - they're redundant with the status badge
                 const isPermanentMessage = message.includes('Loaded') && message.match(/\d+\s+listings?/);
-                const isConnectingMessage = message.includes('Connecting');
+                const isConnectingMessage = message.includes('Connecting') || message.includes('Deleting');
                 if (!isPermanentMessage && !isConnectingMessage) {
                 actionStatus.textContent = message;
                 const lower = (message || '').toLowerCase();
@@ -4508,7 +4556,13 @@ function updateTabsStickyStackStuck() {
                     }
                 }
                 const matchesArea = !areaFilter || listing.area === areaFilter;
-                const matchesAmenity = !amenityFilter || listing.amenities.indexOf(amenityFilter) > -1;
+                let matchesAmenity = true;
+                if (amenityFilter) {
+                    const amenities = Array.isArray(listing.amenities)
+                        ? listing.amenities
+                        : (listing.amenities ? String(listing.amenities).split(/[,|]/).map(function(a) { return a.trim(); }).filter(Boolean) : []);
+                    matchesAmenity = amenities.indexOf(amenityFilter) > -1;
+                }
                 
                 return matchesSearch && matchesType && matchesArea && matchesAmenity;
             });
@@ -5442,8 +5496,11 @@ function updateTabsStickyStackStuck() {
             if (googleMapsUrlInput) googleMapsUrlInput.value = listing.googleMapsUrl || '';
             
             const checkboxes = document.querySelectorAll('#amenitiesCheckboxes input[type="checkbox"]');
+            const listingAmenities = Array.isArray(listing.amenities)
+                ? listing.amenities
+                : (listing.amenities ? String(listing.amenities).split(/[,|]/).map(function(a) { return a.trim(); }).filter(Boolean) : []);
             checkboxes.forEach(function(checkbox) {
-                checkbox.checked = listing.amenities.indexOf(checkbox.value) > -1;
+                checkbox.checked = listingAmenities.indexOf(checkbox.value) > -1;
             });
             
             // Capture original form data after populating all fields
@@ -5490,10 +5547,15 @@ function updateTabsStickyStackStuck() {
         }
         
         async function deleteListing(slug) {
-            const listing = data.listings.find(function(l) { return l.slug === slug; });
+            const listingIndex = data.listings.findIndex(function(l) { return l.slug === slug; });
+            const listing = listingIndex >= 0 ? data.listings[listingIndex] : null;
             
             if (!listing) {
                 alert('Listing not found!');
+                return;
+            }
+
+            if (deletingSlugs[slug]) {
                 return;
             }
             
@@ -5504,131 +5566,115 @@ function updateTabsStickyStackStuck() {
                 captureAllVisibleTableRowDrafts();
                 applyAllTableRowDrafts();
                 tableRowDrafts = {};
+                deletingSlugs[slug] = true;
 
-                // Local-only listing (not yet saved to Google Sheets): delete locally only
-                if (listing._localOnly) {
-                    const beforeCount = data.listings.length;
-                    data.listings = data.listings.filter(function(l) {
-                        return String(l.slug).trim() !== String(slug).trim();
-                    });
-                    const afterCount = data.listings.length;
-                    console.log('🗑️ Local-only delete: ' + beforeCount + ' → ' + afterCount + ' listings');
-                    updateSyncStatus(true, 'Deleted locally; not saved to Google Sheets yet.');
-                    showUnsavedChangesBadge();
-                    refreshListingsAfterDelete();
-                    alert('✅ "' + listing.name + '" deleted locally.\n\nClick Save to Sheets when you are ready to sync.');
-                    return;
-                }
-                
-                // Delete from Google Sheets if configured
-                if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
-                    try {
-                        let result = { success: false };
-                        
-                        // Use GET request to avoid CORS preflight (OPTIONS) issues
-                        // GET requests don't trigger CORS preflight, so they work even if OPTIONS fails
-                        try {
-                            const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
-                            const tokenParam = session && session.token ? ('&token=' + encodeURIComponent(session.token)) : '';
-                            const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + tokenParam + '&t=' + Date.now();
-                            const response = await fetch(deleteUrl, {
-                                method: 'GET',
-                                mode: 'cors'
-                            });
-                            
-                            if (!response.ok) {
-                                throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-                            }
-                            
-                            const responseText = await response.text();
-                            if (!responseText || responseText.trim() === '') {
-                                throw new Error('Empty response from server');
-                            }
-                            
-                            result = JSON.parse(responseText);
-                            console.log('Delete response:', result);
-                            
-                            // Verify we got a valid response
-                            if (!result || typeof result.success === 'undefined') {
-                                throw new Error('Invalid response format from server');
-                            }
-                        } catch (fetchError) {
-                            console.error('Error deleting from Google Sheets:', fetchError);
-                            throw new Error('Failed to delete from Google Sheets: ' + fetchError.message);
-                        }
-                        
-                        // Verify deletion was successful before updating local data
-                        if (result && result.success) {
-                            console.log('✅ Delete confirmed successful:', result);
-                            
-                            // IMPORTANT: Remove from local data BEFORE refreshing display
-                            // This prevents any reload from restoring the deleted listing
-                            const beforeCount = data.listings.length;
-                            data.listings = data.listings.filter(function(l) { 
-                                const matches = String(l.slug).trim() === String(slug).trim();
-                                if (matches) {
-                                    console.log('Removing listing from local data:', l.name, 'Slug:', l.slug);
-                                }
-                                return !matches;
-                            });
-                            const afterCount = data.listings.length;
-                            console.log('Local data updated: ' + beforeCount + ' → ' + afterCount + ' listings');
-                            
-                            // Verify it was actually removed
-                            const stillExists = data.listings.some(function(l) {
-                                return String(l.slug).trim() === String(slug).trim();
-                            });
-                            
-                            if (stillExists) {
-                                console.error('❌ ERROR: Listing still exists in local data after delete!');
-                                console.error('Listing Slug:', slug);
-                                console.error('Matching listings:', data.listings.filter(function(l) {
-                                    return String(l.slug).trim() === String(slug).trim();
-                                }));
-                            }
-                            
-                            updateSyncStatus(true, 'Deleted from Google Sheets.');
-                            
-                            // DON'T reload from Google Sheets - we've already updated local data
-                            // The delete is already saved to Google Sheets, reloading would be redundant
-                            // and could cause issues if there's a delay in Google Sheets processing
-                        console.log('✅ Listing deleted successfully from Google Sheets. Local data updated.');
-                        console.log('NOT reloading from Google Sheets - local data is already correct.');
+                const listingSnapshot = listing;
+                const restoreIndex = listingIndex;
+                const listingName = listing.name || 'Listing';
+
+                try {
+                    // Local-only listing (not yet saved to Google Sheets): delete locally only
+                    if (listing._localOnly) {
+                        removeListingFromLocalData(slug);
+                        console.log('🗑️ Local-only delete for', listingName);
+                        updateSyncStatus(true, 'Deleted locally; not saved to Google Sheets yet.');
                         showUnsavedChangesBadge();
-                            
-                            // Refresh the display immediately with updated local data
-                            refreshListingsAfterDelete();
-                            
-                            // Show success message
-                            alert('✅ "' + listing.name + '" has been deleted from Google Sheets.');
-                        } else {
-                            // Delete failed - don't update local data, show error
-                            const errorMsg = result && result.error ? result.error : 'Delete failed - unknown error';
-                            console.error('❌ Delete failed:', errorMsg);
-                            console.error('Full result:', result);
-                            throw new Error(errorMsg);
-                        }
-                    } catch (error) {
-                        console.error('❌ Error deleting from Google Sheets:', error);
-                        console.error('Error details:', error.message, error.stack);
-                        updateSyncStatus(false, 'Delete failed: ' + error.message);
-                        
-                        // IMPORTANT: Do NOT delete locally if Google Sheets delete failed
-                        // This prevents the listing from coming back when data is reloaded
-                        // The listing should remain in both local data and Google Sheets until delete succeeds
-                        alert('❌ Failed to delete from Google Sheets: ' + error.message + '\n\n' +
-                              'The listing was NOT deleted. Please try again or check the Google Apps Script logs.\n\n' +
-                              'If the problem persists, you can delete it directly in Google Sheets.');
-                        
-                        // Do NOT remove from local data - keep it in sync with Google Sheets
                         refreshListingsAfterDelete();
+                        alert('✅ "' + listingName + '" deleted locally.\n\nClick Save to Sheets when you are ready to sync.');
+                        return;
                     }
-                } else {
-                    // No Google Sheets configured - delete locally only
-                    data.listings = data.listings.filter(function(l) { return l.slug !== slug; });
-                    updateSyncStatus(false, 'Deleted locally only (Google Sheets not configured).');
-                    refreshListingsAfterDelete();
-                    alert('✅ "' + listing.name + '" deleted locally (Google Sheets not configured).');
+                    
+                    // Delete from Google Sheets if configured
+                    if (GOOGLE_APPS_SCRIPT_URL && !GOOGLE_APPS_SCRIPT_URL.includes('YOUR_SCRIPT_ID')) {
+                        // Optimistic UI: remove from the grid immediately, restore only on real failure.
+                        removeListingFromLocalData(slug);
+                        refreshListingsAfterDelete();
+                        updateSyncStatus(false, 'Deleting "' + listingName + '"…');
+                        const actionStatus = document.getElementById('sheetsActionStatus');
+                        if (actionStatus) {
+                            actionStatus.textContent = 'Deleting "' + listingName + '"…';
+                            actionStatus.className = 'tabs-action-status';
+                        }
+
+                        try {
+                            let result = { success: false };
+                            
+                            // Use GET request to avoid CORS preflight (OPTIONS) issues
+                            // GET requests don't trigger CORS preflight, so they work even if OPTIONS fails
+                            try {
+                                const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
+                                const tokenParam = session && session.token ? ('&token=' + encodeURIComponent(session.token)) : '';
+                                const deleteUrl = GOOGLE_APPS_SCRIPT_URL + '?action=deleteListing&listingSlug=' + encodeURIComponent(slug) + tokenParam + '&t=' + Date.now();
+                                const response = await fetch(deleteUrl, {
+                                    method: 'GET',
+                                    mode: 'cors'
+                                });
+                                
+                                if (!response.ok) {
+                                    throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+                                }
+                                
+                                const responseText = await response.text();
+                                if (!responseText || responseText.trim() === '') {
+                                    throw new Error('Empty response from server');
+                                }
+                                
+                                result = JSON.parse(responseText);
+                                console.log('Delete response:', result);
+                                
+                                // Verify we got a valid response
+                                if (!result || typeof result.success === 'undefined') {
+                                    throw new Error('Invalid response format from server');
+                                }
+                            } catch (fetchError) {
+                                console.error('Error deleting from Google Sheets:', fetchError);
+                                throw new Error('Failed to delete from Google Sheets: ' + fetchError.message);
+                            }
+                            
+                            const alreadyGone = !result.success && isSheetsDeleteAlreadyGoneError(result.error);
+                            if (result.success || alreadyGone) {
+                                console.log(alreadyGone
+                                    ? 'ℹ️ Listing already gone from Sheets; kept local removal:'
+                                    : '✅ Delete confirmed successful:', result);
+                                
+                                updateSyncStatus(true, alreadyGone
+                                    ? 'Already deleted in Google Sheets.'
+                                    : 'Deleted from Google Sheets.');
+                                showUnsavedChangesBadge();
+                            } else {
+                                const errorMsg = result && result.error ? result.error : 'Delete failed - unknown error';
+                                console.error('❌ Delete failed:', errorMsg);
+                                console.error('Full result:', result);
+                                throw new Error(errorMsg);
+                            }
+                        } catch (error) {
+                            console.error('❌ Error deleting from Google Sheets:', error);
+                            console.error('Error details:', error.message, error.stack);
+
+                            // If Sheets says the row is already gone, keep the optimistic removal.
+                            if (isSheetsDeleteAlreadyGoneError(error.message)) {
+                                updateSyncStatus(true, 'Already deleted in Google Sheets.');
+                                showUnsavedChangesBadge();
+                                return;
+                            }
+
+                            // Real failure: put the listing back where it was.
+                            restoreListingToLocalData(listingSnapshot, restoreIndex);
+                            refreshListingsAfterDelete();
+                            updateSyncStatus(false, 'Delete failed: ' + error.message);
+                            alert('❌ Failed to delete from Google Sheets: ' + error.message + '\n\n' +
+                                  'The listing was restored in this view. Please try again or check the Google Apps Script logs.\n\n' +
+                                  'If the problem persists, you can delete it directly in Google Sheets.');
+                        }
+                    } else {
+                        // No Google Sheets configured - delete locally only
+                        removeListingFromLocalData(slug);
+                        updateSyncStatus(false, 'Deleted locally only (Google Sheets not configured).');
+                        refreshListingsAfterDelete();
+                        alert('✅ "' + listingName + '" deleted locally (Google Sheets not configured).');
+                    }
+                } finally {
+                    delete deletingSlugs[slug];
                 }
                 
             } else {
@@ -9563,7 +9609,13 @@ function updateTabsStickyStackStuck() {
                 const matchesSearch = !searchTerm || searchableText.indexOf(searchTerm) > -1;
                 const matchesType = !currentTypeFilter || listing.type === currentTypeFilter;
                 const matchesArea = !areaFilter || listing.area === areaFilter;
-                const matchesAmenity = !amenityFilter || listing.amenities.indexOf(amenityFilter) > -1;
+                let matchesAmenity = true;
+                if (amenityFilter) {
+                    const amenities = Array.isArray(listing.amenities)
+                        ? listing.amenities
+                        : (listing.amenities ? String(listing.amenities).split(/[,|]/).map(function(a) { return a.trim(); }).filter(Boolean) : []);
+                    matchesAmenity = amenities.indexOf(amenityFilter) > -1;
+                }
                 
                 return matchesSearch && matchesType && matchesArea && matchesAmenity;
             });
