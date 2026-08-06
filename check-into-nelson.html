@@ -6,6 +6,22 @@
   <title>Check Into Nelson — Visit Nelson County</title>
   <meta name="description" content="Check Into Nelson — Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County." />
   <meta name="robots" content="noindex" />
+  <!-- Google tag (gtag.js) — GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9GZ2Y2JTC9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var inFrame = false;
+      try { inFrame = window.self !== window.top; } catch (err) { inFrame = true; }
+      var isEmbed = params.get("embed") === "1" || params.get("embed") === "true" || inFrame;
+      if (isEmbed) document.documentElement.classList.add("is-embed");
+      // Avoid double page_view when Framer parent already tracks the page.
+      gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
+    })();
+  </script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -2066,16 +2082,6 @@
     }
 
   </style>
-  <script>
-    (function () {
-      var params = new URLSearchParams(window.location.search);
-      var inFrame = false;
-      try { inFrame = window.self !== window.top; } catch (err) { inFrame = true; }
-      if (params.get("embed") === "1" || params.get("embed") === "true" || inFrame) {
-        document.documentElement.classList.add("is-embed");
-      }
-    })();
-  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
