@@ -8,6 +8,9 @@
 
   Notes:
   - Page ships without its own site header/nav (Framer provides that).
+  - Site content max-width is 1500px (matches Framer). Full-bleed sections
+    (hero media, etc.) stay edge-to-edge inside the iframe.
+  - Keep this embed wrapper at width:100% so full-bleed can span the Framer column.
   - Bump &v= if Framer caches an old iframe after a deploy.
   - If Framer strips <script>, keep the iframe only — it still works with a tall min-height.
   - Outbound / nelsoncounty.com links break out of the iframe (_blank / _top).
@@ -17,7 +20,7 @@
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260805n"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260810a"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="eager"
     referrerpolicy="no-referrer-when-downgrade"
