@@ -1893,6 +1893,30 @@ function initDataTableColumnResize() {
             });
         }
         
+        // Shared Quill config for listing modal editors (bounds keeps link/tooltip UI in view)
+        function getListingQuillBounds() {
+            return document.querySelector('#listingModal .listing-editor__scroll')
+                || document.getElementById('listingModal')
+                || document.body;
+        }
+        function getListingQuillOptions() {
+            return {
+                theme: 'snow',
+                bounds: getListingQuillBounds(),
+                modules: {
+                    toolbar: [
+                        [{ 'header': [3, 4, 6, false] }],
+                        ['bold', 'italic'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['blockquote'],
+                        ['link'],
+                        ['clean']
+                    ]
+                },
+                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
+            };
+        }
+
         // Initialize Quill editor for detailedDescription (same pattern as accordion: init ONCE, reuse)
         function initializeQuillEditor() {
             const editorContainer = document.getElementById('listingDetailedDescriptionEditor');
@@ -1913,20 +1937,7 @@ function initDataTableColumnResize() {
             }
             
             // Configure Quill with allowed formats
-            quillDetailedDescription = new Quill('#listingDetailedDescriptionEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [3, 4, 6, false] }],  // h3, h4, h6
-                        ['bold', 'italic'],              // bold, italic
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],  // ordered and bullet lists
-                        ['blockquote'],                  // blockquote
-                        ['link'],                        // link
-                        ['clean']                        // remove formatting
-                    ]
-                },
-                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-            });
+            quillDetailedDescription = new Quill('#listingDetailedDescriptionEditor', getListingQuillOptions());
             enableShiftEnterBr(quillDetailedDescription);
             
             // Sync Quill content to hidden textarea on change
@@ -1959,20 +1970,7 @@ function initDataTableColumnResize() {
             }
             console.log('🔧 Initializing Quill for Accordion Panel 1');
             try {
-                quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [3, 4, 6, false] }],  // h3, h4, h6
-                        ['bold', 'italic'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['blockquote'],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-                });
+                quillAccordionPanel1 = new Quill('#listingAccordionPanel1ContentEditor', getListingQuillOptions());
                 enableShiftEnterBr(quillAccordionPanel1);
                 console.log('✅ Accordion Panel 1: Quill initialized successfully');
                 quillAccordionPanel1.on('text-change', function() {
@@ -2007,20 +2005,7 @@ function initDataTableColumnResize() {
             }
             console.log('🔧 Initializing Quill for Accordion Panel 2');
             try {
-                quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [3, 4, 6, false] }],  // h3, h4, h6
-                        ['bold', 'italic'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['blockquote'],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-                });
+                quillAccordionPanel2 = new Quill('#listingAccordionPanel2ContentEditor', getListingQuillOptions());
                 enableShiftEnterBr(quillAccordionPanel2);
                 console.log('✅ Accordion Panel 2: Quill initialized successfully');
                 quillAccordionPanel2.on('text-change', function() {
@@ -2055,20 +2040,7 @@ function initDataTableColumnResize() {
             }
             console.log('🔧 Initializing Quill for Accordion Panel 3');
             try {
-                quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [3, 4, 6, false] }],  // h3, h4, h6
-                        ['bold', 'italic'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['blockquote'],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-                });
+                quillAccordionPanel3 = new Quill('#listingAccordionPanel3ContentEditor', getListingQuillOptions());
                 enableShiftEnterBr(quillAccordionPanel3);
                 console.log('✅ Accordion Panel 3: Quill initialized successfully');
                 quillAccordionPanel3.on('text-change', function() {
@@ -2103,20 +2075,7 @@ function initDataTableColumnResize() {
             }
             console.log('🔧 Initializing Quill for Accordion Panel 4');
             try {
-                quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', {
-                theme: 'snow',
-                modules: {
-                    toolbar: [
-                        [{ 'header': [3, 4, 6, false] }],  // h3, h4, h6
-                        ['bold', 'italic'],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        ['blockquote'],
-                        ['link'],
-                        ['clean']
-                    ]
-                },
-                formats: ['header', 'bold', 'italic', 'list', 'blockquote', 'link']
-                });
+                quillAccordionPanel4 = new Quill('#listingAccordionPanel4ContentEditor', getListingQuillOptions());
                 enableShiftEnterBr(quillAccordionPanel4);
                 console.log('✅ Accordion Panel 4: Quill initialized successfully');
                 quillAccordionPanel4.on('text-change', function() {
