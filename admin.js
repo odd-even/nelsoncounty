@@ -40,9 +40,53 @@ const ADMIN_IMAGE_TRANSFORM_WIDTH = 900;
 const DATA_TABLE_ROW_HEIGHT = 100;
 const DATA_TABLE_VIRTUAL_OVERSCAN = 6;
 const TABLE_THUMBNAILS_STORAGE_KEY = 'nelsonCounty_tableShowThumbnails';
-const TABLE_COLUMN_WIDTHS_STORAGE_KEY = 'nelsonCounty_tableColumnWidths';
-const DATA_TABLE_COL_MIN_WIDTH = 64;
-const DATA_TABLE_COL_MAX_WIDTH = 1200;
+const TABLE_COLUMN_WIDTHS_STORAGE_KEY = 'nelsonCounty_tableColumnWidths_v2';
+const DATA_TABLE_COL_MIN_WIDTH = 88;
+const DATA_TABLE_COL_MAX_WIDTH = 1400;
+const DATA_TABLE_DEFAULT_COLUMN_WIDTHS = {
+    name: 300,
+    slug: 210,
+    type: 150,
+    category: 170,
+    area: 150,
+    description: 380,
+    detailedDescription: 440,
+    customHtml: 380,
+    image1: 280,
+    image1Desc: 240,
+    image2: 280,
+    image2Desc: 240,
+    image3: 280,
+    image3Desc: 240,
+    website: 260,
+    phone: 150,
+    address: 280,
+    latitude: 110,
+    longitude: 110,
+    authorName: 170,
+    publishedDate: 150,
+    modifiedDate: 150,
+    directionsLink: 260,
+    videoLink: 260,
+    document1: 250,
+    document1Name: 190,
+    document2: 250,
+    document2Name: 190,
+    amenities: 420,
+    featured: 100,
+    private: 100,
+    googleMapsUrl: 260,
+    accordionPanel1Title: 210,
+    accordionPanel1Content: 320,
+    accordionPanel2Title: 210,
+    accordionPanel2Content: 320,
+    accordionPanel3Title: 210,
+    accordionPanel3Content: 320,
+    accordionPanel4Title: 210,
+    accordionPanel4Content: 320,
+    actions: 120
+};
+const DATA_TABLE_FALLBACK_COLUMN_WIDTH = 180;
 
 let dataTableShowThumbnails = false;
 let dataTableSortedListings = [];
@@ -514,14 +558,14 @@ function renderDataTableVirtualWindow() {
 
     let html = '';
     if (topPad > 0) {
-        html += '<tr class="data-table-spacer" aria-hidden="true"><td colspan="' + colSpan + '" style="height:' + topPad + 'px;padding:0;border:none;background:transparent;"></td></tr>';
+        html += '<tr class="data-table-spacer" aria-hidden="true" style="height:' + topPad + 'px;"><td colspan="' + colSpan + '" style="height:' + topPad + 'px;padding:0;border:none;background:transparent;line-height:0;font-size:0;"></td></tr>';
     }
     for (let i = start; i < end; i++) {
         const item = dataTableSortedListings[i];
         html += buildDataTableRowHtml(item.listing, item.dataIndex);
     }
     if (bottomPad > 0) {
-        html += '<tr class="data-table-spacer" aria-hidden="true"><td colspan="' + colSpan + '" style="height:' + bottomPad + 'px;padding:0;border:none;background:transparent;"></td></tr>';
+        html += '<tr class="data-table-spacer" aria-hidden="true" style="height:' + bottomPad + 'px;"><td colspan="' + colSpan + '" style="height:' + bottomPad + 'px;padding:0;border:none;background:transparent;line-height:0;font-size:0;"></td></tr>';
     }
     tbody.innerHTML = html;
 
@@ -1528,6 +1572,23 @@ function updateTableHeaderLabelsFromSheet(headersList) {
     });
 }
 
+function getDefaultDataTableColumnWidth(columnKey) {
+    const preset = DATA_TABLE_DEFAULT_COLUMN_WIDTHS[columnKey];
+    if (Number.isFinite(preset)) {
+        return Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, preset));
+    }
+    return DATA_TABLE_FALLBACK_COLUMN_WIDTH;
+}
+
+function buildDataTableDefaultColumnWidths() {
+    const widths = {};
+    getDataTableHeaderCells().forEach(function(th, i) {
+        const key = th.getAttribute('data-column-key') || ('col-' + i);
+        widths[key] = getDefaultDataTableColumnWidth(key);
+    });
+    return widths;
+}
+
 function loadDataTableColumnWidths() {
     try {
         const raw = localStorage.getItem(TABLE_COLUMN_WIDTHS_STORAGE_KEY);
@@ -1609,22 +1670,6 @@ function ensureDataTableColgroup() {
     return colgroup;
 }
 
-function measureDataTableDefaultColumnWidths() {
-    const table = document.getElementById('dataTable');
-    if (!table) return {};
-    const headers = getDataTableHeaderCells();
-    const widths = {};
-    const hadResized = table.classList.contains('data-table--resized');
-    if (hadResized) table.classList.remove('data-table--resized');
-    headers.forEach(function(th, i) {
-        const key = th.getAttribute('data-column-key') || ('col-' + i);
-        const w = Math.round(th.getBoundingClientRect().width);
-        widths[key] = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, w || DATA_TABLE_COL_MIN_WIDTH));
-    });
-    if (hadResized) table.classList.add('data-table--resized');
-    return widths;
-}
-
 function applyDataTableColumnWidths(options) {
     options = options || {};
     const table = document.getElementById('dataTable');
@@ -1635,18 +1680,16 @@ function applyDataTableColumnWidths(options) {
     if (!_dataTableColumnWidths) {
         _dataTableColumnWidths = loadDataTableColumnWidths();
     }
-    const defaults = options.remeasureDefaults ? measureDataTableDefaultColumnWidths() : null;
+    if (options.useDefaults || Object.keys(_dataTableColumnWidths).length === 0) {
+        _dataTableColumnWidths = buildDataTableDefaultColumnWidths();
+    }
     let total = 0;
     const headers = getDataTableHeaderCells();
     headers.forEach(function(th, i) {
         const key = th.getAttribute('data-column-key') || ('col-' + i);
         let width = _dataTableColumnWidths[key];
         if (!width || !Number.isFinite(width)) {
-            if (defaults && defaults[key]) {
-                width = defaults[key];
-            } else {
-                width = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.round(th.getBoundingClientRect().width) || 120);
-            }
+            width = getDefaultDataTableColumnWidth(key);
             _dataTableColumnWidths[key] = width;
         }
         width = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, Math.round(width)));
@@ -1691,6 +1734,7 @@ function resetDataTableColumnWidths() {
     _dataTableColumnWidths = {};
     try {
         localStorage.removeItem(TABLE_COLUMN_WIDTHS_STORAGE_KEY);
+        localStorage.removeItem('nelsonCounty_tableColumnWidths');
     } catch (e) { /* ignore */ }
     const table = document.getElementById('dataTable');
     if (table) {
@@ -1701,7 +1745,7 @@ function resetDataTableColumnWidths() {
         if (colgroup) colgroup.remove();
     }
     requestAnimationFrame(function() {
-        applyDataTableColumnWidths({ remeasureDefaults: true });
+        applyDataTableColumnWidths({ useDefaults: true });
         saveDataTableColumnWidths(_dataTableColumnWidths);
     });
 }
@@ -1711,10 +1755,10 @@ window.resetDataTableColumnWidths = resetDataTableColumnWidths;
 function initDataTableColumnResize() {
     ensureDataTableHeaderResizeUI();
     _dataTableColumnWidths = loadDataTableColumnWidths();
-    applyDataTableColumnWidths({ remeasureDefaults: Object.keys(_dataTableColumnWidths).length === 0 });
-    if (Object.keys(_dataTableColumnWidths).length) {
-        saveDataTableColumnWidths(_dataTableColumnWidths);
-    }
+    applyDataTableColumnWidths({
+        useDefaults: Object.keys(_dataTableColumnWidths).length === 0
+    });
+    saveDataTableColumnWidths(_dataTableColumnWidths);
 
     document.addEventListener('mousedown', function(e) {
         const handle = e.target.closest('.col-resize-handle');
@@ -1726,7 +1770,7 @@ function initDataTableColumnResize() {
         const key = th.getAttribute('data-column-key');
         if (!key) return;
         if (!_dataTableColumnWidths) _dataTableColumnWidths = loadDataTableColumnWidths();
-        const startWidth = _dataTableColumnWidths[key] || Math.round(th.getBoundingClientRect().width);
+        const startWidth = _dataTableColumnWidths[key] || getDefaultDataTableColumnWidth(key);
         _dataTableColResizeState = {
             key: key,
             startX: e.clientX,
@@ -1758,24 +1802,8 @@ function initDataTableColumnResize() {
         e.stopPropagation();
         const key = th.getAttribute('data-column-key');
         if (!key) return;
-        if (_dataTableColumnWidths && Object.prototype.hasOwnProperty.call(_dataTableColumnWidths, key)) {
-            delete _dataTableColumnWidths[key];
-            saveDataTableColumnWidths(_dataTableColumnWidths);
-        }
-        const table = document.getElementById('dataTable');
-        if (table) {
-            table.classList.remove('data-table--resized');
-            const col = table.querySelector('colgroup[data-data-table-cols="1"] col[data-column-key="' + key + '"]');
-            if (col) {
-                col.style.width = '';
-                col.style.minWidth = '';
-            }
-        }
-        requestAnimationFrame(function() {
-            const measured = measureDataTableDefaultColumnWidths();
-            if (measured[key]) setDataTableColumnWidth(key, measured[key], true);
-            applyDataTableColumnWidths();
-        });
+        setDataTableColumnWidth(key, getDefaultDataTableColumnWidth(key), true);
+        syncDataTableStickyHeaderOffset();
     });
 }
 
