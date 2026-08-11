@@ -19,7 +19,7 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
-    <link rel="stylesheet" href="admin.css?v=20260811g">
+    <link rel="stylesheet" href="admin.css?v=20260811h">
     <link rel="preload" href="admin-data.js?v=20260610e" as="script">
     <link rel="preload" href="admin.js?v=20260811d" as="script">
     <script src="admin-auth.js?v=20260610e" defer></script>
@@ -594,280 +594,316 @@
     </div>
     
     <div id="listingModal" class="modal" onclick="if(event.target === this && !hasFormChanges()) { closeModal(true); }">
-        <div class="modal-content" onclick="event.stopPropagation();">
-            <div class="modal-header">
-                <h2 id="modalTitle">Add New Listing</h2>
-                <button class="close-modal" onclick="closeModal()" title="Close (will prompt if unsaved changes)">&times;</button>
+        <div class="modal-content listing-editor" onclick="event.stopPropagation();">
+            <div class="modal-header listing-editor__header">
+                <div class="listing-editor__title-wrap">
+                    <p class="listing-editor__eyebrow">Listing editor</p>
+                    <h2 id="modalTitle">Add New Listing</h2>
+                </div>
+                <button type="button" class="close-modal" onclick="closeModal()" title="Close (will prompt if unsaved changes)" aria-label="Close">&times;</button>
             </div>
             
             <form id="listingForm" onsubmit="saveListing(event)" novalidate>
                 <input type="hidden" id="editingId" />
                 
-                <div class="form-scrollable">
-                <div class="form-group">
-                    <label>Listing Name *</label>
-                    <input type="text" id="listingName" required />
-                </div>
-                
-                <div class="form-group">
-                    <label>Slug *</label>
-                    <input type="text" id="listingSlug" required placeholder="Leave blank to auto-generate" />
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Type *</label>
-                        <select id="listingType" required>
-                            <option value="">Select Type</option>
-                            <!-- Options will be populated dynamically -->
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Category *</label>
-                        <select id="listingCategory" required>
-                            <option value="">Select Category</option>
-                            <!-- Options will be populated dynamically from TYPE_CATEGORIES -->
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Area *</label>
-                        <select id="listingArea" required>
-                            <option value="">Select Area</option>
-                            <!-- Options will be populated dynamically -->
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Description *</label>
-                    <textarea id="listingDescription" required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Detailed Description</label>
-                    <div id="listingDetailedDescriptionEditor" style="min-height: 200px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
-                    <textarea id="listingDetailedDescription" style="display: none;"></textarea>
-                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Optional extended description. Only shown if it provides significantly more information than the short description.</small>
-                </div>
+                <div class="form-scrollable listing-editor__scroll">
 
-                <div class="form-group">
-                    <label>Custom HTML (Framer Only)</label>
-                    <textarea id="listingCustomHtml" placeholder="<section>Custom content for Framer CMS pages</section>" style="min-height: 120px; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;"></textarea>
-                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Optional raw HTML that syncs to Google Sheets / Framer CMS. Not rendered inside this admin or the discovery grid.</small>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Image URL 1 *</label>
-                        <div class="image-input-group">
-                            <input type="text" id="listingImage1" required placeholder="https:// or data:image..." />
-                            <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage1">Upload</button>
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Basics</h3>
+                        <p>Name, slug, and how it appears in filters.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="form-group form-group--hero">
+                            <label for="listingName">Listing Name *</label>
+                            <input type="text" id="listingName" required />
                         </div>
-                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage1Preview" aria-hidden="true"></div>
-                        <div style="position: relative; margin-top: 8px;">
-                            <textarea id="listingImage1Desc" placeholder="Alt text (required)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
-                            <button type="button" class="btn-generate-desc" data-image="listingImage1" data-desc="listingImage1Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
-                                <span aria-hidden="true" style="display: inline-flex; align-items: center;">
-                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
-                                        <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
-                                        <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
-                                    </svg>
+                        <div class="form-group">
+                            <label for="listingSlug">Slug *</label>
+                            <input type="text" id="listingSlug" required placeholder="Leave blank to auto-generate" />
+                        </div>
+                        <div class="form-row form-row--thirds">
+                            <div class="form-group">
+                                <label for="listingType">Type *</label>
+                                <select id="listingType" required>
+                                    <option value="">Select Type</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="listingCategory">Category *</label>
+                                <select id="listingCategory" required>
+                                    <option value="">Select Category</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="listingArea">Area *</label>
+                                <select id="listingArea" required>
+                                    <option value="">Select Area</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="listing-flags">
+                            <label class="listing-flag" for="listingFeatured">
+                                <input type="checkbox" id="listingFeatured" />
+                                <span class="listing-flag__ui">
+                                    <span class="listing-flag__title">Featured</span>
+                                    <span class="listing-flag__hint">Highlight on grid</span>
                                 </span>
-                                <span style="font-weight: 600;">generate ALT text</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Image URL 2</label>
-                        <div class="image-input-group">
-                            <input type="text" id="listingImage2" placeholder="https:// or data:image..." />
-                            <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage2">Upload</button>
-                        </div>
-                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage2Preview" aria-hidden="true"></div>
-                        <div style="position: relative; margin-top: 8px;">
-                            <textarea id="listingImage2Desc" placeholder="Alt text (required when image is set)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
-                            <button type="button" class="btn-generate-desc" data-image="listingImage2" data-desc="listingImage2Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
-                                <span aria-hidden="true" style="display: inline-flex; align-items: center;">
-                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
-                                        <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
-                                        <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
-                                    </svg>
+                            </label>
+                            <label class="listing-flag" for="listingPrivate">
+                                <input type="checkbox" id="listingPrivate" />
+                                <span class="listing-flag__ui">
+                                    <span class="listing-flag__title">Private</span>
+                                    <span class="listing-flag__hint">Hide from public feed</span>
                                 </span>
-                                <span style="font-weight: 600;">generate ALT text</span>
-                            </button>
+                            </label>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Image URL 3</label>
-                        <div class="image-input-group">
-                            <input type="text" id="listingImage3" placeholder="https:// or data:image..." />
-                            <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage3">Upload</button>
-                        </div>
-                        <div class="listing-image-preview listing-image-preview--empty" id="listingImage3Preview" aria-hidden="true"></div>
-                        <div style="position: relative; margin-top: 8px;">
-                            <textarea id="listingImage3Desc" placeholder="Alt text (required when image is set)" rows="2" style="width: 100%; padding: 6px 70px 6px 6px; font-family: inherit; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: vertical;"></textarea>
-                            <button type="button" class="btn-generate-desc" data-image="listingImage3" data-desc="listingImage3Desc" title="Generate AI Description" aria-label="Generate AI Description" style="position: absolute; top: 6px; right: 6px; font-size: 11px; background: #007AFF; color: white; border: none; border-radius: 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; line-height: 1;">
-                                <span aria-hidden="true" style="display: inline-flex; align-items: center;">
-                                    <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
-                                        <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
-                                        <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
-                                    </svg>
-                                </span>
-                                <span style="font-weight: 600;">generate ALT text</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Website</label>
-                        <input type="text" id="listingWebsite" placeholder="www.example.com or https://..." />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="tel" id="listingPhone" placeholder="(434) 123-4567" />
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>Address *</label>
-                    <div class="address-autocomplete-wrapper">
-                        <select id="listingAddressType" style="margin-bottom: 8px; width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-                            <option value="full">Full Address</option>
-                            <option value="booking">Full address available on booking site</option>
-                        </select>
-                        <input type="text" id="listingAddress" autocomplete="off" />
-                        <div class="address-autocomplete-dropdown" id="addressAutocompleteDropdown"></div>
-                    </div>
-                    <small style="color: #666; font-size: 12px; margin-top: 4px; display: block;">Select "Full address available on booking site" for Airbnb-type listings that don't show addresses until booking.</small>
-                    <div id="coordsDisplay" style="margin-top: 8px;">
-                        <small style="color: #28a745; font-size: 11px;">📍 <span id="coordsText">Coordinates auto-fill when address is selected</span></small>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Latitude</label>
-                        <input type="number" id="listingLatitude" step="any" placeholder="e.g., 37.7645" style="font-family: monospace;" />
-                        <small style="color: #666; font-size: 11px;">Auto-filled from address, or enter manually</small>
-                    </div>
-                    <div class="form-group">
-                        <label>Longitude</label>
-                        <input type="number" id="listingLongitude" step="any" placeholder="e.g., -78.8698" style="font-family: monospace;" />
-                        <small style="color: #666; font-size: 11px;">Auto-filled from address, or enter manually</small>
-                    </div>
-                </div>
+                </section>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Author Name</label>
-                        <input type="text" id="listingAuthorName" placeholder="e.g., Sam Smith" />
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Copy</h3>
+                        <p>Short blurb plus optional long-form and Framer HTML.</p>
                     </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Published Date</label>
-                        <input type="date" id="listingPublishedDate" />
-                    </div>
-                    <div class="form-group">
-                        <label>Modified Date</label>
-                        <input type="date" id="listingModifiedDate" readonly title="Set automatically when you save" />
-                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Updates to today when you save changes.</small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Directions Link</label>
-                    <input type="url" id="listingDirectionsLink" placeholder="https://www.google.com/maps/..." />
-                </div>
-                
-                <div class="form-group">
-                    <label>Video Link</label>
-                    <input type="url" id="listingVideoLink" placeholder="https://www.youtube.com/watch?v=... or https://youtu.be/..." />
-                    <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">YouTube or other video embed URL. Will be available in Framer CMS data.</small>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Document 1</label>
-                        <input type="text" id="listingDocument1Name" placeholder="Document name (e.g., Menu, Brochure, Guide)" style="margin-bottom: 8px;" />
-                        <div class="image-input-group">
-                            <input type="text" id="listingDocument1" placeholder="PDF URL or upload..." />
-                            <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument1">Upload PDF</button>
+                    <div class="listing-section__body">
+                        <div class="form-group">
+                            <label for="listingDescription">Description *</label>
+                            <textarea id="listingDescription" required rows="3"></textarea>
                         </div>
-                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit. Name will be used for button text.</small>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Document 2</label>
-                        <input type="text" id="listingDocument2Name" placeholder="Document name (e.g., Menu, Brochure, Guide)" style="margin-bottom: 8px;" />
-                        <div class="image-input-group">
-                            <input type="text" id="listingDocument2" placeholder="PDF URL or upload..." />
-                            <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument2">Upload PDF</button>
+                        <div class="form-group">
+                            <label>Detailed Description</label>
+                            <div id="listingDetailedDescriptionEditor" class="listing-quill listing-quill--detail"></div>
+                            <textarea id="listingDetailedDescription" style="display: none;"></textarea>
+                            <small class="form-hint">Optional. Shown only when it adds meaningfully more than the short description.</small>
                         </div>
-                        <small style="color: #6c757d; font-size: 12px; margin-top: 5px; display: block;">Upload a PDF document to ImageKit. Name will be used for button text.</small>
+                        <div class="form-group">
+                            <label for="listingCustomHtml">Custom HTML (Framer only)</label>
+                            <textarea id="listingCustomHtml" class="listing-code" placeholder="<section>Custom content for Framer CMS pages</section>" rows="4"></textarea>
+                            <small class="form-hint">Syncs to Sheets / Framer. Not rendered in this admin or the discovery grid.</small>
+                        </div>
                     </div>
+                </section>
+
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Images</h3>
+                        <p>Upload or paste URLs, then set alt text.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="listing-media-grid">
+                            <div class="listing-media-card form-group">
+                                <div class="listing-media-card__label">Image 1 *</div>
+                                <div class="listing-image-preview listing-image-preview--empty" id="listingImage1Preview" aria-hidden="true"></div>
+                                <div class="image-input-group">
+                                    <input type="text" id="listingImage1" required placeholder="https:// or data:image…" />
+                                    <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage1">Upload</button>
+                                </div>
+                                <div class="listing-alt-wrap">
+                                    <textarea id="listingImage1Desc" placeholder="Alt text (required)" rows="2"></textarea>
+                                    <button type="button" class="btn-generate-desc" data-image="listingImage1" data-desc="listingImage1Desc" title="Generate AI Description" aria-label="Generate AI Description">
+                                        <span aria-hidden="true">
+                                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
+                                                <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
+                                                <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
+                                            </svg>
+                                        </span>
+                                        <span>Alt</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="listing-media-card form-group">
+                                <div class="listing-media-card__label">Image 2</div>
+                                <div class="listing-image-preview listing-image-preview--empty" id="listingImage2Preview" aria-hidden="true"></div>
+                                <div class="image-input-group">
+                                    <input type="text" id="listingImage2" placeholder="https:// or data:image…" />
+                                    <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage2">Upload</button>
+                                </div>
+                                <div class="listing-alt-wrap">
+                                    <textarea id="listingImage2Desc" placeholder="Alt text (required when image is set)" rows="2"></textarea>
+                                    <button type="button" class="btn-generate-desc" data-image="listingImage2" data-desc="listingImage2Desc" title="Generate AI Description" aria-label="Generate AI Description">
+                                        <span aria-hidden="true">
+                                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
+                                                <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
+                                                <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
+                                            </svg>
+                                        </span>
+                                        <span>Alt</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="listing-media-card form-group">
+                                <div class="listing-media-card__label">Image 3</div>
+                                <div class="listing-image-preview listing-image-preview--empty" id="listingImage3Preview" aria-hidden="true"></div>
+                                <div class="image-input-group">
+                                    <input type="text" id="listingImage3" placeholder="https:// or data:image…" />
+                                    <button type="button" class="btn btn-secondary btn-upload-image" data-target="listingImage3">Upload</button>
+                                </div>
+                                <div class="listing-alt-wrap">
+                                    <textarea id="listingImage3Desc" placeholder="Alt text (required when image is set)" rows="2"></textarea>
+                                    <button type="button" class="btn-generate-desc" data-image="listingImage3" data-desc="listingImage3Desc" title="Generate AI Description" aria-label="Generate AI Description">
+                                        <span aria-hidden="true">
+                                            <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.5 1l.7 1.6 1.8.26-1.3 1.28.32 1.86L6.5 4.97l-1.52.99.32-1.86L4 2.86l1.8-.26L6.5 1z" fill="#FFE599"/>
+                                                <path d="M3 4.5l.55 1.2 1.34.2-.97.94.24 1.34L3 7.3l-1.16.68.24-1.34-.97-.94 1.34-.2L3 4.5z" fill="#FFD966"/>
+                                                <path d="M11.3 3l.5 1.1 1.23.17-.89.85.22 1.22-1.06-.6-1.06.6.22-1.22-.89-.85 1.23-.17.5-1.1z" fill="#FFF2B6"/>
+                                            </svg>
+                                        </span>
+                                        <span>Alt</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Contact &amp; place</h3>
+                        <p>Website, phone, address, and map coordinates.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="listingWebsite">Website</label>
+                                <input type="text" id="listingWebsite" placeholder="www.example.com or https://…" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingPhone">Phone</label>
+                                <input type="tel" id="listingPhone" placeholder="(434) 123-4567" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="listingAddress">Address *</label>
+                            <div class="address-autocomplete-wrapper">
+                                <select id="listingAddressType">
+                                    <option value="full">Full Address</option>
+                                    <option value="booking">Full address available on booking site</option>
+                                </select>
+                                <input type="text" id="listingAddress" autocomplete="off" />
+                                <div class="address-autocomplete-dropdown" id="addressAutocompleteDropdown"></div>
+                            </div>
+                            <small class="form-hint">Use “booking site” for Airbnb-style listings that hide the street address until booked.</small>
+                            <div id="coordsDisplay" class="coords-display">
+                                <small>📍 <span id="coordsText">Coordinates auto-fill when address is selected</span></small>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="listingLatitude">Latitude</label>
+                                <input type="number" id="listingLatitude" class="listing-mono" step="any" placeholder="e.g. 37.7645" />
+                                <small class="form-hint">Auto-filled from address, or enter manually</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="listingLongitude">Longitude</label>
+                                <input type="number" id="listingLongitude" class="listing-mono" step="any" placeholder="e.g. -78.8698" />
+                                <small class="form-hint">Auto-filled from address, or enter manually</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="listingDirectionsLink">Directions link</label>
+                            <input type="url" id="listingDirectionsLink" placeholder="https://www.google.com/maps/…" />
+                        </div>
+                        <div class="form-group">
+                            <label for="listingVideoLink">Video link</label>
+                            <input type="url" id="listingVideoLink" placeholder="YouTube or other video URL" />
+                            <small class="form-hint">Available in Framer CMS data.</small>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Documents &amp; meta</h3>
+                        <p>PDFs, authorship, and publish dates.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Document 1</label>
+                                <input type="text" id="listingDocument1Name" placeholder="Name (e.g. Menu, Brochure)" />
+                                <div class="image-input-group">
+                                    <input type="text" id="listingDocument1" placeholder="PDF URL or upload…" />
+                                    <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument1">Upload PDF</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Document 2</label>
+                                <input type="text" id="listingDocument2Name" placeholder="Name (e.g. Menu, Brochure)" />
+                                <div class="image-input-group">
+                                    <input type="text" id="listingDocument2" placeholder="PDF URL or upload…" />
+                                    <button type="button" class="btn btn-secondary btn-upload-document" data-target="listingDocument2">Upload PDF</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row form-row--thirds">
+                            <div class="form-group">
+                                <label for="listingAuthorName">Author</label>
+                                <input type="text" id="listingAuthorName" placeholder="e.g. Sam Smith" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingPublishedDate">Published</label>
+                                <input type="date" id="listingPublishedDate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingModifiedDate">Modified</label>
+                                <input type="date" id="listingModifiedDate" readonly title="Set automatically when you save" />
+                                <small class="form-hint">Updates to today when you save.</small>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="listing-section">
+                    <div class="listing-section__head">
+                        <h3>Amenities</h3>
+                        <p>Select everything that applies.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="form-group form-group--flush">
+                            <div class="checkbox-group" id="amenitiesCheckboxes"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="listing-section listing-section--accordion">
+                    <div class="listing-section__head">
+                        <h3>Accordion panels</h3>
+                        <p>Up to four expandable sections on the listing page.</p>
+                    </div>
+                    <div class="listing-section__body listing-accordion-grid">
+                        <div class="listing-accordion-card form-group">
+                            <label class="listing-accordion-card__label">Panel 1</label>
+                            <input type="text" id="listingAccordionPanel1Title" placeholder="Title (e.g. History)" />
+                            <div id="listingAccordionPanel1ContentEditor" class="listing-quill listing-quill--panel"></div>
+                            <textarea id="listingAccordionPanel1Content" style="display: none;"></textarea>
+                        </div>
+                        <div class="listing-accordion-card form-group">
+                            <label class="listing-accordion-card__label">Panel 2</label>
+                            <input type="text" id="listingAccordionPanel2Title" placeholder="Title" />
+                            <div id="listingAccordionPanel2ContentEditor" class="listing-quill listing-quill--panel"></div>
+                            <textarea id="listingAccordionPanel2Content" style="display: none;"></textarea>
+                        </div>
+                        <div class="listing-accordion-card form-group">
+                            <label class="listing-accordion-card__label">Panel 3</label>
+                            <input type="text" id="listingAccordionPanel3Title" placeholder="Title" />
+                            <div id="listingAccordionPanel3ContentEditor" class="listing-quill listing-quill--panel"></div>
+                            <textarea id="listingAccordionPanel3Content" style="display: none;"></textarea>
+                        </div>
+                        <div class="listing-accordion-card form-group">
+                            <label class="listing-accordion-card__label">Panel 4</label>
+                            <input type="text" id="listingAccordionPanel4Title" placeholder="Title" />
+                            <div id="listingAccordionPanel4ContentEditor" class="listing-quill listing-quill--panel"></div>
+                            <textarea id="listingAccordionPanel4Content" style="display: none;"></textarea>
+                        </div>
+                    </div>
+                </section>
+
                 </div>
                 
-                <div class="form-group">
-                    <label>Amenities</label>
-                    <div class="checkbox-group" id="amenitiesCheckboxes"></div>
-                </div>
-                
-                <div class="form-group">
-                    <label style="display: flex; align-items: center; gap: 8px;">
-                        <input type="checkbox" id="listingFeatured" style="width: auto;" />
-                        Mark as Featured
-                        <br><br>
-                        <input type="checkbox" id="listingPrivate" style="width: auto;" />
-                        Mark as Private
-                    </label>
-                </div>
-                
-                <div style="border-top: 2px solid #e9ecef; margin: 30px 0; padding-top: 20px;">
-                    <h3 style="margin: 0 0 10px 0; color: #212529; font-size: 18px;">Accordion Content</h3>
-                    <p style="color: #6c757d; font-size: 13px; margin: 0 0 20px 0;">Add up to 4 accordion panels with titles and content. These will appear as expandable sections on the listing page.</p>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label style="font-weight: 600; color: #495057; display: block; margin-bottom: 8px;">Panel 1</label>
-                        <input type="text" id="listingAccordionPanel1Title" placeholder="Panel 1 Title (e.g., History, Menu & Offerings)" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
-                        <div id="listingAccordionPanel1ContentEditor" style="min-height: 150px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
-                        <textarea id="listingAccordionPanel1Content" style="display: none;"></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label style="font-weight: 600; color: #495057; display: block; margin-bottom: 8px;">Panel 2</label>
-                        <input type="text" id="listingAccordionPanel2Title" placeholder="Panel 2 Title" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
-                        <div id="listingAccordionPanel2ContentEditor" style="min-height: 150px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
-                        <textarea id="listingAccordionPanel2Content" style="display: none;"></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label style="font-weight: 600; color: #495057; display: block; margin-bottom: 8px;">Panel 3</label>
-                        <input type="text" id="listingAccordionPanel3Title" placeholder="Panel 3 Title" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
-                        <div id="listingAccordionPanel3ContentEditor" style="min-height: 150px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
-                        <textarea id="listingAccordionPanel3Content" style="display: none;"></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label style="font-weight: 600; color: #495057; display: block; margin-bottom: 8px;">Panel 4</label>
-                        <input type="text" id="listingAccordionPanel4Title" placeholder="Panel 4 Title" style="width: 100%; margin-bottom: 8px; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
-                        <div id="listingAccordionPanel4ContentEditor" style="min-height: 150px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 4px;"></div>
-                        <textarea id="listingAccordionPanel4Content" style="display: none;"></textarea>
-                    </div>
-                </div>
-                </div>
-                
-                <div class="modal-actions">
+                <div class="modal-actions listing-editor__actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal()" title="Cancel (will prompt if unsaved changes)">Cancel</button>
                     <button type="submit" class="btn btn-success">Save Listing</button>
                 </div>

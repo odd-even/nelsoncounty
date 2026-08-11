@@ -757,12 +757,9 @@
         .featured-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-featured-bg); color: var(--badge-featured-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
         .private-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-private-bg); color: var(--badge-private-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
         
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(62,53,53,0.5); z-index: 1000; overflow-y: auto; }
-        .modal.active { display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(29, 29, 31, 0.42); z-index: 1000; overflow-y: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .modal.active { display: flex; align-items: center; justify-content: center; padding: 16px; }
         .modal-content { background: var(--card-bg); border-radius: 12px; padding: 30px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px var(--shadow); }
-        #listingModal .modal-content { width: 90vw; max-width: 90vw; height: 90vh; max-height: 90vh; display: flex; flex-direction: column; }
-        #listingModal .modal-content form { flex: 1; display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
-        #listingModal .modal-content .form-scrollable { flex: 1; overflow-y: auto; padding-right: 10px; min-height: 0; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
         .modal-header h2 { font-size: 24px; color: var(--text-primary); }
         .close-modal { background: none; border: none; font-size: 28px; cursor: pointer; color: var(--text-secondary); padding: 0; width: 32px; height: 32px; }
@@ -773,6 +770,523 @@
         .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 2px solid var(--border-color); border-radius: 8px; font-size: 14px; font-family: inherit; transition: border-color 0.3s ease, background-color 0.3s ease; background: var(--bg-primary); color: var(--text-primary); }
         .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #007AFF; }
         .form-group textarea { resize: vertical; min-height: 100px; }
+
+        /* ========== Listing editor (Apple compact) ========== */
+        #listingModal.modal.active {
+            padding: clamp(10px, 2vw, 24px);
+            align-items: center;
+        }
+        #listingModal .modal-content.listing-editor {
+            width: min(960px, 96vw);
+            max-width: min(960px, 96vw);
+            height: auto;
+            max-height: min(92vh, 920px);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #f5f5f7;
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.7) inset,
+                0 24px 64px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+        }
+        #listingModal .modal-content form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-height: 0;
+        }
+        #listingModal .listing-editor__header {
+            margin: 0;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.86);
+            backdrop-filter: saturate(180%) blur(16px);
+            -webkit-backdrop-filter: saturate(180%) blur(16px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+            gap: 12px;
+        }
+        #listingModal .listing-editor__title-wrap {
+            min-width: 0;
+        }
+        #listingModal .listing-editor__eyebrow {
+            margin: 0 0 2px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #86868b;
+        }
+        #listingModal .listing-editor__header h2 {
+            margin: 0;
+            font-size: clamp(18px, 2.4vw, 22px);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #1d1d1f;
+            line-height: 1.2;
+        }
+        #listingModal .close-modal {
+            width: 32px;
+            height: 32px;
+            border-radius: 980px;
+            background: #e8e8ed;
+            color: #1d1d1f;
+            font-size: 22px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: background 0.15s ease;
+        }
+        #listingModal .close-modal:hover {
+            background: #dcdce1;
+            color: #1d1d1f;
+        }
+        #listingModal .listing-editor__scroll {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+            padding: 14px 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        #listingModal .listing-section {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        }
+        #listingModal .listing-section__head {
+            padding: 12px 14px 8px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
+        }
+        #listingModal .listing-section__head h3 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1d1d1f;
+        }
+        #listingModal .listing-section__head p {
+            margin: 2px 0 0;
+            font-size: 12px;
+            color: #86868b;
+            line-height: 1.35;
+        }
+        #listingModal .listing-section__body {
+            padding: 12px 14px 14px;
+        }
+        #listingModal .form-group {
+            margin-bottom: 12px;
+        }
+        #listingModal .form-group:last-child,
+        #listingModal .form-group--flush {
+            margin-bottom: 0;
+        }
+        #listingModal .form-group label,
+        #listingModal .listing-media-card__label,
+        #listingModal .listing-accordion-card__label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #6e6e73;
+        }
+        #listingModal .form-group--hero label {
+            font-size: 12px;
+        }
+        #listingModal .form-group--hero input {
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            padding: 10px 12px;
+        }
+        #listingModal .form-group input,
+        #listingModal .form-group select,
+        #listingModal .form-group textarea,
+        #listingModal .listing-accordion-card input,
+        #listingModal .address-autocomplete-wrapper select {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 11px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 13px;
+            font-family: inherit;
+            line-height: 1.35;
+            background: #f2f2f7;
+            color: #1d1d1f;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+            transition: background 0.15s ease, box-shadow 0.15s ease;
+        }
+        #listingModal .form-group input:focus,
+        #listingModal .form-group select:focus,
+        #listingModal .form-group textarea:focus,
+        #listingModal .listing-accordion-card input:focus,
+        #listingModal .address-autocomplete-wrapper select:focus {
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18), inset 0 0 0 1px rgba(0, 122, 255, 0.45);
+        }
+        #listingModal .form-group textarea {
+            min-height: 64px;
+            resize: vertical;
+        }
+        #listingModal textarea.listing-code {
+            min-height: 72px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12px;
+            color: #3a3a3c;
+        }
+        #listingModal .listing-mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+            font-size: 12px !important;
+        }
+        #listingModal .form-hint,
+        #listingModal .coords-display small {
+            display: block;
+            margin-top: 5px;
+            font-size: 11px;
+            line-height: 1.35;
+            color: #86868b;
+        }
+        #listingModal .coords-display {
+            margin-top: 6px;
+        }
+        #listingModal .coords-display small {
+            color: #1a7f37;
+        }
+        #listingModal .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 0;
+        }
+        #listingModal .form-row--thirds {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        #listingModal .form-row .form-group {
+            margin-bottom: 12px;
+        }
+        #listingModal .listing-flags {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 2px;
+        }
+        #listingModal .listing-flag {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: #f2f2f7;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        #listingModal .listing-flag input {
+            width: 1.05rem;
+            height: 1.05rem;
+            accent-color: #007aff;
+            margin: 0;
+            flex-shrink: 0;
+        }
+        #listingModal .listing-flag__title {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d1d1f;
+            letter-spacing: -0.01em;
+        }
+        #listingModal .listing-flag__hint {
+            display: block;
+            font-size: 11px;
+            color: #86868b;
+            margin-top: 1px;
+        }
+        #listingModal .listing-flag:has(input:checked) {
+            background: rgba(0, 122, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.22);
+        }
+        #listingModal .listing-media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+        #listingModal .listing-media-card {
+            margin: 0;
+            padding: 10px;
+            border-radius: 14px;
+            background: #f8f8fa;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+        #listingModal .listing-media-card .listing-image-preview {
+            margin: 0;
+            width: 100%;
+            max-width: none;
+            height: 110px;
+            border-radius: 12px;
+            background: #e8e8ed;
+            border: none;
+        }
+        #listingModal .listing-media-card .listing-image-preview--empty {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            min-height: 110px;
+            background:
+                linear-gradient(135deg, #ececf0 0%, #e2e2e7 100%);
+        }
+        #listingModal .listing-media-card .listing-image-preview--empty::after {
+            content: 'No image';
+            font-size: 11px;
+            color: #86868b;
+            font-weight: 500;
+        }
+        #listingModal .listing-media-card .listing-image-preview-img {
+            height: 110px;
+        }
+        #listingModal .image-input-group {
+            gap: 6px;
+        }
+        #listingModal .listing-media-card .image-input-group {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        #listingModal .listing-media-card .image-input-group .btn {
+            width: 100%;
+            text-align: center;
+        }
+        #listingModal .listing-editor__actions {
+            margin-top: 0 !important;
+        }
+        #listingModal .listing-section--accordion > .listing-accordion-grid {
+            padding-top: 12px;
+        }
+        #listingModal .image-input-group .btn,
+        #listingModal .listing-editor__actions .btn {
+            appearance: none;
+            -webkit-appearance: none;
+            border: none;
+            border-radius: 980px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+            white-space: nowrap;
+        }
+        #listingModal .image-input-group .btn-secondary,
+        #listingModal .listing-editor__actions .btn-secondary {
+            background: #e8e8ed;
+            color: #1d1d1f;
+        }
+        #listingModal .image-input-group .btn-secondary:hover,
+        #listingModal .listing-editor__actions .btn-secondary:hover {
+            background: #dcdce1;
+            transform: none;
+            box-shadow: none;
+        }
+        #listingModal .listing-editor__actions .btn-success {
+            background: #007aff;
+            color: #fff;
+        }
+        #listingModal .listing-editor__actions .btn-success:hover {
+            background: #0066d6;
+            transform: none;
+            box-shadow: none;
+        }
+        #listingModal .listing-alt-wrap {
+            position: relative;
+        }
+        #listingModal .listing-alt-wrap textarea {
+            min-height: 52px;
+            padding-right: 58px;
+            font-size: 12px;
+            resize: vertical;
+        }
+        #listingModal .btn-generate-desc {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border: none;
+            border-radius: 980px;
+            background: #007aff;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            cursor: pointer;
+        }
+        #listingModal .btn-generate-desc:hover {
+            background: #0066d6;
+        }
+        #listingModal .address-autocomplete-wrapper select {
+            margin-bottom: 8px;
+        }
+        #listingModal .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-auto-flow: row;
+            grid-template-rows: none;
+            gap: 6px 10px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #f2f2f7;
+        }
+        #listingModal .checkbox-item {
+            font-size: 12px;
+            color: #1d1d1f;
+        }
+        #listingModal .checkbox-item input[type="checkbox"] {
+            accent-color: #007aff;
+        }
+        #listingModal .listing-quill {
+            background: #f2f2f7 !important;
+            border: 1px solid transparent !important;
+            border-radius: 12px !important;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        #listingModal .listing-quill--detail .ql-editor {
+            min-height: 120px !important;
+        }
+        #listingModal .listing-quill--panel .ql-editor {
+            min-height: 88px !important;
+        }
+        #listingModal #listingDetailedDescriptionEditor .ql-editor {
+            min-height: 120px;
+        }
+        #listingModal #listingAccordionPanel1ContentEditor .ql-editor,
+        #listingModal #listingAccordionPanel2ContentEditor .ql-editor,
+        #listingModal #listingAccordionPanel3ContentEditor .ql-editor,
+        #listingModal #listingAccordionPanel4ContentEditor .ql-editor {
+            min-height: 88px;
+        }
+        /* Quill inserts .ql-toolbar as a sibling before the editor container */
+        #listingModal .ql-toolbar.ql-snow {
+            background: #fafafa !important;
+            border: 1px solid transparent !important;
+            border-bottom: none !important;
+            border-radius: 12px 12px 0 0 !important;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+            padding: 6px 8px !important;
+            margin-top: 0;
+        }
+        #listingModal .ql-container.ql-snow {
+            border: 1px solid transparent !important;
+            border-radius: 0 0 12px 12px !important;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+            background: #f2f2f7 !important;
+            font-size: 13px;
+        }
+        #listingModal .ql-toolbar.ql-snow + .ql-container.ql-snow {
+            border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+        }
+        #listingModal .listing-accordion-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 12px 14px 14px;
+        }
+        #listingModal .listing-accordion-card {
+            margin: 0;
+            padding: 10px;
+            border-radius: 14px;
+            background: #f8f8fa;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 0;
+        }
+        #listingModal .listing-accordion-card input {
+            margin: 0;
+        }
+        #listingModal .listing-editor__actions {
+            margin: 0;
+            padding: 12px 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            gap: 8px;
+        }
+        #listingModal .listing-editor__actions .btn {
+            min-width: 108px;
+            padding: 10px 16px;
+            font-size: 13px;
+        }
+        #listingModal .listing-editor__actions .btn:active {
+            opacity: 0.85;
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 900px) {
+            #listingModal .listing-media-grid,
+            #listingModal .form-row--thirds,
+            #listingModal .listing-accordion-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 720px) {
+            #listingModal .modal-content.listing-editor {
+                width: 100%;
+                max-width: 100%;
+                max-height: 96vh;
+                border-radius: 16px;
+            }
+            #listingModal .listing-media-grid,
+            #listingModal .form-row,
+            #listingModal .form-row--thirds,
+            #listingModal .listing-flags,
+            #listingModal .listing-accordion-grid {
+                grid-template-columns: 1fr;
+            }
+            #listingModal .listing-editor__scroll {
+                padding: 12px;
+            }
+            #listingModal .checkbox-group {
+                max-height: 180px;
+            }
+        }
+        @media (max-height: 700px) {
+            #listingModal .modal-content.listing-editor {
+                max-height: 96vh;
+            }
+            #listingModal .listing-media-card .listing-image-preview,
+            #listingModal .listing-media-card .listing-image-preview--empty,
+            #listingModal .listing-media-card .listing-image-preview-img {
+                height: 84px;
+                min-height: 84px;
+            }
+            #listingModal .listing-quill--detail .ql-editor,
+            #listingModal #listingDetailedDescriptionEditor .ql-editor {
+                min-height: 88px !important;
+            }
+        }
         
         /* Quill Editor Styling */
         #listingDetailedDescriptionEditor { 
