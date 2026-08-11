@@ -780,11 +780,11 @@
             -webkit-overflow-scrolling: touch;
         }
         #listingModal .modal-content.listing-editor {
-            width: min(960px, 96vw);
-            max-width: min(960px, 96vw);
+            width: min(1100px, 96vw);
+            max-width: min(1100px, 96vw);
             /* Explicit height so nested flex + overflow-y:auto actually scrolls */
-            height: min(92vh, 920px);
-            max-height: min(92vh, 920px);
+            height: min(92vh, 980px);
+            max-height: min(92vh, 980px);
             min-height: 0;
             padding: 0;
             display: flex;
@@ -1167,24 +1167,50 @@
             margin-bottom: 8px;
         }
         #listingModal .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            grid-auto-flow: row;
-            grid-template-rows: none;
-            gap: 6px 10px;
-            max-height: 220px;
+            display: block;
+            columns: 3 170px;
+            column-gap: 18px;
+            max-height: min(300px, 38vh);
             overflow-y: auto;
-            padding: 10px;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px 14px;
             border: none;
             border-radius: 12px;
             background: #f2f2f7;
+            margin-top: 0;
         }
         #listingModal .checkbox-item {
-            font-size: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            break-inside: avoid;
+            -webkit-column-break-inside: avoid;
+            page-break-inside: avoid;
+            padding: 4px 0;
+            font-size: 13px;
             color: #1d1d1f;
+            min-width: 0;
         }
         #listingModal .checkbox-item input[type="checkbox"] {
+            width: 15px;
+            height: 15px;
+            min-width: 15px;
+            margin: 2px 0 0;
+            flex-shrink: 0;
             accent-color: #007aff;
+        }
+        /* Beat form-group label styles so amenity text stays readable inline */
+        #listingModal .checkbox-group .checkbox-item label,
+        #listingModal .form-group .checkbox-item label {
+            display: inline;
+            margin: 0 !important;
+            padding: 0;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            line-height: 1.35;
+            color: #1d1d1f;
+            cursor: pointer;
         }
         #listingModal .listing-quill {
             background: #f2f2f7 !important;
@@ -1285,6 +1311,29 @@
             transform: scale(0.98);
         }
 
+        @media (min-width: 1280px) {
+            #listingModal .modal-content.listing-editor {
+                width: min(1240px, 94vw);
+                max-width: min(1240px, 94vw);
+                height: min(94vh, 1080px);
+                max-height: min(94vh, 1080px);
+            }
+            #listingModal .listing-media-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+            #listingModal .checkbox-group {
+                columns: 4 180px;
+                max-height: min(340px, 42vh);
+            }
+        }
+        @media (min-width: 1600px) {
+            #listingModal .modal-content.listing-editor {
+                width: min(1380px, 92vw);
+                max-width: min(1380px, 92vw);
+                height: min(94vh, 1160px);
+                max-height: min(94vh, 1160px);
+            }
+        }
         @media (max-width: 900px) {
             #listingModal .listing-media-grid,
             #listingModal .form-row--thirds,
@@ -1311,7 +1360,8 @@
                 padding: 12px;
             }
             #listingModal .checkbox-group {
-                max-height: 180px;
+                columns: 2 150px;
+                max-height: min(260px, 36vh);
             }
         }
         @media (max-height: 700px) {
