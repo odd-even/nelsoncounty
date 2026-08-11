@@ -479,17 +479,25 @@ function buildDataTableRowHtml(listing, index) {
     if (listingCategory && listingCategory.trim() !== '' && !categoryKeysSet.has(listingCategory)) {
         categoryOptions += '<option value="' + escapeHtml(listingCategory) + '" selected>' + escapeHtml(listingCategory) + ' (from Google Sheets)</option>';
     }
+    const listingType = safe(val('type'));
+    const typeList = (data.filterOptions && Array.isArray(data.filterOptions.types)) ? data.filterOptions.types.slice() : [];
+    if (listingType && typeList.indexOf(listingType) === -1) typeList.unshift(listingType);
+    const typeOptions = typeList.map(function(t) {
+        return '<option value="' + escapeHtml(t) + '" ' + (listingType === t ? 'selected' : '') + '>' + escapeHtml(t) + '</option>';
+    }).join('');
+    const listingArea = safe(val('area'));
+    const areaList = (data.filterOptions && Array.isArray(data.filterOptions.areas)) ? data.filterOptions.areas.slice() : [];
+    if (listingArea && areaList.indexOf(listingArea) === -1) areaList.unshift(listingArea);
+    const areaOptions = areaList.map(function(a) {
+        return '<option value="' + escapeHtml(a) + '" ' + (listingArea === a ? 'selected' : '') + '>' + escapeHtml(a) + '</option>';
+    }).join('');
     const amenitiesRaw = safeArray(getTableRowFieldValue(listing, index, 'amenities')).join(', ');
     return '<tr data-index="' + index + '">' +
         '<td class="cell-name"><textarea data-field="name" rows="2">' + escapeHtml(val('name')) + '</textarea></td>' +
         '<td class="cell-slug"><input type="text" value="' + escapeHtml(val('slug')) + '" data-field="slug" placeholder="auto" /></td>' +
-        '<td class="cell-type"><select data-field="type">' +
-            data.filterOptions.types.map(function(t) { return '<option value="' + escapeHtml(t) + '" ' + (safe(val('type')) === t ? 'selected' : '') + '>' + escapeHtml(t) + '</option>'; }).join('') +
-        '</select></td>' +
+        '<td class="cell-type"><select data-field="type">' + typeOptions + '</select></td>' +
         '<td class="cell-category"><select data-field="category">' + categoryOptions + '</select></td>' +
-        '<td class="cell-area"><select data-field="area">' +
-            data.filterOptions.areas.map(function(a) { return '<option value="' + escapeHtml(a) + '" ' + (safe(val('area')) === a ? 'selected' : '') + '>' + escapeHtml(a) + '</option>'; }).join('') +
-        '</select></td>' +
+        '<td class="cell-area"><select data-field="area">' + areaOptions + '</select></td>' +
         '<td class="cell-description"><textarea data-field="description">' + escapeHtml(val('description')) + '</textarea></td>' +
         '<td class="cell-description-detailed"><textarea data-field="detailedDescription">' + escapeHtml(val('detailedDescription')) + '</textarea></td>' +
         '<td class="cell-custom-html"><textarea data-field="customHtml">' + escapeHtml(val('customHtml')) + '</textarea></td>' +
@@ -2976,6 +2984,10 @@ function updateTabsStickyStackStuck() {
                 filterOptions: sanitizedFilterOptions,
                 sheetHeaders: headers
             };
+            // Drop any table drafts captured before Sheets finished loading
+            // (empty selects / placeholders), then rebuild both views.
+            tableRowDrafts = {};
+            if (typeof clearTableEditsPending === 'function') clearTableEditsPending();
             resetUnsavedChanges();
             updateTableHeaderLabelsFromSheet(headers);
             applyFilterOptionCleanup(sanitizedFilterOptions);
@@ -2984,6 +2996,9 @@ function updateTabsStickyStackStuck() {
             renderListings();
             populateAdminFilters();
             updateStats();
+            if (typeof renderDataTable === 'function') {
+                renderDataTable();
+            }
         }
 
         async function loadDataFromGoogleSheets(options) {
@@ -10319,8 +10334,12 @@ function updateTabsStickyStackStuck() {
         let tableFilters = {};
         
         function renderDataTable() {
-            captureAllVisibleTableRowDrafts();
+            // Avoid re-capturing stale empty cells from a pre-Sheets render.
+            // Drafts are only useful while the same dataset is on screen.
             const tbody = document.getElementById('dataTableBody');
+            if (tbody && tbody.querySelector('tr[data-index]') && Object.keys(tableRowDrafts).length > 0) {
+                captureAllVisibleTableRowDrafts();
+            }
             if (tbody) tbody.innerHTML = '';
             
             // Get filter values
