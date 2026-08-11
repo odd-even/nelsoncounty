@@ -86,12 +86,14 @@ Runs the exporter (3.5) on three triggers:
 ### 3.5  Exporter script — `scripts/sheets_csv_to_json.mjs`
 1. Fetches the published CSV (3.3).
 2. Parses CSV into the same row shape the admin panel uses.
-3. Writes `data/listings.json`.
-4. Commits the change to git **only if the listing bytes actually changed** (skips timestamp-only churn so the repo doesn't get noisy commits).
+3. **Omits rows where `private` is true** (so private listings never ship in the public JSON).
+4. Writes `data/listings.json`.
+5. Commits the change to git **only if the listing bytes actually changed** (skips timestamp-only churn so the repo doesn't get noisy commits).
 
 ### 3.6  `data/listings.json`
 - Committed in the repo at `data/listings.json`.
 - Served as a static file by GitHub Pages (3.7).
+- Public/directory feed only — private listings are excluded at export time (admin still loads the full sheet).
 
 ### 3.7  GitHub Pages
 - URL: **https://odd-even.github.io/nelsoncounty/**

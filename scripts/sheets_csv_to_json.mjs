@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 // Fetch the published Google Sheet CSV and write it to data/listings.json
 // as an array of row objects keyed by header name. This shape matches what
-// frontpage_framer.html's parseCSV() produces in the browser, so the rest of
-// the listings pipeline (mapCSVRowToListing -> filter private -> extract
-// filter options) runs unchanged.
+// frontpage_framer.html's parseCSV() produces in the browser.
+//
+// Rows marked Private (TRUE/true/1/yes) are omitted from the public JSON so
+// they never ship to GitHub Pages / frontpage_framer. Admin still reads the
+// full sheet via Apps Script; frontpage also keeps a runtime private filter
+// for Sheets/CSV fallbacks.
 //
 // Zero dependencies. Designed to run inside a GitHub Action with Node >= 18
 // (which has a built-in global fetch).
@@ -95,6 +98,12 @@ function parseCSV(csvText) {
   return { headers, rows: dataRows };
 }
 
+function isPrivateRow(row) {
+  const raw = row.private ?? row.Private ?? "";
+  const value = String(raw).trim().toLowerCase();
+  return value === "true" || value === "1" || value === "yes";
+}
+
 async function fetchCsvWithRetry(url, attempts = 3) {
   let lastErr;
   for (let i = 1; i <= attempts; i++) {
@@ -121,11 +130,18 @@ async function main() {
   const csvText = await fetchCsvWithRetry(SHEET_CSV_URL);
   console.log("CSV bytes:", csvText.length);
 
-  const { headers, rows } = parseCSV(csvText);
-  console.log("Headers:", headers.length, "Rows:", rows.length);
-  if (rows.length === 0) {
+  const { headers, rows: allRows } = parseCSV(csvText);
+  console.log("Headers:", headers.length, "Rows:", allRows.length);
+  if (allRows.length === 0) {
     throw new Error("Refusing to write empty listings.json (no data rows parsed).");
   }
+
+  const rows = allRows.filter((row) => !isPrivateRow(row));
+  const privateCount = allRows.length - rows.length;
+  if (privateCount > 0) {
+    console.log("Omitting", privateCount, "private listing(s) from public listings.json");
+  }
+  console.log("Public rows written:", rows.length);
 
   const payload = {
     generatedAt: new Date().toISOString(),

@@ -1505,27 +1505,124 @@
             border-radius: 8px;
         }
         
-        .data-container { width: 100vw; margin-left: calc(-50vw + 50%); margin-right: calc(-50vw + 50%); padding: 30px 20px; max-width: 100vw; }
-        .data-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
-        .data-header h2 { font-size: 24px; color: var(--text-primary); }
-        .data-actions { display: flex; gap: 10px; }
+        .data-container {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding: 28px 24px 40px;
+            max-width: 100vw;
+            background:
+                radial-gradient(1200px 420px at 12% -10%, rgba(0, 122, 255, 0.06), transparent 55%),
+                radial-gradient(900px 380px at 88% 0%, rgba(52, 199, 89, 0.05), transparent 50%),
+                #f5f5f7;
+        }
+        .data-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+        .data-header h2 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #1d1d1f;
+            margin: 0;
+        }
+        .data-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
         .table-wrapper {
-            background: var(--card-bg);
-            border-radius: 16px;
+            --dt-surface: #ffffff;
+            --dt-surface-elevated: rgba(255, 255, 255, 0.82);
+            --dt-header: rgba(248, 248, 250, 0.92);
+            --dt-header-solid: #f8f8fa;
+            --dt-filter: #f2f2f7;
+            --dt-ink: #1d1d1f;
+            --dt-ink-secondary: #86868b;
+            --dt-ink-tertiary: #aeaeb2;
+            --dt-line: rgba(0, 0, 0, 0.06);
+            --dt-line-strong: rgba(0, 0, 0, 0.1);
+            --dt-blue: #007aff;
+            --dt-green: #34c759;
+            --dt-orange: #ff9500;
+            --dt-red: #ff3b30;
+            --dt-fill: #f2f2f7;
+            --dt-fill-hover: #ebebf0;
+            --dt-row-hover: rgba(0, 122, 255, 0.04);
+            background: var(--dt-surface);
+            border-radius: 18px;
             overflow-x: auto;
             overflow-y: auto;
             max-height: calc(100vh - 150px);
             width: 100%;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--dt-line-strong);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.8) inset,
+                0 8px 28px rgba(0, 0, 0, 0.06),
+                0 1px 2px rgba(0, 0, 0, 0.04);
+            -webkit-overflow-scrolling: touch;
         }
-        .data-table { width: 100%; border-collapse: separate; border-spacing: 0; }
-        .data-table thead { background: #1a1a1a; color: white; }
-        .data-table thead tr:first-child th { position: sticky; top: 0; z-index: 10; background: #1a1a1a; }
-        .data-table thead tr:first-child th:first-child { position: sticky; left: 0; z-index: 20; background: #1a1a1a; font-size: 16px; font-weight: 700; min-width: 250px; border-right: 2px solid #444; }
-        .data-table thead tr.filter-row th:first-child { position: sticky; left: 0; z-index: 20; background: #2a2a2a; border-right: 2px solid #444; }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: var(--dt-ink);
+        }
+        .data-table.data-table--resized {
+            table-layout: fixed;
+            width: var(--data-table-total-width, max-content);
+        }
+        .data-table.data-table--resized th,
+        .data-table.data-table--resized td {
+            max-width: none !important;
+            min-width: 0 !important;
+            box-sizing: border-box;
+        }
+        .data-table thead {
+            background: var(--dt-header);
+            color: var(--dt-ink);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+        }
+        .data-table thead tr:first-child th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--dt-header);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--dt-line-strong);
+            color: var(--dt-ink-secondary);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            padding: 14px 16px 12px 12px;
+        }
+        .data-table thead tr:first-child th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background: var(--dt-header-solid);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            text-transform: none;
+            color: var(--dt-ink);
+            min-width: 250px;
+            border-right: 1px solid var(--dt-line-strong);
+        }
+        .data-table thead tr.filter-row th:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background: var(--dt-filter);
+            border-right: 1px solid var(--dt-line-strong);
+        }
         .data-table th {
-            padding: 12px 10px;
+            padding: 12px 14px 12px 10px;
             text-align: left;
             font-size: 13px;
             font-weight: 600;
@@ -1538,51 +1635,111 @@
             cursor: pointer;
             user-select: none;
         }
-        .data-table th:hover { background: #2a2a2a; }
-        .data-table thead tr:first-child th:hover { background: #2a2a2a; }
-        .data-table th.sortable::after { content: ' ↕'; opacity: 0.5; margin-left: 5px; }
-        .data-table th.sort-asc::after { content: ' ↑'; opacity: 1; }
-        .data-table th.sort-desc::after { content: ' ↓'; opacity: 1; }
-        .data-table thead tr.filter-row { background: #2a2a2a; }
+        .data-table thead tr:first-child th .th-label {
+            display: inline;
+            padding-right: 4px;
+        }
+        .data-table .col-resize-handle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 8px;
+            height: 100%;
+            cursor: col-resize;
+            user-select: none;
+            touch-action: none;
+            z-index: 3;
+        }
+        .data-table .col-resize-handle::after {
+            content: '';
+            position: absolute;
+            top: 22%;
+            bottom: 22%;
+            left: 3px;
+            width: 2px;
+            border-radius: 1px;
+            background: rgba(0, 0, 0, 0.18);
+            opacity: 0;
+            transition: opacity 0.12s ease, background 0.12s ease;
+        }
+        .data-table thead tr:first-child th:hover .col-resize-handle::after,
+        .data-table .col-resize-handle:hover::after,
+        body.data-table-col-resizing .data-table .col-resize-handle::after {
+            opacity: 1;
+        }
+        .data-table .col-resize-handle:hover::after,
+        body.data-table-col-resizing .col-resize-handle::after {
+            background: var(--dt-blue);
+        }
+        body.data-table-col-resizing {
+            cursor: col-resize !important;
+            user-select: none !important;
+        }
+        body.data-table-col-resizing * {
+            cursor: col-resize !important;
+        }
+        .data-table th:hover { background: rgba(0, 0, 0, 0.03); }
+        .data-table thead tr:first-child th:hover { background: rgba(0, 0, 0, 0.035); }
+        .data-table thead tr:first-child th:first-child:hover { background: #efeff4; }
+        .data-table th.sortable::after { content: ' ↕'; opacity: 0.35; margin-left: 4px; font-weight: 400; }
+        .data-table th.sort-asc::after { content: ' ↑'; opacity: 0.85; color: var(--dt-blue); }
+        .data-table th.sort-desc::after { content: ' ↓'; opacity: 0.85; color: var(--dt-blue); }
+        .data-table thead tr.filter-row { background: var(--dt-filter); }
         .data-table thead tr.filter-row th {
             position: sticky;
             top: var(--data-table-header-row1-height, 52px);
             z-index: 10;
-            padding: 8px 12px;
-            background: #2a2a2a;
+            padding: 8px 10px;
+            background: var(--dt-filter);
             cursor: default;
             user-select: auto;
-            border-bottom: 2px solid #555;
+            border-bottom: 1px solid var(--dt-line-strong);
         }
-        .data-table thead tr:first-child th {
-            border-bottom: 1px solid #444;
+        .data-table thead tr.filter-row th:hover { background: var(--dt-filter); }
+        .data-table .filter-input,
+        .data-table .filter-select {
+            width: 100%;
+            padding: 7px 10px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: 12px;
+            font-family: inherit;
+            background: #fff;
+            color: var(--dt-ink);
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+            cursor: help;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
         }
-        .data-table thead tr.filter-row th:hover { background: #2a2a2a; }
-        .data-table .filter-input { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; }
-        .data-table .filter-input:focus { outline: none; border-color: #007AFF; background: #3a3a3a; cursor: text; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
-        .data-table .filter-select { width: 100%; padding: 7px 10px; border: 1px solid #555; border-radius: 10px; font-size: 12px; background: #333; color: white; cursor: help; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
-        .data-table .filter-select:focus { outline: none; border-color: #007AFF; cursor: pointer; box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.25); }
+        .data-table .filter-input:focus,
+        .data-table .filter-select:focus {
+            outline: none;
+            cursor: text;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.18), inset 0 0 0 1px rgba(0, 122, 255, 0.45);
+        }
+        .data-table .filter-select:focus { cursor: pointer; }
         .data-table tbody tr:not(.data-table-spacer) {
-            transition: background 0.15s ease;
+            transition: background 0.12s ease;
             min-height: 100px;
             height: 100px;
         }
         .data-table tbody tr.data-table-row-expanded {
             height: auto;
         }
-        .data-table tbody tr:hover { background: var(--bg-hover); }
-        .data-table tbody tr:hover .cell-name { background: var(--bg-hover); }
+        .data-table tbody tr:hover { background: var(--dt-row-hover); }
+        .data-table tbody tr:hover .cell-name { background: #f3f8ff; }
         .data-table tbody td {
-            padding: 6px 10px;
+            padding: 10px 12px;
             font-size: 13px;
-            color: var(--text-primary);
+            color: var(--dt-ink);
             vertical-align: middle;
             min-height: 100px;
             height: 100px;
             overflow: visible;
-            border-right: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--dt-line);
+            border-bottom: 1px solid var(--dt-line);
             box-sizing: border-box;
+            background: transparent;
         }
         .data-table tbody tr.data-table-row-expanded td {
             height: auto;
@@ -1595,77 +1752,85 @@
             display: block;
             width: 100%;
             margin: 0;
-            padding: 2px 4px;
+            padding: 4px 6px;
             border: none;
-            border-radius: 0;
+            border-radius: 7px;
             font-size: 13px;
             line-height: 1.35;
             font-family: inherit;
             background: transparent;
-            color: var(--text-primary);
+            color: var(--dt-ink);
             box-shadow: none;
             outline: none;
             resize: none;
-            transition: background 0.12s ease;
+            transition: background 0.12s ease, box-shadow 0.12s ease;
         }
         .data-table tbody td input:not([type="checkbox"]) {
-            height: 22px;
-            min-height: 22px;
-            max-height: 22px;
+            height: 28px;
+            min-height: 28px;
+            max-height: 28px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
         .data-table tbody td textarea {
-            height: 88px;
-            min-height: 88px;
+            height: 80px;
+            min-height: 80px;
             overflow: auto;
             resize: both;
             white-space: pre-wrap;
             word-break: break-word;
+            color: var(--dt-ink-secondary);
+            font-size: 12.5px;
+            line-height: 1.4;
         }
         .data-table tbody td textarea:focus {
             position: relative;
             z-index: 5;
-            background: var(--card-bg);
-            box-shadow: 0 0 0 1px var(--border-color), 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: var(--dt-ink);
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(0, 122, 255, 0.35), 0 8px 24px rgba(0, 0, 0, 0.08);
         }
         .data-table tbody td input:not([type="checkbox"]):focus,
         .data-table tbody td select:focus {
-            background: rgba(0, 122, 255, 0.06);
-            box-shadow: inset 0 0 0 1px rgba(0, 122, 255, 0.35);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.16), inset 0 0 0 1px rgba(0, 122, 255, 0.4);
         }
         .data-table tbody td input[type="checkbox"] {
-            width: 1.125rem;
-            height: 1.125rem;
-            accent-color: #007AFF;
+            width: 1.15rem;
+            height: 1.15rem;
+            accent-color: var(--dt-blue);
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 5px;
             vertical-align: middle;
             margin: 0 auto;
             display: block;
         }
         .data-table tbody td select {
-            padding: 2px 20px 2px 4px;
+            padding: 4px 22px 4px 8px;
             cursor: pointer;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background-image: none;
-            height: 22px;
-            min-height: 22px;
+            background-color: var(--dt-fill);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 7px center;
+            height: 28px;
+            min-height: 28px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-weight: 500;
+            font-size: 12.5px;
+            color: var(--dt-ink);
         }
         .data-table tbody td select:hover,
         .data-table tbody td select:focus {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 2px center;
+            background-color: var(--dt-fill-hover);
         }
         .data-table tbody td input[readonly] {
-            color: var(--text-secondary);
+            color: var(--dt-ink-secondary);
             cursor: default;
         }
         .data-table tbody td input[readonly]:focus {
@@ -1673,9 +1838,12 @@
             box-shadow: none;
         }
         .data-table tbody td input[type="date"] {
-            height: 22px;
-            min-height: 22px;
+            height: 28px;
+            min-height: 28px;
             color-scheme: light;
+            font-variant-numeric: tabular-nums;
+            color: var(--dt-ink-secondary);
+            font-size: 12.5px;
         }
         .data-table tbody td input[type="date"]::-webkit-calendar-picker-indicator {
             opacity: 0;
@@ -1684,7 +1852,7 @@
         }
         .data-table tbody td input[type="date"]:hover::-webkit-calendar-picker-indicator,
         .data-table tbody td input[type="date"]:focus::-webkit-calendar-picker-indicator {
-            opacity: 0.6;
+            opacity: 0.55;
             cursor: pointer;
         }
         .data-table tbody td input::placeholder,
@@ -1693,26 +1861,34 @@
         }
         .data-table tbody td input:focus::placeholder,
         .data-table tbody td textarea:focus::placeholder {
-            color: var(--text-secondary);
-            opacity: 0.55;
+            color: var(--dt-ink-tertiary);
+            opacity: 1;
         }
+
+        /* —— Per-field visual language —— */
         .data-table .cell-image-desc { min-width: 200px; max-width: 300px; }
-        .data-table .cell-image-desc textarea { font-size: 12px; }
-        .data-table .cell-id { color: var(--text-secondary); font-weight: 600; }
+        .data-table .cell-image-desc textarea {
+            font-size: 12px;
+            color: var(--dt-ink-secondary);
+            font-style: italic;
+        }
+        .data-table .cell-id { color: var(--dt-ink-secondary); font-weight: 600; }
         .data-table .cell-name {
-            font-weight: 400;
+            font-weight: 600;
             min-width: 250px;
-            font-size: 19.5px;
+            font-size: 15px;
             position: sticky;
             left: 0;
             z-index: 15;
-            background: var(--card-bg);
-            border-right: 2px solid var(--border-color);
+            background: var(--dt-surface);
+            border-right: 1px solid var(--dt-line-strong);
+            letter-spacing: -0.015em;
         }
         .data-table tbody td.cell-name textarea {
-            font-weight: 400;
-            font-size: 19.5px;
-            line-height: 1.25;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 1.3;
+            color: var(--dt-ink);
             height: auto;
             min-height: 28px;
             max-height: 88px;
@@ -1722,50 +1898,96 @@
             overflow-wrap: break-word;
         }
         .data-table .cell-slug { min-width: 180px; }
-        .data-table .cell-type, .data-table .cell-area, .data-table .cell-category { min-width: 120px; }
+        .data-table .cell-slug input {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 12px;
+            color: var(--dt-ink-secondary);
+            letter-spacing: -0.01em;
+        }
+        .data-table .cell-type,
+        .data-table .cell-area,
+        .data-table .cell-category { min-width: 120px; }
+        .data-table .cell-type select {
+            background-color: rgba(0, 122, 255, 0.1);
+            color: #0071e3;
+            font-weight: 600;
+        }
+        .data-table .cell-type select:hover,
+        .data-table .cell-type select:focus {
+            background-color: rgba(0, 122, 255, 0.16);
+        }
+        .data-table .cell-category select {
+            background-color: rgba(175, 82, 222, 0.1);
+            color: #8944b3;
+            font-weight: 600;
+        }
+        .data-table .cell-category select:hover,
+        .data-table .cell-category select:focus {
+            background-color: rgba(175, 82, 222, 0.16);
+        }
+        .data-table .cell-area select {
+            background-color: rgba(255, 149, 0, 0.12);
+            color: #c93400;
+            font-weight: 600;
+        }
+        .data-table .cell-area select:hover,
+        .data-table .cell-area select:focus {
+            background-color: rgba(255, 149, 0, 0.18);
+        }
         .data-table .cell-description { min-width: 400px; max-width: 600px; }
         .data-table .cell-description-detailed { min-width: 500px; max-width: 700px; }
+        .data-table .cell-description textarea,
+        .data-table .cell-description-detailed textarea {
+            color: var(--dt-ink-secondary);
+        }
         .data-table .cell-customHtml { min-width: 500px; max-width: 700px; }
         .data-table .cell-custom-html { min-width: 500px; max-width: 700px; }
         .data-table .cell-custom-html textarea {
-            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-            font-size: 12px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 11.5px;
+            color: #636366;
+            background: rgba(0, 0, 0, 0.02);
         }
-        .data-table .cell-image { min-width: 220px; max-width: 320px; padding: 4px 8px; }
+        .data-table .cell-image { min-width: 220px; max-width: 320px; padding: 8px 10px; }
         .data-table .table-image-cell {
             display: flex;
             flex-direction: row;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             height: 100%;
             min-height: 95px;
         }
         .data-table .table-image-preview {
             flex-shrink: 0;
-            width: 95px;
-            height: 95px;
-            border-radius: 8px;
+            width: 88px;
+            height: 88px;
+            border-radius: 12px;
             overflow: hidden;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            background: var(--dt-fill);
+            border: 1px solid var(--dt-line);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
         }
         .data-table .table-image-preview--empty {
-            background: var(--bg-secondary);
+            background:
+                linear-gradient(135deg, #f2f2f7 0%, #e8e8ed 100%);
         }
         .data-table .table-image-preview--error {
-            background: var(--bg-secondary);
+            background: rgba(255, 59, 48, 0.08);
+            border-color: rgba(255, 59, 48, 0.2);
         }
         .data-table .table-image-preview-img {
             display: block;
-            width: 95px;
-            height: 95px;
+            width: 88px;
+            height: 88px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 12px;
         }
         .data-table .table-image-url-input {
             flex: 1;
             min-width: 0;
-            font-size: 12px;
+            font-size: 11.5px;
+            color: var(--dt-blue);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         }
         .data-table:not(.data-table--thumbnails) .table-image-preview {
             display: none;
@@ -1786,14 +2008,16 @@
             gap: 8px;
             font-size: 13px;
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--dt-ink, #1d1d1f);
             padding: 8px 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            background: var(--bg-secondary);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 980px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
             cursor: pointer;
             user-select: none;
             white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
         }
         .data-table-thumbnails-toggle input {
             width: 1rem;
@@ -1801,15 +2025,45 @@
             accent-color: #007AFF;
             cursor: pointer;
         }
-        .data-table .cell-website { min-width: 250px; }
+        .data-table .cell-website,
+        .data-table .cell-directions,
+        .data-table .cell-video,
+        .data-table .cell-document,
+        .data-table .cell-googlemaps { min-width: 220px; }
+        .data-table .cell-website input,
+        .data-table .cell-directions input,
+        .data-table .cell-video input,
+        .data-table .cell-document input,
+        .data-table .cell-googlemaps input {
+            color: var(--dt-blue);
+            font-size: 12.5px;
+        }
         .data-table .cell-phone { min-width: 140px; }
+        .data-table .cell-phone input {
+            font-variant-numeric: tabular-nums;
+            letter-spacing: 0.01em;
+            font-weight: 500;
+        }
         .data-table .cell-address { min-width: 250px; }
-        .data-table .cell-coord { min-width: 95px; max-width: 100px; }
+        .data-table .cell-address input {
+            color: var(--dt-ink-secondary);
+        }
+        .data-table .cell-coord { min-width: 95px; max-width: 110px; }
         .data-table .cell-coord input {
             text-align: right;
             width: 100% !important;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-size: 12px;
+            font-variant-numeric: tabular-nums;
+            color: var(--dt-ink-secondary);
+        }
+        .data-table .cell-author input {
+            color: var(--dt-ink-secondary);
+            font-weight: 500;
+        }
+        .data-table .cell-date { min-width: 130px; }
+        .data-table .cell-document-name input {
+            font-weight: 500;
         }
         .data-table tbody td.cell-amenities {
             min-width: 420px;
@@ -1823,7 +2077,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: stretch;
-            gap: 4px;
+            gap: 6px;
             width: 100%;
             max-height: 92px;
             overflow: hidden;
@@ -1839,7 +2093,7 @@
         .data-table .amenities-pills-preview {
             display: flex;
             flex-wrap: wrap;
-            gap: 2px;
+            gap: 4px;
             align-items: center;
             align-content: center;
             justify-content: flex-start;
@@ -1851,25 +2105,25 @@
         .data-table .amenity-pill {
             display: inline-flex;
             align-items: center;
-            padding: 2px 5px;
-            border-radius: 999px;
-            font-size: 9px;
-            font-weight: 500;
-            line-height: 1.15;
+            padding: 3px 8px;
+            border-radius: 980px;
+            font-size: 10px;
+            font-weight: 600;
+            line-height: 1.2;
             white-space: nowrap;
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
+            background: rgba(0, 122, 255, 0.08);
+            color: #0071e3;
+            border: none;
+            letter-spacing: -0.01em;
         }
         .data-table .amenity-pill--muted {
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            border-color: var(--border-color);
-            font-weight: 400;
+            background: var(--dt-fill);
+            color: var(--dt-ink-secondary);
+            font-weight: 500;
         }
         .data-table tbody td textarea.amenities-raw-input {
             flex: 0 0 auto;
-            min-height: 22px;
+            min-height: 24px;
             height: auto;
             max-height: 36px;
             resize: none;
@@ -1878,22 +2132,83 @@
             word-break: break-word;
             overflow-wrap: break-word;
             line-height: 1.25;
+            font-size: 11.5px;
+            color: var(--dt-ink-tertiary);
         }
         .data-table tbody td textarea.amenities-raw-input:focus {
             max-height: 48px;
             resize: vertical;
+            color: var(--dt-ink);
         }
-        .data-table .cell-featured { text-align: center; vertical-align: middle; }
-        .data-table .cell-private { text-align: center; vertical-align: middle; }
+        .data-table .cell-featured,
+        .data-table .cell-private {
+            text-align: center;
+            vertical-align: middle;
+            background: linear-gradient(180deg, rgba(0,0,0,0.01), transparent);
+        }
+        .data-table .cell-featured input[type="checkbox"] {
+            accent-color: var(--dt-orange);
+            transform: scale(1.15);
+        }
+        .data-table .cell-private input[type="checkbox"] {
+            accent-color: #8e8e93;
+            transform: scale(1.15);
+        }
         .data-table .cell-accordion-title { min-width: 200px; max-width: 300px; }
-        .data-table .cell-accordion-title input { font-size: 12px; }
+        .data-table .cell-accordion-title input {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
         .data-table .cell-accordion-content { min-width: 300px; max-width: 500px; }
-        .data-table .cell-accordion-content textarea { font-size: 12px; }
-        .data-table .cell-actions { white-space: nowrap; vertical-align: middle; }
-        .data-table .btn-table-save { background: #007AFF; color: white; padding: 8px 14px; border: none; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; margin-right: 5px; box-shadow: 0 1px 3px rgba(0, 122, 255, 0.35); transition: background 0.15s ease, transform 0.1s ease; }
-        .data-table .btn-table-save:hover { background: #0051D5; transform: translateY(-1px); }
-        .data-table .btn-table-delete { background: #E3795C; color: white; padding: 8px 14px; border: none; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 1px 3px rgba(227, 121, 92, 0.35); transition: background 0.15s ease, transform 0.1s ease; }
-        .data-table .btn-table-delete:hover { background: #D65052; transform: translateY(-1px); }
+        .data-table .cell-accordion-content textarea {
+            font-size: 12px;
+            color: var(--dt-ink-secondary);
+        }
+        .data-table .cell-actions {
+            white-space: nowrap;
+            vertical-align: middle;
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+        .data-table .btn-table-save {
+            background: var(--dt-blue);
+            color: white;
+            padding: 7px 14px;
+            border: none;
+            border-radius: 980px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 6px;
+            box-shadow: 0 1px 2px rgba(0, 122, 255, 0.25);
+            transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+        }
+        .data-table .btn-table-save:hover {
+            background: #0066d6;
+            transform: translateY(-0.5px);
+        }
+        .data-table .btn-table-delete {
+            background: rgba(255, 59, 48, 0.1);
+            color: var(--dt-red);
+            padding: 7px 14px;
+            border: none;
+            border-radius: 980px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: none;
+            transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+        }
+        .data-table .btn-table-delete:hover {
+            background: rgba(255, 59, 48, 0.16);
+            transform: translateY(-0.5px);
+        }
+        .data-table .btn-table-delete.btn-table-delete--confirm {
+            background: var(--dt-red);
+            color: #fff;
+            box-shadow: 0 1px 3px rgba(255, 59, 48, 0.35);
+        }
         
         
         .code-container { width: 100%; margin: 0; padding: 30px 20px; }

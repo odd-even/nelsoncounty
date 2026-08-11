@@ -40,6 +40,9 @@ const ADMIN_IMAGE_TRANSFORM_WIDTH = 900;
 const DATA_TABLE_ROW_HEIGHT = 100;
 const DATA_TABLE_VIRTUAL_OVERSCAN = 6;
 const TABLE_THUMBNAILS_STORAGE_KEY = 'nelsonCounty_tableShowThumbnails';
+const TABLE_COLUMN_WIDTHS_STORAGE_KEY = 'nelsonCounty_tableColumnWidths';
+const DATA_TABLE_COL_MIN_WIDTH = 64;
+const DATA_TABLE_COL_MAX_WIDTH = 1200;
 
 let dataTableShowThumbnails = false;
 let dataTableSortedListings = [];
@@ -47,6 +50,8 @@ let tableRowDrafts = {};
 let _dataTableImageObserver = null;
 let _dataTableScrollRaf = null;
 let _dataTableColCount = 0;
+let _dataTableColumnWidths = null;
+let _dataTableColResizeState = null;
 
 function loadDataTableShowThumbnails() {
     try {
@@ -477,7 +482,7 @@ function buildDataTableRowHtml(listing, index) {
         '<td class="cell-accordion-title"><input type="text" value="' + escapeHtml(val('accordionPanel4Title')) + '" data-field="accordionPanel4Title" placeholder="Panel 4 Title" /></td>' +
         '<td class="cell-accordion-content"><textarea data-field="accordionPanel4Content" placeholder="Panel 4 Content">' + escapeHtml(val('accordionPanel4Content')) + '</textarea></td>' +
         '<td class="cell-actions">' +
-            '<button class="btn-table-delete" onclick="deleteFromTable(' + index + ')" style="background: ' + (deleteConfirmId === listing.slug ? '#dc2626' : '#E3795C') + ';">' +
+            '<button type="button" class="btn-table-delete' + (deleteConfirmId === listing.slug ? ' btn-table-delete--confirm' : '') + '" onclick="deleteFromTable(' + index + ')">' +
             (deleteConfirmId === listing.slug ? 'Confirm?' : 'Delete') +
             '</button>' +
         '</td>' +
@@ -1507,11 +1512,270 @@ function updateTableHeaderLabelsFromSheet(headersList) {
         if (!columnKey) return;
         
         document.querySelectorAll('th[data-column-key="' + columnKey + '"]').forEach(function(th) {
-            th.textContent = header;
+            const label = th.querySelector('.th-label');
+            if (label) {
+                label.textContent = header;
+            } else {
+                th.textContent = header;
+            }
         });
     });
+    if (typeof ensureDataTableHeaderResizeUI === 'function') {
+        ensureDataTableHeaderResizeUI();
+    }
     requestAnimationFrame(function() {
         requestAnimationFrame(syncDataTableStickyHeaderOffset);
+    });
+}
+
+function loadDataTableColumnWidths() {
+    try {
+        const raw = localStorage.getItem(TABLE_COLUMN_WIDTHS_STORAGE_KEY);
+        if (!raw) return {};
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+        const out = {};
+        Object.keys(parsed).forEach(function(key) {
+            const n = Number(parsed[key]);
+            if (Number.isFinite(n) && n >= DATA_TABLE_COL_MIN_WIDTH) {
+                out[key] = Math.min(DATA_TABLE_COL_MAX_WIDTH, Math.round(n));
+            }
+        });
+        return out;
+    } catch (e) {
+        return {};
+    }
+}
+
+function saveDataTableColumnWidths(widths) {
+    _dataTableColumnWidths = widths && typeof widths === 'object' ? widths : {};
+    try {
+        localStorage.setItem(TABLE_COLUMN_WIDTHS_STORAGE_KEY, JSON.stringify(_dataTableColumnWidths));
+    } catch (e) { /* ignore */ }
+}
+
+function getDataTableHeaderCells() {
+    const table = document.getElementById('dataTable');
+    if (!table) return [];
+    const row = table.querySelector('thead tr:first-child');
+    if (!row) return [];
+    return Array.prototype.slice.call(row.children);
+}
+
+function ensureDataTableHeaderResizeUI() {
+    getDataTableHeaderCells().forEach(function(th) {
+        if (!(th instanceof HTMLElement)) return;
+        let label = th.querySelector(':scope > .th-label');
+        if (!label) {
+            label = document.createElement('span');
+            label.className = 'th-label';
+            while (th.firstChild) {
+                label.appendChild(th.firstChild);
+            }
+            th.appendChild(label);
+        }
+        let handle = th.querySelector(':scope > .col-resize-handle');
+        if (!handle) {
+            handle = document.createElement('span');
+            handle.className = 'col-resize-handle';
+            handle.setAttribute('aria-hidden', 'true');
+            handle.title = 'Drag to resize column. Double-click to reset.';
+            th.appendChild(handle);
+        }
+    });
+}
+
+function ensureDataTableColgroup() {
+    const table = document.getElementById('dataTable');
+    if (!table) return null;
+    const headers = getDataTableHeaderCells();
+    let colgroup = table.querySelector('colgroup[data-data-table-cols="1"]');
+    if (!colgroup) {
+        colgroup = document.createElement('colgroup');
+        colgroup.setAttribute('data-data-table-cols', '1');
+        table.insertBefore(colgroup, table.firstChild);
+    }
+    while (colgroup.children.length < headers.length) {
+        colgroup.appendChild(document.createElement('col'));
+    }
+    while (colgroup.children.length > headers.length) {
+        colgroup.removeChild(colgroup.lastChild);
+    }
+    headers.forEach(function(th, i) {
+        const col = colgroup.children[i];
+        const key = th.getAttribute('data-column-key') || ('col-' + i);
+        col.setAttribute('data-column-key', key);
+    });
+    return colgroup;
+}
+
+function measureDataTableDefaultColumnWidths() {
+    const table = document.getElementById('dataTable');
+    if (!table) return {};
+    const headers = getDataTableHeaderCells();
+    const widths = {};
+    const hadResized = table.classList.contains('data-table--resized');
+    if (hadResized) table.classList.remove('data-table--resized');
+    headers.forEach(function(th, i) {
+        const key = th.getAttribute('data-column-key') || ('col-' + i);
+        const w = Math.round(th.getBoundingClientRect().width);
+        widths[key] = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, w || DATA_TABLE_COL_MIN_WIDTH));
+    });
+    if (hadResized) table.classList.add('data-table--resized');
+    return widths;
+}
+
+function applyDataTableColumnWidths(options) {
+    options = options || {};
+    const table = document.getElementById('dataTable');
+    if (!table) return;
+    ensureDataTableHeaderResizeUI();
+    const colgroup = ensureDataTableColgroup();
+    if (!colgroup) return;
+    if (!_dataTableColumnWidths) {
+        _dataTableColumnWidths = loadDataTableColumnWidths();
+    }
+    const defaults = options.remeasureDefaults ? measureDataTableDefaultColumnWidths() : null;
+    let total = 0;
+    const headers = getDataTableHeaderCells();
+    headers.forEach(function(th, i) {
+        const key = th.getAttribute('data-column-key') || ('col-' + i);
+        let width = _dataTableColumnWidths[key];
+        if (!width || !Number.isFinite(width)) {
+            if (defaults && defaults[key]) {
+                width = defaults[key];
+            } else {
+                width = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.round(th.getBoundingClientRect().width) || 120);
+            }
+            _dataTableColumnWidths[key] = width;
+        }
+        width = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, Math.round(width)));
+        _dataTableColumnWidths[key] = width;
+        const col = colgroup.children[i];
+        if (col) {
+            col.style.width = width + 'px';
+            col.style.minWidth = width + 'px';
+        }
+        total += width;
+    });
+    table.classList.add('data-table--resized');
+    table.style.setProperty('--data-table-total-width', total + 'px');
+    table.style.width = total + 'px';
+    syncDataTableStickyHeaderOffset();
+}
+
+function setDataTableColumnWidth(columnKey, widthPx, persist) {
+    if (!_dataTableColumnWidths) {
+        _dataTableColumnWidths = loadDataTableColumnWidths();
+    }
+    const width = Math.max(DATA_TABLE_COL_MIN_WIDTH, Math.min(DATA_TABLE_COL_MAX_WIDTH, Math.round(widthPx)));
+    _dataTableColumnWidths[columnKey] = width;
+    const table = document.getElementById('dataTable');
+    if (!table) return width;
+    const col = table.querySelector('colgroup[data-data-table-cols="1"] col[data-column-key="' + columnKey + '"]');
+    if (col) {
+        col.style.width = width + 'px';
+        col.style.minWidth = width + 'px';
+    }
+    let total = 0;
+    table.querySelectorAll('colgroup[data-data-table-cols="1"] col').forEach(function(c) {
+        total += parseFloat(c.style.width) || 0;
+    });
+    table.style.setProperty('--data-table-total-width', total + 'px');
+    table.style.width = total + 'px';
+    if (persist) saveDataTableColumnWidths(_dataTableColumnWidths);
+    return width;
+}
+
+function resetDataTableColumnWidths() {
+    _dataTableColumnWidths = {};
+    try {
+        localStorage.removeItem(TABLE_COLUMN_WIDTHS_STORAGE_KEY);
+    } catch (e) { /* ignore */ }
+    const table = document.getElementById('dataTable');
+    if (table) {
+        table.classList.remove('data-table--resized');
+        table.style.removeProperty('--data-table-total-width');
+        table.style.width = '';
+        const colgroup = table.querySelector('colgroup[data-data-table-cols="1"]');
+        if (colgroup) colgroup.remove();
+    }
+    requestAnimationFrame(function() {
+        applyDataTableColumnWidths({ remeasureDefaults: true });
+        saveDataTableColumnWidths(_dataTableColumnWidths);
+    });
+}
+
+window.resetDataTableColumnWidths = resetDataTableColumnWidths;
+
+function initDataTableColumnResize() {
+    ensureDataTableHeaderResizeUI();
+    _dataTableColumnWidths = loadDataTableColumnWidths();
+    applyDataTableColumnWidths({ remeasureDefaults: Object.keys(_dataTableColumnWidths).length === 0 });
+    if (Object.keys(_dataTableColumnWidths).length) {
+        saveDataTableColumnWidths(_dataTableColumnWidths);
+    }
+
+    document.addEventListener('mousedown', function(e) {
+        const handle = e.target.closest('.col-resize-handle');
+        if (!handle) return;
+        const th = handle.closest('th[data-column-key]');
+        if (!th) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const key = th.getAttribute('data-column-key');
+        if (!key) return;
+        if (!_dataTableColumnWidths) _dataTableColumnWidths = loadDataTableColumnWidths();
+        const startWidth = _dataTableColumnWidths[key] || Math.round(th.getBoundingClientRect().width);
+        _dataTableColResizeState = {
+            key: key,
+            startX: e.clientX,
+            startWidth: startWidth
+        };
+        document.body.classList.add('data-table-col-resizing');
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!_dataTableColResizeState) return;
+        const dx = e.clientX - _dataTableColResizeState.startX;
+        setDataTableColumnWidth(_dataTableColResizeState.key, _dataTableColResizeState.startWidth + dx, false);
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (!_dataTableColResizeState) return;
+        saveDataTableColumnWidths(_dataTableColumnWidths);
+        _dataTableColResizeState = null;
+        document.body.classList.remove('data-table-col-resizing');
+        syncDataTableStickyHeaderOffset();
+    });
+
+    document.addEventListener('dblclick', function(e) {
+        const handle = e.target.closest('.col-resize-handle');
+        if (!handle) return;
+        const th = handle.closest('th[data-column-key]');
+        if (!th) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const key = th.getAttribute('data-column-key');
+        if (!key) return;
+        if (_dataTableColumnWidths && Object.prototype.hasOwnProperty.call(_dataTableColumnWidths, key)) {
+            delete _dataTableColumnWidths[key];
+            saveDataTableColumnWidths(_dataTableColumnWidths);
+        }
+        const table = document.getElementById('dataTable');
+        if (table) {
+            table.classList.remove('data-table--resized');
+            const col = table.querySelector('colgroup[data-data-table-cols="1"] col[data-column-key="' + key + '"]');
+            if (col) {
+                col.style.width = '';
+                col.style.minWidth = '';
+            }
+        }
+        requestAnimationFrame(function() {
+            const measured = measureDataTableDefaultColumnWidths();
+            if (measured[key]) setDataTableColumnWidth(key, measured[key], true);
+            applyDataTableColumnWidths();
+        });
     });
 }
 
@@ -1900,7 +2164,9 @@ function updateTableHeaderLabelsFromSheet(headersList) {
                 if (!btn) return;
                 const isPending = pendingSlug === listing.slug;
                 btn.textContent = isPending ? 'Confirm?' : 'Delete';
-                btn.style.background = isPending ? '#dc2626' : '#E3795C';
+                btn.classList.toggle('btn-table-delete--confirm', isPending);
+                btn.style.background = '';
+                btn.style.color = '';
             });
         }
 
@@ -2283,6 +2549,86 @@ function updateTabsStickyStackStuck() {
                 .replace(/[^a-z0-9]+/g, '-')
                 .replace(/^-+|-+$/g, '');
         }
+
+        // Slug uniqueness: no two listings may share the same slug (case-insensitive).
+        function normalizeSlugKey(value) {
+            return String(value || '').trim().toLowerCase();
+        }
+
+        function findListingIndexBySlug(slug) {
+            const target = normalizeSlugKey(slug);
+            if (!target || !data || !Array.isArray(data.listings)) return -1;
+            return data.listings.findIndex(function(l) {
+                return normalizeSlugKey(l && l.slug) === target;
+            });
+        }
+
+        function isSlugTaken(slug, options) {
+            options = options || {};
+            const target = normalizeSlugKey(slug);
+            if (!target || !data || !Array.isArray(data.listings)) return false;
+            const excludeIndex = options.excludeIndex;
+            let skippedExcludeSlug = false;
+            const excludeSlug = options.excludeSlug != null ? normalizeSlugKey(options.excludeSlug) : null;
+            return data.listings.some(function(listing, index) {
+                if (excludeIndex != null && index === excludeIndex) return false;
+                const current = normalizeSlugKey(listing && listing.slug);
+                if (!current || current !== target) return false;
+                // When excluding by prior slug, skip only the first match (the row being edited).
+                if (excludeSlug && current === excludeSlug && !skippedExcludeSlug) {
+                    skippedExcludeSlug = true;
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        function ensureUniqueSlug(baseSlug, options) {
+            options = options || {};
+            let root = slugify(baseSlug) || 'listing';
+            if (!isSlugTaken(root, options)) return root;
+            let n = 2;
+            let candidate = root + '-' + n;
+            while (isSlugTaken(candidate, options)) {
+                n += 1;
+                candidate = root + '-' + n;
+            }
+            return candidate;
+        }
+
+        function findDuplicateSlugs(listings) {
+            const rows = Array.isArray(listings) ? listings : (data && data.listings) || [];
+            const bySlug = {};
+            rows.forEach(function(listing, index) {
+                const key = normalizeSlugKey(listing && listing.slug);
+                if (!key) return;
+                if (!bySlug[key]) bySlug[key] = [];
+                bySlug[key].push({
+                    index: index,
+                    slug: String(listing.slug || '').trim(),
+                    name: String(listing.name || '').trim() || '(unnamed)'
+                });
+            });
+            return Object.keys(bySlug).filter(function(key) {
+                return bySlug[key].length > 1;
+            }).map(function(key) {
+                return { slug: key, listings: bySlug[key] };
+            });
+        }
+
+        function formatDuplicateSlugMessage(duplicates) {
+            if (!duplicates || !duplicates.length) return '';
+            return duplicates.slice(0, 8).map(function(dup) {
+                const names = dup.listings.map(function(item) {
+                    return item.name;
+                }).join(', ');
+                return '• "' + dup.slug + '" → ' + names;
+            }).join('\n') + (duplicates.length > 8 ? '\n• …and ' + (duplicates.length - 8) + ' more' : '');
+        }
+
+        window.isSlugTaken = isSlugTaken;
+        window.ensureUniqueSlug = ensureUniqueSlug;
+        window.findDuplicateSlugs = findDuplicateSlugs;
         
         function mapCSVRowToListing(row) {
             const normalizedRow = {};
@@ -3118,6 +3464,17 @@ function updateTabsStickyStackStuck() {
             
             if (!data.listings || data.listings.length === 0) {
                 alert('⚠️ No listings to save.');
+                return;
+            }
+
+            const duplicateSlugs = findDuplicateSlugs(data.listings);
+            if (duplicateSlugs.length) {
+                alert(
+                    '⚠️ Cannot Save to Sheets — duplicate slugs found.\n\n' +
+                    'Each listing needs a unique slug. Fix these first:\n\n' +
+                    formatDuplicateSlugMessage(duplicateSlugs)
+                );
+                updateSyncStatus(false, 'Save blocked: duplicate slugs');
                 return;
             }
             
@@ -5816,16 +6173,8 @@ function updateTabsStickyStackStuck() {
         }
         
         function uniqueCopySlug(baseSlug) {
-            const root = String(baseSlug || 'listing').trim().replace(/-copy(-\d+)?$/, '') || 'listing';
-            let candidate = root + '-copy';
-            let n = 2;
-            while (data.listings.some(function(l) {
-                return String(l.slug || '').trim() === candidate;
-            })) {
-                candidate = root + '-copy-' + n;
-                n += 1;
-            }
-            return candidate;
+            const root = slugify(String(baseSlug || 'listing').replace(/-copy(-\d+)?$/i, '')) || 'listing';
+            return ensureUniqueSlug(root + '-copy');
         }
 
         function duplicateListing(slug) {
@@ -5842,11 +6191,12 @@ function updateTabsStickyStackStuck() {
             // Modify the name to indicate it's a duplicate
             duplicate.name = (listing.name || 'Untitled Listing') + ' (Copy)';
             
-            // Generate a unique slug so repeated duplicates don't collide
-            const baseSlug = listing.slug || (listing.name
-                ? String(listing.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
-                : 'listing');
+            // Always mint a unique slug — never reuse the source listing's slug
+            const baseSlug = listing.slug || listing.name || 'listing';
             duplicate.slug = uniqueCopySlug(baseSlug);
+            if (isSlugTaken(duplicate.slug)) {
+                duplicate.slug = ensureUniqueSlug(duplicate.slug || 'listing');
+            }
             
             // Fresh timestamps for the new listing
             duplicate.publishedDate = getLocalDateYYYYMMDD();
@@ -6130,8 +6480,47 @@ function updateTabsStickyStackStuck() {
             
             const listing = sanitizeListing(Object.assign({}, existingListing || {}, listingUpdates));
             
+            const editingIndex = isUpdate
+                ? data.listings.findIndex(function(l) { return l.slug === editingSlug; })
+                : -1;
+            const slugOptions = { excludeIndex: editingIndex >= 0 ? editingIndex : undefined };
+
             if (!listing.slug && listing.name) {
-                listing.slug = slugify(listing.name);
+                listing.slug = ensureUniqueSlug(listing.name, slugOptions);
+            } else if (listing.slug) {
+                listing.slug = slugify(listing.slug) || String(listing.slug).trim();
+            }
+
+            if (!listing.slug) {
+                alert('⚠️ Please enter a slug (or a name so one can be generated).');
+                const slugInput = document.getElementById('listingSlug');
+                if (slugInput) {
+                    slugInput.focus();
+                    slugInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }
+                return;
+            }
+
+            if (isSlugTaken(listing.slug, slugOptions)) {
+                const conflictIndex = data.listings.findIndex(function(l, index) {
+                    if (editingIndex >= 0 && index === editingIndex) return false;
+                    return normalizeSlugKey(l && l.slug) === normalizeSlugKey(listing.slug);
+                });
+                const conflict = conflictIndex >= 0 ? data.listings[conflictIndex] : null;
+                alert(
+                    '⚠️ That slug is already used by another listing.\n\n' +
+                    'Slug: "' + listing.slug + '"\n' +
+                    (conflict ? 'Used by: ' + (conflict.name || conflict.slug) + '\n\n' : '\n') +
+                    'Please choose a unique slug before saving.'
+                );
+                const slugInput = document.getElementById('listingSlug');
+                if (slugInput) {
+                    slugInput.value = listing.slug;
+                    slugInput.focus();
+                    slugInput.select();
+                    slugInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                }
+                return;
             }
 
             // Preserve local-only flag for duplicates / new listings until Save to Sheets
@@ -6850,18 +7239,42 @@ function updateTabsStickyStackStuck() {
                 var name = String(listingNameInput.value || '').trim();
                 if (isEditingExistingListing()) {
                     if (!listingSlugInput.value.trim() && name) {
-                        listingSlugInput.value = slugify(name);
+                        var editingSlug = String(document.getElementById('editingId').value || '').trim();
+                        var editingIndex = findListingIndexBySlug(editingSlug);
+                        listingSlugInput.value = ensureUniqueSlug(name, {
+                            excludeIndex: editingIndex >= 0 ? editingIndex : undefined
+                        });
                     }
                     return;
                 }
-                listingSlugInput.value = name ? slugify(name) : '';
+                listingSlugInput.value = name ? ensureUniqueSlug(name) : '';
             }
             listingNameInput.addEventListener('input', syncSlugFromName);
             listingNameInput.addEventListener('blur', syncSlugFromName);
             listingSlugInput.addEventListener('blur', function() {
                 if (!listingSlugInput.value.trim() && String(listingNameInput.value || '').trim()) {
-                    listingSlugInput.value = slugify(String(listingNameInput.value || '').trim());
+                    var editingSlug = String((document.getElementById('editingId') || {}).value || '').trim();
+                    var editingIndex = findListingIndexBySlug(editingSlug);
+                    listingSlugInput.value = ensureUniqueSlug(String(listingNameInput.value || '').trim(), {
+                        excludeIndex: editingIndex >= 0 ? editingIndex : undefined
+                    });
+                    return;
                 }
+                var raw = String(listingSlugInput.value || '').trim();
+                if (!raw) return;
+                var normalized = slugify(raw) || raw;
+                var editingSlug = String((document.getElementById('editingId') || {}).value || '').trim();
+                var editingIndex = findListingIndexBySlug(editingSlug);
+                if (isSlugTaken(normalized, { excludeIndex: editingIndex >= 0 ? editingIndex : undefined })) {
+                    listingSlugInput.setCustomValidity('This slug is already used by another listing.');
+                    listingSlugInput.reportValidity();
+                } else {
+                    listingSlugInput.setCustomValidity('');
+                    listingSlugInput.value = normalized;
+                }
+            });
+            listingSlugInput.addEventListener('input', function() {
+                listingSlugInput.setCustomValidity('');
             });
         }
         
@@ -10147,6 +10560,7 @@ function updateTabsStickyStackStuck() {
         setTimeout(function() {
             // Sort functionality
             document.addEventListener('click', function(e) {
+                if (e.target.closest('.col-resize-handle')) return;
                 if (e.target.closest('.data-table th.sortable')) {
                     const th = e.target.closest('.data-table th.sortable');
                     const sortField = th.getAttribute('data-sort');
@@ -10181,6 +10595,7 @@ function updateTabsStickyStackStuck() {
             saveDataTableShowThumbnails(dataTableShowThumbnails);
             const thumbToggle = document.getElementById('dataTableShowThumbnails');
             if (thumbToggle) thumbToggle.checked = dataTableShowThumbnails;
+            initDataTableColumnResize();
             var headerStickyResizeTimer;
             window.addEventListener('resize', function() {
                 clearTimeout(headerStickyResizeTimer);
@@ -10225,8 +10640,52 @@ function updateTabsStickyStackStuck() {
                 }
             });
 
-            let changeCount = applyAllTableRowDrafts();
+            let changeCount = 0;
+            const slugConflicts = [];
+
+            Object.keys(tableRowDrafts).forEach(function(key) {
+                const index = parseInt(key, 10);
+                const listing = data.listings[index];
+                const draft = tableRowDrafts[key];
+                if (!listing || !draft) return;
+
+                if (Object.prototype.hasOwnProperty.call(draft, 'slug')) {
+                    let nextSlug = String(draft.slug || '').trim();
+                    if (!nextSlug && listing.name) {
+                        nextSlug = ensureUniqueSlug(listing.name, { excludeIndex: index });
+                        draft.slug = nextSlug;
+                    } else if (nextSlug) {
+                        nextSlug = slugify(nextSlug) || nextSlug;
+                        draft.slug = nextSlug;
+                    }
+                    if (nextSlug && isSlugTaken(nextSlug, { excludeIndex: index })) {
+                        const conflict = data.listings.find(function(l, i) {
+                            if (i === index) return false;
+                            return normalizeSlugKey(l && l.slug) === normalizeSlugKey(nextSlug);
+                        });
+                        slugConflicts.push({
+                            name: listing.name || '(unnamed)',
+                            slug: nextSlug,
+                            conflictName: conflict ? (conflict.name || conflict.slug) : 'another listing'
+                        });
+                        delete draft.slug; // do not apply the colliding slug
+                    }
+                }
+
+                changeCount += applyTableRowFieldsToListing(listing, draft, null);
+            });
+
             tableRowDrafts = {};
+
+            if (slugConflicts.length) {
+                alert(
+                    '⚠️ Some slug changes were not saved because they collide with another listing:\n\n' +
+                    slugConflicts.slice(0, 8).map(function(item) {
+                        return '• "' + item.name + '" → "' + item.slug + '" (already used by ' + item.conflictName + ')';
+                    }).join('\n') +
+                    '\n\nOther field edits were kept. Pick unique slugs and try again.'
+                );
+            }
 
             applyFilterOptionCleanup();
             renderListings();
@@ -10242,7 +10701,11 @@ function updateTabsStickyStackStuck() {
                 }
             } else {
                 if (!options.silent) {
-                    alert('No changes detected in the table — nothing to commit.');
+                    if (slugConflicts.length) {
+                        alert('No other changes were saved. Resolve the duplicate slug(s) and try again.');
+                    } else {
+                        alert('No changes detected in the table — nothing to commit.');
+                    }
                 }
             }
             updateUnsavedChangesBadge();
