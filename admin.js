@@ -1820,7 +1820,12 @@ function initDataTableColumnResize() {
 // =================================
         // Step 1: Get your Google Sheet's published CSV URL (optional - used as fallback)
         // File → Share → Publish to web → CSV → Copy URL
-        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/YOUR_SHEET_ID/pub?gid=0&single=true&output=csv';
+        const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjIYDylHAm_j9b4rwGOjfPe0aoPRA1rcqsZ8NZg8ugT97pkM83n87NrDVhx7NU63-whpia-hRscywD/pub?gid=0&single=true&output=csv';
+
+        // Openable Sheet link for Settings → View Google Sheet.
+        // Prefer the Share/edit link (docs.google.com/spreadsheets/d/SHEET_ID/edit).
+        // Falls back to the published HTML view; override anytime via localStorage key nelsonCounty_googleSheetUrl.
+        const GOOGLE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjIYDylHAm_j9b4rwGOjfPe0aoPRA1rcqsZ8NZg8ugT97pkM83n87NrDVhx7NU63-whpia-hRscywD/pubhtml';
         
         // Step 2: Your Google Apps Script Web App URL (REQUIRED for read/write)
         // This URL is already configured and working!
@@ -1835,6 +1840,19 @@ function initDataTableColumnResize() {
         // Set your API key in the Google Apps Script or use environment variable
         const OPENAI_API_KEY = ''; // Leave empty to use server-side via Google Apps Script
         const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
+
+        window.openGoogleSheet = function openGoogleSheet() {
+            let url = '';
+            try {
+                url = (localStorage.getItem('nelsonCounty_googleSheetUrl') || '').trim();
+            } catch (e) {}
+            if (!url) url = (typeof GOOGLE_SHEET_URL === 'string' ? GOOGLE_SHEET_URL : '').trim();
+            if (!url || /YOUR_SHEET/i.test(url)) {
+                alert('Google Sheet link is not configured yet.');
+                return;
+            }
+            window.open(url, '_blank', 'noopener,noreferrer');
+        };
         
         // Initialize data with initialData (will be updated from Google Sheets on load)
         let data = JSON.parse(JSON.stringify(initialData));
@@ -7334,6 +7352,287 @@ function updateTabsStickyStackStuck() {
         }
         
         // ===========================================
+        // ACTIVITY / AUDIT LOG (Settings)
+        // ===========================================
+        var activityLogEntriesCache = [];
+        var activityLogFilter = 'all';
+        var activityLogLoading = false;
+
+        function activityLogEscape(text) {
+            if (typeof escapeHtml === 'function') return escapeHtml(text);
+            return String(text == null ? '' : text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function activityInitials(email) {
+            var local = String(email || '').split('@')[0] || '?';
+            var parts = local.split(/[._\-+]+/).filter(Boolean);
+            if (parts.length >= 2) {
+                return (parts[0].charAt(0) + parts[1].charAt(0)).toUpperCase();
+            }
+            return local.slice(0, 2).toUpperCase();
+        }
+
+        function activityTone(email) {
+            var s = String(email || '');
+            var hash = 0;
+            for (var i = 0; i < s.length; i++) hash = ((hash << 5) - hash) + s.charCodeAt(i);
+            return Math.abs(hash) % 6;
+        }
+
+        function activityActionLabel(action) {
+            var a = String(action || '').toLowerCase();
+            if (a === 'create') return 'Created';
+            if (a === 'update') return 'Updated';
+            if (a === 'delete') return 'Deleted';
+            if (a === 'save-all') return 'Saved all';
+            return a ? a : 'Change';
+        }
+
+        function activityActionClass(action) {
+            var a = String(action || '').toLowerCase();
+            if (a === 'create' || a === 'update' || a === 'delete' || a === 'save-all') return a;
+            return 'other';
+        }
+
+        function parseActivityTimestamp(value) {
+            if (!value) return null;
+            if (Object.prototype.toString.call(value) === '[object Date]' && !isNaN(value.getTime())) return value;
+            var s = String(value).trim();
+            var d = new Date(s);
+            if (!isNaN(d.getTime())) return d;
+            // Apps Script sometimes returns "M/D/YYYY H:MM:SS"
+            var m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})(?::(\d{2}))?)?/);
+            if (m) {
+                d = new Date(
+                    parseInt(m[3], 10),
+                    parseInt(m[1], 10) - 1,
+                    parseInt(m[2], 10),
+                    parseInt(m[4] || '0', 10),
+                    parseInt(m[5] || '0', 10),
+                    parseInt(m[6] || '0', 10)
+                );
+                if (!isNaN(d.getTime())) return d;
+            }
+            return null;
+        }
+
+        function formatActivityRelative(date) {
+            if (!date) return '';
+            var diff = Date.now() - date.getTime();
+            if (diff < 0) diff = 0;
+            var sec = Math.floor(diff / 1000);
+            if (sec < 45) return 'Just now';
+            var min = Math.floor(sec / 60);
+            if (min < 60) return min + 'm ago';
+            var hr = Math.floor(min / 60);
+            if (hr < 24) return hr + 'h ago';
+            var day = Math.floor(hr / 24);
+            if (day < 7) return day + 'd ago';
+            return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        }
+
+        function formatActivityDayLabel(date) {
+            if (!date) return 'Earlier';
+            var today = new Date();
+            var startToday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            var startThat = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            var dayDiff = Math.round((startToday - startThat) / 86400000);
+            if (dayDiff === 0) return 'Today';
+            if (dayDiff === 1) return 'Yesterday';
+            return date.toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
+        }
+
+        function displayNameFromEmail(email) {
+            var local = String(email || '').split('@')[0] || 'Someone';
+            return local.replace(/[._\-+]+/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
+        }
+
+        window.setActivityLogFilter = function setActivityLogFilter(filter) {
+            activityLogFilter = filter || 'all';
+            document.querySelectorAll('.activity-log-filter').forEach(function(btn) {
+                btn.classList.toggle('is-active', btn.getAttribute('data-filter') === activityLogFilter);
+            });
+            renderActivityLogList();
+        };
+
+        function renderActivityLogList() {
+            var statusEl = document.getElementById('activityLogStatus');
+            var listEl = document.getElementById('activityLogList');
+            if (!statusEl || !listEl) return;
+
+            var entries = (activityLogEntriesCache || []).filter(function(entry) {
+                if (activityLogFilter === 'all') {
+                    // Keep save-all summaries out of the main feed — they're noisy
+                    return String(entry.action || '').toLowerCase() !== 'save-all';
+                }
+                return String(entry.action || '').toLowerCase() === activityLogFilter;
+            });
+
+            if (!entries.length) {
+                listEl.hidden = true;
+                listEl.innerHTML = '';
+                statusEl.hidden = false;
+                statusEl.className = 'activity-log-status';
+                if (!(activityLogEntriesCache || []).length) {
+                    statusEl.textContent = 'No activity yet. Changes appear here after Save to Sheets.';
+                } else {
+                    statusEl.textContent = 'No matching activity for this filter.';
+                }
+                return;
+            }
+
+            statusEl.hidden = true;
+            listEl.hidden = false;
+            var html = '';
+            var lastDay = '';
+            entries.forEach(function(entry) {
+                var when = parseActivityTimestamp(entry.timestamp);
+                var dayLabel = formatActivityDayLabel(when);
+                if (dayLabel !== lastDay) {
+                    lastDay = dayLabel;
+                    html += '<div class="activity-log-day">' + activityLogEscape(dayLabel) + '</div>';
+                }
+                var action = String(entry.action || '').toLowerCase();
+                var email = entry.email || '';
+                var who = displayNameFromEmail(email);
+                var listingLabel = entry.name || entry.slug || 'listing';
+                var verb = activityActionLabel(action).toLowerCase();
+                var line;
+                if (action === 'save-all') {
+                    line = '<strong>' + activityLogEscape(who) + '</strong> saved all listings';
+                } else if (action === 'delete') {
+                    line = '<strong>' + activityLogEscape(who) + '</strong> deleted <strong>' + activityLogEscape(listingLabel) + '</strong>';
+                } else {
+                    line = '<strong>' + activityLogEscape(who) + '</strong> ' + activityLogEscape(verb) + ' <strong>' + activityLogEscape(listingLabel) + '</strong>';
+                }
+
+                var chips = '';
+                var fields = String(entry.changedFields || '')
+                    .split(',')
+                    .map(function(f) { return f.trim(); })
+                    .filter(Boolean)
+                    .slice(0, 8);
+                if (fields.length) {
+                    chips = '<div class="activity-log-chips">' + fields.map(function(f) {
+                        return '<span class="activity-log-chip">' + activityLogEscape(f) + '</span>';
+                    }).join('') + '</div>';
+                }
+
+                var details = '';
+                if (entry.details && action !== 'save-all') {
+                    details = '<div class="activity-log-details">' + activityLogEscape(entry.details) + '</div>';
+                } else if (entry.details && action === 'save-all') {
+                    details = '<div class="activity-log-meta">' + activityLogEscape(entry.details) + '</div>';
+                }
+
+                var metaBits = [];
+                if (email) metaBits.push(email);
+                if (entry.slug && entry.name) metaBits.push(entry.slug);
+                var meta = metaBits.length
+                    ? '<p class="activity-log-meta">' + activityLogEscape(metaBits.join(' · ')) + '</p>'
+                    : '';
+
+                html +=
+                    '<article class="activity-log-item">' +
+                        '<div class="activity-log-avatar" data-tone="' + activityTone(email) + '" aria-hidden="true">' +
+                            activityLogEscape(activityInitials(email)) +
+                        '</div>' +
+                        '<div class="activity-log-body">' +
+                            '<p class="activity-log-line">' + line + '</p>' +
+                            meta +
+                            chips +
+                            details +
+                        '</div>' +
+                        '<div class="activity-log-side">' +
+                            '<span class="activity-log-badge activity-log-badge--' + activityActionClass(action) + '">' +
+                                activityLogEscape(activityActionLabel(action)) +
+                            '</span>' +
+                            '<span class="activity-log-time" title="' + activityLogEscape(entry.timestamp || '') + '">' +
+                                activityLogEscape(formatActivityRelative(when) || entry.timestamp || '') +
+                            '</span>' +
+                        '</div>' +
+                    '</article>';
+            });
+            listEl.innerHTML = html;
+        }
+
+        window.loadActivityLog = async function loadActivityLog(force) {
+            var statusEl = document.getElementById('activityLogStatus');
+            var listEl = document.getElementById('activityLogList');
+            var refreshBtn = document.getElementById('activityLogRefreshBtn');
+            if (!statusEl || !listEl) return;
+            if (activityLogLoading && !force) return;
+            activityLogLoading = true;
+            if (refreshBtn) refreshBtn.disabled = true;
+
+            statusEl.hidden = false;
+            statusEl.className = 'activity-log-status';
+            statusEl.textContent = 'Loading activity…';
+            if (!activityLogEntriesCache.length) {
+                listEl.hidden = true;
+            }
+
+            try {
+                var scriptUrl = (typeof GOOGLE_APPS_SCRIPT_URL !== 'undefined')
+                    ? GOOGLE_APPS_SCRIPT_URL
+                    : (typeof window.getGoogleAppsScriptURL === 'function' ? window.getGoogleAppsScriptURL() : '');
+                if (!scriptUrl || /YOUR_SCRIPT/i.test(scriptUrl)) {
+                    throw new Error('Apps Script URL is not configured.');
+                }
+                var token = (typeof getAdminSessionToken === 'function') ? getAdminSessionToken() : '';
+                if (!token) {
+                    throw new Error('Sign in again to view activity.');
+                }
+                var url = scriptUrl +
+                    '?action=getAuditLog' +
+                    '&limit=150' +
+                    '&token=' + encodeURIComponent(token) +
+                    '&t=' + Date.now();
+                var response = await fetch(url, { method: 'GET', mode: 'cors' });
+                var text = await response.text();
+                var result = null;
+                try { result = JSON.parse(text); } catch (e) { result = null; }
+
+                // Old deployments ignore unknown actions and return listings instead.
+                if (!result || !Array.isArray(result.entries)) {
+                    activityLogEntriesCache = [];
+                    listEl.hidden = true;
+                    listEl.innerHTML = '';
+                    statusEl.hidden = false;
+                    statusEl.className = 'activity-log-status activity-log-status--error';
+                    statusEl.innerHTML =
+                        'Activity history isn’t available on the current Apps Script deploy yet.<br>' +
+                        'Redeploy <code>COMPLETE-GOOGLE-APPS-SCRIPT.gs</code> (with audit log), then Refresh.';
+                    return;
+                }
+                if (result.success === false) {
+                    throw new Error(result.error || 'Could not load activity.');
+                }
+
+                activityLogEntriesCache = result.entries || [];
+                renderActivityLogList();
+                if (!activityLogEntriesCache.length && result.message) {
+                    statusEl.hidden = false;
+                    statusEl.className = 'activity-log-status';
+                    statusEl.textContent = result.message;
+                }
+            } catch (error) {
+                console.warn('Activity log load failed:', error);
+                listEl.hidden = true;
+                statusEl.hidden = false;
+                statusEl.className = 'activity-log-status activity-log-status--error';
+                statusEl.textContent = (error && error.message) ? error.message : 'Could not load activity.';
+            } finally {
+                activityLogLoading = false;
+                if (refreshBtn) refreshBtn.disabled = false;
+            }
+        };
+
+        // ===========================================
         // SETTINGS MANAGEMENT FUNCTIONS
         // ===========================================
         function renderSettings() {
@@ -7341,7 +7640,8 @@ function updateTabsStickyStackStuck() {
             renderAreasList();
             renderAmenitiesList();
             renderCategoriesList();
-            
+            loadActivityLog();
+
             // Debug: Check what's in localStorage when rendering
             const storedRaw = localStorage.getItem('adminAllowedEmails');
             console.log('🔍 renderSettings: Raw localStorage value:', storedRaw);
@@ -7353,7 +7653,7 @@ function updateTabsStickyStackStuck() {
                     console.error('🔍 renderSettings: Parse error:', e);
                 }
             }
-            
+
             renderAllowedEmailsList();
         }
         
