@@ -430,36 +430,36 @@
             opacity: 0.88;
         }
 
-        /* ========== Settings Activity log (Apple-style) ========== */
+        /* ========== Settings Activity log (Apple-style, compact) ========== */
         .activity-log-section {
             width: 100%;
-            margin: 0 0 28px 0;
-            padding: 22px;
+            margin: 24px 0 0 0;
+            padding: 14px 16px 16px;
             background: #fff;
-            border-radius: 18px;
+            border-radius: 14px;
             border: 1px solid #e0e0e0;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
         }
         .activity-log-section__head {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 14px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
         .activity-log-section__head h2 {
             margin: 0;
-            font-size: 22px;
+            font-size: 17px;
             font-weight: 700;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
             color: #1d1d1f;
             line-height: 1.2;
         }
         .activity-log-section__head p {
-            margin: 4px 0 0;
-            font-size: 14px;
+            margin: 2px 0 0;
+            font-size: 12px;
             color: #86868b;
-            line-height: 1.35;
+            line-height: 1.3;
         }
         .activity-log-refresh {
             appearance: none;
@@ -468,9 +468,9 @@
             border-radius: 980px;
             background: #f2f2f7;
             color: #1d1d1f;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 8px 14px;
+            padding: 6px 11px;
             cursor: pointer;
             flex-shrink: 0;
         }
@@ -478,8 +478,8 @@
         .activity-log-filters {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 14px;
+            gap: 6px;
+            margin-bottom: 10px;
         }
         .activity-log-filter {
             appearance: none;
@@ -488,9 +488,9 @@
             border-radius: 980px;
             background: #f2f2f7;
             color: #6e6e73;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            padding: 7px 12px;
+            padding: 5px 10px;
             cursor: pointer;
         }
         .activity-log-filter.is-active {
@@ -498,13 +498,13 @@
             color: #fff;
         }
         .activity-log-status {
-            padding: 28px 16px;
+            padding: 16px 12px;
             text-align: center;
             color: #86868b;
-            font-size: 14px;
-            line-height: 1.45;
+            font-size: 13px;
+            line-height: 1.4;
             background: #f5f5f7;
-            border-radius: 14px;
+            border-radius: 10px;
         }
         .activity-log-status--error {
             color: #8a1f1f;
@@ -514,16 +514,16 @@
             display: flex;
             flex-direction: column;
             gap: 0;
-            max-height: min(520px, 58vh);
+            max-height: min(320px, 42vh);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
-            border-radius: 14px;
+            border-radius: 10px;
             background: #f5f5f7;
-            padding: 6px;
+            padding: 4px;
         }
         .activity-log-day {
-            margin: 10px 10px 6px;
-            font-size: 12px;
+            margin: 6px 8px 4px;
+            font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.02em;
             text-transform: uppercase;
@@ -531,24 +531,24 @@
         }
         .activity-log-item {
             display: grid;
-            grid-template-columns: 40px minmax(0, 1fr) auto;
-            gap: 12px;
-            align-items: start;
-            padding: 12px 12px;
-            margin: 0 0 6px;
+            grid-template-columns: 28px minmax(0, 1fr) auto;
+            gap: 8px;
+            align-items: center;
+            padding: 7px 8px;
+            margin: 0 0 3px;
             background: #fff;
-            border-radius: 14px;
+            border-radius: 10px;
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
         .activity-log-item:last-child { margin-bottom: 0; }
         .activity-log-avatar {
-            width: 40px;
-            height: 40px;
+            width: 28px;
+            height: 28px;
             border-radius: 980px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: -0.02em;
             color: #fff;
@@ -564,48 +564,42 @@
         .activity-log-body { min-width: 0; }
         .activity-log-line {
             margin: 0;
-            font-size: 15px;
-            line-height: 1.35;
+            font-size: 13px;
+            line-height: 1.3;
             color: #1d1d1f;
             letter-spacing: -0.01em;
         }
         .activity-log-line strong { font-weight: 700; }
         .activity-log-meta {
-            margin: 4px 0 0;
-            font-size: 12px;
+            margin: 1px 0 0;
+            font-size: 11px;
             color: #86868b;
-            line-height: 1.35;
+            line-height: 1.3;
             word-break: break-word;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .activity-log-chips {
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
+            gap: 4px;
+            margin-top: 4px;
         }
         .activity-log-chip {
             display: inline-flex;
             align-items: center;
-            padding: 3px 8px;
+            padding: 1px 6px;
             border-radius: 980px;
             background: #f2f2f7;
             color: #3a3a3c;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: -0.01em;
         }
+        /* Keep the feed compact: field chips stay, long before/after dumps stay collapsed */
         .activity-log-details {
-            margin-top: 8px;
-            padding: 8px 10px;
-            border-radius: 10px;
-            background: #f2f2f7;
-            color: #3a3a3c;
-            font-size: 12px;
-            line-height: 1.4;
-            white-space: pre-wrap;
-            word-break: break-word;
-            max-height: 88px;
-            overflow: auto;
+            display: none;
         }
         .activity-log-side {
             text-align: right;
@@ -614,9 +608,9 @@
         .activity-log-badge {
             display: inline-flex;
             align-items: center;
-            padding: 4px 9px;
+            padding: 2px 7px;
             border-radius: 980px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             letter-spacing: -0.01em;
             text-transform: capitalize;
@@ -629,14 +623,14 @@
         .activity-log-badge--other { background: #f2f2f7; color: #6e6e73; }
         .activity-log-time {
             display: block;
-            margin-top: 6px;
-            font-size: 11px;
+            margin-top: 3px;
+            font-size: 10px;
             color: #aeaeb2;
             white-space: nowrap;
         }
         @media (max-width: 720px) {
             .activity-log-item {
-                grid-template-columns: 36px minmax(0, 1fr);
+                grid-template-columns: 28px minmax(0, 1fr);
             }
             .activity-log-side {
                 grid-column: 2;
