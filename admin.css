@@ -1531,7 +1531,81 @@
             color: #1d1d1f;
             margin: 0;
         }
-        .data-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+        .data-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        .data-actions .btn {
+            appearance: none;
+            -webkit-appearance: none;
+            margin: 0;
+            padding: 9px 16px;
+            border: none;
+            border-radius: 980px;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            cursor: pointer;
+            box-shadow: none;
+            transform: none;
+            transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+        }
+        .data-actions .btn:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        .data-actions .btn:active {
+            opacity: 0.82;
+            transform: scale(0.98);
+        }
+        .data-actions .btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.28);
+        }
+        .data-actions .btn-primary {
+            background: #007aff;
+            color: #fff;
+        }
+        .data-actions .btn-primary:hover {
+            background: #0066d6;
+        }
+        .data-actions .btn-success {
+            background: #34c759;
+            color: #fff;
+        }
+        .data-actions .btn-success:hover {
+            background: #2db14e;
+        }
+        .data-actions .btn-success.btn-success--muted {
+            background: rgba(52, 199, 89, 0.14);
+            color: #1a7f37;
+        }
+        .data-actions .btn-success.btn-success--muted:hover {
+            background: rgba(52, 199, 89, 0.22);
+            color: #146c2e;
+        }
+        .data-actions .btn-secondary {
+            background: #e8e8ed;
+            color: #1d1d1f;
+        }
+        .data-actions .btn-secondary:hover {
+            background: #dcdce1;
+            color: #1d1d1f;
+        }
+        .data-actions .btn-secondary:focus-visible {
+            box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.12);
+        }
+        .data-actions #updateTableBtn {
+            background: #007aff;
+            color: #fff;
+        }
+        .data-actions #updateTableBtn:hover {
+            background: #0066d6;
+        }
         .table-wrapper {
             --dt-surface: #ffffff;
             --dt-surface-elevated: rgba(255, 255, 255, 0.82);
@@ -1604,8 +1678,9 @@
         }
         .data-table thead tr:first-child th:first-child {
             position: sticky;
+            top: 0;
             left: 0;
-            z-index: 20;
+            z-index: 30;
             background: var(--dt-header-solid);
             font-size: 12px;
             font-weight: 700;
@@ -1613,13 +1688,6 @@
             text-transform: none;
             color: var(--dt-ink);
             min-width: 250px;
-            border-right: 1px solid var(--dt-line-strong);
-        }
-        .data-table thead tr.filter-row th:first-child {
-            position: sticky;
-            left: 0;
-            z-index: 20;
-            background: var(--dt-filter);
             border-right: 1px solid var(--dt-line-strong);
         }
         .data-table th {
@@ -1696,7 +1764,17 @@
             user-select: auto;
             border-bottom: 1px solid var(--dt-line-strong);
         }
+        /* Corner cell: stick both vertically (with filter row) and horizontally (with Name). */
+        .data-table thead tr.filter-row th:first-child {
+            position: sticky;
+            top: var(--data-table-header-row1-height, 52px);
+            left: 0;
+            z-index: 31;
+            background: var(--dt-filter);
+            border-right: 1px solid var(--dt-line-strong);
+        }
         .data-table thead tr.filter-row th:hover { background: var(--dt-filter); }
+        .data-table thead tr.filter-row th:first-child:hover { background: var(--dt-filter); }
         .data-table .filter-input,
         .data-table .filter-select {
             width: 100%;
@@ -2008,29 +2086,6 @@
             line-height: 0 !important;
             font-size: 0 !important;
             vertical-align: top !important;
-        }
-        .data-table-thumbnails-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--dt-ink, #1d1d1f);
-            padding: 8px 12px;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 980px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(8px);
-            cursor: pointer;
-            user-select: none;
-            white-space: nowrap;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-        }
-        .data-table-thumbnails-toggle input {
-            width: 1rem;
-            height: 1rem;
-            accent-color: #007AFF;
-            cursor: pointer;
         }
         .data-table .cell-website,
         .data-table .cell-directions,

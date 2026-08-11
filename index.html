@@ -19,7 +19,7 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
-    <link rel="stylesheet" href="admin.css?v=20260811c">
+    <link rel="stylesheet" href="admin.css?v=20260811g">
     <link rel="preload" href="admin-data.js?v=20260610e" as="script">
     <link rel="preload" href="admin.js?v=20260811d" as="script">
     <script src="admin-auth.js?v=20260610e" defer></script>
@@ -370,17 +370,13 @@
             <div class="data-header">
                 <h2>Table View</h2>
                 <div class="data-actions">
-                    <label class="data-table-thumbnails-toggle" title="Load image thumbnails in the table (uses more bandwidth)">
-                        <input type="checkbox" id="dataTableShowThumbnails" onchange="setDataTableShowThumbnails(this.checked)" />
-                        Show image previews
-                    </label>
                     <input type="file" id="csvUpload" accept=".csv,.tsv,.txt" style="display: none;" onchange="handleCSVUpload(event)" />
-                    <button class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV</button>
-                    <button class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
-                    <button class="btn btn-success" onclick="downloadTSV()" style="background: #2d8a4e;">Download TSV</button>
-                    <button type="button" id="updateTableBtn" class="btn btn-success" onclick="saveTableChanges()" style="background: #4E6B52;">Update Table</button>
-                    <button class="btn btn-secondary" onclick="clearTableFilters()" style="background: #6c757d; margin-left: 10px;">Clear Filters</button>
-                    <button type="button" class="btn btn-secondary" onclick="resetDataTableColumnWidths()" style="background: #6c757d;" title="Reset all table column widths to defaults">Reset column widths</button>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('csvUpload').click()">Upload CSV</button>
+                    <button type="button" class="btn btn-success" onclick="downloadCSV()">Download CSV</button>
+                    <button type="button" class="btn btn-success btn-success--muted" onclick="downloadTSV()">Download TSV</button>
+                    <button type="button" id="updateTableBtn" class="btn btn-success" onclick="saveTableChanges()">Update Table</button>
+                    <button type="button" class="btn btn-secondary" onclick="clearTableFilters()">Clear Filters</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetDataTableColumnWidths()" title="Reset all table column widths to defaults">Reset column widths</button>
                 </div>
             </div>
             <div class="table-wrapper">
