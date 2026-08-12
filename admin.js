@@ -7451,6 +7451,52 @@ function updateTabsStickyStackStuck() {
             return local.replace(/[._\-+]+/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
         }
 
+        // Turn raw "amenities: \"a; b\" → \"a\"" (or new "amenities: removed b") into a short line.
+        function formatActivityDetails(raw) {
+            var text = String(raw || '').trim();
+            if (!text) return '';
+            var parts = text.split(/\s\|\s/);
+            var out = parts.map(function(part) {
+                var amenityNew = part.match(/^amenities:\s*(.+)$/i);
+                if (amenityNew && !/→/.test(amenityNew[1])) {
+                    return amenityNew[1].trim();
+                }
+                var amenityOld = part.match(/^amenities:\s*"([^"]*)"\s*→\s*"([^"]*)"$/i);
+                if (amenityOld) {
+                    var before = amenityOld[1].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
+                    var after = amenityOld[2].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
+                    var beforeMap = {};
+                    var afterMap = {};
+                    before.forEach(function(v) { beforeMap[v.toLowerCase()] = v; });
+                    after.forEach(function(v) { afterMap[v.toLowerCase()] = v; });
+                    var removed = [];
+                    var added = [];
+                    Object.keys(beforeMap).forEach(function(k) { if (!afterMap[k]) removed.push(beforeMap[k]); });
+                    Object.keys(afterMap).forEach(function(k) { if (!beforeMap[k]) added.push(afterMap[k]); });
+                    var bits = [];
+                    if (removed.length) bits.push('removed ' + removed.join(', '));
+                    if (added.length) bits.push('added ' + added.join(', '));
+                    return bits.length ? bits.join('; ') : part;
+                }
+                // Shorten other field dumps: keep field name + arrow summary
+                var generic = part.match(/^([a-zA-Z0-9_]+):\s*"([^"]*)"\s*→\s*"([^"]*)"$/);
+                if (generic) {
+                    var from = generic[2];
+                    var to = generic[3];
+                    if (!from && to) return generic[1] + ': set';
+                    if (from && !to) return generic[1] + ': cleared';
+                    if (from.length > 40 || to.length > 40) {
+                        return generic[1] + ' changed';
+                    }
+                    return generic[1] + ': "' + from + '" → "' + to + '"';
+                }
+                return part;
+            });
+            var joined = out.filter(Boolean).join(' · ');
+            if (joined.length > 180) joined = joined.slice(0, 177) + '…';
+            return joined;
+        }
+
         window.setActivityLogFilter = function setActivityLogFilter(filter) {
             activityLogFilter = filter || 'all';
             document.querySelectorAll('.activity-log-filter').forEach(function(btn) {
@@ -7524,7 +7570,9 @@ function updateTabsStickyStackStuck() {
 
                 var details = '';
                 if (entry.details && action !== 'save-all') {
-                    details = '<div class="activity-log-details">' + activityLogEscape(entry.details) + '</div>';
+                    details = '<div class="activity-log-details" title="' + activityLogEscape(entry.details) + '">' +
+                        activityLogEscape(formatActivityDetails(entry.details)) +
+                        '</div>';
                 } else if (entry.details && action === 'save-all') {
                     details = '<div class="activity-log-meta">' + activityLogEscape(entry.details) + '</div>';
                 }

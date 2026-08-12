@@ -597,9 +597,17 @@
             font-weight: 600;
             letter-spacing: -0.01em;
         }
-        /* Keep the feed compact: field chips stay, long before/after dumps stay collapsed */
+        /* Compact change summary under each activity row */
         .activity-log-details {
-            display: none;
+            display: block;
+            margin-top: 3px;
+            font-size: 11px;
+            line-height: 1.35;
+            color: #6e6e73;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
         }
         .activity-log-side {
             text-align: right;
