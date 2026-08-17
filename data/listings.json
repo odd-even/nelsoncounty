@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T18:52:53.070Z",
+  "generatedAt": "2026-08-17T20:58:15.481Z",
   "source": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjIYDylHAm_j9b4rwGOjfPe0aoPRA1rcqsZ8NZg8ugT97pkM83n87NrDVhx7NU63-whpia-hRscywD/pub?gid=0&single=true&output=csv",
   "headers": [
     "name",
@@ -16608,7 +16608,7 @@
       "accordionPanel4Content": "<p><br></p>"
     },
     {
-      "name": "Afton Awaits (Copy)",
+      "name": "Afton Awaits",
       "slug": "afton-awaits-copy",
       "type": "Cabins & Cottages",
       "category": "stay",
@@ -16632,7 +16632,7 @@
       "longitude": "",
       "authorName": "",
       "publishedDate": "Aug 8, 2026",
-      "modifiedDate": "Aug 8, 2026",
+      "modifiedDate": "Aug 17, 2026",
       "directionsLink": "",
       "videoLink": "",
       "document1": "",
