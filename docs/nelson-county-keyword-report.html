@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visit Nelson · Keywords in use</title>
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --bg-elevated: #ffffff;
+      --label: #1d1d1f;
+      --secondary: #6e6e73;
+      --tertiary: #86868b;
+      --separator: rgba(0, 0, 0, 0.08);
+      --fill: rgba(0, 0, 0, 0.04);
+      --fill-hover: rgba(0, 0, 0, 0.06);
+      --blue: #0071e3;
+      --blue-soft: rgba(0, 113, 227, 0.08);
+      --green: #34c759;
+      --green-soft: rgba(52, 199, 89, 0.12);
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+      --radius: 18px;
+      --max: 980px;
+      --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+        "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--label);
+      font-family: var(--font);
+      font-size: 17px;
+      line-height: 1.47059;
+      letter-spacing: -0.022em;
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { width: min(var(--max), calc(100% - 2.5rem)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      background: rgba(245, 245, 247, 0.72);
+      border-bottom: 1px solid var(--separator);
+    }
+    .topbar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding: 0.75rem 0; min-height: 52px; flex-wrap: wrap;
+    }
+    .brand { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+    .brand span { color: var(--tertiary); font-weight: 400; margin-left: 0.45rem; }
+    nav { display: flex; gap: 0.15rem; flex-wrap: wrap; }
+    nav a {
+      color: var(--secondary); font-size: 12px; font-weight: 500;
+      padding: 0.4rem 0.65rem; border-radius: 980px; text-decoration: none;
+    }
+    nav a:hover { background: var(--fill-hover); color: var(--label); text-decoration: none; }
+    .hero { padding: 4.25rem 0 2.25rem; text-align: center; }
+    .eyebrow {
+      display: inline-block; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--blue);
+      margin-bottom: 0.85rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 56px);
+      font-weight: 700; line-height: 1.07; letter-spacing: -0.025em;
+      margin: 0 auto 1rem; max-width: 16ch;
+    }
+    .lede {
+      max-width: 40rem; margin: 0 auto 1.5rem; color: var(--secondary);
+      font-size: 19px; line-height: 1.4211; letter-spacing: 0.012em;
+    }
+    .lede strong { color: var(--label); font-weight: 600; }
+    .meta {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 0.35rem 1.35rem; color: var(--tertiary); font-size: 13px;
+    }
+    .meta strong { color: var(--secondary); font-weight: 600; }
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+      margin: 2.5rem 0 0; text-align: left;
+    }
+    .stat {
+      background: var(--bg-elevated); border-radius: var(--radius);
+      padding: 1.35rem 1.25rem 1.25rem; box-shadow: var(--shadow-sm);
+    }
+    .stat .label { font-size: 12px; font-weight: 600; color: var(--tertiary); margin-bottom: 0.45rem; }
+    .stat .value {
+      font-family: var(--font-display); font-size: 40px; font-weight: 700;
+      line-height: 1; letter-spacing: -0.03em;
+    }
+    .stat .hint { margin-top: 0.55rem; font-size: 13px; color: var(--secondary); }
+    section { margin: 0 0 3.25rem; scroll-margin-top: 5rem; }
+    h2 {
+      font-family: var(--font-display); font-size: 28px; font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.14; margin: 0;
+    }
+    h3 {
+      font-family: var(--font-display); font-size: 19px; font-weight: 600;
+      letter-spacing: -0.02em; margin: 0 0 0.55rem;
+    }
+    .section-head { margin-bottom: 1.15rem; }
+    .section-note { color: var(--secondary); font-size: 15px; max-width: 40rem; margin-top: 0.35rem; }
+    .panel {
+      background: var(--bg-elevated); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); padding: 1.35rem 1.35rem 1.4rem;
+    }
+    .findings { display: grid; gap: 10px; }
+    .finding {
+      background: var(--bg-elevated); border-radius: var(--radius);
+      box-shadow: var(--shadow-sm); padding: 1.15rem 1.2rem;
+    }
+    .finding p { margin: 0.3rem 0 0; color: var(--secondary); font-size: 15px; }
+    .finding strong { color: var(--label); font-weight: 600; }
+    .n {
+      display: inline-grid; place-items: center; width: 22px; height: 22px;
+      border-radius: 980px; background: var(--blue-soft); color: var(--blue);
+      font-size: 12px; font-weight: 700; margin-right: 0.45rem;
+    }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .toolbar { display: flex; gap: 0.55rem; align-items: center; margin-bottom: 1rem; }
+    .search {
+      flex: 1; min-width: 12rem; border: none; background: var(--bg-elevated);
+      border-radius: 980px; padding: 0.65rem 1rem; font: inherit; font-size: 14px;
+      color: var(--label); box-shadow: var(--shadow-sm);
+    }
+    .search:focus { outline: none; box-shadow: 0 0 0 4px var(--blue-soft), var(--shadow-sm); }
+    .search::placeholder { color: var(--tertiary); }
+    table.simple { width: 100%; border-collapse: collapse; font-size: 14px; letter-spacing: -0.01em; }
+    table.simple th, table.simple td {
+      text-align: left; padding: 0.7rem 0.4rem; border-bottom: 1px solid var(--separator); vertical-align: middle;
+    }
+    table.simple tr:last-child td { border-bottom: none; }
+    table.simple th {
+      font-size: 11px; font-weight: 600; color: var(--tertiary); padding-top: 0.2rem;
+    }
+    table.simple td { color: var(--secondary); }
+    table.simple td strong, table.simple td:first-child { color: var(--label); font-weight: 500; }
+    .num { font-variant-numeric: tabular-nums; text-align: right !important; width: 4.5rem; white-space: nowrap; }
+    .barcell { width: 28%; min-width: 5rem; }
+    .bar-track { height: 6px; background: var(--fill); border-radius: 980px; overflow: hidden; }
+    .bar-fill { height: 100%; border-radius: 980px; background: var(--blue); }
+    .bar-fill.kind { background: #5856d6; }
+    .rule {
+      height: 1px; background: var(--separator); border: 0; margin: 0.5rem 0 3rem;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+    .chip {
+      font-size: 12px; font-weight: 500; padding: 0.28rem 0.65rem; border-radius: 980px;
+      background: var(--fill); color: var(--secondary);
+    }
+    .chip.accent { background: var(--blue-soft); color: #0077ed; }
+    .theme-list { display: grid; gap: 8px; margin: 0.85rem 0 0; padding: 0; list-style: none; }
+    .theme-list li {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      padding: 0.85rem 0.95rem; border-radius: 14px; background: var(--fill);
+      font-size: 15px; color: var(--label); font-weight: 500;
+    }
+    .theme-list span { color: var(--tertiary); font-size: 12px; font-weight: 500; white-space: nowrap; }
+    .note {
+      color: var(--secondary); font-size: 14px; margin: 0.75rem 0 0;
+    }
+    footer {
+      border-top: 1px solid var(--separator); padding: 2rem 0 3.5rem;
+      color: var(--tertiary); font-size: 12px; text-align: center;
+    }
+    .hidden { display: none !important; }
+    tr.clip { display: none; }
+    table.is-open tr.clip { display: table-row; }
+    .more-btn {
+      appearance: none;
+      width: 100%;
+      margin-top: 0.85rem;
+      border: 0;
+      background: var(--fill);
+      color: var(--blue);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding: 0.7rem 1rem;
+      border-radius: 980px;
+      cursor: pointer;
+    }
+    .more-btn:hover { background: var(--fill-hover); }
+    .empty {
+      display: none; padding: 1.5rem; text-align: center; color: var(--tertiary); font-size: 14px;
+    }
+    .table-wrap:has(tbody tr.hidden:not(.shown)) {}
+    @media (max-width: 900px) {
+      .stats, .grid-2 { grid-template-columns: 1fr; }
+      h1 { max-width: none; }
+      .barcell { display: none; }
+    }
+    @media print {
+      .topbar, .search, .toolbar, .more-btn { display: none !important; }
+      body { background: #fff; }
+      .stat, .panel, .finding { box-shadow: none; border: 1px solid var(--separator); }
+      section { break-inside: avoid; }
+      tr.clip { display: table-row !important; }
+    }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">Visit Nelson <span>Keyword inventory</span></div>
+      <nav>
+        <a href="#site">Site copy</a>
+        <a href="#nearby">Nearby destinations</a>
+        <a href="#cms">Directory CMS</a>
+        <a href="#notes">Notes</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <header class="hero">
+      <div class="eyebrow">Nelson County Tourism</div>
+      <h1>What keywords are in use?</h1>
+      <p class="lede">
+        Three inventories, stacked. <strong>Site copy</strong> is visible page language.
+        <strong>Nearby destinations</strong> are search phrases in metadata for visitors coming from Charlottesville, Lynchburg, and Staunton.
+        <strong>Directory CMS</strong> is the vocabulary on public listings.
+      </p>
+      <div class="meta">
+        <span>Site scan <strong>August 18, 2026</strong></span>
+        <span>Listings feed <strong>August 11, 2026</strong></span>
+        <span>Prepared for the Nelson team</span>
+      </div>
+      <div class="stats">
+        <article class="stat">
+          <div class="label">Framer pages</div>
+          <div class="value">21</div>
+          <div class="hint">Plus 6 CMS collections</div>
+        </article>
+        <article class="stat">
+          <div class="label">Editorial keywords</div>
+          <div class="value">31</div>
+          <div class="hint">From 89 unique text blocks</div>
+        </article>
+        <article class="stat">
+          <div class="label">Public listings</div>
+          <div class="value">379</div>
+          <div class="hint">Private listings are not in this feed</div>
+        </article>
+        <article class="stat">
+          <div class="label">Amenity tags</div>
+          <div class="value">71</div>
+          <div class="hint">Filter keywords visitors can use</div>
+        </article>
+      </div>
+    </header>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>How to read this</h2>
+          <p class="section-note">This is a content inventory, not search rankings. It answers “what language is actually on the site today.”</p>
+        </div>
+      </div>
+      <div class="findings">
+        <article class="finding">
+          <h3><span class="n">1</span>Counts are editorial uses</h3>
+          <p>Repeated identical copy on the same page was counted once. Asset URLs, implementation strings, and template placeholders were excluded.</p>
+        </article>
+        <article class="finding">
+          <h3><span class="n">2</span>Prominence is visibility, not traffic</h3>
+          <p>Metadata title/description counts 4×. H1–H3 headings count 3×. Body and CMS copy count 1×. A higher score means the word sits in more visible copy.</p>
+        </article>
+        <article class="finding">
+          <h3><span class="n">3</span>The directory is a second vocabulary</h3>
+          <p>Listing types, areas, and amenities are structured keywords in the listings CMS. They power filters and card copy, even when they barely appear in page titles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="site">
+      <div class="section-head">
+        <div>
+          <h2>Site copy</h2>
+          <p class="section-note">Framer pages and collections. Destination identity leads; explore/stay sit in titles; activity words are mostly siloed on topic pages.</p>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <input class="search" type="search" placeholder="Filter site keywords" data-table="site-kw" />
+      </div>
+      <div class="panel">
+        <table class="simple" id="site-kw">
+          <thead>
+            <tr>
+              <th>Keyword</th>
+              <th class="num">Uses</th>
+              <th class="num">Prominence</th>
+              <th>Score</th>
+              <th class="num">Heading / meta</th>
+              <th class="num">Scopes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-q="nelson">
+      <td><strong>nelson</strong></td>
+      <td class="num">47</td>
+      <td class="num">124</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+      <td class="num">28</td>
+      <td class="num">16</td>
+    </tr><tr data-q="stay">
+      <td><strong>stay</strong></td>
+      <td class="num">7</td>
+      <td class="num">24</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:19.4%"></div></div></td>
+      <td class="num">6</td>
+      <td class="num">2</td>
+    </tr><tr data-q="explore">
+      <td><strong>explore</strong></td>
+      <td class="num">6</td>
+      <td class="num">23</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:18.5%"></div></div></td>
+      <td class="num">6</td>
+      <td class="num">6</td>
+    </tr><tr data-q="breweries">
+      <td><strong>breweries</strong></td>
+      <td class="num">5</td>
+      <td class="num">10</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.1%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">4</td>
+    </tr><tr data-q="events">
+      <td><strong>events</strong></td>
+      <td class="num">5</td>
+      <td class="num">11</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.9%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">3</td>
+    </tr><tr data-q="contact">
+      <td><strong>contact</strong></td>
+      <td class="num">5</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">2</td>
+    </tr><tr data-q="places">
+      <td><strong>places</strong></td>
+      <td class="num">4</td>
+      <td class="num">13</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:10.5%"></div></div></td>
+      <td class="num">3</td>
+      <td class="num">4</td>
+    </tr><tr data-q="blue ridge">
+      <td><strong>blue ridge</strong></td>
+      <td class="num">4</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">2</td>
+    </tr><tr data-q="virginia">
+      <td><strong>virginia</strong></td>
+      <td class="num">3</td>
+      <td class="num">3</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.4%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">2</td>
+    </tr><tr data-q="activities">
+      <td><strong>activities</strong></td>
+      <td class="num">3</td>
+      <td class="num">6</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.8%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">2</td>
+    </tr><tr data-q="play">
+      <td><strong>play</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+    </tr><tr data-q="taste">
+      <td><strong>taste</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+    </tr><tr data-q="dark skies">
+      <td><strong>dark skies</strong></td>
+      <td class="num">3</td>
+      <td class="num">6</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.8%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr><tr data-q="local">
+      <td><strong>local</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">3</td>
+    </tr><tr data-q="meeting planners">
+      <td><strong>meeting planners</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+    </tr><tr data-q="historic">
+      <td><strong>historic</strong></td>
+      <td class="num">3</td>
+      <td class="num">3</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.4%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">3</td>
+    </tr><tr data-q="hospitality">
+      <td><strong>hospitality</strong></td>
+      <td class="num">3</td>
+      <td class="num">3</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.4%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">3</td>
+    </tr><tr data-q="blog">
+      <td><strong>blog</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">2</td>
+    </tr><tr data-q="va250">
+      <td><strong>va250</strong></td>
+      <td class="num">3</td>
+      <td class="num">8</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.5%"></div></div></td>
+      <td class="num">2</td>
+      <td class="num">1</td>
+    </tr><tr data-q="mountain">
+      <td><strong>mountain</strong></td>
+      <td class="num">2</td>
+      <td class="num">2</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">2</td>
+    </tr><tr data-q="trails">
+      <td><strong>trails</strong></td>
+      <td class="num">2</td>
+      <td class="num">2</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">2</td>
+    </tr><tr data-q="wineries">
+      <td><strong>wineries</strong></td>
+      <td class="num">2</td>
+      <td class="num">5</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.0%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">2</td>
+    </tr><tr data-q="outdoor">
+      <td><strong>outdoor</strong></td>
+      <td class="num">2</td>
+      <td class="num">5</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.0%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">2</td>
+    </tr><tr data-q="experience">
+      <td><strong>experience</strong></td>
+      <td class="num">2</td>
+      <td class="num">5</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.0%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">2</td>
+    </tr><tr data-q="cabins cottages">
+      <td><strong>cabins cottages</strong></td>
+      <td class="num">1</td>
+      <td class="num">4</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.2%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr><tr data-q="campgrounds">
+      <td><strong>campgrounds</strong></td>
+      <td class="num">1</td>
+      <td class="num">4</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.2%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr><tr data-q="restaurants">
+      <td><strong>restaurants</strong></td>
+      <td class="num">1</td>
+      <td class="num">4</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.2%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr><tr data-q="markets">
+      <td><strong>markets</strong></td>
+      <td class="num">1</td>
+      <td class="num">4</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.2%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr><tr data-q="river">
+      <td><strong>river</strong></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+    </tr><tr data-q="valley">
+      <td><strong>valley</strong></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div></td>
+      <td class="num">0</td>
+      <td class="num">1</td>
+    </tr><tr data-q="adventure">
+      <td><strong>adventure</strong></td>
+      <td class="num">1</td>
+      <td class="num">4</td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.2%"></div></div></td>
+      <td class="num">1</td>
+      <td class="num">1</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top:12px">
+        <div class="panel">
+          <h3>Recurring phrases</h3>
+          <p class="note">The longest repeated strings in page and collection copy.</p>
+          <table class="simple" style="margin-top:0.75rem">
+            <thead><tr><th>Phrase</th><th></th><th class="num">Uses</th></tr></thead>
+            <tbody>
+              <tr data-q="blue ridge">
+      <td><strong>blue ridge</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:100.0%"></div></div></td>
+      <td class="num">4</td>
+    </tr><tr data-q="dark skies">
+      <td><strong>dark skies</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:75.0%"></div></div></td>
+      <td class="num">3</td>
+    </tr><tr data-q="clear sky clock">
+      <td><strong>clear sky clock</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:75.0%"></div></div></td>
+      <td class="num">3</td>
+    </tr><tr data-q="whats happening">
+      <td><strong>whats happening</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:75.0%"></div></div></td>
+      <td class="num">3</td>
+    </tr><tr data-q="stay nelson">
+      <td><strong>stay nelson</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:75.0%"></div></div></td>
+      <td class="num">3</td>
+    </tr><tr data-q="local places">
+      <td><strong>local places</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:25.0%"></div></div></td>
+      <td class="num">1</td>
+    </tr><tr data-q="cabins cottages">
+      <td><strong>cabins cottages</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:25.0%"></div></div></td>
+      <td class="num">1</td>
+    </tr><tr data-q="restaurants breweries wineries">
+      <td><strong>restaurants breweries wineries</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:25.0%"></div></div></td>
+      <td class="num">1</td>
+    </tr><tr data-q="meeting planners">
+      <td><strong>meeting planners</strong></td>
+      <td class="barcell"><div class="bar-track"><div class="bar-fill kind" style="width:25.0%"></div></div></td>
+      <td class="num">1</td>
+    </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="findings">
+            <article class="finding">
+              <h3>Nelson is the sitewide anchor</h3>
+              <p>“Nelson” appears across 16 page/collection scopes with the highest prominence score (124). Brand identity is doing most of the keyword work.</p>
+            </article>
+            <article class="finding">
+              <h3>Explore and stay lead visitor intent</h3>
+              <p>Those words sit in titles and headings. Lodging specifics — cabins, cottages, campgrounds — show up mainly on the Stay experience.</p>
+            </article>
+            <article class="finding">
+              <h3>Activity language is present but siloed</h3>
+              <p>Breweries, events, trails, wineries, restaurants, and outdoor mostly live on their topic pages rather than repeating sitewide.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section id="nearby">
+      <div class="section-head">
+        <div>
+          <h2>Nearby destinations</h2>
+          <p class="section-note">Search-facing phrases for people looking for things to do near Charlottesville, Lynchburg, and Staunton.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Regional search themes</h3>
+          <p class="note">These are in the metadata.</p>
+          <ul class="theme-list">
+            <li>Things to do near Charlottesville, VA <span>Nearby city</span></li>
+            <li>Things to do near Lynchburg, VA <span>Nearby city</span></li>
+            <li>Things to do near Staunton, VA <span>Nearby city</span></li>
+            <li>Nelson County, Virginia <span>Place name</span></li>
+            <li>Blue Ridge outdoor adventures <span>Region</span></li>
+            <li>Hiking, waterfalls, scenic drives, attractions, breweries, wineries, dining, events, and places to stay <span>Activity cluster</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="findings">
+            <article class="finding">
+              <h3>Who this is for</h3>
+              <p>Drive-market visitors who search from the three closest cities, plus people looking for Nelson County as a Blue Ridge weekend rather than a single attraction.</p>
+            </article>
+            <article class="finding">
+              <h3>What this does not do</h3>
+              <p>These phrases improve relevance signals. They do not guarantee rankings, impressions, or placement in search results.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h3>Search-facing pages</h3>
+        <p class="note">Where nearby-destination language appears in metadata.</p>
+        <table class="simple" style="margin-top:0.75rem">
+          <thead>
+            <tr>
+              <th>Page</th>
+              <th>Metadata emphasis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Site default</strong></td>
+              <td>Regional “things to do” intent across Charlottesville, Lynchburg, Staunton, and Nelson County</td>
+            </tr>
+            <tr>
+              <td><strong>Explore</strong></td>
+              <td>Places to visit, scenic drives, trails, local food, drinks, and nearby experiences</td>
+            </tr>
+            <tr>
+              <td><strong>Play</strong></td>
+              <td>Outdoor activities, hiking, waterfalls, attractions, and Blue Ridge adventures</td>
+            </tr>
+            <tr>
+              <td><strong>Find Your Adventure</strong></td>
+              <td>Trip planning and activity discovery near the three regional cities</td>
+            </tr>
+            <tr>
+              <td><strong>Taste</strong></td>
+              <td>Breweries, wineries, restaurants, markets, and local food</td>
+            </tr>
+            <tr>
+              <td><strong>Stay</strong></td>
+              <td>Cabins, cottages, hotels, inns, and campgrounds</td>
+            </tr>
+            <tr>
+              <td><strong>Calendar of Events</strong></td>
+              <td>Festivals, live music, outdoor activities, markets, and local events</td>
+            </tr>
+            <tr>
+              <td><strong>About</strong></td>
+              <td>Nelson County as a Blue Ridge destination near Charlottesville, Lynchburg, and Staunton</td>
+            </tr>
+            <tr>
+              <td><strong>Dynamic activity and location pages</strong></td>
+              <td>Regional context on individual listings and destinations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h3>Same phrases in the listings CMS</h3>
+        <p class="note">How often those nearby-city and regional words appear in public listing names or descriptions.</p>
+        <table class="simple cms-all" style="margin-top:0.75rem">
+          <thead>
+            <tr>
+              <th>Phrase</th>
+              <th></th>
+              <th class="num">Listings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-q="blue ridge">
+              <td><strong>Blue Ridge</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></td>
+              <td class="num">125</td>
+            </tr>
+            <tr data-q="nelson county">
+              <td><strong>Nelson County</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div></td>
+              <td class="num">80</td>
+            </tr>
+            <tr data-q="charlottesville">
+              <td><strong>Charlottesville</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:28.8%"></div></div></td>
+              <td class="num">36</td>
+            </tr>
+            <tr data-q="lynchburg">
+              <td><strong>Lynchburg</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:9.6%"></div></div></td>
+              <td class="num">12</td>
+            </tr>
+            <tr data-q="waterfall">
+              <td><strong>Waterfall / waterfalls</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.2%"></div></div></td>
+              <td class="num">12</td>
+            </tr>
+            <tr data-q="staunton">
+              <td><strong>Staunton</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div></td>
+              <td class="num">7</td>
+            </tr>
+            <tr data-q="scenic drive">
+              <td><strong>Scenic drive</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div></td>
+              <td class="num">5</td>
+            </tr>
+            <tr data-q="things to do">
+              <td><strong>Things to do</strong></td>
+              <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div></td>
+              <td class="num">1</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="chip-row">
+          <span class="chip accent">Charlottesville · 36 listings</span>
+          <span class="chip accent">Lynchburg · 12 listings</span>
+          <span class="chip accent">Staunton · 7 listings</span>
+        </div>
+      </div>
+    </section>
+
+    <hr class="rule" />
+
+    <section id="cms">
+      <div class="section-head">
+        <div>
+          <h2>Directory CMS</h2>
+          <p class="section-note">Keywords attached to 379 public listings. This is the language visitors search, filter, and read on directory cards — a much larger vocabulary than page titles.</p>
+        </div>
+      </div>
+
+      <div class="stats" style="margin:0 0 1.5rem">
+        <article class="stat">
+      <div class="label">Stay</div>
+      <div class="value">195</div>
+      <div class="hint">51% of listings · Lodging, cabins, rentals</div>
+    </article><article class="stat">
+      <div class="label">Taste</div>
+      <div class="value">69</div>
+      <div class="hint">18% of listings · Food, drink, farms</div>
+    </article><article class="stat">
+      <div class="label">Outdoor</div>
+      <div class="value">61</div>
+      <div class="hint">16% of listings · Trails, water, sport</div>
+    </article><article class="stat">
+      <div class="label">Experience</div>
+      <div class="value">46</div>
+      <div class="hint">12% of listings · Activities &amp; attractions</div>
+    </article><article class="stat">
+      <div class="label">Culture</div>
+      <div class="value">8</div>
+      <div class="hint">2% of listings · Heritage &amp; museums</div>
+    </article>
+      </div>
+
+      <div class="toolbar">
+        <input class="search" type="search" placeholder="Filter listing types, areas, amenities, or words" data-table="cms-all" />
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Listing types in use</h3>
+          <p class="note">Official type tags. Cabins &amp; cottages and whole-house rentals dominate the directory.</p>
+          <table class="simple cms-all" style="margin-top:0.75rem">
+            <thead><tr><th>Type</th><th></th><th class="num">Listings</th></tr></thead>
+            <tbody>
+              <tr data-q="Cabins &amp; Cottages">
+          <td><strong>Cabins &amp; Cottages</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+          <td class="num">90</td>
+        </tr>
+<tr data-q="Whole House Rentals">
+          <td><strong>Whole House Rentals</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:77.8%"></div></div></td>
+          <td class="num">70</td>
+        </tr>
+<tr data-q="Hikes &amp; Trails">
+          <td><strong>Hikes &amp; Trails</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:46.7%"></div></div></td>
+          <td class="num">42</td>
+        </tr>
+<tr data-q="Farms &amp; Orchards">
+          <td><strong>Farms &amp; Orchards</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:36.7%"></div></div></td>
+          <td class="num">33</td>
+        </tr>
+<tr data-q="Restaurants">
+          <td><strong>Restaurants</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:25.6%"></div></div></td>
+          <td class="num">23</td>
+        </tr>
+<tr data-q="Breweries &amp; Cideries">
+          <td><strong>Breweries &amp; Cideries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.6%"></div></div></td>
+          <td class="num">14</td>
+        </tr>
+<tr data-q="Lodging">
+          <td><strong>Lodging</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.6%"></div></div></td>
+          <td class="num">14</td>
+        </tr>
+<tr data-q="Markets &amp; Delis">
+          <td><strong>Markets &amp; Delis</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.4%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Vineyards &amp; Wineries">
+          <td><strong>Vineyards &amp; Wineries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.4%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Fishing">
+          <td><strong>Fishing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.9%"></div></div></td>
+          <td class="num">8</td>
+        </tr>
+<tr data-q="Bed and Breakfast">
+          <td><strong>Bed and Breakfast</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.9%"></div></div></td>
+          <td class="num">8</td>
+        </tr>
+<tr data-q="Activities">
+          <td><strong>Activities</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.8%"></div></div></td>
+          <td class="num">7</td>
+        </tr>
+<tr data-q="Vacation Rentals">
+          <td><strong>Vacation Rentals</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.8%"></div></div></td>
+          <td class="num">7</td>
+        </tr>
+<tr data-q="Biking">
+          <td><strong>Biking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.7%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Coffee Shops">
+          <td><strong>Coffee Shops</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Canoeing">
+          <td><strong>Canoeing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.4%"></div></div></td>
+          <td class="num">4</td>
+        </tr>
+<tr data-q="Museums &amp; Heritage">
+          <td><strong>Museums &amp; Heritage</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.4%"></div></div></td>
+          <td class="num">4</td>
+        </tr>
+<tr data-q="Attraction">
+          <td><strong>Attraction</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.4%"></div></div></td>
+          <td class="num">4</td>
+        </tr>
+<tr data-q="Distilleries">
+          <td><strong>Distilleries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.3%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Motels &amp; Inns">
+          <td><strong>Motels &amp; Inns</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.3%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Golf">
+          <td><strong>Golf</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.2%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Horseback Riding">
+          <td><strong>Horseback Riding</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.2%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Campgrounds &amp; Glamping">
+          <td><strong>Campgrounds &amp; Glamping</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.2%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Taste">
+          <td><strong>Taste</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+<tr data-q="Swimming">
+          <td><strong>Swimming</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h3>Areas in use</h3>
+          <p class="note">Place names assigned to listings. Wintergreen alone is about one third of the directory.</p>
+          <table class="simple cms-all" style="margin-top:0.75rem">
+            <thead><tr><th>Area</th><th></th><th class="num">Listings</th></tr></thead>
+            <tbody>
+              <tr data-q="Wintergreen">
+          <td><strong>Wintergreen</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+          <td class="num">128</td>
+        </tr>
+<tr data-q="Afton">
+          <td><strong>Afton</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:46.1%"></div></div></td>
+          <td class="num">59</td>
+        </tr>
+<tr data-q="Nellysford">
+          <td><strong>Nellysford</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:27.3%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="Roseland">
+          <td><strong>Roseland</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:27.3%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="Lovingston">
+          <td><strong>Lovingston</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:22.7%"></div></div></td>
+          <td class="num">29</td>
+        </tr>
+<tr data-q="Montebello">
+          <td><strong>Montebello</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.8%"></div></div></td>
+          <td class="num">19</td>
+        </tr>
+<tr data-q="Tyro">
+          <td><strong>Tyro</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:11.7%"></div></div></td>
+          <td class="num">15</td>
+        </tr>
+<tr data-q="Arrington">
+          <td><strong>Arrington</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:10.2%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Schuyler">
+          <td><strong>Schuyler</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.8%"></div></div></td>
+          <td class="num">10</td>
+        </tr>
+<tr data-q="Faber">
+          <td><strong>Faber</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.8%"></div></div></td>
+          <td class="num">10</td>
+        </tr>
+<tr data-q="Piney River">
+          <td><strong>Piney River</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.7%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Touring Trails">
+          <td><strong>Touring Trails</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.7%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Gladstone">
+          <td><strong>Gladstone</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.3%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Shipman">
+          <td><strong>Shipman</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.3%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Lyndhurst">
+          <td><strong>Lyndhurst</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Vesuvius">
+          <td><strong>Vesuvius</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Wingina">
+          <td><strong>Wingina</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.6%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Massies Mill">
+          <td><strong>Massies Mill</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+<tr data-q="Nelson 29">
+          <td><strong>Nelson 29</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.8%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h3>Amenity keywords in use</h3>
+        <p class="note">Structured tags on listings. These are the filter chips people can actually use.</p>
+        <table class="simple cms-all" style="margin-top:0.75rem" id="amen-table">
+          <thead><tr><th>Amenity</th><th></th><th class="num">Listings</th></tr></thead>
+          <tbody>
+            <tr data-q="Pet Friendly">
+          <td><strong>Pet Friendly</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+          <td class="num">197</td>
+        </tr>
+<tr data-q="Lodging">
+          <td><strong>Lodging</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:99.0%"></div></div></td>
+          <td class="num">195</td>
+        </tr>
+<tr data-q="Hiking">
+          <td><strong>Hiking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:50.8%"></div></div></td>
+          <td class="num">100</td>
+        </tr>
+<tr data-q="Farm">
+          <td><strong>Farm</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:29.4%"></div></div></td>
+          <td class="num">58</td>
+        </tr>
+<tr data-q="Fire Pit">
+          <td><strong>Fire Pit</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:26.9%"></div></div></td>
+          <td class="num">53</td>
+        </tr>
+<tr data-q="Wine">
+          <td><strong>Wine</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:24.9%"></div></div></td>
+          <td class="num">49</td>
+        </tr>
+<tr data-q="Hot Tub">
+          <td><strong>Hot Tub</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:21.8%"></div></div></td>
+          <td class="num">43</td>
+        </tr>
+<tr data-q="Coffee">
+          <td><strong>Coffee</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.7%"></div></div></td>
+          <td class="num">31</td>
+        </tr>
+<tr data-q="Parking">
+          <td><strong>Parking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.2%"></div></div></td>
+          <td class="num">30</td>
+        </tr>
+<tr data-q="Appalachian Trail">
+          <td><strong>Appalachian Trail</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.2%"></div></div></td>
+          <td class="num">30</td>
+        </tr>
+<tr data-q="Skiing">
+          <td><strong>Skiing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.7%"></div></div></td>
+          <td class="num">29</td>
+        </tr>
+<tr data-q="Wi-Fi">
+          <td><strong>Wi-Fi</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.7%"></div></div></td>
+          <td class="num">27</td>
+        </tr>
+<tr data-q="Pool">
+          <td><strong>Pool</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.2%"></div></div></td>
+          <td class="num">26</td>
+        </tr>
+<tr data-q="Fishing">
+          <td><strong>Fishing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:12.7%"></div></div></td>
+          <td class="num">25</td>
+        </tr>
+<tr data-q="Family Friendly">
+          <td><strong>Family Friendly</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:12.2%"></div></div></td>
+          <td class="num">24</td>
+        </tr>
+<tr data-q="Beer">
+          <td><strong>Beer</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:11.7%"></div></div></td>
+          <td class="num">23</td>
+        </tr>
+<tr data-q="Breakfast">
+          <td><strong>Breakfast</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div></td>
+          <td class="num">21</td>
+        </tr>
+<tr data-q="Market">
+          <td><strong>Market</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div></td>
+          <td class="num">21</td>
+        </tr>
+<tr data-q="Adventure">
+          <td><strong>Adventure</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:10.7%"></div></div></td>
+          <td class="num">21</td>
+        </tr>
+<tr data-q="Lunch">
+          <td><strong>Lunch</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:9.6%"></div></div></td>
+          <td class="num">19</td>
+        </tr>
+<tr data-q="Events">
+          <td><strong>Events</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:9.6%"></div></div></td>
+          <td class="num">19</td>
+        </tr>
+<tr data-q="Golf">
+          <td><strong>Golf</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:9.6%"></div></div></td>
+          <td class="num">19</td>
+        </tr>
+<tr data-q="Bar">
+          <td><strong>Bar</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.6%"></div></div></td>
+          <td class="num">17</td>
+        </tr>
+<tr data-q="Cider">
+          <td><strong>Cider</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.6%"></div></div></td>
+          <td class="num">17</td>
+        </tr>
+<tr data-q="Dark Skies Participant">
+          <td><strong>Dark Skies Participant</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.1%"></div></div></td>
+          <td class="num">16</td>
+        </tr>
+<tr data-q="Tours">
+          <td><strong>Tours</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.6%"></div></div></td>
+          <td class="num">15</td>
+        </tr>
+<tr data-q="Grill">
+          <td><strong>Grill</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.6%"></div></div></td>
+          <td class="num">15</td>
+        </tr>
+<tr data-q="Meeting Planners">
+          <td><strong>Meeting Planners</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Biking">
+          <td><strong>Biking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Swimming">
+          <td><strong>Swimming</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="Spa">
+          <td><strong>Spa</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.1%"></div></div></td>
+          <td class="num">12</td>
+        </tr>
+<tr data-q="Dinner">
+          <td><strong>Dinner</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div></td>
+          <td class="num">11</td>
+        </tr>
+<tr data-q="Scenic Views">
+          <td><strong>Scenic Views</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div></td>
+          <td class="num">11</td>
+        </tr>
+<tr data-q="Full Kitchen">
+          <td><strong>Full Kitchen</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.6%"></div></div></td>
+          <td class="num">11</td>
+        </tr>
+<tr data-q="Deli">
+          <td><strong>Deli</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.1%"></div></div></td>
+          <td class="num">10</td>
+        </tr>
+<tr data-q="Cabins">
+          <td><strong>Cabins</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:5.1%"></div></div></td>
+          <td class="num">10</td>
+        </tr>
+<tr data-q="Organic">
+          <td><strong>Organic</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.1%"></div></div></td>
+          <td class="num">8</td>
+        </tr>
+<tr data-q="Sauna">
+          <td><strong>Sauna</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:4.1%"></div></div></td>
+          <td class="num">8</td>
+        </tr>
+<tr data-q="Live Music">
+          <td><strong>Live Music</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.6%"></div></div></td>
+          <td class="num">7</td>
+        </tr>
+<tr data-q="Outdoor Seating">
+          <td><strong>Outdoor Seating</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.6%"></div></div></td>
+          <td class="num">7</td>
+        </tr>
+<tr data-q="Resort">
+          <td><strong>Resort</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.6%"></div></div></td>
+          <td class="num">7</td>
+        </tr>
+<tr data-q="Takeout">
+          <td><strong>Takeout</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="BBQ">
+          <td><strong>BBQ</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Pizza">
+          <td><strong>Pizza</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Baked Goods">
+          <td><strong>Baked Goods</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Tastings">
+          <td><strong>Tastings</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Waterfall">
+          <td><strong>Waterfall</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Canoeing">
+          <td><strong>Canoeing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Tennis">
+          <td><strong>Tennis</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:3.0%"></div></div></td>
+          <td class="num">6</td>
+        </tr>
+<tr data-q="Desserts">
+          <td><strong>Desserts</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Spirits">
+          <td><strong>Spirits</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Museum">
+          <td><strong>Museum</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Picnic Area">
+          <td><strong>Picnic Area</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Classes">
+          <td><strong>Classes</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="EV Charging">
+          <td><strong>EV Charging</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.5%"></div></div></td>
+          <td class="num">5</td>
+        </tr>
+<tr data-q="Cafe">
+          <td><strong>Cafe</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.0%"></div></div></td>
+          <td class="num">4</td>
+        </tr>
+<tr data-q="Hunting">
+          <td><strong>Hunting</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:2.0%"></div></div></td>
+          <td class="num">4</td>
+        </tr>
+<tr data-q="Shopping">
+          <td><strong>Shopping</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Brunch">
+          <td><strong>Brunch</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Bakery">
+          <td><strong>Bakery</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Cocktails">
+          <td><strong>Cocktails</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Tea">
+          <td><strong>Tea</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.5%"></div></div></td>
+          <td class="num">3</td>
+        </tr>
+<tr data-q="Retail">
+          <td><strong>Retail</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Kayaking">
+          <td><strong>Kayaking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Educational">
+          <td><strong>Educational</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Swimming Pool">
+          <td><strong>Swimming Pool</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Artisan">
+          <td><strong>Artisan</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:1.0%"></div></div></td>
+          <td class="num">2</td>
+        </tr>
+<tr data-q="Delivery">
+          <td><strong>Delivery</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+<tr data-q="Fuel">
+          <td><strong>Fuel</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+<tr data-q="Seasonal Menu">
+          <td><strong>Seasonal Menu</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+<tr data-q="Disc Golf">
+          <td><strong>Disc Golf</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:0.5%"></div></div></td>
+          <td class="num">1</td>
+        </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2" style="margin-top:12px">
+        <div class="panel">
+          <h3>Words in listing names &amp; blurbs</h3>
+          <p class="note">Unique public listings whose name, type, area, amenities, or short description contain the word.</p>
+          <table class="simple cms-all" style="margin-top:0.75rem">
+            <thead><tr><th>Word</th><th></th><th class="num">Listings</th></tr></thead>
+            <tbody>
+              <tr data-q="friendly">
+          <td><strong>friendly</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+          <td class="num">213</td>
+        </tr>
+<tr data-q="pet">
+          <td><strong>pet</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:93.0%"></div></div></td>
+          <td class="num">198</td>
+        </tr>
+<tr data-q="lodging">
+          <td><strong>lodging</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:92.5%"></div></div></td>
+          <td class="num">197</td>
+        </tr>
+<tr data-q="stay">
+          <td><strong>stay</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:92.0%"></div></div></td>
+          <td class="num">196</td>
+        </tr>
+<tr data-q="wintergreen">
+          <td><strong>wintergreen</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:67.6%"></div></div></td>
+          <td class="num">144</td>
+        </tr>
+<tr data-q="hiking">
+          <td><strong>hiking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:47.9%"></div></div></td>
+          <td class="num">102</td>
+        </tr>
+<tr data-q="mountain">
+          <td><strong>mountain</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:45.1%"></div></div></td>
+          <td class="num">96</td>
+        </tr>
+<tr data-q="house">
+          <td><strong>house</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:45.1%"></div></div></td>
+          <td class="num">96</td>
+        </tr>
+<tr data-q="cabins">
+          <td><strong>cabins</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:44.6%"></div></div></td>
+          <td class="num">95</td>
+        </tr>
+<tr data-q="cottages">
+          <td><strong>cottages</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:42.3%"></div></div></td>
+          <td class="num">90</td>
+        </tr>
+<tr data-q="ridge">
+          <td><strong>ridge</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:40.4%"></div></div></td>
+          <td class="num">86</td>
+        </tr>
+<tr data-q="views">
+          <td><strong>views</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:40.4%"></div></div></td>
+          <td class="num">86</td>
+        </tr>
+<tr data-q="outdoor">
+          <td><strong>outdoor</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:39.9%"></div></div></td>
+          <td class="num">85</td>
+        </tr>
+<tr data-q="rentals">
+          <td><strong>rentals</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:37.6%"></div></div></td>
+          <td class="num">80</td>
+        </tr>
+<tr data-q="whole">
+          <td><strong>whole</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:35.2%"></div></div></td>
+          <td class="num">75</td>
+        </tr>
+<tr data-q="blue">
+          <td><strong>blue</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:34.3%"></div></div></td>
+          <td class="num">73</td>
+        </tr>
+<tr data-q="trail">
+          <td><strong>trail</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:33.3%"></div></div></td>
+          <td class="num">71</td>
+        </tr>
+<tr data-q="taste">
+          <td><strong>taste</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:32.9%"></div></div></td>
+          <td class="num">70</td>
+        </tr>
+<tr data-q="home">
+          <td><strong>home</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:32.9%"></div></div></td>
+          <td class="num">70</td>
+        </tr>
+<tr data-q="trails">
+          <td><strong>trails</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:31.0%"></div></div></td>
+          <td class="num">66</td>
+        </tr>
+<tr data-q="afton">
+          <td><strong>afton</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:30.5%"></div></div></td>
+          <td class="num">65</td>
+        </tr>
+<tr data-q="farm">
+          <td><strong>farm</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:28.6%"></div></div></td>
+          <td class="num">61</td>
+        </tr>
+<tr data-q="experience">
+          <td><strong>experience</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:27.7%"></div></div></td>
+          <td class="num">59</td>
+        </tr>
+<tr data-q="fire">
+          <td><strong>fire</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:26.8%"></div></div></td>
+          <td class="num">57</td>
+        </tr>
+<tr data-q="nelson">
+          <td><strong>nelson</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:24.9%"></div></div></td>
+          <td class="num">53</td>
+        </tr>
+<tr data-q="wine">
+          <td><strong>wine</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:24.9%"></div></div></td>
+          <td class="num">53</td>
+        </tr>
+<tr data-q="pit">
+          <td><strong>pit</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:24.9%"></div></div></td>
+          <td class="num">53</td>
+        </tr>
+<tr data-q="access">
+          <td><strong>access</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:23.9%"></div></div></td>
+          <td class="num">51</td>
+        </tr>
+<tr data-q="hot">
+          <td><strong>hot</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:23.0%"></div></div></td>
+          <td class="num">49</td>
+        </tr>
+<tr data-q="hikes">
+          <td><strong>hikes</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:22.1%"></div></div></td>
+          <td class="num">47</td>
+        </tr>
+<tr data-q="tub">
+          <td><strong>tub</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:22.1%"></div></div></td>
+          <td class="num">47</td>
+        </tr>
+<tr data-q="family">
+          <td><strong>family</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:21.1%"></div></div></td>
+          <td class="num">45</td>
+        </tr>
+<tr data-q="kitchen">
+          <td><strong>kitchen</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:20.7%"></div></div></td>
+          <td class="num">44</td>
+        </tr>
+<tr data-q="route">
+          <td><strong>route</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:19.7%"></div></div></td>
+          <td class="num">42</td>
+        </tr>
+<tr data-q="retreat">
+          <td><strong>retreat</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:19.2%"></div></div></td>
+          <td class="num">41</td>
+        </tr>
+<tr data-q="roseland">
+          <td><strong>roseland</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.9%"></div></div></td>
+          <td class="num">36</td>
+        </tr>
+<tr data-q="offers">
+          <td><strong>offers</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.9%"></div></div></td>
+          <td class="num">36</td>
+        </tr>
+<tr data-q="offering">
+          <td><strong>offering</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="nellysford">
+          <td><strong>nellysford</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="river">
+          <td><strong>river</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="farms">
+          <td><strong>farms</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="orchards">
+          <td><strong>orchards</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="private">
+          <td><strong>private</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.4%"></div></div></td>
+          <td class="num">35</td>
+        </tr>
+<tr data-q="coffee">
+          <td><strong>coffee</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.0%"></div></div></td>
+          <td class="num">34</td>
+        </tr>
+<tr data-q="breweries">
+          <td><strong>breweries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.5%"></div></div></td>
+          <td class="num">33</td>
+        </tr>
+<tr data-q="near">
+          <td><strong>near</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div></td>
+          <td class="num">32</td>
+        </tr>
+<tr data-q="resort">
+          <td><strong>resort</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div></td>
+          <td class="num">32</td>
+        </tr>
+<tr data-q="appalachian">
+          <td><strong>appalachian</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div></td>
+          <td class="num">32</td>
+        </tr>
+<tr data-q="wineries">
+          <td><strong>wineries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div></td>
+          <td class="num">32</td>
+        </tr>
+<tr data-q="cabin">
+          <td><strong>cabin</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.0%"></div></div></td>
+          <td class="num">32</td>
+        </tr>
+<tr data-q="county">
+          <td><strong>county</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.6%"></div></div></td>
+          <td class="num">31</td>
+        </tr>
+<tr data-q="bedrooms">
+          <td><strong>bedrooms</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.6%"></div></div></td>
+          <td class="num">31</td>
+        </tr>
+<tr data-q="acres">
+          <td><strong>acres</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.6%"></div></div></td>
+          <td class="num">31</td>
+        </tr>
+<tr data-q="valley">
+          <td><strong>valley</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.1%"></div></div></td>
+          <td class="num">30</td>
+        </tr>
+<tr data-q="rockfish">
+          <td><strong>rockfish</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.1%"></div></div></td>
+          <td class="num">30</td>
+        </tr>
+<tr data-q="parking">
+          <td><strong>parking</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:14.1%"></div></div></td>
+          <td class="num">30</td>
+        </tr>
+<tr data-q="lovingston">
+          <td><strong>lovingston</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.6%"></div></div></td>
+          <td class="num">29</td>
+        </tr>
+<tr data-q="skiing">
+          <td><strong>skiing</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.6%"></div></div></td>
+          <td class="num">29</td>
+        </tr>
+<tr data-q="breakfast">
+          <td><strong>breakfast</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.1%"></div></div></td>
+          <td class="num">28</td>
+        </tr>
+<tr data-q="located">
+          <td><strong>located</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:13.1%"></div></div></td>
+          <td class="num">28</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h3>Recurring CMS phrases</h3>
+          <p class="note">How often a phrase appears in listing name, type, amenities, or description.</p>
+          <table class="simple cms-all" style="margin-top:0.75rem">
+            <thead><tr><th>Phrase</th><th></th><th class="num">Listings</th></tr></thead>
+            <tbody>
+              <tr data-q="blue ridge">
+          <td><strong>blue ridge</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:63.1%"></div></div></td>
+          <td class="num">125</td>
+        </tr>
+<tr data-q="dark skies">
+          <td><strong>dark skies</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:8.1%"></div></div></td>
+          <td class="num">16</td>
+        </tr>
+<tr data-q="rockfish valley">
+          <td><strong>rockfish valley</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:18.7%"></div></div></td>
+          <td class="num">37</td>
+        </tr>
+<tr data-q="wintergreen resort">
+          <td><strong>wintergreen resort</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:33.3%"></div></div></td>
+          <td class="num">66</td>
+        </tr>
+<tr data-q="meeting planners">
+          <td><strong>meeting planners</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="appalachian trail">
+          <td><strong>appalachian trail</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:15.7%"></div></div></td>
+          <td class="num">31</td>
+        </tr>
+<tr data-q="pet friendly">
+          <td><strong>pet friendly</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:100.0%"></div></div></td>
+          <td class="num">198</td>
+        </tr>
+<tr data-q="whole house">
+          <td><strong>whole house</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:36.4%"></div></div></td>
+          <td class="num">72</td>
+        </tr>
+<tr data-q="cabins &amp; cottages">
+          <td><strong>cabins &amp; cottages</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:45.5%"></div></div></td>
+          <td class="num">90</td>
+        </tr>
+<tr data-q="vineyards &amp; wineries">
+          <td><strong>vineyards &amp; wineries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+<tr data-q="breweries &amp; cideries">
+          <td><strong>breweries &amp; cideries</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:7.6%"></div></div></td>
+          <td class="num">15</td>
+        </tr>
+<tr data-q="farms &amp; orchards">
+          <td><strong>farms &amp; orchards</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:16.7%"></div></div></td>
+          <td class="num">33</td>
+        </tr>
+<tr data-q="hikes &amp; trails">
+          <td><strong>hikes &amp; trails</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:21.2%"></div></div></td>
+          <td class="num">42</td>
+        </tr>
+<tr data-q="markets &amp; delis">
+          <td><strong>markets &amp; delis</strong></td>
+          <td class="barcell"><div class="bar-track"><div class="bar-fill" style="width:6.6%"></div></div></td>
+          <td class="num">13</td>
+        </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="findings" style="margin-top:1.25rem">
+        <article class="finding">
+          <h3>Stay is the directory’s real keyword center</h3>
+          <p>195 of 379 public listings are Stay. Cabins &amp; cottages (90) and whole-house rentals (70) dwarf campgrounds (2).</p>
+        </article>
+        <article class="finding">
+          <h3>Blue Ridge is common in listings; nearby cities are uneven</h3>
+          <p>“Blue Ridge” appears on 125 listings and “Nelson County” on 80. Charlottesville is named on 36 listings, Lynchburg on 12, Staunton on 7.</p>
+        </article>
+        <article class="finding">
+          <h3>Pet friendly, hiking, and wine are working filters</h3>
+          <p>Pet Friendly (197), Hiking (100), and Wine (49) are among the strongest amenity keywords. Dark Skies Participant is on 16 listings; Meeting Planners on 13.</p>
+        </article>
+        <article class="finding">
+          <h3>Culture and campgrounds are thin in both places</h3>
+          <p>Culture has 8 listings. Campgrounds &amp; glamping has 2. That matches the light treatment of those words in site titles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="notes">
+      <div class="section-head">
+        <div>
+          <h2>Notes</h2>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="note" style="margin-top:0">This does not include Google Search Console data, traffic, click-through rate, rankings, or keyword difficulty. Private listings are omitted from the public feed, so they are not in the directory counts. Nearby-destination phrases in metadata do not guarantee search placement.</p>
+        <div class="chip-row">
+          <span class="chip">Site copy · Framer canvas</span>
+          <span class="chip">Nearby destinations · titles &amp; meta</span>
+          <span class="chip">Directory · listings.json</span>
+          <span class="chip">379 public listings</span>
+          <span class="chip">71 amenity tags</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    Visit Nelson · Keyword inventory · August 2026
+  </footer>
+  <script>
+    const CLIP = 10;
+
+    function clipTables() {
+      document.querySelectorAll("table.simple").forEach((table) => {
+        const rows = [...table.querySelectorAll("tbody tr")];
+        if (rows.length <= CLIP) return;
+        rows.forEach((row, i) => row.classList.toggle("clip", i >= CLIP));
+        if (table.nextElementSibling?.classList.contains("more-btn")) return;
+        const extra = rows.length - CLIP;
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "more-btn";
+        btn.dataset.more = `More · ${extra}`;
+        btn.dataset.less = "Show less";
+        btn.textContent = btn.dataset.more;
+        btn.addEventListener("click", () => {
+          const open = table.classList.toggle("is-open");
+          btn.textContent = open ? btn.dataset.less : btn.dataset.more;
+        });
+        table.after(btn);
+      });
+    }
+
+    function bindSearch(input) {
+      const mode = input.dataset.table;
+      input.addEventListener("input", () => {
+        const q = input.value.trim().toLowerCase();
+        const tables = mode === "cms-all"
+          ? document.querySelectorAll("table.cms-all")
+          : [document.getElementById(mode)].filter(Boolean);
+        tables.forEach((table) => {
+          table.querySelectorAll("tbody tr").forEach((row) => {
+            const hay = (row.dataset.q || row.textContent).toLowerCase();
+            row.classList.toggle("hidden", q && !hay.includes(q));
+          });
+          if (q) table.classList.add("is-open");
+          else if (!table.dataset.pinned) table.classList.remove("is-open");
+          if (btn?.classList.contains("more-btn")) {
+            btn.hidden = Boolean(q);
+            if (!q) btn.textContent = table.classList.contains("is-open") ? btn.dataset.less : btn.dataset.more;
+          }
+        });
+      });
+    }
+
+    clipTables();
+    document.querySelectorAll(".search").forEach(bindSearch);
+    document.querySelectorAll(".more-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const table = btn.previousElementSibling;
+        if (table?.classList.contains("is-open")) table.dataset.pinned = "1";
+        else if (table) delete table.dataset.pinned;
+      });
+    });
+  </script>
+</body>
+</html>

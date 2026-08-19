@@ -1023,7 +1023,7 @@ if (typeof DEFAULT_TYPE_CATEGORIES === 'undefined') {
         name: 'Stay',
         description: 'Places to sleep or retreat.',
         icon: 'icon-lodging',
-        types: ['Lodging', 'Hotel', 'Resort', 'B&B', 'BnB', 'Inn', 'Cabin', 'Camping', 'Glamping', 'Hostel', 'Boutique Stay', 'Treehouse', 'Unique Stay', 'Airbnb', 'Lodge', 'Boat', 'Entire House', 'House Stay', 'House Rental', 'Vacation Rental', 'Rental', 'Apartment', 'Condo', 'Cottage', 'Villa', 'Home', 'Property']
+        types: ['Lodging', 'Hotel', 'B&B', 'BnB', 'Inn', 'Cabin', 'Camping', 'Glamping', 'Hostel', 'Boutique Stay', 'Treehouse', 'Unique Stay', 'Airbnb', 'Lodge', 'Boat', 'Entire House', 'House Stay', 'House Rental', 'Vacation Rental', 'Rental', 'Apartment', 'Condo', 'Cottage', 'Villa', 'Home', 'Property']
     },
     'outdoor': {
         emoji: '⛰️',
@@ -1037,7 +1037,7 @@ if (typeof DEFAULT_TYPE_CATEGORIES === 'undefined') {
         name: 'Culture',
         description: 'Art, heritage, people, and traditions.',
         icon: 'icon-culture',
-        types: ['Museum', 'Gallery', 'Art Gallery', 'Art', 'Architecture', 'Landmark', 'Historical Site', 'Festival', 'Cultural Tour', 'Craft', 'Music', 'Theater', 'Theatre', 'Dance', 'Attraction', 'Attractions', 'Local Craft', 'Cultural Site']
+        types: ['Museum', 'Gallery', 'Art Gallery', 'Art', 'Architecture', 'Landmark', 'Historical Site', 'Festival', 'Cultural Tour', 'Craft', 'Music', 'Theater', 'Theatre', 'Dance', 'Local Craft', 'Cultural Site']
     },
     'experience': {
         emoji: '🛼',
@@ -1046,24 +1046,48 @@ if (typeof DEFAULT_TYPE_CATEGORIES === 'undefined') {
         icon: 'icon-activity',
         types: ['Activity', 'Activities', 'Indoor Activity', 'Event', 'Nightlife', 'Club', 'Amusement Park', 'Arcade', 'Live Show', 'Interactive Experience', 'Workshop', 'Tour', 'Entertainment']
     },
-    'community': {
-        emoji: '💛',
-        name: 'Community',
-        description: 'Local people, causes, and collectives.',
+    'attractions': {
+        emoji: '⭐',
+        name: 'Attractions',
+        description: 'Places to visit, shop, and enjoy resorts.',
         icon: 'icon-local',
-        types: ['Community', 'Community Project', 'Volunteer Work', 'Local Profile', 'Maker', 'Story', 'Collective']
+        types: ['Attraction', 'Attractions', 'Shopping', 'Shop', 'Retail', 'Resorts', 'Resort']
     }
 };
 }
 
+function migrateCommunityToAttractions(cats) {
+    if (!cats || typeof cats !== 'object') return cats;
+    if (cats.community) {
+        if (!cats.attractions) {
+            cats.attractions = cats.community;
+        }
+        delete cats.community;
+    }
+    if (cats.attractions && DEFAULT_TYPE_CATEGORIES.attractions) {
+        cats.attractions.name = DEFAULT_TYPE_CATEGORIES.attractions.name;
+        cats.attractions.description = DEFAULT_TYPE_CATEGORIES.attractions.description;
+        cats.attractions.types = DEFAULT_TYPE_CATEGORIES.attractions.types.slice();
+        cats.attractions.icon = cats.attractions.icon || DEFAULT_TYPE_CATEGORIES.attractions.icon;
+        cats.attractions.emoji = cats.attractions.emoji || DEFAULT_TYPE_CATEGORIES.attractions.emoji;
+    }
+    return cats;
+}
+
+function normalizeCategoryKey(value) {
+    const key = String(value || '').trim().toLowerCase();
+    if (key === 'community' || key === 'attraction' || key === 'attractions') return 'attractions';
+    return key;
+}
+
 // Initialize TYPE_CATEGORIES from localStorage or defaults
-let loadedCategories = loadCategoriesFromStorage();
+let loadedCategories = migrateCommunityToAttractions(loadCategoriesFromStorage());
 let TYPE_CATEGORIES;
 
 if (loadedCategories && Object.keys(loadedCategories).length > 0) {
     // Identify custom categories FIRST (before any modifications)
     const customCategoryKeys = Object.keys(loadedCategories).filter(function(key) {
-        return !DEFAULT_TYPE_CATEGORIES.hasOwnProperty(key);
+        return !DEFAULT_TYPE_CATEGORIES.hasOwnProperty(key) && key !== 'community';
     });
     
     // Preserve custom categories data BEFORE any merging
@@ -1105,6 +1129,7 @@ if (loadedCategories && Object.keys(loadedCategories).length > 0) {
     for (const key in preservedCustomCategories) {
         TYPE_CATEGORIES[key] = preservedCustomCategories[key];
     }
+    migrateCommunityToAttractions(TYPE_CATEGORIES);
     
     // Verify custom categories are still present
     const finalCustomKeys = Object.keys(TYPE_CATEGORIES).filter(function(key) {
@@ -1139,6 +1164,7 @@ function normalizeCategoryInput(value) {
     const trimmed = String(value).trim();
     if (!trimmed) return '';
     const lower = trimmed.toLowerCase();
+    if (lower === 'community' || lower === 'attractions') return 'attractions';
     
     // First check if it's a direct key match
     if (TYPE_CATEGORIES[lower]) {
@@ -1173,11 +1199,11 @@ function normalizeCategoryInput(value) {
 // Used when exact type match is not found in category types array
 const TYPE_KEYWORD_MAPPINGS = {
     'taste': ['coffee', 'cafe', 'café', 'restaurant', 'food', 'dining', 'bakery', 'brewery', 'winery', 'cidery', 'distillery', 'bar', 'cocktail', 'market', 'food', 'cuisine', 'cooking', 'chef', 'meal', 'eat', 'drink', 'beverage', 'wine', 'beer', 'spirit', 'liquor', 'tea', 'espresso', 'latte', 'pizza', 'burger', 'sandwich', 'deli', 'grocery', 'farmers market', 'food tour', 'culinary'],
-    'stay': ['hotel', 'lodging', 'resort', 'inn', 'bed and breakfast', 'bnb', 'cabin', 'camping', 'glamping', 'hostel', 'boutique stay', 'treehouse', 'unique stay', 'airbnb', 'lodge', 'accommodation', 'room', 'suite', 'retreat', 'getaway', 'entire house', 'house stay', 'house rental', 'vacation rental', 'rental', 'apartment', 'condo', 'cottage', 'villa', 'home', 'property', 'entire', 'house', 'vacation', 'short term rental', 'str', 'vrbo', 'booking', 'reservation'],
+    'stay': ['hotel', 'lodging', 'inn', 'bed and breakfast', 'bnb', 'cabin', 'camping', 'glamping', 'hostel', 'boutique stay', 'treehouse', 'unique stay', 'airbnb', 'lodge', 'accommodation', 'room', 'suite', 'retreat', 'getaway', 'entire house', 'house stay', 'house rental', 'vacation rental', 'rental', 'apartment', 'condo', 'cottage', 'villa', 'home', 'property', 'entire', 'house', 'vacation', 'short term rental', 'str', 'vrbo', 'booking', 'reservation'],
     'outdoor': ['hiking', 'hike', 'trail', 'park', 'beach', 'outdoor', 'nature', 'camping', 'climbing', 'water sports', 'skiing', 'snow', 'scenic', 'viewpoint', 'lookout', 'nature walk', 'biking', 'cycling', 'bike', 'kayaking', 'kayak', 'canoe', 'paddle', 'fishing', 'hunting', 'wildlife', 'forest', 'mountain', 'river', 'lake', 'national park', 'state park', 'garden', 'botanical'],
-    'culture': ['museum', 'gallery', 'art', 'architecture', 'landmark', 'historical', 'history', 'heritage', 'festival', 'cultural', 'craft', 'music', 'theater', 'theatre', 'dance', 'performance', 'concert', 'show', 'exhibit', 'exhibition', 'monument', 'memorial', 'site', 'attraction', 'local craft', 'cultural site', 'tradition'],
+    'culture': ['museum', 'gallery', 'art', 'architecture', 'landmark', 'historical', 'history', 'heritage', 'festival', 'cultural', 'craft', 'music', 'theater', 'theatre', 'dance', 'performance', 'concert', 'show', 'exhibit', 'exhibition', 'monument', 'memorial', 'site', 'local craft', 'cultural site', 'tradition'],
     'experience': ['activity', 'activities', 'indoor activity', 'indoor', 'event', 'nightlife', 'club', 'amusement', 'arcade', 'live show', 'interactive', 'entertainment', 'fun', 'play', 'game', 'adventure', 'experience', 'tour', 'excursion'],
-    'community': ['community', 'volunteer', 'local profile', 'maker', 'story', 'collective', 'group', 'organization', 'nonprofit', 'non-profit', 'charity', 'cause', 'initiative', 'foundation', 'association', 'society', 'network', 'community project', 'volunteer work']
+    'attractions': ['attraction', 'attractions', 'shopping', 'shop', 'retail', 'boutique', 'store', 'resort', 'resorts']
 };
 
 // Map individual types to categories (case-insensitive)
@@ -1186,7 +1212,7 @@ const TYPE_KEYWORD_MAPPINGS = {
 function getCategoryForType(type, listing) {
     // If listing has a category override, use it
     if (listing && listing.category) {
-        return listing.category;
+        return normalizeCategoryKey(listing.category) || listing.category;
     }
     
     if (!type) return null;
@@ -4961,6 +4987,7 @@ function updateTabsStickyStackStuck() {
         }
         
         let currentAdminTypeFilter = ''; // Track which category is currently active (empty string = "All Types")
+        let currentAdminSubfilter = '';
         
         function filterListings() {
             const searchTerm = document.getElementById('adminSearchInput').value.toLowerCase().trim();
@@ -5033,12 +5060,18 @@ function updateTabsStickyStackStuck() {
                 // Check if type matches - either direct match or category match
                 let matchesType = true;
                 if (currentAdminTypeFilter) {
-                    // Check if it's a category key
-                    if (TYPE_CATEGORIES && TYPE_CATEGORIES[currentAdminTypeFilter]) {
+                    if (currentAdminSubfilter === 'shopping' || currentAdminSubfilter === 'resorts') {
+                        const listingType = String(listing.type || '').toLowerCase();
+                        if (currentAdminSubfilter === 'shopping') {
+                            matchesType = listingType === 'shop' || listingType === 'shops' || listingType === 'store' || listingType.indexOf('shopping') > -1 || listingType.indexOf('retail') > -1 || listingType.indexOf('boutique') > -1;
+                        } else {
+                            matchesType = listingType.indexOf('resort') > -1;
+                        }
+                    } else if (TYPE_CATEGORIES && (TYPE_CATEGORIES[currentAdminTypeFilter] || currentAdminTypeFilter === 'community')) {
                         // Use getCategoryForType to determine the listing's category
                         // This handles both automatic type mapping and category overrides
-                        const listingCategory = getCategoryForType(listing.type, listing);
-                        matchesType = listingCategory === currentAdminTypeFilter;
+                        const listingCategory = normalizeCategoryKey(getCategoryForType(listing.type, listing));
+                        matchesType = listingCategory === normalizeCategoryKey(currentAdminTypeFilter);
                         
                         // Debug logging
                         if (listingCategory !== currentAdminTypeFilter) {
@@ -5087,7 +5120,8 @@ function updateTabsStickyStackStuck() {
         }
         
         window.filterAdminByType = function filterAdminByType(typeOrCategory) {
-            currentAdminTypeFilter = typeOrCategory || '';
+            currentAdminTypeFilter = typeOrCategory === 'community' ? 'attractions' : (typeOrCategory || '');
+            currentAdminSubfilter = '';
             
             console.log('🔍 filterAdminByType called with:', typeOrCategory, '| currentAdminTypeFilter:', currentAdminTypeFilter);
             console.log('📋 TYPE_CATEGORIES available:', TYPE_CATEGORIES ? 'YES' : 'NO');
@@ -5100,14 +5134,14 @@ function updateTabsStickyStackStuck() {
             buttons.forEach(function(btn) {
                 btn.classList.remove('active');
                 // Check if it matches by type or category
-                if (!typeOrCategory) {
+                if (!currentAdminTypeFilter) {
                     // "All Types" button - activate if no filter
                     if (btn.dataset.type === '' && !btn.dataset.category) {
                         btn.classList.add('active');
                     }
                 } else {
                     // Category button - activate if it matches the current filter
-                    if (btn.dataset.category === typeOrCategory) {
+                    if (normalizeCategoryKey(btn.dataset.category) === normalizeCategoryKey(currentAdminTypeFilter)) {
                         btn.classList.add('active');
                     }
                 }
@@ -5117,6 +5151,9 @@ function updateTabsStickyStackStuck() {
             filterListings();
             // Update clear button style
             updateClearButtonStyle();
+            try {
+                ensureAdminAttractionsSubmenu(document.querySelector('#adminTab .type-quick-filters'));
+            } catch (e) {}
         }
         
         window.handleAdminTypeFilter = function handleAdminTypeFilter() {
@@ -5524,6 +5561,8 @@ function updateTabsStickyStackStuck() {
                 seeMoreBtn.innerHTML = '<span class="see-more-text">See More</span><span class="see-less-text" style="display: none;">See Less</span>';
                 container.appendChild(seeMoreBtn);
             }
+
+            ensureAdminAttractionsSubmenu(container);
         }
         
         // Toggle "See More" functionality for admin type filters
@@ -5552,6 +5591,53 @@ function updateTabsStickyStackStuck() {
         
         // Make toggleAdminTypeFilters available globally
         window.toggleAdminTypeFilters = toggleAdminTypeFilters;
+
+        function ensureAdminAttractionsSubmenu(container) {
+            if (!container) return;
+            const attractionsBtn = container.querySelector('.category-filter-btn[data-category="attractions"]')
+                || container.querySelector('.category-filter-btn[data-category="community"]');
+            if (!attractionsBtn) return;
+
+            let submenu = container.querySelector('.category-submenu.attractions-submenu');
+            if (!submenu) {
+                submenu = document.createElement('div');
+                submenu.className = 'category-submenu attractions-submenu';
+                submenu.innerHTML =
+                    '<button class="submenu-item" type="button" data-subfilter="shopping">' +
+                        '<span class="submenu-icon"><img src="icons/attractions-shopping.svg" alt="" /></span>' +
+                        '<span>Shopping</span>' +
+                    '</button>' +
+                    '<button class="submenu-item" type="button" data-subfilter="resorts">' +
+                        '<span class="submenu-icon"><img src="icons/attractions-resorts.svg" alt="" /></span>' +
+                        '<span>Resorts</span>' +
+                    '</button>';
+                submenu.addEventListener('click', function(e) {
+                    const item = e.target && e.target.closest ? e.target.closest('.submenu-item') : null;
+                    if (!item) return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const key = item.getAttribute('data-subfilter') || '';
+                    currentAdminTypeFilter = 'attractions';
+                    currentAdminSubfilter = currentAdminSubfilter === key ? '' : key;
+                    document.querySelectorAll('#adminTab .type-filter-btn').forEach(function(btn) {
+                        btn.classList.toggle('active', normalizeCategoryKey(btn.dataset.category) === 'attractions');
+                    });
+                    submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
+                        btn.classList.toggle('active', currentAdminSubfilter && btn === item);
+                    });
+                    filterListings();
+                    updateClearButtonStyle();
+                });
+            }
+            if (attractionsBtn.nextSibling !== submenu) {
+                container.insertBefore(submenu, attractionsBtn.nextSibling);
+            }
+            const show = normalizeCategoryKey(currentAdminTypeFilter) === 'attractions';
+            submenu.style.display = show ? 'block' : 'none';
+            submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
+                btn.classList.toggle('active', show && btn.getAttribute('data-subfilter') === currentAdminSubfilter);
+            });
+        }
         
         function renderAmenitiesCheckboxes() {
             const container = document.getElementById('amenitiesCheckboxes');
@@ -7451,50 +7537,111 @@ function updateTabsStickyStackStuck() {
             return local.replace(/[._\-+]+/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
         }
 
-        // Turn raw "amenities: \"a; b\" → \"a\"" (or new "amenities: removed b") into a short line.
-        function formatActivityDetails(raw) {
-            var text = String(raw || '').trim();
-            if (!text) return '';
-            var parts = text.split(/\s\|\s/);
-            var out = parts.map(function(part) {
-                var amenityNew = part.match(/^amenities:\s*(.+)$/i);
-                if (amenityNew && !/→/.test(amenityNew[1])) {
-                    return amenityNew[1].trim();
+        // Parse audit details into visual change pills for the middle column.
+        function buildActivityChangePills(entry) {
+            var pills = [];
+            var fields = String(entry.changedFields || '')
+                .split(',')
+                .map(function(f) { return f.trim(); })
+                .filter(Boolean);
+            var details = String(entry.details || '').trim();
+            var handledFields = {};
+
+            function pushPill(kind, label) {
+                if (!label) return;
+                pills.push({ kind: kind, label: label });
+            }
+
+            details.split(/\s\|\s/).forEach(function(part) {
+                part = part.trim();
+                if (!part) return;
+
+                var amenityPlain = part.match(/^amenities:\s*(.+)$/i);
+                if (amenityPlain && !/→/.test(amenityPlain[1])) {
+                    handledFields.amenities = true;
+                    var remMatch = amenityPlain[1].match(/removed\s+([^;]+)/i);
+                    var addMatch = amenityPlain[1].match(/added\s+([^;]+)/i);
+                    if (remMatch) {
+                        remMatch[1].split(',').map(function(s) { return s.trim(); }).filter(Boolean).forEach(function(name) {
+                            pushPill('removed', '− ' + name);
+                        });
+                    }
+                    if (addMatch) {
+                        addMatch[1].split(',').map(function(s) { return s.trim(); }).filter(Boolean).forEach(function(name) {
+                            pushPill('added', '+ ' + name);
+                        });
+                    }
+                    return;
                 }
-                var amenityOld = part.match(/^amenities:\s*"([^"]*)"\s*→\s*"([^"]*)"$/i);
-                if (amenityOld) {
-                    var before = amenityOld[1].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
-                    var after = amenityOld[2].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
+
+                var amenityArrow = part.match(/^amenities:\s*"([^"]*)"\s*→\s*"([^"]*)"$/i);
+                if (amenityArrow) {
+                    handledFields.amenities = true;
+                    var before = amenityArrow[1].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
+                    var after = amenityArrow[2].split(/[;,]/).map(function(s) { return s.trim(); }).filter(Boolean);
                     var beforeMap = {};
                     var afterMap = {};
                     before.forEach(function(v) { beforeMap[v.toLowerCase()] = v; });
                     after.forEach(function(v) { afterMap[v.toLowerCase()] = v; });
-                    var removed = [];
-                    var added = [];
-                    Object.keys(beforeMap).forEach(function(k) { if (!afterMap[k]) removed.push(beforeMap[k]); });
-                    Object.keys(afterMap).forEach(function(k) { if (!beforeMap[k]) added.push(afterMap[k]); });
-                    var bits = [];
-                    if (removed.length) bits.push('removed ' + removed.join(', '));
-                    if (added.length) bits.push('added ' + added.join(', '));
-                    return bits.length ? bits.join('; ') : part;
+                    Object.keys(beforeMap).forEach(function(k) {
+                        if (!afterMap[k]) pushPill('removed', '− ' + beforeMap[k]);
+                    });
+                    Object.keys(afterMap).forEach(function(k) {
+                        if (!beforeMap[k]) pushPill('added', '+ ' + afterMap[k]);
+                    });
+                    return;
                 }
-                // Shorten other field dumps: keep field name + arrow summary
+
+                var flagChange = part.match(/^(featured|private):\s*(TRUE|FALSE)\s*→\s*(TRUE|FALSE)$/i);
+                if (flagChange) {
+                    handledFields[flagChange[1].toLowerCase()] = true;
+                    pushPill(
+                        flagChange[3].toUpperCase() === 'TRUE' ? 'added' : 'removed',
+                        flagChange[1] + ': ' + flagChange[2] + ' → ' + flagChange[3]
+                    );
+                    return;
+                }
+
                 var generic = part.match(/^([a-zA-Z0-9_]+):\s*"([^"]*)"\s*→\s*"([^"]*)"$/);
                 if (generic) {
+                    handledFields[generic[1].toLowerCase()] = true;
                     var from = generic[2];
                     var to = generic[3];
-                    if (!from && to) return generic[1] + ': set';
-                    if (from && !to) return generic[1] + ': cleared';
-                    if (from.length > 40 || to.length > 40) {
-                        return generic[1] + ' changed';
+                    if (!from && to) {
+                        pushPill('added', generic[1] + ' set');
+                    } else if (from && !to) {
+                        pushPill('removed', generic[1] + ' cleared');
+                    } else if (from.length > 28 || to.length > 28) {
+                        pushPill('field', generic[1]);
+                    } else {
+                        pushPill('changed', generic[1] + ': ' + from + ' → ' + to);
                     }
-                    return generic[1] + ': "' + from + '" → "' + to + '"';
+                    return;
                 }
-                return part;
+
+                if (/^New listing/i.test(part) || /^Listing deleted/i.test(part)) {
+                    pushPill('field', part);
+                }
             });
-            var joined = out.filter(Boolean).join(' · ');
-            if (joined.length > 180) joined = joined.slice(0, 177) + '…';
-            return joined;
+
+            fields.forEach(function(field) {
+                if (handledFields[field.toLowerCase()]) return;
+                pushPill('field', field);
+            });
+
+            if (!pills.length) {
+                var action = String(entry.action || '').toLowerCase();
+                if (action === 'create') pushPill('added', 'New listing');
+                else if (action === 'delete') pushPill('removed', 'Deleted');
+                else if (details) pushPill('field', details.length > 80 ? details.slice(0, 77) + '…' : details);
+                else pushPill('field', 'Changed');
+            }
+
+            return pills.slice(0, 12).map(function(p) {
+                return '<span class="activity-log-pill activity-log-pill--' + p.kind + '">' +
+                    activityLogEscape(p.label) +
+                    '</span>';
+            }).join('');
         }
 
         window.setActivityLogFilter = function setActivityLogFilter(filter) {
@@ -7512,7 +7659,6 @@ function updateTabsStickyStackStuck() {
 
             var entries = (activityLogEntriesCache || []).filter(function(entry) {
                 if (activityLogFilter === 'all') {
-                    // Keep save-all summaries out of the main feed — they're noisy
                     return String(entry.action || '').toLowerCase() !== 'save-all';
                 }
                 return String(entry.action || '').toLowerCase() === activityLogFilter;
@@ -7545,55 +7691,27 @@ function updateTabsStickyStackStuck() {
                 var action = String(entry.action || '').toLowerCase();
                 var email = entry.email || '';
                 var who = displayNameFromEmail(email);
-                var listingLabel = entry.name || entry.slug || 'listing';
-                var verb = activityActionLabel(action).toLowerCase();
-                var line;
-                if (action === 'save-all') {
-                    line = '<strong>' + activityLogEscape(who) + '</strong> saved all listings';
-                } else if (action === 'delete') {
-                    line = '<strong>' + activityLogEscape(who) + '</strong> deleted <strong>' + activityLogEscape(listingLabel) + '</strong>';
-                } else {
-                    line = '<strong>' + activityLogEscape(who) + '</strong> ' + activityLogEscape(verb) + ' <strong>' + activityLogEscape(listingLabel) + '</strong>';
-                }
-
-                var chips = '';
-                var fields = String(entry.changedFields || '')
-                    .split(',')
-                    .map(function(f) { return f.trim(); })
-                    .filter(Boolean)
-                    .slice(0, 8);
-                if (fields.length) {
-                    chips = '<div class="activity-log-chips">' + fields.map(function(f) {
-                        return '<span class="activity-log-chip">' + activityLogEscape(f) + '</span>';
-                    }).join('') + '</div>';
-                }
-
-                var details = '';
-                if (entry.details && action !== 'save-all') {
-                    details = '<div class="activity-log-details" title="' + activityLogEscape(entry.details) + '">' +
-                        activityLogEscape(formatActivityDetails(entry.details)) +
-                        '</div>';
-                } else if (entry.details && action === 'save-all') {
-                    details = '<div class="activity-log-meta">' + activityLogEscape(entry.details) + '</div>';
-                }
-
-                var metaBits = [];
-                if (email) metaBits.push(email);
-                if (entry.slug && entry.name) metaBits.push(entry.slug);
-                var meta = metaBits.length
-                    ? '<p class="activity-log-meta">' + activityLogEscape(metaBits.join(' · ')) + '</p>'
-                    : '';
+                var listingLabel = entry.name || entry.slug || 'Listing';
+                var changePills = buildActivityChangePills(entry);
 
                 html +=
                     '<article class="activity-log-item">' +
-                        '<div class="activity-log-avatar" data-tone="' + activityTone(email) + '" aria-hidden="true">' +
-                            activityLogEscape(activityInitials(email)) +
+                        '<div class="activity-log-who">' +
+                            '<div class="activity-log-avatar" data-tone="' + activityTone(email) + '" aria-hidden="true">' +
+                                activityLogEscape(activityInitials(email)) +
+                            '</div>' +
+                            '<div class="activity-log-who-text">' +
+                                '<div class="activity-log-person">' + activityLogEscape(who) + '</div>' +
+                                '<div class="activity-log-listing" title="' + activityLogEscape(listingLabel) + '">' +
+                                    activityLogEscape(listingLabel) +
+                                '</div>' +
+                                (email
+                                    ? '<div class="activity-log-email" title="' + activityLogEscape(email) + '">' + activityLogEscape(email) + '</div>'
+                                    : '') +
+                            '</div>' +
                         '</div>' +
-                        '<div class="activity-log-body">' +
-                            '<p class="activity-log-line">' + line + '</p>' +
-                            meta +
-                            chips +
-                            details +
+                        '<div class="activity-log-changes" title="' + activityLogEscape(entry.details || entry.changedFields || '') + '">' +
+                            (changePills || '<span class="activity-log-pill activity-log-pill--field">Changed</span>') +
                         '</div>' +
                         '<div class="activity-log-side">' +
                             '<span class="activity-log-badge activity-log-badge--' + activityActionClass(action) + '">' +

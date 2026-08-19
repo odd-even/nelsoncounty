@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Visit Nelson — Accessibility prefs preview</title>
+  <style>
+    @font-face {
+      font-family: Satoshi;
+      src: url("https://framerusercontent.com/third-party-assets/fontshare/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2");
+      font-weight: 400;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: Satoshi;
+      src: url("https://framerusercontent.com/third-party-assets/fontshare/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2");
+      font-weight: 700;
+      font-display: swap;
+    }
+
+    :root {
+      --ink: #1F1C1C;
+      --forest: #557645;
+      --lime: #C8CE2F;
+      --mist: #F4F5F0;
+      --mute: #636161;
+      --line: rgba(31, 28, 28, 0.12);
+      --bg: #e8ebe2;
+      --card: #fff;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Satoshi, system-ui, -apple-system, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(200,206,47,0.28), transparent 55%),
+        radial-gradient(900px 500px at 100% 0%, rgba(85,118,69,0.22), transparent 50%),
+        linear-gradient(180deg, #f7f8f3 0%, var(--bg) 100%);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 24px 120px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--forest);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      line-height: 1.1;
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+    .lead { font-size: 1.125rem; color: var(--mute); margin: 0 0 28px; max-width: 36em; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 22px 24px;
+      box-shadow: 0 10px 30px rgba(31,28,28,0.06);
+    }
+    .card h2 { margin: 0 0 8px; font-size: 1.25rem; }
+    .card p { margin: 0; color: var(--mute); }
+    .card a { color: var(--forest); font-weight: 600; }
+
+    /* Pref effects */
+    html[data-vn-text="large"] { font-size: 112.5%; }
+    html[data-vn-text="xlarge"] { font-size: 125%; }
+    html[data-vn-contrast="on"] { filter: contrast(1.15) saturate(0.92); }
+    html[data-vn-contrast="on"] img,
+    html[data-vn-contrast="on"] [data-vn-a11y-root] { filter: none !important; }
+    html[data-vn-underline="on"] a {
+      text-decoration: underline !important;
+      text-underline-offset: 0.18em !important;
+      text-decoration-thickness: 0.08em !important;
+    }
+    html[data-vn-motion="on"] *,
+    html[data-vn-motion="on"] *::before,
+    html[data-vn-motion="on"] *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    html[data-vn-readable="on"] body {
+      letter-spacing: 0.02em !important;
+      word-spacing: 0.06em !important;
+      line-height: 1.7 !important;
+    }
+    html[data-vn-readable="on"] p { line-height: 1.75 !important; }
+
+    @keyframes vnA11yIn {
+      from { opacity: 0; transform: translateY(6px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="eyebrow">Visit Nelson · Preview</div>
+    <h1>Accessibility preferences</h1>
+    <p class="lead">
+      Sample page content so you can try text size, contrast, underlined links,
+      reduced motion, and readable spacing. Open the button in the corner.
+    </p>
+    <article class="card">
+      <h2>Blue Ridge weekend</h2>
+      <p>
+        Plan a night in Nelson County — wineries, trails, and stays close together.
+        Learn more on the
+        <a href="https://nelsoncounty.com" target="_blank" rel="noopener">Visit Nelson</a>
+        site.
+      </p>
+    </article>
+  </main>
+
+  <div id="root"></div>
+
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.26.0/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    const STORAGE_KEY = "vn-a11y-prefs-preview";
+    const BRAND = {
+      ink: "#1F1C1C",
+      forest: "#557645",
+      lime: "#C8CE2F",
+      mist: "#F4F5F0",
+      mute: "#636161",
+      line: "rgba(31, 28, 28, 0.12)",
+      white: "#FFFFFF",
+      font: 'Satoshi, system-ui, -apple-system, sans-serif',
+    };
+    const DEFAULT_PREFS = {
+      textSize: "default",
+      contrast: false,
+      underlineLinks: false,
+      reduceMotion: false,
+      readable: false,
+    };
+
+    function loadPrefs() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? { ...DEFAULT_PREFS, ...JSON.parse(raw) } : DEFAULT_PREFS;
+      } catch {
+        return DEFAULT_PREFS;
+      }
+    }
+
+    function applyPrefs(prefs) {
+      const root = document.documentElement;
+      root.setAttribute("data-vn-text", prefs.textSize);
+      root.setAttribute("data-vn-contrast", prefs.contrast ? "on" : "off");
+      root.setAttribute("data-vn-underline", prefs.underlineLinks ? "on" : "off");
+      root.setAttribute("data-vn-motion", prefs.reduceMotion ? "on" : "off");
+      root.setAttribute("data-vn-readable", prefs.readable ? "on" : "off");
+    }
+
+    function IconPerson() {
+      return (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="8" r="3.25" stroke="currentColor" strokeWidth="1.8" />
+          <path d="M5.5 19.2c1.6-3.2 4-4.8 6.5-4.8s4.9 1.6 6.5 4.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    }
+
+    function IconClose() {
+      return (
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        </svg>
+      );
+    }
+
+    function Field({ label, children }) {
+      return (
+        <div style={{ padding: 12, borderRadius: 14, background: BRAND.mist, border: `1px solid ${BRAND.line}` }}>
+          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.04em", textTransform: "uppercase", color: BRAND.mute, marginBottom: 8 }}>
+            {label}
+          </div>
+          {children}
+        </div>
+      );
+    }
+
+    function SegButton({ active, onClick, children, accent, label }) {
+      return (
+        <button
+          type="button"
+          aria-label={label}
+          aria-pressed={active}
+          onClick={onClick}
+          style={{
+            appearance: "none",
+            border: active ? `1.5px solid ${BRAND.ink}` : `1px solid ${BRAND.line}`,
+            background: active ? BRAND.white : "transparent",
+            color: BRAND.ink,
+            borderRadius: 10,
+            padding: "10px 6px",
+            cursor: "pointer",
+            boxShadow: active ? `inset 0 -2px 0 ${accent}` : "none",
+            fontFamily: BRAND.font,
+          }}
+        >
+          {children}
+        </button>
+      );
+    }
+
+    function Toggle({ label, hint, checked, onChange, accent }) {
+      return (
+        <button
+          type="button"
+          role="switch"
+          aria-checked={checked}
+          onClick={() => onChange(!checked)}
+          style={{
+            appearance: "none",
+            width: "100%",
+            textAlign: "left",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 12,
+            padding: "12px 12px",
+            borderRadius: 14,
+            border: `1px solid ${checked ? "rgba(85,118,69,0.35)" : BRAND.line}`,
+            background: checked ? "rgba(200,206,47,0.16)" : BRAND.white,
+            cursor: "pointer",
+            fontFamily: BRAND.font,
+            color: BRAND.ink,
+          }}
+        >
+          <span>
+            <span style={{ display: "block", fontSize: 14, fontWeight: 700 }}>{label}</span>
+            <span style={{ display: "block", fontSize: 12, color: BRAND.mute, marginTop: 2 }}>{hint}</span>
+          </span>
+          <span
+            aria-hidden="true"
+            style={{
+              width: 42,
+              height: 26,
+              borderRadius: 999,
+              background: checked ? BRAND.forest : "#D8D8D4",
+              position: "relative",
+              flexShrink: 0,
+              transition: "background 160ms ease",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                top: 3,
+                left: checked ? 19 : 3,
+                width: 20,
+                height: 20,
+                borderRadius: "50%",
+                background: checked ? accent : BRAND.white,
+                boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
+                transition: "left 160ms ease",
+              }}
+            />
+          </span>
+        </button>
+      );
+    }
+
+    function Preview() {
+      const accent = BRAND.lime;
+      const [open, setOpen] = useState(true);
+      const [prefs, setPrefs] = useState(DEFAULT_PREFS);
+      const panelRef = useRef(null);
+      const buttonRef = useRef(null);
+
+      useEffect(() => {
+        const initial = loadPrefs();
+        setPrefs(initial);
+        applyPrefs(initial);
+      }, []);
+
+      useEffect(() => {
+        applyPrefs(prefs);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+        } catch {}
+      }, [prefs]);
+
+      useEffect(() => {
+        if (!open) return;
+        const onKey = (e) => {
+          if (e.key === "Escape") {
+            setOpen(false);
+            buttonRef.current?.focus();
+          }
+        };
+        window.addEventListener("keydown", onKey);
+        return () => window.removeEventListener("keydown", onKey);
+      }, [open]);
+
+      const update = (patch) => setPrefs((p) => ({ ...p, ...patch }));
+      const reset = () => setPrefs({ ...DEFAULT_PREFS });
+      const activeCount =
+        (prefs.textSize !== "default" ? 1 : 0) +
+        (prefs.contrast ? 1 : 0) +
+        (prefs.underlineLinks ? 1 : 0) +
+        (prefs.reduceMotion ? 1 : 0) +
+        (prefs.readable ? 1 : 0);
+
+      return (
+        <div
+          data-vn-a11y-root
+          style={{
+            position: "fixed",
+            bottom: 24,
+            left: 24,
+            zIndex: 9999,
+            fontFamily: BRAND.font,
+          }}
+        >
+          {open && (
+            <div
+              id="vn-a11y-panel"
+              ref={panelRef}
+              role="dialog"
+              aria-label="Accessibility preferences"
+              style={{
+                position: "absolute",
+                bottom: 64,
+                left: 0,
+                width: 300,
+                maxWidth: "calc(100vw - 32px)",
+                background: BRAND.white,
+                color: BRAND.ink,
+                borderRadius: 18,
+                boxShadow: "0 18px 50px rgba(31,28,28,0.22), 0 2px 8px rgba(31,28,28,0.08)",
+                border: `1px solid ${BRAND.line}`,
+                overflow: "hidden",
+                animation: "vnA11yIn 180ms ease-out",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  gap: 12,
+                  padding: "16px 16px 12px",
+                  background: `linear-gradient(160deg, ${BRAND.ink} 0%, #2a3324 100%)`,
+                  color: BRAND.white,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: accent,
+                      fontWeight: 700,
+                      marginBottom: 4,
+                    }}
+                  >
+                    Visit Nelson
+                  </div>
+                  <div style={{ fontSize: 17, fontWeight: 700, lineHeight: 1.2 }}>
+                    Reading preferences
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close preferences"
+                  style={{
+                    appearance: "none",
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    background: "rgba(255,255,255,0.08)",
+                    color: BRAND.white,
+                    display: "grid",
+                    placeItems: "center",
+                    cursor: "pointer",
+                  }}
+                >
+                  <IconClose />
+                </button>
+              </div>
+
+              <div style={{ padding: 14, display: "grid", gap: 10 }}>
+                <Field label="Text size">
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 6 }}>
+                    {[
+                      ["default", "A", 14, "Default text size"],
+                      ["large", "A+", 16, "Larger text"],
+                      ["xlarge", "A++", 18, "Largest text"],
+                    ].map(([value, caption, size, a11y]) => (
+                      <SegButton
+                        key={value}
+                        active={prefs.textSize === value}
+                        accent={accent}
+                        onClick={() => update({ textSize: value })}
+                        label={a11y}
+                      >
+                        <span style={{ fontWeight: 700, fontSize: size }}>{caption}</span>
+                      </SegButton>
+                    ))}
+                  </div>
+                </Field>
+
+                <Toggle label="High contrast" hint="Boost contrast across the page" checked={prefs.contrast} onChange={(v) => update({ contrast: v })} accent={accent} />
+                <Toggle label="Underline links" hint="Make links easier to spot" checked={prefs.underlineLinks} onChange={(v) => update({ underlineLinks: v })} accent={accent} />
+                <Toggle label="Reduce motion" hint="Limit animations and transitions" checked={prefs.reduceMotion} onChange={(v) => update({ reduceMotion: v })} accent={accent} />
+                <Toggle label="Readable spacing" hint="More space between letters and lines" checked={prefs.readable} onChange={(v) => update({ readable: v })} accent={accent} />
+
+                <button
+                  type="button"
+                  onClick={reset}
+                  style={{
+                    marginTop: 2,
+                    appearance: "none",
+                    border: `1px solid ${BRAND.line}`,
+                    background: BRAND.mist,
+                    color: BRAND.ink,
+                    borderRadius: 12,
+                    padding: "11px 14px",
+                    fontFamily: BRAND.font,
+                    fontSize: 13,
+                    fontWeight: 600,
+                    cursor: "pointer",
+                  }}
+                >
+                  Reset preferences
+                </button>
+              </div>
+            </div>
+          )}
+
+          <button
+            ref={buttonRef}
+            type="button"
+            aria-expanded={open}
+            aria-label="Accessibility preferences"
+            onClick={() => setOpen((v) => !v)}
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 16,
+              border: "1px solid rgba(255,255,255,0.12)",
+              background: BRAND.ink,
+              color: accent,
+              display: "grid",
+              placeItems: "center",
+              cursor: "pointer",
+              boxShadow: "0 10px 28px rgba(31,28,28,0.28)",
+              position: "relative",
+              fontFamily: BRAND.font,
+            }}
+          >
+            <IconPerson />
+            {activeCount > 0 && (
+              <span
+                aria-hidden="true"
+                style={{
+                  position: "absolute",
+                  top: -4,
+                  right: -4,
+                  minWidth: 18,
+                  height: 18,
+                  padding: "0 5px",
+                  borderRadius: 999,
+                  background: accent,
+                  color: BRAND.ink,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  display: "grid",
+                  placeItems: "center",
+                  lineHeight: 1,
+                }}
+              >
+                {activeCount}
+              </span>
+            )}
+          </button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<Preview />);
+  </script>
+</body>
+</html>

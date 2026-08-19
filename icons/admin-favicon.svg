@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" role="img" aria-label="Visit Nelson Admin">
+  <!-- Inverted Visit Nelson mark: white field, blue V, black N -->
+  <rect width="150" height="150" rx="28" fill="#FFFFFF"/>
+  <path
+    d="M16 48 L43 110 L70 48"
+    fill="none"
+    stroke="#007AFF"
+    stroke-width="22"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+  <path
+    d="M92 48 V110 M92 48 L132 110 M132 48 V110"
+    fill="none"
+    stroke="#111111"
+    stroke-width="20"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+</svg>

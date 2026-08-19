@@ -430,7 +430,7 @@
             opacity: 0.88;
         }
 
-        /* ========== Settings Activity log (Apple-style, compact) ========== */
+        /* ========== Settings Activity log (3-column compact) ========== */
         .activity-log-section {
             width: 100%;
             margin: 24px 0 0 0;
@@ -514,7 +514,7 @@
             display: flex;
             flex-direction: column;
             gap: 0;
-            max-height: min(320px, 42vh);
+            max-height: min(380px, 48vh);
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
             border-radius: 10px;
@@ -522,7 +522,7 @@
             padding: 4px;
         }
         .activity-log-day {
-            margin: 6px 8px 4px;
+            margin: 8px 10px 4px;
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.02em;
@@ -531,16 +531,23 @@
         }
         .activity-log-item {
             display: grid;
-            grid-template-columns: 28px minmax(0, 1fr) auto;
-            gap: 8px;
+            grid-template-columns: minmax(180px, 0.9fr) minmax(0, 1.6fr) auto;
+            gap: 12px 16px;
             align-items: center;
-            padding: 7px 8px;
+            padding: 8px 10px;
             margin: 0 0 3px;
             background: #fff;
             border-radius: 10px;
             border: 1px solid rgba(0, 0, 0, 0.04);
         }
         .activity-log-item:last-child { margin-bottom: 0; }
+        .activity-log-who {
+            display: grid;
+            grid-template-columns: 28px minmax(0, 1fr);
+            gap: 8px;
+            align-items: center;
+            min-width: 0;
+        }
         .activity-log-avatar {
             width: 28px;
             height: 28px;
@@ -561,62 +568,83 @@
         .activity-log-avatar[data-tone="3"] { background: #ff9500; }
         .activity-log-avatar[data-tone="4"] { background: #af52de; }
         .activity-log-avatar[data-tone="5"] { background: #ff2d55; }
-        .activity-log-body { min-width: 0; }
-        .activity-log-line {
+        .activity-log-who-text {
+            min-width: 0;
+            line-height: 1.2;
+        }
+        .activity-log-person {
             margin: 0;
             font-size: 13px;
-            line-height: 1.3;
+            font-weight: 700;
             color: #1d1d1f;
             letter-spacing: -0.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .activity-log-line strong { font-weight: 700; }
-        .activity-log-meta {
+        .activity-log-listing {
+            margin: 1px 0 0;
+            font-size: 12px;
+            font-weight: 500;
+            color: #3a3a3c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .activity-log-email {
             margin: 1px 0 0;
             font-size: 11px;
             color: #86868b;
-            line-height: 1.3;
-            word-break: break-word;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .activity-log-chips {
+        .activity-log-changes {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
-            margin-top: 4px;
+            align-items: center;
+            gap: 5px;
+            min-width: 0;
         }
-        .activity-log-chip {
+        .activity-log-pill {
             display: inline-flex;
             align-items: center;
-            padding: 1px 6px;
+            max-width: 100%;
+            padding: 3px 8px;
             border-radius: 980px;
-            background: #f2f2f7;
-            color: #3a3a3c;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: -0.01em;
-        }
-        /* Compact change summary under each activity row */
-        .activity-log-details {
-            display: block;
-            margin-top: 3px;
-            font-size: 11px;
-            line-height: 1.35;
-            color: #6e6e73;
+            line-height: 1.2;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 100%;
+        }
+        .activity-log-pill--field {
+            background: #f2f2f7;
+            color: #3a3a3c;
+        }
+        .activity-log-pill--changed {
+            background: rgba(0, 122, 255, 0.1);
+            color: #0055cc;
+        }
+        .activity-log-pill--added {
+            background: rgba(52, 199, 89, 0.14);
+            color: #1a7f37;
+        }
+        .activity-log-pill--removed {
+            background: rgba(255, 59, 48, 0.12);
+            color: #c62828;
         }
         .activity-log-side {
             text-align: right;
             flex-shrink: 0;
+            justify-self: end;
         }
         .activity-log-badge {
             display: inline-flex;
             align-items: center;
-            padding: 2px 7px;
+            padding: 3px 8px;
             border-radius: 980px;
             font-size: 10px;
             font-weight: 700;
@@ -636,12 +664,20 @@
             color: #aeaeb2;
             white-space: nowrap;
         }
+        @media (max-width: 900px) {
+            .activity-log-item {
+                grid-template-columns: minmax(150px, 0.85fr) minmax(0, 1.4fr) auto;
+                gap: 10px;
+            }
+        }
         @media (max-width: 720px) {
             .activity-log-item {
-                grid-template-columns: 28px minmax(0, 1fr);
+                grid-template-columns: 1fr;
+                gap: 8px;
+                align-items: start;
             }
             .activity-log-side {
-                grid-column: 2;
+                justify-self: start;
                 text-align: left;
                 display: flex;
                 align-items: center;
@@ -2319,6 +2355,52 @@
             font-size: 18px;
             line-height: 1;
             margin-right: 2px;
+        }
+        .category-submenu.attractions-submenu {
+            margin: 4px 0 8px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: var(--card-bg);
+            overflow: hidden;
+            display: none;
+        }
+        .category-submenu.attractions-submenu .submenu-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+        }
+        .category-submenu.attractions-submenu .submenu-item + .submenu-item {
+            border-top: 1px solid var(--border-color);
+        }
+        .category-submenu.attractions-submenu .submenu-item:hover,
+        .category-submenu.attractions-submenu .submenu-item.active {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+        .category-submenu.attractions-submenu .submenu-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+        .category-submenu.attractions-submenu .submenu-icon img {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
         }
         .category-filter-btn .category-icon {
             width: 24px;
