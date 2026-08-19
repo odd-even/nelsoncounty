@@ -5065,12 +5065,14 @@ function updateTabsStickyStackStuck() {
                 // Check if type matches - either direct match or category match
                 let matchesType = true;
                 if (currentAdminTypeFilter) {
-                    if (currentAdminSubfilter === 'shopping' || currentAdminSubfilter === 'resorts') {
+                    if (currentAdminSubfilter === 'shopping' || currentAdminSubfilter === 'resorts' || currentAdminSubfilter === 'attraction') {
                         const listingType = String(listing.type || '').toLowerCase();
                         if (currentAdminSubfilter === 'shopping') {
                             matchesType = listingType === 'shop' || listingType === 'shops' || listingType === 'store' || listingType.indexOf('shopping') > -1 || listingType.indexOf('retail') > -1 || listingType.indexOf('boutique') > -1;
-                        } else {
+                        } else if (currentAdminSubfilter === 'resorts') {
                             matchesType = listingType.indexOf('resort') > -1;
+                        } else {
+                            matchesType = listingType === 'attraction' || listingType === 'attractions';
                         }
                     } else if (TYPE_CATEGORIES && (TYPE_CATEGORIES[currentAdminTypeFilter] || currentAdminTypeFilter === 'community')) {
                         // Use getCategoryForType to determine the listing's category
@@ -5611,6 +5613,10 @@ function updateTabsStickyStackStuck() {
                 submenu = document.createElement('div');
                 submenu.className = 'category-submenu attractions-submenu';
                 submenu.innerHTML =
+                    '<button class="submenu-item" type="button" data-subfilter="attraction">' +
+                        '<span class="submenu-icon"><img src="icons/attractions-attraction.svg" alt="" /></span>' +
+                        '<span>Attractions</span>' +
+                    '</button>' +
                     '<button class="submenu-item" type="button" data-subfilter="shopping">' +
                         '<span class="submenu-icon"><img src="icons/attractions-shopping.svg" alt="" /></span>' +
                         '<span>Shopping</span>' +

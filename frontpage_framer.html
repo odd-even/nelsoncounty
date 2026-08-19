@@ -2419,8 +2419,8 @@
                 gap: 0;
             }
             .mobile-attractions-submenu-preview .mobile-submenu-chip {
-                flex: 1 1 50%;
-                width: 50%;
+                flex: 1 1 0;
+                width: auto;
                 border: none;
                 border-radius: 0;
                 background: transparent;
@@ -4226,6 +4226,10 @@
                         </div>
                         <div class="mobile-attractions-submenu-preview">
                             <div class="mobile-submenu-chips">
+                                <button type="button" class="mobile-submenu-chip" data-subfilter="attraction">
+                                    <span class="mobile-submenu-icon"><img src="icons/attractions-attraction.svg" alt="" aria-hidden="true" /></span>
+                                    <span>Attractions</span>
+                                </button>
                                 <button type="button" class="mobile-submenu-chip" data-subfilter="shopping">
                                     <span class="mobile-submenu-icon"><img src="icons/attractions-shopping.svg" alt="" aria-hidden="true" /></span>
                                     <span>Shopping</span>
@@ -5997,6 +6001,18 @@ function ensureMobileTasteSubmenu() {
 function resolveAttractionsSubfilter(subfilterKey) {
     const available = getAvailableTypesFromDropdownOrData();
 
+    if (subfilterKey === 'attraction' || subfilterKey === 'attractions') {
+        const grouped = resolveAny(available, ['Attraction', 'Attractions']);
+        if (grouped) return { types: [grouped], dropdownValue: grouped };
+        const byKeywords = resolveByKeywords(available, ['attraction']);
+        const onlyAttraction = byKeywords.filter(function(t) {
+            const n = normalizeTypeValue(t);
+            return n.indexOf('shop') === -1 && n.indexOf('retail') === -1 && n.indexOf('resort') === -1 && n.indexOf('boutique') === -1;
+        });
+        if (onlyAttraction.length > 0) return { types: onlyAttraction, dropdownValue: onlyAttraction[0] };
+        return { types: ['Attraction'], dropdownValue: 'Attraction' };
+    }
+
     if (subfilterKey === 'shopping') {
         const grouped = resolveAny(available, ['Shopping', 'Shop', 'Shops', 'Retail', 'Boutique', 'Store']);
         if (grouped) return { types: [grouped], dropdownValue: grouped };
@@ -6021,6 +6037,7 @@ function deriveAttractionsSubKey() {
     const types = currentTypeFilter.map(normalizeTypeValue);
     if (types.some(function(t) { return t.includes('shopping') || t.includes('retail') || t.includes('boutique') || t === 'shop' || t === 'shops' || t === 'store'; })) return 'shopping';
     if (types.some(function(t) { return t.includes('resort'); })) return 'resorts';
+    if (types.some(function(t) { return t === 'attraction' || t === 'attractions' || t.includes('attraction'); })) return 'attraction';
     return null;
 }
 
@@ -6038,6 +6055,10 @@ function ensureAttractionsSubmenuPreview(container) {
             submenu.className = 'category-submenu attractions-submenu';
             submenu.setAttribute('data-preview', 'true');
             submenu.innerHTML =
+                '<button class="submenu-item" type="button" data-subfilter="attraction">' +
+                    '<span class="submenu-icon"><img src="icons/attractions-attraction.svg" alt="" aria-hidden="true" /></span>' +
+                    '<span>Attractions</span>' +
+                '</button>' +
                 '<button class="submenu-item" type="button" data-subfilter="shopping">' +
                     '<span class="submenu-icon"><img src="icons/attractions-shopping.svg" alt="" aria-hidden="true" /></span>' +
                     '<span>Shopping</span>' +
@@ -8572,6 +8593,7 @@ function filterPreview() {
                 if (filterType.toLowerCase() === listing.type.toLowerCase()) return true;
                 const filterLower = filterType.toLowerCase();
                 const listingLower = listing.type.toLowerCase();
+                if ((filterLower === 'attraction' || filterLower === 'attractions') && (listingLower === 'attraction' || listingLower === 'attractions')) return true;
                 if (filterLower === 'shopping' && (listingLower === 'shop' || listingLower === 'shops' || listingLower === 'store' || listingLower.indexOf('shopping') > -1 || listingLower.indexOf('retail') > -1 || listingLower.indexOf('boutique') > -1)) return true;
                 if ((filterLower === 'resorts' || filterLower === 'resort') && listingLower.indexOf('resort') > -1) return true;
                 if ((filterLower === 'activity' || filterLower === 'outdoor') &&
