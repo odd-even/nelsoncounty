@@ -1397,17 +1397,26 @@
             width: 40px; /* Match circle width */
             height: 40px; /* Match circle height */
             line-height: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
+        .category-filter-btn .category-icon img,
         .category-filter-btn .category-icon svg {
             width: 24px;
             height: 24px;
+            display: block;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+            object-position: center;
+            z-index: 11;
+        }
+        .category-filter-btn .category-icon svg {
             stroke-width: 2 !important; /* Ensure stroke is visible */
             fill: none !important;
-            position: relative;
-            z-index: 11; /* Even higher z-index for the SVG itself */
-            display: block;
-            margin: auto; /* Center the SVG within the icon container */
-            /* Don't override stroke color - use the color from the SVG attribute */
             color: unset !important;
         }
         /* Preserve stroke colors from SVG attributes - don't let CSS override */
@@ -1512,6 +1521,9 @@
             width: 16px;
             height: 16px;
             display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            object-position: center;
             /* Let the SVG render in its own (Taste) color */
             filter: none;
         }
@@ -2297,11 +2309,11 @@
             
             .mobile-filter-bar > .mobile-category-filter-group.category-community,
             .mobile-filter-bar > .mobile-category-filter-group.category-attractions {
-                background-color: #fbb040 !important;
+                background-color: #a3bb12 !important;
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-community select,
             .mobile-filter-bar > .mobile-category-filter-group.category-attractions select {
-                background-color: #fbb040 !important;
+                background-color: #a3bb12 !important;
             }
             .mobile-filter-bar > .mobile-category-filter-group.category-community::before,
             .mobile-filter-bar > .mobile-category-filter-group.category-attractions::before {
