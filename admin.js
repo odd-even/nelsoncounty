@@ -2905,7 +2905,9 @@ function updateTabsStickyStackStuck() {
 
             const categoriesFromStorage = loadCategoriesFromStorage();
             let addedCustomCategories = false;
-            categoriesFromData.forEach(function(categoryKey) {
+            categoriesFromData.forEach(function(rawKey) {
+                const categoryKey = normalizeCategoryKey(rawKey);
+                if (!categoryKey || categoryKey === 'community') return;
                 if (categoryKey && categoryKey.trim() && !TYPE_CATEGORIES[categoryKey]) {
                     let categoryData = null;
                     if (categoriesFromStorage && categoriesFromStorage[categoryKey]) {
@@ -2959,6 +2961,7 @@ function updateTabsStickyStackStuck() {
 
             if (categoriesFromStorage) {
                 Object.keys(categoriesFromStorage).forEach(function(categoryKey) {
+                    if (categoryKey === 'community' || normalizeCategoryKey(categoryKey) === 'community') return;
                     if (!TYPE_CATEGORIES[categoryKey]) {
                         TYPE_CATEGORIES[categoryKey] = JSON.parse(JSON.stringify(categoriesFromStorage[categoryKey]));
                         console.log('✅ Preserved custom category from localStorage:', categoryKey, 'with emoji:', TYPE_CATEGORIES[categoryKey].emoji || '(none)');
@@ -2966,6 +2969,8 @@ function updateTabsStickyStackStuck() {
                 });
             }
 
+            migrateCommunityToAttractions(TYPE_CATEGORIES);
+            if (TYPE_CATEGORIES.community) delete TYPE_CATEGORIES.community;
             saveCategoriesToStorage(TYPE_CATEGORIES);
 
             if (addedCustomCategories) {
@@ -5306,6 +5311,8 @@ function updateTabsStickyStackStuck() {
         // Returns ALL categories regardless of whether they have matching types in the data
         // Categories with matching types will have a count > 0
         function getCategoriesByUsage(listings) {
+            migrateCommunityToAttractions(TYPE_CATEGORIES);
+            if (TYPE_CATEGORIES.community) delete TYPE_CATEGORIES.community;
             // Initialize counts for all categories (0 if no listings)
             const categoryCounts = {};
             const categoryTypesMap = {};
@@ -5326,14 +5333,12 @@ function updateTabsStickyStackStuck() {
                     // Use category from Google Sheets if it exists (simple, direct - no auto-assignment)
                     let listingCategory = null;
                     if (listing.category && listing.category.trim() !== '') {
-                        // Use category directly from Google Sheets
-                        listingCategory = listing.category.trim();
+                        listingCategory = normalizeCategoryKey(listing.category.trim());
                     } else if (listing.type) {
-                        // Only use auto-assignment as fallback if no category in Google Sheets
-                        listingCategory = getCategoryForType(listing.type, listing);
+                        listingCategory = normalizeCategoryKey(getCategoryForType(listing.type, listing));
                     }
                     
-                    if (listingCategory) {
+                    if (listingCategory && listingCategory !== 'community') {
                         if (TYPE_CATEGORIES[listingCategory]) {
                             // Category exists in TYPE_CATEGORIES - count it
                             categoryCounts[listingCategory] = (categoryCounts[listingCategory] || 0) + 1;
@@ -5365,6 +5370,7 @@ function updateTabsStickyStackStuck() {
             // Add custom categories to TYPE_CATEGORIES temporarily for display
             // (They'll be shown in sidebar but won't persist - admin should add them properly)
             for (const customKey in customCategories) {
+                if (customKey === 'community' || normalizeCategoryKey(customKey) === 'attractions') continue;
                 if (!TYPE_CATEGORIES[customKey]) {
                     TYPE_CATEGORIES[customKey] = {
                         name: customCategories[customKey].name,
@@ -5406,7 +5412,9 @@ function updateTabsStickyStackStuck() {
             if (!container) return;
             
             // Get ALL categories (will show all regardless of usage)
-            const categoriesByUsage = getCategoriesByUsage(listings || []);
+            const categoriesByUsage = getCategoriesByUsage(listings || []).filter(function(c) {
+                return c && c.key && String(c.key).toLowerCase() !== 'community';
+            });
             
             if (categoriesByUsage.length === 0) {
                 console.log('⚠️ No categories defined in TYPE_CATEGORIES');
@@ -8442,9 +8450,17 @@ function updateTabsStickyStackStuck() {
                 });
                 saveCategoriesToStorage(TYPE_CATEGORIES);
             }
+
+            migrateCommunityToAttractions(TYPE_CATEGORIES);
+            if (TYPE_CATEGORIES.community) {
+                delete TYPE_CATEGORIES.community;
+                saveCategoriesToStorage(TYPE_CATEGORIES);
+            }
             
             // Get all category keys and sort by name
-            const finalCategoryKeys = Object.keys(TYPE_CATEGORIES).slice().sort(function(a, b) {
+            const finalCategoryKeys = Object.keys(TYPE_CATEGORIES).filter(function(key) {
+                return String(key).toLowerCase() !== 'community';
+            }).slice().sort(function(a, b) {
                 return a.toLowerCase().localeCompare(b.toLowerCase());
             });
             
@@ -9287,7 +9303,9 @@ function updateTabsStickyStackStuck() {
             if (!select) return;
             
             const currentValue = select.value;
-            const categoryKeys = Object.keys(TYPE_CATEGORIES);
+            const categoryKeys = Object.keys(TYPE_CATEGORIES).filter(function(key) {
+                return String(key).toLowerCase() !== 'community';
+            });
             const categoryKeysSet = new Set(categoryKeys);
             
             // Build options list with all categories from TYPE_CATEGORIES
@@ -9298,13 +9316,17 @@ function updateTabsStickyStackStuck() {
                 }).join('');
             
             // If current value exists but isn't in TYPE_CATEGORIES, add it to preserve custom categories from Google Sheets
-            if (currentValue && currentValue.trim() && !categoryKeysSet.has(currentValue)) {
+            if (currentValue && currentValue.trim() && !categoryKeysSet.has(currentValue) && normalizeCategoryKey(currentValue) !== 'attractions') {
                 optionsHtml += '<option value="' + escapeHtml(currentValue) + '">' + escapeHtml(currentValue) + ' (from Google Sheets)</option>';
                 console.log('📋 Adding custom category to dropdown:', currentValue);
             }
             
             select.innerHTML = optionsHtml;
-            select.value = currentValue; // This will now work even for custom categories
+            if (normalizeCategoryKey(currentValue) === 'attractions') {
+                select.value = 'attractions';
+            } else {
+                select.value = currentValue;
+            }
         }
         
         function updateTypeDropdown() {

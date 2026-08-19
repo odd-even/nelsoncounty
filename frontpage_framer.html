@@ -9382,17 +9382,15 @@ function renderPreview(filteredListings, appendMode) {
             const mobileSearchInput = document.getElementById('previewSearchInputMobile');
             const searchTerm = (searchInput ? searchInput.value : (mobileSearchInput ? mobileSearchInput.value : '')).trim();
             
-            // Use allFilteredListings if available (from filterPreview)
-            // If there's an active search and allFilteredListings is empty, use empty array (show no results)
-            // Otherwise, fall back to filteredListings or all data
+            // Use allFilteredListings if available (from filterPreview).
+            // If a filter is active and nothing matched, show an empty list — do not fall back to every listing.
             let listingsToRender;
+            const hasActiveCategoryOrType = !!(currentCategoryFilter || (Array.isArray(currentTypeFilter) && currentTypeFilter.length > 0) || currentFeaturedOnly);
             if (allFilteredListings.length > 0) {
                 listingsToRender = allFilteredListings;
-            } else if (searchTerm) {
-                // Active search with no matches - show empty results
+            } else if (searchTerm || hasActiveCategoryOrType) {
                 listingsToRender = [];
             } else {
-                // No active search - use fallback
                 listingsToRender = filteredListings || data.listings;
             }
             
