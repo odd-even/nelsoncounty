@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T17:47:50.157Z",
+  "generatedAt": "2026-08-19T18:00:16.822Z",
   "source": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTjIYDylHAm_j9b4rwGOjfPe0aoPRA1rcqsZ8NZg8ugT97pkM83n87NrDVhx7NU63-whpia-hRscywD/pub?gid=0&single=true&output=csv",
   "headers": [
     "name",
@@ -365,7 +365,7 @@
     {
       "name": "IGA Blue Ridge Grocery",
       "slug": "iga-blue-ridge-grocery",
-      "type": "Markets & Delis",
+      "type": "Shopping",
       "category": "attractions",
       "area": "Nellysford",
       "description": "Community supermarket providing full groceries, everyday essentials, and friendly service in the Rockfish Valley.",
@@ -10265,7 +10265,7 @@
     {
       "name": "Wintergreen Resort",
       "slug": "wintergreen-resort-2",
-      "type": "Attraction",
+      "type": "Resorts",
       "category": "attractions",
       "area": "Wintergreen",
       "description": "Wintergreen Resort offers professionally managed studios, condos, and private homes with exclusive guest access to Aquatics, Devils Knob golf, racquet sports, and on-mountain shuttles.",
@@ -10279,7 +10279,7 @@
       "image2FileId": "6a0358235c7cd75eb8635b91",
       "image3": "",
       "image3Desc": "",
-      "image3FileId": "",
+      "image3FileId": "6a4c11705c7cd75eb822e371",
       "website": "https://www.wintergreenresort.com/accommodations-home/",
       "phone": "",
       "address": "Wintergreen Resort Route 664 Wintergreen, VA 22958",
