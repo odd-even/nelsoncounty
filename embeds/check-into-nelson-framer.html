@@ -16,11 +16,12 @@
   - Outbound / nelsoncounty.com links break out of the iframe (_blank / _top).
   - In-page #anchors post a scroll request so the Framer parent page moves.
   - Exit-intent location popup is triggered from this parent script in Framer.
+  - Parent scroll position is posted so in-iframe scroll reveals / parallax still run.
 -->
 <div id="check-into-nelson-embed" style="width:100%;max-width:100%;margin:0;padding:0;">
   <iframe
     id="check-into-nelson-frame"
-    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260810a"
+    src="https://odd-even.github.io/nelsoncounty/check-into-nelson.html?embed=1&v=20260825a"
     title="Check Into Nelson — Stay Longer. Experience More."
     loading="eager"
     referrerpolicy="no-referrer-when-downgrade"
@@ -35,8 +36,31 @@
     var HEADER_OFFSET = 96;
     var exitArmed = false;
     var exitShown = false;
+    var viewportRaf = 0;
 
     window.setTimeout(function () { exitArmed = true; }, 12000);
+
+    function postViewport() {
+      if (!frame.contentWindow) return;
+      var rect = frame.getBoundingClientRect();
+      var viewportTop = Math.max(0, -rect.top);
+      var viewportHeight = window.innerHeight || 700;
+      try {
+        frame.contentWindow.postMessage({
+          type: "checkIntoNelsonViewport",
+          viewportTop: viewportTop,
+          viewportHeight: viewportHeight
+        }, "*");
+      } catch (err) {}
+    }
+
+    function scheduleViewport() {
+      if (viewportRaf) return;
+      viewportRaf = window.requestAnimationFrame(function () {
+        viewportRaf = 0;
+        postViewport();
+      });
+    }
 
     function showExitIntent() {
       if (!exitArmed || exitShown) return;
@@ -61,14 +85,27 @@
       showExitIntent();
     });
 
+    window.addEventListener("scroll", scheduleViewport, { passive: true });
+    window.addEventListener("resize", scheduleViewport);
+    frame.addEventListener("load", function () {
+      scheduleViewport();
+    });
+    scheduleViewport();
+
     window.addEventListener("message", function (event) {
       var data = event && event.data;
       if (!data || !data.type) return;
+
+      if (data.type === "checkIntoNelsonReady") {
+        scheduleViewport();
+        return;
+      }
 
       if (data.type === "checkIntoNelsonHeight") {
         var height = Number(data.height);
         if (!height || height < 600) return;
         frame.style.height = Math.ceil(height) + "px";
+        scheduleViewport();
         return;
       }
 
