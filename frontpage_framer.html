@@ -4706,6 +4706,7 @@ window.testBreadcrumbFilter = function(filterParams) {
 let data = null;
 let currentTypeFilter = []; // Array to hold types for the selected category (only one category active at a time)
 let currentCategoryFilter = null; // Track which category is currently active (null = "All Types")
+let currentAttractionsSubfilter = ''; // '' | 'attraction' | 'shopping' | 'resorts'
 let currentFeaturedOnly = false;
 // Store URL parameters received via postMessage (for cross-origin iframe support)
 let receivedUrlParams = {};
@@ -5770,6 +5771,7 @@ function applyTypesFilterFromTasteSubmenu(typesToApply, dropdownValue) {
     try { updateUrlWithCategory(null); } catch (e) {}
 
     currentCategoryFilter = null;
+    currentAttractionsSubfilter = '';
     currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
 
     const typeSelect = document.getElementById('previewTypeFilter');
@@ -5798,6 +5800,69 @@ function applyTypesFilterFromTasteSubmenu(typesToApply, dropdownValue) {
     }
 
     filterPreview();
+}
+
+// Attractions sub-nav: Shopping/Resorts stay inside Attractions; Attraction type
+// also includes Culture (etc.) listings typed Attraction so they appear in both places.
+function applyAttractionsSubfilter(typesToApply, dropdownValue, subfilterKey) {
+    filtersExplicitlyCleared = false;
+    try {
+        sessionStorage.removeItem('filtersExplicitlyCleared');
+    } catch (e) {}
+
+    currentCategoryFilter = 'attractions';
+    currentAttractionsSubfilter = subfilterKey || '';
+    currentTypeFilter = Array.isArray(typesToApply) ? typesToApply.slice() : [];
+    try { updateUrlWithCategory('attractions'); } catch (e) {}
+
+    const typeSelect = document.getElementById('previewTypeFilter');
+    const mobileTypeSelect = document.getElementById('mobileTypeFilter');
+    const valueForDropdown = dropdownValue || (currentTypeFilter[0] || '');
+
+    if (valueForDropdown) {
+        if (typeSelect) {
+            ensureDropdownOption(typeSelect, valueForDropdown, valueForDropdown);
+            typeSelect.value = valueForDropdown;
+        }
+        if (mobileTypeSelect) {
+            ensureDropdownOption(mobileTypeSelect, valueForDropdown, valueForDropdown);
+            mobileTypeSelect.value = valueForDropdown;
+        }
+    } else {
+        if (typeSelect) typeSelect.value = '';
+        if (mobileTypeSelect) mobileTypeSelect.value = '';
+    }
+
+    const mobileCategoryFilter = document.getElementById('mobileCategoryFilter');
+    if (mobileCategoryFilter) {
+        mobileCategoryFilter.value = 'attractions';
+        try { updateMobileCategoryIcon('attractions'); } catch (e) {}
+    }
+
+    document.querySelectorAll('.type-filter-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+        if (normalizeCategoryKey(btn.dataset.category) === 'attractions') {
+            btn.classList.add('active');
+        }
+    });
+
+    filterPreview();
+}
+
+function isAttractionListingType(type) {
+    const t = String(type || '').trim().toLowerCase();
+    return t === 'attraction' || t === 'attractions';
+}
+
+function listingMatchesAttractionsTypeFilter(listingType, filterType) {
+    if (!listingType || !filterType) return false;
+    if (filterType.toLowerCase() === listingType.toLowerCase()) return true;
+    const filterLower = filterType.toLowerCase();
+    const listingLower = listingType.toLowerCase();
+    if ((filterLower === 'attraction' || filterLower === 'attractions') && isAttractionListingType(listingLower)) return true;
+    if (filterLower === 'shopping' && (listingLower === 'shop' || listingLower === 'shops' || listingLower === 'store' || listingLower.indexOf('shopping') > -1 || listingLower.indexOf('retail') > -1 || listingLower.indexOf('boutique') > -1)) return true;
+    if ((filterLower === 'resorts' || filterLower === 'resort') && listingLower.indexOf('resort') > -1) return true;
+    return false;
 }
 function ensureTasteSubmenuPreview(container) {
     try {
@@ -6074,7 +6139,7 @@ function ensureAttractionsSubmenuPreview(container) {
                 const subfilterKey = item.getAttribute('data-subfilter') || '';
                 const resolved = resolveAttractionsSubfilter(subfilterKey);
                 if (!resolved || !resolved.types || resolved.types.length === 0) return;
-                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
+                applyAttractionsSubfilter(resolved.types, resolved.dropdownValue, subfilterKey);
                 submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
                     btn.classList.toggle('active', btn === item);
                 });
@@ -6088,14 +6153,14 @@ function ensureAttractionsSubmenuPreview(container) {
         const normalizedCategory = normalizeCategoryKey(currentCategoryFilter);
         const hasAttractionsCategoryActive = normalizedCategory === 'attractions';
         const noCategorySelected = !currentCategoryFilter || normalizedCategory === '';
-        const attractionsTypeKey = hasAttractionsCategoryActive ? null : deriveAttractionsSubKey();
+        const attractionsTypeKey = currentAttractionsSubfilter || deriveAttractionsSubKey();
         const shouldShow = hasAttractionsCategoryActive || (noCategorySelected && !!attractionsTypeKey);
         submenu.style.display = shouldShow ? 'block' : 'none';
 
         if (shouldShow) {
             submenu.querySelectorAll('.submenu-item').forEach(function(btn) {
                 const k = btn.getAttribute('data-subfilter');
-                btn.classList.toggle('active', !!attractionsTypeKey && k === attractionsTypeKey);
+                btn.classList.toggle('active', !!currentAttractionsSubfilter && k === currentAttractionsSubfilter);
             });
         }
 
@@ -6137,7 +6202,7 @@ function ensureMobileAttractionsSubmenu() {
                 const key = btn.getAttribute('data-subfilter') || '';
                 const resolved = resolveAttractionsSubfilter(key);
                 if (!resolved || !resolved.types || resolved.types.length === 0) return;
-                applyTypesFilterFromTasteSubmenu(resolved.types, resolved.dropdownValue);
+                applyAttractionsSubfilter(resolved.types, resolved.dropdownValue, key);
                 wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(b) {
                     b.classList.toggle('active', b === btn);
                 });
@@ -6149,7 +6214,7 @@ function ensureMobileAttractionsSubmenu() {
 
         wrapper.querySelectorAll('.mobile-submenu-chip').forEach(function(btn) {
             const k = btn.getAttribute('data-subfilter');
-            btn.classList.toggle('active', !!attractionsTypeKey && k === attractionsTypeKey);
+            btn.classList.toggle('active', !!currentAttractionsSubfilter && k === currentAttractionsSubfilter);
         });
     } catch (e) {
         console.warn('Mobile Attractions submenu error:', e);
@@ -6290,6 +6355,7 @@ function attachCategoryFilterButtonHandler(btn, categoryKey, category) {
             // Clear all selections and activate only "All Types"
             currentTypeFilter = [];
             currentCategoryFilter = null;
+            currentAttractionsSubfilter = '';
             // Remove category from URL
             updateUrlWithCategory(null);
             // Remove active state from all category buttons
@@ -6306,6 +6372,7 @@ function attachCategoryFilterButtonHandler(btn, categoryKey, category) {
                 console.log('🔄 Clearing category filter:', filterCategory);
                 currentTypeFilter = [];
                 currentCategoryFilter = null;
+                currentAttractionsSubfilter = '';
                 // Remove category from URL
                 updateUrlWithCategory(null);
                 // Remove active state from all category buttons
@@ -6331,6 +6398,7 @@ function attachCategoryFilterButtonHandler(btn, categoryKey, category) {
                 const selectedCategory = TYPE_CATEGORIES[filterCategory];
                 console.log('🎯 Filtering by category:', filterCategory, selectedCategory ? selectedCategory.name : 'unknown');
                 currentCategoryFilter = filterCategory;
+                currentAttractionsSubfilter = '';
                 
                 // Get all types that belong to this category (for legacy support, but filtering now uses currentCategoryFilter)
                 const categoryTypes = selectedCategory ? (selectedCategory.types || []) : [];
@@ -6896,6 +6964,7 @@ function handleUrlParameters() {
         }
         if (TYPE_CATEGORIES[categoryValue] || categoryValue === 'attractions') {
             currentCategoryFilter = categoryValue;
+            currentAttractionsSubfilter = '';
             // Get all types that belong to this category
             const selectedCategory = TYPE_CATEGORIES[categoryValue];
             const categoryTypes = selectedCategory ? (selectedCategory.types || []) : [];
@@ -8570,32 +8639,40 @@ function filterPreview() {
         }
         
         // Handle type matching
-        // Priority 1: If a category filter is active (user clicked a category button), filter by category
-        // Priority 2: If only individual types are selected (user clicked a type badge/button), filter by exact type match
+        // Attractions main: category attractions OR type Attraction (Culture>Attraction in both)
+        // Attractions > Attraction sub: any listing typed Attraction
+        // Attractions > Shopping/Resorts: Attractions-category + matching type
+        // Culture / other categories: category match only
         let matchesType = true;
         if (currentCategoryFilter) {
-            // Category filter mode: User clicked a category button
-            // Use category from Google Sheets directly (no auto-assignment)
             let listingCategory = null;
             if (listing.category && listing.category.trim() !== '') {
-                // Use category directly from Google Sheets
                 listingCategory = listing.category.trim();
             } else if (listing.type) {
-                // Only use auto-assignment as fallback if no category in Google Sheets
                 listingCategory = getCategoryForType(listing.type, listing);
             }
-            matchesType = normalizeCategoryKey(listingCategory) === normalizeCategoryKey(currentCategoryFilter);
+            const catKey = normalizeCategoryKey(currentCategoryFilter);
+            const listingCatKey = normalizeCategoryKey(listingCategory);
+
+            if (catKey === 'attractions') {
+                if (currentAttractionsSubfilter === 'attraction') {
+                    matchesType = isAttractionListingType(listing.type);
+                } else if (currentAttractionsSubfilter === 'shopping' || currentAttractionsSubfilter === 'resorts') {
+                    matchesType = listingCatKey === 'attractions' && currentTypeFilter.some(function(filterType) {
+                        return listingMatchesAttractionsTypeFilter(listing.type, filterType);
+                    });
+                } else {
+                    matchesType = listingCatKey === 'attractions' || isAttractionListingType(listing.type);
+                }
+            } else {
+                matchesType = listingCatKey === catKey;
+            }
         } else if (currentTypeFilter.length > 0) {
-            // Individual type filter mode: User selected specific type(s) via badge, URL param, mobile filter, or individual type button
-            // Filter by exact type match (case-insensitive)
             matchesType = currentTypeFilter.some(function(filterType) {
-                // Case-insensitive comparison
-                if (filterType.toLowerCase() === listing.type.toLowerCase()) return true;
+                if (filterType.toLowerCase() === String(listing.type || '').toLowerCase()) return true;
+                if (listingMatchesAttractionsTypeFilter(listing.type, filterType)) return true;
                 const filterLower = filterType.toLowerCase();
-                const listingLower = listing.type.toLowerCase();
-                if ((filterLower === 'attraction' || filterLower === 'attractions') && (listingLower === 'attraction' || listingLower === 'attractions')) return true;
-                if (filterLower === 'shopping' && (listingLower === 'shop' || listingLower === 'shops' || listingLower === 'store' || listingLower.indexOf('shopping') > -1 || listingLower.indexOf('retail') > -1 || listingLower.indexOf('boutique') > -1)) return true;
-                if ((filterLower === 'resorts' || filterLower === 'resort') && listingLower.indexOf('resort') > -1) return true;
+                const listingLower = String(listing.type || '').toLowerCase();
                 if ((filterLower === 'activity' || filterLower === 'outdoor') &&
                     (listingLower === 'activity' || listingLower === 'outdoor')) {
                     return true;
@@ -8774,6 +8851,7 @@ function clearPreviewFilters() {
     // Clear filter state variables
     currentTypeFilter = [];
     currentCategoryFilter = null;
+    currentAttractionsSubfilter = '';
     currentFeaturedOnly = false;
     
     // Clear received URL parameters to prevent them from being re-applied
@@ -8920,6 +8998,7 @@ function applyBreadcrumbFilter(filterParams) {
     // Clear all existing filters first
     currentCategoryFilter = null;
     currentTypeFilter = [];
+    currentAttractionsSubfilter = '';
     currentFeaturedOnly = false;
     
     // Clear all filter inputs
@@ -8945,6 +9024,7 @@ function applyBreadcrumbFilter(filterParams) {
     // Set filter state based on params
     if (filterParams.category) {
         currentCategoryFilter = resolvePublicCategoryKey(filterParams.category);
+        currentAttractionsSubfilter = '';
         console.log('✅ Setting category filter:', currentCategoryFilter);
         
         // Get types for this category
@@ -9155,6 +9235,7 @@ function filterByListingName(listingName) {
     // Clear all filter state variables
     currentTypeFilter = [];
     currentCategoryFilter = null;
+    currentAttractionsSubfilter = '';
     currentFeaturedOnly = false;
     
     // Reset type filter buttons - activate "All Types" button
@@ -10664,6 +10745,7 @@ function handleMobileCategoryFilter() {
     if (value) {
         // Set category filter
         currentCategoryFilter = normalizeCategoryKey(value);
+        currentAttractionsSubfilter = '';
         currentTypeFilter = []; // Clear type filter when category is selected
         
         // Get types for this category
@@ -10674,6 +10756,7 @@ function handleMobileCategoryFilter() {
     } else {
         // Clear category filter
         currentCategoryFilter = null;
+        currentAttractionsSubfilter = '';
         currentTypeFilter = [];
     }
     
