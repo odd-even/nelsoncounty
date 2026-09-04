@@ -186,6 +186,13 @@ function layoutAdminCardImageStrip(imgContainer, imgWrapper, imageCount) {
     });
 }
 
+function parseListingBool(value) {
+    if (value === true || value === 1) return true;
+    if (value === false || value === 0 || value === null || value === undefined || value === '') return false;
+    const s = String(value).trim().toLowerCase();
+    return s === 'true' || s === '1' || s === 'yes';
+}
+
 function sanitizeListing(listing) {
     if (!listing || typeof listing !== 'object') return listing;
     
@@ -201,6 +208,18 @@ function sanitizeListing(listing) {
     if (listing.modifiedDate && typeof listing.modifiedDate === 'string') {
         // Keep time when present so same-day edits sort correctly
         listing.modifiedDate = normalizeModifiedTimestamp(listing.modifiedDate);
+    }
+    if (listing.eventStartDate && typeof listing.eventStartDate === 'string') {
+        listing.eventStartDate = normalizeDate(listing.eventStartDate);
+    }
+    if (listing.eventEndDate && typeof listing.eventEndDate === 'string') {
+        listing.eventEndDate = normalizeDate(listing.eventEndDate);
+    }
+    if ('isEvent' in listing) {
+        listing.isEvent = parseListingBool(listing.isEvent);
+    }
+    if ('eventAllDay' in listing) {
+        listing.eventAllDay = parseListingBool(listing.eventAllDay);
     }
     
     REMOVED_LISTING_FIELDS.forEach(function(field) {
@@ -2708,6 +2727,8 @@ function updateTabsStickyStackStuck() {
             
             const featuredStr = getField('Featured', ['featured']);
             const privateStr = getField('Private', ['private']);
+            const isEventStr = getField('isEvent', ['Is Event', 'is event', 'Event Mode', 'event mode']);
+            const eventAllDayStr = getField('eventAllDay', ['Event All Day', 'event all day', 'All Day', 'allDay']);
             const detailedDescriptionValue = getField('Detailed Description', [
                 'detailedDescription',
                 'detaileddescription',
@@ -2765,6 +2786,21 @@ function updateTabsStickyStackStuck() {
                 amenities: parseList(getField('Amenities', ['amenities', 'Amenity'])),
                 featured: featuredStr === 'TRUE' || featuredStr === 'true' || featuredStr === '1' || featuredStr === 'Yes' || featuredStr === 'yes',
                 private: privateStr === 'TRUE' || privateStr === 'true' || privateStr === '1' || privateStr === 'Yes' || privateStr === 'yes',
+                isEvent: parseListingBool(isEventStr),
+                eventStartDate: (function() {
+                    const date = getField('eventStartDate', ['Event Start Date', 'event start date', 'Start Date', 'startDate'], true);
+                    return date ? normalizeDate(date) : date;
+                })(),
+                eventEndDate: (function() {
+                    const date = getField('eventEndDate', ['Event End Date', 'event end date', 'End Date', 'endDate'], true);
+                    return date ? normalizeDate(date) : date;
+                })(),
+                eventStartTime: getField('eventStartTime', ['Event Start Time', 'event start time', 'Start Time', 'startTime']),
+                eventEndTime: getField('eventEndTime', ['Event End Time', 'event end time', 'End Time', 'endTime']),
+                eventAllDay: parseListingBool(eventAllDayStr),
+                eventTicketUrl: getField('eventTicketUrl', ['Event Ticket URL', 'event ticket url', 'Ticket URL', 'ticketUrl', 'RSVP URL', 'rsvpUrl']),
+                eventCost: getField('eventCost', ['Event Cost', 'event cost', 'Cost', 'Price', 'price']),
+                eventVenueName: getField('eventVenueName', ['Event Venue Name', 'event venue name', 'Venue Name', 'venueName', 'Venue']),
                 slug: getField('slug'),
                 authorName: getField('authorName', ['Author Name', 'Author', 'author', 'contributor', 'contributor name']),
                 publishedDate: (function() {
@@ -5695,6 +5731,10 @@ function updateTabsStickyStackStuck() {
             if (latInput) latInput.value = '';
             if (lngInput) lngInput.value = '';
             if (coordsDisplay) coordsDisplay.style.display = 'none';
+            // Event mode off for new listings (form.reset already clears fields)
+            if (typeof syncListingEventModeUi === 'function') {
+                syncListingEventModeUi();
+            }
             // Reset default value for slug auto-generation
             const nameInput = document.getElementById('listingName');
             if (nameInput) nameInput.defaultValue = '';
@@ -5967,6 +6007,27 @@ function updateTabsStickyStackStuck() {
             document.getElementById('listingFeatured').checked = listing.featured || false;
             const privateInput = document.getElementById('listingPrivate');
             if (privateInput) privateInput.checked = listing.private || false;
+            const isEventInput = document.getElementById('listingIsEvent');
+            if (isEventInput) isEventInput.checked = parseListingBool(listing.isEvent);
+            const eventStartDateInput = document.getElementById('listingEventStartDate');
+            if (eventStartDateInput) eventStartDateInput.value = listing.eventStartDate ? normalizeDate(listing.eventStartDate) : '';
+            const eventEndDateInput = document.getElementById('listingEventEndDate');
+            if (eventEndDateInput) eventEndDateInput.value = listing.eventEndDate ? normalizeDate(listing.eventEndDate) : '';
+            const eventStartTimeInput = document.getElementById('listingEventStartTime');
+            if (eventStartTimeInput) eventStartTimeInput.value = listing.eventStartTime || '';
+            const eventEndTimeInput = document.getElementById('listingEventEndTime');
+            if (eventEndTimeInput) eventEndTimeInput.value = listing.eventEndTime || '';
+            const eventAllDayInput = document.getElementById('listingEventAllDay');
+            if (eventAllDayInput) eventAllDayInput.checked = parseListingBool(listing.eventAllDay);
+            const eventTicketUrlInput = document.getElementById('listingEventTicketUrl');
+            if (eventTicketUrlInput) eventTicketUrlInput.value = listing.eventTicketUrl || '';
+            const eventCostInput = document.getElementById('listingEventCost');
+            if (eventCostInput) eventCostInput.value = listing.eventCost || '';
+            const eventVenueNameInput = document.getElementById('listingEventVenueName');
+            if (eventVenueNameInput) eventVenueNameInput.value = listing.eventVenueName || '';
+            if (typeof syncListingEventModeUi === 'function') {
+                syncListingEventModeUi();
+            }
             
             // Set accordion fields
             const accordionPanel1TitleInput = document.getElementById('listingAccordionPanel1Title');
@@ -6353,6 +6414,10 @@ function updateTabsStickyStackStuck() {
             if (typeof syncListingAddressTypeUi === 'function') {
                 syncListingAddressTypeUi();
             }
+            // Event mode must not leave a hidden required start-date field.
+            if (typeof syncListingEventModeUi === 'function') {
+                syncListingEventModeUi();
+            }
 
             const form = document.getElementById('listingForm');
             // Prefer focusing the first invalid *visible* control (avoids
@@ -6406,6 +6471,20 @@ function updateTabsStickyStackStuck() {
                     if (addressInput) {
                         addressInput.focus();
                         addressInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                    }
+                    return;
+                }
+            }
+
+            const isEvent = getChecked('listingIsEvent');
+            if (isEvent) {
+                const eventStartDateVal = String(getValue('listingEventStartDate') || '').trim();
+                if (!eventStartDateVal) {
+                    alert('⚠️ Please enter an event start date, or turn off Event mode.');
+                    const eventStartDateInput = document.getElementById('listingEventStartDate');
+                    if (eventStartDateInput) {
+                        eventStartDateInput.focus();
+                        eventStartDateInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
                     }
                     return;
                 }
@@ -6577,6 +6656,15 @@ function updateTabsStickyStackStuck() {
                 amenities: selectedAmenities,
                 featured: getChecked('listingFeatured'),
                 private: getChecked('listingPrivate'),
+                isEvent: isEvent,
+                eventStartDate: isEvent ? getValue('listingEventStartDate') : '',
+                eventEndDate: isEvent ? getValue('listingEventEndDate') : '',
+                eventStartTime: isEvent && !getChecked('listingEventAllDay') ? getValue('listingEventStartTime') : '',
+                eventEndTime: isEvent && !getChecked('listingEventAllDay') ? getValue('listingEventEndTime') : '',
+                eventAllDay: isEvent ? getChecked('listingEventAllDay') : false,
+                eventTicketUrl: isEvent ? getValue('listingEventTicketUrl') : '',
+                eventCost: isEvent ? getValue('listingEventCost') : '',
+                eventVenueName: isEvent ? getValue('listingEventVenueName') : '',
                 authorName: getValue('listingAuthorName'),
                 publishedDate: getValue('listingPublishedDate'),
                 modifiedDate: getLocalDateTimeISO(),
@@ -6794,6 +6882,15 @@ function updateTabsStickyStackStuck() {
                 amenities: getChecked('#amenitiesCheckboxes input[type="checkbox"]'),
                 featured: getValue('listingFeatured'),
                 private: getValue('listingPrivate'),
+                isEvent: getValue('listingIsEvent'),
+                eventStartDate: getValue('listingEventStartDate'),
+                eventEndDate: getValue('listingEventEndDate'),
+                eventStartTime: getValue('listingEventStartTime'),
+                eventEndTime: getValue('listingEventEndTime'),
+                eventAllDay: getValue('listingEventAllDay'),
+                eventTicketUrl: getValue('listingEventTicketUrl'),
+                eventCost: getValue('listingEventCost'),
+                eventVenueName: getValue('listingEventVenueName'),
                 googleMapsUrl: getValue('listingGoogleMapsUrl')
             };
         }
@@ -7048,6 +7145,64 @@ function updateTabsStickyStackStuck() {
             }
         }
         window.syncListingAddressTypeUi = syncListingAddressTypeUi;
+
+        // Event mode: show/hide event fields and only require start date while on.
+        // Place listing fields are unchanged; this is additive only.
+        function syncListingEventModeUi() {
+            const toggle = document.getElementById('listingIsEvent');
+            const section = document.getElementById('listingEventSection');
+            const startDate = document.getElementById('listingEventStartDate');
+            const allDay = document.getElementById('listingEventAllDay');
+            const startTime = document.getElementById('listingEventStartTime');
+            const endTime = document.getElementById('listingEventEndTime');
+            const timesRow = document.getElementById('listingEventTimesRow');
+            if (!toggle || !section) return;
+
+            const on = !!toggle.checked;
+            section.hidden = !on;
+
+            if (startDate) {
+                if (on) {
+                    startDate.required = true;
+                    startDate.setAttribute('required', '');
+                } else {
+                    startDate.required = false;
+                    startDate.removeAttribute('required');
+                }
+            }
+
+            const allDayOn = !!(allDay && allDay.checked);
+            if (timesRow) {
+                timesRow.style.display = allDayOn ? 'none' : '';
+            }
+            [startTime, endTime].forEach(function(el) {
+                if (!el) return;
+                el.disabled = allDayOn;
+                if (allDayOn) {
+                    el.required = false;
+                    el.removeAttribute('required');
+                }
+            });
+        }
+        window.syncListingEventModeUi = syncListingEventModeUi;
+
+        (function bindListingEventModeControls() {
+            const toggle = document.getElementById('listingIsEvent');
+            const allDay = document.getElementById('listingEventAllDay');
+            if (toggle && !toggle.dataset.boundEventModeChange) {
+                toggle.dataset.boundEventModeChange = '1';
+                toggle.addEventListener('change', function() {
+                    syncListingEventModeUi();
+                });
+            }
+            if (allDay && !allDay.dataset.boundEventAllDayChange) {
+                allDay.dataset.boundEventAllDayChange = '1';
+                allDay.addEventListener('change', function() {
+                    syncListingEventModeUi();
+                });
+            }
+            syncListingEventModeUi();
+        })();
 
         // Helper function to generate Google Maps URL from address (always reads current value)
         function generateGoogleMapsUrlFromAddress() {
@@ -11247,7 +11402,9 @@ function updateTabsStickyStackStuck() {
                     'accordionPanel2Title', 'accordionPanel2Content',
                     'accordionPanel3Title', 'accordionPanel3Content',
                     'accordionPanel4Title', 'accordionPanel4Content',
-                    'amenities', 'featured', 'googleMapsUrl'
+                    'amenities', 'featured', 'private', 'googleMapsUrl',
+                    'isEvent', 'eventStartDate', 'eventEndDate', 'eventStartTime', 'eventEndTime',
+                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName'
                 ];
                 
                 standardFields.forEach(field => allFields.add(field));
@@ -11287,6 +11444,10 @@ function updateTabsStickyStackStuck() {
                             return escapeCsv(listing.featured ? 'true' : 'false');
                         } else if (header === 'private') {
                             return escapeCsv(listing.private ? 'true' : 'false');
+                        } else if (header === 'isEvent') {
+                            return escapeCsv(listing.isEvent ? 'true' : 'false');
+                        } else if (header === 'eventAllDay') {
+                            return escapeCsv(listing.eventAllDay ? 'true' : 'false');
                         } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
                             // Fallback to directionsLink if googleMapsUrl is empty
                             return escapeCsv(listing.directionsLink || '');
@@ -11349,7 +11510,9 @@ function updateTabsStickyStackStuck() {
                     'accordionPanel2Title', 'accordionPanel2Content',
                     'accordionPanel3Title', 'accordionPanel3Content',
                     'accordionPanel4Title', 'accordionPanel4Content',
-                    'amenities', 'featured', 'googleMapsUrl'
+                    'amenities', 'featured', 'private', 'googleMapsUrl',
+                    'isEvent', 'eventStartDate', 'eventEndDate', 'eventStartTime', 'eventEndTime',
+                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName'
                 ];
                 
                 standardFields.forEach(field => allFields.add(field));
@@ -11386,6 +11549,10 @@ function updateTabsStickyStackStuck() {
                             return escapeTsv(listing.featured ? 'true' : 'false');
                         } else if (header === 'private') {
                             return escapeTsv(listing.private ? 'true' : 'false');
+                        } else if (header === 'isEvent') {
+                            return escapeTsv(listing.isEvent ? 'true' : 'false');
+                        } else if (header === 'eventAllDay') {
+                            return escapeTsv(listing.eventAllDay ? 'true' : 'false');
                         } else if (header === 'googleMapsUrl' && !listing.googleMapsUrl) {
                             return escapeTsv(listing.directionsLink || '');
                         } else {

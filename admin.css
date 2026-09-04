@@ -1286,9 +1286,13 @@
         }
         #listingModal .listing-flags {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 10px;
             margin-top: 4px;
+        }
+        #listingModal .listing-flags--compact {
+            grid-template-columns: minmax(0, 1fr);
+            margin-bottom: 8px;
         }
         #listingModal .listing-flag {
             display: flex;
@@ -1325,6 +1329,16 @@
         #listingModal .listing-flag:has(input:checked) {
             background: rgba(0, 122, 255, 0.08);
             border-color: rgba(0, 122, 255, 0.22);
+        }
+        #listingModal .listing-flag--event:has(input:checked) {
+            background: rgba(201, 100, 36, 0.1);
+            border-color: rgba(201, 100, 36, 0.28);
+        }
+        #listingModal .listing-flag--event input {
+            accent-color: #c96424;
+        }
+        #listingModal #listingEventSection[hidden] {
+            display: none !important;
         }
         #listingModal .listing-media-grid {
             display: grid;

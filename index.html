@@ -21,9 +21,9 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
-    <link rel="stylesheet" href="admin.css?v=20260819b">
+    <link rel="stylesheet" href="admin.css?v=20260903a">
     <link rel="preload" href="admin-data.js?v=20260610e" as="script">
-    <link rel="preload" href="admin.js?v=20260819d" as="script">
+    <link rel="preload" href="admin.js?v=20260903a" as="script">
     <script src="admin-auth.js?v=20260610e" defer></script>
     <script src="admin-data.js?v=20260610e" defer></script>
 </head>
@@ -685,6 +685,67 @@
                                     <span class="listing-flag__hint">Hide from public feed</span>
                                 </span>
                             </label>
+                            <label class="listing-flag listing-flag--event" for="listingIsEvent">
+                                <input type="checkbox" id="listingIsEvent" />
+                                <span class="listing-flag__ui">
+                                    <span class="listing-flag__title">Event</span>
+                                    <span class="listing-flag__hint">Date / time / tickets fields</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="listing-section" id="listingEventSection" hidden>
+                    <div class="listing-section__head">
+                        <h3>Event details</h3>
+                        <p>When and how visitors attend. Place fields below still apply for the venue.</p>
+                    </div>
+                    <div class="listing-section__body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="listingEventStartDate">Start date *</label>
+                                <input type="date" id="listingEventStartDate" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingEventEndDate">End date</label>
+                                <input type="date" id="listingEventEndDate" />
+                                <small class="form-hint">Leave blank for a single-day event.</small>
+                            </div>
+                        </div>
+                        <div class="listing-flags listing-flags--compact">
+                            <label class="listing-flag" for="listingEventAllDay">
+                                <input type="checkbox" id="listingEventAllDay" />
+                                <span class="listing-flag__ui">
+                                    <span class="listing-flag__title">All day</span>
+                                    <span class="listing-flag__hint">Hide start/end times</span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-row" id="listingEventTimesRow">
+                            <div class="form-group">
+                                <label for="listingEventStartTime">Start time</label>
+                                <input type="time" id="listingEventStartTime" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingEventEndTime">End time</label>
+                                <input type="time" id="listingEventEndTime" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="listingEventTicketUrl">Tickets / RSVP URL</label>
+                                <input type="url" id="listingEventTicketUrl" placeholder="https://…" />
+                            </div>
+                            <div class="form-group">
+                                <label for="listingEventCost">Cost</label>
+                                <input type="text" id="listingEventCost" placeholder="Free, $15, Sliding scale…" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="listingEventVenueName">Venue name</label>
+                            <input type="text" id="listingEventVenueName" placeholder="If different from listing name" />
+                            <small class="form-hint">Optional. Use Address below for the location.</small>
                         </div>
                     </div>
                 </section>
@@ -999,7 +1060,7 @@
         </div>
     </div>
     
-    <script src="admin.js?v=20260819d" defer></script>
+    <script src="admin.js?v=20260903a" defer></script>
     
     </div> <!-- End main-container -->
     
