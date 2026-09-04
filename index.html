@@ -21,9 +21,9 @@
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Admin assets (bump ?v= when changing admin.css / admin-*.js) -->
-    <link rel="stylesheet" href="admin.css?v=20260903a">
+    <link rel="stylesheet" href="admin.css?v=20260903b">
     <link rel="preload" href="admin-data.js?v=20260610e" as="script">
-    <link rel="preload" href="admin.js?v=20260903a" as="script">
+    <link rel="preload" href="admin.js?v=20260903b" as="script">
     <script src="admin-auth.js?v=20260610e" defer></script>
     <script src="admin-data.js?v=20260610e" defer></script>
 </head>
@@ -633,6 +633,20 @@
             
             <form id="listingForm" onsubmit="saveListing(event)" novalidate>
                 <input type="hidden" id="editingId" />
+                <input type="checkbox" id="listingIsEvent" class="listing-is-event-input" tabindex="-1" aria-hidden="true" />
+
+                <div class="listing-mode-bar" role="group" aria-label="Entry type">
+                    <div class="listing-mode-toggle" id="listingModeToggle" data-mode="listing">
+                        <span class="listing-mode-toggle__thumb" aria-hidden="true"></span>
+                        <button type="button" class="listing-mode-toggle__btn is-active" data-mode="listing" id="listingModeListingBtn" aria-pressed="true">
+                            Listing
+                        </button>
+                        <button type="button" class="listing-mode-toggle__btn" data-mode="event" id="listingModeEventBtn" aria-pressed="false">
+                            Event
+                        </button>
+                    </div>
+                    <p class="listing-mode-bar__hint" id="listingModeHint">Place or business entry</p>
+                </div>
                 
                 <div class="form-scrollable listing-editor__scroll">
 
@@ -643,7 +657,7 @@
                     </div>
                     <div class="listing-section__body">
                         <div class="form-group form-group--hero">
-                            <label for="listingName">Listing Name *</label>
+                            <label for="listingName" id="listingNameLabel">Listing Name *</label>
                             <input type="text" id="listingName" required />
                         </div>
                         <div class="form-group">
@@ -683,13 +697,6 @@
                                 <span class="listing-flag__ui">
                                     <span class="listing-flag__title">Private</span>
                                     <span class="listing-flag__hint">Hide from public feed</span>
-                                </span>
-                            </label>
-                            <label class="listing-flag listing-flag--event" for="listingIsEvent">
-                                <input type="checkbox" id="listingIsEvent" />
-                                <span class="listing-flag__ui">
-                                    <span class="listing-flag__title">Event</span>
-                                    <span class="listing-flag__hint">Date / time / tickets fields</span>
                                 </span>
                             </label>
                         </div>
@@ -1060,7 +1067,7 @@
         </div>
     </div>
     
-    <script src="admin.js?v=20260903a" defer></script>
+    <script src="admin.js?v=20260903b" defer></script>
     
     </div> <!-- End main-container -->
     

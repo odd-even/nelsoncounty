@@ -1284,9 +1284,92 @@
         #listingModal .form-row .form-group {
             margin-bottom: 16px;
         }
+        #listingModal .listing-is-event-input {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        #listingModal .listing-mode-bar {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 8px;
+            padding: 14px 22px 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            background: #fafafa;
+        }
+        #listingModal .listing-mode-toggle {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+            padding: 4px;
+            border-radius: 12px;
+            background: #ebebef;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        #listingModal .listing-mode-toggle__thumb {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            bottom: 4px;
+            width: calc((100% - 8px - 4px) / 2);
+            border-radius: 9px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.04);
+            transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            z-index: 0;
+        }
+        #listingModal .listing-mode-toggle[data-mode="event"] .listing-mode-toggle__thumb {
+            transform: translateX(calc(100% + 4px));
+        }
+        #listingModal .listing-mode-toggle__btn {
+            position: relative;
+            z-index: 1;
+            appearance: none;
+            border: none;
+            background: transparent;
+            margin: 0;
+            padding: 11px 12px;
+            border-radius: 9px;
+            cursor: pointer;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #6e6e73;
+            transition: color 0.15s ease;
+        }
+        #listingModal .listing-mode-toggle__btn.is-active {
+            color: #1d1d1f;
+        }
+        #listingModal .listing-mode-toggle__btn:hover:not(.is-active) {
+            color: #1d1d1f;
+        }
+        #listingModal .listing-mode-toggle__btn:focus-visible {
+            outline: 2px solid #007aff;
+            outline-offset: 2px;
+        }
+        #listingModal .listing-mode-bar__hint {
+            margin: 0;
+            font-size: 12px;
+            color: #86868b;
+            text-align: center;
+        }
+        #listingModal.listing-modal--event .listing-editor__eyebrow {
+            color: #c96424;
+        }
         #listingModal .listing-flags {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
             margin-top: 4px;
         }
@@ -1329,13 +1412,6 @@
         #listingModal .listing-flag:has(input:checked) {
             background: rgba(0, 122, 255, 0.08);
             border-color: rgba(0, 122, 255, 0.22);
-        }
-        #listingModal .listing-flag--event:has(input:checked) {
-            background: rgba(201, 100, 36, 0.1);
-            border-color: rgba(201, 100, 36, 0.28);
-        }
-        #listingModal .listing-flag--event input {
-            accent-color: #c96424;
         }
         #listingModal #listingEventSection[hidden] {
             display: none !important;
@@ -1664,6 +1740,9 @@
             #listingModal .listing-flags,
             #listingModal .listing-accordion-grid {
                 grid-template-columns: 1fr;
+            }
+            #listingModal .listing-mode-bar {
+                padding: 12px 14px 10px;
             }
             #listingModal .listing-editor__scroll {
                 padding: 14px;

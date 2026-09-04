@@ -7156,10 +7156,52 @@ function updateTabsStickyStackStuck() {
             const startTime = document.getElementById('listingEventStartTime');
             const endTime = document.getElementById('listingEventEndTime');
             const timesRow = document.getElementById('listingEventTimesRow');
+            const modeToggle = document.getElementById('listingModeToggle');
+            const listingBtn = document.getElementById('listingModeListingBtn');
+            const eventBtn = document.getElementById('listingModeEventBtn');
+            const modeHint = document.getElementById('listingModeHint');
+            const nameLabel = document.getElementById('listingNameLabel');
+            const eyebrow = document.querySelector('#listingModal .listing-editor__eyebrow');
+            const modal = document.getElementById('listingModal');
+            const modalTitle = document.getElementById('modalTitle');
             if (!toggle || !section) return;
 
             const on = !!toggle.checked;
             section.hidden = !on;
+
+            if (modeToggle) modeToggle.setAttribute('data-mode', on ? 'event' : 'listing');
+            if (listingBtn) {
+                listingBtn.classList.toggle('is-active', !on);
+                listingBtn.setAttribute('aria-pressed', on ? 'false' : 'true');
+            }
+            if (eventBtn) {
+                eventBtn.classList.toggle('is-active', on);
+                eventBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            }
+            if (modeHint) {
+                modeHint.textContent = on
+                    ? 'Dated event — venue fields below still apply'
+                    : 'Place or business entry';
+            }
+            if (nameLabel) {
+                nameLabel.textContent = on ? 'Event Name *' : 'Listing Name *';
+            }
+            if (eyebrow) {
+                eyebrow.textContent = on ? 'Event editor' : 'Listing editor';
+            }
+            if (modal) {
+                modal.classList.toggle('listing-modal--event', on);
+            }
+            // Only retitle when adding (edit title stays "Edit Listing" / we soft-update)
+            if (modalTitle) {
+                const editingId = document.getElementById('editingId');
+                const isEditing = !!(editingId && String(editingId.value || '').trim());
+                if (!isEditing) {
+                    modalTitle.textContent = on ? 'Add New Event' : 'Add New Listing';
+                } else {
+                    modalTitle.textContent = on ? 'Edit Event' : 'Edit Listing';
+                }
+            }
 
             if (startDate) {
                 if (on) {
@@ -7186,9 +7228,34 @@ function updateTabsStickyStackStuck() {
         }
         window.syncListingEventModeUi = syncListingEventModeUi;
 
+        function setListingEntryMode(mode) {
+            const toggle = document.getElementById('listingIsEvent');
+            if (!toggle) return;
+            const wantEvent = mode === 'event';
+            if (toggle.checked !== wantEvent) {
+                toggle.checked = wantEvent;
+            }
+            syncListingEventModeUi();
+        }
+        window.setListingEntryMode = setListingEntryMode;
+
         (function bindListingEventModeControls() {
             const toggle = document.getElementById('listingIsEvent');
             const allDay = document.getElementById('listingEventAllDay');
+            const listingBtn = document.getElementById('listingModeListingBtn');
+            const eventBtn = document.getElementById('listingModeEventBtn');
+            if (listingBtn && !listingBtn.dataset.boundModeClick) {
+                listingBtn.dataset.boundModeClick = '1';
+                listingBtn.addEventListener('click', function() {
+                    setListingEntryMode('listing');
+                });
+            }
+            if (eventBtn && !eventBtn.dataset.boundModeClick) {
+                eventBtn.dataset.boundModeClick = '1';
+                eventBtn.addEventListener('click', function() {
+                    setListingEntryMode('event');
+                });
+            }
             if (toggle && !toggle.dataset.boundEventModeChange) {
                 toggle.dataset.boundEventModeChange = '1';
                 toggle.addEventListener('change', function() {
