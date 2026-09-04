@@ -193,6 +193,125 @@ function parseListingBool(value) {
     return s === 'true' || s === '1' || s === 'yes';
 }
 
+function isListingEvent(listing) {
+    return !!(listing && parseListingBool(listing.isEvent));
+}
+
+function formatEventDateLabel(dateStr) {
+    if (!dateStr) return '';
+    const day = normalizeDate(String(dateStr));
+    if (!day) return String(dateStr).trim();
+    try {
+        const date = new Date(day + 'T12:00:00');
+        if (isNaN(date.getTime())) return day;
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+    } catch (e) {
+        return day;
+    }
+}
+
+function formatEventTimeLabel(timeStr) {
+    const raw = String(timeStr || '').trim();
+    if (!raw) return '';
+    const match = raw.match(/^(\d{1,2}):(\d{2})/);
+    if (!match) return raw;
+    let hour = parseInt(match[1], 10);
+    const minute = match[2];
+    if (isNaN(hour)) return raw;
+    const suffix = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    if (hour === 0) hour = 12;
+    return hour + ':' + minute + ' ' + suffix;
+}
+
+function buildListingEventCardBits(listing) {
+    const empty = { isEvent: false, cornerBadgeHtml: '', metaBadgeHtml: '', detailsHtml: '' };
+    if (!isListingEvent(listing)) return empty;
+
+    const allDay = parseListingBool(listing.eventAllDay);
+    const startDate = formatEventDateLabel(listing.eventStartDate);
+    const endDate = formatEventDateLabel(listing.eventEndDate);
+    const startTime = allDay ? '' : formatEventTimeLabel(listing.eventStartTime);
+    const endTime = allDay ? '' : formatEventTimeLabel(listing.eventEndTime);
+    const venue = String(listing.eventVenueName || '').trim();
+    const cost = String(listing.eventCost || '').trim();
+    const ticketUrl = String(listing.eventTicketUrl || '').trim();
+
+    let when = '';
+    if (startDate && endDate && endDate !== startDate) {
+        when = startDate + ' – ' + endDate;
+    } else if (startDate) {
+        when = startDate;
+    }
+    if (allDay) {
+        when = when ? (when + ' · All day') : 'All day';
+    } else if (startTime || endTime) {
+        const timePart = startTime && endTime ? (startTime + ' – ' + endTime) : (startTime || endTime);
+        when = when ? (when + ' · ' + timePart) : timePart;
+    }
+
+    const rows = [];
+    if (when) {
+        rows.push(
+            '<div class="card-info-item listing-event-row" onclick="event.stopPropagation();">' +
+            '<div class="card-info-icon">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />' +
+            '</svg>' +
+            '</div>' +
+            '<div class="card-info-text">' + escapeHtml(when) + '</div>' +
+            '</div>'
+        );
+    }
+    if (venue) {
+        rows.push(
+            '<div class="card-info-item listing-event-row" onclick="event.stopPropagation();">' +
+            '<div class="card-info-icon">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />' +
+            '</svg>' +
+            '</div>' +
+            '<div class="card-info-text">' + escapeHtml(venue) + '</div>' +
+            '</div>'
+        );
+    }
+    if (cost) {
+        rows.push(
+            '<div class="card-info-item listing-event-row" onclick="event.stopPropagation();">' +
+            '<div class="card-info-icon">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />' +
+            '</svg>' +
+            '</div>' +
+            '<div class="card-info-text">' + escapeHtml(cost) + '</div>' +
+            '</div>'
+        );
+    }
+    if (ticketUrl) {
+        rows.push(
+            '<a href="' + escapeHtml(ticketUrl) + '" target="_blank" rel="noopener noreferrer" class="card-info-item listing-event-row" onclick="event.stopPropagation();">' +
+            '<div class="card-info-icon">' +
+            '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">' +
+            '<path stroke-linecap="round" stroke-linejoin="round" d="M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z" />' +
+            '</svg>' +
+            '</div>' +
+            '<div class="card-info-text">Tickets / RSVP</div>' +
+            '</a>'
+        );
+    }
+
+    return {
+        isEvent: true,
+        cornerBadgeHtml: '<div class="event-badge">EVENT</div>',
+        metaBadgeHtml: '<span class="badge badge-event">Event</span>',
+        detailsHtml: rows.length
+            ? ('<div class="listing-event-details">' + rows.join('') + '</div>')
+            : ''
+    };
+}
+
 function sanitizeListing(listing) {
     if (!listing || typeof listing !== 'object') return listing;
     
@@ -1538,6 +1657,109 @@ const DEFAULT_TABLE_HEADERS = [
     'amenities',
     'featured'
 ];
+
+// Canonical column order written on Save to Sheets.
+// Apps Script clears the sheet and rebuilds headers from listing object keys,
+// so every saved row must include these fields or new columns get wiped.
+const LISTING_SHEET_HEADERS = [
+    'name',
+    'slug',
+    'type',
+    'category',
+    'area',
+    'description',
+    'detailedDescription',
+    'customHtml',
+    'image1',
+    'image1Desc',
+    'image1FileId',
+    'image2',
+    'image2Desc',
+    'image2FileId',
+    'image3',
+    'image3Desc',
+    'image3FileId',
+    'website',
+    'phone',
+    'address',
+    'latitude',
+    'longitude',
+    'authorName',
+    'publishedDate',
+    'modifiedDate',
+    'directionsLink',
+    'videoLink',
+    'document1',
+    'document1Name',
+    'document2',
+    'document2Name',
+    'amenities',
+    'featured',
+    'private',
+    'googleMapsUrl',
+    'accordionPanel1Title',
+    'accordionPanel1Content',
+    'accordionPanel2Title',
+    'accordionPanel2Content',
+    'accordionPanel3Title',
+    'accordionPanel3Content',
+    'accordionPanel4Title',
+    'accordionPanel4Content',
+    'isEvent',
+    'eventStartDate',
+    'eventEndDate',
+    'eventStartTime',
+    'eventEndTime',
+    'eventAllDay',
+    'eventTicketUrl',
+    'eventCost',
+    'eventVenueName'
+];
+
+function listingValueForSheetField(listing, field) {
+    if (!listing) listing = {};
+    if (field === 'isEvent' || field === 'eventAllDay' || field === 'featured' || field === 'private') {
+        return parseListingBool(listing[field]);
+    }
+    if (field === 'amenities') {
+        return Array.isArray(listing.amenities)
+            ? listing.amenities
+            : (listing.amenities ? String(listing.amenities).split(/[,;|]/).map(function(a) { return a.trim(); }).filter(Boolean) : []);
+    }
+    if (listing[field] === undefined || listing[field] === null) return '';
+    return listing[field];
+}
+
+function listingToSheetRowObject(listing) {
+    const out = {};
+    LISTING_SHEET_HEADERS.forEach(function(field) {
+        out[field] = listingValueForSheetField(listing, field);
+    });
+    // Keep any extra non-private keys so future columns aren't dropped.
+    if (listing && typeof listing === 'object') {
+        Object.keys(listing).forEach(function(key) {
+            if (!key || key.charAt(0) === '_') return;
+            if (Object.prototype.hasOwnProperty.call(out, key)) return;
+            out[key] = listing[key];
+        });
+    }
+    return out;
+}
+
+function prepareListingsForSheetSave(listings) {
+    return (Array.isArray(listings) ? listings : []).map(listingToSheetRowObject);
+}
+
+function buildReplaceAllListingsBody(listings, sessionToken) {
+    const prepared = prepareListingsForSheetSave(listings);
+    return JSON.stringify({
+        action: 'replaceAllListings',
+        listings: prepared,
+        headers: LISTING_SHEET_HEADERS.slice(),
+        sheetHeaders: LISTING_SHEET_HEADERS.slice(),
+        sessionToken: sessionToken || null
+    });
+}
 
 initialData.sheetHeaders = DEFAULT_TABLE_HEADERS.slice();
 
@@ -3579,30 +3801,25 @@ function updateTabsStickyStackStuck() {
             updateSyncStatus(true, `Saving ${data.listings.length} listings…`);
             
             try {
-                // Verify categories are in listings before saving
-                const listingsWithCategories = data.listings.map(function(listing) {
-                    // Ensure category field is included
-                    const listingCopy = Object.assign({}, listing);
-                    if (!('category' in listingCopy)) {
-                        console.warn('⚠️ Listing missing category field:', listing.name);
-                        listingCopy.category = listing.category || '';
+                // Ensure every row includes the full sheet schema (incl. event fields).
+                // Apps Script clears + rebuilds headers from listing keys on replaceAll.
+                const listingsWithCategories = prepareListingsForSheetSave(data.listings);
+                listingsWithCategories.forEach(function(listingCopy) {
+                    if (!listingCopy.category) {
+                        console.warn('⚠️ Listing missing category field:', listingCopy.name);
                     }
-                    console.log('💾 Saving listing:', listing.name, '- Category:', listingCopy.category);
-                    return listingCopy;
+                    console.log('💾 Saving listing:', listingCopy.name, '- Category:', listingCopy.category, '- isEvent:', listingCopy.isEvent);
                 });
                 
                 // Log category summary before saving
                 const categoriesBeingSaved = [...new Set(listingsWithCategories.map(l => l.category).filter(Boolean))];
                 console.log('📋 Categories being saved to Google Sheets:', categoriesBeingSaved);
+                console.log('📋 Sheet headers include event fields:', LISTING_SHEET_HEADERS.indexOf('isEvent') > -1);
                 
                 // Send all listings at once with a "replaceAll" action
                 // This tells the Apps Script to clear the sheet and replace with these listings
                 const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
-                const postData = JSON.stringify({
-                    action: 'replaceAllListings',
-                    listings: listingsWithCategories,
-                    sessionToken: session && session.token ? session.token : null
-                });
+                const postData = buildReplaceAllListingsBody(data.listings, session && session.token ? session.token : null);
                 
                 let result = { success: false };
                 
@@ -4351,6 +4568,10 @@ function updateTabsStickyStackStuck() {
         function buildListingCardElement(listing) {
                 const card = document.createElement('div');
                 card.className = 'flip-card';
+                const eventBits = buildListingEventCardBits(listing);
+                if (eventBits.isEvent) {
+                    card.classList.add('flip-card--event');
+                }
                 // Add data attributes for navigation
                 if (listing.slug) {
                     card.setAttribute('data-slug', listing.slug);
@@ -4498,6 +4719,10 @@ function updateTabsStickyStackStuck() {
                     badge.style.cssText = 'position: absolute; top: 10px; left: ' + (listing.featured ? '100px' : '10px') + '; z-index: 10;';
                     front.appendChild(badge);
                 }
+
+                if (eventBits.cornerBadgeHtml) {
+                    front.insertAdjacentHTML('beforeend', eventBits.cornerBadgeHtml);
+                }
                 
                 // Card content - allow it to grow to show all content
                 const cardContent = document.createElement('div');
@@ -4640,9 +4865,11 @@ function updateTabsStickyStackStuck() {
                     categoryHTML +
                     '<h3 style="font-size: 18px; margin-bottom: 8px; color: var(--text-primary);">' + listing.name + '</h3>' +
                     '<div class="listing-meta" style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap;">' +
+                    eventBits.metaBadgeHtml +
                     '<span class="badge badge-type ' + getIconClass(listing.type, listing) + '" data-type="' + listing.type + '" onclick="filterByAdminBadge(event, \'type\', \'' + listing.type.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.type + '</span>' +
                     '<span class="badge badge-area" data-area="' + listing.area + '" onclick="filterByAdminBadge(event, \'area\', \'' + listing.area.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.area + '</span>' +
                     '</div>' +
+                    eventBits.detailsHtml +
                     descriptionHTML +
                     actionButtonsHtml +
                     (listing.amenities && listing.amenities.length > 0 ? 
@@ -4809,6 +5036,7 @@ function updateTabsStickyStackStuck() {
                         '<span class="badge badge-area" data-area="' + listing.area + '" onclick="filterByAdminBadge(event, \'area\', \'' + listing.area.replace(/'/g, "\\'") + '\')" style="cursor: pointer;">' + listing.area + '</span>';
                     return (
                         '<div class="listing-meta" style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;">' +
+                        eventBits.metaBadgeHtml +
                         typeBadge +
                         areaBadge +
                         '</div>'
@@ -4920,6 +5148,10 @@ function updateTabsStickyStackStuck() {
                     badge.style.cssText = 'position: absolute; top: 10px; left: ' + (listing.featured ? '100px' : '10px') + '; z-index: 10;';
                     back.appendChild(badge);
                 }
+
+                if (eventBits.cornerBadgeHtml) {
+                    back.insertAdjacentHTML('beforeend', eventBits.cornerBadgeHtml);
+                }
                 
                 const backContent = document.createElement('div');
                 backContent.style.cssText = 'padding: 20px 15px 24px 15px; display: flex; flex-direction: column;';
@@ -4927,6 +5159,7 @@ function updateTabsStickyStackStuck() {
                     categoryHTML +
                     '<h3 style="font-size: 22px; margin-bottom: 10px; color: var(--text-primary);">' + listing.name + '</h3>' +
                     backMetaBadgesHtml +
+                    eventBits.detailsHtml +
                     backContactHtml +
                     amenitiesHtml +
                     actionButtonsHtml +
@@ -5065,6 +5298,20 @@ function updateTabsStickyStackStuck() {
                         return false; // Doesn't match private search
                     }
                 }
+                if (searchTerm === 'event' || searchTerm === 'events') {
+                    const isEvent = isListingEvent(listing);
+                    const hasEventInContent = [
+                        listing.name || '',
+                        listing.description || '',
+                        listing.detailedDescription || '',
+                        listing.customHtml || '',
+                        listing.eventVenueName || '',
+                        listing.eventCost || ''
+                    ].join(' ').toLowerCase().indexOf('event') > -1;
+                    if (!isEvent && !hasEventInContent) {
+                        return false;
+                    }
+                }
                 
                 // Build comprehensive searchable text from all listing fields
                 const searchableText = [
@@ -5092,9 +5339,17 @@ function updateTabsStickyStackStuck() {
                     listing.image1Desc || '',
                     listing.image2Desc || '',
                     listing.image3Desc || '',
+                    listing.eventStartDate || '',
+                    listing.eventEndDate || '',
+                    listing.eventStartTime || '',
+                    listing.eventEndTime || '',
+                    listing.eventTicketUrl || '',
+                    listing.eventCost || '',
+                    listing.eventVenueName || '',
                     Array.isArray(listing.amenities) ? listing.amenities.join(' ') : (listing.amenities || ''),
                     // Include featured status in searchable text
-                    (listing.featured === true || listing.featured === 'true' || listing.featured === 'TRUE') ? 'featured' : ''
+                    (listing.featured === true || listing.featured === 'true' || listing.featured === 'TRUE') ? 'featured' : '',
+                    isListingEvent(listing) ? 'event events' : ''
                 ].join(' ').toLowerCase();
                 
                 const matchesSearch = !searchTerm || searchableText.indexOf(searchTerm) > -1;
@@ -6918,18 +7173,10 @@ function updateTabsStickyStackStuck() {
         }
         
         window.closeModal = function closeModal(force) {
-            // Check for unsaved changes unless force is true
+            // Cancel / close abandons the draft — never try to Save (that blocked on required fields).
             if (!force && hasFormChanges()) {
-                const shouldSave = confirm('You have unsaved changes. Do you want to save before closing?\n\nOK = Save\nCancel = Discard');
-                if (shouldSave) {
-                    // Trigger save
-                    const form = document.getElementById('listingForm');
-                    if (form) {
-                        const event = new Event('submit', { bubbles: true, cancelable: true });
-                        form.dispatchEvent(event);
-                    }
-                    return; // Don't close yet - let save handle it
-                }
+                const discard = confirm('Discard unsaved changes?\n\nOK = Discard\nCancel = Keep editing');
+                if (!discard) return;
             }
             
             // Clear original data
@@ -8827,11 +9074,10 @@ function updateTabsStickyStackStuck() {
                     
                     // Always save listings if there are any (to ensure admin display is synced)
                     if (data && data.listings && data.listings.length > 0) {
-                        const listingsData = JSON.stringify({
-                            action: 'replaceAllListings',
-                            listings: data.listings,
-                            sessionToken: session && session.token ? session.token : null
-                        });
+                        const listingsData = buildReplaceAllListingsBody(
+                            data.listings,
+                            session && session.token ? session.token : null
+                        );
                         
                         try {
                             // Save categories
@@ -9062,11 +9308,10 @@ function updateTabsStickyStackStuck() {
                             categories: TYPE_CATEGORIES,
                             sessionToken: session && session.token ? session.token : null
                         });
-                        const listingsData = JSON.stringify({
-                            action: 'replaceAllListings',
-                            listings: data.listings,
-                            sessionToken: session && session.token ? session.token : null
-                        });
+                        const listingsData = buildReplaceAllListingsBody(
+                            data.listings,
+                            session && session.token ? session.token : null
+                        );
                         
                         try {
                             // Save categories first

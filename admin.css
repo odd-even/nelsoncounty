@@ -38,6 +38,10 @@
             --badge-featured-color: #ffffff;
             --badge-private-bg: rgba(128, 128, 128, 0.9);
             --badge-private-color: #ffffff;
+            --badge-event-bg: rgba(201, 100, 36, 0.92);
+            --badge-event-color: #ffffff;
+            --badge-event-chip-bg: rgba(201, 100, 36, 0.12);
+            --badge-event-chip-color: #9a4b14;
             
             /* SVG Icon Definitions - All icons with stroke='currentColor' */
             --icon-wine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 22h8'/%3E%3Cpath d='M7 10h10'/%3E%3Cpath d='M12 15v7'/%3E%3Cpath d='M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5z'/%3E%3C/svg%3E");
@@ -1042,6 +1046,42 @@
         
         .featured-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-featured-bg); color: var(--badge-featured-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
         .private-badge { position: absolute; top: 10px; right: 10px; background: var(--badge-private-bg); color: var(--badge-private-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; z-index: 10; }
+        .event-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--badge-event-bg);
+            color: var(--badge-event-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 10;
+            letter-spacing: 0.04em;
+        }
+        .badge.badge-event {
+            background: var(--badge-event-chip-bg);
+            color: var(--badge-event-chip-color);
+        }
+        .listing-event-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 0 0 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: rgba(201, 100, 36, 0.08);
+        }
+        .listing-event-details .listing-event-row {
+            margin: 0;
+        }
+        .listing-event-details .card-info-icon {
+            color: #c96424;
+        }
+        .listing-event-details .card-info-text {
+            font-weight: 600;
+            color: #5c3414;
+        }
         
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(29, 29, 31, 0.42); z-index: 1000; overflow-y: auto; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
         .modal.active { display: flex; align-items: center; justify-content: center; padding: 16px; }
