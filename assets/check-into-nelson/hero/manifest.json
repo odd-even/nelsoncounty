@@ -1,0 +1,105 @@
+[
+  {
+    "label": "Farmhouse at Veritas",
+    "slug": "01-farmhouse",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/01-farmhouse-1280.webp",
+      "1920": "assets/check-into-nelson/hero/01-farmhouse-1920.webp",
+      "2560": "assets/check-into-nelson/hero/01-farmhouse-2560.webp",
+      "3200": "assets/check-into-nelson/hero/01-farmhouse-3200.webp"
+    },
+    "width": 3200,
+    "height": 2134,
+    "srcset": "assets/check-into-nelson/hero/01-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/01-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/01-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/01-farmhouse-3200.webp 3200w",
+    "fallback": "assets/check-into-nelson/hero/01-farmhouse-3200.webp"
+  },
+  {
+    "label": "Farmhouse at Veritas",
+    "slug": "02-farmhouse",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/02-farmhouse-1280.webp",
+      "1920": "assets/check-into-nelson/hero/02-farmhouse-1920.webp",
+      "2560": "assets/check-into-nelson/hero/02-farmhouse-2560.webp",
+      "3200": "assets/check-into-nelson/hero/02-farmhouse-3200.webp"
+    },
+    "width": 3200,
+    "height": 2285,
+    "srcset": "assets/check-into-nelson/hero/02-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/02-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/02-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/02-farmhouse-3200.webp 3200w",
+    "fallback": "assets/check-into-nelson/hero/02-farmhouse-3200.webp"
+  },
+  {
+    "label": "Devils Backbone",
+    "slug": "03-devils",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/03-devils-1280.webp",
+      "1920": "assets/check-into-nelson/hero/03-devils-1920.webp",
+      "2500": "assets/check-into-nelson/hero/03-devils-2500.webp"
+    },
+    "width": 2500,
+    "height": 1667,
+    "srcset": "assets/check-into-nelson/hero/03-devils-1280.webp 1280w, assets/check-into-nelson/hero/03-devils-1920.webp 1920w, assets/check-into-nelson/hero/03-devils-2500.webp 2500w",
+    "fallback": "assets/check-into-nelson/hero/03-devils-2500.webp"
+  },
+  {
+    "label": "Devils Backbone",
+    "slug": "04-devils-2",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/04-devils-2-1280.webp",
+      "1920": "assets/check-into-nelson/hero/04-devils-2-1920.webp",
+      "2500": "assets/check-into-nelson/hero/04-devils-2-2500.webp"
+    },
+    "width": 2500,
+    "height": 1502,
+    "srcset": "assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w",
+    "fallback": "assets/check-into-nelson/hero/04-devils-2-2500.webp"
+  },
+  {
+    "label": "Blue Ridge Tunnel",
+    "slug": "04-tunnel",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/04-tunnel-1280.webp",
+      "1500": "assets/check-into-nelson/hero/04-tunnel-1500.webp"
+    },
+    "width": 1500,
+    "height": 800,
+    "srcset": "assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1500.webp 1500w",
+    "fallback": "assets/check-into-nelson/hero/04-tunnel-1500.webp"
+  },
+  {
+    "label": "Flying Fox Vineyard",
+    "slug": "05-flying-fox",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/05-flying-fox-1280.webp",
+      "1832": "assets/check-into-nelson/hero/05-flying-fox-1832.webp"
+    },
+    "width": 1832,
+    "height": 1374,
+    "srcset": "assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w",
+    "fallback": "assets/check-into-nelson/hero/05-flying-fox-1832.webp"
+  },
+  {
+    "label": "Glass Hollow Studio",
+    "slug": "07-glass-hollow",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/07-glass-hollow-1280.webp",
+      "1920": "assets/check-into-nelson/hero/07-glass-hollow-1920.webp",
+      "2500": "assets/check-into-nelson/hero/07-glass-hollow-2500.webp"
+    },
+    "width": 2500,
+    "height": 1667,
+    "srcset": "assets/check-into-nelson/hero/07-glass-hollow-1280.webp 1280w, assets/check-into-nelson/hero/07-glass-hollow-1920.webp 1920w, assets/check-into-nelson/hero/07-glass-hollow-2500.webp 2500w",
+    "fallback": "assets/check-into-nelson/hero/07-glass-hollow-2500.webp"
+  },
+  {
+    "label": "Spy Rock",
+    "slug": "06-spy-rock",
+    "files": {
+      "1280": "assets/check-into-nelson/hero/06-spy-rock-1280.webp",
+      "1920": "assets/check-into-nelson/hero/06-spy-rock-1920.webp"
+    },
+    "width": 1920,
+    "height": 1280,
+    "srcset": "assets/check-into-nelson/hero/06-spy-rock-1280.webp 1280w, assets/check-into-nelson/hero/06-spy-rock-1920.webp 1920w",
+    "fallback": "assets/check-into-nelson/hero/06-spy-rock-1920.webp"
+  }
+]

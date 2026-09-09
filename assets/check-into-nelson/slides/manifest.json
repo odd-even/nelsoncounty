@@ -1,0 +1,158 @@
+{
+  "blue-ridge-tunnel": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp"
+    }
+  ],
+  "crabtree-falls": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/crabtree-falls/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/crabtree-falls/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/crabtree-falls/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/crabtree-falls/02-1600.webp"
+    }
+  ],
+  "devils-backbone": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/devils-backbone/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/devils-backbone/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/devils-backbone/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/devils-backbone/02-1600.webp"
+    },
+    {
+      "n": 3,
+      "w800": "assets/check-into-nelson/slides/devils-backbone/03-800.webp",
+      "w1600": "assets/check-into-nelson/slides/devils-backbone/03-1600.webp"
+    },
+    {
+      "n": 4,
+      "w800": "assets/check-into-nelson/slides/devils-backbone/04-800.webp",
+      "w1600": "assets/check-into-nelson/slides/devils-backbone/04-1600.webp"
+    },
+    {
+      "n": 5,
+      "w800": "assets/check-into-nelson/slides/devils-backbone/05-800.webp",
+      "w1600": "assets/check-into-nelson/slides/devils-backbone/05-1600.webp"
+    }
+  ],
+  "flying-fox": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/flying-fox/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/flying-fox/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/02-1600.webp"
+    },
+    {
+      "n": 3,
+      "w800": "assets/check-into-nelson/slides/flying-fox/03-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/03-1600.webp"
+    },
+    {
+      "n": 4,
+      "w800": "assets/check-into-nelson/slides/flying-fox/04-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/04-1600.webp"
+    },
+    {
+      "n": 5,
+      "w800": "assets/check-into-nelson/slides/flying-fox/05-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/05-1600.webp"
+    },
+    {
+      "n": 6,
+      "w800": "assets/check-into-nelson/slides/flying-fox/06-800.webp",
+      "w1600": "assets/check-into-nelson/slides/flying-fox/06-1600.webp"
+    }
+  ],
+  "glass-hollow": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/glass-hollow/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/glass-hollow/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/glass-hollow/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/glass-hollow/02-1600.webp"
+    },
+    {
+      "n": 3,
+      "w800": "assets/check-into-nelson/slides/glass-hollow/03-800.webp",
+      "w1600": "assets/check-into-nelson/slides/glass-hollow/03-1600.webp"
+    },
+    {
+      "n": 4,
+      "w800": "assets/check-into-nelson/slides/glass-hollow/04-800.webp",
+      "w1600": "assets/check-into-nelson/slides/glass-hollow/04-1600.webp"
+    }
+  ],
+  "reliable-rides": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/reliable-rides/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/reliable-rides/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/reliable-rides/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/reliable-rides/02-1600.webp"
+    }
+  ],
+  "spy-rock": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/spy-rock/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/spy-rock/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/spy-rock/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/spy-rock/02-1600.webp"
+    },
+    {
+      "n": 3,
+      "w800": "assets/check-into-nelson/slides/spy-rock/03-800.webp",
+      "w1600": "assets/check-into-nelson/slides/spy-rock/03-1600.webp"
+    }
+  ],
+  "farmhouse-veritas": [
+    {
+      "n": 1,
+      "w800": "assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp",
+      "w1600": "assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp"
+    },
+    {
+      "n": 2,
+      "w800": "assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp",
+      "w1600": "assets/check-into-nelson/slides/farmhouse-veritas/02-1600.webp"
+    },
+    {
+      "n": 3,
+      "w800": "assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp",
+      "w1600": "assets/check-into-nelson/slides/farmhouse-veritas/03-1600.webp"
+    },
+    {
+      "n": 4,
+      "w800": "assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp",
+      "w1600": "assets/check-into-nelson/slides/farmhouse-veritas/04-1600.webp"
+    }
+  ]
+}

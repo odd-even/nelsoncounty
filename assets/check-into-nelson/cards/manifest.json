@@ -1,0 +1,92 @@
+{
+  "flying-fox": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/flying-fox-480.webp",
+      "717": "assets/check-into-nelson/cards/flying-fox-717.webp"
+    },
+    "width": 717,
+    "height": 896,
+    "srcset": "assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w",
+    "src": "assets/check-into-nelson/cards/flying-fox-717.webp"
+  },
+  "glass-hollow": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/glass-hollow-480.webp",
+      "800": "assets/check-into-nelson/cards/glass-hollow-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/glass-hollow-800.webp"
+  },
+  "blue-ridge-tunnel": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp",
+      "800": "assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp"
+  },
+  "crabtree-falls": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/crabtree-falls-480.webp",
+      "581": "assets/check-into-nelson/cards/crabtree-falls-581.webp"
+    },
+    "width": 581,
+    "height": 726,
+    "srcset": "assets/check-into-nelson/cards/crabtree-falls-480.webp 480w, assets/check-into-nelson/cards/crabtree-falls-581.webp 581w",
+    "src": "assets/check-into-nelson/cards/crabtree-falls-581.webp"
+  },
+  "devils-backbone": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/devils-backbone-480.webp",
+      "800": "assets/check-into-nelson/cards/devils-backbone-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/devils-backbone-800.webp"
+  },
+  "spy-rock": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/spy-rock-480.webp",
+      "800": "assets/check-into-nelson/cards/spy-rock-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/spy-rock-800.webp"
+  },
+  "farmhouse-veritas": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/farmhouse-veritas-480.webp",
+      "800": "assets/check-into-nelson/cards/farmhouse-veritas-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/farmhouse-veritas-480.webp 480w, assets/check-into-nelson/cards/farmhouse-veritas-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/farmhouse-veritas-800.webp"
+  },
+  "reliable-rides": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/reliable-rides-480.webp",
+      "800": "assets/check-into-nelson/cards/reliable-rides-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/reliable-rides-480.webp 480w, assets/check-into-nelson/cards/reliable-rides-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/reliable-rides-800.webp"
+  },
+  "devils-backbone-camp": {
+    "files": {
+      "480": "assets/check-into-nelson/cards/devils-backbone-camp-480.webp",
+      "800": "assets/check-into-nelson/cards/devils-backbone-camp-800.webp"
+    },
+    "width": 800,
+    "height": 1000,
+    "srcset": "assets/check-into-nelson/cards/devils-backbone-camp-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-camp-800.webp 800w",
+    "src": "assets/check-into-nelson/cards/devils-backbone-camp-800.webp"
+  }
+}

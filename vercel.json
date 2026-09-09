@@ -1,0 +1,20 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/check-into-nelson.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": false },
+    { "source": "/check-into-nelson", "destination": "/", "permanent": true },
+    { "source": "/check-into-nelson.html", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

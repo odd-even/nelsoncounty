@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Check Into Nelson — Visit Nelson County</title>
-  <meta name="description" content="Check Into Nelson — Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County." />
-  <meta name="robots" content="noindex" />
-  <!-- Google tag (gtag.js) — GA4 -->
+  <title>Check Into Nelson | Visit Nelson County</title>
+  <meta name="description" content="Check Into Nelson. Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County." />
+  <link rel="canonical" href="https://checkin.nelsoncounty.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Check Into Nelson. Stay Longer. Experience More." />
+  <meta property="og:description" content="Plan a two-night escape or a longer getaway. Use promo code CHECKINTONELSON with participating Nelson County partners." />
+  <meta property="og:url" content="https://checkin.nelsoncounty.com/" />
+  <meta property="og:image" content="https://checkin.nelsoncounty.com/assets/check-into-nelson/farmhouse-veritas.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="icons/visit-nelson-favicon.png" />
+  <link rel="apple-touch-icon" href="icons/visit-nelson-favicon.png" />
+  <!-- Google tag (gtag.js) / GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9GZ2Y2JTC9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -14,11 +22,8 @@
     gtag("js", new Date());
     (function () {
       var params = new URLSearchParams(window.location.search);
-      var inFrame = false;
-      try { inFrame = window.self !== window.top; } catch (err) { inFrame = true; }
-      var isEmbed = params.get("embed") === "1" || params.get("embed") === "true" || inFrame;
+      var isEmbed = params.get("embed") === "1" || params.get("embed") === "true";
       if (isEmbed) document.documentElement.classList.add("is-embed");
-      // Avoid double page_view when Framer parent already tracks the page.
       gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
     })();
   </script>
@@ -42,6 +47,7 @@
       --radius: 20px;
       --pill: 999px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --hero-accent: #8fc86a;
       --font: Satoshi, "Satoshi Placeholder", system-ui, -apple-system, sans-serif;
 
       /* Frontpage category accents (icons/*.svg) */
@@ -93,10 +99,111 @@
       padding: 0.5rem 1rem;
     }
 
+    /* —— Site nav (Visit Nelson County) —— */
+    .site-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 80;
+      padding: 0.85rem 1.15rem;
+    }
+    .site-nav.is-open {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 28px rgba(17, 17, 17, 0.08);
+      backdrop-filter: blur(14px);
+    }
+    .site-nav__bar {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .site-nav__logo {
+      display: flex;
+      flex-direction: column;
+      font-family: Poppins, Satoshi, sans-serif;
+      font-weight: 800;
+      font-size: 1.08rem;
+      line-height: 0.96;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      flex: 0 0 auto;
+    }
+    .site-nav__logo b { font-weight: inherit; }
+    .site-nav__visit { color: rgba(255, 255, 255, 0.4); }
+    .site-nav.is-open .site-nav__logo { color: var(--black); }
+    .site-nav.is-open .site-nav__visit { color: rgba(17, 17, 17, 0.4); }
+    .site-nav__links {
+      display: none;
+      align-items: center;
+      gap: 0.1rem;
+      margin-left: auto;
+    }
+    .site-nav__links a {
+      color: rgba(255, 255, 255, 0.94);
+      font-size: 0.98rem;
+      font-weight: 500;
+      padding: 0.45rem 0.65rem;
+    }
+    .site-nav.is-open .site-nav__links a { color: var(--ink); }
+    .site-nav__toggle {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: auto;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      background: transparent;
+      color: var(--white);
+      cursor: pointer;
+    }
+    .site-nav.is-open .site-nav__toggle {
+      color: var(--ink);
+      border-color: #dddddd;
+    }
+    .site-nav__toggle svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
+    .site-nav__mobile {
+      display: none;
+      width: min(100%, var(--max));
+      margin: 0.75rem auto 0;
+      padding: 0.75rem;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(17, 17, 17, 0.12);
+    }
+    .site-nav.is-open .site-nav__mobile {
+      display: grid;
+      gap: 0.15rem;
+    }
+    .site-nav__mobile a {
+      color: var(--ink);
+      padding: 0.7rem 0.8rem;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .site-nav__mobile a:hover { background: #f3f4f6; }
+    @media (min-width: 900px) {
+      .site-nav__links { display: flex; }
+      .site-nav__toggle,
+      .site-nav__mobile,
+      .site-nav.is-open .site-nav__mobile { display: none; }
+    }
+    html.is-embed .site-nav { display: none; }
+
     /* —— Hero —— */
     .hero {
       position: relative;
-      min-height: min(92svh, 860px);
+      min-height: 100svh;
+      height: 100svh;
       display: grid;
       align-items: end;
       color: var(--white);
@@ -130,9 +237,51 @@
       transform: scale(1.08);
     }
     .hero__dots {
+      position: absolute;
+      z-index: 4;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.55rem;
+    }
+    .hero__caption {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      max-width: min(70vw, 16rem);
+      padding: 0.35rem 0.7rem;
+      border: 0;
+      border-radius: var(--pill);
+      background: rgba(12, 16, 14, 0.48);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      font: inherit;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s var(--ease);
+    }
+    .hero__caption:hover {
+      background: rgba(12, 16, 14, 0.62);
+      transform: translateY(-1px);
+    }
+    .hero__caption:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 3px;
+    }
+    .hero__dots-row {
       display: flex;
       gap: 0.45rem;
-      margin-top: 1.35rem;
     }
     .hero__dot {
       width: 0.55rem;
@@ -166,16 +315,41 @@
       z-index: 2;
       pointer-events: none;
       background:
-        linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.38) 14%, rgba(0, 0, 0, 0.08) 28%, rgba(0, 0, 0, 0) 40%),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.18) 100%),
-        linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, rgba(0, 0, 0, 0.05) 35%, rgba(0, 0, 0, 0.55) 100%);
+        linear-gradient(180deg, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.16) 14%, rgba(0, 0, 0, 0.04) 28%, rgba(0, 0, 0, 0) 40%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.12) 48%, rgba(0, 0, 0, 0.06) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.04) 32%, rgba(0, 0, 0, 0.22) 100%);
+    }
+    .hero__frost {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      background: linear-gradient(to top right, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.06) 28%, rgba(0, 0, 0, 0) 54%);
+      -webkit-mask-image: linear-gradient(to top right, #000 0%, #000 22%, rgba(0, 0, 0, 0.4) 40%, transparent 58%);
+      mask-image: linear-gradient(to top right, #000 0%, #000 22%, rgba(0, 0, 0, 0.4) 40%, transparent 58%);
+    }
+    .hero__frost-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 7.5rem;
+      z-index: 2;
+      pointer-events: none;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0.04) 55%, transparent 100%);
+      -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 42%, transparent 100%);
+      mask-image: linear-gradient(180deg, #000 0%, #000 42%, transparent 100%);
     }
     .hero__content {
       position: relative;
       z-index: 3;
       width: min(100% - 2.5rem, var(--max));
       margin: 0 auto;
-      padding: 0 0 4.5rem;
+      padding: 0 0 1.5rem;
       display: grid;
       gap: 1.75rem;
       align-items: end;
@@ -194,24 +368,43 @@
       min-width: 0;
     }
     .hero__campaign {
+      display: grid;
       font-size: clamp(2.6rem, 7vw, 4.75rem);
       font-weight: 500;
-      line-height: 0.95;
+      line-height: 0.98;
       letter-spacing: -0.03em;
-      max-width: 11ch;
-      margin-bottom: 0.65rem;
+      min-height: 1.96em;
+      margin-bottom: 1.7rem;
     }
-    .hero__tagline {
-      font-size: clamp(1.15rem, 2.4vw, 1.45rem);
-      font-weight: 500;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.85rem;
-      color: rgba(255, 255, 255, 0.96);
+    .hero__swap {
+      grid-area: 1 / 1;
+    }
+    .hero__letter {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(7px);
+      transform: translate3d(0, 0.08em, 0);
+      transition:
+        opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero__letter--space {
+      width: 0.32em;
+    }
+    .hero__accent,
+    .hero__letter--accent {
+      color: var(--hero-accent, #8fc86a);
+    }
+    .hero__swap.is-in .hero__letter {
+      opacity: 1;
+      filter: blur(0);
+      transform: none;
     }
     .hero__lede {
       font-size: clamp(1.05rem, 2vw, 1.2rem);
       font-weight: 400;
-      max-width: 36ch;
+      max-width: 58ch;
       color: rgba(255, 255, 255, 0.92);
       margin-bottom: 1.5rem;
     }
@@ -334,26 +527,228 @@
       line-height: 1.55;
     }
 
-    /* —— Intro —— */
-    .intro__grid {
-      display: grid;
-      gap: 2rem;
-      align-items: start;
+    /* —— Intro + things-to-do band —— */
+    .intro {
+      padding-bottom: clamp(3rem, 6vw, 4.75rem);
     }
-    @media (min-width: 820px) {
-      .intro__grid {
-        grid-template-columns: 1.15fr 0.85fr;
-        gap: 4rem;
-        align-items: end;
+    .intro__grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.15rem;
+      margin-bottom: clamp(1.75rem, 4vw, 2.75rem);
+    }
+    .intro__lead {
+      min-width: 0;
+      width: min(100%, 52rem);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .intro__lead .section-title {
+      margin-bottom: 0;
+      max-width: 22ch;
+      font-size: clamp(2.15rem, 4.8vw, 3.05rem);
+      text-wrap: balance;
+    }
+    .intro__copy {
+      margin: 0;
+      width: min(100%, 44rem);
+      max-width: none;
+      font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+      line-height: 1.55;
+      text-wrap: pretty;
+      color: var(--black);
+    }
+    .intro__chunk {
+      opacity: 0.18;
+      filter: blur(3px);
+      transition:
+        opacity 0.55s var(--ease),
+        filter 0.55s var(--ease);
+      will-change: opacity, filter;
+    }
+    .intro__chunk.is-in {
+      opacity: 1;
+      filter: blur(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .intro__chunk {
+        opacity: 1;
+        filter: none;
+        transition: none;
       }
     }
-    .intro__aside {
-      font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+
+    /* —— Things to do (scroll-linked horizontal, no scroll lock) —— */
+    .do-rail {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: transparent;
+    }
+    .do-rail__pin {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .do-rail__viewport {
+      position: relative;
+      overflow-x: auto;
+      overflow-y: hidden;
+      width: 100%;
+      cursor: grab;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .do-rail__viewport.is-dragging {
+      cursor: grabbing;
+      user-select: none;
+    }
+    .do-rail__viewport::-webkit-scrollbar {
+      display: none;
+      height: 0;
+    }
+    .do-rail__track {
+      display: flex;
+      width: max-content;
+      gap: 0.85rem;
+      padding: 0.2rem max(1.25rem, calc((100vw - var(--max)) / 2 + 1.25rem)) 0.55rem;
+    }
+    .do-card {
+      position: relative;
+      flex: 0 0 auto;
+      width: min(72vw, 17.5rem);
+      aspect-ratio: 4 / 5;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      isolation: isolate;
+      transition: transform 0.25s var(--ease);
+    }
+    .do-card:hover {
+      transform: translateY(-3px);
+    }
+    .do-card:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+    .do-card__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s var(--ease);
+    }
+    .do-card:hover .do-card__img {
+      transform: scale(1.05);
+    }
+    .do-card__fade {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(
+        to top,
+        rgba(12, 16, 14, 0.78) 0%,
+        rgba(12, 16, 14, 0.2) 42%,
+        rgba(12, 16, 14, 0.08) 100%
+      );
+      pointer-events: none;
+    }
+    .do-card__body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.35rem;
+      padding: 0.95rem 1rem 1.05rem;
+    }
+    .do-card__title {
+      font-size: 1.2rem;
       font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+      transition: transform 0.35s var(--ease);
+    }
+    .do-card__copy {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 400;
       line-height: 1.35;
-      color: var(--ink);
-      letter-spacing: -0.01em;
-      padding-top: 0.25rem;
+      color: rgba(255, 255, 255, 0.88);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+      transition: max-height 0.35s var(--ease), opacity 0.28s ease, margin 0.35s var(--ease);
+    }
+    .do-card:hover .do-card__copy,
+    .do-card:focus-visible .do-card__copy {
+      max-height: 2.7em;
+      opacity: 1;
+      margin-top: 0.1rem;
+    }
+    .do-card:hover .do-card__fade,
+    .do-card:focus-visible .do-card__fade {
+      background: linear-gradient(
+        to top,
+        rgba(12, 16, 14, 0.88) 0%,
+        rgba(12, 16, 14, 0.42) 48%,
+        rgba(12, 16, 14, 0.1) 100%
+      );
+    }
+    .do-card .cat-pill {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .do-card[data-cat="taste"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-taste) 55%, transparent);
+    }
+    .do-card[data-cat="culture"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-culture) 55%, transparent);
+    }
+    .do-card[data-cat="outdoor"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-outdoor) 55%, transparent);
+    }
+    .do-card[data-cat="experience"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-experience) 60%, transparent);
+      color: #2a2100;
+    }
+    .do-card[data-cat="community"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-community) 55%, transparent);
+    }
+    .do-card[data-cat="stay"] .cat-pill {
+      background: color-mix(in srgb, var(--cat-stay) 55%, transparent);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .do-rail__viewport {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+      }
+      .do-rail__track {
+        transform: none !important;
+        will-change: auto;
+      }
     }
 
     /* —— Hub / Stay —— */
@@ -378,6 +773,7 @@
       scroll-margin-top: 5.5rem;
     }
     .stay-card__media {
+      position: relative;
       aspect-ratio: 16 / 11;
       overflow: hidden;
       background: #f0f0f0;
@@ -386,6 +782,96 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .media-carousel {
+      isolation: isolate;
+    }
+    .media-carousel__track {
+      position: absolute;
+      inset: 0;
+    }
+    .media-carousel__track img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      pointer-events: none;
+    }
+    .media-carousel__track img.is-active {
+      opacity: 1;
+      z-index: 1;
+    }
+    .media-carousel__dots {
+      position: absolute;
+      left: 50%;
+      bottom: 0.85rem;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .media-carousel:hover .media-carousel__dots,
+    .media-carousel:focus-within .media-carousel__dots {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .media-carousel__dot {
+      appearance: none;
+      width: 0.48rem;
+      height: 0.48rem;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .media-carousel__dot:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .media-carousel__dot.is-active {
+      background: #fff;
+      transform: scale(1.2);
+    }
+    .media-carousel .stay-card__badge,
+    .media-carousel .partner-feature__badge {
+      z-index: 4;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .media-carousel__track img {
+        transition: none;
+      }
+      .media-carousel__dots {
+        transition: none;
+      }
+    }
+    .stay-card__badge {
+      position: absolute;
+      left: 1rem;
+      top: 1rem;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--pill);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--cat-stay-text);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
     }
     .stay-card__body {
       padding: 0 1.25rem 1.35rem;
@@ -398,6 +884,7 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--cat-stay-text);
+      line-height: 1.45;
     }
     .stay-card__title {
       font-size: 1.35rem;
@@ -555,17 +1042,49 @@
       color: var(--ink);
       font-size: 0.88rem;
       font-weight: 500;
-      transition: border-color 0.2s ease, transform 0.2s var(--ease);
+      transition:
+        border-color 0.2s ease,
+        transform 0.55s var(--ease),
+        opacity 0.55s var(--ease),
+        box-shadow 0.55s var(--ease);
     }
-    .partner-chip:hover {
+    .partner-chip.reveal {
+      opacity: 0;
+      transform: translate3d(0, 1.15rem, 0) scale(0.94);
+      filter: blur(2px);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      transition:
+        opacity 0.7s var(--ease),
+        transform 0.7s var(--ease),
+        filter 0.7s var(--ease),
+        border-color 0.2s ease,
+        box-shadow 0.7s var(--ease);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    .partner-chip.reveal.is-in {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    }
+    .partner-chip.reveal.is-in:hover {
       border-color: #bdbdbd;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
     }
     .partner-chip img {
       width: 1.85rem;
       height: 1.85rem;
       border-radius: 50%;
       object-fit: cover;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .partner-chip.reveal {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: border-color 0.2s ease;
+      }
     }
 
     .showcase {
@@ -575,15 +1094,28 @@
       margin-bottom: 2.25rem;
     }
     .partner-feature {
+      --divider: 0;
       display: grid;
       gap: 1.35rem;
       padding: 2.25rem 0;
-      border-top: 1px solid var(--line);
+      border-top: none;
+      position: relative;
       scroll-margin-top: 5.5rem;
     }
     .partner-feature:first-of-type {
-      border-top: none;
       padding-top: 0;
+    }
+    .partner-feature:not(:first-of-type)::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--line);
+      transform: scaleX(var(--divider));
+      transform-origin: 50% 50%;
+      will-change: transform;
     }
     @media (min-width: 860px) {
       .partner-feature {
@@ -592,8 +1124,16 @@
         align-items: center;
         padding: 2.75rem 0;
       }
+      .partner-feature:first-of-type {
+        padding-top: 0;
+      }
       .partner-feature:nth-child(even) .partner-feature__media {
         order: 2;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .partner-feature:not(:first-of-type) {
+        --divider: 1;
       }
     }
     .partner-feature__media {
@@ -612,6 +1152,7 @@
       position: absolute;
       left: 1rem;
       top: 1rem;
+      z-index: 4;
       padding: 0.4rem 0.8rem;
       border-radius: var(--pill);
       background: rgba(255, 255, 255, 0.94);
@@ -663,7 +1204,7 @@
       font-weight: 500;
       margin-bottom: 1.25rem;
     }
-    .partner-feature__meta span {
+    .partner-feature__meta > div > span:not(.code-green) {
       color: var(--muted);
       font-weight: 400;
     }
@@ -673,8 +1214,285 @@
       gap: 0.65rem;
     }
 
+    /* —— Itinerary map —— */
+    .itin-map {
+      margin: 0 0 2rem;
+    }
+    .itin-map__bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1rem;
+      margin-bottom: 0.85rem;
+    }
+    .itin-map__title {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .itin-map__note {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 400;
+    }
+    .itin-map__tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.4rem;
+    }
+    .itin-map__legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .itin-map__chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: var(--pill);
+      padding: 0.28rem 0.7rem;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .itin-map__chip.is-active {
+      background: var(--black);
+      color: #fff;
+      border-color: var(--black);
+    }
+    .itin-map__toggle {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-size: 0.75rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--pill);
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .itin-map__toggle:hover {
+      border-color: #bdbdbd;
+    }
+    .itin-map__toggle:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .itin-map.is-collapsed {
+      margin-bottom: 1.25rem;
+    }
+    .itin-map.is-collapsed .itin-map__bar {
+      margin-bottom: 0;
+    }
+    .itin-map.is-collapsed .itin-map__note,
+    .itin-map.is-collapsed .itin-map__legend,
+    .itin-map.is-collapsed .itin-map__canvas {
+      display: none;
+    }
+    .itin-map__canvas {
+      height: min(520px, 62vh);
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #e8f0e4;
+    }
+    .itin-map .gm-style-cc,
+    .itin-map .gm-style a[href*="terms"],
+    .itin-map .gm-style a[href*="report"] {
+      display: none !important;
+    }
+    .itin-pin {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .itin-pin__card,
+    .itin-pin__dot {
+      pointer-events: auto;
+    }
+    .itin-pin.is-dim {
+      opacity: 0.34;
+    }
+    .itin-pin.is-stay,
+    .itin-pin.is-active {
+      z-index: 5;
+    }
+    .itin-pin__dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--pin, var(--cat-stay));
+      border: 2px solid #fff;
+      box-shadow: 0 1px 5px rgba(17, 17, 17, 0.28);
+      z-index: 4;
+    }
+    .itin-pin.is-stay .itin-pin__dot {
+      width: 15px;
+      height: 15px;
+    }
+    .itin-pin__stem {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 3px;
+      width: 14px;
+      background: color-mix(in srgb, var(--pin, var(--cat-stay)) 72%, #fff);
+      border-radius: 999px;
+      transform-origin: 0 50%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .itin-pin__card {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #fff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem 0.2rem 0.2rem;
+      text-align: left;
+      transform: translate(-50%, calc(-100% - 10px));
+      filter: drop-shadow(0 6px 14px rgba(17, 17, 17, 0.16));
+      min-width: 0;
+      max-width: 14rem;
+      white-space: nowrap;
+      z-index: 3;
+    }
+    .itin-pin__text {
+      display: block;
+      text-align: left;
+      min-width: 0;
+      line-height: 1.15;
+    }
+    .itin-pin__tag {
+      display: block;
+      text-align: left;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .itin-pin__name {
+      display: block;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .itin-pin__mark {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #fff;
+      background: var(--pin, var(--cat-stay));
+      box-shadow: 0 0 0 1.5px var(--pin, var(--cat-stay));
+    }
+    .itin-pin.is-stay .itin-pin__mark {
+      width: 38px;
+      height: 38px;
+      flex-basis: 38px;
+    }
+    .itin-pin__mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .itin-pin.is-stay .itin-pin__card,
+    .itin-pin.is-active .itin-pin__card {
+      background: var(--black);
+      color: #fff;
+    }
+    .itin-pin.is-stay .itin-pin__tag,
+    .itin-pin.is-active .itin-pin__tag {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .itin-map-card {
+      font-family: var(--font);
+      max-width: 220px;
+    }
+    .itin-map-card strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+    .itin-map-card span {
+      display: block;
+      font-size: 0.78rem;
+      color: #666;
+      margin-bottom: 0.65rem;
+    }
+    .itin-map-card a {
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .timeline-item.is-map-focus .timeline-item__card {
+      border-color: var(--black);
+      box-shadow: 0 10px 28px rgba(17, 17, 17, 0.1);
+    }
+
     /* —— Itinerary —— */
     .itinerary__head { margin-bottom: 2rem; }
+    .itinerary__title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.55rem 0.85rem;
+      margin-bottom: 0.65rem;
+    }
+    .itinerary__title-row .section-title {
+      margin: 0;
+    }
+    .itin-length-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.28rem 0.7rem;
+      border-radius: var(--pill);
+      border: 1px solid var(--line);
+      background: #f7f7f7;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .itin-length-tag.is-set {
+      border-color: color-mix(in srgb, var(--cat-stay) 45%, #d8d8d8);
+      background: color-mix(in srgb, var(--cat-stay) 14%, #fff);
+      color: var(--cat-stay-text);
+    }
     .day-tabs {
       display: inline-flex;
       gap: 0.35rem;
@@ -701,7 +1519,7 @@
 
     /* —— Airbnb-style date range —— */
     .range-picker {
-      margin-top: 1.25rem;
+      margin: 0 0 1.25rem;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: var(--white);
@@ -1021,6 +1839,135 @@
       color: var(--muted);
     }
 
+    .more-stops {
+      margin-top: 2.25rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .more-stops[hidden] {
+      display: none !important;
+    }
+    .more-stops__label {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      margin: 0 0 0.9rem;
+    }
+    .more-stops__row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(15.5rem, 1fr));
+      gap: 0.75rem;
+    }
+    .more-stop {
+      appearance: none;
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      padding: 0.4rem 0.7rem 0.4rem 0.4rem;
+      border: 1.5px solid var(--line);
+      border-radius: 16px;
+      background: var(--white);
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: grab;
+      display: grid;
+      grid-template-columns: 3.75rem 1fr;
+      align-items: start;
+      gap: 0.7rem;
+      touch-action: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease);
+    }
+    .more-stop:hover {
+      border-color: color-mix(in srgb, var(--cat-outdoor) 45%, #cfcfcf);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    }
+    .more-stop:active {
+      cursor: grabbing;
+    }
+    .more-stop__media {
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f0f0f0;
+    }
+    .more-stop__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .more-stop__copy {
+      display: grid;
+      gap: 0.15rem;
+      min-width: 0;
+      padding-right: 1.1rem;
+      padding-top: 0.05rem;
+    }
+    .more-stop__kicker {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--cat-outdoor-text);
+    }
+    .more-stop__title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+    .more-stop__desc {
+      font-size: 0.72rem;
+      line-height: 1.35;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .more-stop__hint {
+      position: absolute;
+      top: 0.35rem;
+      right: 0.4rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      line-height: 1;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      opacity: 0.7;
+      pointer-events: none;
+    }
+    .more-stop-ghost {
+      width: 15rem !important;
+      transform: rotate(2deg);
+    }
+
+    .itin-extend {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.85rem 1.25rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+    .itin-extend__copy {
+      margin: 0;
+      max-width: 36ch;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+    .itin-extend .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .timeline-help {
       display: flex;
       flex-wrap: wrap;
@@ -1189,7 +2136,7 @@
       content: "";
       position: absolute;
       top: 2.1rem;
-      bottom: -0.35rem;
+      bottom: -1.9rem;
       left: 50%;
       width: 2px;
       transform: translateX(-50%);
@@ -1221,15 +2168,6 @@
     .timeline-item[data-id="spyrock"] .timeline-item__dot,
     .timeline-item[data-id="tyeriver"] .timeline-item__dot { background: var(--cat-outdoor); }
     .timeline-item[data-id="rides"] .timeline-item__dot { background: var(--cat-community); }
-    .timeline-item[data-id="checkin"] .timeline-item__beat { color: var(--cat-stay-text); }
-    .timeline-item[data-id="sip"] .timeline-item__beat { color: var(--cat-taste-text); }
-    .timeline-item[data-id="create"] .timeline-item__beat { color: var(--cat-culture-text); }
-    .timeline-item[data-id="backbone"] .timeline-item__beat { color: var(--cat-experience-text); }
-    .timeline-item[data-id="explore"] .timeline-item__beat,
-    .timeline-item[data-id="crabtree"] .timeline-item__beat,
-    .timeline-item[data-id="spyrock"] .timeline-item__beat,
-    .timeline-item[data-id="tyeriver"] .timeline-item__beat { color: var(--cat-outdoor-text); }
-    .timeline-item[data-id="rides"] .timeline-item__beat { color: var(--cat-community-text); }
     .timeline-item[data-id="checkin"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-stay) 55%, #cfcfcf); }
     .timeline-item[data-id="sip"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-taste) 55%, #cfcfcf); }
     .timeline-item[data-id="create"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-culture) 55%, #cfcfcf); }
@@ -1332,16 +2270,92 @@
     .timeline-item__actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.55rem;
+      gap: 0.45rem;
       margin-top: 0.15rem;
     }
+    .itinerary .btn {
+      padding: 0.45rem 0.85rem;
+    }
     .timeline-item__beat {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+      margin-bottom: 0.45rem;
+    }
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.28rem 0.65rem 0.28rem 0.5rem;
+      border-radius: var(--pill);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .cat-pill::before {
+      content: "";
+      width: 0.9rem;
+      height: 0.9rem;
+      flex-shrink: 0;
+      background: center / contain no-repeat;
+    }
+    .cat-pill--stay {
+      background: color-mix(in srgb, var(--cat-stay) 28%, #fff);
+      color: var(--cat-stay-text);
+    }
+    .cat-pill--stay::before,
+    .do-card[data-cat="stay"] .cat-pill::before {
+      background-image: url("icons/stay.svg");
+    }
+    .cat-pill--taste {
+      background: color-mix(in srgb, var(--cat-taste) 26%, #fff);
+      color: var(--cat-taste-text);
+    }
+    .cat-pill--taste::before,
+    .do-card[data-cat="taste"] .cat-pill::before {
+      background-image: url("icons/taste.svg");
+    }
+    .cat-pill--culture {
+      background: color-mix(in srgb, var(--cat-culture) 24%, #fff);
+      color: var(--cat-culture-text);
+    }
+    .cat-pill--culture::before,
+    .do-card[data-cat="culture"] .cat-pill::before {
+      background-image: url("icons/culture.svg");
+    }
+    .cat-pill--experience {
+      background: color-mix(in srgb, var(--cat-experience) 32%, #fff);
+      color: var(--cat-experience-text);
+    }
+    .cat-pill--experience::before,
+    .do-card[data-cat="experience"] .cat-pill::before {
+      background-image: url("icons/experience.svg");
+    }
+    .cat-pill--outdoor {
+      background: color-mix(in srgb, var(--cat-outdoor) 26%, #fff);
+      color: var(--cat-outdoor-text);
+    }
+    .cat-pill--outdoor::before,
+    .do-card[data-cat="outdoor"] .cat-pill::before {
+      background-image: url("icons/outdoor.svg");
+    }
+    .cat-pill--community {
+      background: color-mix(in srgb, var(--cat-community) 28%, #fff);
+      color: var(--cat-community-text);
+    }
+    .cat-pill--community::before,
+    .do-card[data-cat="community"] .cat-pill::before {
+      background-image: url("icons/community.svg");
+    }
+    .timeline-item__daymeta {
       font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      margin-bottom: 0.3rem;
     }
     .timeline-item__title {
       font-size: 1.15rem;
@@ -1355,6 +2369,15 @@
       color: var(--muted);
       line-height: 1.45;
       margin-bottom: 0.85rem;
+      max-width: 36ch;
+      text-wrap: balance;
+    }
+    .timeline-item__copy > span {
+      display: block;
+      text-wrap: balance;
+    }
+    .timeline-item__copy > span + span {
+      margin-top: 0.55em;
     }
     .timeline-item__offer {
       display: block;
@@ -1402,6 +2425,13 @@
     .stay-choice__btn.is-selected .stay-choice__label {
       color: var(--cat-stay-text);
     }
+    .timeline-item[data-id="sip"] .stay-choice__btn.is-selected {
+      border-color: var(--cat-taste);
+      box-shadow: 0 0 0 1px var(--cat-taste);
+    }
+    .timeline-item[data-id="sip"] .stay-choice__btn.is-selected .stay-choice__label {
+      color: var(--cat-taste-text);
+    }
     .stay-choice__label {
       font-size: 0.68rem;
       font-weight: 500;
@@ -1410,10 +2440,10 @@
       color: var(--muted);
     }
     .stay-choice__name {
-      font-size: 0.88rem;
+      font-size: 1.05rem;
       font-weight: 500;
-      line-height: 1.25;
-      letter-spacing: -0.01em;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
     }
     .timeline-item__media {
       width: 100%;
@@ -1639,37 +2669,43 @@
       font-weight: 800;
     }
     .code-green {
-      display: inline-flex;
-      align-items: stretch;
-      vertical-align: -0.08em;
+      display: inline;
+      vertical-align: baseline;
       margin: 0;
       padding: 0;
-      border: 1.5px solid transparent;
+      border: 0;
       border-radius: var(--pill);
       background: transparent;
       font: inherit;
+      font-size: inherit;
       font-weight: 500;
       letter-spacing: 0.04em;
       color: var(--nelson-green);
       cursor: pointer;
-      overflow: hidden;
-      line-height: 1.25;
+      line-height: inherit;
       max-width: 100%;
       box-sizing: border-box;
-      transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: none;
+      transition: background 0.18s ease, box-shadow 0.18s ease;
     }
     .code-green:hover,
     .code-green:focus-visible,
     .code-green.is-copied {
-      border-color: #d8d8d8;
+      display: inline-flex;
+      align-items: stretch;
+      overflow: hidden;
       background: var(--white);
+      box-shadow: inset 0 0 0 1.5px #d8d8d8;
       text-decoration: none;
+      line-height: 1.25;
+      vertical-align: baseline;
     }
     .code-green:focus-visible {
       outline: 2px solid var(--nelson-green);
       outline-offset: 2px;
     }
     .code-green__label {
+      display: inline;
       padding: 0;
       white-space: nowrap;
       transition: padding 0.18s ease;
@@ -1677,50 +2713,55 @@
     .code-green:hover .code-green__label,
     .code-green:focus-visible .code-green__label,
     .code-green.is-copied .code-green__label {
+      display: inline-flex;
+      align-items: center;
       padding: 0.12em 0.55em;
     }
     .code-green__hint {
-      display: inline-flex;
+      display: none;
       align-items: center;
       justify-content: center;
-      max-width: 0;
-      padding: 0;
+      max-width: 4.75rem;
+      padding: 0 0.55em;
       margin: 0;
       overflow: hidden;
-      opacity: 0;
       border: none;
-      border-left: 0 solid #d8d8d8;
+      border-left: 1.5px solid #d8d8d8;
       background: var(--ink);
-      color: var(--white);
+      color: #fff;
       font-size: 0.72em;
       font-weight: 500;
       letter-spacing: 0.04em;
       text-transform: none;
       white-space: nowrap;
-      transition: max-width 0.2s var(--ease), padding 0.2s var(--ease), opacity 0.15s ease, border-width 0.2s ease;
+      line-height: 1.25;
     }
     .code-green:hover .code-green__hint,
     .code-green:focus-visible .code-green__hint,
     .code-green.is-copied .code-green__hint {
-      max-width: 4.75rem;
-      padding: 0 0.55em;
-      opacity: 1;
-      border-left-width: 1.5px;
+      display: inline-flex;
+      color: #fff;
     }
     .code-green.is-copied {
-      border-color: var(--nelson-green);
+      box-shadow: inset 0 0 0 1.5px var(--nelson-green);
     }
     .code-green--plain {
+      display: inline;
       border: none;
       border-radius: 0;
       background: transparent;
+      box-shadow: none;
       transition: none;
     }
     .code-green--plain:hover,
     .code-green--plain:focus-visible,
     .code-green--plain.is-copied {
+      display: inline;
       border: none;
       background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      line-height: inherit;
     }
     .code-green--plain:focus-visible {
       outline: 2px solid var(--nelson-green);
@@ -2118,24 +3159,33 @@
     .reveal--zoom .partner-feature__media img,
     .reveal--zoom .hub__photo img {
       transform: scale(1.06);
-      transition: transform 1.15s var(--ease);
+      transition: transform 1.15s var(--ease), opacity 0.7s ease;
       transition-delay: var(--reveal-delay, 0ms);
+    }
+    .reveal--zoom .media-carousel__track img {
+      transform: scale(1.06);
     }
     .reveal--zoom.is-in .stay-card__media img,
     .reveal--zoom.is-in .partner-feature__media img,
-    .reveal--zoom.is-in .hub__photo img {
+    .reveal--zoom.is-in .hub__photo img,
+    .reveal--zoom.is-in .media-carousel__track img {
       transform: scale(1);
     }
     .hero__media {
       will-change: transform;
     }
-    .hero__content > * {
+    .hero__campaign,
+    .hero__lede,
+    .hero__main .cta-row,
+    .hero__promo {
       opacity: 0;
-      transform: translate3d(0, 1.25rem, 0);
-      animation: riseIn 0.95s var(--ease) both;
+      transform: translate3d(0, 1.4rem, 0);
+      animation: riseIn 1.05s var(--ease) both;
     }
-    .hero__main { animation-delay: 0.05s; }
-    .hero__promo { animation-delay: 0.28s; }
+    .hero__campaign { animation-delay: 0.08s; }
+    .hero__lede { animation-delay: 0.48s; }
+    .hero__main .cta-row { animation-delay: 0.7s; }
+    .hero__promo { animation-delay: 0.42s; }
     @media (prefers-reduced-motion: reduce) {
       .reveal,
       .reveal--left,
@@ -2151,10 +3201,17 @@
         transform: none;
         transition: none;
       }
-      .hero__content > * {
+      .hero__campaign,
+      .hero__lede,
+      .hero__main .cta-row,
+      .hero__promo {
         opacity: 1;
         transform: none;
         animation: none;
+      }
+      .hero__letter {
+        filter: none;
+        transition: none;
       }
       .hero__media {
         transform: none !important;
@@ -2166,51 +3223,131 @@
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
+  <header class="site-nav" id="siteNav">
+    <div class="site-nav__bar">
+      <a class="site-nav__logo" href="https://nelsoncounty.com/" aria-label="Visit Nelson County">
+        <span><span class="site-nav__visit">Visit</span> Nelson</span>
+        <b>County</b>
+      </a>
+      <nav class="site-nav__links" aria-label="Primary">
+        <a href="https://nelsoncounty.com/find-your-adventure">Destinations</a>
+        <a href="https://nelsoncounty.com/calendar-of-events">Events</a>
+        <a href="https://nelsoncounty.com/blog">Blog</a>
+        <a href="https://nelsoncounty.com/about">About</a>
+        <a href="https://nelsoncounty.com/contact">Contact</a>
+      </nav>
+      <button class="site-nav__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="site-nav__mobile" id="mobileNav" aria-label="Mobile">
+      <a href="https://nelsoncounty.com/find-your-adventure">Destinations</a>
+      <a href="https://nelsoncounty.com/calendar-of-events">Events</a>
+      <a href="https://nelsoncounty.com/blog">Blog</a>
+      <a href="https://nelsoncounty.com/about">About</a>
+      <a href="https://nelsoncounty.com/contact">Contact</a>
+    </nav>
+  </header>
+
   <main id="main">
     <section class="hero" aria-label="Campaign hero">
       <div class="hero__media" aria-hidden="true">
         <div class="hero__slide is-active">
           <img
-            src="assets/check-into-nelson/farmhouse-veritas.jpg"
+            src="assets/check-into-nelson/hero/01-farmhouse-3200.webp"
+            srcset="assets/check-into-nelson/hero/01-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/01-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/01-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/01-farmhouse-3200.webp 3200w"
+            sizes="100vw"
             alt=""
-            width="1024"
-            height="682"
-            fetchpriority="high"
+            width="3200"
+            height="2134" fetchpriority="high"
           />
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/blue-ridge-tunnel.jpg"
+            src="assets/check-into-nelson/hero/02-farmhouse-3200.webp"
+            srcset="assets/check-into-nelson/hero/02-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/02-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/02-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/02-farmhouse-3200.webp 3200w"
+            sizes="100vw"
             alt=""
-            width="1024"
-            height="768"
-            loading="lazy"
+            width="3200"
+            height="2285" loading="lazy"
           />
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/devils-backbone.jpg"
+            src="assets/check-into-nelson/hero/03-devils-2500.webp"
+            srcset="assets/check-into-nelson/hero/03-devils-1280.webp 1280w, assets/check-into-nelson/hero/03-devils-1920.webp 1920w, assets/check-into-nelson/hero/03-devils-2500.webp 2500w"
+            sizes="100vw"
             alt=""
-            width="1024"
-            height="794"
-            loading="lazy"
+            width="2500"
+            height="1667" loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/hero/04-devils-2-2500.webp"
+            srcset="assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w"
+            sizes="100vw"
+            alt=""
+            width="2500"
+            height="1502" loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/hero/04-tunnel-1500.webp"
+            srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1500.webp 1500w"
+            sizes="100vw"
+            alt=""
+            width="1500"
+            height="800" loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/hero/05-flying-fox-1832.webp"
+            srcset="assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w"
+            sizes="100vw"
+            alt=""
+            width="1832"
+            height="1374" loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/hero/07-glass-hollow-2500.webp"
+            srcset="assets/check-into-nelson/hero/07-glass-hollow-1280.webp 1280w, assets/check-into-nelson/hero/07-glass-hollow-1920.webp 1920w, assets/check-into-nelson/hero/07-glass-hollow-2500.webp 2500w"
+            sizes="100vw"
+            alt=""
+            width="2500"
+            height="1667" loading="lazy"
+          />
+        </div>
+        <div class="hero__slide">
+          <img
+            src="assets/check-into-nelson/hero/06-spy-rock-1920.webp"
+            srcset="assets/check-into-nelson/hero/06-spy-rock-1280.webp 1280w, assets/check-into-nelson/hero/06-spy-rock-1920.webp 1920w"
+            sizes="100vw"
+            alt=""
+            width="1920"
+            height="1280" loading="lazy"
           />
         </div>
       </div>
       <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__frost" aria-hidden="true"></div>
+      <div class="hero__frost-top" aria-hidden="true"></div>
       <div class="hero__content">
         <div class="hero__main">
-          <h1 class="hero__campaign">Check Into Nelson</h1>
-          <p class="hero__tagline">Stay Longer. Experience More.</p>
-          <p class="hero__lede">Trade the rushed day trip for a few days of Blue Ridge views, local wine, creative experiences, and outdoor adventure — with room to slow down.</p>
+          <h1 class="hero__campaign" aria-label="Check Into Nelson.">
+            <span class="hero__swap is-in" data-line1="Check Into" data-line2="Nelson.">Check Into<br><span class="hero__accent">Nelson.</span></span>
+            <span class="hero__swap" aria-hidden="true" data-line1="Stay Longer." data-line2="Experience More.">Stay Longer.<br><span class="hero__accent">Experience More.</span></span>
+          </h1>
+          <p class="hero__lede">Trade the rushed day trip for a few days surrounded by Blue Ridge views, local wine, creative experiences, outdoor adventure, and room to slow down.</p>
           <div class="cta-row">
             <a class="btn btn--light" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
             <a class="btn btn--ghost" href="#experience" data-track="cta_explore_experience">Explore the Experience</a>
-          </div>
-          <div class="hero__dots" role="tablist" aria-label="Hero images">
-            <button type="button" class="hero__dot is-active" role="tab" aria-selected="true" aria-label="Farmhouse at Veritas" data-hero-slide="0"></button>
-            <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="1"></button>
-            <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="2"></button>
           </div>
         </div>
         <aside class="hero__promo" aria-label="Campaign promo code">
@@ -2222,6 +3359,19 @@
             <button type="button" class="promo-code__copy" id="copyPromoHero" data-track="copy_promo_code">Copy</button>
           </div>
         </aside>
+      </div>
+      <div class="hero__dots" aria-label="Hero images">
+        <button type="button" class="hero__caption" id="heroCaption" data-hero-target="#feature-farmhouse">Farmhouse at Veritas</button>
+        <div class="hero__dots-row" role="tablist" aria-label="Hero image controls">
+          <button type="button" class="hero__dot is-active" role="tab" aria-selected="true" aria-label="Farmhouse at Veritas" data-hero-slide="0" data-hero-target="#feature-farmhouse"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Farmhouse at Veritas" data-hero-slide="1" data-hero-target="#feature-farmhouse"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="2" data-hero-target="#feature-devils-backbone"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="3" data-hero-target="#feature-devils-backbone"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="4" data-hero-target="#feature-tunnel"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Flying Fox Vineyard" data-hero-slide="5" data-hero-target="#feature-flying-fox"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Glass Hollow Studio" data-hero-slide="6" data-hero-target="#feature-glass-hollow"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="7" data-hero-target="#itinerary"></button>
+        </div>
       </div>
     </section>
 
@@ -2245,10 +3395,6 @@
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
             Glass Hollow Studio
           </a>
-          <a class="partner-chip" href="#feature-tunnel">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
-            Blue Ridge Tunnel
-          </a>
           <a class="partner-chip" href="#feature-rides">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
             Reliable Rides
@@ -2259,34 +3405,141 @@
 
     <section class="intro" id="about">
       <div class="wrap intro__grid">
-        <div>
-          <p class="eyebrow">The getaway</p>
+        <div class="intro__lead">
           <h2 class="section-title">A Blue Ridge getaway that gives you time to enjoy it</h2>
-          <p class="section-copy">
-            Nelson County is close enough for an easy drive, but it deserves more than a quick visit.
-            Check in during the week, settle into the scenery, and experience the county at your own pace —
-            tasting local wine, visiting makers, exploring the outdoors, and discovering places worth lingering over.
-          </p>
         </div>
-        <p class="intro__aside">
-          With participating lodging, attractions, and experiences gathered in one place, planning your stay is simple.
+        <p class="section-copy intro__copy" id="introCopy">
+          <span class="intro__chunk">Nelson County is close enough for an easy drive, but it deserves more than a quick visit.</span>
+          <span class="intro__chunk"> Check in during the week, settle into the scenery, and experience the county at your own pace.</span>
+          <span class="intro__chunk"> Spend your days tasting local wine, visiting makers, exploring the outdoors, and discovering places worth lingering over.</span>
         </p>
+      </div>
+
+      <div class="do-rail" id="things-to-do" aria-label="Things to do in Nelson County">
+      <div class="do-rail__pin">
+      <div class="do-rail__viewport" id="doRailViewport">
+        <div class="do-rail__track" id="doRailTrack">
+          <a class="do-card" data-cat="taste" href="#feature-flying-fox">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Sip</span>
+              <span class="do-card__title">Flying Fox Vineyard</span>
+              <span class="do-card__copy">Small-lot producer known for inventive wines and the Sly Fox vermouth line, letting each varietal speak for itself.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="culture" href="#feature-glass-hollow">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Create</span>
+              <span class="do-card__title">Glass Hollow Studio</span>
+              <span class="do-card__copy">Discover the art of glassmaking at Glass Hollow Studio and Gallery, nestled in the scenic Rockfish Valley.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="outdoor" href="#feature-tunnel">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Explore</span>
+              <span class="do-card__title">Blue Ridge Tunnel</span>
+              <span class="do-card__copy">Walk the restored 1850s Blue Ridge Railroad tunnel on a 2.25-mile crushed-gravel path with dramatic stone portals.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="outdoor" href="#itinerary">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/crabtree-falls-image1_IXQ2lOEKu?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Explore</span>
+              <span class="do-card__title">Crabtree Falls</span>
+              <span class="do-card__copy">Five major cascades dropping 1,200 feet, the highest vertical-drop waterfall east of the Mississippi.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="experience" href="#feature-devils-backbone">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Experience</span>
+              <span class="do-card__title">Devils Backbone</span>
+              <span class="do-card__copy">Mountain basecamp brewery pouring award-winning lagers, cocktails, and distillery releases with expansive meadows.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="outdoor" href="#itinerary">
+            <img class="do-card__img" src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="min(72vw, 17.5rem)" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Explore</span>
+              <span class="do-card__title">Spy Rock</span>
+              <span class="do-card__copy">Soaring granite dome reached by a hike with rocky scrambles and sweeping Blue Ridge summit panoramas.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="stay" href="#feature-farmhouse">
+            <img class="do-card__img" src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Stay</span>
+              <span class="do-card__title">Farmhouse at Veritas</span>
+              <span class="do-card__copy">Six luxurious bedrooms in the heart of Virginia Wine Country, with farm-fresh breakfast on Veritas Vineyard.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="community" href="#feature-rides">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Get around</span>
+              <span class="do-card__title">Reliable Rides</span>
+              <span class="do-card__copy">Spend less time thinking about transportation and more time enjoying your stay between participating stops.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="outdoor" href="#itinerary">
+            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Explore</span>
+              <span class="do-card__title">Tye River</span>
+              <span class="do-card__copy">34-mile Blue Ridge stream offering Class I-II+ whitewater, mountain views, and seasonal paddling windows.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="stay" href="#feature-devils-backbone-camp">
+            <img class="do-card__img" src="assets/check-into-nelson/devils-backbone.jpg" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Stay</span>
+              <span class="do-card__title">Devils Backbone Camp</span>
+              <span class="do-card__copy">RV and tent sites paired with craft beverage venues, live music, and easy access to hiking and Nelson 151.</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      </div>
       </div>
     </section>
 
     <section class="hub" id="stay" aria-labelledby="stay-title">
       <div class="wrap">
-        <p class="eyebrow">Choose your stay</p>
-        <h2 class="section-title" id="stay-title">Two home bases. One promo code.</h2>
-        <p class="section-copy">Plan a two-night escape or settle in for three or four days. Participating businesses offer special incentives with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to help you stay longer and experience more.</p>
+        <p class="eyebrow">Stay longer</p>
+        <h2 class="section-title" id="stay-title">Choose your stay</h2>
+        <p class="section-copy">Plan a two-night escape or settle in for three or four days, then use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to save with participating partners.</p>
 
         <div class="stay-grid">
           <article class="stay-card" id="feature-farmhouse">
-            <div class="stay-card__media">
-              <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="Farmhouse at Veritas" width="1000" height="700" loading="lazy" />
+            <div class="stay-card__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1143" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Farmhouse at Veritas photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+            </div>
+            <span class="stay-card__badge">15% off</span>
+          </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">Special incentive with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></span>
+              <span class="stay-card__offer">Use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to receive 15% off your stay.</span>
               <h3 class="stay-card__title">Farmhouse at Veritas</h3>
               <p class="stay-card__copy">Wake up in the heart of Virginia wine country. Vineyard views, thoughtful hospitality, and an ideal home base for exploring Nelson County.</p>
               <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
@@ -2294,11 +3547,25 @@
           </article>
 
           <article class="stay-card" id="feature-devils-backbone-camp">
-            <div class="stay-card__media">
-              <img src="assets/check-into-nelson/devils-backbone.jpg" alt="Devils Backbone Campground" width="1000" height="700" loading="lazy" />
+            <div class="stay-card__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="961" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone Campground photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
+            </div>
+            <span class="stay-card__badge">15% off</span>
+          </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">Special incentive with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></span>
+              <span class="stay-card__offer">Use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to receive 15% off your stay.</span>
               <h3 class="stay-card__title">Devils Backbone Campground</h3>
               <p class="stay-card__copy">Settle into the Blue Ridge where outdoor stays, mountain scenery, craft beverage experiences, and on-site agritourism come together.</p>
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Your Stay</a>
@@ -2313,12 +3580,27 @@
         <div class="showcase__head">
           <p class="eyebrow">Build your experience</p>
           <h2 class="section-title" id="experience-title">Stay longer. Choose what fits your pace.</h2>
-          <p class="section-copy">Stay for two nights or make it a three- to four-day getaway. Mix sip, create, explore, and get-around stops into a trip that feels like your own.</p>
+          <p class="section-copy">Stay for two nights or make it a three-to-four-day getaway. Choose the experiences that fit your pace and create a trip that feels like your own.</p>
         </div>
 
         <article class="partner-feature" id="feature-flying-fox" data-cat="taste">
-          <div class="partner-feature__media">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-1200,h-820,fo-auto,q-75" alt="Flying Fox Vineyard" width="1200" height="820" loading="lazy" />
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/flying-fox/01-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/flying-fox/02-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/flying-fox/03-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/flying-fox/04-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/flying-fox/05-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/05-800.webp 800w, assets/check-into-nelson/slides/flying-fox/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/flying-fox/06-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/06-800.webp 800w, assets/check-into-nelson/slides/flying-fox/06-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Flying Fox Vineyard photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 6" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 6" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 6" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 6" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 6" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 6 of 6" aria-current="false"></button>
+            </div>
             <span class="partner-feature__badge">Sip</span>
           </div>
           <div>
@@ -2336,8 +3618,19 @@
         </article>
 
         <article class="partner-feature" id="feature-glass-hollow" data-cat="culture">
-          <div class="partner-feature__media">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-1200,h-820,fo-auto,q-75" alt="Glass Hollow Studio" width="1200" height="820" loading="lazy" />
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/glass-hollow/02-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/glass-hollow/03-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/glass-hollow/04-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Glass Hollow Studio photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+            </div>
             <span class="partner-feature__badge">Create</span>
           </div>
           <div>
@@ -2355,14 +3648,21 @@
         </article>
 
         <article class="partner-feature" id="feature-tunnel" data-cat="outdoor">
-          <div class="partner-feature__media">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-1200,h-820,fo-auto,q-75" alt="Blue Ridge Tunnel" width="1200" height="820" loading="lazy" />
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Blue Ridge Tunnel photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 2" aria-current="false"></button>
+            </div>
             <span class="partner-feature__badge">Explore</span>
           </div>
           <div>
             <p class="partner-feature__role">Historic outdoors</p>
             <h3 class="partner-feature__title">Blue Ridge Tunnel</h3>
-            <p class="partner-feature__copy">Walk through one of Nelson County’s most distinctive historic attractions — a memorable mix of mountain scenery, local history, and outdoor exploration.</p>
+            <p class="partner-feature__copy">Walk through one of Nelson County’s most distinctive historic attractions, a memorable mix of mountain scenery, local history, and outdoor exploration.</p>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
               <a class="btn btn--outline" href="#itinerary">Add to your sample stay</a>
@@ -2371,14 +3671,27 @@
         </article>
 
         <article class="partner-feature" id="feature-devils-backbone" data-cat="experience">
-          <div class="partner-feature__media">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-1200,h-820,fo-auto,q-75" alt="Devils Backbone" width="1200" height="820" loading="lazy" />
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="961" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
+            </div>
             <span class="partner-feature__badge">Experience more</span>
           </div>
           <div>
             <p class="partner-feature__role">Craft &amp; agritourism</p>
             <h3 class="partner-feature__title">Devils Backbone</h3>
-            <p class="partner-feature__copy">Beyond the campground, explore agricultural and craft beverage culture — working greenhouses, locally grown ingredients, and the Basecamp experience.</p>
+            <p class="partner-feature__copy">Beyond the campground, Devils Backbone offers opportunities to experience Nelson County’s agricultural and craft beverage culture. Explore the property, discover the working greenhouses, and see how locally grown ingredients become part of the experience.</p>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
               <a class="btn btn--outline" href="https://nelsoncounty.com/explore/devils-backbone-brewing-company">View on nelsoncounty.com</a>
@@ -2387,8 +3700,15 @@
         </article>
 
         <article class="partner-feature" id="feature-rides" data-cat="community">
-          <div class="partner-feature__media">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-1200,h-820,fo-auto,q-75" alt="Getting around Nelson County" width="1200" height="820" loading="lazy" />
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/reliable-rides/01-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/01-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="eager" decoding="async" />
+              <img src="assets/check-into-nelson/slides/reliable-rides/02-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/02-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Reliable Rides photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 2" aria-current="false"></button>
+            </div>
             <span class="partner-feature__badge">Get around</span>
           </div>
           <div>
@@ -2399,8 +3719,7 @@
               <div><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> <span>· Special incentive when arranging your ride</span></div>
             </div>
             <div class="partner-feature__actions">
-              <a class="btn btn--dark" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
-              <a class="btn btn--outline" href="#itinerary">See it on the timeline</a>
+              <a class="btn btn--dark" href="https://reliableridesva.com/" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
             </div>
           </div>
         </article>
@@ -2410,8 +3729,10 @@
     <section class="itinerary" id="itinerary" aria-labelledby="itin-title">
       <div class="wrap">
         <div class="itinerary__head">
-          <p class="eyebrow">Build your itinerary</p>
-          <h2 class="section-title" id="itin-title">Build a flexible stay</h2>
+          <div class="itinerary__title-row">
+            <h2 class="section-title" id="itin-title">Build your itinerary</h2>
+            <span class="itin-length-tag" id="itinLengthTag">2 nights</span>
+          </div>
           <p class="section-copy">Pick your check-in and check-out dates, then drag experiences to reshape the plan. Nelson moves at your speed.</p>
         </div>
 
@@ -2451,6 +3772,20 @@
           </div>
         </div>
 
+        <div class="itin-map" id="itinMapWrap">
+          <div class="itin-map__bar">
+            <div>
+              <p class="itin-map__title">Your stay on the map</p>
+              <p class="itin-map__note">Day tags follow the sample plan, and update when you drag stops.</p>
+            </div>
+            <div class="itin-map__tools">
+              <div class="itin-map__legend" id="itinMapLegend"></div>
+              <button type="button" class="itin-map__toggle" id="itinMapToggle" aria-expanded="true" aria-controls="itinMap">Hide map</button>
+            </div>
+          </div>
+          <div class="itin-map__canvas" id="itinMap" role="region" aria-label="Itinerary map of Nelson County stops"></div>
+        </div>
+
         <div class="plan-board" id="planBoard" hidden>
           <button type="button" class="plan-day is-active" data-filter="all" id="planDayAll">
             <span class="plan-day__kicker">Full trip</span>
@@ -2459,33 +3794,33 @@
           </button>
           <button type="button" class="plan-day" data-filter="1" id="planDay1">
             <span class="plan-day__kicker">Day 1</span>
-            <span class="plan-day__date" id="planDay1Date">—</span>
+            <span class="plan-day__date" id="planDay1Date">-</span>
             <span class="plan-day__summary" id="planDay1Summary">Settle in</span>
           </button>
           <button type="button" class="plan-day" data-filter="2" id="planDay2">
             <span class="plan-day__kicker">Day 2</span>
-            <span class="plan-day__date" id="planDay2Date">—</span>
+            <span class="plan-day__date" id="planDay2Date">-</span>
             <span class="plan-day__summary" id="planDay2Summary">Taste, create &amp; explore</span>
           </button>
           <button type="button" class="plan-day" data-filter="3" id="planDay3">
             <span class="plan-day__kicker">Day 3</span>
-            <span class="plan-day__date" id="planDay3Date">—</span>
+            <span class="plan-day__date" id="planDay3Date">-</span>
             <span class="plan-day__summary" id="planDay3Summary">Head outdoors</span>
           </button>
           <button type="button" class="plan-day is-length-hidden" data-filter="4" id="planDay4">
             <span class="plan-day__kicker">Day 4</span>
-            <span class="plan-day__date" id="planDay4Date">—</span>
+            <span class="plan-day__date" id="planDay4Date">-</span>
             <span class="plan-day__summary" id="planDay4Summary">Extra day</span>
           </button>
           <button type="button" class="plan-day is-length-hidden" data-filter="5" id="planDay5">
             <span class="plan-day__kicker">Day 5</span>
-            <span class="plan-day__date" id="planDay5Date">—</span>
+            <span class="plan-day__date" id="planDay5Date">-</span>
             <span class="plan-day__summary" id="planDay5Summary">Extra day</span>
           </button>
         </div>
 
         <div class="timeline-help">
-          <p><strong>Drag</strong> any experience to change the order.</p>
+          <p>Drag to change the order.</p>
           <div class="timeline-help__actions">
             <button type="button" class="timeline-share" id="copyPlanLink">Copy plan link</button>
             <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
@@ -2497,7 +3832,7 @@
           <div class="timeline-day" data-day="1" id="timelineDay1">
             <div class="day-divider" data-divider="1">
               <h3 class="day-divider__title" data-divider-title>Day 1</h3>
-              <span class="day-divider__meta" data-divider-meta>Settle in and let the mountains do their thing</span>
+              <span class="day-divider__meta" data-divider-meta>Settle in</span>
             </div>
             <div class="timeline-list" data-drop-day="1" id="listDay1">
               <article class="timeline-item" data-id="checkin" data-role="Settle in" data-default-day="1" data-default-order="1" data-stay="farmhouse" id="stop-checkin">
@@ -2506,8 +3841,7 @@
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Settle in · Day 1</p>
-                      <h3 class="timeline-item__title" id="checkinTitle">Farmhouse at Veritas</h3>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--stay">Settle in</span><span class="timeline-item__daymeta">Day 1</span></p>
                       <div class="stay-choice" role="radiogroup" aria-label="Choose your lodging">
                         <button type="button" class="stay-choice__btn is-selected" role="radio" aria-checked="true" data-stay-option="farmhouse" id="stayOptFarmhouse">
                           <span class="stay-choice__label">Wine country</span>
@@ -2518,8 +3852,8 @@
                           <span class="stay-choice__name">Devils Backbone Campground</span>
                         </button>
                       </div>
-                      <p class="timeline-item__copy" id="checkinCopy">Wake up in Virginia wine country. Unpack, pour something local, and let vineyard views set the pace for the days ahead.</p>
-                      <p class="timeline-item__offer">15% off participating lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> — mention the code when you book.</p>
+                      <p class="timeline-item__copy" id="checkinCopy"><span>Check in, unpack, and let the Blue Ridge set the pace.</span></p>
+                      <p class="timeline-item__offer">15% off lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--dark" id="checkinBook" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
                         <a class="btn btn--outline" id="checkinAbout" href="#feature-farmhouse">About this stay</a>
@@ -2537,27 +3871,36 @@
           <div class="timeline-day" data-day="2" id="timelineDay2">
             <div class="day-divider" data-divider="2">
               <h3 class="day-divider__title" data-divider-title>Day 2</h3>
-              <span class="day-divider__meta" data-divider-meta>Taste, create, and explore</span>
+              <span class="day-divider__meta" data-divider-meta>Taste, create, explore</span>
             </div>
             <div class="timeline-list" data-drop-day="2" id="listDay2">
-              <article class="timeline-item" data-id="sip" data-role="Sip" data-default-day="2" data-default-order="2" id="stop-sip">
+              <article class="timeline-item" data-id="sip" data-role="Sip" data-default-day="2" data-default-order="2" data-sip="flyingfox" id="stop-sip">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">2</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Sip · Day 2</p>
-                      <h3 class="timeline-item__title">Flying Fox Vineyard</h3>
-                      <p class="timeline-item__copy">A pour with a view — thoughtfully made Virginia wine in a relaxed, character-filled setting. Let the day unfold without a rush back to anywhere.</p>
-                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the participating offer.</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--taste">Sip</span><span class="timeline-item__daymeta">Day 2</span></p>
+                      <div class="stay-choice" role="radiogroup" aria-label="Choose your sip stop">
+                        <button type="button" class="stay-choice__btn is-selected" role="radio" aria-checked="true" data-sip-option="flyingfox" id="sipOptFlyingFox">
+                          <span class="stay-choice__label">Wine</span>
+                          <span class="stay-choice__name">Flying Fox Vineyard</span>
+                        </button>
+                        <button type="button" class="stay-choice__btn" role="radio" aria-checked="false" data-sip-option="backbone" id="sipOptBackbone">
+                          <span class="stay-choice__label">Craft</span>
+                          <span class="stay-choice__name">Devils Backbone</span>
+                        </button>
+                      </div>
+                      <p class="timeline-item__copy" id="sipCopy">A pour with a view. No rush back to anywhere.</p>
+                      <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the offer</p>
                       <div class="timeline-item__actions">
-                        <a class="btn btn--outline" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox</a>
-                        <a class="btn btn--outline" href="#feature-flying-fox">About Flying Fox</a>
+                        <a class="btn btn--outline" id="sipVisit" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox</a>
+                        <a class="btn btn--outline" id="sipAbout" href="#feature-flying-fox">About Flying Fox</a>
                       </div>
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img id="sipImage" src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75" alt="Flying Fox Vineyard" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -2568,10 +3911,10 @@
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Create · Day 2</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--culture">Create</span><span class="timeline-item__daymeta">Day 2</span></p>
                       <h3 class="timeline-item__title">Glass Hollow Studio</h3>
-                      <p class="timeline-item__copy">Get hands-on with local artistry and the glassblowing process — a memorable stop beyond the tasting room.</p>
-                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking your experience.</p>
+                      <p class="timeline-item__copy">Hands-on glassblowing with local makers.</p>
+                      <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when you book</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow</a>
                         <a class="btn btn--outline" href="#feature-glass-hollow">About Glass Hollow</a>
@@ -2584,16 +3927,16 @@
                 </div>
               </article>
 
-              <article class="timeline-item" data-id="backbone" data-role="Experience" data-default-day="2" data-default-order="4" id="stop-backbone">
+              <article class="timeline-item is-removed" data-id="backbone" data-role="Experience" data-default-day="2" data-default-order="4" data-optional="true" id="stop-backbone" aria-hidden="true">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">4</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Experience · Day 2</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--experience">Experience</span><span class="timeline-item__daymeta">Day 2</span></p>
                       <h3 class="timeline-item__title">Devils Backbone</h3>
-                      <p class="timeline-item__copy">Explore craft beverage culture and on-site agritourism — greenhouses, locally grown ingredients, and the Basecamp experience.</p>
-                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the participating offer.</p>
+                      <p class="timeline-item__copy">Craft pours, greenhouses, and the Basecamp scene.</p>
+                      <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the offer</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
                         <a class="btn btn--outline" href="#feature-devils-backbone">About Devils Backbone</a>
@@ -2611,7 +3954,7 @@
           <div class="timeline-day" data-day="3" id="timelineDay3">
             <div class="day-divider" data-divider="3">
               <h3 class="day-divider__title" data-divider-title>Day 3</h3>
-              <span class="day-divider__meta" data-divider-meta>Head outdoors before taking the long way home</span>
+              <span class="day-divider__meta" data-divider-meta>Head outdoors</span>
             </div>
             <div class="timeline-list" data-drop-day="3" id="listDay3">
               <div class="timeline-day-empty" data-day-empty="3">
@@ -2624,9 +3967,9 @@
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Blue Ridge Tunnel</h3>
-                      <p class="timeline-item__copy">Nelson’s coolest hike: a nearly mile-long passage carved by hand through solid greenstone in the 1850s, later reopened as a trail in 2020 after the railroad outgrew it.</p>
+                      <p class="timeline-item__copy">A nearly mile-long tunnel hike through solid greenstone.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
                         <a class="btn btn--outline" href="#feature-tunnel">About the Tunnel</a>
@@ -2645,12 +3988,11 @@
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Crabtree Falls</h3>
-                      <p class="timeline-item__copy">Chase the cascades at the highest waterfall series east of the Mississippi — five major drops totaling 1,200 feet, with overlooks from an easy paved path to a strenuous 3-mile trail.</p>
+                      <p class="timeline-item__copy">The highest waterfall series east of the Mississippi.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/crabtree-falls" data-track="partner_outbound" data-partner="crabtree-falls">Plan Your Visit</a>
-                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer">View on nelsoncounty.com</a>
                       </div>
                     </div>
                   </div>
@@ -2660,15 +4002,15 @@
                 </div>
               </article>
 
-              <article class="timeline-item" data-id="spyrock" data-role="Explore" data-default-day="3" data-default-order="7" id="stop-spyrock">
+              <article class="timeline-item is-removed" data-id="spyrock" data-role="Explore" data-default-day="3" data-default-order="7" data-optional="true" id="stop-spyrock" aria-hidden="true">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">7</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Spy Rock</h3>
-                      <p class="timeline-item__copy">Keep the boots on for panoramic Blue Ridge views from a granite summit — a moderate-to-strenuous hike with rocky scrambles and sweeping overlooks.</p>
+                      <p class="timeline-item__copy">Take in the view from Spy Rock.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" data-track="partner_outbound" data-partner="spy-rock">Plan Your Visit</a>
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer">View on nelsoncounty.com</a>
@@ -2681,15 +4023,15 @@
                 </div>
               </article>
 
-              <article class="timeline-item" data-id="tyeriver" data-role="Explore" data-default-day="3" data-default-order="8" id="stop-tyeriver">
+              <article class="timeline-item is-removed" data-id="tyeriver" data-role="Explore" data-default-day="3" data-default-order="8" data-optional="true" id="stop-tyeriver" aria-hidden="true">
                 <div class="timeline-item__rail" aria-hidden="true"><span class="timeline-item__dot"><span class="timeline-item__num">8</span></span></div>
                 <div class="timeline-item__card">
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Explore · Day 3</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Tye River</h3>
-                      <p class="timeline-item__copy">Cast a line or paddle a Blue Ridge stream — 34 miles of mountain scenery with seasonal whitewater and trout fishing along Route 56.</p>
+                      <p class="timeline-item__copy">Or cast a line in the Tye River.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/tye-river" data-track="partner_outbound" data-partner="tye-river">Plan Your Visit</a>
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/fishing-the-tye-river" target="_blank" rel="noopener noreferrer">Fishing the Tye</a>
@@ -2742,12 +4084,12 @@
                   <div class="timeline-item__main">
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
-                      <p class="timeline-item__beat">Get around · Anytime</p>
+                      <p class="timeline-item__beat"><span class="cat-pill cat-pill--community">Get around</span><span class="timeline-item__daymeta">Anytime</span></p>
                       <h3 class="timeline-item__title">Reliable Rides</h3>
-                      <p class="timeline-item__copy">Travel safely between stops so you can enjoy tastings and experiences without worrying about the drive.</p>
-                      <p class="timeline-item__offer">Use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when arranging your ride.</p>
+                      <p class="timeline-item__copy">Safe rides between stops so you can enjoy the pours.</p>
+                      <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when you book</p>
                       <div class="timeline-item__actions">
-                        <a class="btn btn--outline" href="#book" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
+                        <a class="btn btn--outline" href="https://reliableridesva.com/" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
                         <a class="btn btn--outline" href="#feature-rides">About Reliable Rides</a>
                       </div>
                     </div>
@@ -2760,7 +4102,16 @@
             </div>
           </div>
         </div>
-        <p class="section-copy" style="margin-top:2rem;max-width:46ch;">Not ready to leave? Add a night. Nelson moves at your speed, not the other way around.</p>
+
+        <aside class="more-stops" id="moreStops" hidden>
+          <p class="more-stops__label">More stops</p>
+          <div class="more-stops__row" id="moreStopsRow"></div>
+        </aside>
+
+        <div class="itin-extend" id="itinExtend">
+          <p class="itin-extend__copy">Not ready to leave? Nelson moves at your speed, not the other way around.</p>
+          <button type="button" class="btn btn--dark" id="addNightBtn">Add a night</button>
+        </div>
       </div>
     </section>
 
@@ -2771,7 +4122,7 @@
         <h2 class="section-title" id="passport-title">Collect stamps while you stay longer</h2>
         <p class="section-copy">
           A free digital passport for Check Into Nelson. Check in at participating stops, earn stamps,
-          and unlock a campaign reward — no app download required.
+          and unlock a campaign reward. No app download required.
         </p>
 
         <div class="passport__grid">
@@ -2849,7 +4200,7 @@
             </div>
             <div class="passport-card__footer">
               <p class="passport-card__reward" id="passportReward">
-                Preview only — live stamps are claimed in LoyalBrew at each stop.
+                Preview only. Live stamps are claimed in LoyalBrew at each stop.
               </p>
               <a class="btn btn--dark" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Start passport</a>
             </div>
@@ -2884,7 +4235,7 @@
             <h2 class="section-title">Ready when you are</h2>
             <p class="section-copy">
               Weekday travel gives you more room to slow down, explore, and enjoy Nelson County at a different pace.
-              Plan a two-night stay or extend to three or four days — then use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking with participating partners.
+              Plan a two-night stay or extend to three or four days, then use <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when booking with participating partners.
             </p>
             <div class="book__actions">
               <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
@@ -2897,7 +4248,7 @@
   </main>
 
 
-<!-- Nelson County site footer — sourced from nelsoncounty.com Framer export -->
+<!-- Nelson County site footer, sourced from nelsoncounty.com Framer export -->
 <div class="campaign-footer nc-site-footer-source">
 
 <div class="nc-footer-campaign">
@@ -2944,7 +4295,7 @@
       <p class="exit-intent__eyebrow">Quick question</p>
       <h2 class="exit-intent__title" id="exitIntentTitle">Where are you traveling from?</h2>
       <p class="exit-intent__copy">Helps Nelson County Tourism understand who’s planning a Check Into Nelson stay.</p>
-      <p class="exit-intent__thanks" id="exitIntentThanks" aria-live="polite">Thanks — that helps us plan better for visitors like you.</p>
+      <p class="exit-intent__thanks" id="exitIntentThanks" aria-live="polite">Thanks. That helps us plan better for visitors like you.</p>
       <div class="exit-intent__list" role="list">
         <button type="button" role="listitem" data-track="exit_origin" data-origin="charlottesville">Charlottesville <span>Nearby</span></button>
         <button type="button" role="listitem" data-track="exit_origin" data-origin="richmond">Richmond <span>~1.5 hrs</span></button>
@@ -2985,7 +4336,106 @@
 
   <script>
     (function () {
-      var LOYALBREW_PASSPORT_URL = "https://www.loyalbrew.com/";
+      window.LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL || "https://www.loyalbrew.com/";
+      var LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL;
+
+      (function initSiteNav() {
+        var nav = document.getElementById("siteNav");
+        var toggle = document.getElementById("navToggle");
+        if (!nav || !toggle) return;
+
+        function setOpen(open) {
+          nav.classList.toggle("is-open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        }
+
+        toggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          setOpen(!nav.classList.contains("is-open"));
+        });
+        nav.addEventListener("click", function (e) {
+          if (e.target.closest("a")) setOpen(false);
+        });
+        document.addEventListener("click", function (e) {
+          if (!nav.contains(e.target)) setOpen(false);
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") setOpen(false);
+        });
+        window.addEventListener("resize", function () { setOpen(false); });
+      })();
+
+      window.initHeroTitleSwap = function initHeroTitleSwap(restart) {
+        var title = document.querySelector(".hero__campaign");
+        var lines = title ? title.querySelectorAll(".hero__swap") : [];
+        if (!title || lines.length < 2) return;
+        if (title.getAttribute("data-swap-ready") === "1" && !restart) return;
+        title.setAttribute("data-swap-ready", "1");
+
+        var index = 0;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (title._swapTimer) {
+          window.clearTimeout(title._swapTimer);
+          title._swapTimer = 0;
+        }
+
+        function wrapLine(text, accent) {
+          return Array.prototype.map.call(String(text || "").replace(/\s+/g, " "), function (ch) {
+            var cls = "hero__letter" + (ch === " " ? " hero__letter--space" : "") + (accent ? " hero__letter--accent" : "");
+            if (ch === " ") return '<span class="' + cls + '">&nbsp;</span>';
+            return '<span class="' + cls + '">' + ch + "</span>";
+          }).join("");
+        }
+
+        function wrapLetters(el) {
+          var line1 = el.getAttribute("data-line1");
+          var line2 = el.getAttribute("data-line2");
+          if (line1 != null && line2 != null) {
+            el.innerHTML = wrapLine(line1, false) + "<br>" + wrapLine(line2, true);
+            return;
+          }
+          var parts = el.innerHTML.split(/<br\s*\/?>/i);
+          el.innerHTML = parts.map(function (part, lineIndex) {
+            return wrapLine(part.replace(/<[^>]+>/g, ""), lineIndex === 1);
+          }).join("<br>");
+        }
+
+        function setLetterDelays(el, incoming) {
+          var letters = el.querySelectorAll(".hero__letter");
+          letters.forEach(function (letter, i) {
+            letter.style.transitionDelay = incoming
+              ? (160 + i * 38) + "ms"
+              : (i * 30) + "ms";
+          });
+        }
+
+        function show(next) {
+          index = next;
+          var labels = [
+            (lines[0].getAttribute("data-line1") || "Check Into") + " " + (lines[0].getAttribute("data-line2") || "Nelson."),
+            (lines[1].getAttribute("data-line1") || "Stay Longer.") + " " + (lines[1].getAttribute("data-line2") || "Experience More.")
+          ];
+          lines.forEach(function (line, i) {
+            var on = i === index;
+            setLetterDelays(line, on);
+            line.classList.toggle("is-in", on);
+            if (on) line.removeAttribute("aria-hidden");
+            else line.setAttribute("aria-hidden", "true");
+          });
+          title.setAttribute("aria-label", labels[index]);
+        }
+
+        lines.forEach(function (line) { wrapLetters(line); });
+        setLetterDelays(lines[0], true);
+        if (reduceMotion) return;
+
+        title._swapTimer = window.setTimeout(function tick() {
+          show(index === 0 ? 1 : 0);
+          title._swapTimer = window.setTimeout(tick, 5200);
+        }, 2800);
+      };
+      window.initHeroTitleSwap();
 
       (function initHeroSlideshow() {
         var slides = Array.prototype.slice.call(document.querySelectorAll(".hero__slide"));
@@ -2993,10 +4443,39 @@
         if (slides.length < 2) return;
 
         var index = 0;
-        var intervalMs = 5500;
+        var baseIntervalMs = 5500;
+        var minIntervalMs = 1700;
         var lastTick = 0;
         var rafId = 0;
+        var scrollBoost = 0;
+        var lastScrollY = window.scrollY || window.pageYOffset || 0;
+        var lastScrollT = performance.now();
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var isEmbed = document.documentElement.classList.contains("is-embed");
+
+        var caption = document.getElementById("heroCaption");
+
+        function jumpToTarget(hash) {
+          if (!hash) return;
+          var id = hash.charAt(0) === "#" ? hash.slice(1) : hash;
+          var el = document.getElementById(id);
+          if (!el) return;
+          if (isEmbed) {
+            var y = Math.round(el.getBoundingClientRect().top);
+            try {
+              window.parent.postMessage({
+                type: "checkIntoNelsonScrollTo",
+                y: y,
+                id: id
+              }, "*");
+            } catch (err) {}
+          } else {
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          try {
+            history.replaceState(null, "", "#" + id);
+          } catch (err2) {}
+        }
 
         function show(next) {
           index = (next + slides.length) % slides.length;
@@ -3007,7 +4486,27 @@
             var on = i === index;
             dot.classList.toggle("is-active", on);
             dot.setAttribute("aria-selected", on ? "true" : "false");
+            if (on && caption) {
+              caption.textContent = dot.getAttribute("aria-label") || "";
+              caption.setAttribute("data-hero-target", dot.getAttribute("data-hero-target") || "");
+              caption.setAttribute("aria-label", "Go to " + (dot.getAttribute("aria-label") || "section"));
+            }
           });
+        }
+
+        function applyScrollDelta(y, now) {
+          var dt = Math.max(8, now - lastScrollT);
+          var dy = Math.abs(y - lastScrollY);
+          lastScrollY = y;
+          lastScrollT = now;
+          if (dy < 1) return;
+          // ~2.2px/ms feels like a fast continuous scroll
+          var boost = Math.min(1, (dy / dt) / 2.2);
+          scrollBoost = Math.max(scrollBoost * 0.55, boost);
+        }
+
+        function currentInterval() {
+          return baseIntervalMs - (baseIntervalMs - minIntervalMs) * scrollBoost;
         }
 
         function tick(now) {
@@ -3016,8 +4515,10 @@
             lastTick = now;
             return;
           }
+          scrollBoost *= 0.992;
+          if (scrollBoost < 0.02) scrollBoost = 0;
           if (!lastTick) lastTick = now;
-          if (now - lastTick < intervalMs) return;
+          if (now - lastTick < currentInterval()) return;
           lastTick = now;
           show(index + 1);
         }
@@ -3036,6 +4537,24 @@
             lastTick = performance.now();
           });
         });
+
+        if (caption) {
+          caption.addEventListener("click", function () {
+            jumpToTarget(caption.getAttribute("data-hero-target"));
+          });
+        }
+
+        window.addEventListener("scroll", function () {
+          applyScrollDelta(window.scrollY || window.pageYOffset || 0, performance.now());
+        }, { passive: true });
+
+        if (isEmbed) {
+          window.addEventListener("message", function (event) {
+            var data = event && event.data;
+            if (!data || data.type !== "checkIntoNelsonViewport") return;
+            applyScrollDelta(Math.max(0, Number(data.viewportTop) || 0), performance.now());
+          });
+        }
 
         // Do not pause on hero hover/focus — in Framer iframes the cursor
         // sits on the banner continuously and would freeze autoplay.
@@ -3064,7 +4583,7 @@
         } else if (claimed > 0) {
           rewardEl.innerHTML = "<strong>" + claimed + " stamp" + (claimed === 1 ? "" : "s") + " previewed.</strong> Live check-ins happen in LoyalBrew.";
         } else {
-          rewardEl.textContent = "Preview only — live stamps are claimed in LoyalBrew at each stop.";
+          rewardEl.textContent = "Preview only. Live stamps are claimed in LoyalBrew at each stop.";
         }
       }
 
@@ -3115,12 +4634,19 @@
       var dragPointerId = null;
       var lastDropKey = "";
       var suppressPlanPersist = false;
-      var PLAN_STORAGE_KEY = "checkIntoNelson.plan.v4";
+      var PLAN_STORAGE_KEY = "checkIntoNelson.plan.v5";
       var VALID_STOP_IDS = { checkin: 1, sip: 1, create: 1, backbone: 1, explore: 1, crabtree: 1, spyrock: 1, tyeriver: 1, rides: 1 };
+      var OPTIONAL_STOP_IDS = { backbone: 1, spyrock: 1, tyeriver: 1 };
       var VALID_DAY_KEYS = { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1, anytime: 1 };
       var DAY_URL_KEYS = { "1": "d1", "2": "d2", "3": "d3", "4": "d4", "5": "d5", anytime: "a" };
       var DAY_NUMBERS = ["1", "2", "3", "4", "5"];
       var LENGTH_DEFAULTS = {
+        1: { "1": ["checkin"], "2": ["sip", "create", "explore", "crabtree"], "3": [], "4": [], "5": [], anytime: ["rides"] },
+        2: { "1": ["checkin"], "2": ["sip", "create"], "3": ["explore", "crabtree"], "4": [], "5": [], anytime: ["rides"] },
+        3: { "1": ["checkin"], "2": ["sip", "create"], "3": ["explore", "crabtree"], "4": ["spyrock"], "5": [], anytime: ["rides"] },
+        4: { "1": ["checkin"], "2": ["sip", "create"], "3": ["explore"], "4": ["crabtree"], "5": [], anytime: ["rides"] }
+      };
+      var LEGACY_LENGTH_DEFAULTS = {
         1: { "1": ["checkin"], "2": ["sip", "create", "backbone", "explore", "crabtree", "spyrock", "tyeriver"], "3": [], "4": [], "5": [], anytime: ["rides"] },
         2: { "1": ["checkin"], "2": ["sip", "create", "backbone"], "3": ["explore", "crabtree", "spyrock", "tyeriver"], "4": [], "5": [], anytime: ["rides"] },
         3: { "1": ["checkin"], "2": ["sip", "create"], "3": ["backbone", "explore", "crabtree", "spyrock", "tyeriver"], "4": [], "5": [], anytime: ["rides"] },
@@ -3130,7 +4656,7 @@
         farmhouse: {
           id: "farmhouse",
           title: "Farmhouse at Veritas",
-          copy: "Wake up in Virginia wine country. Unpack, pour something local, and let vineyard views set the pace for the days ahead.",
+          copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/farmhouse-veritas.jpg",
           bookHref: "https://www.veritasfarmhouse.com/",
           bookLabel: "Book the Farmhouse",
@@ -3140,7 +4666,7 @@
         backbone: {
           id: "backbone",
           title: "Devils Backbone Campground",
-          copy: "Settle into the Blue Ridge — mountain scenery, craft beverage culture, and on-site agritourism right outside your door.",
+          copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/devils-backbone.jpg",
           bookHref: "https://www.dbbrewingcompany.com/camp-at-basecamp",
           bookLabel: "Book Your Stay",
@@ -3149,6 +4675,32 @@
         }
       };
       var selectedStay = "farmhouse";
+
+      var SIP_OPTIONS = {
+        flyingfox: {
+          id: "flyingfox",
+          title: "Flying Fox Vineyard",
+          copy: "A pour with a view. No rush back to anywhere.",
+          image: "https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75",
+          visitHref: "https://www.flyingfoxvineyard.com/",
+          visitLabel: "Visit Flying Fox",
+          aboutHref: "#feature-flying-fox",
+          aboutLabel: "About Flying Fox",
+          partner: "flying-fox"
+        },
+        backbone: {
+          id: "backbone",
+          title: "Devils Backbone",
+          copy: "Craft pours and the Basecamp scene. No rush back to anywhere.",
+          image: "https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-400,h-400,fo-auto,q-75",
+          visitHref: "https://www.dbbrewingcompany.com/",
+          visitLabel: "Explore Devils Backbone",
+          aboutHref: "#feature-devils-backbone",
+          aboutLabel: "About Devils Backbone",
+          partner: "devils-backbone"
+        }
+      };
+      var selectedSip = "flyingfox";
 
       var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -3183,13 +4735,19 @@
         var checkin = document.getElementById("stop-checkin");
         if (checkin) checkin.setAttribute("data-stay", selectedStay);
 
-        var title = document.getElementById("checkinTitle");
         var copy = document.getElementById("checkinCopy");
         var image = document.getElementById("checkinImage");
         var book = document.getElementById("checkinBook");
         var about = document.getElementById("checkinAbout");
-        if (title) title.textContent = option.title;
-        if (copy) copy.textContent = option.copy;
+        if (copy) {
+          var parts = Array.isArray(option.copy) ? option.copy : [option.copy];
+          copy.replaceChildren();
+          parts.forEach(function (part) {
+            var span = document.createElement("span");
+            span.textContent = part;
+            copy.appendChild(span);
+          });
+        }
         if (image) {
           image.src = option.image;
           image.alt = option.title;
@@ -3208,6 +4766,50 @@
         });
 
         if (!skipPersist) persistPlan();
+        refreshItineraryMap();
+      }
+
+      function applySipChoice(sipId, skipPersist) {
+        var option = SIP_OPTIONS[sipId] || SIP_OPTIONS.flyingfox;
+        selectedSip = option.id;
+        var sip = document.getElementById("stop-sip");
+        if (sip) sip.setAttribute("data-sip", selectedSip);
+
+        var copy = document.getElementById("sipCopy");
+        var image = document.getElementById("sipImage");
+        var visit = document.getElementById("sipVisit");
+        var about = document.getElementById("sipAbout");
+        if (copy) {
+          var parts = Array.isArray(option.copy) ? option.copy : [option.copy];
+          copy.replaceChildren();
+          parts.forEach(function (part) {
+            var span = document.createElement("span");
+            span.textContent = part;
+            copy.appendChild(span);
+          });
+        }
+        if (image) {
+          image.src = option.image;
+          image.alt = option.title;
+        }
+        if (visit) {
+          visit.href = option.visitHref;
+          visit.textContent = option.visitLabel;
+          visit.setAttribute("data-partner", option.partner);
+        }
+        if (about) {
+          about.href = option.aboutHref;
+          about.textContent = option.aboutLabel;
+        }
+
+        document.querySelectorAll("[data-sip-option]").forEach(function (btn) {
+          var on = btn.getAttribute("data-sip-option") === selectedSip;
+          btn.classList.toggle("is-selected", on);
+          btn.setAttribute("aria-checked", on ? "true" : "false");
+        });
+
+        if (!skipPersist) persistPlan();
+        refreshItineraryMap();
       }
 
       function tripDays() {
@@ -3284,11 +4886,11 @@
           }
         }
 
-        var title = document.getElementById("itin-title");
-        if (title && hasRange) {
-          title.textContent = "Your " + tripNights + " night stay";
-        } else if (title && !startDate) {
-          title.textContent = "Build a flexible stay";
+        var lengthTag = document.getElementById("itinLengthTag");
+        if (lengthTag) {
+          var nightsForTag = previewNights != null ? previewNights : tripNights;
+          lengthTag.textContent = nightsForTag + " night" + (nightsForTag === 1 ? "" : "s");
+          lengthTag.classList.toggle("is-set", !!(startDate && (endDate || previewNights != null)));
         }
 
         DAY_NUMBERS.forEach(function (day) {
@@ -3307,7 +4909,46 @@
         } else {
           renderCalendar();
         }
+        syncAddNightButton();
       }
+
+      function canAddNight() {
+        if (!startDate) return false;
+        var maxAllowed = maxNightsFromCheckIn(startDate);
+        return tripNights < maxAllowed && tripNights < MAX_NIGHTS;
+      }
+
+      function syncAddNightButton() {
+        var btn = document.getElementById("addNightBtn");
+        if (!btn) return;
+        var ok = canAddNight();
+        btn.disabled = !ok;
+        if (!startDate) {
+          btn.textContent = "Add a night";
+          btn.title = "Choose check-in and checkout dates first";
+        } else if (!ok) {
+          btn.textContent = "Max nights reached";
+          btn.title = "This stay is already at the maximum length";
+        } else {
+          btn.textContent = "Add a night";
+          btn.title = "Extend checkout by one night";
+        }
+      }
+
+      function addOneNight() {
+        if (!canAddNight()) {
+          var picker = document.getElementById("rangePicker");
+          if (picker && !startDate) picker.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+        var next = tripNights + 1;
+        var maxAllowed = maxNightsFromCheckIn(startDate);
+        if (next > maxAllowed) next = maxAllowed;
+        setTripNights(next, { resetLayout: false });
+        var newDay = document.getElementById("timelineDay" + String(next + 1));
+        if (newDay) newDay.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
       function consolidateHiddenDays() {
         var days = tripDays();
         var lastList = listByDayKey(String(days));
@@ -3321,14 +4962,22 @@
           });
         });
       }
+      function setTimelineItemRemoved(item, removed) {
+        if (!item) return;
+        item.classList.toggle("is-removed", !!removed);
+        if (removed) item.setAttribute("aria-hidden", "true");
+        else item.removeAttribute("aria-hidden");
+      }
+      function stopIsInPreset(preset, id) {
+        return Object.keys(preset).some(function (day) {
+          return preset[day].indexOf(id) !== -1;
+        });
+      }
       function applyLengthDefaults(force) {
         var preset = LENGTH_DEFAULTS[tripNights] || LENGTH_DEFAULTS[2];
-        document.querySelectorAll(".timeline-item.is-removed").forEach(function (item) {
-          item.classList.remove("is-removed");
-        });
         if (!force) {
-          // Only place stops that currently sit on hidden days or are missing from visible lists
           consolidateHiddenDays();
+          renderMoreStops();
           return;
         }
         Object.keys(preset).forEach(function (day) {
@@ -3337,11 +4986,17 @@
           preset[day].forEach(function (id) {
             var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
             if (item) {
-              item.classList.remove("is-removed");
+              setTimelineItemRemoved(item, false);
               list.appendChild(item);
             }
           });
         });
+        document.querySelectorAll(".timeline-item[data-id]").forEach(function (item) {
+          var id = item.getAttribute("data-id");
+          if (!id || !VALID_STOP_IDS[id]) return;
+          if (!stopIsInPreset(preset, id)) setTimelineItemRemoved(item, true);
+        });
+        renderMoreStops();
       }
       function setTripNights(nights, opts) {
         opts = opts || {};
@@ -3399,9 +5054,26 @@
           if (opts.resetLayout) applyLengthDefaults(true);
           else consolidateHiddenDays();
         }
-        calMonth = new Date(inDate.getFullYear(), inDate.getMonth(), 1);
         updateItineraryForDate(startDate);
         if (!opts.skipPersist) persistPlan();
+      }
+
+      function resetCalendarToCurrentMonth() {
+        var today = startOfDay(new Date());
+        calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        renderCalendar();
+      }
+
+      function defaultCheckInInCurrentMonth() {
+        var today = startOfDay(new Date());
+        var monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+        var cursor = addDays(today, 1);
+        if (cursor.getTime() > monthEnd.getTime()) cursor = today;
+        while (cursor.getTime() <= monthEnd.getTime()) {
+          if (!isWeekend(cursor) && maxNightsFromCheckIn(cursor) >= MIN_NIGHTS) return cursor;
+          cursor = addDays(cursor, 1);
+        }
+        return today;
       }
 
       function maxNightsFromCheckIn(checkIn) {
@@ -3560,7 +5232,7 @@
             if (id && VALID_STOP_IDS[id]) days[day].push(id);
           });
         });
-        return { start: toISODate(startDate), nights: tripNights, stay: selectedStay, days: days };
+        return { start: toISODate(startDate), nights: tripNights, stay: selectedStay, sip: selectedSip, days: days };
       }
 
       function sanitizePlanState(raw) {
@@ -3570,6 +5242,7 @@
         start = startOfDay(start);
         if (start.getTime() > PROMO_END_DATE.getTime()) return null;
         var stay = STAY_OPTIONS[raw.stay] ? raw.stay : "farmhouse";
+        var sip = SIP_OPTIONS[raw.sip] ? raw.sip : "flyingfox";
         var nights = Number(raw.nights);
         if (nights < MIN_NIGHTS || nights > MAX_NIGHTS || isNaN(nights)) {
           nights = 2;
@@ -3594,14 +5267,14 @@
         if (!sourceHadDays) {
           document.querySelectorAll(".timeline-item").forEach(function (item) {
             var id = item.getAttribute("data-id");
-            if (!id || seen[id] || !VALID_STOP_IDS[id]) return;
+            if (!id || seen[id] || !VALID_STOP_IDS[id] || OPTIONAL_STOP_IDS[id]) return;
             var day = item.getAttribute("data-default-day") || "1";
             if (!VALID_DAY_KEYS[day]) day = "1";
             days[day].push(id);
             seen[id] = true;
           });
         }
-        return { start: toISODate(startOfDay(start)), nights: nights, stay: stay, days: days };
+        return { start: toISODate(startOfDay(start)), nights: nights, stay: stay, sip: sip, days: days };
       }
 
       function applyPlanState(plan) {
@@ -3611,6 +5284,7 @@
         try {
           tripNights = clean.nights;
           applyStayChoice(clean.stay, true);
+          applySipChoice(clean.sip, true);
           var placed = {};
           Object.keys(clean.days).forEach(function (day) {
             var list = listByDayKey(day);
@@ -3618,7 +5292,7 @@
             clean.days[day].forEach(function (id) {
               var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
               if (item) {
-                item.classList.remove("is-removed");
+                setTimelineItemRemoved(item, false);
                 list.appendChild(item);
                 item.classList.add("is-in");
                 placed[id] = true;
@@ -3627,11 +5301,12 @@
           });
           document.querySelectorAll(".timeline-item[data-id]").forEach(function (item) {
             var id = item.getAttribute("data-id");
-            item.classList.toggle("is-removed", !placed[id]);
+            setTimelineItemRemoved(item, !placed[id]);
           });
           consolidateHiddenDays();
           syncLengthUI();
           setStartDate(parseISODate(clean.start), false);
+          renderMoreStops();
         } finally {
           suppressPlanPersist = false;
         }
@@ -3660,6 +5335,7 @@
           var start = params.get("start");
           if (!start) return null;
           var stay = params.get("stay") || "farmhouse";
+          var sip = params.get("sip") || "flyingfox";
           var nights = params.get("nights");
           var days = { "1": [], "2": [], "3": [], "4": [], "5": [], anytime: [] };
           Object.keys(DAY_URL_KEYS).forEach(function (day) {
@@ -3671,7 +5347,7 @@
               if (id) days[day].push(id);
             });
           });
-          return sanitizePlanState({ start: start, stay: stay, nights: nights, days: days });
+          return sanitizePlanState({ start: start, stay: stay, sip: sip, nights: nights, days: days });
         } catch (err) {
           return null;
         }
@@ -3682,6 +5358,7 @@
         params.set("start", plan.start);
         if (plan.nights && plan.nights !== 2) params.set("nights", String(plan.nights));
         if (plan.stay && plan.stay !== "farmhouse") params.set("stay", plan.stay);
+        if (plan.sip && plan.sip !== "flyingfox") params.set("sip", plan.sip);
         Object.keys(DAY_URL_KEYS).forEach(function (day) {
           var ids = plan.days[day] || [];
           if (ids.length) params.set(DAY_URL_KEYS[day], ids.join(","));
@@ -3706,12 +5383,483 @@
         return url.toString();
       }
 
+      var STOP_GEO = {
+        farmhouse: { lat: 38.0146783, lng: -78.8413316, color: "var(--cat-stay)" },
+        "devils-backbone-camp": { lat: 37.871186, lng: -78.918657, color: "var(--cat-stay)" },
+        checkin: { lat: 38.0146783, lng: -78.8413316, color: "var(--cat-stay)" },
+        sip: { lat: 38.0039087, lng: -78.8277349, color: "var(--cat-taste)" },
+        create: { lat: 37.9655865, lng: -78.8342132, color: "var(--cat-culture)" },
+        backbone: { lat: 37.871186, lng: -78.918657, color: "var(--cat-experience)" },
+        explore: { lat: 38.0332561, lng: -78.8425047, color: "var(--cat-outdoor)" },
+        crabtree: { lat: 37.8508277, lng: -79.0792459, color: "var(--cat-outdoor)" },
+        spyrock: { lat: 37.8248589, lng: -79.1172507, color: "var(--cat-outdoor)" },
+        tyeriver: { lat: 37.8215283, lng: -79.0047474, color: "var(--cat-outdoor)" }
+      };
+      var MAP_STYLES = [
+        { featureType: "poi.business", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+        { featureType: "poi.attraction", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+        { featureType: "transit.station", stylers: [{ visibility: "off" }] },
+        { featureType: "administrative", elementType: "geometry.stroke", stylers: [{ visibility: "off" }] },
+        { featureType: "administrative.land_parcel", stylers: [{ visibility: "off" }] },
+        { featureType: "landscape.natural", stylers: [{ color: "#E1F3C9" }] },
+        { featureType: "water", stylers: [{ color: "#CAE8F2" }] }
+      ];
+      var itinMap = null;
+      var itinMapPins = [];
+      var itinInfoWindow = null;
+      var ItinPinOverlay = null;
+      var itinMapUserView = false;
+      var itinMapFitting = false;
+      var itinMapStyleTier = -1;
+      var pinLayoutRaf = 0;
+
+      function dayTagLabel(day) {
+        if (day === "anytime") return "Anytime";
+        return "Day " + day;
+      }
+
+      function stayDurationLabel() {
+        var nights = tripNights || 2;
+        return nights + " night" + (nights === 1 ? "" : "s");
+      }
+
+      function pinTagLabel(stop) {
+        if (stop && stop.isStay) return stayDurationLabel();
+        return dayTagLabel(stop && stop.day);
+      }
+
+      function escapeMapText(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function stopGeoFor(id) {
+        if (id === "checkin") {
+          return STOP_GEO[selectedStay === "backbone" ? "devils-backbone-camp" : "farmhouse"] || STOP_GEO.checkin;
+        }
+        if (id === "sip") {
+          if (selectedSip === "backbone") {
+            return { lat: STOP_GEO.backbone.lat, lng: STOP_GEO.backbone.lng, color: "var(--cat-taste)" };
+          }
+          return STOP_GEO.sip;
+        }
+        return STOP_GEO[id] || null;
+      }
+
+      function collectMapStops() {
+        var stops = [];
+        document.querySelectorAll(".timeline-list").forEach(function (list) {
+          var dayEl = list.closest(".timeline-day");
+          if (dayEl && dayEl.classList.contains("is-length-hidden")) return;
+          var day = list.getAttribute("data-drop-day");
+          Array.prototype.forEach.call(list.querySelectorAll(".timeline-item:not(.is-removed)"), function (item) {
+            var id = item.getAttribute("data-id");
+            if (!id || id === "rides" || id === "backbone") return;
+            var geo = stopGeoFor(id);
+            if (!geo) return;
+            var title = item.querySelector(".timeline-item__title");
+            var photo = item.querySelector(".timeline-item__media img");
+            var role = item.getAttribute("data-role") || "";
+            var isStay = id === "checkin";
+            var stayOption = isStay ? (STAY_OPTIONS[selectedStay] || STAY_OPTIONS.farmhouse) : null;
+            var sipOption = id === "sip" ? (SIP_OPTIONS[selectedSip] || SIP_OPTIONS.flyingfox) : null;
+            var stopTitle = stayOption
+              ? stayOption.title
+              : sipOption
+                ? sipOption.title
+                : (title ? title.textContent.trim() : id);
+            var stopImage = stayOption
+              ? stayOption.image
+              : sipOption
+                ? sipOption.image
+                : (photo ? photo.getAttribute("src") : "");
+            stops.push({
+              id: id,
+              day: day,
+              isStay: isStay,
+              title: stopTitle,
+              role: role,
+              image: stopImage,
+              lat: geo.lat,
+              lng: geo.lng,
+              color: geo.color
+            });
+          });
+        });
+        return stops;
+      }
+
+      function mapStylesForZoom(zoom) {
+        var styles = [
+          { featureType: "transit.station", stylers: [{ visibility: "off" }] },
+          { featureType: "water", stylers: [{ color: "#CAE8F2" }] }
+        ];
+        if (zoom < 12) {
+          styles.push(
+            { featureType: "landscape.natural", stylers: [{ color: "#E1F3C9" }] },
+            { featureType: "poi.business", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+            { featureType: "poi.attraction", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+            { featureType: "administrative", elementType: "geometry.stroke", stylers: [{ visibility: "off" }] },
+            { featureType: "administrative.land_parcel", stylers: [{ visibility: "off" }] }
+          );
+        } else if (zoom < 14) {
+          styles.push(
+            { featureType: "landscape.natural", stylers: [{ color: "#E8F6D6" }] },
+            { featureType: "poi.business", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+            { featureType: "road", elementType: "labels", stylers: [{ visibility: "on" }] },
+            { featureType: "administrative.locality", elementType: "labels", stylers: [{ visibility: "on" }] },
+            { featureType: "poi.park", elementType: "labels", stylers: [{ visibility: "on" }] }
+          );
+        } else {
+          styles.push(
+            { featureType: "road", elementType: "labels", stylers: [{ visibility: "on" }] },
+            { featureType: "poi", elementType: "labels", stylers: [{ visibility: "on" }] }
+          );
+        }
+        return styles;
+      }
+
+      function syncMapStyles() {
+        if (!itinMap) return;
+        var zoom = itinMap.getZoom() || 10;
+        var tier = zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0;
+        if (tier === itinMapStyleTier) return;
+        itinMapStyleTier = tier;
+        itinMap.setOptions({ styles: mapStylesForZoom(zoom) });
+      }
+
+      function cardAttachTransform(ox, oy) {
+        if (Math.abs(ox) <= 24 && oy <= 0) return "translate(-50%, calc(-100% - 2px))";
+        if (Math.abs(ox) <= 24 && oy > 0) return "translate(-50%, 8px)";
+        if (ox < 0) return "translate(calc(-100% - 8px), -50%)";
+        return "translate(8px, -50%)";
+      }
+
+      function applyPinOffset(el, ox, oy) {
+        if (!el) return;
+        var card = el.querySelector(".itin-pin__card");
+        var stem = el.querySelector(".itin-pin__stem");
+        if (card) {
+          card.style.left = ox + "px";
+          card.style.top = oy + "px";
+          card.style.transform = cardAttachTransform(ox, oy);
+        }
+        if (stem) {
+          var ax = ox;
+          var ay = oy;
+          var mark = card ? card.querySelector(".itin-pin__mark") : null;
+          if (mark) {
+            var hostRect = el.getBoundingClientRect();
+            var markRect = mark.getBoundingClientRect();
+            ax = (markRect.left + markRect.width / 2) - hostRect.left;
+            ay = (markRect.top + markRect.height / 2) - hostRect.top;
+          }
+          var len = Math.sqrt(ax * ax + ay * ay);
+          var angle = Math.atan2(ay, ax) * 180 / Math.PI;
+          stem.style.width = Math.max(8, Math.round(len)) + "px";
+          stem.style.transform = "translateY(-50%) rotate(" + angle + "deg)";
+        }
+      }
+
+      function pinCandidates() {
+        var out = [{ ox: 0, oy: -12 }];
+        var radii = [68, 104, 144, 184];
+        var degs = [-90, -135, -45, -180, 0, -225, 45, 90, 135];
+        radii.forEach(function (r) {
+          degs.forEach(function (deg) {
+            var rad = deg * Math.PI / 180;
+            out.push({ ox: Math.round(Math.cos(rad) * r), oy: Math.round(Math.sin(rad) * r) });
+          });
+        });
+        return out;
+      }
+
+      function rectsOverlap(a, b, pad) {
+        pad = pad == null ? 8 : pad;
+        return !(a.right + pad < b.left || a.left - pad > b.right || a.bottom + pad < b.top || a.top - pad > b.bottom);
+      }
+
+      function layoutMapPins() {
+        var pins = itinMapPins.filter(function (pin) { return pin.div && pin._px != null; });
+        if (!pins.length) return;
+        var canvas = document.getElementById("itinMap");
+        var frame = canvas ? canvas.getBoundingClientRect() : null;
+        var candidates = pinCandidates();
+        var placed = [];
+        pins.sort(function (a, b) {
+          if (a.stop.isStay !== b.stop.isStay) return a.stop.isStay ? -1 : 1;
+          return a._px - b._px;
+        });
+        pins.forEach(function (pin) {
+          var chosen = candidates[0];
+          var i;
+          for (i = 0; i < candidates.length; i++) {
+            applyPinOffset(pin.div, candidates[i].ox, candidates[i].oy);
+            var card = pin.div.querySelector(".itin-pin__card");
+            if (!card) continue;
+            var box = card.getBoundingClientRect();
+            var hit = placed.some(function (other) { return rectsOverlap(box, other, 10); });
+            var inside = !frame || (
+              box.left >= frame.left + 4 &&
+              box.right <= frame.right - 4 &&
+              box.top >= frame.top + 4 &&
+              box.bottom <= frame.bottom - 4
+            );
+            if (!hit && inside) {
+              chosen = candidates[i];
+              break;
+            }
+          }
+          applyPinOffset(pin.div, chosen.ox, chosen.oy);
+          var placedCard = pin.div.querySelector(".itin-pin__card");
+          if (placedCard) placed.push(placedCard.getBoundingClientRect());
+        });
+      }
+
+      function schedulePinLayout() {
+        if (pinLayoutRaf) cancelAnimationFrame(pinLayoutRaf);
+        pinLayoutRaf = requestAnimationFrame(function () {
+          pinLayoutRaf = requestAnimationFrame(layoutMapPins);
+        });
+      }
+
+      function ensurePinClass() {
+        if (ItinPinOverlay || !(window.google && google.maps && google.maps.OverlayView)) return;
+        ItinPinOverlay = function (stop, map) {
+          this.stop = stop;
+          this.div = null;
+          this._px = null;
+          this._py = null;
+          google.maps.OverlayView.call(this);
+          this.setMap(map);
+        };
+        ItinPinOverlay.prototype = Object.create(google.maps.OverlayView.prototype);
+        ItinPinOverlay.prototype.constructor = ItinPinOverlay;
+        ItinPinOverlay.prototype.onAdd = function () {
+          var stop = this.stop;
+          var el = document.createElement("button");
+          el.type = "button";
+          el.className = "itin-pin" + (stop.isStay ? " is-stay" : "");
+          el.style.setProperty("--pin", stop.color);
+          el.innerHTML =
+            '<span class="itin-pin__card">' +
+              '<span class="itin-pin__mark">' + (stop.image ? '<img src="' + escapeMapText(stop.image) + '" alt="">' : "") + "</span>" +
+              '<span class="itin-pin__text">' +
+                '<span class="itin-pin__tag">' + pinTagLabel(stop) + "</span>" +
+                '<span class="itin-pin__name">' + escapeMapText(stop.title) + "</span>" +
+              "</span>" +
+            "</span>" +
+            '<span class="itin-pin__stem" aria-hidden="true"></span>' +
+            '<span class="itin-pin__dot" aria-hidden="true"></span>';
+          el.setAttribute("aria-label", stop.title + ", " + pinTagLabel(stop));
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            openItinPin(stop, el);
+          });
+          applyPinOffset(el, 0, -12);
+          this.div = el;
+          this.getPanes().overlayMouseTarget.appendChild(el);
+        };
+        ItinPinOverlay.prototype.draw = function () {
+          if (!this.div) return;
+          var point = this.getProjection().fromLatLngToDivPixel(new google.maps.LatLng(this.stop.lat, this.stop.lng));
+          if (!point) return;
+          this._px = point.x;
+          this._py = point.y;
+          this.div.style.left = point.x + "px";
+          this.div.style.top = point.y + "px";
+          var dim = !this.stop.isStay && activeFilter !== "all" && this.stop.day !== activeFilter && this.stop.day !== "anytime";
+          this.div.classList.toggle("is-dim", dim);
+          schedulePinLayout();
+        };
+        ItinPinOverlay.prototype.onRemove = function () {
+          if (this.div && this.div.parentNode) this.div.parentNode.removeChild(this.div);
+          this.div = null;
+        };
+      }
+
+      function openItinPin(stop, pinEl) {
+        document.querySelectorAll(".itin-pin.is-active").forEach(function (el) {
+          el.classList.remove("is-active");
+        });
+        if (pinEl) pinEl.classList.add("is-active");
+        if (itinInfoWindow && itinMap) {
+          itinInfoWindow.setContent(
+            '<div class="itin-map-card"><strong>' + stop.title + '</strong><span>' +
+            pinTagLabel(stop) + (stop.role ? " · " + stop.role : "") +
+            '</span><a href="#stop-' + stop.id + '">View in itinerary</a></div>'
+          );
+          itinInfoWindow.setPosition({ lat: stop.lat, lng: stop.lng });
+          itinInfoWindow.open(itinMap);
+        }
+        var item = document.getElementById("stop-" + stop.id);
+        if (item) {
+          document.querySelectorAll(".timeline-item.is-map-focus").forEach(function (el) {
+            el.classList.remove("is-map-focus");
+          });
+          item.classList.add("is-map-focus");
+          item.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }
+
+      function renderMapLegend(stops) {
+        var legend = document.getElementById("itinMapLegend");
+        if (!legend) return;
+        var days = [];
+        stops.forEach(function (stop) {
+          if (!stop.isStay && days.indexOf(stop.day) === -1 && stop.day !== "anytime") days.push(stop.day);
+        });
+        days.sort();
+        var html = '<button type="button" class="itin-map__chip' + (activeFilter === "all" ? " is-active" : "") + '" data-map-filter="all">All days</button>';
+        days.forEach(function (day) {
+          html += '<button type="button" class="itin-map__chip' + (activeFilter === day ? " is-active" : "") + '" data-map-filter="' + day + '">' + dayTagLabel(day) + "</button>";
+        });
+        legend.innerHTML = html;
+      }
+
+      var MAP_COLLAPSE_KEY = "checkIntoNelson.mapCollapsed.v1";
+
+      function isMapCollapsed() {
+        var wrap = document.getElementById("itinMapWrap");
+        return !!(wrap && wrap.classList.contains("is-collapsed"));
+      }
+
+      function setMapCollapsed(collapsed, skipPersist) {
+        var wrap = document.getElementById("itinMapWrap");
+        var btn = document.getElementById("itinMapToggle");
+        var canvas = document.getElementById("itinMap");
+        if (!wrap) return;
+        wrap.classList.toggle("is-collapsed", !!collapsed);
+        if (btn) {
+          btn.textContent = collapsed ? "Show map" : "Hide map";
+          btn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+        }
+        if (canvas) canvas.setAttribute("aria-hidden", collapsed ? "true" : "false");
+        if (!skipPersist) {
+          try { window.localStorage.setItem(MAP_COLLAPSE_KEY, collapsed ? "1" : "0"); } catch (err) {}
+        }
+        if (!collapsed && window.google && google.maps) {
+          refreshItineraryMap();
+          if (itinMap) {
+            google.maps.event.trigger(itinMap, "resize");
+          }
+        }
+      }
+
+      function initMapCollapse() {
+        var btn = document.getElementById("itinMapToggle");
+        var stored = null;
+        try { stored = window.localStorage.getItem(MAP_COLLAPSE_KEY); } catch (err) {}
+        if (stored === "1") setMapCollapsed(true, true);
+        if (btn) {
+          btn.addEventListener("click", function () {
+            setMapCollapsed(!isMapCollapsed());
+          });
+        }
+      }
+
+      function refreshItineraryMap() {
+        if (isMapCollapsed()) return;
+        var canvas = document.getElementById("itinMap");
+        if (!canvas || !(window.google && google.maps && google.maps.Map)) return;
+        if (!itinMap) {
+          itinMap = new google.maps.Map(canvas, {
+            center: { lat: 37.92, lng: -78.96 },
+            zoom: 10,
+            mapTypeControl: false,
+            streetViewControl: false,
+            fullscreenControl: false,
+            keyboardShortcuts: false,
+            gestureHandling: "cooperative",
+            zoomControl: true,
+            zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_TOP },
+            styles: MAP_STYLES
+          });
+          itinInfoWindow = new google.maps.InfoWindow();
+          google.maps.event.addListener(itinMap, "click", function () {
+            if (itinInfoWindow) itinInfoWindow.close();
+            document.querySelectorAll(".itin-pin.is-active").forEach(function (el) {
+              el.classList.remove("is-active");
+            });
+          });
+        }
+        ensurePinClass();
+        itinMapPins.forEach(function (pin) { pin.setMap(null); });
+        itinMapPins = [];
+        var stops = collectMapStops();
+        renderMapLegend(stops);
+        var bounds = new google.maps.LatLngBounds();
+        var visible = 0;
+        stops.forEach(function (stop) {
+          if (!ItinPinOverlay) return;
+          var pin = new ItinPinOverlay(stop, itinMap);
+          itinMapPins.push(pin);
+          var dim = !stop.isStay && activeFilter !== "all" && stop.day !== activeFilter && stop.day !== "anytime";
+          if (!dim) {
+            bounds.extend({ lat: stop.lat, lng: stop.lng });
+            visible += 1;
+          }
+        });
+        if (visible > 1) {
+          var ne = bounds.getNorthEast();
+          var sw = bounds.getSouthWest();
+          var latSpan = Math.max(ne.lat() - sw.lat(), 0.04);
+          var lngSpan = Math.max(ne.lng() - sw.lng(), 0.04);
+          bounds.extend({ lat: ne.lat() + latSpan * 0.1, lng: ne.lng() + lngSpan * 0.04 });
+          bounds.extend({ lat: sw.lat() - latSpan * 0.04, lng: sw.lng() - lngSpan * 0.04 });
+          itinMap.fitBounds(bounds, { top: 88, right: 48, bottom: 36, left: 48 });
+        } else if (visible === 1) {
+          itinMap.setCenter(bounds.getCenter());
+          itinMap.setZoom(12);
+        }
+      }
+
+      var mapLegend = document.getElementById("itinMapLegend");
+      if (mapLegend) {
+        mapLegend.addEventListener("click", function (e) {
+          var chip = e.target.closest("[data-map-filter]");
+          if (!chip) return;
+          applyFilter(chip.getAttribute("data-map-filter") || "all");
+        });
+      }
+
+      initMapCollapse();
+
+      window.initItineraryMap = function () {
+        refreshItineraryMap();
+      };
+      if (window._itinMapApiReady || (window.google && google.maps && google.maps.Map)) {
+        refreshItineraryMap();
+      }
+
       function persistPlan() {
         if (suppressPlanPersist) return;
         var plan = collectPlanState();
         if (!plan) return;
         writePlanToStorage(plan);
         writePlanToUrl(plan, true);
+        renderMoreStops();
+        refreshItineraryMap();
+      }
+
+      function arraysEqual(a, b) {
+        if (!a || !b || a.length !== b.length) return false;
+        for (var i = 0; i < a.length; i++) {
+          if (a[i] !== b[i]) return false;
+        }
+        return true;
+      }
+      function planDaysMatchPreset(days, preset) {
+        if (!days || !preset) return false;
+        return ["1", "2", "3", "4", "5", "anytime"].every(function (key) {
+          return arraysEqual(days[key] || [], preset[key] || []);
+        });
+      }
+      function isLegacyOutdoorDefault(plan) {
+        return !!(plan && planDaysMatchPreset(plan.days, LEGACY_LENGTH_DEFAULTS[plan.nights]));
       }
 
       function setPlanShareStatus(message) {
@@ -3728,7 +5876,7 @@
         persistPlan();
         var link = buildShareablePlanUrl(plan);
         var done = function () {
-          setPlanShareStatus("Link copied — share or bookmark it.");
+          setPlanShareStatus("Link copied. Share or bookmark it.");
           setTimeout(function () { setPlanShareStatus(""); }, 2200);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -3815,19 +5963,21 @@
           var list = item.closest(".timeline-list");
           var day = list ? list.getAttribute("data-drop-day") : "1";
           item.dataset.day = day;
-          var role = item.getAttribute("data-role") || "";
-          var beat = item.querySelector(".timeline-item__beat");
-          if (!beat) return;
+          var dayMeta = item.querySelector(".timeline-item__daymeta");
+          var dayLabel = "";
           if (!startDate) {
-            beat.textContent = role + " · Day " + (day === "anytime" ? "flex" : day);
-            return;
-          }
-          if (day === "anytime") {
-            beat.textContent = role + " · " + formatShort(startDate) + "–" + formatShort(checkout);
+            dayLabel = day === "anytime" ? "Anytime" : "Day " + day;
+          } else if (day === "anytime") {
+            dayLabel = formatShort(startDate) + " to " + formatShort(checkout);
           } else if (dayDates[day]) {
-            beat.textContent = role + " · " + formatShort(dayDates[day]);
+            dayLabel = formatShort(dayDates[day]);
+          }
+          if (dayMeta) {
+            dayMeta.textContent = dayLabel;
           } else {
-            beat.textContent = role;
+            var beat = item.querySelector(".timeline-item__beat");
+            var role = item.getAttribute("data-role") || "";
+            if (beat) beat.textContent = dayLabel ? role + " · " + dayLabel : role;
           }
         });
 
@@ -3839,15 +5989,18 @@
           var summary = list ? rolesInList(list) : "";
           if (key === "anytime") {
             if (title) title.textContent = "Anytime during your stay";
-            if (meta) meta.textContent = startDate ? (formatShort(startDate) + " – " + formatShort(checkout)) : summary;
+            if (meta) meta.textContent = startDate ? (formatShort(startDate) + " to " + formatShort(checkout)) : summary;
           } else if (DAY_NUMBERS.indexOf(key) !== -1) {
             var d = dayDates[key];
             if (title) title.textContent = d ? ("Day " + key + " · " + formatShort(d)) : ("Day " + key);
             if (meta) {
-              if (summary) meta.textContent = summary;
-              else if (key === "1") meta.textContent = "Settle in and let the mountains do their thing";
-              else if (key === String(daysCount)) meta.textContent = "Browse more to fill the day";
-              else meta.textContent = "Taste, create, and explore";
+              if (key === "1") meta.textContent = "Settle in";
+              else if (key === "2") meta.textContent = "Taste, create, explore";
+              else if (key === "3") meta.textContent = "Head outdoors";
+              else if (key === "4") meta.textContent = "Another day to linger.";
+              else if (key === "5") meta.textContent = "Take the long way home.";
+              else if (summary) meta.textContent = summary;
+              else meta.textContent = "Browse more to fill the day.";
             }
           }
         });
@@ -3894,6 +6047,7 @@
           dayEl.classList.toggle("is-filtered-out", !show);
         });
         requestAnimationFrame(observeItems);
+        refreshItineraryMap();
       }
 
       function updateItineraryForDate(date) {
@@ -3909,9 +6063,9 @@
             if (isWeekend(addDays(day1, i))) { touchesWeekend = true; break; }
           }
           if (touchesWeekend) {
-            datePickerNote.innerHTML = "Includes a weekend — lodging often fills then.";
+            datePickerNote.innerHTML = "Includes a weekend. Lodging often fills then.";
           } else {
-            datePickerNote.innerHTML = "Weekday-leaning stay — usually easier for lodging.";
+            datePickerNote.innerHTML = "Weekday-leaning stay. Usually easier for lodging.";
           }
         }
         if (planBoard) planBoard.hidden = true;
@@ -3919,13 +6073,13 @@
         var planAllDate = document.getElementById("planAllDate");
         if (planAllDate) {
           planAllDate.textContent = tripNights + " night" + (tripNights === 1 ? "" : "s") + " · " +
-            monthNames[day1.getMonth()] + " " + day1.getDate() + "–" +
+            monthNames[day1.getMonth()] + " " + day1.getDate() + "-" +
             monthNames[checkout.getMonth()] + " " + checkout.getDate();
         }
         DAY_NUMBERS.forEach(function (day) {
           var el = document.getElementById("planDay" + day + "Date");
           var d = addDays(day1, Number(day) - 1);
-          if (el) el.textContent = Number(day) <= daysCount ? formatLong(d) : "—";
+          if (el) el.textContent = Number(day) <= daysCount ? formatLong(d) : "-";
         });
 
         syncLengthUI();
@@ -4033,7 +6187,11 @@
         endDrag();
       }
 
-      function beginDrag(item, e) {
+      function lastVisibleDayList() {
+        return listByDayKey(String(tripDays())) || listDay3;
+      }
+
+      function beginDrag(item, e, ghostSource) {
         if (dragItem) return;
         if (e.button != null && e.button !== 0) return;
 
@@ -4048,10 +6206,16 @@
         item.parentNode.insertBefore(dragPlaceholder, item);
         item.classList.add("is-dragging");
 
-        var card = item.querySelector(".timeline-item__card");
-        dragGhost = card ? card.cloneNode(true) : item.cloneNode(true);
-        dragGhost.classList.add("timeline-ghost");
-        dragGhost.style.width = Math.min(440, window.innerWidth - 24) + "px";
+        if (ghostSource) {
+          dragGhost = ghostSource.cloneNode(true);
+          dragGhost.classList.add("timeline-ghost", "more-stop-ghost");
+          dragGhost.removeAttribute("id");
+        } else {
+          var card = item.querySelector(".timeline-item__card");
+          dragGhost = card ? card.cloneNode(true) : item.cloneNode(true);
+          dragGhost.classList.add("timeline-ghost");
+          dragGhost.style.width = Math.min(440, window.innerWidth - 24) + "px";
+        }
         dragGhost.style.left = Math.max(8, e.clientX - 28) + "px";
         dragGhost.style.top = Math.max(8, e.clientY - 28) + "px";
         document.body.appendChild(dragGhost);
@@ -4065,10 +6229,113 @@
         document.addEventListener("pointercancel", onPointerUp);
       }
 
+      function beginDragFromTray(id, e, ghostSource) {
+        var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
+        if (!item || dragItem) return;
+        var list = lastVisibleDayList();
+        if (!list) return;
+        setTimelineItemRemoved(item, false);
+        item.classList.add("is-in");
+        list.appendChild(item);
+        if (ghostSource) ghostSource.style.visibility = "hidden";
+        beginDrag(item, e, ghostSource);
+      }
+
+      function stopTrayTitle(item) {
+        var id = item.getAttribute("data-id");
+        if (id === "sip") {
+          return (SIP_OPTIONS[selectedSip] || SIP_OPTIONS.flyingfox).title;
+        }
+        if (id === "checkin") {
+          return (STAY_OPTIONS[selectedStay] || STAY_OPTIONS.farmhouse).title;
+        }
+        var titleEl = item.querySelector(".timeline-item__title");
+        if (titleEl) return titleEl.textContent.trim();
+        return item.getAttribute("data-role") || id;
+      }
+
+      function stopTrayImage(item) {
+        var id = item.getAttribute("data-id");
+        if (id === "sip") {
+          return (SIP_OPTIONS[selectedSip] || SIP_OPTIONS.flyingfox).image;
+        }
+        if (id === "checkin") {
+          return (STAY_OPTIONS[selectedStay] || STAY_OPTIONS.farmhouse).image;
+        }
+        var imgEl = item.querySelector(".timeline-item__media img");
+        return imgEl ? imgEl.getAttribute("src") : "";
+      }
+
+      function stopTrayDesc(item) {
+        var id = item.getAttribute("data-id");
+        if (id === "sip") {
+          var sipCopy = (SIP_OPTIONS[selectedSip] || SIP_OPTIONS.flyingfox).copy;
+          return Array.isArray(sipCopy) ? sipCopy.join(" ") : String(sipCopy || "");
+        }
+        if (id === "checkin") {
+          var stayCopy = (STAY_OPTIONS[selectedStay] || STAY_OPTIONS.farmhouse).copy;
+          return Array.isArray(stayCopy) ? stayCopy.join(" ") : String(stayCopy || "");
+        }
+        var copyEl = item.querySelector(".timeline-item__copy");
+        return copyEl ? copyEl.textContent.replace(/\s+/g, " ").trim() : "";
+      }
+
+      function escapeTrayText(value) {
+        return String(value || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function renderMoreStops() {
+        var row = document.getElementById("moreStopsRow");
+        var wrap = document.getElementById("moreStops");
+        if (!row || !wrap) return;
+        row.innerHTML = "";
+        var removed = Array.prototype.slice.call(document.querySelectorAll(".timeline-item.is-removed[data-id]"));
+        removed.sort(function (a, b) {
+          var ao = Number(a.getAttribute("data-default-order") || 99);
+          var bo = Number(b.getAttribute("data-default-order") || 99);
+          return ao - bo;
+        });
+        removed.forEach(function (item) {
+          var id = item.getAttribute("data-id");
+          if (!id || id === "checkin" || !VALID_STOP_IDS[id]) return;
+          var title = stopTrayTitle(item);
+          var desc = stopTrayDesc(item);
+          var src = stopTrayImage(item);
+          var card = document.createElement("button");
+          card.type = "button";
+          card.className = "more-stop";
+          card.setAttribute("data-add-id", id);
+          card.setAttribute("aria-label", "Add " + title + " to your itinerary");
+          card.innerHTML =
+            '<span class="more-stop__media"><img src="' + src + '" alt="' + escapeTrayText(title) + '" width="80" height="80" /></span>' +
+            '<span class="more-stop__copy">' +
+              '<span class="more-stop__kicker">Add</span>' +
+              '<span class="more-stop__title">' + escapeTrayText(title) + "</span>" +
+              (desc ? '<span class="more-stop__desc">' + escapeTrayText(desc) + "</span>" : "") +
+            "</span>" +
+            '<span class="more-stop__hint" aria-hidden="true">⠿</span>';
+          card.addEventListener("pointerdown", function (e) {
+            if (e.button != null && e.button !== 0) return;
+            e.preventDefault();
+            beginDragFromTray(id, e, card);
+          });
+          row.appendChild(card);
+        });
+        wrap.hidden = row.children.length === 0;
+      }
+
       function removeTimelineItem(item) {
         if (!item || item.classList.contains("is-removed")) return;
-        item.classList.add("is-removed");
+        var id = item.getAttribute("data-id");
+        if (id === "checkin") return;
+        setTimelineItemRemoved(item, true);
+        renderMoreStops();
         refreshTimelineMeta();
+        refreshItineraryMap();
         persistPlan();
       }
 
@@ -4095,9 +6362,10 @@
       }
 
       function initDrag() {
-        getItems().forEach(function (item) {
+        document.querySelectorAll(".timeline-item").forEach(function (item) {
           var handle = item.querySelector(".timeline-item__handle");
-          if (!handle) return;
+          if (!handle || handle.dataset.dragBound) return;
+          handle.dataset.dragBound = "1";
           handle.addEventListener("pointerdown", function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -4186,10 +6454,74 @@
         }
       }
 
+      function initMediaCarousels() {
+        var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        document.querySelectorAll("[data-carousel]").forEach(function (root) {
+          var slides = Array.prototype.slice.call(root.querySelectorAll(".media-carousel__track img"));
+          var dots = Array.prototype.slice.call(root.querySelectorAll(".media-carousel__dot"));
+          if (slides.length < 2) {
+            if (dots.length) {
+              var dotsWrap = root.querySelector(".media-carousel__dots");
+              if (dotsWrap) dotsWrap.hidden = true;
+            }
+            return;
+          }
+          var index = Math.max(0, slides.findIndex(function (img) { return img.classList.contains("is-active"); }));
+          var timer = null;
+          var INTERVAL = 4200;
+
+          function show(next) {
+            index = ((next % slides.length) + slides.length) % slides.length;
+            slides.forEach(function (img, i) {
+              img.classList.toggle("is-active", i === index);
+            });
+            dots.forEach(function (dot, i) {
+              var on = i === index;
+              dot.classList.toggle("is-active", on);
+              dot.setAttribute("aria-current", on ? "true" : "false");
+            });
+          }
+
+          function stop() {
+            if (timer) {
+              window.clearInterval(timer);
+              timer = null;
+            }
+          }
+
+          function start() {
+            if (reduceMotion) return;
+            stop();
+            timer = window.setInterval(function () {
+              show(index + 1);
+            }, INTERVAL);
+          }
+
+          dots.forEach(function (dot, i) {
+            dot.addEventListener("click", function () {
+              show(i);
+              start();
+            });
+          });
+
+          root.addEventListener("pointerenter", stop);
+          root.addEventListener("pointerleave", start);
+          root.addEventListener("focusin", stop);
+          root.addEventListener("focusout", function (e) {
+            if (!root.contains(e.relatedTarget)) start();
+          });
+
+          show(index);
+          start();
+        });
+      }
+
       initRangePicker();
       initRemoveButtons();
       initDrag();
+      initMediaCarousels();
       applyStayChoice(selectedStay, true);
+      applySipChoice(selectedSip, true);
       document.querySelectorAll("[data-stay-option]").forEach(function (btn) {
         btn.addEventListener("click", function (e) {
           e.preventDefault();
@@ -4200,11 +6532,23 @@
           e.stopPropagation();
         });
       });
+      document.querySelectorAll("[data-sip-option]").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          applySipChoice(btn.getAttribute("data-sip-option") || "flyingfox");
+        });
+        btn.addEventListener("pointerdown", function (e) {
+          e.stopPropagation();
+        });
+      });
 
       var resetBtn = document.getElementById("resetTimeline");
       if (resetBtn) resetBtn.addEventListener("click", resetTimeline);
       var copyPlanBtn = document.getElementById("copyPlanLink");
       if (copyPlanBtn) copyPlanBtn.addEventListener("click", copyPlanLink);
+      var addNightBtn = document.getElementById("addNightBtn");
+      if (addNightBtn) addNightBtn.addEventListener("click", addOneNight);
 
       document.querySelectorAll(".plan-day").forEach(function (card) {
         card.addEventListener("click", function () {
@@ -4215,15 +6559,19 @@
       (function selectDefault() {
         var keepCustomLayout = urlHasDayLayoutParams();
         if (restorePlanOnLoad()) {
-          if (!keepCustomLayout) applySampleScheduleOnLoad();
+          var restored = collectPlanState();
+          if (!keepCustomLayout || isLegacyOutdoorDefault(restored)) applySampleScheduleOnLoad();
           setRangeSelecting("in");
+          resetCalendarToCurrentMonth();
+          refreshItineraryMap();
           return;
         }
-        var cursor = addDays(startOfDay(new Date()), 1);
-        while (isWeekend(cursor)) cursor = addDays(cursor, 1);
         tripNights = 2;
-        applyDateRange(cursor, addDays(cursor, 2), { resetLayout: true, skipPersist: false });
+        var checkIn = defaultCheckInInCurrentMonth();
+        applyDateRange(checkIn, addDays(checkIn, tripNights), { resetLayout: true, skipPersist: false });
+        resetCalendarToCurrentMonth();
         setRangeSelecting("in");
+        refreshItineraryMap();
       })();
 
       var observer = new IntersectionObserver(function (entries) {
@@ -4612,7 +6960,7 @@
           root.classList.add("is-thanks");
           var thanks = document.getElementById("exitIntentThanks");
           if (thanks && label) {
-            thanks.textContent = "Thanks — noted you’re coming from " + label + ".";
+            thanks.textContent = "Thanks. Noted you’re coming from " + label + ".";
           }
           window.setTimeout(function () {
             closeExit(storeValue);
@@ -4725,6 +7073,215 @@
         }
       })();
 
+      (function initIntroChunks() {
+        var copy = document.getElementById("introCopy");
+        if (!copy) return;
+        var chunks = Array.prototype.slice.call(copy.querySelectorAll(".intro__chunk"));
+        if (!chunks.length) return;
+
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion) {
+          chunks.forEach(function (chunk) { chunk.classList.add("is-in"); });
+          return;
+        }
+
+        var ticking = false;
+
+        function update() {
+          var vh = window.innerHeight || 700;
+          var rect = copy.getBoundingClientRect();
+          var start = vh * 0.88;
+          var end = vh * 0.38;
+          var progress = (start - rect.top) / Math.max(1, start - end);
+          if (progress < 0) progress = 0;
+          if (progress > 1) progress = 1;
+
+          chunks.forEach(function (chunk, i) {
+            var threshold = (i + 0.12) / (chunks.length + 0.35);
+            chunk.classList.toggle("is-in", progress >= threshold);
+          });
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+      })();
+
+      (function initDoRail() {
+        var rail = document.querySelector(".do-rail");
+        var track = document.getElementById("doRailTrack");
+        var viewport = document.getElementById("doRailViewport");
+        if (!rail || !track || !viewport) return;
+
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var maxShift = 0;
+        var ticking = false;
+        var programmatic = false;
+        var baseScroll = 0;
+        var manualOffset = 0;
+        var dragging = false;
+        var dragStartX = 0;
+        var dragStartScroll = 0;
+        var dragMoved = false;
+
+        function clamp(n, min, max) {
+          return Math.min(max, Math.max(min, n));
+        }
+
+        function setScrollLeft(value) {
+          programmatic = true;
+          viewport.scrollLeft = value;
+          window.requestAnimationFrame(function () {
+            programmatic = false;
+          });
+        }
+
+        function syncManualOffset() {
+          manualOffset = viewport.scrollLeft - baseScroll;
+        }
+
+        function measure() {
+          maxShift = Math.max(0, track.scrollWidth - viewport.clientWidth);
+          if (!reduceMotion) update();
+        }
+
+        function update() {
+          if (dragging || reduceMotion) {
+            ticking = false;
+            return;
+          }
+          var vh = window.innerHeight || 700;
+          var rect = rail.getBoundingClientRect();
+          var travel = vh + rect.height;
+          var progress = (vh - rect.top) / Math.max(1, travel);
+          if (progress < 0) progress = 0;
+          if (progress > 1) progress = 1;
+          baseScroll = maxShift * progress;
+          setScrollLeft(clamp(baseScroll + manualOffset, 0, maxShift));
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (ticking || reduceMotion) return;
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+
+        viewport.addEventListener("scroll", function () {
+          if (programmatic || dragging) return;
+          syncManualOffset();
+        }, { passive: true });
+
+        viewport.addEventListener("wheel", function (e) {
+          if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            window.requestAnimationFrame(syncManualOffset);
+            return;
+          }
+          if (e.shiftKey && e.deltaY) {
+            e.preventDefault();
+            setScrollLeft(clamp(viewport.scrollLeft + e.deltaY, 0, maxShift));
+            syncManualOffset();
+          }
+        }, { passive: false });
+
+        viewport.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          dragging = true;
+          dragMoved = false;
+          dragStartX = e.clientX;
+          dragStartScroll = viewport.scrollLeft;
+          viewport.classList.add("is-dragging");
+          try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+        });
+
+        viewport.addEventListener("pointermove", function (e) {
+          if (!dragging) return;
+          var dx = e.clientX - dragStartX;
+          if (Math.abs(dx) > 4) dragMoved = true;
+          viewport.scrollLeft = clamp(dragStartScroll - dx, 0, maxShift);
+          syncManualOffset();
+        });
+
+        function endDrag(e) {
+          if (!dragging) return;
+          dragging = false;
+          viewport.classList.remove("is-dragging");
+          try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
+          syncManualOffset();
+        }
+
+        viewport.addEventListener("pointerup", endDrag);
+        viewport.addEventListener("pointercancel", endDrag);
+
+        viewport.addEventListener("click", function (e) {
+          if (!dragMoved) return;
+          e.preventDefault();
+          e.stopPropagation();
+        }, true);
+
+        measure();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", measure);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(measure).catch(function () {});
+        }
+        Array.prototype.forEach.call(track.querySelectorAll("img"), function (img) {
+          if (img.complete) return;
+          img.addEventListener("load", measure, { once: true });
+        });
+      })();
+
+      (function initPartnerDividers() {
+        var cards = Array.prototype.slice.call(document.querySelectorAll(".partner-feature")).slice(1);
+        if (!cards.length) return;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduceMotion) {
+          cards.forEach(function (card) {
+            card.style.setProperty("--divider", "1");
+          });
+          return;
+        }
+
+        var ticking = false;
+
+        function clamp(n, min, max) {
+          return Math.min(max, Math.max(min, n));
+        }
+
+        function ease(t) {
+          return t * t * (3 - 2 * t);
+        }
+
+        function update() {
+          var vh = window.innerHeight || 700;
+          var start = vh * 0.9;
+          var end = vh * 0.38;
+          cards.forEach(function (card) {
+            var top = card.getBoundingClientRect().top;
+            var t = ease(clamp((start - top) / Math.max(1, start - end), 0, 1));
+            card.style.setProperty("--divider", t.toFixed(4));
+          });
+          ticking = false;
+        }
+
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          window.requestAnimationFrame(update);
+        }
+
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll);
+      })();
+
       (function initScrollMotion() {
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var isEmbed = document.documentElement.classList.contains("is-embed");
@@ -4733,8 +7290,8 @@
 
         var specs = [
           { sel: ".partner-strip__label", kind: "soft" },
-          { sel: ".partner-chip", kind: "soft", stagger: 55 },
-          { sel: ".intro__grid > *", kind: "", stagger: 90 },
+          { sel: ".partner-chip", kind: "soft", stagger: 90 },
+          { sel: ".intro__lead", kind: "soft" },
           { sel: ".hub .eyebrow, .hub .section-title, .hub .section-copy", kind: "soft", stagger: 70 },
           { sel: ".stay-card", kind: "zoom", stagger: 110 },
           { sel: ".showcase__head", kind: "soft" },
@@ -4832,8 +7389,24 @@
               markIn(entry.target);
               io.unobserve(entry.target);
             });
-          }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-          nodes.forEach(function (el) { io.observe(el); });
+          }, { threshold: 0.08, rootMargin: "0px 0px -6% 0px" });
+          // Reveal partner chips as a group when the strip enters, so stagger reads clearly.
+          var partnerStrip = document.querySelector(".partner-strip");
+          if (partnerStrip) {
+            var chipNodes = nodes.filter(function (el) { return el.classList.contains("partner-chip"); });
+            var otherNodes = nodes.filter(function (el) { return !el.classList.contains("partner-chip"); });
+            var stripIo = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                chipNodes.forEach(markIn);
+                stripIo.unobserve(entry.target);
+              });
+            }, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" });
+            stripIo.observe(partnerStrip);
+            otherNodes.forEach(function (el) { io.observe(el); });
+          } else {
+            nodes.forEach(function (el) { io.observe(el); });
+          }
         } else {
           revealAll();
         }
@@ -4851,5 +7424,11 @@
       })();
     })();
   </script>
+  <script>
+    window.initItineraryMap = window.initItineraryMap || function () {
+      window._itinMapApiReady = true;
+    };
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ&callback=initItineraryMap" async defer></script>
 </body>
 </html>
