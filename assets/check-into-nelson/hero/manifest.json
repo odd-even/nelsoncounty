@@ -58,12 +58,14 @@
     "slug": "04-tunnel",
     "files": {
       "1280": "assets/check-into-nelson/hero/04-tunnel-1280.webp",
-      "1500": "assets/check-into-nelson/hero/04-tunnel-1500.webp"
+      "1920": "assets/check-into-nelson/hero/04-tunnel-1920.webp",
+      "2560": "assets/check-into-nelson/hero/04-tunnel-2560.webp",
+      "3200": "assets/check-into-nelson/hero/04-tunnel-3200.webp"
     },
-    "width": 1500,
-    "height": 800,
-    "srcset": "assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1500.webp 1500w",
-    "fallback": "assets/check-into-nelson/hero/04-tunnel-1500.webp"
+    "width": 3200,
+    "height": 1707,
+    "srcset": "assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp 3200w",
+    "fallback": "assets/check-into-nelson/hero/04-tunnel-3200.webp"
   },
   {
     "label": "Flying Fox Vineyard",
