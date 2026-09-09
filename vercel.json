@@ -2,11 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/", "destination": "/check-into-nelson.html" }
+    { "source": "/", "destination": "/check-into-nelson" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": false },
-    { "source": "/check-into-nelson", "destination": "/", "permanent": true },
     { "source": "/check-into-nelson.html", "destination": "/", "permanent": false }
   ],
   "headers": [
