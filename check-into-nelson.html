@@ -40,6 +40,7 @@
       --black: #111111;
       --muted: #666666;
       --line: #ececec;
+      --section-line: #c4c4c4;
       --white: #ffffff;
       --nelson-green: #2d6a4f;
       --panel: rgba(0, 0, 0, 0.42);
@@ -47,7 +48,7 @@
       --radius: 20px;
       --pill: 999px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
-      --hero-accent: #8fc86a;
+      --hero-accent: #f0a8c0;
       --font: Satoshi, "Satoshi Placeholder", system-ui, -apple-system, sans-serif;
 
       /* Frontpage category accents (icons/*.svg) */
@@ -75,7 +76,11 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      max-width: 100%;
+    }
     body {
       font-family: var(--font);
       color: var(--ink);
@@ -83,6 +88,8 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       position: relative;
+      overflow-x: clip;
+      max-width: 100%;
     }
     img { display: block; max-width: 100%; height: auto; }
     a { color: inherit; text-decoration: none; }
@@ -203,7 +210,7 @@
     @property --hero-accent {
       syntax: "<color>";
       inherits: true;
-      initial-value: #8fc86a;
+      initial-value: #f0a8c0;
     }
     .hero {
       position: relative;
@@ -214,7 +221,7 @@
       color: var(--white);
       overflow: hidden;
       background: #1a1a1a;
-      --hero-accent: #8fc86a;
+      --hero-accent: #f0a8c0;
       transition: --hero-accent 1.1s ease;
     }
     .hero__media {
@@ -402,7 +409,7 @@
     }
     .hero__accent,
     .hero__letter--accent {
-      color: var(--hero-accent, #8fc86a);
+      color: var(--hero-accent, #f0a8c0);
     }
     .hero__swap.is-in .hero__letter {
       opacity: 1;
@@ -458,10 +465,185 @@
     .hero__promo .promo-code__value {
       flex: 1;
     }
+    .hero__promo-text {
+      display: contents;
+    }
+    .hero__promo-note {
+      display: none;
+    }
+    .hero-below {
+      display: none;
+    }
     .cta-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
+    }
+
+    @media (max-width: 859px) {
+      .hero {
+        min-height: 100svh;
+        height: 100svh;
+        align-items: end;
+      }
+      .hero__shade {
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.12) 18%, rgba(0, 0, 0, 0) 36%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0.28) 48%, rgba(0, 0, 0, 0.55) 72%, rgba(0, 0, 0, 0.78) 100%);
+      }
+      .hero__frost {
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.1) 38%, rgba(0, 0, 0, 0) 72%);
+        -webkit-mask-image: linear-gradient(to top, #000 0%, #000 28%, rgba(0, 0, 0, 0.55) 52%, transparent 78%);
+        mask-image: linear-gradient(to top, #000 0%, #000 28%, rgba(0, 0, 0, 0.55) 52%, transparent 78%);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+      }
+      .hero__content {
+        width: min(100% - 1.75rem, var(--max));
+        margin-top: auto;
+        padding: 0 0 1.15rem;
+        gap: 0.75rem;
+        align-self: end;
+      }
+      .hero__campaign {
+        font-size: clamp(2.35rem, 11vw, 3.1rem);
+        margin-bottom: 0.75rem;
+        min-height: 1.96em;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+      }
+      .hero__lede {
+        display: block;
+        font-size: 0.95rem;
+        line-height: 1.4;
+        max-width: 28ch;
+        margin-bottom: 0.85rem;
+        color: rgba(255, 255, 255, 0.92);
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+        text-wrap: balance;
+      }
+      .hero__main .cta-row {
+        display: none;
+      }
+      .hero__promo {
+        width: 100%;
+        padding: 0.3rem 0.3rem 0.3rem 0.85rem;
+        border-radius: 999px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        background: rgba(255, 255, 255, 0.94);
+      }
+      .hero__promo-label,
+      .hero__promo-title,
+      .hero__promo-copy {
+        display: none;
+      }
+      .hero__promo .promo-code--sm {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        overflow: visible;
+      }
+      .hero__promo-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.08rem;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .hero__promo .promo-code__value {
+        display: block;
+        flex: unset;
+        min-width: 0;
+        width: 100%;
+        padding: 0;
+        font-size: 0.76rem;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.1;
+      }
+      .hero__promo .promo-code__copy {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 4.35rem;
+        height: 2.2rem;
+        padding: 0 0.85rem;
+        border: 0;
+        border-radius: var(--pill);
+        font-size: 0.74rem;
+        text-align: center;
+        align-self: center;
+      }
+      .hero__promo-note {
+        display: block;
+        margin: 0;
+        padding: 0;
+        font-size: 0.6rem;
+        line-height: 1.15;
+        color: var(--muted);
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hero__dots {
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 4;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.55rem;
+      }
+      .hero__caption {
+        display: inline-flex;
+        max-width: min(48vw, 11rem);
+        font-size: 0.62rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .hero-below {
+        display: block;
+        padding: 1.1rem 0;
+        background: #1a1a1a;
+        border-top: 0;
+      }
+      .hero-below__lede {
+        display: none;
+      }
+      .hero-below .cta-row {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.55rem;
+      }
+      .hero-below .cta-row .btn {
+        flex: 1 1 50%;
+        width: 50%;
+        min-width: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        font-size: 0.82rem;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .hero-below .btn--dark {
+        background: var(--white);
+        color: var(--black);
+      }
+      .hero-below .btn--outline {
+        background: transparent;
+        color: var(--white);
+        border: 1.5px solid rgba(255, 255, 255, 0.7);
+      }
+      .hero-below .btn--outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--white);
+      }
     }
 
     .btn {
@@ -507,6 +689,12 @@
 
     /* —— Shared —— */
     section { padding: clamp(3.5rem, 8vw, 6rem) 0; background: var(--white); }
+    main > section + section {
+      border-top: 1px solid var(--section-line);
+    }
+    main > .hero + .hero-below {
+      border-top: 0;
+    }
     .wrap {
       width: min(100% - 2.5rem, var(--max));
       margin: 0 auto;
@@ -538,6 +726,8 @@
     /* —— Intro + things-to-do band —— */
     .intro {
       padding-bottom: clamp(3rem, 6vw, 4.75rem);
+      overflow-x: clip;
+      max-width: 100%;
     }
     .intro__grid {
       display: flex;
@@ -594,24 +784,34 @@
       position: relative;
       margin: 0;
       padding: 0;
+      width: 100%;
+      max-width: 100%;
       overflow: hidden;
       background: transparent;
+      overscroll-behavior-x: none;
     }
     .do-rail__pin {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
     }
     .do-rail__viewport {
       position: relative;
       overflow-x: auto;
       overflow-y: hidden;
       width: 100%;
+      max-width: 100%;
+      min-width: 0;
       cursor: grab;
       overscroll-behavior-x: contain;
+      overscroll-behavior-y: none;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      touch-action: pan-x;
     }
     .do-rail__viewport.is-dragging {
       cursor: grabbing;
@@ -624,13 +824,21 @@
     .do-rail__track {
       display: flex;
       width: max-content;
+      max-width: none;
       gap: 0.85rem;
-      padding: 0.2rem max(1.25rem, calc((100vw - var(--max)) / 2 + 1.25rem)) 0.55rem;
+      /* Avoid 100vw padding — it can widen the page on mobile */
+      padding: 0.2rem 1.25rem 0.55rem;
+    }
+    @media (min-width: 860px) {
+      .do-rail__track {
+        padding-left: max(1.25rem, calc((100% - var(--max)) / 2 + 1.25rem));
+        padding-right: max(1.25rem, calc((100% - var(--max)) / 2 + 1.25rem));
+      }
     }
     .do-card {
       position: relative;
       flex: 0 0 auto;
-      width: min(72vw, 17.5rem);
+      width: 15.5rem;
       aspect-ratio: 4 / 5;
       border-radius: 18px;
       overflow: hidden;
@@ -639,6 +847,15 @@
       text-decoration: none;
       isolation: isolate;
       transition: transform 0.25s var(--ease);
+    }
+    @media (max-width: 859px) {
+      .do-card {
+        width: 13.75rem;
+      }
+      .do-rail__track {
+        gap: 0.7rem;
+        padding: 0.2rem 1rem 0.55rem;
+      }
     }
     .do-card:hover {
       transform: translateY(-3px);
@@ -1020,8 +1237,6 @@
 
     /* —— Partner strip + showcase ads —— */
     .partner-strip {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
       padding: 1.25rem 0;
       background: #fafafa;
     }
@@ -1096,7 +1311,7 @@
     }
 
     .showcase {
-      border-top: 1px solid var(--line);
+      border-top: none;
     }
     .showcase__head {
       margin-bottom: 2.25rem;
@@ -1120,7 +1335,7 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: var(--line);
+      background: var(--section-line);
       transform: scaleX(var(--divider));
       transform-origin: 50% 50%;
       will-change: transform;
@@ -2252,6 +2467,13 @@
       align-items: start;
       min-width: 0;
     }
+    .timeline-item__move {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.15rem;
+    }
     .timeline-item__handle {
       appearance: none;
       border: none;
@@ -2267,10 +2489,60 @@
       letter-spacing: -0.08em;
       line-height: 1;
       padding: 0;
-      margin-top: 0.15rem;
       user-select: none;
     }
     .timeline-item__handle:active { cursor: grabbing; }
+    .timeline-item__nudge {
+      display: none;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .timeline-item__nudge-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #f7f7f7;
+      color: var(--ink);
+      width: 2.35rem;
+      height: 2.35rem;
+      border-radius: 10px;
+      padding: 0;
+      font: inherit;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .timeline-item__nudge-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .timeline-item__nudge-btn:not(:disabled):active {
+      background: #ebebeb;
+    }
+    @media (max-width: 900px), (pointer: coarse), (hover: none) {
+      .timeline-item__handle {
+        display: none;
+      }
+      .timeline-item__nudge {
+        display: flex;
+      }
+      .timeline-item__content {
+        padding-right: 1.6rem;
+      }
+      .itin-reorder-hint--drag { display: none; }
+      .itin-reorder-hint--tap { display: inline; }
+      .more-stop__hint {
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+    }
+    @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
+      .itin-reorder-hint--tap { display: none; }
+    }
+    .itin-reorder-hint--tap { display: none; }
     .timeline-item__content {
       min-width: 0;
       padding-right: 1.6rem;
@@ -2460,10 +2732,17 @@
       overflow: hidden;
       background: #f0f0f0;
     }
+    @media (max-width: 719px) {
+      .timeline-item__media {
+        aspect-ratio: 2.2 / 1;
+        max-height: 7.5rem;
+      }
+    }
     @media (min-width: 720px) {
       .timeline-item__media {
         width: 8.5rem;
         aspect-ratio: 1;
+        max-height: none;
       }
     }
     .timeline-item__media img {
@@ -2645,8 +2924,6 @@
 
     /* —— Promo —— */
     .promo {
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
       text-align: center;
     }
     .promo .section-title {
@@ -3344,7 +3621,7 @@
   <main id="main">
     <section class="hero" aria-label="Campaign hero">
       <div class="hero__media" aria-hidden="true">
-        <div class="hero__slide is-active">
+        <div class="hero__slide is-active" data-hero-accent="#f0a8c0">
           <img
             src="assets/check-into-nelson/hero/01-farmhouse-3200.webp"
             srcset="assets/check-into-nelson/hero/01-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/01-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/01-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/01-farmhouse-3200.webp 3200w"
@@ -3384,7 +3661,7 @@
             height="1502" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#a8c5c2">
           <img
             src="assets/check-into-nelson/hero/04-tunnel-3200.webp"
             srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp 3200w"
@@ -3394,7 +3671,7 @@
             height="1707" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#ff7a6a">
           <img
             src="assets/check-into-nelson/hero/05-flying-fox-1832.webp"
             srcset="assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w"
@@ -3404,7 +3681,7 @@
             height="1374" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#e8d278">
           <img
             src="assets/check-into-nelson/hero/07-glass-hollow-2500.webp"
             srcset="assets/check-into-nelson/hero/07-glass-hollow-1280.webp 1280w, assets/check-into-nelson/hero/07-glass-hollow-1920.webp 1920w, assets/check-into-nelson/hero/07-glass-hollow-2500.webp 2500w"
@@ -3445,7 +3722,10 @@
           <p class="hero__promo-title">Save with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
           <p class="hero__promo-copy">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County. Copy the code before you book.</p>
           <div class="promo-code promo-code--sm" role="group" aria-label="Promotional code">
-            <span class="promo-code__value"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
+            <div class="hero__promo-text">
+              <span class="promo-code__value"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
+              <p class="hero__promo-note">15% off participating stays and offers</p>
+            </div>
             <button type="button" class="promo-code__copy" id="copyPromoHero" data-track="copy_promo_code">Copy</button>
           </div>
         </aside>
@@ -3461,6 +3741,16 @@
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Flying Fox Vineyard" data-hero-slide="5" data-hero-target="#feature-flying-fox"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Glass Hollow Studio" data-hero-slide="6" data-hero-target="#feature-glass-hollow"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="7" data-hero-target="#itinerary"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero-below" aria-label="About Check Into Nelson">
+      <div class="wrap">
+        <p class="hero-below__lede">Trade the rushed day trip for a few days surrounded by Blue Ridge views, local wine, creative experiences, outdoor adventure, and room to slow down.</p>
+        <div class="cta-row">
+          <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
+          <a class="btn btn--outline" href="#experience" data-track="cta_explore_experience">Explore the Experience</a>
         </div>
       </div>
     </section>
@@ -3555,7 +3845,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#itinerary">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="min(72vw, 17.5rem)" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img class="do-card__img" src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="13.75rem" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -3629,7 +3919,7 @@
             <span class="stay-card__badge">15% off</span>
           </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">Use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to receive 15% off your stay.</span>
+              <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</span>
               <h3 class="stay-card__title">Farmhouse at Veritas</h3>
               <p class="stay-card__copy">Wake up in the heart of Virginia wine country. Vineyard views, thoughtful hospitality, and an ideal home base for exploring Nelson County.</p>
               <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book the Farmhouse</a>
@@ -3655,7 +3945,7 @@
             <span class="stay-card__badge">15% off</span>
           </div>
             <div class="stay-card__body">
-              <span class="stay-card__offer">Use promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> to receive 15% off your stay.</span>
+              <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</span>
               <h3 class="stay-card__title">Devils Backbone Campground</h3>
               <p class="stay-card__copy">Settle into the Blue Ridge where outdoor stays, mountain scenery, craft beverage experiences, and on-site agritourism come together.</p>
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Your Stay</a>
@@ -3823,7 +4113,7 @@
             <h2 class="section-title" id="itin-title">Build your itinerary</h2>
             <span class="itin-length-tag" id="itinLengthTag">2 nights</span>
           </div>
-          <p class="section-copy">Pick your check-in and check-out dates, then drag experiences to reshape the plan. Nelson moves at your speed.</p>
+          <p class="section-copy">Pick your check-in and check-out dates, then <span class="itin-reorder-hint itin-reorder-hint--drag">drag experiences to reshape the plan</span><span class="itin-reorder-hint itin-reorder-hint--tap">use the arrows to reshape the plan</span>. Nelson moves at your speed.</p>
         </div>
 
         <div class="range-picker" id="rangePicker">
@@ -3866,7 +4156,7 @@
           <div class="itin-map__bar">
             <div>
               <p class="itin-map__title">Your stay on the map</p>
-              <p class="itin-map__note">Day tags follow the sample plan, and update when you drag stops.</p>
+              <p class="itin-map__note">Day tags follow the sample plan, and update when you move stops.</p>
             </div>
             <div class="itin-map__tools">
               <div class="itin-map__legend" id="itinMapLegend"></div>
@@ -4540,7 +4830,7 @@
         var isEmbed = document.documentElement.classList.contains("is-embed");
         var heroRoot = document.querySelector(".hero") || document.documentElement;
         var accentColors = new Array(slides.length);
-        var DEFAULT_ACCENT = "#8fc86a";
+        var DEFAULT_ACCENT = "#f0a8c0";
 
         var caption = document.getElementById("heroCaption");
 
@@ -4658,7 +4948,15 @@
         }
 
         function sampleSlide(i) {
-          var img = slides[i] && slides[i].querySelector("img");
+          var slide = slides[i];
+          if (!slide) return;
+          var forced = slide.getAttribute("data-hero-accent");
+          if (forced) {
+            accentColors[i] = forced;
+            if (i === index) applyAccent(i);
+            return;
+          }
+          var img = slide.querySelector("img");
           if (!img) return;
           function run() {
             var color = extractAccentFromImage(img);
@@ -6886,9 +7184,9 @@
       function copyCode(btn) {
         var code = "CHECKINTONELSON";
         var done = function () {
-          var original = btn.textContent;
           btn.textContent = "Copied";
-          setTimeout(function () { btn.textContent = original; }, 1600);
+          clearTimeout(btn._copyReset);
+          btn._copyReset = setTimeout(function () { btn.textContent = "Copy"; }, 1600);
         };
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(code).then(done).catch(function () {
@@ -7415,6 +7713,7 @@
         if (!rail || !track || !viewport) return;
 
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var slowScroll = window.matchMedia("(max-width: 900px), (pointer: coarse), (hover: none)");
         var maxShift = 0;
         var ticking = false;
         var programmatic = false;
@@ -7453,7 +7752,10 @@
           }
           var vh = window.innerHeight || 700;
           var rect = rail.getBoundingClientRect();
-          var travel = vh + rect.height;
+          // Mobile: stretch vertical travel so horizontal scrub is slower
+          // while the rail is on screen (drag/swipe still reaches the end).
+          var stretch = slowScroll.matches ? 3.1 : 1;
+          var travel = (vh + rect.height) * stretch;
           var progress = (vh - rect.top) / Math.max(1, travel);
           if (progress < 0) progress = 0;
           if (progress > 1) progress = 1;
@@ -7499,7 +7801,9 @@
           if (!dragging) return;
           var dx = e.clientX - dragStartX;
           if (Math.abs(dx) > 4) dragMoved = true;
-          viewport.scrollLeft = clamp(dragStartScroll - dx, 0, maxShift);
+          // Dampen finger drag on coarse pointers so swipes feel calmer.
+          var dragScale = (e.pointerType === "touch" || slowScroll.matches) ? 0.72 : 1;
+          viewport.scrollLeft = clamp(dragStartScroll - dx * dragScale, 0, maxShift);
           syncManualOffset();
         });
 
