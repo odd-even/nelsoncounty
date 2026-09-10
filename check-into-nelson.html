@@ -4528,7 +4528,8 @@
         max-width: none;
         left: 0;
         right: 0;
-        padding: 0.7rem var(--page-pad-x);
+        /* Match .wrap: min(100% - 2*page-pad, --max) centered */
+        padding: 0.7rem max(var(--page-pad-x), calc((100% - var(--max)) / 2));
         box-shadow: 0 -10px 36px rgba(17, 17, 17, 0.07);
       }
       .sticky-promo__bar {
@@ -4613,8 +4614,8 @@
         transform: translateY(110%);
         max-width: none;
         width: 100%;
-        padding-left: var(--page-pad-x);
-        padding-right: var(--page-pad-x);
+        padding-left: max(var(--page-pad-x), calc((100% - var(--max)) / 2));
+        padding-right: max(var(--page-pad-x), calc((100% - var(--max)) / 2));
       }
       html.is-embed .sticky-promo.is-visible {
         transform: none;
