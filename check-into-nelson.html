@@ -4825,9 +4825,11 @@
       }
 
       .do-rail__viewport {
-        scroll-snap-type: x mandatory;
+        scroll-snap-type: x proximity;
         scroll-padding-inline: 1rem;
         overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: auto;
       }
       .rail-scroll-hint {
         display: flex;
@@ -4885,8 +4887,7 @@
       }
       .do-card {
         width: min(78vw, 16.5rem);
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
+        scroll-snap-align: center;
         border-radius: 16px;
       }
       .do-card:hover {
@@ -10664,8 +10665,9 @@
         }
 
         function update() {
-          if (dragging || reduceMotion) {
+          if (dragging || reduceMotion || mobileHintMq.matches) {
             ticking = false;
+            if (mobileHintMq.matches) updateScrollHint();
             return;
           }
           var vh = window.innerHeight || 700;
@@ -10684,14 +10686,14 @@
         }
 
         function onScroll() {
-          if (ticking || reduceMotion) return;
+          if (ticking || reduceMotion || mobileHintMq.matches) return;
           ticking = true;
           window.requestAnimationFrame(update);
         }
 
         viewport.addEventListener("scroll", function () {
           if (programmatic || dragging) return;
-          syncManualOffset();
+          if (!mobileHintMq.matches) syncManualOffset();
           updateScrollHint();
         }, { passive: true });
 
@@ -10699,13 +10701,18 @@
           scrollHint.addEventListener("click", function () {
             var card = track.querySelector(".do-card");
             var step = card ? card.getBoundingClientRect().width + 12 : Math.max(160, viewport.clientWidth * 0.72);
-            setScrollLeft(clamp(viewport.scrollLeft + step, 0, maxShift));
-            syncManualOffset();
+            if (mobileHintMq.matches && typeof viewport.scrollBy === "function") {
+              viewport.scrollBy({ left: step, behavior: reduceMotion ? "auto" : "smooth" });
+            } else {
+              setScrollLeft(clamp(viewport.scrollLeft + step, 0, maxShift));
+              syncManualOffset();
+            }
             updateScrollHint();
           });
         }
 
         viewport.addEventListener("wheel", function (e) {
+          if (mobileHintMq.matches) return;
           if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
             window.requestAnimationFrame(syncManualOffset);
             return;
@@ -10718,6 +10725,8 @@
         }, { passive: false });
 
         viewport.addEventListener("pointerdown", function (e) {
+          // Mobile/touch: let native overflow scrolling carry momentum like iOS.
+          if (e.pointerType === "touch" || mobileHintMq.matches) return;
           if (e.pointerType === "mouse" && e.button !== 0) return;
           dragging = true;
           dragAxis = null;
@@ -10746,9 +10755,7 @@
           }
           if (dragAxis !== "x") return;
           if (Math.abs(dx) > 4) dragMoved = true;
-          // Dampen finger drag on coarse pointers so swipes feel calmer.
-          var dragScale = (e.pointerType === "touch" || slowScroll.matches) ? 0.72 : 1;
-          viewport.scrollLeft = clamp(dragStartScroll - dx * dragScale, 0, maxShift);
+          viewport.scrollLeft = clamp(dragStartScroll - dx, 0, maxShift);
           syncManualOffset();
           updateScrollHint();
         });
