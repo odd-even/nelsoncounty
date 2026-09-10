@@ -17,10 +17,13 @@
   max-width: 100% !important;
 }
 .nc-site-footer-source .framer-17l8nai {
-  width: 100% !important;
-  max-width: min(1500px, 100%) !important;
-  padding-left: clamp(16px, 4vw, 48px) !important;
-  padding-right: clamp(16px, 4vw, 48px) !important;
+  /* Match campaign .wrap: min(100% - 2*page-pad, --max) centered */
+  width: min(calc(100% - (var(--page-pad-x, 1.25rem) * 2)), var(--max, 1500px)) !important;
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   box-sizing: border-box;
 }
 #nc-footer-sprites {

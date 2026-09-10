@@ -2255,9 +2255,10 @@
     .itinerary__head { margin-bottom: 2rem; }
     .itinerary__title-row {
       display: flex;
+      flex-direction: column;
       flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.55rem 0.85rem;
+      align-items: flex-start;
+      gap: 0.45rem;
       margin-bottom: 0.65rem;
     }
     .itinerary__title-row .section-title {
@@ -4284,10 +4285,10 @@
 
     /* —— Campaign credit inside site footer —— */
     .nc-footer-campaign {
-      width: 100%;
-      max-width: min(1500px, 100%);
+      width: min(calc(100% - (var(--page-pad-x) * 2)), var(--max));
+      max-width: none;
       margin: 0 auto;
-      padding: 2rem clamp(16px, 4vw, 48px) 0;
+      padding: 2rem 0 0;
       box-sizing: border-box;
       color: var(--muted);
       font-size: 0.95rem;
