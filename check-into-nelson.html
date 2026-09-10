@@ -683,7 +683,8 @@
     main > section + section {
       border-top: 1px solid var(--section-line);
     }
-    main > .hero + .hero-below {
+    main > .hero + .hero-below,
+    main > .partner-strip + section {
       border-top: 0;
     }
     .wrap {
@@ -1229,7 +1230,7 @@
 
     /* —— Partner strip + showcase ads —— */
     .partner-strip {
-      padding: 1.25rem 0;
+      padding: 1.25rem 0 1.85rem;
       background: #fafafa;
     }
     .partner-strip__label {
@@ -4451,7 +4452,7 @@
       }
 
       .partner-strip {
-        padding: 1rem 0 1.15rem;
+        padding: 1rem 0 1.75rem;
       }
       .partner-strip .wrap {
         width: 100%;
@@ -4599,6 +4600,9 @@
         height: 1px;
         background: var(--section-line);
         pointer-events: none;
+      }
+      main > .partner-strip + section::before {
+        display: none;
       }
       .day-divider.reveal,
       .day-divider.reveal--soft {
