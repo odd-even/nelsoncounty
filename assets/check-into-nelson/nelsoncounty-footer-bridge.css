@@ -25,7 +25,105 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
   box-sizing: border-box;
+  overflow: visible !important;
 }
+
+/*
+  Virginia is for Lovers + VA250:
+  Framer desktop used absolute offsets (and stripped translateY), while mobile
+  variants set VA width:auto around an absolutely positioned image — collapsing
+  it to 0x0. Keep both logos in a stable flex row at every breakpoint.
+*/
+.nc-site-footer-source .framer-1t7rsw5 {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 1.5rem !important;
+  width: max-content !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 4.5rem !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+.nc-site-footer-source .framer-1h2q9y7 {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+  width: 214px !important;
+  height: 65px !important;
+  align-self: center !important;
+  overflow: visible !important;
+}
+.nc-site-footer-source .framer-ifekr0,
+.nc-site-footer-source .framer-l8kki4 {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 214px !important;
+  height: 65px !important;
+}
+.nc-site-footer-source .framer-pky4ie {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  flex: 0 0 auto !important;
+  display: block !important;
+  width: 190px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 2.61437 / 1 !important;
+  align-self: center !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+.nc-site-footer-source .framer-pky4ie [data-framer-background-image-wrapper],
+.nc-site-footer-source .framer-pky4ie img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Phone / small tablet Framer variants */
+.nc-site-footer-source .framer-v-19swfjr .framer-1t7rsw5,
+.nc-site-footer-source .framer-v-4na5j .framer-1t7rsw5 {
+  gap: 1rem !important;
+  min-height: 0 !important;
+  width: 100% !important;
+  justify-content: space-between !important;
+}
+.nc-site-footer-source .framer-v-19swfjr .framer-1h2q9y7 {
+  width: 168px !important;
+  height: 51px !important;
+}
+.nc-site-footer-source .framer-v-19swfjr .framer-ifekr0,
+.nc-site-footer-source .framer-v-19swfjr .framer-l8kki4 {
+  width: 168px !important;
+  height: 51px !important;
+}
+.nc-site-footer-source .framer-v-19swfjr .framer-pky4ie {
+  width: 149px !important;
+}
+.nc-site-footer-source .framer-v-4na5j .framer-1h2q9y7 {
+  width: 137px !important;
+  height: 42px !important;
+}
+.nc-site-footer-source .framer-v-4na5j .framer-ifekr0,
+.nc-site-footer-source .framer-v-4na5j .framer-l8kki4 {
+  width: 137px !important;
+  height: 42px !important;
+}
+.nc-site-footer-source .framer-v-4na5j .framer-pky4ie {
+  width: 124px !important;
+}
+
 #nc-footer-sprites {
   position: absolute;
   width: 0;

@@ -38,6 +38,7 @@
       var pendingHash = window.location.hash || "";
       var bootPinUntil = 0;
       var bootPinTimer = 0;
+      var bootPinActive = false;
 
       if (pendingHash) {
         try {
@@ -67,42 +68,70 @@
         pendingHash = "";
       }
 
+      function stopBootPin() {
+        bootPinUntil = 0;
+        bootPinActive = false;
+        if (bootPinTimer) {
+          window.clearInterval(bootPinTimer);
+          bootPinTimer = 0;
+        }
+      }
+
       function startBootPin(ms) {
-        bootPinUntil = Math.max(bootPinUntil, Date.now() + (ms || 1200));
+        bootPinActive = true;
+        bootPinUntil = Math.max(bootPinUntil, Date.now() + (ms || 400));
         pinTop();
         if (bootPinTimer) return;
         bootPinTimer = window.setInterval(function () {
-          if (Date.now() >= bootPinUntil) {
-            window.clearInterval(bootPinTimer);
-            bootPinTimer = 0;
+          if (!bootPinActive || Date.now() >= bootPinUntil) {
+            stopBootPin();
             return;
           }
           pinTop();
         }, 50);
       }
 
+      // If the user starts scrolling/interacting, stop fighting them.
+      function onUserScrollIntent() {
+        if (!bootPinActive) return;
+        stopBootPin();
+      }
+      window.addEventListener("wheel", onUserScrollIntent, { passive: true, capture: true });
+      window.addEventListener("touchmove", onUserScrollIntent, { passive: true, capture: true });
+      window.addEventListener("keydown", function (e) {
+        if (!bootPinActive) return;
+        var k = e.key;
+        if (k === "ArrowDown" || k === "ArrowUp" || k === "PageDown" || k === "PageUp" || k === "Home" || k === "End" || k === " ") {
+          stopBootPin();
+        }
+      }, true);
+
       pinTop();
-      startBootPin(300);
+      startBootPin(200);
 
       document.addEventListener("DOMContentLoaded", function () {
-        startBootPin(800);
+        startBootPin(400);
       });
 
       window.addEventListener("load", function () {
         restoreHashQuietly();
-        startBootPin(1500);
+        // Brief pin after load to catch late browser restoration — not a long fight.
+        startBootPin(500);
         requestAnimationFrame(function () {
+          if (!bootPinActive) return;
           pinTop();
-          requestAnimationFrame(pinTop);
+          requestAnimationFrame(function () {
+            if (bootPinActive) pinTop();
+          });
         });
       });
 
       window.addEventListener("pageshow", function () {
-        startBootPin(1000);
+        startBootPin(400);
       });
 
       window.addEventListener("hashchange", function () {
-        if (Date.now() < bootPinUntil) {
+        if (bootPinActive && Date.now() < bootPinUntil) {
           pinTop();
         }
       });
