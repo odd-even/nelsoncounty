@@ -213,10 +213,17 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/check-into-nelson/nelsoncounty-footer.css?v=20260910d" />
-  <link rel="stylesheet" href="assets/check-into-nelson/nelsoncounty-footer-bridge.css?v=20260910d" />
+  <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" />
+  </noscript>
+  <link rel="preload" as="image" type="image/webp" href="assets/check-into-nelson/hero/01-farmhouse-1280.webp" imagesrcset="assets/check-into-nelson/hero/01-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/01-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/01-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/01-farmhouse-3200.webp 3200w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="stylesheet" href="assets/check-into-nelson/nelsoncounty-footer.css?v=20260910e" />
+  <link rel="stylesheet" href="assets/check-into-nelson/nelsoncounty-footer-bridge.css?v=20260910e" />
   <style>
     :root {
       --ink: #333333;
@@ -3907,6 +3914,15 @@
       object-position: 18% center;
     }
 
+    /* Skip layout/paint work for far-below-fold sections until near viewport */
+    .hub,
+    .itinerary,
+    .highlights,
+    .passport {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 1200px;
+    }
+
     /* —— Highlights photo grid —— */
     .highlights {
       padding: clamp(3rem, 7vw, 5.25rem) 0 clamp(3.5rem, 8vw, 6rem);
@@ -6606,7 +6622,7 @@
       <div class="hero__media" aria-hidden="true">
         <div class="hero__slide is-active" data-hero-accent="#f0a8c0">
           <img
-            src="assets/check-into-nelson/hero/01-farmhouse-3200.webp"
+            src="assets/check-into-nelson/hero/01-farmhouse-1280.webp"
             srcset="assets/check-into-nelson/hero/01-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/01-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/01-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/01-farmhouse-3200.webp 3200w"
             sizes="100vw"
             alt=""
@@ -6616,8 +6632,8 @@
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/hero/02-farmhouse-3200.webp"
-            srcset="assets/check-into-nelson/hero/02-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/02-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/02-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/02-farmhouse-3200.webp 3200w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/02-farmhouse-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/02-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/02-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/02-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/02-farmhouse-3200.webp 3200w"
             sizes="100vw"
             alt=""
             width="3200"
@@ -6626,8 +6642,8 @@
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/hero/03-devils-2500.webp"
-            srcset="assets/check-into-nelson/hero/03-devils-1280.webp 1280w, assets/check-into-nelson/hero/03-devils-1920.webp 1920w, assets/check-into-nelson/hero/03-devils-2500.webp 2500w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/03-devils-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/03-devils-1280.webp 1280w, assets/check-into-nelson/hero/03-devils-1920.webp 1920w, assets/check-into-nelson/hero/03-devils-2500.webp 2500w"
             sizes="100vw"
             alt=""
             width="2500"
@@ -6636,8 +6652,8 @@
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/hero/04-devils-2-2500.webp"
-            srcset="assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-devils-2-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w"
             sizes="100vw"
             alt=""
             width="2500"
@@ -6646,8 +6662,8 @@
         </div>
         <div class="hero__slide" data-hero-accent="#a8c5c2">
           <img
-            src="assets/check-into-nelson/hero/04-tunnel-3200.webp"
-            srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp 3200w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-tunnel-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp 3200w"
             sizes="100vw"
             alt=""
             width="3200"
@@ -6656,8 +6672,8 @@
         </div>
         <div class="hero__slide" data-hero-accent="#ff7a6a">
           <img
-            src="assets/check-into-nelson/hero/05-flying-fox-1832.webp"
-            srcset="assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/05-flying-fox-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w"
             sizes="100vw"
             alt=""
             width="1832"
@@ -6666,8 +6682,8 @@
         </div>
         <div class="hero__slide" data-hero-accent="#e8d278">
           <img
-            src="assets/check-into-nelson/hero/07-glass-hollow-2500.webp"
-            srcset="assets/check-into-nelson/hero/07-glass-hollow-1280.webp 1280w, assets/check-into-nelson/hero/07-glass-hollow-1920.webp 1920w, assets/check-into-nelson/hero/07-glass-hollow-2500.webp 2500w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/07-glass-hollow-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/07-glass-hollow-1280.webp 1280w, assets/check-into-nelson/hero/07-glass-hollow-1920.webp 1920w, assets/check-into-nelson/hero/07-glass-hollow-2500.webp 2500w"
             sizes="100vw"
             alt=""
             width="2500"
@@ -6676,8 +6692,8 @@
         </div>
         <div class="hero__slide">
           <img
-            src="assets/check-into-nelson/hero/06-spy-rock-1920.webp"
-            srcset="assets/check-into-nelson/hero/06-spy-rock-1280.webp 1280w, assets/check-into-nelson/hero/06-spy-rock-1920.webp 1920w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/06-spy-rock-1280.webp"
+            data-srcset="assets/check-into-nelson/hero/06-spy-rock-1280.webp 1280w, assets/check-into-nelson/hero/06-spy-rock-1920.webp 1920w"
             sizes="100vw"
             alt=""
             width="1920"
@@ -6748,31 +6764,31 @@
           </button>
           <div class="partner-strip__row" id="partnerStripRow">
           <a class="partner-chip" href="#feature-farmhouse">
-            <img src="assets/check-into-nelson/cards/farmhouse-veritas-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+            <img src="assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
             Farmhouse at Veritas
           </a>
           <a class="partner-chip" href="#feature-devils-backbone-camp">
-            <img src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+            <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
             Devils Backbone Campground
           </a>
           <a class="partner-chip" href="#feature-flying-fox">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/flying-fox-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
             Flying Fox Vineyard
           </a>
           <a class="partner-chip" href="#feature-glass-hollow">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
             Glass Hollow Studio
           </a>
           <a class="partner-chip" href="#feature-rides">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-80,h-80,fo-auto,q-70" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/reliable-rides-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
             Reliable Rides
           </a>
           <a class="partner-chip" href="#feature-indigo-house">
-            <img src="assets/check-into-nelson/cards/indigo-house-480.webp" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/indigo-house-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
             The Indigo House
           </a>
           <a class="partner-chip" href="#feature-retreat-crabtree">
-            <img src="assets/check-into-nelson/cards/retreat-crabtree-480.webp" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/retreat-crabtree-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
             Retreat at Crabtree Falls
           </a>
           </div>
@@ -6801,7 +6817,7 @@
       <div class="do-rail__viewport" id="doRailViewport">
         <div class="do-rail__track" id="doRailTrack">
           <a class="do-card" data-cat="taste" href="#feature-flying-fox">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/flying-fox-480.webp" srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" sizes="(max-width:859px) 13.75rem, 15.5rem" loading="eager" fetchpriority="high" decoding="async" width="717" height="896" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/flying-fox-480.webp" data-srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="717" height="896" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Sip</span>
@@ -6810,7 +6826,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="culture" href="#feature-glass-hollow">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/glass-hollow-480.webp" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" sizes="(max-width:859px) 13.75rem, 15.5rem" loading="eager" fetchpriority="low" decoding="async" width="800" height="1000" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/glass-hollow-480.webp" data-srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Create</span>
@@ -6873,7 +6889,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#itinerary">
-            <img class="do-card__img" data-src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-480,h-600,fo-auto,q-70" data-srcset="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-480,h-600,fo-auto,q-70 480w, https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-640,h-800,fo-auto,q-70 640w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="640" height="800" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/tye-river-480.webp" data-srcset="assets/check-into-nelson/cards/tye-river-480.webp 480w, assets/check-into-nelson/cards/tye-river-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="640" height="800" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6930,10 +6946,10 @@
           <article class="stay-card" id="feature-farmhouse">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1143" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp" data-srcset="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp" data-srcset="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1143" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp" data-srcset="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp" data-srcset="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Farmhouse at Veritas photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
@@ -6954,11 +6970,11 @@
           <article class="stay-card" id="feature-devils-backbone-camp">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="961" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="961" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone Campground photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
@@ -6980,11 +6996,11 @@
           <article class="stay-card" id="feature-indigo-house">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/indigo-house/01-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/01-800.webp 800w, assets/check-into-nelson/slides/indigo-house/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/indigo-house/02-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/02-800.webp 800w, assets/check-into-nelson/slides/indigo-house/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/indigo-house/03-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/03-800.webp 800w, assets/check-into-nelson/slides/indigo-house/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/indigo-house/04-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/04-800.webp 800w, assets/check-into-nelson/slides/indigo-house/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/indigo-house/05-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/05-800.webp 800w, assets/check-into-nelson/slides/indigo-house/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/indigo-house/01-800.webp" data-srcset="assets/check-into-nelson/slides/indigo-house/01-800.webp 800w, assets/check-into-nelson/slides/indigo-house/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/indigo-house/02-800.webp" data-srcset="assets/check-into-nelson/slides/indigo-house/02-800.webp 800w, assets/check-into-nelson/slides/indigo-house/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/indigo-house/03-800.webp" data-srcset="assets/check-into-nelson/slides/indigo-house/03-800.webp 800w, assets/check-into-nelson/slides/indigo-house/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/indigo-house/04-800.webp" data-srcset="assets/check-into-nelson/slides/indigo-house/04-800.webp 800w, assets/check-into-nelson/slides/indigo-house/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/indigo-house/05-800.webp" data-srcset="assets/check-into-nelson/slides/indigo-house/05-800.webp 800w, assets/check-into-nelson/slides/indigo-house/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="The Indigo House photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
@@ -7006,10 +7022,10 @@
           <article class="stay-card" id="feature-retreat-crabtree">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp" data-srcset="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp" data-srcset="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp" data-srcset="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp" data-srcset="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="The Retreat at Crabtree Falls photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
@@ -7041,12 +7057,12 @@
         <article class="partner-feature" id="feature-flying-fox" data-cat="taste">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/flying-fox/01-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/flying-fox/02-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/flying-fox/03-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/flying-fox/04-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/flying-fox/05-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/05-800.webp 800w, assets/check-into-nelson/slides/flying-fox/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/flying-fox/06-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/06-800.webp 800w, assets/check-into-nelson/slides/flying-fox/06-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/01-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/02-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/03-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/04-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/05-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/05-800.webp 800w, assets/check-into-nelson/slides/flying-fox/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/06-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/06-800.webp 800w, assets/check-into-nelson/slides/flying-fox/06-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Flying Fox Vineyard photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 6" aria-current="true"></button>
@@ -7074,10 +7090,10 @@
         <article class="partner-feature" id="feature-glass-hollow" data-cat="culture">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/glass-hollow/02-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/glass-hollow/03-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/glass-hollow/04-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/02-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/03-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/04-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Glass Hollow Studio photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
@@ -7103,8 +7119,8 @@
         <article class="partner-feature" id="feature-tunnel" data-cat="outdoor">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Blue Ridge Tunnel photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
@@ -7125,11 +7141,11 @@
         <article class="partner-feature" id="feature-devils-backbone" data-cat="experience">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="961" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="961" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
@@ -7153,8 +7169,8 @@
         <article class="partner-feature" id="feature-rides" data-cat="community">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/reliable-rides/01-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/01-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="assets/check-into-nelson/slides/reliable-rides/02-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/02-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/reliable-rides/01-800.webp" data-srcset="assets/check-into-nelson/slides/reliable-rides/01-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/reliable-rides/02-800.webp" data-srcset="assets/check-into-nelson/slides/reliable-rides/02-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Reliable Rides photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
@@ -7285,19 +7301,19 @@
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--stay">Settle in</span><span class="timeline-item__daymeta">Day 1</span></p>
                       <div class="stay-swap" role="radiogroup" aria-label="Choose your lodging">
                         <button type="button" class="stay-swap__chip is-selected" role="radio" aria-checked="true" data-stay-option="farmhouse" id="stayOptFarmhouse">
-                          <img src="assets/check-into-nelson/cards/farmhouse-veritas-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+                          <img src="assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
                           <span class="stay-swap__name">Farmhouse at Veritas</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="backbone" id="stayOptBackbone">
-                          <img src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+                          <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
                           <span class="stay-swap__name">Devils Backbone Campground</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="indigo" id="stayOptIndigo">
-                          <img src="assets/check-into-nelson/cards/indigo-house-480.webp" alt="" width="80" height="80" loading="lazy" />
+                          <img src="assets/check-into-nelson/cards/indigo-house-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
                           <span class="stay-swap__name">The Indigo House</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="retreat" id="stayOptRetreat">
-                          <img src="assets/check-into-nelson/cards/retreat-crabtree-480.webp" alt="" width="80" height="80" loading="lazy" />
+                          <img src="assets/check-into-nelson/cards/retreat-crabtree-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
                           <span class="stay-swap__name">Retreat at Crabtree Falls</span>
                         </button>
                       </div>
@@ -7310,7 +7326,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img id="checkinImage" src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="Farmhouse at Veritas" width="400" height="400" loading="lazy" />
+                    <img id="checkinImage" src="assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp" alt="Farmhouse at Veritas" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7349,7 +7365,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img id="sipImage" src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75" alt="Flying Fox Vineyard" width="400" height="400" loading="lazy" />
+                    <img id="sipImage" src="assets/check-into-nelson/cards/flying-fox-sq-400.webp" alt="Flying Fox Vineyard" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7371,7 +7387,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp" alt="" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7393,7 +7409,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7426,7 +7442,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-400,h-400,fo-auto,q-75" alt="Blue Ridge Tunnel" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/blue-ridge-tunnel-sq-400.webp" alt="Blue Ridge Tunnel" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7446,7 +7462,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/crabtree-falls-image1_IXQ2lOEKu?tr=w-400,h-400,fo-auto,q-75" alt="Crabtree Falls" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/crabtree-falls-sq-400.webp" alt="Crabtree Falls" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7467,7 +7483,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/spy-rock-image1_1KwRYk5CN?tr=w-400,h-400,fo-auto,q-75" alt="Spy Rock" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/spy-rock-sq-400.webp" alt="Spy Rock" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7488,7 +7504,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-400,h-400,fo-auto,q-75" alt="Tye River" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/tye-river-sq-400.webp" alt="Tye River" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7544,7 +7560,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-400,h-400,fo-auto,q-75" alt="" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/reliable-rides-sq-400.webp" alt="" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7602,19 +7618,19 @@
             <span class="highlights-grid__name">Devils Backbone</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/tye-river" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="tye-river">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-960,h-640,fo-auto,q-75" alt="" width="960" height="640" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/tye-river-wide-480.webp" srcset="assets/check-into-nelson/cards/tye-river-wide-480.webp 480w, assets/check-into-nelson/cards/tye-river-wide-960.webp 960w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="960" height="640" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Tye River</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="crabtree-falls">
-            <img src="assets/check-into-nelson/slides/crabtree-falls/02-800.webp" srcset="assets/check-into-nelson/slides/crabtree-falls/02-800.webp 800w, assets/check-into-nelson/slides/crabtree-falls/02-1600.webp 1600w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="1600" height="1067" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/crabtree-falls-480.webp" srcset="assets/check-into-nelson/cards/crabtree-falls-480.webp 480w, assets/check-into-nelson/cards/crabtree-falls-581.webp 581w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="581" height="726" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Crabtree Falls</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/veritas-vineyards-winery" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="veritas">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-960,h-720,fo-auto,q-75" alt="" width="960" height="720" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/veritas-winery-wide-480.webp" srcset="assets/check-into-nelson/cards/veritas-winery-wide-480.webp 480w, assets/check-into-nelson/cards/veritas-winery-wide-960.webp 960w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="960" height="720" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Veritas Vineyards</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/bold-rock-hard-cider" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="bold-rock">
-            <img src="https://ik.imagekit.io/OE/nelson-county/listings/bold-rock-hard-cider-image1__h55RjVBl?tr=w-960,h-720,fo-auto,q-75" alt="" width="960" height="720" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/bold-rock-wide-480.webp" srcset="assets/check-into-nelson/cards/bold-rock-wide-480.webp 480w, assets/check-into-nelson/cards/bold-rock-wide-960.webp 960w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="960" height="720" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Bold Rock Hard Cider</span>
           </a>
         </div>
@@ -7742,7 +7758,7 @@
 
 <footer class="framer-tgosD framer-cSv64 framer-H9DXL framer-YK84E framer-cew2e8 framer-v-cew2e8" data-framer-name="Desktop" style="width: 100%; opacity: 1;"><div class="framer-17l8nai" data-framer-name="Container" style="opacity: 1;"><div class="framer-u36qrf" data-framer-name="Top Items" style="opacity: 1;"><div class="framer-1ddqvjw" data-framer-name="Heading Box" style="will-change: transform; opacity: 1; transform: none;"><!--$--><a class="framer-d6ntdr framer-1qheuq1" data-framer-name="Nelson County Logo" href="https://nelsoncounty.com/" data-framer-page-link-current="true" style="opacity: 1;"><div class="framer-1f9eshe" data-framer-component-type="RichTextContainer" style="--extracted-1w3ko1f: var(--token-c15e335c-2943-4606-bfd3-4f0c61dc2c33, rgb(187, 194, 54)); --extracted-2gg91v: &quot;wght&quot; 800; --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text" style="--font-selector:RlM7UG9wcGlucy12YXJpYWJsZVZGPUluZG5hSFFpSURnd01BPT0=;--framer-font-family:&quot;Poppins Variable&quot;, &quot;Poppins Variable Placeholder&quot;, sans-serif;--framer-font-variation-axes:var(--extracted-2gg91v, &quot;wght&quot; 800);--framer-line-height:0.9em;--framer-text-transform:uppercase"><span class="framer-text" style="--framer-font-size:50px;--framer-text-color:var(--extracted-1w3ko1f, var(--token-c15e335c-2943-4606-bfd3-4f0c61dc2c33, rgb(187, 194, 54)))">Visit</span><span class="framer-text" style="--framer-font-size:50px"> Nelson </span><span class="framer-text" style="--framer-font-size:50px"><br class="framer-text"></span><span class="framer-text" style="--framer-font-size:50px">County</span></p></div></a><!--/$--><div class="framer-16xcp9y" data-framer-name="Social Link" style="opacity: 1;"><div class="framer-qsg97f" style="opacity: 1;"><div class="framer-1vdynpr" data-framer-component-type="RichTextContainer" style="--framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1xi1pzq" data-styles-preset="d1G27apoV" dir="auto" style="--framer-text-alignment:start">Stay connected.</p></div><!--$--><a class="framer-eywdhv framer-1qheuq1" data-border="true" data-framer-name="Navigation Button 3" data-highlight="true" href="https://lp.constantcontactpages.com/sl/mGFRSg6" target="_blank" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; border-radius: 18px; opacity: 1;"><div class="framer-129sytt" data-framer-component-type="RichTextContainer" style="--extracted-2gg91v: &quot;opsz&quot; 32, &quot;wght&quot; 500; --extracted-r6o4lv: rgba(51, 51, 51, 0.63); transform: none; opacity: 1;"><p dir="auto" class="framer-text" style="--font-selector:SW50ZXItVmFyaWFibGVWRj1JbTl3YzNvaUlETXlMQ0FpZDJkb2RDSWdOVEF3;--framer-font-family:&quot;Inter Variable&quot;, &quot;Inter Variable Placeholder&quot;, sans-serif;--framer-font-variation-axes:var(--extracted-2gg91v, &quot;opsz&quot; 32, &quot;wght&quot; 500);--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgba(51, 51, 51, 0.63))">Subscribe to our mailing list</p></div><div class="framer-kfeozs" style="background-color: var(--token-34b9b87f-2cde-4c48-853a-6a9145e82288, rgb(51, 51, 51)); border-radius: 15px; opacity: 1;"><div class="framer-1pxke5b" data-framer-component-type="RichTextContainer" style="--extracted-2gg91v: &quot;opsz&quot; 32, &quot;wght&quot; 500; --extracted-r6o4lv: var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(255, 255, 255)); transform: none; opacity: 1;"><p dir="auto" class="framer-text" style="--font-selector:SW50ZXItVmFyaWFibGVWRj1JbTl3YzNvaUlETXlMQ0FpZDJkb2RDSWdOVEF3;--framer-font-family:&quot;Inter Variable&quot;, &quot;Inter Variable Placeholder&quot;, sans-serif;--framer-font-variation-axes:var(--extracted-2gg91v, &quot;opsz&quot; 32, &quot;wght&quot; 500);--framer-text-alignment:center;--framer-text-color:var(--extracted-r6o4lv, var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(255, 255, 255)))">Subscribe</p></div></div></a><!--/$--></div><div class="framer-cpffor" style="opacity: 1;"><div class="framer-1aexatn-container" style="opacity: 1;"><!--$--><a aria-label="Facebook" class="framer-ubacb framer-1fzbxvn framer-v-1fzbxvn framer-of2nn6" data-border="true" data-framer-name="Variant 1" href="https://www.facebook.com/VisitNelsonCounty" target="_blank" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(237, 243, 255)); border-radius: 13px; opacity: 1;"><svg class="framer-KGdlk framer-1m2n1cx" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 1.5; --4rxgx6: rgb(0, 0, 0); opacity: 1;"><use href="#1948737764"></use></svg></a><!--/$--></div><div class="framer-16yumak-container" style="opacity: 1;"><!--$--><a aria-label="Instagram" class="framer-ubacb framer-1fzbxvn framer-v-1fzbxvn framer-of2nn6" data-border="true" data-framer-name="Variant 1" href="https://www.instagram.com/visitnelsoncounty/" target="_blank" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(237, 243, 255)); border-radius: 13px; opacity: 1;"><svg class="framer-Hzxo3 framer-1m2n1cx" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 1.5; --4rxgx6: rgb(0, 0, 0); opacity: 1;"><use href="#2660449837"></use></svg></a><!--/$--></div><div class="framer-1ukut6n-container" style="opacity: 1;"><!--$--><a aria-label="Phone Number" class="framer-ubacb framer-1fzbxvn framer-v-1fzbxvn framer-of2nn6" data-border="true" data-framer-name="Variant 1" href="tel:434-263-7015" target="_blank" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(237, 243, 255)); border-radius: 13px; opacity: 1;"><svg class="framer-syw4O framer-1m2n1cx" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 1.5; --4rxgx6: rgb(0, 0, 0); opacity: 1;"><use href="#2972593296"></use></svg></a><!--/$--></div><div class="framer-2hoab8-container" style="opacity: 1;"><!--$--><a aria-label="Email Us (opens your email application)" class="framer-ubacb framer-1fzbxvn framer-v-1fzbxvn framer-of2nn6" data-border="true" data-framer-name="Variant 1" href="mailto:info@nelsoncounty.org" target="_blank" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: var(--token-0b8ff057-a861-49f8-adec-93c2ff401d9f, rgb(237, 243, 255)); border-radius: 13px; opacity: 1;"><svg class="framer-K0agP framer-1m2n1cx" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 1.5; --4rxgx6: rgb(0, 0, 0); opacity: 1;"><use href="#2750456129"></use></svg></a><!--/$--></div></div></div></div><div class="framer-e0vfy7" data-border="true" data-framer-appear-id="e0vfy7" data-framer-name="3x" style="--border-bottom-width: 1px; --border-color: var(--token-6d60b22a-2ae5-4aae-aa38-b9c3eeddc05d, rgb(221, 221, 221)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; will-change: transform; border-radius: 20px; opacity: 1; transform: none;"><div class="framer-1xksgps" data-framer-name="Links Wrapper" style="will-change: transform; opacity: 1; transform: none;"><div class="framer-f6chvq" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1t5uz63" data-styles-preset="hSlVgx1uE" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)))">Nelson County</p></div><div class="framer-1wdec3f-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Culture</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><div class="framer-efil92-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Community</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><div class="framer-1ska7gh-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Taste</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><div class="framer-1pps8fx-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Experience</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><div class="framer-892mpo-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Outdoor</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><div class="framer-1kpxwoc-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Stay</h6></div><div class="framer-a0h7d4-container" style="opacity: 1;"><!--$--><div style="width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0); border-radius: 0px; padding: 0px; display: inline-block; color: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)) !important; font-size: 16px; font-weight: normal; text-align: left; text-decoration: none; font-family: sans-serif;"></div><!--/$--></div></a><!--/$--></div><!--$--><div class="framer-9bm48g-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/calendar-of-events" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Events</h6></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-6ncgk0-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/blog" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Blog</h6></div></a><!--/$--></div><!--/$--></div><div class="framer-1xjeawt" data-framer-name="Links Wrapper" style="will-change: transform; opacity: 1; transform: none;"><div class="framer-mvtgnl" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1t5uz63" data-styles-preset="hSlVgx1uE" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)))">Visitor Resources</p></div><div class="framer-1js3aje-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://ik.imagekit.io/OE/nelson-county/Bus-Tour-Flyer-8.5x11.pdf" target="_blank" style="width:100%;opacity:1.7"><svg class="framer-Hnj17 framer-jxhvfb" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 2; --4rxgx6: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); opacity: 1;"><use href="#1706969892"></use></svg><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Tours PDF</h6></div></a><!--/$--></div><div class="framer-19ve3fx-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://ik.imagekit.io/OE/nelson-county/Nelson-County-Visitor-Card.pdf" target="_blank" style="width:100%;opacity:1.7"><svg class="framer-Hnj17 framer-jxhvfb" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 2; --4rxgx6: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); opacity: 1;"><use href="#1706969892"></use></svg><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Visitor PDF</h6></div></a><!--/$--></div><!--$--><div class="framer-131hd7z-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/meeting-planners" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Meeting Spaces</h6></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1w9b2ju-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/va250" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">VA250</h6></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-k1m8q5-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/about" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">About Us</h6></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-14xn99m-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/contact" style="width:100%;opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Contact</h6></div></a><!--/$--></div><!--/$--></div><div class="framer-mzeg13-container" style="opacity: 1;"><!--$--><a class="framer-A0p39 framer-16jytrp framer-v-n816j2 framer-11q7jnu" data-framer-name="Grey Outline" data-reset="button" data-border="true" href="https://ik.imagekit.io/OE/nelson-county/Nelson-County-Visitor-Card.pdf" target="_blank" style="--10ocmuz: 12px 30px 12px 20px; --border-bottom-width: 1.4px; --border-color: var(--token-1a98a94d-102b-41c3-b833-a997ed219fca, rgb(171, 171, 171)); --border-left-width: 1.4px; --border-right-width: 1.4px; --border-style: solid; --border-top-width: 1.4px; backdrop-filter: none; background-color: rgba(0, 0, 0, 0); height: 100%; border-radius: 16px; box-shadow: none; opacity: 1;"><div class="framer-1aajioy" style="opacity: 1;"><svg class="framer-impBz framer-k2kocl" role="presentation" viewBox="0 0 24 24" style="--1ww558a: 2; --4rxgx6: var(--token-75a406c3-4c8b-4f56-910f-07926478b00c, rgb(128, 128, 128)); opacity: 1;"><use href="#3922207462"></use></svg></div><div class="framer-zcyo5v" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-weight:500;--framer-letter-spacing:0.02em;--framer-text-color:var(--extracted-r6o4lv, var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)))">Download Visitor's Guide (PDF)</p></div></a><!--/$--></div></div></div><div class="framer-i6mhk" style="opacity: 1;"><div class="framer-1t7rsw5" style="opacity: 1;"><!--$--><a aria-label="Virginia is for Lovers" class="framer-1h2q9y7 framer-1qheuq1" data-framer-name="Virginia is for Lovers Logo" href="https://www.virginia.org" target="_blank" style="opacity: 1;"><div data-framer-component-type="SVG" parentsize="0" _constraints="[object Object]" rotation="0" shadows="" class="framer-ifekr0" aria-hidden="true" style="image-rendering: pixelated; flex-shrink: 0; background-size: 100% 100%; background-image: url(&quot;data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 214.046 64.658%22 overflow=%22visible%22&gt;&lt;g opacity=%220.94%22&gt;&lt;g&gt;&lt;path d=%22M 178.449 26.501 L 178.401 21.022 C 181.504 22.38 185.575 24.608 187.03 22.188 C 190.325 16.66 180.436 15.885 178.206 11.815 C 176.026 7.742 177.189 3.622 181.357 1.49 C 185.429 -0.596 187.756 1.054 189.697 1.2 L 189.549 6.094 C 185.43 3.188 180 7.357 183.2 10.068 C 185.477 12.008 190.663 13.996 192.262 16.516 C 194.155 19.618 192.942 23.06 191.246 25.095 C 187.95 28.924 182.667 27.954 178.449 26.501 Z M 170.331 27.316 L 170.331 0.997 L 175.272 0.997 L 175.272 27.268 Z M 3.951 63.308 L 3.998 36.993 L 16.793 36.894 L 16.793 41.448 L 9.038 41.498 L 9.038 47.413 L 16.453 47.413 L 16.453 52.016 L 9.038 52.016 L 9.038 63.164 Z M 53.212 49.165 C 62.759 50.473 63.002 39.906 53.26 41.167 Z M 48.321 63.357 L 48.321 36.993 L 56.026 36.993 C 61.504 37.234 65.43 40.432 65.336 45.036 C 65.284 47.946 63.977 49.786 61.696 51.53 L 73.381 63.308 L 66.885 63.262 L 53.265 49.496 L 53.265 63.356 L 48.322 63.356 Z M 14.202 27.898 L 0 0.753 L 5.38 0.705 L 14.297 17.767 L 23.023 0.801 L 29.033 0.753 Z M 59.272 15.295 C 58.545 3.128 71.147 -4.19 80.84 2.595 L 80.84 8.168 C 76.382 3.419 64.592 3.013 64.263 13.113 C 64.026 20.442 70.127 23.438 73.231 23.438 C 80.792 23.438 82.78 16.701 81.76 16.701 L 75.849 16.701 L 75.849 11.948 L 87.287 11.948 C 87.675 18.786 86.657 22.419 82.634 25.327 C 74.103 31.531 59.95 26.879 59.273 15.295 Z M 30.417 27.25 L 30.417 0.833 L 35.604 0.833 L 35.604 27.297 Z%22 fill=%22rgb(19,12,14)%22&gt;&lt;/path&gt;&lt;path d=%22M 39.218 27.347 L 39.218 27.345 L 39.216 27.345 Z M 39.218 27.345 L 44.111 27.295 L 44.111 13.394 L 46.048 15.518 L 53.804 23.275 L 57.781 27.296 L 63.839 27.346 C 60.398 23.562 55.988 19.252 52.4 15.326 C 55.163 13.096 57.347 9.557 55.163 5.39 C 53.468 2.047 49.008 0.881 46.683 0.881 L 39.119 0.881 Z M 44.111 13.302 L 44.111 5.289 C 53.769 3.6 53.034 14.661 44.111 13.302 Z M 94.008 27.201 L 94.008 1.028 L 89.211 1.028 L 89.211 27.201 Z M 102.492 27.444 L 102.492 8.879 L 114.173 27.444 L 119.989 27.396 L 119.989 0.833 L 115.141 0.881 L 115.141 19.203 L 103.701 0.833 L 97.837 0.833 L 97.788 27.444 Z M 128.676 27.347 L 128.676 0.978 L 123.538 0.978 L 123.395 27.297 Z M 140.661 17.159 L 140.662 17.159 L 140.661 17.16 Z M 140.662 17.159 L 143.961 10.762 L 147.207 17.207 Z M 130.533 27.491 L 130.533 27.49 L 130.532 27.49 Z M 130.533 27.49 L 135.962 27.49 L 138.82 21.577 L 148.952 21.577 L 151.957 27.589 L 157.385 27.589 L 144.347 0.688 L 143.571 0.737 Z M 42.278 50.044 C 42.278 55.424 37.855 59.808 32.43 59.808 C 27.005 59.808 22.582 55.423 22.582 50.044 C 22.582 44.665 27.005 40.281 32.43 40.281 C 37.856 40.281 42.278 44.664 42.278 50.044 Z M 18.302 50.526 C 18.495 58.621 24.893 64.197 32.794 64.197 C 40.256 64.197 46.559 58.378 46.852 50.335 C 47.092 44.082 42.635 36.764 33.084 36.133 C 23.925 35.551 18.156 43.258 18.302 50.527 Z M 168.584 63.654 L 168.584 59.099 L 160.831 59.099 L 160.831 52.36 L 168.244 52.36 L 168.244 47.756 L 160.732 47.756 L 160.685 41.843 L 168.536 41.843 L 168.631 37.091 L 156.176 37.24 L 156.176 63.654 Z M 97.42 63.306 L 97.42 58.993 L 89.472 58.847 L 89.617 37.036 L 84.528 37.036 L 84.528 63.306 Z M 177.137 41.882 C 186.641 40.621 186.398 50.801 177.09 49.443 Z M 176.99 50.09 C 177.784 50.114 189.547 64.048 194.293 64.193 C 199.09 64.388 204.18 64.921 206.555 59.928 C 208.787 55.179 205.294 49.944 200.69 48.585 C 193.807 46.6 196.036 38.942 203.696 42.481 L 203.696 37.826 C 195.309 34.289 187.263 43.786 193.323 49.556 C 195.649 51.834 200.398 52.609 201.904 55.421 C 202.58 56.778 201.612 61.432 194.874 59.397 C 190.9 58.233 188.09 54.743 185.182 51.64 C 189.833 48.635 190.804 42.091 185.569 38.794 C 182.611 36.905 175.437 37.488 172.142 37.389 L 172.142 63.805 L 176.99 63.856 Z M 120.498 49.999 C 120.498 55.33 116.113 59.674 110.739 59.674 C 105.365 59.674 100.98 55.325 100.98 49.999 C 100.98 44.673 105.365 40.328 110.739 40.328 C 116.113 40.328 120.498 44.668 120.498 49.999 Z M 110.904 64.488 C 120.79 64.292 125.346 56.294 125.101 49.8 C 124.86 43.206 119.723 36.325 110.804 36.325 C 101.257 36.372 96.506 43.642 96.555 50.576 C 96.603 57.698 101.886 64.632 110.904 64.487 Z%22 fill=%22rgb(19,12,14)%22&gt;&lt;/path&gt;&lt;path d=%22M 140.286 42.685 C 141.414 38.331 145.569 36.468 147.751 36.711 C 157.103 37.922 158.656 50.651 140.286 64.658 C 121.914 50.651 123.465 37.922 132.822 36.711 C 135.002 36.468 139.157 38.331 140.286 42.685 Z%22 fill=%22rgb(255, 0, 0)%22&gt;&lt;/path&gt;&lt;path d=%22M 207.027 37.835 L 209.763 37.835 L 209.763 38.386 L 208.779 38.386 L 208.779 41.011 L 208.023 41.011 L 208.023 38.386 L 207.027 38.386 Z M 210.449 37.835 L 211.445 37.835 L 212.271 39.944 L 213.05 37.835 L 214.046 37.835 L 214.046 41.011 L 213.378 41.011 L 213.378 38.503 L 212.44 41.011 L 212.094 41.011 L 211.121 38.503 L 211.121 41.011 L 210.447 41.011 L 210.447 37.835 Z%22 fill=%22rgb(19,12,14)%22&gt;&lt;/path&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&quot;); opacity: 1;"></div></a><!--/$--><!--$--><a as="a" class="framer-pky4ie framer-1qheuq1" data-framer-name="VA250 Logo" href="https://nelsoncounty.com/va250" style="filter: grayscale(1); height: auto; aspect-ratio: 2.61437 / 1; border-radius: 162px; transform: none; opacity: 1;"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="auto" width="3966" height="1517" sizes="(min-width: 1560px) 190px, (min-width: 833px) and (max-width: 1559.98px) 190px, (min-width: 718px) and (max-width: 832.98px) 190px, (max-width: 717.98px) max(149.0191px, 190px)" srcset="https://framerusercontent.com/images/mSjs2yDrmjJp3Vcna8Y8O4Bo.png?scale-down-to=512&amp;width=3966&amp;height=1517 512w,https://framerusercontent.com/images/mSjs2yDrmjJp3Vcna8Y8O4Bo.png?scale-down-to=1024&amp;width=3966&amp;height=1517 1024w,https://framerusercontent.com/images/mSjs2yDrmjJp3Vcna8Y8O4Bo.png?scale-down-to=2048&amp;width=3966&amp;height=1517 2048w,https://framerusercontent.com/images/mSjs2yDrmjJp3Vcna8Y8O4Bo.png?width=3966&amp;height=1517 3966w" src="https://framerusercontent.com/images/mSjs2yDrmjJp3Vcna8Y8O4Bo.png?width=3966&amp;height=1517" alt="Virginia 250 logo" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:contain"></div></a><!--/$--></div></div><div class="framer-1thiodf" data-border="true" data-framer-name="Footer" style="--border-bottom-width: 0px; --border-color: rgba(0, 0, 0, 0.1); --border-left-width: 0px; --border-right-width: 0px; --border-style: solid; --border-top-width: 1px; will-change: transform; opacity: 1; transform: none;"><!--$--><a class="framer-ot12i1 framer-1qheuq1" href="https://nelsoncounty.com/" data-framer-page-link-current="true" style="opacity: 1;"><div class="framer-jmsgix" data-framer-component-type="RichTextContainer" style="--framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; transform: none; opacity: 1;"><p class="framer-text framer-styles-preset-1t5uz63" data-styles-preset="hSlVgx1uE">Nelson County Tourism ©</p></div><div class="framer-1i0q6sv-container" style="opacity: 1;"><!--$--><p style="margin: 0px; padding: 0px; color: var(--token-34b9b87f-2cde-4c48-853a-6a9145e82288, rgb(51, 51, 51)); font-family: Satoshi, &quot;Satoshi Placeholder&quot;, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.5em; visibility: visible; font-style: normal; letter-spacing: 0em; font-variant-numeric: tabular-nums; white-space: nowrap;">2026</p><!--/$--></div></a><!--/$--><div class="framer-mjelyc" data-framer-name="Quick Links" style="opacity: 1;"><!--$--><div class="framer-1wqrp8x-container" style="opacity: 1;"><!--$--><a class="framer-OiPIw framer-uqx0j8 framer-v-uqx0j8 framer-1mbrzi8" data-framer-name="Links" href="https://nelsoncounty.com/accessibility-statement" style="opacity:1.7"><div class="framer-18ihqlm" data-framer-component-type="RichTextContainer" style="--extracted-1w1cjl5: var(--variable-reference-h2leTDyKw-Gehr2h5AU); --framer-link-text-color: rgb(0, 153, 255); --framer-link-text-decoration: underline; --variable-reference-h2leTDyKw-Gehr2h5AU: var(--token-fc57e299-9463-4c02-a314-8bb420d0c676, rgb(0, 0, 0)); --variable-reference-UprMi0fVr-Gehr2h5AU: 18; transform: none; opacity: 1;"><h6 class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:calc(var(--variable-reference-UprMi0fVr-Gehr2h5AU) * 1px);--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-1w1cjl5, var(--variable-reference-h2leTDyKw-Gehr2h5AU))">Accessibility Statement</h6></div></a><!--/$--></div><!--/$--><div class="framer-yobh7h" data-framer-name="Footer Links" style="opacity:1.7"><div class="framer-1ggmlqn" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv: var(--token-d08b46da-39f8-44d2-8ee0-f3c3723c3b7e, rgb(31, 31, 31)); transform: none; opacity: 1;"><p dir="auto" class="framer-text" style="--font-selector:RlM7U2F0b3NoaS1tZWRpdW0=;--framer-font-family:&quot;Satoshi&quot;, &quot;Satoshi Placeholder&quot;, sans-serif;--framer-font-size:13px;--framer-font-weight:500;--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, var(--token-d08b46da-39f8-44d2-8ee0-f3c3723c3b7e, rgb(31, 31, 31)))"><!--$--><a class="framer-text framer-styles-preset-nexl3e" data-styles-preset="ciok0YKGC" href="https://www.oddpluseven.com" target="_blank" rel="">Site crafted by ODD + EVEN</a><!--/$--></p></div></div></div></div></div></footer>
 </div>
-<script src="assets/check-into-nelson/nelsoncounty-footer.js?v=20260910d"></script>
+<script src="assets/check-into-nelson/nelsoncounty-footer.js?v=20260910e"></script>
 
 
   <div class="sticky-promo" id="stickyPromo" aria-hidden="true">
@@ -7950,17 +7966,46 @@
         var dots = Array.prototype.slice.call(document.querySelectorAll("[data-hero-slide]"));
         if (slides.length < 2) return;
 
-        slides.forEach(function (slide) {
+        function hydrateHeroImg(img) {
+          if (!img || img.dataset.hydrated === "1") return;
+          var src = img.getAttribute("data-src");
+          var srcset = img.getAttribute("data-srcset");
+          if (srcset) {
+            img.setAttribute("srcset", srcset);
+            img.removeAttribute("data-srcset");
+          }
+          if (src) {
+            img.setAttribute("src", src);
+            img.removeAttribute("data-src");
+          }
+          img.dataset.hydrated = "1";
+        }
+
+        function ensureSlideReady(slide) {
+          if (!slide) return;
           var img = slide.querySelector("img:not(.hero__slide-blur)");
-          if (!img || slide.querySelector(".hero__slide-blur")) return;
-          var blur = img.cloneNode(true);
-          blur.className = "hero__slide-blur";
-          blur.removeAttribute("fetchpriority");
-          blur.setAttribute("aria-hidden", "true");
-          blur.setAttribute("alt", "");
+          if (!img) return;
+          hydrateHeroImg(img);
           img.classList.add("hero__slide-sharp");
-          slide.insertBefore(blur, img);
-        });
+          var blur = slide.querySelector(".hero__slide-blur");
+          if (!blur) {
+            blur = img.cloneNode(true);
+            blur.className = "hero__slide-blur";
+            blur.removeAttribute("fetchpriority");
+            blur.removeAttribute("data-src");
+            blur.removeAttribute("data-srcset");
+            blur.setAttribute("loading", "lazy");
+            blur.setAttribute("decoding", "async");
+            blur.setAttribute("aria-hidden", "true");
+            blur.setAttribute("alt", "");
+            slide.insertBefore(blur, img);
+          } else {
+            if (img.getAttribute("srcset")) blur.setAttribute("srcset", img.getAttribute("srcset"));
+            if (img.getAttribute("src") && !img.getAttribute("src").startsWith("data:")) {
+              blur.setAttribute("src", img.getAttribute("src"));
+            }
+          }
+        }
 
         var index = 0;
         var mobileMq = window.matchMedia("(max-width: 859px)");
@@ -8150,6 +8195,8 @@
 
         function show(next) {
           index = (next + slides.length) % slides.length;
+          ensureSlideReady(slides[index]);
+          ensureSlideReady(slides[(index + 1) % slides.length]);
           slides.forEach(function (slide, i) {
             slide.classList.toggle("is-active", i === index);
           });
@@ -8163,6 +8210,7 @@
               caption.setAttribute("aria-label", "Go to " + (dot.getAttribute("aria-label") || "section"));
             }
           });
+          sampleSlide(index);
           applyAccent(index);
           if (typeof window.syncHeroTitleToSlide === "function") {
             window.syncHeroTitleToSlide(index);
@@ -8263,8 +8311,7 @@
           if (!document.hidden) lastTick = performance.now();
         });
 
-        slides.forEach(function (_slide, i) { sampleSlide(i); });
-        applyAccent(0);
+        // Hydrate the first slide (+ prefetch next) without loading the whole hero set.
         show(0);
         start();
       })();
@@ -8360,7 +8407,7 @@
           id: "farmhouse",
           title: "Farmhouse at Veritas",
           copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
-          image: "assets/check-into-nelson/farmhouse-veritas.jpg",
+          image: "assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp",
           bookHref: "https://www.veritasfarmhouse.com/",
           bookLabel: "Book Farmhouse",
           discount: "15% off",
@@ -8373,7 +8420,7 @@
           id: "backbone",
           title: "Devils Backbone Campground",
           copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
-          image: "assets/check-into-nelson/devils-backbone.jpg",
+          image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp",
           bookHref: "https://www.dbbrewingcompany.com/camp-at-basecamp",
           bookLabel: "Book Devils Backbone",
           discount: "15% off",
@@ -8386,7 +8433,7 @@
           id: "indigo",
           title: "The Indigo House",
           copy: ["Check in, unpack, and enjoy complimentary coffee service during your stay."],
-          image: "assets/check-into-nelson/cards/indigo-house-800.webp",
+          image: "assets/check-into-nelson/cards/indigo-house-sq-400.webp",
           bookHref: "https://indigohouseva.com/",
           bookLabel: "Book Indigo House",
           discount: "5% off",
@@ -8399,7 +8446,7 @@
           id: "retreat",
           title: "The Retreat at Crabtree Falls",
           copy: ["Check in near the falls and let the Blue Ridge set the pace."],
-          image: "assets/check-into-nelson/cards/retreat-crabtree-800.webp",
+          image: "assets/check-into-nelson/cards/retreat-crabtree-sq-400.webp",
           bookHref: "https://www.crabtreefalls.com/",
           bookLabel: "Book the Retreat",
           discount: "15% off",
@@ -8416,7 +8463,7 @@
           id: "flyingfox",
           title: "Flying Fox Vineyard",
           copy: "A pour with a view. No rush back to anywhere.",
-          image: "https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-400,h-400,fo-auto,q-75",
+          image: "assets/check-into-nelson/cards/flying-fox-sq-400.webp",
           visitHref: "https://www.flyingfoxvineyard.com/",
           visitLabel: "Visit Flying Fox",
           aboutHref: "#feature-flying-fox",
@@ -8427,7 +8474,7 @@
           id: "backbone",
           title: "Devils Backbone",
           copy: "Craft pours and the Basecamp scene. No rush back to anywhere.",
-          image: "https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-400,h-400,fo-auto,q-75",
+          image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp",
           visitHref: "https://www.dbbrewingcompany.com/",
           visitLabel: "Explore Devils Backbone",
           aboutHref: "#feature-devils-backbone",
@@ -10704,6 +10751,25 @@
       function initMediaCarousels() {
         var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var carousels = [];
+        var PLACEHOLDER = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+        function hydrateImg(img) {
+          if (!img || img.dataset.hydrated === "1") return;
+          var src = img.getAttribute("data-src");
+          if (!src) {
+            img.dataset.hydrated = "1";
+            return;
+          }
+          img.dataset.hydrated = "1";
+          var srcset = img.getAttribute("data-srcset");
+          var sizes = img.getAttribute("data-sizes");
+          if (srcset) img.setAttribute("srcset", srcset);
+          if (sizes) img.setAttribute("sizes", sizes);
+          img.setAttribute("src", src);
+          img.removeAttribute("data-src");
+          img.removeAttribute("data-srcset");
+          img.removeAttribute("data-sizes");
+        }
 
         document.querySelectorAll("[data-carousel]").forEach(function (root) {
           var slides = Array.prototype.slice.call(root.querySelectorAll(".media-carousel__track img"));
@@ -10713,15 +10779,20 @@
               var dotsWrap = root.querySelector(".media-carousel__dots");
               if (dotsWrap) dotsWrap.hidden = true;
             }
+            slides.forEach(hydrateImg);
             return;
           }
           var index = Math.max(0, slides.findIndex(function (img) { return img.classList.contains("is-active"); }));
           var timer = null;
           var INTERVAL = 4200;
           var lastNudge = 0;
+          var started = false;
 
           function show(next) {
             index = ((next % slides.length) + slides.length) % slides.length;
+            hydrateImg(slides[index]);
+            // Prefetch the following slide so the next tick is ready
+            hydrateImg(slides[(index + 1) % slides.length]);
             slides.forEach(function (img, i) {
               img.classList.toggle("is-active", i === index);
             });
@@ -10740,7 +10811,7 @@
           }
 
           function start() {
-            if (reduceMotion) return;
+            if (reduceMotion || !started) return;
             stop();
             timer = window.setInterval(function () {
               show(index + 1);
@@ -10748,6 +10819,7 @@
           }
 
           function nudge(minGapMs) {
+            if (!started) return false;
             var now = performance.now();
             if (now - lastNudge < (minGapMs || 700)) return false;
             lastNudge = now;
@@ -10762,21 +10834,42 @@
             return rect.bottom > 80 && rect.top < vh - 80;
           }
 
+          function activate() {
+            if (started) return;
+            started = true;
+            show(index);
+            start();
+          }
+
           dots.forEach(function (dot, i) {
             dot.addEventListener("click", function () {
+              activate();
               show(i);
               lastNudge = performance.now();
               start();
             });
           });
 
-          // Keep autoplay running on hover/focus — only dots change the slide.
-          show(index);
-          start();
-          carousels.push({ root: root, nudge: nudge, inView: inView });
+          carousels.push({ root: root, nudge: nudge, inView: inView, activate: activate });
         });
 
-        if (!carousels.length || reduceMotion) return;
+        if (!carousels.length) return;
+
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) return;
+              var match = carousels.find(function (c) { return c.root === entry.target; });
+              if (match) match.activate();
+              io.unobserve(entry.target);
+            });
+          }, { rootMargin: "200px 0px", threshold: 0.01 });
+          carousels.forEach(function (c) { io.observe(c.root); });
+        } else {
+          carousels.forEach(function (c) { c.activate(); });
+        }
+
+        if (reduceMotion) return;
 
         var scrollNudgeRaf = 0;
         var lastScrollY = window.scrollY || window.pageYOffset || 0;
