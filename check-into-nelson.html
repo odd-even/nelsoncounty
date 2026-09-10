@@ -872,6 +872,14 @@
       display: none;
       height: 0;
     }
+    .do-rail__scroller {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+    }
+    .rail-scroll-hint {
+      display: none;
+    }
     .do-rail__track {
       display: flex;
       width: max-content;
@@ -1153,7 +1161,8 @@
       padding: 0 1.25rem 1.35rem;
     }
     .stay-card__offer {
-      display: inline-block;
+      display: block;
+      width: 100%;
       max-width: 100%;
       margin-bottom: 0.55rem;
       font-size: 0.75rem;
@@ -1163,6 +1172,7 @@
       color: var(--cat-stay-text);
       line-height: 1.45;
       text-wrap: balance;
+      text-align: left;
     }
     .stay-card__title {
       font-size: 1.35rem;
@@ -1348,6 +1358,7 @@
       color: var(--muted);
       margin: 0;
       max-width: none;
+      text-wrap: balance;
     }
     .stay-more__offer .code-green {
       color: var(--nelson-green);
@@ -2871,6 +2882,7 @@
       color: var(--ink);
       line-height: 1.4;
       margin: -0.35rem 0 0.85rem;
+      text-wrap: balance;
     }
     .timeline-item__offer .code-green {
       font-size: 0.95em;
@@ -4817,6 +4829,56 @@
         scroll-padding-inline: 1rem;
         overscroll-behavior-x: contain;
       }
+      .rail-scroll-hint {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        right: 0.45rem;
+        top: 50%;
+        z-index: 5;
+        width: 2.55rem;
+        height: 2.55rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 999px;
+        color: #fff;
+        background: rgba(17, 17, 17, 0.55);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transform: translateY(-50%);
+        cursor: pointer;
+        opacity: 1;
+        pointer-events: auto;
+        transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+        animation: rail-hint-nudge 1.8s var(--ease) infinite;
+      }
+      .rail-scroll-hint svg {
+        width: 1.05rem;
+        height: 1.05rem;
+        display: block;
+      }
+      .rail-scroll-hint.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-50%) translateX(0.35rem);
+        animation: none;
+      }
+      .rail-scroll-hint:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      @keyframes rail-hint-nudge {
+        0%, 100% { transform: translateY(-50%) translateX(0); }
+        50% { transform: translateY(-50%) translateX(0.28rem); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .rail-scroll-hint {
+          animation: none;
+        }
+      }
       .do-rail__track {
         gap: 0.75rem;
         padding: 0.15rem 1rem 0.85rem;
@@ -5970,6 +6032,7 @@
 
       <div class="do-rail" id="things-to-do" aria-label="Things to do in Nelson County">
       <div class="do-rail__pin">
+      <div class="do-rail__scroller">
       <div class="do-rail__viewport" id="doRailViewport">
         <div class="do-rail__track" id="doRailTrack">
           <a class="do-card" data-cat="taste" href="#feature-flying-fox">
@@ -6081,6 +6144,12 @@
             </span>
           </a>
         </div>
+      </div>
+      <button type="button" class="rail-scroll-hint" id="doRailScrollHint" aria-label="Scroll for more">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
       </div>
       </div>
       </div>
@@ -6240,7 +6309,6 @@
             </div>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow Studio</a>
-              <a class="btn btn--outline" href="https://nelsoncounty.com/explore/glasshollow">View on nelsoncounty.com</a>
             </div>
           </div>
         </article>
@@ -6262,7 +6330,7 @@
             <h3 class="partner-feature__title">Blue Ridge Tunnel</h3>
             <p class="partner-feature__copy">Walk through one of Nelson County’s most distinctive historic attractions, a memorable mix of mountain scenery, local history, and outdoor exploration.</p>
             <div class="partner-feature__actions">
-              <a class="btn btn--dark" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
+              <a class="btn btn--dark" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Learn more</a>
             </div>
           </div>
         </article>
@@ -6291,7 +6359,6 @@
             <p class="partner-feature__copy">Beyond the campground, Devils Backbone offers opportunities to experience Nelson County’s agricultural and craft beverage culture. Explore the property, discover the working greenhouses, and see how locally grown ingredients become part of the experience.</p>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
-              <a class="btn btn--outline" href="https://nelsoncounty.com/explore/devils-backbone-brewing-company">View on nelsoncounty.com</a>
             </div>
           </div>
         </article>
@@ -6566,7 +6633,7 @@
                       <h3 class="timeline-item__title">Blue Ridge Tunnel</h3>
                       <p class="timeline-item__copy">A nearly mile-long tunnel hike through solid greenstone.</p>
                       <div class="timeline-item__actions">
-                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Plan Your Visit</a>
+                        <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Learn more</a>
                         <a class="btn btn--outline" href="#feature-tunnel">About the Tunnel</a>
                       </div>
                     </div>
@@ -7099,7 +7166,8 @@
         });
 
         var index = 0;
-        var baseIntervalMs = 5500;
+        var mobileMq = window.matchMedia("(max-width: 859px)");
+        var baseIntervalMs = mobileMq.matches ? 4000 : 5500;
         var minIntervalMs = 1700;
         var lastTick = 0;
         var rafId = 0;
@@ -7111,8 +7179,20 @@
         var heroRoot = document.querySelector(".hero") || document.documentElement;
         var accentColors = new Array(slides.length);
         var DEFAULT_ACCENT = "#f0a8c0";
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var touchMoved = false;
 
         var caption = document.getElementById("heroCaption");
+
+        function syncHeroInterval() {
+          baseIntervalMs = mobileMq.matches ? 4000 : 5500;
+        }
+        if (typeof mobileMq.addEventListener === "function") {
+          mobileMq.addEventListener("change", syncHeroInterval);
+        } else if (typeof mobileMq.addListener === "function") {
+          mobileMq.addListener(syncHeroInterval);
+        }
 
         function clamp(n, min, max) {
           return Math.min(max, Math.max(min, n));
@@ -7341,6 +7421,32 @@
             jumpToTarget(caption.getAttribute("data-hero-target"));
           });
         }
+
+        heroRoot.addEventListener("touchstart", function (e) {
+          if (!mobileMq.matches || !e.touches || !e.touches[0]) return;
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchMoved = false;
+        }, { passive: true });
+
+        heroRoot.addEventListener("touchmove", function (e) {
+          if (!e.touches || !e.touches[0]) return;
+          if (
+            Math.abs(e.touches[0].clientX - touchStartX) > 12 ||
+            Math.abs(e.touches[0].clientY - touchStartY) > 12
+          ) {
+            touchMoved = true;
+          }
+        }, { passive: true });
+
+        heroRoot.addEventListener("click", function (e) {
+          if (!mobileMq.matches || touchMoved) return;
+          var t = e.target;
+          if (!t || !t.closest) return;
+          if (t.closest("a, button, input, textarea, select, label, .hero__dots, .hero__promo, .cta-row")) return;
+          show(index + 1);
+          lastTick = performance.now();
+        });
 
         window.addEventListener("scroll", function () {
           applyScrollDelta(window.scrollY || window.pageYOffset || 0, performance.now());
@@ -10504,10 +10610,12 @@
         var rail = document.querySelector(".do-rail");
         var track = document.getElementById("doRailTrack");
         var viewport = document.getElementById("doRailViewport");
+        var scrollHint = document.getElementById("doRailScrollHint");
         if (!rail || !track || !viewport) return;
 
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         var slowScroll = window.matchMedia("(max-width: 900px), (pointer: coarse), (hover: none)");
+        var mobileHintMq = window.matchMedia("(max-width: 859px)");
         var maxShift = 0;
         var ticking = false;
         var programmatic = false;
@@ -10536,9 +10644,23 @@
           manualOffset = viewport.scrollLeft - baseScroll;
         }
 
+        function updateScrollHint() {
+          if (!scrollHint) return;
+          if (!mobileHintMq.matches || maxShift < 24) {
+            scrollHint.classList.add("is-hidden");
+            scrollHint.setAttribute("aria-hidden", "true");
+            return;
+          }
+          var remaining = maxShift - viewport.scrollLeft;
+          var hide = remaining < 28;
+          scrollHint.classList.toggle("is-hidden", hide);
+          scrollHint.setAttribute("aria-hidden", hide ? "true" : "false");
+        }
+
         function measure() {
           maxShift = Math.max(0, track.scrollWidth - viewport.clientWidth);
           if (!reduceMotion) update();
+          updateScrollHint();
         }
 
         function update() {
@@ -10557,6 +10679,7 @@
           if (progress > 1) progress = 1;
           baseScroll = maxShift * progress;
           setScrollLeft(clamp(baseScroll + manualOffset, 0, maxShift));
+          updateScrollHint();
           ticking = false;
         }
 
@@ -10569,7 +10692,18 @@
         viewport.addEventListener("scroll", function () {
           if (programmatic || dragging) return;
           syncManualOffset();
+          updateScrollHint();
         }, { passive: true });
+
+        if (scrollHint) {
+          scrollHint.addEventListener("click", function () {
+            var card = track.querySelector(".do-card");
+            var step = card ? card.getBoundingClientRect().width + 12 : Math.max(160, viewport.clientWidth * 0.72);
+            setScrollLeft(clamp(viewport.scrollLeft + step, 0, maxShift));
+            syncManualOffset();
+            updateScrollHint();
+          });
+        }
 
         viewport.addEventListener("wheel", function (e) {
           if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
@@ -10616,6 +10750,7 @@
           var dragScale = (e.pointerType === "touch" || slowScroll.matches) ? 0.72 : 1;
           viewport.scrollLeft = clamp(dragStartScroll - dx * dragScale, 0, maxShift);
           syncManualOffset();
+          updateScrollHint();
         });
 
         function endDrag(e) {
@@ -10628,6 +10763,7 @@
           viewport.classList.remove("is-dragging");
           try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
           syncManualOffset();
+          updateScrollHint();
         }
 
         viewport.addEventListener("pointerup", endDrag);
