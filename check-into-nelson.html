@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Check Into Nelson | Visit Nelson County</title>
   <meta name="description" content="Check Into Nelson. Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County." />
   <link rel="canonical" href="https://checkin.nelsoncounty.com/" />
@@ -73,6 +73,10 @@
       --accent-text: var(--cat-stay-text);
       --accent-in-text: var(--cat-stay-text);
       --accent-out-text: var(--cat-outdoor-text);
+      --sticky-bar-h: 0px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-top: env(safe-area-inset-top, 0px);
+      --page-pad-x: 1.25rem;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -80,6 +84,8 @@
       scroll-behavior: smooth;
       overflow-x: clip;
       max-width: 100%;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
     body {
       font-family: var(--font);
@@ -87,6 +93,7 @@
       background: var(--white);
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
       position: relative;
       overflow-x: clip;
       max-width: 100%;
@@ -164,7 +171,7 @@
       margin-left: auto;
       width: 2.5rem;
       height: 2.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      border: 0;
       border-radius: 12px;
       background: transparent;
       color: var(--white);
@@ -172,7 +179,6 @@
     }
     .site-nav.is-open .site-nav__toggle {
       color: var(--ink);
-      border-color: #dddddd;
     }
     .site-nav__toggle svg {
       width: 1.2rem;
@@ -466,7 +472,12 @@
       flex: 1;
     }
     .hero__promo-text {
-      display: contents;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.12rem;
+      min-width: 0;
     }
     .hero__promo-note {
       display: none;
@@ -485,6 +496,13 @@
         min-height: 100svh;
         height: 100svh;
         align-items: end;
+      }
+      .hero__slide img {
+        object-position: center 18%;
+        transform: scale(1.18);
+      }
+      .hero__slide.is-active img {
+        transform: scale(1.26);
       }
       .hero__shade {
         background:
@@ -526,7 +544,9 @@
       }
       .hero__promo {
         width: 100%;
-        padding: 0.3rem 0.3rem 0.3rem 0.85rem;
+        display: flex;
+        align-items: center;
+        padding: 0.35rem 0.35rem 0.35rem 1.15rem;
         border-radius: 999px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         background: rgba(255, 255, 255, 0.94);
@@ -539,8 +559,10 @@
       .hero__promo .promo-code--sm {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        justify-content: space-between;
+        gap: 0.65rem;
         width: 100%;
+        max-width: none;
         border: 0;
         background: transparent;
         box-shadow: none;
@@ -551,33 +573,41 @@
       .hero__promo-text {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         justify-content: center;
-        gap: 0.08rem;
+        gap: 0.14rem;
         flex: 1 1 auto;
         min-width: 0;
+        max-width: none;
       }
+      .hero__promo .promo-code--sm .promo-code__value,
       .hero__promo .promo-code__value {
         display: block;
         flex: unset;
         min-width: 0;
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        margin: 0;
         padding: 0;
-        font-size: 0.76rem;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+        font-size: 0.8rem;
         letter-spacing: 0.02em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 1.1;
+        line-height: 1;
       }
       .hero__promo .promo-code__copy {
         flex: 0 0 auto;
         width: auto;
-        min-width: 4.35rem;
-        height: 2.2rem;
-        padding: 0 0.85rem;
+        min-width: 4.75rem;
+        height: 2.55rem;
+        padding: 0 0.95rem;
         border: 0;
         border-radius: var(--pill);
-        font-size: 0.74rem;
+        font-size: 0.78rem;
         text-align: center;
         align-self: center;
       }
@@ -585,64 +615,25 @@
         display: block;
         margin: 0;
         padding: 0;
-        font-size: 0.6rem;
-        line-height: 1.15;
+        border: 0;
+        font-size: 0.64rem;
+        line-height: 1.2;
+        letter-spacing: 0;
         color: var(--muted);
         text-align: left;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: 100%;
       }
       .hero__dots {
-        right: 1rem;
-        bottom: 1rem;
-        z-index: 4;
-        flex-direction: row;
-        align-items: center;
-        gap: 0.55rem;
-      }
-      .hero__caption {
-        display: inline-flex;
-        max-width: min(48vw, 11rem);
-        font-size: 0.62rem;
-        padding: 0.3rem 0.6rem;
-      }
-      .hero-below {
-        display: block;
-        padding: 1.1rem 0;
-        background: #1a1a1a;
-        border-top: 0;
-      }
-      .hero-below__lede {
         display: none;
       }
-      .hero-below .cta-row {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 0.55rem;
+      .hero__caption {
+        display: none;
       }
-      .hero-below .cta-row .btn {
-        flex: 1 1 50%;
-        width: 50%;
-        min-width: 0;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        font-size: 0.82rem;
-        text-align: center;
-        white-space: nowrap;
-      }
-      .hero-below .btn--dark {
-        background: var(--white);
-        color: var(--black);
-      }
-      .hero-below .btn--outline {
-        background: transparent;
-        color: var(--white);
-        border: 1.5px solid rgba(255, 255, 255, 0.7);
-      }
-      .hero-below .btn--outline:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: var(--white);
+      .hero-below {
+        display: none;
       }
     }
 
@@ -807,11 +798,10 @@
       min-width: 0;
       cursor: grab;
       overscroll-behavior-x: contain;
-      overscroll-behavior-y: none;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       -ms-overflow-style: none;
-      touch-action: pan-x;
+      touch-action: pan-x pan-y;
     }
     .do-rail__viewport.is-dragging {
       cursor: grabbing;
@@ -1103,6 +1093,7 @@
     }
     .stay-card__offer {
       display: inline-block;
+      max-width: 100%;
       margin-bottom: 0.55rem;
       font-size: 0.75rem;
       font-weight: 500;
@@ -1110,6 +1101,7 @@
       text-transform: uppercase;
       color: var(--cat-stay-text);
       line-height: 1.45;
+      text-wrap: balance;
     }
     .stay-card__title {
       font-size: 1.35rem;
@@ -2169,12 +2161,15 @@
       transform: rotate(2deg);
     }
 
+    .itin-controls {
+      margin-top: 2rem;
+    }
     .itin-extend {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 0.85rem;
-      margin-top: 2rem;
+      margin-top: 0;
       padding-top: 1.5rem;
       border-top: 1px solid var(--line);
     }
@@ -2197,7 +2192,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      margin: 0.5rem 0 1.25rem;
+      margin: 1.25rem 0 0;
       font-size: 0.9rem;
       color: var(--muted);
     }
@@ -2291,20 +2286,24 @@
     }
     .timeline-day-empty {
       display: none;
-      padding: 1.25rem 0 1.75rem 2.85rem;
+      padding: 1.1rem 1.15rem;
       max-width: 34rem;
+      border: 1.5px solid var(--line);
+      border-radius: 16px;
+      background: var(--white);
+      box-sizing: border-box;
     }
     .timeline-day-empty.is-visible {
       display: grid;
-      gap: 1rem;
+      gap: 0.85rem;
       justify-items: start;
     }
     .timeline-day-empty__copy {
       margin: 0;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 500;
       letter-spacing: -0.01em;
-      line-height: 1.4;
+      line-height: 1.35;
       color: var(--ink);
     }
 
@@ -2364,9 +2363,11 @@
       width: 2px;
       transform: translateX(-50%);
       background: #e4e4e4;
-    }
-    .timeline-day .timeline-item:last-child .timeline-item__rail::before {
       display: none;
+    }
+    /* Only connect to a following visible stop in the same day */
+    .timeline-list > .timeline-item:not(.is-removed):has(~ .timeline-item:not(.is-removed)) .timeline-item__rail::before {
+      display: block;
     }
     .timeline-item__dot {
       position: relative;
@@ -2521,6 +2522,7 @@
     .timeline-item__nudge-btn:not(:disabled):active {
       background: #ebebeb;
     }
+    .itin-reorder-hint--tap { display: none; }
     @media (max-width: 900px), (pointer: coarse), (hover: none) {
       .timeline-item__handle {
         display: none;
@@ -2542,7 +2544,6 @@
     @media (min-width: 901px) and (hover: hover) and (pointer: fine) {
       .itin-reorder-hint--tap { display: none; }
     }
-    .itin-reorder-hint--tap { display: none; }
     .timeline-item__content {
       min-width: 0;
       padding-right: 1.6rem;
@@ -2733,9 +2734,270 @@
       background: #f0f0f0;
     }
     @media (max-width: 719px) {
+      .timeline-item {
+        --chip-media: clamp(6.25rem, 4.1rem + 10vw, 9.5rem);
+        --chip-pad-y: clamp(0.55rem, 0.35rem + 1.4vw, 0.95rem);
+        --chip-pad-x: clamp(0.4rem, 0.25rem + 1.1vw, 0.8rem);
+        --chip-gap: clamp(0.5rem, 0.32rem + 1.1vw, 0.85rem);
+        --chip-radius: clamp(10px, 8px + 1vw, 16px);
+        --chip-title: clamp(0.95rem, 0.8rem + 0.7vw, 1.2rem);
+        --chip-copy: clamp(0.78rem, 0.65rem + 0.55vw, 1rem);
+        --chip-btn-fs: clamp(0.74rem, 0.62rem + 0.5vw, 0.92rem);
+        --chip-btn-pad-y: clamp(0.3rem, 0.2rem + 0.6vw, 0.5rem);
+        --chip-btn-pad-x: clamp(0.7rem, 0.5rem + 1.1vw, 1.05rem);
+        --chip-btn-min-h: clamp(1.95rem, 1.6rem + 1.6vw, 2.45rem);
+        --chip-pill-fs: clamp(0.58rem, 0.48rem + 0.4vw, 0.74rem);
+        --chip-pill-pad-y: clamp(0.16rem, 0.1rem + 0.3vw, 0.28rem);
+        --chip-pill-pad-x: clamp(0.3rem, 0.2rem + 0.5vw, 0.55rem);
+        --chip-icon: clamp(0.7rem, 0.55rem + 0.55vw, 0.95rem);
+        --chip-move: clamp(2.05rem, 1.7rem + 1.4vw, 2.55rem);
+        --chip-nudge: clamp(1.85rem, 1.55rem + 1.2vw, 2.3rem);
+        --chip-choice-min-h: clamp(2.25rem, 1.85rem + 1.8vw, 2.85rem);
+        --chip-choice-pad-y: clamp(0.35rem, 0.25rem + 0.7vw, 0.6rem);
+        --chip-choice-pad-x: clamp(0.6rem, 0.45rem + 1vw, 0.95rem);
+        --chip-choice-name: clamp(0.84rem, 0.7rem + 0.55vw, 1.05rem);
+        --chip-choice-label: clamp(0.58rem, 0.48rem + 0.4vw, 0.72rem);
+        --chip-beat-inset: clamp(0.5rem, 0.35rem + 0.9vw, 0.85rem);
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 1.65rem 0 0.35rem;
+        align-items: stretch;
+        position: relative;
+      }
+      .timeline-item__rail {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1.45rem;
+        margin-left: -0.725rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .timeline-item__rail::before {
+        top: 1.45rem;
+        bottom: -1.65rem;
+        z-index: 0;
+      }
+      /* Meet the previous visible stop; skip first visible item of the day */
+      .timeline-list > .timeline-item:not(.is-removed) ~ .timeline-item:not(.is-removed) .timeline-item__rail::before {
+        top: -0.35rem;
+      }
+      .timeline-item__dot {
+        width: 1.45rem;
+        height: 1.45rem;
+        font-size: 0.65rem;
+        margin-top: 0;
+        z-index: 2;
+      }
+      .timeline-day-empty {
+        width: 100%;
+        max-width: none;
+        margin: 0.35rem 0 0.75rem;
+        padding: var(--chip-pad-y, 0.7rem) var(--chip-pad-x, 0.75rem);
+        border-radius: var(--chip-radius, 12px);
+        gap: 0.65rem;
+      }
+      .timeline-day-empty__copy {
+        font-size: var(--chip-title, 0.95rem);
+      }
+      .timeline-day-empty .btn {
+        min-height: var(--chip-btn-min-h, 1.95rem);
+        padding: var(--chip-btn-pad-y, 0.3rem) var(--chip-btn-pad-x, 0.7rem);
+        font-size: var(--chip-btn-fs, 0.74rem);
+        width: 100%;
+        justify-content: center;
+      }
+      .timeline-item__card {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: var(--chip-media) minmax(0, 1fr) auto;
+        grid-template-areas: "media body move";
+        gap: var(--chip-gap);
+        padding: var(--chip-pad-y) var(--chip-pad-x);
+        border-radius: var(--chip-radius);
+        align-items: stretch;
+        background: var(--white);
+      }
+      .timeline-item__main {
+        display: contents;
+      }
+      .timeline-item__move {
+        grid-area: move;
+        margin-top: 0;
+        gap: 0;
+        align-self: stretch;
+        justify-content: flex-start;
+        padding: 0.12rem;
+        border-radius: 999px;
+        background: #f3f3f3;
+        border: 1px solid var(--line);
+        min-width: var(--chip-move);
+      }
       .timeline-item__media {
-        aspect-ratio: 2.2 / 1;
-        max-height: 7.5rem;
+        grid-area: media;
+        width: var(--chip-media);
+        height: auto;
+        aspect-ratio: auto;
+        max-height: none;
+        align-self: stretch;
+        border-radius: calc(var(--chip-radius) - 3px);
+      }
+      .timeline-item__content {
+        grid-area: body;
+        padding-right: 0;
+        padding-top: 0;
+        min-width: 0;
+        align-self: start;
+      }
+      .timeline-item__beat {
+        position: static;
+        left: auto;
+        top: auto;
+        z-index: auto;
+        margin: 0 0 clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
+        gap: 0.3rem;
+        pointer-events: auto;
+      }
+      .timeline-item__daymeta {
+        display: none;
+      }
+      .timeline-item__title {
+        font-size: var(--chip-title);
+        margin-bottom: clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
+        padding-right: 0;
+        line-height: 1.2;
+      }
+      .timeline-item__copy {
+        font-size: var(--chip-copy);
+        line-height: 1.35;
+        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+        max-width: none;
+      }
+      .timeline-item:has(.stay-choice) .timeline-item__copy {
+        display: none;
+      }
+      .timeline-item:has(.stay-choice) .stay-choice {
+        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
+      }
+      .timeline-item__offer {
+        display: none;
+      }
+      .timeline-item__actions {
+        gap: 0.3rem;
+        margin-top: 0.15rem;
+        flex-wrap: wrap;
+      }
+      .timeline-item__actions .btn:nth-child(n + 2) {
+        display: none;
+      }
+      .timeline-item__actions .btn {
+        min-height: var(--chip-btn-min-h);
+        padding: var(--chip-btn-pad-y) var(--chip-btn-pad-x);
+        border-radius: var(--pill);
+        font-size: var(--chip-btn-fs);
+        font-weight: 500;
+        flex: 1 1 100%;
+        width: 100%;
+        text-decoration: none;
+        transform: none;
+      }
+      .timeline-item__actions .btn--outline {
+        background: var(--white);
+        color: var(--ink);
+        border: 1.5px solid #d8d8d8;
+      }
+      .timeline-item__actions .btn--outline:hover {
+        border-color: var(--ink);
+        background: var(--white);
+        opacity: 1;
+        transform: none;
+      }
+      .timeline-item__actions .btn--dark {
+        background: var(--ink);
+        color: var(--white);
+        border: 1.5px solid var(--ink);
+      }
+      .timeline-item__actions .btn--dark:hover {
+        background: var(--black);
+        opacity: 1;
+        transform: none;
+      }
+      .timeline-item__remove {
+        position: static;
+        width: var(--chip-nudge);
+        height: var(--chip-nudge);
+        top: auto;
+        right: auto;
+        font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.1rem);
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        flex-shrink: 0;
+        margin-top: auto;
+      }
+      .timeline-item__remove:hover,
+      .timeline-item__remove:focus-visible {
+        background: rgba(0, 0, 0, 0.06);
+        border: 0;
+        color: var(--ink);
+      }
+      .timeline-item__nudge {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .timeline-item__nudge-btn {
+        width: var(--chip-nudge);
+        height: var(--chip-nudge);
+        font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1rem);
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+      }
+      .timeline-item__nudge-btn:not(:disabled):active {
+        background: rgba(0, 0, 0, 0.06);
+      }
+      .timeline-item .cat-pill {
+        padding: var(--chip-pill-pad-y) calc(var(--chip-pill-pad-x) + 0.1rem) var(--chip-pill-pad-y) var(--chip-pill-pad-x);
+        font-size: var(--chip-pill-fs);
+        gap: 0.2rem;
+      }
+      .timeline-item .cat-pill::before {
+        width: var(--chip-icon);
+        height: var(--chip-icon);
+      }
+      .stay-choice {
+        grid-template-columns: 1fr;
+        gap: clamp(0.25rem, 0.15rem + 0.5vw, 0.4rem);
+        margin: 0 0 0.3rem;
+      }
+      .stay-choice__btn {
+        min-height: var(--chip-choice-min-h);
+        padding: var(--chip-choice-pad-y) var(--chip-choice-pad-x);
+        border-radius: 10px;
+        gap: 0.08rem;
+        justify-content: center;
+      }
+      .stay-choice__label {
+        display: none;
+      }
+      .stay-choice__name {
+        font-size: var(--chip-choice-name);
+        line-height: 1.15;
       }
     }
     @media (min-width: 720px) {
@@ -2749,6 +3011,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .timeline-item[data-id="sip"][data-sip="flyingfox"] .timeline-item__media img {
+      object-position: 18% center;
     }
 
     /* —— Passport / LoyalBrew —— */
@@ -3139,26 +3404,202 @@
 
     /* —— Sticky —— */
     .sticky-promo {
+      --sticky-ctrl-h: 3.9rem;
+      --sticky-ctrl-w: 7.35rem;
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 50;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
-      background: rgba(255, 255, 255, 0.96);
+      align-items: stretch;
+      gap: 0.55rem;
+      padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+      background: rgba(255, 255, 255, 0.97);
       border-top: 1px solid var(--line);
       backdrop-filter: blur(10px);
       transform: translateY(110%);
       transition: transform 0.35s var(--ease);
     }
     .sticky-promo.is-visible { transform: none; }
-    .sticky-promo .btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.85rem;
+    .sticky-promo__bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: 100%;
+      height: var(--sticky-ctrl-h);
+      min-height: var(--sticky-ctrl-h);
+      box-sizing: border-box;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1.5px solid #d8d8d8;
+      background: var(--white);
+      padding: 0.32rem 0.32rem 0.32rem 0.7rem;
+    }
+    .sticky-promo__text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.12rem;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .sticky-promo__code {
+      display: block;
+      flex: unset;
+      min-width: 0;
+      width: auto;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 0.74rem;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1;
+    }
+    .sticky-promo__note {
+      display: block;
+      margin: 0;
+      padding: 0;
+      font-size: 0.62rem;
+      line-height: 1.2;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .sticky-promo__copy {
+      appearance: none;
+      flex: 0 0 auto;
+      align-self: stretch;
+      border: none;
+      border-radius: 10px;
+      background: var(--ink);
+      color: var(--white);
+      font: inherit;
+      font-weight: 500;
+      font-size: 0.74rem;
+      width: auto;
+      min-width: 3.85rem;
+      height: auto;
+      min-height: 0;
+      padding: 0 0.7rem;
+      cursor: pointer;
+      white-space: nowrap;
+      text-align: center;
+    }
+    .sticky-promo__copy:hover {
+      background: var(--black);
+    }
+    .sticky-promo__actions {
+      flex: 0 0 var(--sticky-ctrl-w);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: var(--sticky-ctrl-w);
+      min-width: var(--sticky-ctrl-w);
+      height: var(--sticky-ctrl-h);
+      min-height: var(--sticky-ctrl-h);
+      box-sizing: border-box;
+      gap: 0.2rem;
+      padding: 0.24rem;
+      border-radius: 14px;
+      border: 1.5px solid #d8d8d8;
+      background: var(--white);
+    }
+    .sticky-promo__choose,
+    .sticky-promo__stay {
+      flex: 1 1 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 0;
+      padding: 0.28rem 0.55rem;
+      border-radius: 10px;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .sticky-promo__choose {
+      background: var(--ink);
+      color: var(--white);
+    }
+    .sticky-promo__choose:hover {
+      background: var(--black);
+    }
+    .sticky-promo__stay:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .sticky-promo__itin {
+      flex: 0 0 var(--sticky-ctrl-w);
+      display: none;
+      flex-direction: column;
+      align-items: stretch;
+      width: var(--sticky-ctrl-w);
+      min-width: var(--sticky-ctrl-w);
+      height: var(--sticky-ctrl-h);
+      min-height: var(--sticky-ctrl-h);
+      box-sizing: border-box;
+      gap: 0.2rem;
+      padding: 0.24rem;
+      border-radius: 14px;
+      border: 1.5px solid #d8d8d8;
+      background: var(--white);
+    }
+    .sticky-promo__save,
+    .sticky-promo__reset {
+      appearance: none;
+      flex: 1 1 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 0;
+      padding: 0.28rem 0.55rem;
+      border-radius: 10px;
+      border: 0;
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .sticky-promo__save {
+      background: #557645;
+      color: var(--white);
+    }
+    .sticky-promo__save:hover {
+      background: #46633a;
+    }
+    .sticky-promo__reset {
+      background: transparent;
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .sticky-promo__reset:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .sticky-promo.is-itin .sticky-promo__actions {
+      display: none;
+    }
+    .sticky-promo.is-itin .sticky-promo__itin {
+      display: flex;
     }
     @media (min-width: 900px) {
       .sticky-promo { display: none; }
@@ -3173,6 +3614,7 @@
       right: auto;
       transform: translate(-50%, 120%);
       max-width: calc(100% - 1.5rem);
+      width: min(28rem, calc(100% - 1.5rem));
     }
     html.is-embed .sticky-promo.is-visible {
       transform: translate(-50%, 0);
@@ -3410,6 +3852,322 @@
       .exit-intent__panel { transition: none; }
     }
 
+    /* —— Save / share itinerary —— */
+    .itin-share {
+      position: fixed;
+      inset: 0;
+      z-index: 10010;
+      display: grid;
+      place-items: end center;
+      padding: 0;
+      background: rgba(17, 17, 17, 0.48);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.28s var(--ease), visibility 0.28s;
+    }
+    .itin-share.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .itin-share[hidden] {
+      display: none !important;
+    }
+    html.is-embed .itin-share {
+      position: absolute;
+      inset: auto;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+    .itin-share__panel {
+      position: relative;
+      width: 100%;
+      max-height: min(92svh, 40rem);
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      color: var(--ink);
+      border-radius: 22px 22px 0 0;
+      padding: 1rem 1rem calc(1rem + var(--safe-bottom));
+      box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.2);
+      transform: translateY(18px);
+      transition: transform 0.28s var(--ease);
+    }
+    .itin-share.is-open .itin-share__panel {
+      transform: translateY(0);
+    }
+    .itin-share__grab {
+      width: 2.4rem;
+      height: 0.28rem;
+      border-radius: var(--pill);
+      background: #d0d0d0;
+      margin: 0 auto 0.75rem;
+    }
+    .itin-share__head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .itin-share__eyebrow {
+      margin: 0;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .itin-share__title {
+      margin: 0.15rem 0 0;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .itin-share__close {
+      flex: 0 0 auto;
+      width: 2rem;
+      height: 2rem;
+      border: 0;
+      border-radius: var(--pill);
+      background: #e8e8e8;
+      color: var(--muted);
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .itin-share__close:hover { color: var(--ink); background: #dedede; }
+    .itin-share__card {
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      background: var(--white);
+      border: 1px solid #e4e4e4;
+      border-radius: 16px;
+      padding: 0.8rem 0.9rem 0.85rem;
+    }
+    .itin-share__card::-webkit-scrollbar {
+      display: none;
+    }
+    .itin-share__brand {
+      font-family: Poppins, Satoshi, sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin: 0 0 0.3rem;
+    }
+    .itin-share__brand span {
+      color: var(--nelson-green);
+    }
+    .itin-share__dates {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .itin-share__nights {
+      margin: 0.2rem 0 0;
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+    .itin-share__day {
+      margin-top: 0.7rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--line);
+    }
+    .itin-share__day:first-of-type {
+      margin-top: 0.8rem;
+    }
+    .itin-share__day-label {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 0.45rem;
+      margin: 0 0 0.5rem;
+    }
+    .itin-share__day-num {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .itin-share__day-meta {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .itin-share__stops {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.45rem;
+    }
+    .itin-share__stop {
+      display: grid;
+      grid-template-columns: 1.4rem 1fr;
+      gap: 0.5rem;
+      align-items: center;
+      min-width: 0;
+    }
+    .itin-share__stop-rail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: stretch;
+      position: relative;
+    }
+    .itin-share__stop-rail::before {
+      content: "";
+      position: absolute;
+      top: -0.45rem;
+      bottom: -0.45rem;
+      left: 50%;
+      width: 1.5px;
+      transform: translateX(-50%);
+      background: #e4e4e4;
+    }
+    .itin-share__stop:first-child .itin-share__stop-rail::before {
+      top: 50%;
+    }
+    .itin-share__stop:last-child .itin-share__stop-rail::before {
+      bottom: 50%;
+    }
+    .itin-share__stop:only-child .itin-share__stop-rail::before {
+      display: none;
+    }
+    .itin-share__stop-num {
+      position: relative;
+      z-index: 1;
+      width: 1.4rem;
+      height: 1.4rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      background: var(--pin, var(--cat-stay));
+      border: 1.5px solid #fff;
+      box-shadow: 0 1px 3px rgba(17, 17, 17, 0.2);
+    }
+    .itin-share__chip {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      min-width: 0;
+      background: #fff;
+      border: 1px solid #ececec;
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+    }
+    .itin-share__mark {
+      width: 2.25rem;
+      height: 2.25rem;
+      flex: 0 0 2.25rem;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--pin, var(--cat-stay));
+      border: 1.5px solid #fff;
+      box-shadow: 0 0 0 1px var(--pin, var(--cat-stay));
+    }
+    .itin-share__mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .itin-share__mark.is-fo-left img {
+      object-position: 18% center;
+    }
+    .itin-share__chip-text {
+      min-width: 0;
+      line-height: 1.15;
+    }
+    .itin-share__stop-role {
+      display: block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .itin-share__stop-name {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .itin-share__empty {
+      margin: 0.7rem 0 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .itin-share__code {
+      margin: 0.75rem 0 0;
+      padding-top: 0.65rem;
+      border-top: 1px dashed #ddd;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+    .itin-share__code strong {
+      color: var(--nelson-green);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .itin-share__actions {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+    }
+    .itin-share__actions .btn {
+      width: 100%;
+      min-height: 2.75rem;
+      justify-content: center;
+    }
+    .itin-share__status {
+      min-height: 1.1em;
+      margin: 0.15rem 0 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .itin-share {
+        place-items: center;
+        padding: 1.25rem;
+      }
+      .itin-share__grab {
+        display: none;
+      }
+      .itin-share__panel {
+        width: min(100%, 23.5rem);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.2rem 1.15rem;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+        transform: translateY(12px);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .itin-share,
+      .itin-share__panel { transition: none; }
+    }
+
     /* —— Scroll / load motion —— */
     .reveal {
       opacity: 0;
@@ -3585,6 +4343,949 @@
       }
     }
 
+    /* —— Mobile-first experience (phones) —— */
+    @media (max-width: 859px) {
+      :root {
+        --page-pad-x: 1rem;
+        --sticky-bar-h: calc(5.1rem + var(--safe-bottom));
+        --radius: 16px;
+      }
+
+      body {
+        padding-bottom: var(--sticky-bar-h);
+      }
+
+      .site-nav {
+        padding: calc(0.65rem + var(--safe-top)) max(0.85rem, env(safe-area-inset-right, 0px)) 0.65rem max(0.85rem, env(safe-area-inset-left, 0px));
+      }
+      .site-nav__toggle {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+      .site-nav__mobile a {
+        min-height: 2.75rem;
+        display: flex;
+        align-items: center;
+        font-size: 1.02rem;
+      }
+
+      .wrap {
+        width: min(100% - (var(--page-pad-x) * 2), var(--max));
+      }
+
+      section {
+        padding: 2.75rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(1.85rem, 8.2vw, 2.35rem);
+        max-width: 14ch;
+        margin-bottom: 0.7rem;
+      }
+
+      .section-copy {
+        font-size: 0.98rem;
+        max-width: none;
+        line-height: 1.5;
+      }
+
+      .btn {
+        min-height: 2.85rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+      }
+
+      .intro {
+        padding-top: 2.5rem;
+        padding-bottom: 2.25rem;
+      }
+      .intro__lead .section-title {
+        font-size: clamp(1.95rem, 8.5vw, 2.55rem);
+        max-width: 16ch;
+      }
+      .intro__copy {
+        font-size: 1.02rem;
+        text-align: left;
+      }
+      .intro__grid {
+        align-items: stretch;
+        text-align: left;
+      }
+      .intro__lead {
+        align-items: flex-start;
+      }
+
+      .do-rail__viewport {
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 1rem;
+        overscroll-behavior-x: contain;
+      }
+      .do-rail__track {
+        gap: 0.75rem;
+        padding: 0.15rem 1rem 0.85rem;
+      }
+      .do-card {
+        width: min(78vw, 16.5rem);
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        border-radius: 16px;
+      }
+      .do-card:hover {
+        transform: none;
+      }
+      .do-card__body {
+        gap: 0.3rem;
+        padding: 0.85rem 0.9rem 0.95rem;
+      }
+      .do-card__title {
+        font-size: 1.12rem;
+      }
+      .do-card .cat-pill {
+        padding: 0.26rem 0.6rem 0.26rem 0.45rem;
+        font-size: 0.64rem;
+        gap: 0.3rem;
+      }
+      .do-card .cat-pill::before {
+        width: 0.85rem;
+        height: 0.85rem;
+      }
+
+      .partner-strip {
+        padding: 1rem 0 1.15rem;
+      }
+      .partner-strip .wrap {
+        width: 100%;
+        padding: 0;
+      }
+      .partner-strip__label {
+        padding: 0 var(--page-pad-x);
+        margin-bottom: 0.7rem;
+      }
+      .partner-strip__row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 0.55rem;
+        padding: 0.1rem var(--page-pad-x) 0.35rem;
+        scroll-snap-type: x proximity;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .partner-strip__row::-webkit-scrollbar {
+        display: none;
+      }
+      .partner-chip {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        min-height: 2.75rem;
+        padding: 0.4rem 0.9rem 0.4rem 0.4rem;
+        font-size: 0.86rem;
+      }
+
+      .stay-card,
+      .partner-feature {
+        scroll-margin-top: 1rem;
+      }
+      .partner-feature {
+        gap: 1rem;
+        padding: 1.75rem 0;
+      }
+      .partner-feature__media {
+        aspect-ratio: 4 / 3;
+        border-radius: 14px;
+      }
+      .partner-feature__title {
+        font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+      }
+      .partner-feature__copy {
+        font-size: 0.98rem;
+        max-width: none;
+      }
+      .partner-feature__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.55rem;
+      }
+      .partner-feature__actions .btn {
+        flex: 1 1 auto;
+        min-width: min(100%, 10rem);
+      }
+
+      .media-carousel__dots {
+        opacity: 1;
+        pointer-events: auto;
+        bottom: 0.7rem;
+        padding: 0.35rem 0.55rem;
+        gap: 0.45rem;
+      }
+      .media-carousel__dot {
+        width: 0.55rem;
+        height: 0.55rem;
+      }
+
+      .spokes {
+        margin-top: 0.5rem;
+      }
+      .spoke {
+        grid-template-columns: 3.65rem 1fr auto;
+        gap: 0.75rem;
+        padding: 0.95rem 0;
+        min-height: 4.5rem;
+      }
+      .spoke__role {
+        display: none;
+      }
+      .spoke__thumb {
+        width: 3.65rem;
+        height: 3.65rem;
+        border-radius: 12px;
+      }
+      .spoke__name {
+        font-size: 1.05rem;
+      }
+      .spoke__note {
+        font-size: 0.88rem;
+      }
+
+      .itinerary__head {
+        margin-bottom: 1.25rem;
+      }
+      .itinerary__title-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
+        margin-bottom: 0;
+      }
+      .itinerary__head > .section-copy {
+        display: none;
+      }
+      /* Keep listing promo codes as plain text — no hover/tap Copy pill */
+      .code-green,
+      .code-green:hover,
+      .code-green:focus-visible,
+      .code-green.is-copied {
+        display: inline;
+        align-items: unset;
+        overflow: visible;
+        background: transparent;
+        box-shadow: none;
+        line-height: inherit;
+        vertical-align: baseline;
+        cursor: text;
+        pointer-events: none;
+      }
+      .code-green__label,
+      .code-green:hover .code-green__label,
+      .code-green:focus-visible .code-green__label,
+      .code-green.is-copied .code-green__label {
+        display: inline;
+        padding: 0;
+      }
+      .code-green__hint,
+      .code-green:hover .code-green__hint,
+      .code-green:focus-visible .code-green__hint,
+      .code-green.is-copied .code-green__hint {
+        display: none !important;
+      }
+      main > section + section {
+        border-top-color: transparent;
+        position: relative;
+      }
+      main > section + section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: var(--page-pad-x);
+        right: var(--page-pad-x);
+        height: 1px;
+        background: var(--section-line);
+        pointer-events: none;
+      }
+      .day-divider.reveal,
+      .day-divider.reveal--soft {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+      }
+
+      .range-picker {
+        margin-bottom: 1rem;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .range-picker__fields {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0.2rem;
+      }
+      .range-picker__field {
+        min-height: 3.35rem;
+        padding: 0.65rem 0.85rem;
+        border-radius: 12px;
+      }
+      .range-picker__field + .range-picker__field {
+        border-left: 0;
+        border-top: 1px solid var(--line);
+      }
+      .range-picker__field-label {
+        font-size: 0.68rem;
+      }
+      .range-picker__field-value {
+        font-size: 1rem;
+      }
+      .range-picker__meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+        padding: 0.65rem 0.9rem;
+      }
+      .cal {
+        padding: 0.55rem 0.45rem 0.85rem;
+      }
+      .cal__day {
+        --day-size: 2.55rem;
+        font-size: 0.9rem;
+        height: calc(var(--day-size) + 0.2rem);
+      }
+      .cal__nav-btn {
+        width: 2.55rem;
+        height: 2.55rem;
+      }
+      .cal__weekdays {
+        font-size: 0.68rem;
+      }
+
+      .day-tabs {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        margin-top: 1.15rem;
+      }
+      .day-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .day-tabs button {
+        flex: 1 0 auto;
+        min-height: 2.65rem;
+        padding: 0.6rem 1rem;
+        font-size: 0.92rem;
+      }
+
+      .itin-map {
+        margin-bottom: 1.25rem;
+      }
+      .itin-map__bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.55rem;
+        margin-bottom: 0.65rem;
+      }
+      .itin-map__tools {
+        width: 100%;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.35rem;
+        overflow: visible;
+        padding: 0.2rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: #f3f3f3;
+      }
+      .itin-map__legend {
+        width: auto;
+        min-width: 0;
+        flex: 1 1 auto;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0.15rem;
+        padding-bottom: 0;
+      }
+      .itin-map__legend::-webkit-scrollbar {
+        display: none;
+      }
+      .itin-map__chip,
+      .itin-map__toggle {
+        flex: 0 0 auto;
+        min-height: 1.7rem;
+        padding: 0.28rem 0.7rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        white-space: nowrap;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ink);
+        box-shadow: none;
+      }
+      .itin-map__chip.is-active {
+        background: var(--black);
+        color: #fff;
+        border: 0;
+      }
+      .itin-map__toggle {
+        margin-left: 0;
+        flex-shrink: 0;
+        color: var(--muted);
+      }
+      .itin-map.is-collapsed .itin-map__tools {
+        width: auto;
+        align-self: flex-end;
+        justify-content: flex-end;
+      }
+      .itin-map__canvas {
+        height: min(88vw, 24rem);
+        border-radius: 14px;
+      }
+      .itin-pin__card {
+        gap: 0.35rem;
+        padding: 0.28rem 0.65rem 0.28rem 0.28rem;
+        max-width: 10.5rem;
+        filter: drop-shadow(0 3px 8px rgba(17, 17, 17, 0.18));
+      }
+      .itin-pin__tag {
+        font-size: 0.52rem;
+      }
+      .itin-pin__name {
+        font-size: 0.64rem;
+      }
+      .itin-pin__mark {
+        width: 22px;
+        height: 22px;
+        flex-basis: 22px;
+        border-width: 1.5px;
+        box-shadow: 0 0 0 1px var(--pin, var(--cat-stay));
+      }
+      .itin-pin.is-stay .itin-pin__mark {
+        width: 24px;
+        height: 24px;
+        flex-basis: 24px;
+      }
+      .itin-pin__dot {
+        width: 9px;
+        height: 9px;
+        border-width: 1.5px;
+      }
+      .itin-pin.is-stay .itin-pin__dot {
+        width: 11px;
+        height: 11px;
+      }
+      .itin-pin__stem {
+        height: 2px;
+        width: 10px;
+      }
+
+      .timeline-help__hint {
+        display: none;
+      }
+
+      .timeline-item {
+        --chip-media: clamp(6.25rem, 4.1rem + 10vw, 9.5rem);
+        --chip-pad-y: clamp(0.55rem, 0.35rem + 1.4vw, 0.95rem);
+        --chip-pad-x: clamp(0.4rem, 0.25rem + 1.1vw, 0.8rem);
+        --chip-gap: clamp(0.5rem, 0.32rem + 1.1vw, 0.85rem);
+        --chip-radius: clamp(10px, 8px + 1vw, 16px);
+        --chip-title: clamp(0.95rem, 0.8rem + 0.7vw, 1.2rem);
+        --chip-copy: clamp(0.78rem, 0.65rem + 0.55vw, 1rem);
+        --chip-btn-fs: clamp(0.74rem, 0.62rem + 0.5vw, 0.92rem);
+        --chip-btn-pad-y: clamp(0.3rem, 0.2rem + 0.6vw, 0.5rem);
+        --chip-btn-pad-x: clamp(0.7rem, 0.5rem + 1.1vw, 1.05rem);
+        --chip-btn-min-h: clamp(1.95rem, 1.6rem + 1.6vw, 2.45rem);
+        --chip-pill-fs: clamp(0.58rem, 0.48rem + 0.4vw, 0.74rem);
+        --chip-pill-pad-y: clamp(0.16rem, 0.1rem + 0.3vw, 0.28rem);
+        --chip-pill-pad-x: clamp(0.3rem, 0.2rem + 0.5vw, 0.55rem);
+        --chip-icon: clamp(0.7rem, 0.55rem + 0.55vw, 0.95rem);
+        --chip-move: clamp(2.05rem, 1.7rem + 1.4vw, 2.55rem);
+        --chip-nudge: clamp(1.85rem, 1.55rem + 1.2vw, 2.3rem);
+        --chip-choice-min-h: clamp(2.25rem, 1.85rem + 1.8vw, 2.85rem);
+        --chip-choice-pad-y: clamp(0.35rem, 0.25rem + 0.7vw, 0.6rem);
+        --chip-choice-pad-x: clamp(0.6rem, 0.45rem + 1vw, 0.95rem);
+        --chip-choice-name: clamp(0.84rem, 0.7rem + 0.55vw, 1.05rem);
+        --chip-choice-label: clamp(0.58rem, 0.48rem + 0.4vw, 0.72rem);
+        --chip-beat-inset: clamp(0.5rem, 0.35rem + 0.9vw, 0.85rem);
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 1.65rem 0 0.35rem;
+        align-items: stretch;
+        position: relative;
+      }
+      .timeline-item__rail {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1.45rem;
+        margin-left: -0.725rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .timeline-item__rail::before {
+        top: 1.45rem;
+        bottom: -1.65rem;
+        z-index: 0;
+      }
+      /* Meet the previous visible stop; skip first visible item of the day */
+      .timeline-list > .timeline-item:not(.is-removed) ~ .timeline-item:not(.is-removed) .timeline-item__rail::before {
+        top: -0.35rem;
+      }
+      .timeline-item__dot {
+        width: 1.45rem;
+        height: 1.45rem;
+        font-size: 0.65rem;
+        margin-top: 0;
+        z-index: 2;
+      }
+      .timeline-day-empty {
+        width: 100%;
+        max-width: none;
+        margin: 0.35rem 0 0.75rem;
+        padding: var(--chip-pad-y, 0.7rem) var(--chip-pad-x, 0.75rem);
+        border-radius: var(--chip-radius, 12px);
+        gap: 0.65rem;
+      }
+      .timeline-day-empty__copy {
+        font-size: var(--chip-title, 0.95rem);
+      }
+      .timeline-day-empty .btn {
+        min-height: var(--chip-btn-min-h, 1.95rem);
+        padding: var(--chip-btn-pad-y, 0.3rem) var(--chip-btn-pad-x, 0.7rem);
+        font-size: var(--chip-btn-fs, 0.74rem);
+        width: 100%;
+        justify-content: center;
+      }
+      .timeline-item__card {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: var(--chip-media) minmax(0, 1fr) auto;
+        grid-template-areas: "media body move";
+        gap: var(--chip-gap);
+        padding: var(--chip-pad-y) var(--chip-pad-x);
+        border-radius: var(--chip-radius);
+        align-items: stretch;
+        background: var(--white);
+      }
+      .timeline-item__main {
+        display: contents;
+      }
+      .timeline-item__move {
+        grid-area: move;
+        margin-top: 0;
+        gap: 0;
+        align-self: stretch;
+        justify-content: flex-start;
+        padding: 0.12rem;
+        border-radius: 999px;
+        background: #f3f3f3;
+        border: 1px solid var(--line);
+        min-width: var(--chip-move);
+      }
+      .timeline-item__media {
+        grid-area: media;
+        width: var(--chip-media);
+        height: auto;
+        aspect-ratio: auto;
+        max-height: none;
+        align-self: stretch;
+        border-radius: calc(var(--chip-radius) - 3px);
+      }
+      .timeline-item__content {
+        grid-area: body;
+        padding-right: 0;
+        padding-top: 0;
+        min-width: 0;
+        align-self: start;
+      }
+      .timeline-item__beat {
+        position: static;
+        left: auto;
+        top: auto;
+        z-index: auto;
+        margin: 0 0 clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
+        gap: 0.3rem;
+        pointer-events: auto;
+      }
+      .timeline-item__remove {
+        position: static;
+        width: var(--chip-nudge);
+        height: var(--chip-nudge);
+        top: auto;
+        right: auto;
+        font-size: clamp(0.95rem, 0.8rem + 0.5vw, 1.1rem);
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        flex-shrink: 0;
+        margin-top: auto;
+      }
+      .timeline-item__remove:hover,
+      .timeline-item__remove:focus-visible {
+        background: rgba(0, 0, 0, 0.06);
+        border: 0;
+        color: var(--ink);
+      }
+      .timeline-item__nudge {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .timeline-item__nudge-btn {
+        width: var(--chip-nudge);
+        height: var(--chip-nudge);
+        font-size: clamp(0.85rem, 0.7rem + 0.5vw, 1rem);
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+      }
+      .timeline-item__nudge-btn:not(:disabled):active {
+        background: rgba(0, 0, 0, 0.06);
+      }
+      .timeline-item__daymeta {
+        display: none;
+      }
+      .timeline-item__title {
+        font-size: var(--chip-title);
+        padding-right: 0;
+        margin-bottom: clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
+        line-height: 1.2;
+      }
+      .timeline-item__copy {
+        font-size: var(--chip-copy);
+        line-height: 1.35;
+        max-width: none;
+        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        overflow: hidden;
+      }
+      .timeline-item:has(.stay-choice) .timeline-item__copy {
+        display: none;
+      }
+      .timeline-item:has(.stay-choice) .stay-choice {
+        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
+      }
+      .timeline-item__offer {
+        display: none;
+      }
+      .timeline-item__actions {
+        gap: 0.3rem;
+        margin-top: 0.15rem;
+      }
+      .timeline-item__actions .btn:nth-child(n + 2) {
+        display: none;
+      }
+      .timeline-item__actions .btn {
+        min-height: var(--chip-btn-min-h);
+        padding: var(--chip-btn-pad-y) var(--chip-btn-pad-x);
+        border-radius: var(--pill);
+        font-size: var(--chip-btn-fs);
+        font-weight: 500;
+        flex: 1 1 100%;
+        width: 100%;
+        text-decoration: none;
+        transform: none;
+      }
+      .timeline-item__actions .btn--outline {
+        background: var(--white);
+        color: var(--ink);
+        border: 1.5px solid #d8d8d8;
+      }
+      .timeline-item__actions .btn--outline:hover {
+        border-color: var(--ink);
+        background: var(--white);
+        opacity: 1;
+        transform: none;
+      }
+      .timeline-item__actions .btn--dark {
+        background: var(--ink);
+        color: var(--white);
+        border: 1.5px solid var(--ink);
+      }
+      .timeline-item__actions .btn--dark:hover {
+        background: var(--black);
+        opacity: 1;
+        transform: none;
+      }
+      .timeline-item .cat-pill {
+        padding: var(--chip-pill-pad-y) calc(var(--chip-pill-pad-x) + 0.1rem) var(--chip-pill-pad-y) var(--chip-pill-pad-x);
+        font-size: var(--chip-pill-fs);
+      }
+      .timeline-item .cat-pill::before {
+        width: var(--chip-icon);
+        height: var(--chip-icon);
+      }
+      .stay-choice {
+        grid-template-columns: 1fr;
+        gap: clamp(0.25rem, 0.15rem + 0.5vw, 0.4rem);
+        margin: 0 0 0.3rem;
+      }
+      .stay-choice__btn {
+        min-height: var(--chip-choice-min-h);
+        padding: var(--chip-choice-pad-y) var(--chip-choice-pad-x);
+        border-radius: 10px;
+        gap: 0.08rem;
+        justify-content: center;
+      }
+      .stay-choice__label {
+        display: none;
+      }
+      .stay-choice__name {
+        font-size: var(--chip-choice-name);
+        line-height: 1.15;
+      }
+
+      .more-stops {
+        margin-top: 1.75rem;
+        padding-top: 1.25rem;
+      }
+      .more-stops__row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.55rem;
+      }
+      .more-stop {
+        touch-action: manipulation;
+        cursor: pointer;
+        min-height: 0;
+        padding: 0.4rem 0.45rem 0.4rem 0.4rem;
+        border-radius: 12px;
+        grid-template-columns: 2.75rem 1fr;
+        gap: 0.45rem;
+        align-items: center;
+      }
+      .more-stop__media {
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 8px;
+      }
+      .more-stop__copy {
+        padding-right: 0;
+        gap: 0.08rem;
+      }
+      .more-stop__title {
+        font-size: 0.78rem;
+        line-height: 1.2;
+      }
+      .more-stop__desc {
+        display: none;
+      }
+      .more-stop__hint {
+        display: none;
+      }
+
+      .itin-controls {
+        margin-top: 1.5rem;
+        padding: 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #f5f5f5;
+        display: grid;
+        gap: 0.5rem;
+      }
+      .itin-extend {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+      .itin-extend__copy {
+        display: none;
+      }
+      .itin-extend .btn {
+        width: 100%;
+        min-height: 2.65rem;
+        justify-content: center;
+      }
+      .timeline-help {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        margin: 0;
+      }
+      .timeline-help__hint {
+        display: none;
+      }
+      .timeline-help__actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .timeline-share,
+      .timeline-reset {
+        flex: 1 1 auto;
+        width: 100%;
+        min-height: 2.65rem;
+        justify-content: center;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.86rem;
+      }
+      .timeline-share-status {
+        grid-column: 1 / -1;
+      }
+
+      .promo .section-copy {
+        margin-bottom: 1.15rem;
+      }
+      .promo-code {
+        width: 100%;
+        max-width: 22rem;
+        display: flex;
+      }
+      .promo-code__value {
+        flex: 1;
+        font-size: 0.95rem;
+        padding: 0.9rem 0.95rem;
+      }
+      .promo-code__copy {
+        min-width: 5.5rem;
+        min-height: 3rem;
+      }
+      .promo-perks {
+        gap: 0.55rem;
+        margin-bottom: 1.25rem;
+      }
+      .promo-perks li {
+        font-size: 0.95rem;
+      }
+
+      .book__panel {
+        padding: 1.5rem 1.15rem;
+        border-radius: 16px;
+      }
+      .book__actions {
+        flex-direction: column;
+      }
+      .book__actions .btn {
+        width: 100%;
+      }
+
+      .sticky-promo {
+        --sticky-ctrl-h: 3.75rem;
+        --sticky-ctrl-w: 7.15rem;
+        gap: 0.5rem;
+        padding: 0.55rem 0.7rem calc(0.55rem + var(--safe-bottom));
+        box-shadow: 0 -8px 28px rgba(17, 17, 17, 0.08);
+      }
+      .sticky-promo__bar {
+        padding: 0.3rem 0.3rem 0.3rem 0.65rem;
+        border-radius: 12px;
+        gap: 0.35rem;
+      }
+      .sticky-promo__code {
+        font-size: 0.72rem;
+        letter-spacing: 0.01em;
+        padding: 0;
+        max-width: none;
+      }
+      .sticky-promo__note {
+        font-size: 0.6rem;
+      }
+      .sticky-promo__copy {
+        min-width: 3.6rem;
+        padding: 0 0.65rem;
+        font-size: 0.74rem;
+        border-radius: 9px;
+      }
+      .sticky-promo__itin {
+        padding: 0.22rem;
+        gap: 0.18rem;
+        border-radius: 12px;
+      }
+      .sticky-promo__choose,
+      .sticky-promo__stay,
+      .sticky-promo__save,
+      .sticky-promo__reset {
+        padding: 0.28rem 0.5rem;
+        font-size: 0.74rem;
+        border-radius: 9px;
+      }
+
+      .exit-intent {
+        padding: 0.75rem;
+        align-items: end;
+      }
+      .exit-intent__panel {
+        width: 100%;
+        max-height: min(92svh, 40rem);
+        border-radius: 18px 18px 14px 14px;
+        padding: 1.25rem 1.1rem calc(1.1rem + var(--safe-bottom));
+      }
+      .exit-intent__list button {
+        min-height: 3.1rem;
+        padding: 0.85rem 0.95rem;
+        font-size: 0.95rem;
+      }
+      .exit-intent__states-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.45rem;
+      }
+      .exit-intent__states-row button {
+        height: 2.75rem;
+        font-size: 0.88rem;
+      }
+      .exit-intent__custom-row {
+        grid-template-columns: 1fr;
+      }
+      .exit-intent__custom-row .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .hero__campaign {
+        font-size: clamp(2.1rem, 10.5vw, 2.6rem);
+      }
+      .sticky-promo {
+        --sticky-ctrl-w: 6.85rem;
+      }
+      .sticky-promo__code {
+        font-size: 0.68rem;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .sticky-promo__note {
+        font-size: 0.58rem;
+      }
+      .sticky-promo__copy {
+        min-width: 3.35rem;
+        padding: 0 0.55rem;
+        font-size: 0.7rem;
+      }
+      .sticky-promo__choose,
+      .sticky-promo__stay,
+      .sticky-promo__save,
+      .sticky-promo__reset {
+        padding-left: 0.45rem;
+        padding-right: 0.45rem;
+        font-size: 0.7rem;
+      }
+      .do-card {
+        width: min(84vw, 15.25rem);
+      }
+    }
+
+    @media (max-width: 859px) and (pointer: coarse), (max-width: 859px) and (hover: none) {
+      .more-stop__hint {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -4113,7 +5814,7 @@
             <h2 class="section-title" id="itin-title">Build your itinerary</h2>
             <span class="itin-length-tag" id="itinLengthTag">2 nights</span>
           </div>
-          <p class="section-copy">Pick your check-in and check-out dates, then <span class="itin-reorder-hint itin-reorder-hint--drag">drag experiences to reshape the plan</span><span class="itin-reorder-hint itin-reorder-hint--tap">use the arrows to reshape the plan</span>. Nelson moves at your speed.</p>
+          <p class="section-copy">Pick your check-in and check-out dates, then <span class="itin-reorder-hint itin-reorder-hint--drag">drag experiences to reshape the plan</span><span class="itin-reorder-hint itin-reorder-hint--tap">tap ↑ ↓ to reorder — including moving a stop to another day</span>. Nelson moves at your speed.</p>
         </div>
 
         <div class="range-picker" id="rangePicker">
@@ -4156,7 +5857,6 @@
           <div class="itin-map__bar">
             <div>
               <p class="itin-map__title">Your stay on the map</p>
-              <p class="itin-map__note">Day tags follow the sample plan, and update when you move stops.</p>
             </div>
             <div class="itin-map__tools">
               <div class="itin-map__legend" id="itinMapLegend"></div>
@@ -4197,15 +5897,6 @@
             <span class="plan-day__date" id="planDay5Date">-</span>
             <span class="plan-day__summary" id="planDay5Summary">Extra day</span>
           </button>
-        </div>
-
-        <div class="timeline-help">
-          <p>Drag to change the order.</p>
-          <div class="timeline-help__actions">
-            <button type="button" class="timeline-share" id="copyPlanLink">Copy plan link</button>
-            <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
-            <span class="timeline-share-status" id="planShareStatus" aria-live="polite"></span>
-          </div>
         </div>
 
         <div class="timeline" id="timeline">
@@ -4488,9 +6179,20 @@
           <div class="more-stops__row" id="moreStopsRow"></div>
         </aside>
 
-        <div class="itin-extend" id="itinExtend">
-          <p class="itin-extend__copy">Not ready to leave? Nelson moves at your speed, not the other way around.</p>
-          <button type="button" class="btn btn--dark" id="addNightBtn">Add a night</button>
+        <div class="itin-controls">
+          <div class="itin-extend" id="itinExtend">
+            <p class="itin-extend__copy">Not ready to leave? Nelson moves at your speed, not the other way around.</p>
+            <button type="button" class="btn btn--dark" id="addNightBtn">Add a night</button>
+          </div>
+
+          <div class="timeline-help">
+            <p class="timeline-help__hint">Drag to change the order.</p>
+            <div class="timeline-help__actions">
+              <button type="button" class="timeline-share" id="saveItineraryBtn">Save itinerary</button>
+              <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
+              <span class="timeline-share-status" id="planShareStatus" aria-live="polite"></span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -4654,10 +6356,20 @@
 
 
   <div class="sticky-promo" id="stickyPromo" aria-hidden="true">
-    <span class="sticky-promo__code"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
-    <div class="cta-row">
-      <button type="button" class="btn btn--dark" id="stickyCopy">Copy</button>
-      <a class="btn btn--outline" href="#itinerary" data-track="cta_sample_stay">Sample stay</a>
+    <div class="sticky-promo__bar" role="group" aria-label="Promotional code">
+      <div class="sticky-promo__text">
+        <span class="sticky-promo__code"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
+        <p class="sticky-promo__note">15% off participating stays and offers</p>
+      </div>
+      <button type="button" class="sticky-promo__copy" id="stickyCopy" data-track="copy_promo_code">Copy</button>
+    </div>
+    <div class="sticky-promo__actions" role="group" aria-label="Plan your stay">
+      <a class="sticky-promo__choose" href="#stay" data-track="cta_choose_stay_sticky">Choose stay</a>
+      <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
+    </div>
+    <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
+      <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
+      <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky">Reset itinerary</button>
     </div>
   </div>
 
@@ -4711,6 +6423,33 @@
         </div>
       </form>
       <button type="button" class="exit-intent__dismiss" id="exitIntentDismiss">Prefer not to say</button>
+    </div>
+  </div>
+
+  <div
+    class="itin-share"
+    id="itinShare"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="itinShareTitle"
+    aria-hidden="true"
+    hidden
+  >
+    <div class="itin-share__panel">
+      <div class="itin-share__grab" aria-hidden="true"></div>
+      <div class="itin-share__head">
+        <div>
+          <p class="itin-share__eyebrow">Your plan</p>
+          <h2 class="itin-share__title" id="itinShareTitle">Save itinerary</h2>
+        </div>
+        <button type="button" class="itin-share__close" id="itinShareClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="itin-share__card" id="itinShareCard"></div>
+      <div class="itin-share__actions">
+        <button type="button" class="btn btn--dark" id="itinShareNative" data-track="share_itinerary">Share plan</button>
+        <button type="button" class="btn btn--outline" id="itinShareCopy" data-track="copy_plan_link">Copy link</button>
+      </div>
+      <p class="itin-share__status" id="itinShareStatus" aria-live="polite"></p>
     </div>
   </div>
 
@@ -5924,6 +7663,22 @@
         { featureType: "landscape.natural", stylers: [{ color: "#E1F3C9" }] },
         { featureType: "water", stylers: [{ color: "#CAE8F2" }] }
       ];
+      var MAP_STYLES_MOBILE = [
+        { featureType: "poi", stylers: [{ visibility: "off" }] },
+        { featureType: "transit", stylers: [{ visibility: "off" }] },
+        { featureType: "landscape.man_made", stylers: [{ visibility: "off" }] },
+        { featureType: "administrative.land_parcel", stylers: [{ visibility: "off" }] },
+        { featureType: "administrative.neighborhood", stylers: [{ visibility: "off" }] },
+        { featureType: "administrative", elementType: "geometry.stroke", stylers: [{ visibility: "off" }] },
+        { featureType: "road", elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+        { featureType: "road.local", stylers: [{ visibility: "off" }] },
+        { featureType: "road.arterial", elementType: "labels", stylers: [{ visibility: "off" }] },
+        { featureType: "road.highway", elementType: "labels", stylers: [{ visibility: "simplified" }] },
+        { featureType: "road", elementType: "geometry", stylers: [{ lightness: 35 }, { saturation: -20 }] },
+        { featureType: "administrative.locality", elementType: "labels", stylers: [{ visibility: "simplified" }] },
+        { featureType: "landscape.natural", stylers: [{ color: "#E6F4D4" }] },
+        { featureType: "water", stylers: [{ color: "#CAE8F2" }] }
+      ];
       var itinMap = null;
       var itinMapPins = [];
       var itinInfoWindow = null;
@@ -5932,6 +7687,10 @@
       var itinMapFitting = false;
       var itinMapStyleTier = -1;
       var pinLayoutRaf = 0;
+
+      function isMobileMapViewport() {
+        return window.matchMedia("(max-width: 859px)").matches;
+      }
 
       function dayTagLabel(day) {
         if (day === "anytime") return "Anytime";
@@ -6013,6 +7772,7 @@
       }
 
       function mapStylesForZoom(zoom) {
+        if (isMobileMapViewport()) return MAP_STYLES_MOBILE.slice();
         var styles = [
           { featureType: "transit.station", stylers: [{ visibility: "off" }] },
           { featureType: "water", stylers: [{ color: "#CAE8F2" }] }
@@ -6045,7 +7805,8 @@
       function syncMapStyles() {
         if (!itinMap) return;
         var zoom = itinMap.getZoom() || 10;
-        var tier = zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0;
+        var mobile = isMobileMapViewport() ? 1 : 0;
+        var tier = mobile * 10 + (zoom >= 14 ? 2 : zoom >= 12 ? 1 : 0);
         if (tier === itinMapStyleTier) return;
         itinMapStyleTier = tier;
         itinMap.setOptions({ styles: mapStylesForZoom(zoom) });
@@ -6240,7 +8001,7 @@
         legend.innerHTML = html;
       }
 
-      var MAP_COLLAPSE_KEY = "checkIntoNelson.mapCollapsed.v1";
+      var MAP_COLLAPSE_KEY = "checkIntoNelson.mapCollapsed.v2";
 
       function isMapCollapsed() {
         var wrap = document.getElementById("itinMapWrap");
@@ -6273,7 +8034,11 @@
         var btn = document.getElementById("itinMapToggle");
         var stored = null;
         try { stored = window.localStorage.getItem(MAP_COLLAPSE_KEY); } catch (err) {}
-        if (stored === "1") setMapCollapsed(true, true);
+        if (stored === "1") {
+          setMapCollapsed(true, true);
+        } else {
+          setMapCollapsed(false, true);
+        }
         if (btn) {
           btn.addEventListener("click", function () {
             setMapCollapsed(!isMapCollapsed());
@@ -6294,10 +8059,12 @@
             fullscreenControl: false,
             keyboardShortcuts: false,
             gestureHandling: "cooperative",
-            zoomControl: true,
+            zoomControl: !isMobileMapViewport(),
             zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_TOP },
-            styles: MAP_STYLES
+            styles: mapStylesForZoom(10)
           });
+          itinMapStyleTier = -1;
+          syncMapStyles();
           itinInfoWindow = new google.maps.InfoWindow();
           google.maps.event.addListener(itinMap, "click", function () {
             if (itinInfoWindow) itinInfoWindow.close();
@@ -6305,6 +8072,15 @@
               el.classList.remove("is-active");
             });
           });
+          google.maps.event.addListener(itinMap, "zoom_changed", function () {
+            syncMapStyles();
+          });
+          google.maps.event.addListener(itinMap, "idle", function () {
+            syncMapStyles();
+            schedulePinLayout();
+          });
+        } else {
+          syncMapStyles();
         }
         ensurePinClass();
         itinMapPins.forEach(function (pin) { pin.setMap(null); });
@@ -6330,10 +8106,15 @@
           var lngSpan = Math.max(ne.lng() - sw.lng(), 0.04);
           bounds.extend({ lat: ne.lat() + latSpan * 0.1, lng: ne.lng() + lngSpan * 0.04 });
           bounds.extend({ lat: sw.lat() - latSpan * 0.04, lng: sw.lng() - lngSpan * 0.04 });
-          itinMap.fitBounds(bounds, { top: 88, right: 48, bottom: 36, left: 48 });
+          var mobileMap = isMobileMapViewport();
+          itinMap.fitBounds(bounds, mobileMap
+            ? { top: 112, right: 72, bottom: 64, left: 72 }
+            : { top: 88, right: 48, bottom: 36, left: 48 });
+          syncMapStyles();
         } else if (visible === 1) {
           itinMap.setCenter(bounds.getCenter());
           itinMap.setZoom(12);
+          syncMapStyles();
         }
       }
 
@@ -6387,7 +8168,194 @@
         if (el) el.textContent = message || "";
       }
 
-      function copyPlanLink() {
+      function setItinShareStatus(message) {
+        var el = document.getElementById("itinShareStatus");
+        if (el) el.textContent = message || "";
+      }
+
+      function escapeHtml(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function shareDayTheme(key) {
+        if (key === "1") return "Settle in";
+        if (key === "2") return "Taste, create, explore";
+        if (key === "3") return "Head outdoors";
+        if (key === "4") return "Another day to linger";
+        if (key === "5") return "Take the long way home";
+        if (key === "anytime") return "Anytime";
+        return "";
+      }
+
+      function shareStopPinColor(id) {
+        if (id === "checkin") return "var(--cat-stay)";
+        if (id === "sip") return "var(--cat-taste)";
+        if (id === "create") return "var(--cat-culture)";
+        if (id === "backbone") return "var(--cat-experience)";
+        if (id === "rides") return "var(--cat-community)";
+        if (id === "explore" || id === "crabtree" || id === "spyrock" || id === "tyeriver") {
+          return "var(--cat-outdoor)";
+        }
+        return "var(--cat-stay)";
+      }
+
+      function collectShareDays() {
+        var days = [];
+        var stopIndex = 0;
+        document.querySelectorAll(".timeline-day").forEach(function (dayEl) {
+          if (dayEl.classList.contains("is-length-hidden")) return;
+          var list = dayEl.querySelector(".timeline-list");
+          if (!list) return;
+          var key = list.getAttribute("data-drop-day") || "1";
+          var items = Array.prototype.slice.call(list.querySelectorAll(".timeline-item:not(.is-removed)"));
+          if (!items.length) return;
+          var dateLabel = "";
+          if (startDate) {
+            if (key !== "anytime") {
+              var d = dateForDayIndex(key);
+              if (d) dateLabel = formatShort(d);
+            }
+          } else if (key !== "anytime") {
+            dateLabel = "Day " + key;
+          }
+          days.push({
+            key: key,
+            title: key === "anytime" ? "Anytime" : ("Day " + key),
+            theme: shareDayTheme(key),
+            dateLabel: dateLabel,
+            stops: items.map(function (item) {
+              stopIndex += 1;
+              var id = item.getAttribute("data-id") || "";
+              return {
+                id: id,
+                num: stopIndex,
+                role: item.getAttribute("data-role") || "",
+                name: stopTrayTitle(item),
+                image: stopTrayImage(item),
+                pin: shareStopPinColor(id),
+                foLeft: id === "sip" && selectedSip === "flyingfox"
+              };
+            })
+          });
+        });
+        return days;
+      }
+
+      function buildShareSummary(days) {
+        var checkout = startDate ? endDateFromStart(startDate) : null;
+        var lines = ["Check Into Nelson itinerary"];
+        if (startDate && checkout) {
+          lines.push(formatShort(startDate) + " → " + formatShort(checkout));
+          lines.push(tripNights + (tripNights === 1 ? " night" : " nights"));
+        }
+        lines.push("");
+        days.forEach(function (day) {
+          var head = day.title;
+          if (day.theme) head += " · " + day.theme;
+          if (day.dateLabel && day.key !== "anytime") head += " · " + day.dateLabel;
+          lines.push(head);
+          day.stops.forEach(function (stop) {
+            lines.push(stop.num + ". " + stop.name);
+          });
+          lines.push("");
+        });
+        return lines.join("\n").trim();
+      }
+
+      function renderItinShareCard(days) {
+        var card = document.getElementById("itinShareCard");
+        if (!card) return;
+        var checkout = startDate ? endDateFromStart(startDate) : null;
+        var html = '<p class="itin-share__brand">Check Into <span>Nelson</span></p>';
+        if (startDate && checkout) {
+          html += '<p class="itin-share__dates">' + escapeHtml(formatShort(startDate) + " → " + formatShort(checkout)) + "</p>";
+          html += '<p class="itin-share__nights">' + escapeHtml(String(tripNights)) + (tripNights === 1 ? " night" : " nights") + "</p>";
+        } else {
+          html += '<p class="itin-share__dates">Your Nelson stay</p>';
+        }
+        if (!days.length) {
+          html += '<p class="itin-share__empty">Add a few stops, then share your plan.</p>';
+        } else {
+          days.forEach(function (day) {
+            html += '<div class="itin-share__day">';
+            html += '<p class="itin-share__day-label">';
+            html += '<span class="itin-share__day-num">' + escapeHtml(day.title) + "</span>";
+            if (day.dateLabel) {
+              html += '<span class="itin-share__day-meta">' + escapeHtml(day.dateLabel) + "</span>";
+            }
+            html += "</p>";
+            html += '<ul class="itin-share__stops">';
+            day.stops.forEach(function (stop) {
+              html += '<li class="itin-share__stop" style="--pin:' + stop.pin + '">';
+              html += '<span class="itin-share__stop-rail"><span class="itin-share__stop-num">' + escapeHtml(String(stop.num)) + "</span></span>";
+              html += '<span class="itin-share__chip">';
+              html += '<span class="itin-share__mark' + (stop.foLeft ? " is-fo-left" : "") + '">';
+              if (stop.image) {
+                html += '<img src="' + escapeHtml(stop.image) + '" alt="" loading="lazy">';
+              }
+              html += "</span>";
+              html += '<span class="itin-share__chip-text">';
+              html += '<span class="itin-share__stop-role">' + escapeHtml(stop.role || "Stop") + "</span>";
+              html += '<span class="itin-share__stop-name">' + escapeHtml(stop.name) + "</span>";
+              html += "</span></span></li>";
+            });
+            html += "</ul></div>";
+          });
+        }
+        card.innerHTML = html;
+      }
+
+      function closeItinShare() {
+        var root = document.getElementById("itinShare");
+        if (!root) return;
+        root.classList.remove("is-open");
+        root.setAttribute("aria-hidden", "true");
+        root.hidden = true;
+        setItinShareStatus("");
+      }
+
+      function openItinShare() {
+        var plan = collectPlanState();
+        if (!plan) {
+          setPlanShareStatus("Pick a check-in date first.");
+          setTimeout(function () { setPlanShareStatus(""); }, 2200);
+          return;
+        }
+        persistPlan();
+        var days = collectShareDays();
+        renderItinShareCard(days);
+        var root = document.getElementById("itinShare");
+        if (!root) return;
+        root.hidden = false;
+        root.setAttribute("aria-hidden", "false");
+        requestAnimationFrame(function () {
+          root.classList.add("is-open");
+        });
+        setItinShareStatus("");
+        var shareBtn = document.getElementById("itinShareNative");
+        if (shareBtn) {
+          shareBtn.hidden = false;
+          shareBtn.textContent = navigator.share ? "Share plan" : "Share plan";
+        }
+      }
+
+      function copyTextFallback(text, onDone) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(onDone).catch(function () {
+            window.prompt("Copy plan link:", text);
+            onDone();
+          });
+        } else {
+          window.prompt("Copy plan link:", text);
+          onDone();
+        }
+      }
+
+      function copyPlanLink(fromModal) {
         var plan = collectPlanState();
         if (!plan) {
           setPlanShareStatus("Pick a check-in date first.");
@@ -6396,18 +8364,70 @@
         persistPlan();
         var link = buildShareablePlanUrl(plan);
         var done = function () {
-          setPlanShareStatus("Link copied. Share or bookmark it.");
-          setTimeout(function () { setPlanShareStatus(""); }, 2200);
+          if (fromModal) {
+            setItinShareStatus("Link copied.");
+            setTimeout(function () { setItinShareStatus(""); }, 2200);
+          } else {
+            setPlanShareStatus("Link copied. Share or bookmark it.");
+            setTimeout(function () { setPlanShareStatus(""); }, 2200);
+          }
         };
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(link).then(done).catch(function () {
-            window.prompt("Copy plan link:", link);
-            done();
-          });
-        } else {
-          window.prompt("Copy plan link:", link);
-          done();
+        copyTextFallback(link, done);
+      }
+
+      function sharePlanNative() {
+        var plan = collectPlanState();
+        if (!plan) {
+          setItinShareStatus("Pick a check-in date first.");
+          return;
         }
+        persistPlan();
+        var link = buildShareablePlanUrl(plan);
+        var days = collectShareDays();
+        var summary = buildShareSummary(days);
+        var payload = {
+          title: "Check Into Nelson itinerary",
+          text: summary,
+          url: link
+        };
+        if (!navigator.share) {
+          copyTextFallback(link, function () {
+            setItinShareStatus("Link copied.");
+            setTimeout(function () { setItinShareStatus(""); }, 2200);
+          });
+          return;
+        }
+        navigator.share(payload).then(function () {
+          setItinShareStatus("Shared.");
+          setTimeout(function () { setItinShareStatus(""); }, 1800);
+        }).catch(function (err) {
+          if (err && err.name === "AbortError") return;
+          copyTextFallback(link, function () {
+            setItinShareStatus("Link copied.");
+            setTimeout(function () { setItinShareStatus(""); }, 2200);
+          });
+        });
+      }
+
+      function initItinShare() {
+        var root = document.getElementById("itinShare");
+        if (!root) return;
+        var saveBtn = document.getElementById("saveItineraryBtn");
+        if (saveBtn) saveBtn.addEventListener("click", openItinShare);
+        var closeBtn = document.getElementById("itinShareClose");
+        if (closeBtn) closeBtn.addEventListener("click", closeItinShare);
+        var copyBtn = document.getElementById("itinShareCopy");
+        if (copyBtn) copyBtn.addEventListener("click", function () { copyPlanLink(true); });
+        var shareBtn = document.getElementById("itinShareNative");
+        if (shareBtn) shareBtn.addEventListener("click", sharePlanNative);
+        root.addEventListener("click", function (e) {
+          if (e.target === root) closeItinShare();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && root.classList.contains("is-open")) {
+            closeItinShare();
+          }
+        });
       }
 
       function restorePlanOnLoad() {
@@ -6537,6 +8557,155 @@
           sAll.textContent = formatShort(startDate) + " → " + formatShort(checkout);
         }
         requestAnimationFrame(observeItems);
+        updateNudgeStates();
+      }
+
+      function orderedVisibleTimelineItems() {
+        var items = [];
+        document.querySelectorAll(".timeline-day").forEach(function (day) {
+          if (day.classList.contains("is-length-hidden")) return;
+          Array.prototype.forEach.call(day.querySelectorAll(".timeline-item:not(.is-removed)"), function (item) {
+            items.push(item);
+          });
+        });
+        return items;
+      }
+
+      function dayListItems(list) {
+        if (!list) return [];
+        return Array.prototype.filter.call(list.children, function (el) {
+          return el.classList && el.classList.contains("timeline-item") && !el.classList.contains("is-removed");
+        });
+      }
+
+      function movableDayLists() {
+        var lists = [];
+        document.querySelectorAll(".timeline-day").forEach(function (day) {
+          if (day.classList.contains("is-length-hidden")) return;
+          var list = day.querySelector(".timeline-list");
+          if (list) lists.push(list);
+        });
+        return lists;
+      }
+
+      function adjacentDayList(list, direction) {
+        var lists = movableDayLists();
+        var index = lists.indexOf(list);
+        if (index < 0) return null;
+        return lists[index + direction] || null;
+      }
+
+      function updateNudgeStates() {
+        document.querySelectorAll(".timeline-item").forEach(function (item) {
+          var up = item.querySelector('[data-nudge="up"]');
+          var down = item.querySelector('[data-nudge="down"]');
+          if (!up && !down) return;
+          if (item.classList.contains("is-removed")) {
+            if (up) up.disabled = true;
+            if (down) down.disabled = true;
+            return;
+          }
+          var list = item.closest(".timeline-list");
+          var siblings = dayListItems(list);
+          var index = siblings.indexOf(item);
+          if (up) up.disabled = !(index > 0 || adjacentDayList(list, -1));
+          if (down) down.disabled = !(index >= 0 && index < siblings.length - 1 || adjacentDayList(list, 1));
+        });
+      }
+
+      function nudgeTimelineItem(item, direction) {
+        if (!item || item.classList.contains("is-removed") || dragItem) return;
+        var list = item.closest(".timeline-list");
+        if (!list) return;
+        var siblings = dayListItems(list);
+        var index = siblings.indexOf(item);
+        if (index < 0) return;
+
+        if (direction < 0) {
+          if (index > 0) {
+            list.insertBefore(item, siblings[index - 1]);
+          } else {
+            var prevList = adjacentDayList(list, -1);
+            if (!prevList) return;
+            prevList.appendChild(item);
+          }
+        } else if (index < siblings.length - 1) {
+          var nextSibling = siblings[index + 1];
+          if (nextSibling.nextSibling) list.insertBefore(item, nextSibling.nextSibling);
+          else list.appendChild(item);
+        } else {
+          var nextList = adjacentDayList(list, 1);
+          if (!nextList) return;
+          var nextItems = dayListItems(nextList);
+          if (nextItems.length) nextList.insertBefore(item, nextItems[0]);
+          else nextList.appendChild(item);
+        }
+
+        item.classList.add("is-in");
+        if (activeFilter !== "all") {
+          var destDay = item.closest(".timeline-day");
+          var destKey = destDay ? destDay.getAttribute("data-day") : null;
+          if (destKey && destKey !== activeFilter && destKey !== "anytime") {
+            applyFilter("all");
+          }
+        }
+        refreshTimelineMeta();
+        refreshItineraryMap();
+        persistPlan();
+        try {
+          item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } catch (err) {}
+      }
+
+      function initMoveControls() {
+        document.querySelectorAll(".timeline-item").forEach(function (item) {
+          var handle = item.querySelector(".timeline-item__handle");
+          if (!handle || handle.closest(".timeline-item__move")) return;
+          var move = document.createElement("div");
+          move.className = "timeline-item__move";
+          handle.parentNode.insertBefore(move, handle);
+          move.appendChild(handle);
+
+          var nudge = document.createElement("div");
+          nudge.className = "timeline-item__nudge";
+
+          var up = document.createElement("button");
+          up.type = "button";
+          up.className = "timeline-item__nudge-btn";
+          up.setAttribute("data-nudge", "up");
+          up.setAttribute("aria-label", "Move up");
+          up.title = "Move up";
+          up.textContent = "↑";
+
+          var down = document.createElement("button");
+          down.type = "button";
+          down.className = "timeline-item__nudge-btn";
+          down.setAttribute("data-nudge", "down");
+          down.setAttribute("aria-label", "Move down");
+          down.title = "Move down";
+          down.textContent = "↓";
+
+          nudge.appendChild(up);
+          nudge.appendChild(down);
+          move.appendChild(nudge);
+
+          function stopBubble(e) {
+            e.stopPropagation();
+          }
+          up.addEventListener("pointerdown", stopBubble);
+          down.addEventListener("pointerdown", stopBubble);
+          up.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            nudgeTimelineItem(item, -1);
+          });
+          down.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            nudgeTimelineItem(item, 1);
+          });
+        });
+        updateNudgeStates();
       }
 
       function updateLastDayEmptyState() {
@@ -6761,6 +8930,23 @@
         beginDrag(item, e, ghostSource);
       }
 
+      function addStopFromTray(id) {
+        var item = document.querySelector('.timeline-item[data-id="' + id + '"]');
+        if (!item || dragItem) return;
+        var list = lastVisibleDayList();
+        if (!list) return;
+        setTimelineItemRemoved(item, false);
+        item.classList.add("is-in");
+        list.appendChild(item);
+        renderMoreStops();
+        refreshTimelineMeta();
+        refreshItineraryMap();
+        persistPlan();
+        try {
+          item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } catch (err) {}
+      }
+
       function stopTrayTitle(item) {
         var id = item.getAttribute("data-id");
         if (id === "sip") {
@@ -6819,6 +9005,7 @@
           var bo = Number(b.getAttribute("data-default-order") || 99);
           return ao - bo;
         });
+        var coarsePointer = window.matchMedia("(hover: none), (pointer: coarse), (max-width: 859px)").matches;
         removed.forEach(function (item) {
           var id = item.getAttribute("data-id");
           if (!id || id === "checkin" || !VALID_STOP_IDS[id]) return;
@@ -6837,12 +9024,18 @@
               '<span class="more-stop__title">' + escapeTrayText(title) + "</span>" +
               (desc ? '<span class="more-stop__desc">' + escapeTrayText(desc) + "</span>" : "") +
             "</span>" +
-            '<span class="more-stop__hint" aria-hidden="true">⠿</span>';
-          card.addEventListener("pointerdown", function (e) {
-            if (e.button != null && e.button !== 0) return;
-            e.preventDefault();
-            beginDragFromTray(id, e, card);
-          });
+            '<span class="more-stop__hint" aria-hidden="true">' + (coarsePointer ? "" : "⠿") + "</span>";
+          if (coarsePointer) {
+            card.addEventListener("click", function () {
+              addStopFromTray(id);
+            });
+          } else {
+            card.addEventListener("pointerdown", function (e) {
+              if (e.button != null && e.button !== 0) return;
+              e.preventDefault();
+              beginDragFromTray(id, e, card);
+            });
+          }
           row.appendChild(card);
         });
         wrap.hidden = row.children.length === 0;
@@ -6877,7 +9070,9 @@
             e.stopPropagation();
             removeTimelineItem(item);
           });
-          card.appendChild(btn);
+          var move = item.querySelector(".timeline-item__move");
+          if (move) move.appendChild(btn);
+          else card.appendChild(btn);
         });
       }
 
@@ -7109,6 +9304,7 @@
       }
 
       initRangePicker();
+      initMoveControls();
       initRemoveButtons();
       initDrag();
       initMediaCarousels();
@@ -7137,8 +9333,7 @@
 
       var resetBtn = document.getElementById("resetTimeline");
       if (resetBtn) resetBtn.addEventListener("click", resetTimeline);
-      var copyPlanBtn = document.getElementById("copyPlanLink");
-      if (copyPlanBtn) copyPlanBtn.addEventListener("click", copyPlanLink);
+      initItinShare();
       var addNightBtn = document.getElementById("addNightBtn");
       if (addNightBtn) addNightBtn.addEventListener("click", addOneNight);
 
@@ -7269,22 +9464,45 @@
       if (stickyCopy) stickyCopy.addEventListener("click", function () { copyCode(stickyCopy); });
 
       var sticky = document.getElementById("stickyPromo");
-      var promo = document.getElementById("promo");
+      var footer = document.querySelector("footer") || document.querySelector(".campaign-footer");
+      var itinerary = document.getElementById("itinerary");
       var hero = document.querySelector(".hero");
       function updateSticky() {
         if (!sticky || !hero) return;
-        var pastHero = window.scrollY > hero.offsetHeight * 0.65;
-        var nearPromo = false;
-        if (promo) {
-          var r = promo.getBoundingClientRect();
-          nearPromo = r.top < window.innerHeight && r.bottom > 0;
+        var pastStart = window.scrollY > 16;
+        var nearFooter = false;
+        if (footer) {
+          var fr = footer.getBoundingClientRect();
+          // Hide once the site footer starts entering the viewport
+          nearFooter = fr.top < window.innerHeight;
         }
-        var show = pastHero && !nearPromo;
+        var inItin = false;
+        if (itinerary) {
+          var ir = itinerary.getBoundingClientRect();
+          var stickyH = sticky.offsetHeight || 64;
+          inItin = ir.top < window.innerHeight * 0.55 && ir.bottom > stickyH + 24;
+        }
+        var show = pastStart && !nearFooter;
         sticky.classList.toggle("is-visible", show);
+        sticky.classList.toggle("is-itin", show && inItin);
         sticky.setAttribute("aria-hidden", show ? "false" : "true");
       }
       window.addEventListener("scroll", updateSticky, { passive: true });
+      window.addEventListener("resize", updateSticky);
       updateSticky();
+
+      var stickySave = document.getElementById("stickySaveItin");
+      if (stickySave) {
+        stickySave.addEventListener("click", function () {
+          if (typeof openItinShare === "function") openItinShare();
+        });
+      }
+      var stickyReset = document.getElementById("stickyResetItin");
+      if (stickyReset) {
+        stickyReset.addEventListener("click", function () {
+          if (typeof resetTimeline === "function") resetTimeline();
+        });
+      }
 
       // Framer iframe: keep in-page anchors inside the embed; open everything
       // else out of the frame so links aren't trapped (or silently blocked).
@@ -7720,7 +9938,9 @@
         var baseScroll = 0;
         var manualOffset = 0;
         var dragging = false;
+        var dragAxis = null;
         var dragStartX = 0;
+        var dragStartY = 0;
         var dragStartScroll = 0;
         var dragMoved = false;
 
@@ -7790,16 +10010,31 @@
         viewport.addEventListener("pointerdown", function (e) {
           if (e.pointerType === "mouse" && e.button !== 0) return;
           dragging = true;
+          dragAxis = null;
           dragMoved = false;
           dragStartX = e.clientX;
+          dragStartY = e.clientY;
           dragStartScroll = viewport.scrollLeft;
-          viewport.classList.add("is-dragging");
-          try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
         });
 
         viewport.addEventListener("pointermove", function (e) {
           if (!dragging) return;
           var dx = e.clientX - dragStartX;
+          var dy = e.clientY - dragStartY;
+          if (!dragAxis) {
+            if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+            // Let vertical page scroll win when the gesture is mostly up/down.
+            if (Math.abs(dy) > Math.abs(dx)) {
+              dragging = false;
+              dragAxis = "y";
+              viewport.classList.remove("is-dragging");
+              return;
+            }
+            dragAxis = "x";
+            viewport.classList.add("is-dragging");
+            try { viewport.setPointerCapture(e.pointerId); } catch (err) {}
+          }
+          if (dragAxis !== "x") return;
           if (Math.abs(dx) > 4) dragMoved = true;
           // Dampen finger drag on coarse pointers so swipes feel calmer.
           var dragScale = (e.pointerType === "touch" || slowScroll.matches) ? 0.72 : 1;
@@ -7808,8 +10043,12 @@
         });
 
         function endDrag(e) {
-          if (!dragging) return;
+          if (!dragging && dragAxis !== "x") {
+            dragAxis = null;
+            return;
+          }
           dragging = false;
+          dragAxis = null;
           viewport.classList.remove("is-dragging");
           try { viewport.releasePointerCapture(e.pointerId); } catch (err) {}
           syncManualOffset();
@@ -7895,13 +10134,15 @@
           { sel: ".showcase__head", kind: "soft" },
           { sel: ".partner-feature", kind: "zoom", stagger: 0, alternate: true },
           { sel: ".itinerary__head", kind: "soft" },
-          { sel: ".day-divider", kind: "soft", stagger: 60 },
           { sel: ".passport .eyebrow, .passport .section-title, .passport .section-copy", kind: "soft", stagger: 70 },
           { sel: ".passport__step", kind: "left", stagger: 90 },
           { sel: ".passport-card", kind: "right" },
           { sel: ".promo .section-title, .promo .section-copy, .promo-perks, .promo-code, .promo__fine", kind: "soft", stagger: 70 },
           { sel: ".book .section-title, .book .section-copy, .book .cta-row", kind: "soft", stagger: 80 }
         ];
+        if (!window.matchMedia("(max-width: 859px)").matches) {
+          specs.splice(8, 0, { sel: ".day-divider", kind: "soft", stagger: 60 });
+        }
 
         var nodes = [];
         specs.forEach(function (spec) {
