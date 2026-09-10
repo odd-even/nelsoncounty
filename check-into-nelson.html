@@ -881,7 +881,7 @@
         box-shadow: none;
         background:
           radial-gradient(
-            130% 160% at 0% 0%,
+            130% 160% at 100% 0%,
             color-mix(in srgb, var(--hero-accent, #f0a8c0) 34%, transparent) 0%,
             color-mix(in srgb, var(--hero-accent, #f0a8c0) 12%, transparent) 42%,
             transparent 70%
@@ -1235,6 +1235,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      background: #1a1a1a;
       transition: transform 0.55s var(--ease);
     }
     .do-card:hover .do-card__img {
@@ -6747,11 +6748,11 @@
           </button>
           <div class="partner-strip__row" id="partnerStripRow">
           <a class="partner-chip" href="#feature-farmhouse">
-            <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/farmhouse-veritas-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
             Farmhouse at Veritas
           </a>
           <a class="partner-chip" href="#feature-devils-backbone-camp">
-            <img src="assets/check-into-nelson/devils-backbone.jpg" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
             Devils Backbone Campground
           </a>
           <a class="partner-chip" href="#feature-flying-fox">
@@ -6800,7 +6801,7 @@
       <div class="do-rail__viewport" id="doRailViewport">
         <div class="do-rail__track" id="doRailTrack">
           <a class="do-card" data-cat="taste" href="#feature-flying-fox">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/flying-fox-vineyards-image1_QyaP87PFD?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" src="assets/check-into-nelson/cards/flying-fox-480.webp" srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" sizes="(max-width:859px) 13.75rem, 15.5rem" loading="eager" fetchpriority="high" decoding="async" width="717" height="896" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Sip</span>
@@ -6809,7 +6810,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="culture" href="#feature-glass-hollow">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/glass-hollow-studio-gallery-image1_P9hwkSskV?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" src="assets/check-into-nelson/cards/glass-hollow-480.webp" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" sizes="(max-width:859px) 13.75rem, 15.5rem" loading="eager" fetchpriority="low" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Create</span>
@@ -6818,7 +6819,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#feature-tunnel">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/blue-ridge-tunnel-image1_PrnI6PqE9?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp" data-srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6827,7 +6828,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#itinerary">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/crabtree-falls-image1_IXQ2lOEKu?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/crabtree-falls-480.webp" data-srcset="assets/check-into-nelson/cards/crabtree-falls-480.webp 480w, assets/check-into-nelson/cards/crabtree-falls-581.webp 581w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="581" height="726" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6836,7 +6837,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="experience" href="#feature-devils-backbone">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/devils-backbone-brewing-company-image1_xOCX-_l34?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-480.webp" data-srcset="assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Experience</span>
@@ -6845,7 +6846,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#itinerary">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="13.75rem" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/spy-rock-480.webp" data-srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6854,7 +6855,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="stay" href="#feature-farmhouse">
-            <img class="do-card__img" src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/farmhouse-veritas-480.webp" data-srcset="assets/check-into-nelson/cards/farmhouse-veritas-480.webp 480w, assets/check-into-nelson/cards/farmhouse-veritas-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Stay</span>
@@ -6863,7 +6864,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="community" href="#feature-rides">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/reliable-rides-480.webp" data-srcset="assets/check-into-nelson/cards/reliable-rides-480.webp 480w, assets/check-into-nelson/cards/reliable-rides-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Get around</span>
@@ -6872,7 +6873,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#itinerary">
-            <img class="do-card__img" src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-640,h-800,fo-auto,q-75" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-480,h-600,fo-auto,q-70" data-srcset="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-480,h-600,fo-auto,q-70 480w, https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-640,h-800,fo-auto,q-70 640w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="640" height="800" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6881,7 +6882,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="stay" href="#feature-devils-backbone-camp">
-            <img class="do-card__img" src="assets/check-into-nelson/devils-backbone.jpg" alt="" width="640" height="800" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" data-srcset="assets/check-into-nelson/cards/devils-backbone-camp-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-camp-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Stay</span>
@@ -6890,7 +6891,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="stay" href="#feature-indigo-house">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/indigo-house-card-800.webp" srcset="assets/check-into-nelson/cards/indigo-house-card-480.webp 480w, assets/check-into-nelson/cards/indigo-house-card-800.webp 800w" sizes="13.75rem" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/indigo-house-card-480.webp" data-srcset="assets/check-into-nelson/cards/indigo-house-card-480.webp 480w, assets/check-into-nelson/cards/indigo-house-card-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Stay</span>
@@ -6899,7 +6900,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="stay" href="#feature-retreat-crabtree">
-            <img class="do-card__img" src="assets/check-into-nelson/cards/retreat-crabtree-card-800.webp" srcset="assets/check-into-nelson/cards/retreat-crabtree-card-480.webp 480w, assets/check-into-nelson/cards/retreat-crabtree-card-800.webp 800w" sizes="13.75rem" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/retreat-crabtree-card-480.webp" data-srcset="assets/check-into-nelson/cards/retreat-crabtree-card-480.webp 480w, assets/check-into-nelson/cards/retreat-crabtree-card-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Stay</span>
@@ -6929,7 +6930,7 @@
           <article class="stay-card" id="feature-farmhouse">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/01-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/02-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1143" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/03-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp" srcset="assets/check-into-nelson/slides/farmhouse-veritas/04-800.webp 800w, assets/check-into-nelson/slides/farmhouse-veritas/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Farmhouse at Veritas" width="1600" height="1100" loading="lazy" decoding="async" />
@@ -6953,7 +6954,7 @@
           <article class="stay-card" id="feature-devils-backbone-camp">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="961" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
@@ -7040,7 +7041,7 @@
         <article class="partner-feature" id="feature-flying-fox" data-cat="taste">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/flying-fox/01-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/flying-fox/01-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/flying-fox/02-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/flying-fox/03-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/flying-fox/04-800.webp" srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
@@ -7073,7 +7074,7 @@
         <article class="partner-feature" id="feature-glass-hollow" data-cat="culture">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/glass-hollow/02-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/glass-hollow/03-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/glass-hollow/04-800.webp" srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
@@ -7102,7 +7103,7 @@
         <article class="partner-feature" id="feature-tunnel" data-cat="outdoor">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp" srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Blue Ridge Tunnel photos">
@@ -7124,7 +7125,7 @@
         <article class="partner-feature" id="feature-devils-backbone" data-cat="experience">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="961" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
@@ -7152,7 +7153,7 @@
         <article class="partner-feature" id="feature-rides" data-cat="community">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="assets/check-into-nelson/slides/reliable-rides/01-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/01-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="eager" decoding="async" />
+              <img class="is-active" src="assets/check-into-nelson/slides/reliable-rides/01-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/01-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
               <img src="assets/check-into-nelson/slides/reliable-rides/02-800.webp" srcset="assets/check-into-nelson/slides/reliable-rides/02-800.webp 800w, assets/check-into-nelson/slides/reliable-rides/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Reliable Rides" width="1600" height="1100" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Reliable Rides photos">
@@ -7284,11 +7285,11 @@
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--stay">Settle in</span><span class="timeline-item__daymeta">Day 1</span></p>
                       <div class="stay-swap" role="radiogroup" aria-label="Choose your lodging">
                         <button type="button" class="stay-swap__chip is-selected" role="radio" aria-checked="true" data-stay-option="farmhouse" id="stayOptFarmhouse">
-                          <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="80" height="80" loading="lazy" />
+                          <img src="assets/check-into-nelson/cards/farmhouse-veritas-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
                           <span class="stay-swap__name">Farmhouse at Veritas</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="backbone" id="stayOptBackbone">
-                          <img src="assets/check-into-nelson/devils-backbone.jpg" alt="" width="80" height="80" loading="lazy" />
+                          <img src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
                           <span class="stay-swap__name">Devils Backbone Campground</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="indigo" id="stayOptIndigo">
@@ -11455,6 +11456,46 @@
         update();
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", onScroll);
+      })();
+
+      (function initDoRailImages() {
+        var viewport = document.getElementById("doRailViewport");
+        if (!viewport) return;
+        var imgs = Array.prototype.slice.call(viewport.querySelectorAll(".do-card__img[data-src]"));
+        if (!imgs.length) return;
+
+        function hydrate(img) {
+          if (!img || img.dataset.hydrated === "1") return;
+          img.dataset.hydrated = "1";
+          var src = img.getAttribute("data-src");
+          var srcset = img.getAttribute("data-srcset");
+          var sizes = img.getAttribute("data-sizes");
+          if (srcset) img.setAttribute("srcset", srcset);
+          if (sizes) img.setAttribute("sizes", sizes);
+          if (src) img.setAttribute("src", src);
+          img.removeAttribute("data-src");
+          img.removeAttribute("data-srcset");
+          img.removeAttribute("data-sizes");
+        }
+
+        if (!("IntersectionObserver" in window)) {
+          imgs.forEach(hydrate);
+          return;
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            hydrate(entry.target);
+            io.unobserve(entry.target);
+          });
+        }, {
+          root: viewport,
+          rootMargin: "0px 120px 0px 40px",
+          threshold: 0.01
+        });
+
+        imgs.forEach(function (img) { io.observe(img); });
       })();
 
       (function initDoRail() {
