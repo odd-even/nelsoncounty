@@ -27,6 +27,87 @@
       gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
     })();
   </script>
+  <script>
+    // Reload / shared itinerary links: keep #hash in the URL, but always open at the top
+    // (desktop + mobile). Suppress browser scroll restoration and late hash jumps.
+    (function () {
+      try {
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      } catch (err) {}
+
+      var pendingHash = window.location.hash || "";
+      var bootPinUntil = 0;
+      var bootPinTimer = 0;
+
+      if (pendingHash) {
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        } catch (err2) {}
+      }
+
+      function pinTop() {
+        var html = document.documentElement;
+        var prevBehavior = html && html.style ? html.style.scrollBehavior : "";
+        if (html && html.style) html.style.scrollBehavior = "auto";
+        try {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        } catch (err3) {
+          window.scrollTo(0, 0);
+        }
+        if (html) html.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
+        if (html && html.style) html.style.scrollBehavior = prevBehavior;
+      }
+
+      function restoreHashQuietly() {
+        if (!pendingHash) return;
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search + pendingHash);
+        } catch (err4) {}
+        pendingHash = "";
+      }
+
+      function startBootPin(ms) {
+        bootPinUntil = Math.max(bootPinUntil, Date.now() + (ms || 1200));
+        pinTop();
+        if (bootPinTimer) return;
+        bootPinTimer = window.setInterval(function () {
+          if (Date.now() >= bootPinUntil) {
+            window.clearInterval(bootPinTimer);
+            bootPinTimer = 0;
+            return;
+          }
+          pinTop();
+        }, 50);
+      }
+
+      pinTop();
+      startBootPin(300);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        startBootPin(800);
+      });
+
+      window.addEventListener("load", function () {
+        restoreHashQuietly();
+        startBootPin(1500);
+        requestAnimationFrame(function () {
+          pinTop();
+          requestAnimationFrame(pinTop);
+        });
+      });
+
+      window.addEventListener("pageshow", function () {
+        startBootPin(1000);
+      });
+
+      window.addEventListener("hashchange", function () {
+        if (Date.now() < bootPinUntil) {
+          pinTop();
+        }
+      });
+    })();
+  </script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -394,9 +475,14 @@
     }
     .hero__main {
       min-width: 0;
+      width: 100%;
+      text-align: left;
     }
     .hero__campaign {
-      display: grid;
+      position: relative;
+      display: block;
+      width: 100%;
+      text-align: left;
       font-size: clamp(2.6rem, 7vw, 4.75rem);
       font-weight: 500;
       line-height: 0.98;
@@ -405,7 +491,20 @@
       margin-bottom: 1.7rem;
     }
     .hero__swap {
-      grid-area: 1 / 1;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: max-content;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      pointer-events: none;
+    }
+    .hero__swap.is-in {
+      position: relative;
+      pointer-events: auto;
     }
     .hero__letter {
       display: inline-block;
@@ -432,7 +531,7 @@
     .hero__lede {
       font-size: clamp(1.05rem, 2vw, 1.2rem);
       font-weight: 400;
-      max-width: 58ch;
+      max-width: 40ch;
       color: rgba(255, 255, 255, 0.92);
       margin-bottom: 1.5rem;
     }
@@ -542,8 +641,9 @@
     @media (max-width: 859px) {
       .hero {
         min-height: 100svh;
-        height: 100svh;
-        align-items: end;
+        height: 100dvh;
+        max-height: 100dvh;
+        align-items: stretch;
         background: color-mix(in srgb, var(--hero-accent) 26%, #121614);
       }
       .hero__slide-blur,
@@ -617,27 +717,51 @@
         -webkit-backdrop-filter: blur(34px) saturate(1.15);
       }
       .hero__content {
-        width: min(100% - 1.75rem, var(--max));
-        margin-top: auto;
-        padding: 0 0 1.15rem;
+        position: absolute;
+        left: var(--page-pad-x);
+        right: var(--page-pad-x);
+        bottom: max(var(--page-pad-x), env(safe-area-inset-bottom, 0px));
+        width: auto;
+        max-width: var(--max);
+        height: auto;
+        margin: 0 auto;
+        padding: 0;
         gap: 0.75rem;
-        align-self: end;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: stretch;
+        box-sizing: border-box;
+      }
+      .hero__main {
+        flex: 0 0 auto;
+        width: 100%;
+        align-self: stretch;
+        text-align: left;
       }
       .hero__campaign {
+        width: 100%;
         font-size: clamp(2.35rem, 11vw, 3.1rem);
         margin-bottom: 0.75rem;
         min-height: 1.96em;
         text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+        text-align: left;
+      }
+      .hero__swap {
+        left: 0;
+        text-align: left;
       }
       .hero__lede {
         display: block;
+        width: 100%;
         font-size: 0.95rem;
         line-height: 1.4;
-        max-width: 28ch;
-        margin-bottom: 0.85rem;
+        max-width: min(100%, 38rem);
+        margin: 0 0 0.85rem;
         color: rgba(255, 255, 255, 0.92);
         text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
-        text-wrap: balance;
+        text-align: left;
+        text-wrap: unset;
       }
       .hero__main .cta-row {
         display: none;
@@ -647,13 +771,15 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
+        flex: 0 0 auto;
+        margin: 0;
         padding: 1rem 1rem 1.05rem;
         border-radius: 18px;
         border: 1px solid color-mix(in srgb, var(--hero-accent, #f0a8c0) 10%, rgba(255, 255, 255, 0.14));
         box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
         background:
           radial-gradient(
-            130% 160% at 0% 100%,
+            130% 160% at 0% 0%,
             color-mix(in srgb, var(--hero-accent, #f0a8c0) 34%, transparent) 0%,
             color-mix(in srgb, var(--hero-accent, #f0a8c0) 12%, transparent) 42%,
             transparent 70%
@@ -1285,10 +1411,17 @@
       }
       .timeline-item__actions .btn:has(.btn__discount) {
         justify-content: space-between;
-        gap: 0.65rem;
+        gap: 0.45rem;
       }
-      .timeline-item__actions .btn .btn__discount {
+      .timeline-item__actions .btn .btn__discount,
+      .stay-card__body > .btn .btn__discount {
         margin-left: 0;
+        padding: 0.16rem 0.4rem;
+        border-radius: 5px;
+        font-size: 0.7em;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.15;
       }
     }
     .hub__layout {
@@ -6315,7 +6448,7 @@
           <p class="hero__promo-label">Promo code</p>
           <p class="hero__promo-title">Save with <span class="code-green code-green--plain"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
           <p class="hero__promo-copy hero__promo-copy--desk">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County. Copy the code before you book.</p>
-          <p class="hero__promo-copy hero__promo-copy--mob">Special incentives from participating partners to help you stay longer. Copy the code before you book.</p>
+          <p class="hero__promo-copy hero__promo-copy--mob">Special incentives from participating partners.</p>
           <div class="promo-code promo-code--sm" role="group" aria-label="Promotional code">
             <div class="hero__promo-text">
               <span class="promo-code__value"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
