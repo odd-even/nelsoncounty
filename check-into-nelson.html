@@ -1408,20 +1408,34 @@
       }
       .stay-card__body > .btn .btn__discount {
         margin-left: 0;
-      }
-      .timeline-item__actions .btn:has(.btn__discount) {
-        justify-content: space-between;
-        gap: 0.45rem;
-      }
-      .timeline-item__actions .btn .btn__discount,
-      .stay-card__body > .btn .btn__discount {
-        margin-left: 0;
         padding: 0.16rem 0.4rem;
         border-radius: 5px;
         font-size: 0.7em;
         font-weight: 700;
         letter-spacing: 0.01em;
         line-height: 1.15;
+      }
+      .timeline-item__actions .btn:has(.btn__discount) {
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.4rem;
+        line-height: 1.15;
+      }
+      .timeline-item__actions .btn .btn__discount {
+        margin-left: 0;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: inherit;
+        font-size: 0.86em;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+      .timeline-item__actions .btn--dark .btn__discount {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.92);
       }
     }
     .hub__layout {
@@ -1672,6 +1686,17 @@
     .partner-strip {
       padding: 1.25rem 0 1.35rem;
       background: #fafafa;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    .partner-strip .wrap {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
     .partner-strip__label {
       font-size: 0.72rem;
@@ -1679,28 +1704,95 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 0.85rem;
+      margin: 0 auto 0.85rem;
+      padding: 0 max(var(--page-pad-x), calc((100% - var(--max)) / 2));
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .partner-strip__scroller {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
     }
     .partner-strip__row {
       display: flex;
       flex-wrap: nowrap;
+      align-items: stretch;
       gap: 0.55rem 0.65rem;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
       overflow-x: auto;
       overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
       scrollbar-width: none;
-      scroll-snap-type: x proximity;
-      padding-bottom: 0.15rem;
+      scroll-snap-type: none;
+      padding: 0.15rem max(var(--page-pad-x), calc((100% - var(--max)) / 2)) 0.15rem;
+      cursor: grab;
+      touch-action: pan-x;
+      -webkit-user-select: none;
+      user-select: none;
     }
     .partner-strip__row::-webkit-scrollbar {
       display: none;
     }
+    .partner-strip__row.is-dragging {
+      cursor: grabbing;
+    }
+    .partner-strip__row.is-dragging .partner-chip {
+      pointer-events: none;
+    }
+    .partner-strip__nav {
+      appearance: none;
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(17, 17, 17, 0.55);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transform: translateY(-60%);
+      cursor: pointer;
+    }
+    .partner-strip__nav svg {
+      width: 1rem;
+      height: 1rem;
+      display: block;
+    }
+    .partner-strip__nav--prev { left: 0.55rem; }
+    .partner-strip__nav--next { right: 0.55rem; }
+    .partner-strip__nav:hover {
+      background: rgba(17, 17, 17, 0.72);
+    }
+    .partner-strip__nav:focus-visible {
+      outline: 2px solid var(--nelson-green);
+      outline-offset: 2px;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .partner-strip__nav:not([hidden]) {
+        display: inline-flex;
+      }
+    }
     .partner-chip {
       display: inline-flex;
       flex: 0 0 auto;
+      flex-shrink: 0;
       align-items: center;
       gap: 0.55rem;
+      min-width: max-content;
       padding: 0.45rem 0.85rem 0.45rem 0.45rem;
       border-radius: var(--pill);
       background: var(--white);
@@ -1712,6 +1804,7 @@
       scroll-snap-align: start;
       box-shadow: none;
       filter: none;
+      -webkit-user-drag: none;
       transition:
         border-color 0.2s ease,
         transform 0.55s var(--ease),
@@ -5444,12 +5537,14 @@
         overflow-x: auto;
         gap: 0.55rem;
         padding: 0.15rem var(--page-pad-x) 0.25rem;
-        scroll-snap-type: x proximity;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
       }
       .partner-strip__row::-webkit-scrollbar {
         display: none;
+      }
+      .partner-strip__nav {
+        display: none !important;
       }
       .partner-chip {
         flex: 0 0 auto;
@@ -6486,7 +6581,11 @@
     <section class="partner-strip" aria-label="Participating partners">
       <div class="wrap">
         <p class="partner-strip__label">Participating partners</p>
-        <div class="partner-strip__row">
+        <div class="partner-strip__scroller">
+          <button type="button" class="partner-strip__nav partner-strip__nav--prev" id="partnerStripPrev" aria-label="Scroll partners left" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 5.5 9 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="partner-strip__row" id="partnerStripRow">
           <a class="partner-chip" href="#feature-farmhouse">
             <img src="assets/check-into-nelson/farmhouse-veritas.jpg" alt="" width="80" height="80" loading="lazy" />
             Farmhouse at Veritas
@@ -6515,6 +6614,10 @@
             <img src="assets/check-into-nelson/cards/retreat-crabtree-480.webp" alt="" width="80" height="80" loading="lazy" />
             Retreat at Crabtree Falls
           </a>
+          </div>
+          <button type="button" class="partner-strip__nav partner-strip__nav--next" id="partnerStripNext" aria-label="Scroll partners right" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.5 5.5 15 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
         </div>
       </div>
     </section>
@@ -7698,7 +7801,7 @@
 
         var index = 0;
         var mobileMq = window.matchMedia("(max-width: 859px)");
-        var baseIntervalMs = mobileMq.matches ? 4000 : 5500;
+        var baseIntervalMs = 4000;
         var minIntervalMs = 1700;
         var lastTick = 0;
         var rafId = 0;
@@ -7717,7 +7820,7 @@
         var caption = document.getElementById("heroCaption");
 
         function syncHeroInterval() {
-          baseIntervalMs = mobileMq.matches ? 4000 : 5500;
+          baseIntervalMs = 4000;
         }
         if (typeof mobileMq.addEventListener === "function") {
           mobileMq.addEventListener("change", syncHeroInterval);
@@ -7971,7 +8074,7 @@
         }, { passive: true });
 
         heroRoot.addEventListener("click", function (e) {
-          if (!mobileMq.matches || touchMoved) return;
+          if (touchMoved) return;
           var t = e.target;
           if (!t || !t.closest) return;
           if (t.closest("a, button, input, textarea, select, label, .hero__dots, .hero__promo, .cta-row")) return;
@@ -11375,59 +11478,68 @@
       })();
 
       (function initPartnerStripScroll() {
-        var row = document.querySelector(".partner-strip__row");
+        var row = document.getElementById("partnerStripRow") || document.querySelector(".partner-strip__row");
         if (!row) return;
+        var prevBtn = document.getElementById("partnerStripPrev");
+        var nextBtn = document.getElementById("partnerStripNext");
 
-        // Keep vertical wheel scrolling the page; only consume clearly horizontal gestures.
+        function maxScroll() {
+          return Math.max(0, row.scrollWidth - row.clientWidth);
+        }
+
+        function updateNav() {
+          var max = maxScroll();
+          var left = row.scrollLeft;
+          if (prevBtn) prevBtn.hidden = max <= 1 || left <= 2;
+          if (nextBtn) nextBtn.hidden = max <= 1 || left >= max - 2;
+        }
+
+        function scrollByStep(dir) {
+          var chip = row.querySelector(".partner-chip");
+          var step = chip ? chip.getBoundingClientRect().width + 12 : Math.max(180, row.clientWidth * 0.45);
+          row.scrollBy({ left: dir * step, behavior: "smooth" });
+        }
+
+        // While hovering the strip, map wheel to horizontal scroll when there is
+        // overflow. At either end, let vertical page scroll continue.
         row.addEventListener("wheel", function (e) {
-          var absX = Math.abs(e.deltaX);
-          var absY = Math.abs(e.deltaY);
-          if (absX <= absY && !e.shiftKey) return;
-          var delta = e.shiftKey ? e.deltaY : e.deltaX;
-          if (!delta) return;
-          var max = row.scrollWidth - row.clientWidth;
+          var max = maxScroll();
           if (max <= 0) return;
+          var delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+          if (!delta) return;
           var next = Math.max(0, Math.min(max, row.scrollLeft + delta));
           if (next === row.scrollLeft) return;
           row.scrollLeft = next;
           e.preventDefault();
+          updateNav();
         }, { passive: false });
 
         var dragging = false;
         var moved = false;
         var startX = 0;
         var startScroll = 0;
-        var pointerId = null;
+        var activePointer = null;
 
-        row.addEventListener("pointerdown", function (e) {
-          if (e.pointerType === "mouse" && e.button !== 0) return;
-          if (row.scrollWidth <= row.clientWidth + 1) return;
-          dragging = true;
-          moved = false;
-          startX = e.clientX;
-          startScroll = row.scrollLeft;
-          pointerId = e.pointerId;
-          try { row.setPointerCapture(pointerId); } catch (err) {}
-        });
-
-        row.addEventListener("pointermove", function (e) {
+        function onMouseMove(e) {
           if (!dragging) return;
           var dx = e.clientX - startX;
           if (!moved && Math.abs(dx) < 6) return;
-          moved = true;
+          if (!moved) {
+            moved = true;
+            row.classList.add("is-dragging");
+          }
           row.scrollLeft = startScroll - dx;
-          e.preventDefault();
-        });
+          updateNav();
+          if (e.cancelable) e.preventDefault();
+        }
 
-        function endDrag(e) {
+        function onMouseUp() {
           if (!dragging) return;
           dragging = false;
-          if (pointerId != null) {
-            try { row.releasePointerCapture(pointerId); } catch (err) {}
-            pointerId = null;
-          }
-          if (moved && e && e.type === "pointerup") {
-            // Prevent the chip link click after a drag scrub.
+          row.classList.remove("is-dragging");
+          window.removeEventListener("mousemove", onMouseMove, true);
+          window.removeEventListener("mouseup", onMouseUp, true);
+          if (moved) {
             var blockClick = function (ev) {
               ev.preventDefault();
               ev.stopPropagation();
@@ -11436,10 +11548,80 @@
             row.addEventListener("click", blockClick, true);
           }
           moved = false;
+          activePointer = null;
         }
 
-        row.addEventListener("pointerup", endDrag);
-        row.addEventListener("pointercancel", endDrag);
+        // Mouse drag (works in Cursor preview / desktop webviews)
+        row.addEventListener("mousedown", function (e) {
+          if (e.button !== 0) return;
+          if (maxScroll() <= 1) return;
+          dragging = true;
+          moved = false;
+          startX = e.clientX;
+          startScroll = row.scrollLeft;
+          activePointer = "mouse";
+          window.addEventListener("mousemove", onMouseMove, true);
+          window.addEventListener("mouseup", onMouseUp, true);
+        });
+
+        // Touch / pen: prefer native overflow scrolling
+        row.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse") return;
+          if (maxScroll() <= 1) return;
+          dragging = true;
+          moved = false;
+          startX = e.clientX;
+          startScroll = row.scrollLeft;
+          activePointer = e.pointerId;
+        });
+
+        row.addEventListener("pointermove", function (e) {
+          if (!dragging || activePointer !== e.pointerId) return;
+          var dx = e.clientX - startX;
+          if (!moved && Math.abs(dx) < 6) return;
+          if (!moved) {
+            moved = true;
+            row.classList.add("is-dragging");
+            try { row.setPointerCapture(e.pointerId); } catch (err) {}
+          }
+          row.scrollLeft = startScroll - dx;
+          updateNav();
+          if (e.cancelable) e.preventDefault();
+        });
+
+        function endPointer(e) {
+          if (!dragging || (activePointer != null && e.pointerId !== activePointer)) return;
+          dragging = false;
+          row.classList.remove("is-dragging");
+          try { row.releasePointerCapture(e.pointerId); } catch (err) {}
+          if (moved) {
+            var blockClick = function (ev) {
+              ev.preventDefault();
+              ev.stopPropagation();
+              row.removeEventListener("click", blockClick, true);
+            };
+            row.addEventListener("click", blockClick, true);
+          }
+          moved = false;
+          activePointer = null;
+        }
+
+        row.addEventListener("pointerup", endPointer);
+        row.addEventListener("pointercancel", endPointer);
+        row.addEventListener("scroll", updateNav, { passive: true });
+
+        if (prevBtn) prevBtn.addEventListener("click", function () { scrollByStep(-1); });
+        if (nextBtn) nextBtn.addEventListener("click", function () { scrollByStep(1); });
+
+        window.addEventListener("resize", updateNav);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(updateNav).catch(function () {});
+        }
+        Array.prototype.forEach.call(row.querySelectorAll("img"), function (img) {
+          if (img.complete) return;
+          img.addEventListener("load", updateNav, { once: true });
+        });
+        updateNav();
       })();
 
       (function initPartnerDividers() {
