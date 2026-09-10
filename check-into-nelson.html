@@ -437,11 +437,21 @@
       margin-bottom: 1.5rem;
     }
     .hero__promo {
-      background: rgba(255, 255, 255, 0.96);
-      color: var(--ink);
-      border-radius: 8px;
+      background:
+        radial-gradient(
+          120% 95% at 0% 100%,
+          color-mix(in srgb, var(--hero-accent, #f0a8c0) 34%, transparent) 0%,
+          color-mix(in srgb, var(--hero-accent, #f0a8c0) 12%, transparent) 38%,
+          transparent 68%
+        ),
+        rgba(10, 12, 11, 0.55);
+      color: #fff;
+      border: 1px solid color-mix(in srgb, var(--hero-accent, #f0a8c0) 10%, rgba(255, 255, 255, 0.14));
+      border-radius: 18px;
       padding: 1.15rem 1.2rem 1.25rem;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
       justify-self: start;
     }
     @media (min-width: 860px) {
@@ -454,7 +464,7 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.58);
       margin-bottom: 0.35rem;
     }
     .hero__promo-title {
@@ -462,21 +472,52 @@
       font-weight: 500;
       letter-spacing: -0.02em;
       margin-bottom: 0.4rem;
+      color: #fff;
     }
     .hero__promo-copy {
       font-size: 0.88rem;
       line-height: 1.45;
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.72);
       margin-bottom: 0.9rem;
+    }
+    .hero__promo-copy--mob {
+      display: none;
+    }
+    .hero__promo .code-green,
+    .hero__promo .promo-code__value {
+      color: var(--hero-accent, #f0a8c0);
     }
     .hero__promo .promo-code--sm {
       margin-bottom: 0;
       width: 100%;
-      border-color: #d8d8d8;
+      border-radius: 999px;
+      border-color: rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.08);
       box-shadow: none;
+      overflow: visible;
+      align-items: center;
+      padding: 0.35rem;
+      padding-left: 0.95rem;
+      gap: 0.55rem;
+      box-sizing: border-box;
     }
     .hero__promo .promo-code__value {
       flex: 1;
+      padding: 0;
+    }
+    .hero__promo .promo-code__copy {
+      flex: 0 0 auto;
+      align-self: center;
+      height: auto;
+      min-height: 0;
+      padding: 0.55rem 1.05rem;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--ink);
+    }
+    .hero__promo .promo-code__copy:hover {
+      background: #fff;
     }
     .hero__promo-text {
       display: flex;
@@ -604,30 +645,59 @@
       .hero__promo {
         width: 100%;
         display: flex;
-        align-items: center;
-        padding: 0.35rem 0.35rem 0.35rem 1.15rem;
-        border-radius: 999px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-        background: rgba(255, 255, 255, 0.94);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem 1rem 1.05rem;
+        border-radius: 18px;
+        border: 1px solid color-mix(in srgb, var(--hero-accent, #f0a8c0) 10%, rgba(255, 255, 255, 0.14));
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+        background:
+          radial-gradient(
+            130% 160% at 0% 100%,
+            color-mix(in srgb, var(--hero-accent, #f0a8c0) 34%, transparent) 0%,
+            color-mix(in srgb, var(--hero-accent, #f0a8c0) 12%, transparent) 42%,
+            transparent 70%
+          ),
+          rgba(10, 12, 11, 0.55);
+        backdrop-filter: blur(18px) saturate(1.15);
+        -webkit-backdrop-filter: blur(18px) saturate(1.15);
+        box-sizing: border-box;
       }
-      .hero__promo-label,
-      .hero__promo-title,
-      .hero__promo-copy {
+      .hero__promo-label {
+        display: block;
+        margin-bottom: 0.28rem;
+        font-size: 0.66rem;
+      }
+      .hero__promo-title {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 0.98rem;
+      }
+      .hero__promo-copy--desk {
         display: none;
+      }
+      .hero__promo-copy--mob {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-size: 0.82rem;
+        line-height: 1.4;
       }
       .hero__promo .promo-code--sm {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 0.65rem;
+        gap: 0.55rem;
         width: 100%;
         max-width: none;
-        border: 0;
-        background: transparent;
-        box-shadow: none;
-        padding: 0;
         margin: 0;
+        padding: 0.35rem;
+        padding-left: 0.9rem;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: none;
         overflow: visible;
+        box-sizing: border-box;
       }
       .hero__promo-text {
         display: flex;
@@ -651,39 +721,28 @@
         border: 0;
         background: transparent;
         box-shadow: none;
-        font-size: 0.8rem;
+        font-size: 0.86rem;
         letter-spacing: 0.02em;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        line-height: 1;
+        line-height: 1.15;
       }
       .hero__promo .promo-code__copy {
         flex: 0 0 auto;
         width: auto;
         min-width: 4.75rem;
-        height: 2.55rem;
-        padding: 0 0.95rem;
+        height: auto;
+        min-height: 0;
+        padding: 0.6rem 1.05rem;
         border: 0;
         border-radius: var(--pill);
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         text-align: center;
         align-self: center;
       }
       .hero__promo-note {
-        display: block;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 0.64rem;
-        line-height: 1.2;
-        letter-spacing: 0;
-        color: var(--muted);
-        text-align: left;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
+        display: none;
       }
       .hero__dots {
         display: none;
@@ -730,6 +789,25 @@
       color: var(--white);
     }
     .btn--dark:hover { background: var(--black); }
+    .btn__discount {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.2rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: inherit;
+      font-size: 0.84em;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .btn--dark .btn__discount {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
     .btn--outline {
       background: var(--white);
       color: var(--ink);
@@ -1179,18 +1257,39 @@
       font-weight: 500;
       letter-spacing: -0.02em;
       margin-bottom: 0.55rem;
+      text-wrap: balance;
     }
     .stay-card__copy {
       font-size: 0.98rem;
       line-height: 1.5;
       color: var(--muted);
       margin-bottom: 1rem;
+      text-wrap: balance;
     }
     .stay-card__body > .btn {
-      display: flex;
-      width: 100%;
+      display: inline-flex;
+      width: auto;
+      max-width: 100%;
       justify-content: center;
       box-sizing: border-box;
+    }
+    @media (max-width: 819px) {
+      .stay-card__body > .btn {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 0.65rem;
+      }
+      .stay-card__body > .btn .btn__discount {
+        margin-left: 0;
+      }
+      .timeline-item__actions .btn:has(.btn__discount) {
+        justify-content: space-between;
+        gap: 0.65rem;
+      }
+      .timeline-item__actions .btn .btn__discount {
+        margin-left: 0;
+      }
     }
     .hub__layout {
       display: grid;
@@ -1451,11 +1550,22 @@
     }
     .partner-strip__row {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 0.55rem 0.65rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+      padding-bottom: 0.15rem;
+    }
+    .partner-strip__row::-webkit-scrollbar {
+      display: none;
     }
     .partner-chip {
       display: inline-flex;
+      flex: 0 0 auto;
       align-items: center;
       gap: 0.55rem;
       padding: 0.45rem 0.85rem 0.45rem 0.45rem;
@@ -1466,35 +1576,35 @@
       color: var(--ink);
       font-size: 0.88rem;
       font-weight: 500;
+      scroll-snap-align: start;
+      box-shadow: none;
+      filter: none;
       transition:
         border-color 0.2s ease,
         transform 0.55s var(--ease),
-        opacity 0.55s var(--ease),
-        box-shadow 0.55s var(--ease);
+        opacity 0.55s var(--ease);
     }
     .partner-chip.reveal {
       opacity: 0;
       transform: translate3d(0, 1.15rem, 0) scale(0.94);
-      filter: blur(2px);
-      box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+      filter: none;
+      box-shadow: none;
       transition:
         opacity 0.7s var(--ease),
         transform 0.7s var(--ease),
-        filter 0.7s var(--ease),
-        border-color 0.2s ease,
-        box-shadow 0.7s var(--ease);
+        border-color 0.2s ease;
       transition-delay: var(--reveal-delay, 0ms);
     }
     .partner-chip.reveal.is-in {
       opacity: 1;
       transform: none;
       filter: none;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+      box-shadow: none;
     }
     .partner-chip.reveal.is-in:hover {
       border-color: #bdbdbd;
       transform: translateY(-2px);
-      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+      box-shadow: none;
     }
     .partner-chip img {
       width: 1.85rem;
@@ -1538,7 +1648,7 @@
       height: 1px;
       background: var(--section-line);
       transform: scaleX(var(--divider));
-      transform-origin: 50% 50%;
+      transform-origin: left center;
       will-change: transform;
     }
     @media (min-width: 860px) {
@@ -1577,13 +1687,13 @@
       left: 1rem;
       top: 1rem;
       z-index: 4;
-      padding: 0.4rem 0.8rem;
-      border-radius: var(--pill);
+      margin: 0;
+      pointer-events: none;
+    }
+    .partner-feature__badge.cat-pill {
       background: rgba(255, 255, 255, 0.94);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .partner-feature__role {
       font-size: 0.75rem;
@@ -1591,20 +1701,50 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 0.45rem;
+      margin: 0 0 0.45rem;
     }
     .partner-feature[data-cat="taste"] .partner-feature__role,
-    .partner-feature[data-cat="taste"] .partner-feature__badge { color: var(--cat-taste-text); }
+    .partner-feature[data-cat="taste"] .partner-feature__badge {
+      color: var(--cat-taste-text);
+    }
+    .partner-feature[data-cat="taste"] .partner-feature__badge::before {
+      background-image: url("icons/taste.svg");
+    }
     .partner-feature[data-cat="culture"] .partner-feature__role,
-    .partner-feature[data-cat="culture"] .partner-feature__badge { color: var(--cat-culture-text); }
+    .partner-feature[data-cat="culture"] .partner-feature__badge {
+      color: var(--cat-culture-text);
+    }
+    .partner-feature[data-cat="culture"] .partner-feature__badge::before {
+      background-image: url("icons/culture.svg");
+    }
     .partner-feature[data-cat="outdoor"] .partner-feature__role,
-    .partner-feature[data-cat="outdoor"] .partner-feature__badge { color: var(--cat-outdoor-text); }
+    .partner-feature[data-cat="outdoor"] .partner-feature__badge {
+      color: var(--cat-outdoor-text);
+    }
+    .partner-feature[data-cat="outdoor"] .partner-feature__badge::before {
+      background-image: url("icons/outdoor.svg");
+    }
     .partner-feature[data-cat="experience"] .partner-feature__role,
-    .partner-feature[data-cat="experience"] .partner-feature__badge { color: var(--cat-experience-text); }
+    .partner-feature[data-cat="experience"] .partner-feature__badge {
+      color: var(--cat-experience-text);
+    }
+    .partner-feature[data-cat="experience"] .partner-feature__badge::before {
+      background-image: url("icons/experience.svg");
+    }
     .partner-feature[data-cat="community"] .partner-feature__role,
-    .partner-feature[data-cat="community"] .partner-feature__badge { color: var(--cat-community-text); }
+    .partner-feature[data-cat="community"] .partner-feature__badge {
+      color: var(--cat-community-text);
+    }
+    .partner-feature[data-cat="community"] .partner-feature__badge::before {
+      background-image: url("icons/community.svg");
+    }
     .partner-feature[data-cat="stay"] .partner-feature__role,
-    .partner-feature[data-cat="stay"] .partner-feature__badge { color: var(--cat-stay-text); }
+    .partner-feature[data-cat="stay"] .partner-feature__badge {
+      color: var(--cat-stay-text);
+    }
+    .partner-feature[data-cat="stay"] .partner-feature__badge::before {
+      background-image: url("icons/stay.svg");
+    }
     .partner-feature__title {
       font-size: clamp(1.55rem, 3vw, 2.1rem);
       font-weight: 500;
@@ -2475,6 +2615,99 @@
         margin-left: 0.25rem;
       }
     }
+    @media (min-width: 860px) {
+      .itin-controls {
+        margin-top: 2.5rem;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.75rem 2.5rem;
+        align-items: end;
+      }
+      .itin-extend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        max-width: 28rem;
+      }
+      .itin-extend__copy {
+        margin: 0;
+        max-width: none;
+        font-size: 1.05rem;
+        line-height: 1.45;
+        color: var(--ink);
+      }
+      .itin-extend .btn {
+        width: auto;
+        min-height: 2.75rem;
+        padding: 0.7rem 1.25rem;
+        border-radius: 999px;
+      }
+      .itin-extend .btn:disabled {
+        opacity: 0.55;
+      }
+      .timeline-help {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.65rem;
+      }
+      .timeline-help__hint {
+        margin: 0;
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-align: right;
+      }
+      .timeline-help__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 0.55rem;
+        width: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+      }
+      .timeline-share,
+      .timeline-reset {
+        width: auto;
+        min-height: 2.75rem;
+        padding: 0.7rem 1.15rem;
+        font-size: 0.9rem;
+        border-radius: 999px;
+      }
+      .timeline-reset {
+        border: 1.5px solid rgba(26, 26, 26, 0.22);
+        background: transparent;
+        color: var(--ink);
+      }
+      .timeline-reset:hover {
+        border-color: rgba(26, 26, 26, 0.4);
+        background: rgba(26, 26, 26, 0.04);
+      }
+      .timeline-share {
+        border: 1.5px solid #557645;
+        background: #557645;
+        color: var(--white);
+      }
+      .timeline-share:hover {
+        background: #46633a;
+        border-color: #46633a;
+      }
+      .timeline-share-status {
+        width: auto;
+        margin: 0;
+      }
+    }
 
     .timeline {
       display: grid;
@@ -2944,7 +3177,7 @@
     }
     .stay-swap {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0.4rem;
       margin: 0 0 0.85rem;
       width: 100%;
@@ -3000,8 +3233,33 @@
       flex: 1;
       min-width: 0;
       padding: 0;
-      line-height: 1.05;
+      line-height: 1.15;
       text-wrap: balance;
+    }
+    @media (min-width: 720px) {
+      .stay-swap {
+        gap: 0.55rem;
+        margin: 0 0 1rem;
+      }
+      .stay-swap__chip {
+        min-height: 3.35rem;
+        font-size: 0.98rem;
+        font-weight: 500;
+        letter-spacing: -0.015em;
+        line-height: 1.2;
+        padding: 0.4rem 1rem 0.4rem 0.4rem;
+        gap: 0.7rem;
+        border-radius: 14px;
+      }
+      .stay-swap__chip img {
+        width: 2.55rem;
+        height: 2.55rem;
+        flex: 0 0 2.55rem;
+        border-radius: 10px;
+      }
+      .stay-swap__name {
+        line-height: 1.2;
+      }
     }
     .timeline-item__media {
       width: 100%;
@@ -3400,19 +3658,17 @@
     }
     @media (min-width: 720px) {
       .highlights-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-auto-rows: minmax(10.5rem, 13.5vw);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: minmax(11.5rem, 16vw);
         gap: 0.65rem;
       }
       .highlights-grid__item {
         min-height: 0;
       }
-      .highlights-grid__item--hero {
-        grid-column: span 2;
-        grid-row: span 2;
-      }
+      .highlights-grid__item--hero,
       .highlights-grid__item--wide {
-        grid-column: span 2;
+        grid-column: auto;
+        grid-row: auto;
       }
       .highlights-grid__name {
         left: 1.05rem;
@@ -3421,7 +3677,7 @@
         font-size: 1.12rem;
       }
       .highlights-grid__item--hero .highlights-grid__name {
-        font-size: 1.35rem;
+        font-size: 1.18rem;
       }
     }
     @media (max-width: 719px) {
@@ -3625,12 +3881,16 @@
     }
     .promo-code {
       display: inline-flex;
-      align-items: stretch;
-      overflow: hidden;
-      border-radius: var(--pill);
+      align-items: center;
+      gap: 0.55rem;
+      overflow: visible;
+      border-radius: 999px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
       margin-bottom: 0.85rem;
+      padding: 0.35rem;
+      padding-left: 1.1rem;
+      box-sizing: border-box;
     }
     .code-green,
     .promo-code__value,
@@ -3726,6 +3986,8 @@
       background: transparent;
       box-shadow: none;
       transition: none;
+      cursor: inherit;
+      pointer-events: none;
     }
     .code-green--plain:hover,
     .code-green--plain:focus-visible,
@@ -3744,36 +4006,44 @@
     .promo-code__value {
       font-size: clamp(1.05rem, 3vw, 1.35rem);
       letter-spacing: 0.06em;
-      padding: 0.85rem 1.2rem;
+      padding: 0.55rem 0.35rem 0.55rem 0;
     }
     .sticky-promo__code {
       font-size: 0.9rem;
     }
     .promo-code__copy {
       border: none;
-      border-left: 1.5px solid #d8d8d8;
       background: var(--ink);
       color: var(--white);
       font: inherit;
       font-weight: 500;
       font-size: 0.88rem;
-      padding: 0 1.25rem;
+      padding: 0.6rem 1.2rem;
       cursor: pointer;
+      flex: 0 0 auto;
+      align-self: center;
+      height: auto;
+      min-height: 0;
+      border-radius: 999px;
     }
     .promo-code__copy:hover { background: var(--black); }
     .promo-code--sm {
       margin-bottom: 1.5rem;
-      border-radius: 8px;
+      border-radius: 999px;
       border-color: rgba(255, 255, 255, 0.85);
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+      padding: 0.35rem;
+      padding-left: 0.95rem;
     }
     .promo-code--sm .promo-code__value {
       font-size: 0.88rem;
-      padding: 0.55rem 0.9rem;
+      padding: 0.35rem 0.25rem 0.35rem 0;
     }
     .promo-code--sm .promo-code__copy {
       font-size: 0.78rem;
-      padding: 0 0.95rem;
+      height: auto;
+      padding: 0.55rem 1.05rem;
+      border-radius: 999px;
     }
     .promo__fine a {
       color: var(--ink);
@@ -3925,7 +4195,8 @@
       background: var(--white);
     }
     .sticky-promo__choose,
-    .sticky-promo__stay {
+    .sticky-promo__stay,
+    .sticky-promo__activities {
       flex: 1 1 0;
       display: inline-flex;
       align-items: center;
@@ -3944,6 +4215,9 @@
       white-space: nowrap;
       line-height: 1.1;
     }
+    .sticky-promo__activities {
+      display: none;
+    }
     .sticky-promo__choose {
       background: var(--ink);
       color: var(--white);
@@ -3951,7 +4225,8 @@
     .sticky-promo__choose:hover {
       background: var(--black);
     }
-    .sticky-promo__stay:hover {
+    .sticky-promo__stay:hover,
+    .sticky-promo__activities:hover {
       background: rgba(0, 0, 0, 0.05);
     }
     .sticky-promo__itin {
@@ -4011,7 +4286,84 @@
       display: flex;
     }
     @media (min-width: 900px) {
-      .sticky-promo { display: none; }
+      :root {
+        --sticky-bar-h: 5.35rem;
+      }
+      body {
+        padding-bottom: var(--sticky-bar-h);
+      }
+      .sticky-promo {
+        --sticky-ctrl-h: 3.55rem;
+        --sticky-ctrl-w: auto;
+        justify-content: stretch;
+        align-items: stretch;
+        gap: 0.65rem;
+        width: 100%;
+        max-width: none;
+        left: 0;
+        right: 0;
+        padding: 0.7rem var(--page-pad-x);
+        box-shadow: 0 -10px 36px rgba(17, 17, 17, 0.07);
+      }
+      .sticky-promo__bar {
+        flex: 1 1 auto;
+        width: auto;
+        max-width: none;
+        height: var(--sticky-ctrl-h);
+        min-height: var(--sticky-ctrl-h);
+        padding: 0.35rem 0.35rem 0.35rem 1rem;
+        border-radius: 14px;
+        gap: 0.65rem;
+      }
+      .sticky-promo__code {
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+      }
+      .sticky-promo__note {
+        font-size: 0.74rem;
+      }
+      .sticky-promo__copy {
+        min-width: 4.75rem;
+        padding: 0 1.05rem;
+        font-size: 0.84rem;
+        border-radius: 10px;
+      }
+      .sticky-promo__actions,
+      .sticky-promo__itin {
+        flex: 0 0 auto;
+        flex-direction: row;
+        width: auto;
+        min-width: 0;
+        height: var(--sticky-ctrl-h);
+        min-height: var(--sticky-ctrl-h);
+        gap: 0.35rem;
+        padding: 0.3rem;
+        border-radius: 14px;
+      }
+      .sticky-promo__choose,
+      .sticky-promo__stay,
+      .sticky-promo__activities,
+      .sticky-promo__save,
+      .sticky-promo__reset {
+        width: auto;
+        min-width: 7.75rem;
+        padding: 0 1rem;
+        font-size: 0.88rem;
+        border-radius: 10px;
+      }
+      .sticky-promo__stay,
+      .sticky-promo__activities,
+      .sticky-promo__reset {
+        border: 1px solid #d8d8d8;
+        background: var(--white);
+      }
+      .sticky-promo__activities {
+        display: inline-flex;
+      }
+      .sticky-promo.is-itin .sticky-promo__itin {
+        display: flex;
+        flex-direction: row;
+      }
     }
 
     /* Framer / iframe embed */
@@ -4027,6 +4379,20 @@
     }
     html.is-embed .sticky-promo.is-visible {
       transform: translate(-50%, 0);
+    }
+    @media (min-width: 900px) {
+      html.is-embed .sticky-promo {
+        left: 0;
+        right: 0;
+        transform: translateY(110%);
+        max-width: none;
+        width: 100%;
+        padding-left: var(--page-pad-x);
+        padding-right: var(--page-pad-x);
+      }
+      html.is-embed .sticky-promo.is-visible {
+        transform: none;
+      }
     }
 
     /* —— Exit-intent location picker —— */
@@ -5947,8 +6313,9 @@
         </div>
         <aside class="hero__promo" aria-label="Campaign promo code">
           <p class="hero__promo-label">Promo code</p>
-          <p class="hero__promo-title">Save with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
-          <p class="hero__promo-copy">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County. Copy the code before you book.</p>
+          <p class="hero__promo-title">Save with <span class="code-green code-green--plain"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
+          <p class="hero__promo-copy hero__promo-copy--desk">Participating businesses are offering special incentives to help you stay longer and experience more of Nelson County. Copy the code before you book.</p>
+          <p class="hero__promo-copy hero__promo-copy--mob">Special incentives from participating partners to help you stay longer. Copy the code before you book.</p>
           <div class="promo-code promo-code--sm" role="group" aria-label="Promotional code">
             <div class="hero__promo-text">
               <span class="promo-code__value"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
@@ -6183,7 +6550,7 @@
               <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</span>
               <h3 class="stay-card__title">Farmhouse at Veritas</h3>
               <p class="stay-card__copy">Wake up in the heart of Virginia wine country. Vineyard views, thoughtful hospitality, and an ideal home base for exploring Nelson County.</p>
-              <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book Farmhouse · 15% off</a>
+              <a class="btn btn--dark" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book Farmhouse <span class="btn__discount">15% off</span></a>
             </div>
           </article>
 
@@ -6209,38 +6576,60 @@
               <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</span>
               <h3 class="stay-card__title">Devils Backbone Campground</h3>
               <p class="stay-card__copy">Settle into the Blue Ridge where outdoor stays, mountain scenery, craft beverage experiences, and on-site agritourism come together.</p>
-              <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Devils Backbone · 15% off</a>
+              <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/camp-at-basecamp" data-track="partner_outbound" data-partner="devils-backbone-camp">Book Devils Backbone <span class="btn__discount">15% off</span></a>
+            </div>
+          </article>
+
+          <article class="stay-card" id="feature-indigo-house">
+            <div class="stay-card__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/indigo-house/01-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/01-800.webp 800w, assets/check-into-nelson/slides/indigo-house/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/indigo-house/02-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/02-800.webp 800w, assets/check-into-nelson/slides/indigo-house/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/indigo-house/03-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/03-800.webp 800w, assets/check-into-nelson/slides/indigo-house/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/indigo-house/04-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/04-800.webp 800w, assets/check-into-nelson/slides/indigo-house/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/indigo-house/05-800.webp" srcset="assets/check-into-nelson/slides/indigo-house/05-800.webp 800w, assets/check-into-nelson/slides/indigo-house/05-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Indigo House" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="The Indigo House photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
+            </div>
+              <span class="stay-card__badge">5% off</span>
+            </div>
+            <div class="stay-card__body">
+              <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 5% off your stay, plus complimentary coffee service.</span>
+              <h3 class="stay-card__title">The Indigo House</h3>
+              <p class="stay-card__copy">A welcoming Nelson County stay with room to slow down — and complimentary coffee service during your visit.</p>
+              <a class="btn btn--dark" href="https://indigohouseva.com/" data-track="partner_outbound" data-partner="indigo-house">Book Indigo House <span class="btn__discount">5% off</span></a>
+            </div>
+          </article>
+
+          <article class="stay-card" id="feature-retreat-crabtree">
+            <div class="stay-card__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/01-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/01-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/02-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/02-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/03-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/03-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img src="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp" srcset="assets/check-into-nelson/slides/retreat-crabtree/04-800.webp 800w, assets/check-into-nelson/slides/retreat-crabtree/04-1600.webp 1600w" sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="The Retreat at Crabtree Falls" width="1600" height="1100" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="The Retreat at Crabtree Falls photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+            </div>
+              <span class="stay-card__badge">15% off</span>
+            </div>
+            <div class="stay-card__body">
+              <span class="stay-card__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</span>
+              <h3 class="stay-card__title">The Retreat at Crabtree Falls</h3>
+              <p class="stay-card__copy">A mountain getaway near Crabtree Falls, with room to settle in and explore more of Nelson County.</p>
+              <a class="btn btn--dark" href="https://www.crabtreefalls.com/" data-track="partner_outbound" data-partner="retreat-crabtree">Book the Retreat <span class="btn__discount">15% off</span></a>
             </div>
           </article>
         </div>
-
-        <aside class="stay-more" aria-label="More participating stays">
-          <p class="stay-more__label">More stays with campaign offers</p>
-          <div class="stay-more__list">
-            <article class="stay-more__item" id="feature-indigo-house">
-              <div class="stay-more__thumb">
-                <img src="assets/check-into-nelson/cards/indigo-house-800.webp" srcset="assets/check-into-nelson/cards/indigo-house-480.webp 480w, assets/check-into-nelson/cards/indigo-house-800.webp 800w" sizes="(min-width: 720px) 28vw, 92vw" alt="The Indigo House at dusk" width="800" height="533" loading="lazy" decoding="async" />
-                <span class="stay-more__badge">5% off</span>
-              </div>
-              <div class="stay-more__body">
-                <h3 class="stay-more__name">The Indigo House</h3>
-                <p class="stay-more__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 5% off your stay, plus complimentary coffee service.</p>
-                <a class="stay-more__cta" href="https://indigohouseva.com/" data-track="partner_outbound" data-partner="indigo-house">Book Indigo House · 5% off</a>
-              </div>
-            </article>
-            <article class="stay-more__item" id="feature-retreat-crabtree">
-              <div class="stay-more__thumb">
-                <img src="assets/check-into-nelson/cards/retreat-crabtree-800.webp" srcset="assets/check-into-nelson/cards/retreat-crabtree-480.webp 480w, assets/check-into-nelson/cards/retreat-crabtree-800.webp 800w" sizes="(min-width: 720px) 28vw, 92vw" alt="The Retreat at Crabtree Falls" width="800" height="480" loading="lazy" decoding="async" />
-                <span class="stay-more__badge">15% off</span>
-              </div>
-              <div class="stay-more__body">
-                <h3 class="stay-more__name">The Retreat at Crabtree Falls</h3>
-                <p class="stay-more__offer">Promo code <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for 15% off your stay.</p>
-                <a class="stay-more__cta" href="https://www.crabtreefalls.com/" data-track="partner_outbound" data-partner="retreat-crabtree">Book the Retreat · 15% off</a>
-              </div>
-            </article>
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -6270,7 +6659,7 @@
               <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 6" aria-current="false"></button>
               <button type="button" class="media-carousel__dot" aria-label="Photo 6 of 6" aria-current="false"></button>
             </div>
-            <span class="partner-feature__badge">Sip</span>
+            <span class="partner-feature__badge cat-pill">Sip</span>
           </div>
           <div>
             <p class="partner-feature__role">Wine country</p>
@@ -6299,7 +6688,7 @@
               <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
               <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
             </div>
-            <span class="partner-feature__badge">Create</span>
+            <span class="partner-feature__badge cat-pill">Create</span>
           </div>
           <div>
             <p class="partner-feature__role">Hands-on artistry</p>
@@ -6324,7 +6713,7 @@
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
               <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 2" aria-current="false"></button>
             </div>
-            <span class="partner-feature__badge">Explore</span>
+            <span class="partner-feature__badge cat-pill">Explore</span>
           </div>
           <div>
             <p class="partner-feature__role">Historic outdoors</p>
@@ -6352,7 +6741,7 @@
               <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
               <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
             </div>
-            <span class="partner-feature__badge">Experience more</span>
+            <span class="partner-feature__badge cat-pill">Experience</span>
           </div>
           <div>
             <p class="partner-feature__role">Craft &amp; agritourism</p>
@@ -6374,7 +6763,7 @@
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
               <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 2" aria-current="false"></button>
             </div>
-            <span class="partner-feature__badge">Get around</span>
+            <span class="partner-feature__badge cat-pill">Get around</span>
           </div>
           <div>
             <p class="partner-feature__role">Get Around</p>
@@ -6518,7 +6907,7 @@
                       <p class="timeline-item__copy" id="checkinCopy"><span>Check in, unpack, and let the Blue Ridge set the pace.</span></p>
                       <p class="timeline-item__offer" id="checkinOffer">15% off lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
                       <div class="timeline-item__actions">
-                        <a class="btn btn--dark" id="checkinBook" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book Farmhouse · 15% off</a>
+                        <a class="btn btn--dark" id="checkinBook" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book Farmhouse <span class="btn__discount">15% off</span></a>
                         <a class="btn btn--outline" id="checkinAbout" href="#feature-farmhouse">About this stay</a>
                       </div>
                     </div>
@@ -6778,10 +7167,10 @@
           </div>
 
           <div class="timeline-help">
-            <p class="timeline-help__hint">Drag to change the order.</p>
+            <p class="timeline-help__hint">Drag to change the order of an itinerary item.</p>
             <div class="timeline-help__actions">
-              <button type="button" class="timeline-share" id="saveItineraryBtn">Save itinerary</button>
               <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
+              <button type="button" class="timeline-share" id="saveItineraryBtn">Save itinerary</button>
               <span class="timeline-share-status" id="planShareStatus" aria-live="polite"></span>
             </div>
           </div>
@@ -6793,36 +7182,43 @@
       <div class="wrap">
         <div class="highlights__head">
           <h2 class="section-title" id="highlights-title">There’s so much to do in Nelson County.</h2>
-          <p class="section-copy">Wine, makers, trails, and mountain views — a few places worth lingering over.</p>
         </div>
         <div class="highlights-grid">
           <a class="highlights-grid__item highlights-grid__item--hero" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="blue-ridge-tunnel">
-            <img src="assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp" srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w" sizes="(min-width: 720px) 40vw, 92vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp" srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Blue Ridge Tunnel</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="spy-rock">
-            <img src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="(min-width: 720px) 22vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/spy-rock-800.webp" srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Spy Rock</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/flying-fox-vineyards" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="flying-fox">
-            <img src="assets/check-into-nelson/cards/flying-fox-717.webp" srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" sizes="(min-width: 720px) 22vw, 46vw" alt="" width="717" height="1024" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/flying-fox-717.webp" srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="717" height="1024" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Flying Fox Vineyard</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/glasshollow" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="glass-hollow">
-            <img src="assets/check-into-nelson/cards/glass-hollow-800.webp" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" sizes="(min-width: 720px) 22vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/glass-hollow-800.webp" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Glass Hollow Studio</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/devils-backbone-brewing-company" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="devils-backbone">
-            <img src="assets/check-into-nelson/cards/devils-backbone-800.webp" srcset="assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w" sizes="(min-width: 720px) 22vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/devils-backbone-800.webp" srcset="assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Devils Backbone</span>
           </a>
-          <a class="highlights-grid__item highlights-grid__item--wide" href="https://nelsoncounty.com/explore/tye-river" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="tye-river">
+          <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/tye-river" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="tye-river">
             <img src="https://ik.imagekit.io/OE/nelson-county/listings/tye-river-image1_obd32khA6?tr=w-960,h-640,fo-auto,q-75" alt="" width="960" height="640" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Tye River</span>
           </a>
-          <a class="highlights-grid__item highlights-grid__item--wide" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="crabtree-falls">
-            <img src="assets/check-into-nelson/slides/crabtree-falls/02-800.webp" srcset="assets/check-into-nelson/slides/crabtree-falls/02-800.webp 800w, assets/check-into-nelson/slides/crabtree-falls/02-1600.webp 1600w" sizes="(min-width: 720px) 40vw, 92vw" alt="" width="1600" height="1067" loading="lazy" decoding="async" />
+          <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="crabtree-falls">
+            <img src="assets/check-into-nelson/slides/crabtree-falls/02-800.webp" srcset="assets/check-into-nelson/slides/crabtree-falls/02-800.webp 800w, assets/check-into-nelson/slides/crabtree-falls/02-1600.webp 1600w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="1600" height="1067" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Crabtree Falls</span>
+          </a>
+          <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/veritas-vineyards-winery" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="veritas">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/veritas-vineyards-winery-image1_nHivj3-nt?tr=w-960,h-720,fo-auto,q-75" alt="" width="960" height="720" loading="lazy" decoding="async" />
+            <span class="highlights-grid__name">Veritas Vineyards</span>
+          </a>
+          <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/bold-rock-hard-cider" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="bold-rock">
+            <img src="https://ik.imagekit.io/OE/nelson-county/listings/bold-rock-hard-cider-image1__h55RjVBl?tr=w-960,h-720,fo-auto,q-75" alt="" width="960" height="720" loading="lazy" decoding="async" />
+            <span class="highlights-grid__name">Bold Rock Hard Cider</span>
           </a>
         </div>
         <div class="highlights__actions">
@@ -6962,11 +7358,12 @@
     </div>
     <div class="sticky-promo__actions" role="group" aria-label="Plan your stay">
       <a class="sticky-promo__choose" href="#stay" data-track="cta_choose_stay_sticky">Choose stay</a>
+      <a class="sticky-promo__activities" href="#experience" data-track="cta_find_activities_sticky">Find activities</a>
       <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
     </div>
     <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
-      <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
       <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky">Reset itinerary</button>
+      <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
     </div>
   </div>
 
@@ -7566,7 +7963,8 @@
           copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/farmhouse-veritas.jpg",
           bookHref: "https://www.veritasfarmhouse.com/",
-          bookLabel: "Book Farmhouse · 15% off",
+          bookLabel: "Book Farmhouse",
+          discount: "15% off",
           aboutHref: "#feature-farmhouse",
           partner: "farmhouse",
           geoKey: "farmhouse",
@@ -7578,7 +7976,8 @@
           copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/devils-backbone.jpg",
           bookHref: "https://www.dbbrewingcompany.com/camp-at-basecamp",
-          bookLabel: "Book Devils Backbone · 15% off",
+          bookLabel: "Book Devils Backbone",
+          discount: "15% off",
           aboutHref: "#feature-devils-backbone-camp",
           partner: "devils-backbone-camp",
           geoKey: "devils-backbone-camp",
@@ -7590,7 +7989,8 @@
           copy: ["Check in, unpack, and enjoy complimentary coffee service during your stay."],
           image: "assets/check-into-nelson/cards/indigo-house-800.webp",
           bookHref: "https://indigohouseva.com/",
-          bookLabel: "Book Indigo House · 5% off",
+          bookLabel: "Book Indigo House",
+          discount: "5% off",
           aboutHref: "#feature-indigo-house",
           partner: "indigo-house",
           geoKey: "indigo",
@@ -7602,7 +8002,8 @@
           copy: ["Check in near the falls and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/cards/retreat-crabtree-800.webp",
           bookHref: "https://www.crabtreefalls.com/",
-          bookLabel: "Book the Retreat · 15% off",
+          bookLabel: "Book the Retreat",
+          discount: "15% off",
           aboutHref: "#feature-retreat-crabtree",
           partner: "retreat-crabtree",
           geoKey: "retreat-crabtree",
@@ -7690,7 +8091,14 @@
         }
         if (book) {
           book.href = option.bookHref;
-          book.textContent = option.bookLabel;
+          book.textContent = option.bookLabel || "";
+          if (option.discount) {
+            book.appendChild(document.createTextNode(" "));
+            var pill = document.createElement("span");
+            pill.className = "btn__discount";
+            pill.textContent = option.discount;
+            book.appendChild(pill);
+          }
           book.setAttribute("data-partner", option.partner);
         }
         if (about) about.href = option.aboutHref;
@@ -9001,6 +9409,38 @@
         setItinShareStatus("");
       }
 
+      function canUseNativeShare(data) {
+        if (typeof navigator.share !== "function") return false;
+        if (typeof navigator.canShare !== "function") return true;
+        try {
+          return !!navigator.canShare(data || { url: location.href, title: "Check Into Nelson" });
+        } catch (err) {
+          return false;
+        }
+      }
+
+      function buildSharePayloads(link, summary) {
+        var title = "Check Into Nelson itinerary";
+        return [
+          { title: title, text: summary, url: link },
+          { title: title, url: link },
+          { text: summary + "\n\n" + link },
+          { url: link }
+        ].filter(function (payload) {
+          return canUseNativeShare(payload);
+        });
+      }
+
+      function syncItinShareActions() {
+        var shareBtn = document.getElementById("itinShareNative");
+        if (!shareBtn) return;
+        var available = canUseNativeShare({ url: location.href, title: "Check Into Nelson" })
+          || canUseNativeShare({ text: "Check Into Nelson", url: location.href })
+          || canUseNativeShare({ url: location.href });
+        shareBtn.hidden = !available;
+        shareBtn.textContent = "Share plan";
+      }
+
       function openItinShare() {
         var plan = collectPlanState();
         if (!plan) {
@@ -9019,11 +9459,7 @@
           root.classList.add("is-open");
         });
         setItinShareStatus("");
-        var shareBtn = document.getElementById("itinShareNative");
-        if (shareBtn) {
-          shareBtn.hidden = false;
-          shareBtn.textContent = navigator.share ? "Share plan" : "Share plan";
-        }
+        syncItinShareActions();
       }
 
       function copyTextFallback(text, onDone) {
@@ -9068,28 +9504,41 @@
         var link = buildShareablePlanUrl(plan);
         var days = collectShareDays();
         var summary = buildShareSummary(days);
-        var payload = {
-          title: "Check Into Nelson itinerary",
-          text: summary,
-          url: link
-        };
-        if (!navigator.share) {
+        var payloads = buildSharePayloads(link, summary);
+        if (!payloads.length) {
           copyTextFallback(link, function () {
             setItinShareStatus("Link copied.");
             setTimeout(function () { setItinShareStatus(""); }, 2200);
           });
           return;
         }
-        navigator.share(payload).then(function () {
-          setItinShareStatus("Shared.");
-          setTimeout(function () { setItinShareStatus(""); }, 1800);
-        }).catch(function (err) {
-          if (err && err.name === "AbortError") return;
-          copyTextFallback(link, function () {
-            setItinShareStatus("Link copied.");
-            setTimeout(function () { setItinShareStatus(""); }, 2200);
+
+        function tryShare(index) {
+          if (index >= payloads.length) {
+            copyTextFallback(link, function () {
+              setItinShareStatus("Link copied.");
+              setTimeout(function () { setItinShareStatus(""); }, 2200);
+            });
+            return;
+          }
+          navigator.share(payloads[index]).then(function () {
+            setItinShareStatus("Shared.");
+            setTimeout(function () { setItinShareStatus(""); }, 1800);
+          }).catch(function (err) {
+            if (err && err.name === "AbortError") return;
+            // Safari/macOS can reject text+url; try a simpler payload before copying.
+            if (err && (err.name === "TypeError" || err.name === "DataError") && index + 1 < payloads.length) {
+              tryShare(index + 1);
+              return;
+            }
+            copyTextFallback(link, function () {
+              setItinShareStatus("Link copied.");
+              setTimeout(function () { setItinShareStatus(""); }, 2200);
+            });
           });
-        });
+        }
+
+        tryShare(0);
       }
 
       function initItinShare() {
@@ -9103,6 +9552,7 @@
         if (copyBtn) copyBtn.addEventListener("click", function () { copyPlanLink(true); });
         var shareBtn = document.getElementById("itinShareNative");
         if (shareBtn) shareBtn.addEventListener("click", sharePlanNative);
+        syncItinShareActions();
         root.addEventListener("click", function (e) {
           if (e.target === root) closeItinShare();
         });
@@ -9191,7 +9641,7 @@
           if (!startDate) {
             dayLabel = day === "anytime" ? "Anytime" : "Day " + day;
           } else if (day === "anytime") {
-            dayLabel = formatShort(startDate) + " to " + formatShort(checkout);
+            dayLabel = "Anytime";
           } else if (dayDates[day]) {
             dayLabel = formatShort(dayDates[day]);
           }
@@ -9212,7 +9662,7 @@
           var summary = list ? rolesInList(list) : "";
           if (key === "anytime") {
             if (title) title.textContent = "Anytime during your stay";
-            if (meta) meta.textContent = startDate ? (formatShort(startDate) + " to " + formatShort(checkout)) : summary;
+            if (meta) meta.textContent = summary || "";
           } else if (DAY_NUMBERS.indexOf(key) !== -1) {
             var d = dayDates[key];
             if (title) title.textContent = d ? ("Day " + key + " · " + formatShort(d)) : ("Day " + key);
@@ -10101,6 +10551,7 @@
       function enhanceInlineCodes() {
         document.querySelectorAll(".code-green").forEach(function (el) {
           if (el.closest(".promo-code") || el.closest(".sticky-promo")) return;
+          if (el.classList.contains("code-green--plain") || el.closest(".hero__promo-title")) return;
           if (el.querySelector(".code-green__hint")) return;
           var tag = el.tagName.toLowerCase();
           if (tag === "span") {
@@ -10110,20 +10561,17 @@
           el.setAttribute("aria-label", "Copy promo code CHECKINTONELSON");
           el.setAttribute("title", "Copy promo code");
 
-          var isPlain = el.classList.contains("code-green--plain");
-          if (!isPlain) {
-            var label = document.createElement("span");
-            label.className = "code-green__label";
-            label.innerHTML = '<span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span>';
-            el.textContent = "";
-            el.appendChild(label);
+          var label = document.createElement("span");
+          label.className = "code-green__label";
+          label.innerHTML = '<span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span>';
+          el.textContent = "";
+          el.appendChild(label);
 
-            var hint = document.createElement("span");
-            hint.className = "code-green__hint";
-            hint.setAttribute("aria-hidden", "true");
-            hint.textContent = "Copy";
-            el.appendChild(hint);
-          }
+          var hint = document.createElement("span");
+          hint.className = "code-green__hint";
+          hint.setAttribute("aria-hidden", "true");
+          hint.textContent = "Copy";
+          el.appendChild(hint);
 
           el.addEventListener("click", function (e) {
             e.preventDefault();
@@ -10159,11 +10607,10 @@
           // Hide once the site footer starts entering the viewport
           nearFooter = fr.top < window.innerHeight;
         }
+        // Save / Reset once itinerary is reached; restore plan buttons when scrolling back above it.
         var inItin = false;
         if (itinerary) {
-          var ir = itinerary.getBoundingClientRect();
-          var stickyH = sticky.offsetHeight || 64;
-          inItin = ir.top < window.innerHeight * 0.55 && ir.bottom > stickyH + 24;
+          inItin = itinerary.getBoundingClientRect().top < window.innerHeight * 0.55;
         }
         var show = pastStart && !nearFooter;
         sticky.classList.toggle("is-visible", show);
@@ -10794,6 +11241,74 @@
         });
       })();
 
+      (function initPartnerStripScroll() {
+        var row = document.querySelector(".partner-strip__row");
+        if (!row) return;
+
+        // Keep vertical wheel scrolling the page; only consume clearly horizontal gestures.
+        row.addEventListener("wheel", function (e) {
+          var absX = Math.abs(e.deltaX);
+          var absY = Math.abs(e.deltaY);
+          if (absX <= absY && !e.shiftKey) return;
+          var delta = e.shiftKey ? e.deltaY : e.deltaX;
+          if (!delta) return;
+          var max = row.scrollWidth - row.clientWidth;
+          if (max <= 0) return;
+          var next = Math.max(0, Math.min(max, row.scrollLeft + delta));
+          if (next === row.scrollLeft) return;
+          row.scrollLeft = next;
+          e.preventDefault();
+        }, { passive: false });
+
+        var dragging = false;
+        var moved = false;
+        var startX = 0;
+        var startScroll = 0;
+        var pointerId = null;
+
+        row.addEventListener("pointerdown", function (e) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          if (row.scrollWidth <= row.clientWidth + 1) return;
+          dragging = true;
+          moved = false;
+          startX = e.clientX;
+          startScroll = row.scrollLeft;
+          pointerId = e.pointerId;
+          try { row.setPointerCapture(pointerId); } catch (err) {}
+        });
+
+        row.addEventListener("pointermove", function (e) {
+          if (!dragging) return;
+          var dx = e.clientX - startX;
+          if (!moved && Math.abs(dx) < 6) return;
+          moved = true;
+          row.scrollLeft = startScroll - dx;
+          e.preventDefault();
+        });
+
+        function endDrag(e) {
+          if (!dragging) return;
+          dragging = false;
+          if (pointerId != null) {
+            try { row.releasePointerCapture(pointerId); } catch (err) {}
+            pointerId = null;
+          }
+          if (moved && e && e.type === "pointerup") {
+            // Prevent the chip link click after a drag scrub.
+            var blockClick = function (ev) {
+              ev.preventDefault();
+              ev.stopPropagation();
+              row.removeEventListener("click", blockClick, true);
+            };
+            row.addEventListener("click", blockClick, true);
+          }
+          moved = false;
+        }
+
+        row.addEventListener("pointerup", endDrag);
+        row.addEventListener("pointercancel", endDrag);
+      })();
+
       (function initPartnerDividers() {
         var cards = Array.prototype.slice.call(document.querySelectorAll(".partner-feature")).slice(1);
         if (!cards.length) return;
@@ -10817,8 +11332,9 @@
 
         function update() {
           var vh = window.innerHeight || 700;
-          var start = vh * 0.9;
-          var end = vh * 0.38;
+          // Draw left→right; finish by the time the line hits mid-viewport.
+          var start = vh * 0.72;
+          var end = vh * 0.5;
           cards.forEach(function (card) {
             var top = card.getBoundingClientRect().top;
             var t = ease(clamp((start - top) / Math.max(1, start - end), 0, 1));

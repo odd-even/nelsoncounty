@@ -242,8 +242,30 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
 .framer-tgosD .framer-1wdec3f-container, .framer-tgosD .framer-efil92-container, .framer-tgosD .framer-1ska7gh-container, .framer-tgosD .framer-1pps8fx-container, .framer-tgosD .framer-892mpo-container, .framer-tgosD .framer-1kpxwoc-container, .framer-tgosD .framer-9bm48g-container, .framer-tgosD .framer-6ncgk0-container, .framer-tgosD .framer-1js3aje-container, .framer-tgosD .framer-19ve3fx-container, .framer-tgosD .framer-131hd7z-container, .framer-tgosD .framer-1w9b2ju-container, .framer-tgosD .framer-k1m8q5-container, .framer-tgosD .framer-14xn99m-container { flex: 0 0 auto; width: 100%; height: auto; position: relative; }
 .framer-tgosD .framer-mzeg13-container { flex: 0 0 auto; place-self: start; width: fit-content; height: 50px; position: relative; }
 .framer-tgosD .framer-i6mhk { flex-flow: row; flex: 0 0 auto; place-content: center space-between; align-items: center; width: 100%; height: min-content; padding: 0px; display: flex; position: relative; overflow: visible; }
-.framer-tgosD .framer-1t7rsw5 { flex: 0 0 auto; width: 436px; height: 73px; position: relative; overflow: visible; }
-.framer-tgosD .framer-1h2q9y7 { flex: 0 0 auto; width: 214px; height: 65px; text-decoration: none; position: absolute; top: calc(49.3151% - 32.5px); left: 0px; overflow: visible; }
+.framer-tgosD .framer-1t7rsw5 {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 73px;
+  position: relative;
+  overflow: visible;
+}
+.framer-tgosD .framer-1h2q9y7 {
+  flex: 0 0 auto;
+  width: 214px;
+  height: 65px;
+  text-decoration: none;
+  position: relative;
+  top: auto;
+  left: auto;
+  overflow: visible;
+}
 .framer-tgosD .framer-ifekr0, .framer-tgosD .framer-l8kki4 { width: 214px; height: 65px; position: absolute; top: 0px; left: 0px; }
 .framer-tgosD .framer-1wkbbd1 { width: 193px; height: 64px; position: absolute; top: 0px; left: 0px; }
 .framer-tgosD .framer-ab8cw9 { width: 16px; height: 28px; position: absolute; top: 1px; left: 177px; }
@@ -273,7 +295,16 @@ td.framer-text, th.framer-text { overflow-wrap: anywhere; vertical-align: top; m
 .framer-tgosD .framer-3iey6h { width: 7px; height: 3px; position: absolute; top: 38px; left: 207px; }
 .framer-tgosD .framer-kou7dg { width: 3px; height: 3px; position: absolute; top: 0px; left: 0px; }
 .framer-tgosD .framer-yeavg5 { width: 4px; height: 3px; position: absolute; top: 0px; left: 4px; }
-.framer-tgosD .framer-pky4ie { flex: 0 0 auto; width: 190px; height: auto; text-decoration: none; position: absolute; top: 49%; right: 0px; }
+.framer-tgosD .framer-pky4ie {
+  flex: 0 0 auto;
+  width: 190px;
+  height: auto;
+  text-decoration: none;
+  position: relative;
+  top: auto;
+  right: auto;
+  align-self: center;
+}
 .framer-tgosD .framer-1thiodf { flex-flow: row; flex: 0 0 auto; place-content: center space-between; align-items: center; width: 100%; height: min-content; padding: 24px 0px 0px; display: flex; position: relative; overflow: hidden; }
 .framer-tgosD .framer-ot12i1 { flex-flow: row; flex: 1 0 0px; place-content: center flex-start; align-items: center; gap: 6px; width: 1px; height: min-content; padding: 0px; text-decoration: none; display: flex; position: relative; overflow: visible; }
 .framer-tgosD .framer-mjelyc { flex-flow: column; flex: 1 0 0px; place-content: flex-end center; align-items: flex-end; gap: 22px; width: 1px; height: min-content; padding: 0px; display: flex; position: relative; overflow: visible; }
