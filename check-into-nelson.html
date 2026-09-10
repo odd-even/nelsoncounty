@@ -30,6 +30,8 @@
   <script>
     // Reload / shared itinerary links: keep #hash in the URL, but always open at the top
     // (desktop + mobile). Suppress browser scroll restoration and late hash jumps.
+    // iOS pull-to-refresh can leave a visual offset + fire touchmove; keep pinning
+    // while still near the top so the page springs back instead of sticking mid-bounce.
     (function () {
       try {
         if ("scrollRestoration" in history) history.scrollRestoration = "manual";
@@ -39,6 +41,10 @@
       var bootPinUntil = 0;
       var bootPinTimer = 0;
       var bootPinActive = false;
+      var isCoarse = false;
+      try {
+        isCoarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
+      } catch (err0) {}
 
       if (pendingHash) {
         try {
@@ -46,18 +52,50 @@
         } catch (err2) {}
       }
 
+      function scrollYNow() {
+        return window.scrollY || window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop) || 0;
+      }
+
       function pinTop() {
         var html = document.documentElement;
+        var body = document.body;
         var prevBehavior = html && html.style ? html.style.scrollBehavior : "";
         if (html && html.style) html.style.scrollBehavior = "auto";
+
+        // iOS Safari sometimes needs a 1px nudge to clear a stuck overscroll gap.
+        try {
+          window.scrollTo(0, 1);
+        } catch (errNudge) {}
         try {
           window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         } catch (err3) {
           window.scrollTo(0, 0);
         }
         if (html) html.scrollTop = 0;
-        if (document.body) document.body.scrollTop = 0;
+        if (body) body.scrollTop = 0;
+
+        // visualViewport can stay offset after pull-to-refresh even when scrollY is 0
+        try {
+          var vv = window.visualViewport;
+          if (vv && typeof vv.offsetTop === "number" && vv.offsetTop > 0) {
+            window.scrollTo(0, 0);
+          }
+        } catch (errVv) {}
+
         if (html && html.style) html.style.scrollBehavior = prevBehavior;
+      }
+
+      function pinTopHard() {
+        var body = document.body;
+        pinTop();
+        if (!body) return;
+        var prevOverflow = body.style.overflow;
+        body.style.overflow = "hidden";
+        pinTop();
+        requestAnimationFrame(function () {
+          body.style.overflow = prevOverflow;
+          pinTop();
+        });
       }
 
       function restoreHashQuietly() {
@@ -85,38 +123,66 @@
         bootPinTimer = window.setInterval(function () {
           if (!bootPinActive || Date.now() >= bootPinUntil) {
             stopBootPin();
+            pinTop();
             return;
           }
           pinTop();
         }, 50);
       }
 
-      // If the user starts scrolling/interacting, stop fighting them.
-      function onUserScrollIntent() {
+      // Only release the pin once the user has clearly scrolled away from the top.
+      // Near-top touchmove is often iOS rubber-band / PTR settling — keep correcting.
+      function onUserScrollAway() {
         if (!bootPinActive) return;
+        if (scrollYNow() < 24) {
+          pinTop();
+          return;
+        }
         stopBootPin();
       }
-      window.addEventListener("wheel", onUserScrollIntent, { passive: true, capture: true });
-      window.addEventListener("touchmove", onUserScrollIntent, { passive: true, capture: true });
+
+      window.addEventListener("wheel", function () {
+        if (!bootPinActive) return;
+        if (scrollYNow() < 24) {
+          pinTop();
+          return;
+        }
+        stopBootPin();
+      }, { passive: true, capture: true });
+      window.addEventListener("touchmove", onUserScrollAway, { passive: true, capture: true });
+      window.addEventListener("scroll", function () {
+        if (!bootPinActive) return;
+        if (scrollYNow() < 24) pinTop();
+        else stopBootPin();
+      }, { passive: true });
       window.addEventListener("keydown", function (e) {
         if (!bootPinActive) return;
         var k = e.key;
-        if (k === "ArrowDown" || k === "ArrowUp" || k === "PageDown" || k === "PageUp" || k === "Home" || k === "End" || k === " ") {
-          stopBootPin();
+        if (k === "ArrowDown" || k === "PageDown" || k === "End" || k === " ") {
+          if (scrollYNow() >= 24) stopBootPin();
         }
       }, true);
 
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener("resize", function () {
+          if (bootPinActive) pinTop();
+        });
+        window.visualViewport.addEventListener("scroll", function () {
+          if (bootPinActive) pinTop();
+        });
+      }
+
       pinTop();
-      startBootPin(200);
+      startBootPin(isCoarse ? 600 : 200);
 
       document.addEventListener("DOMContentLoaded", function () {
-        startBootPin(400);
+        startBootPin(isCoarse ? 900 : 400);
       });
 
       window.addEventListener("load", function () {
         restoreHashQuietly();
-        // Brief pin after load to catch late browser restoration — not a long fight.
-        startBootPin(500);
+        startBootPin(isCoarse ? 1400 : 500);
+        pinTopHard();
         requestAnimationFrame(function () {
           if (!bootPinActive) return;
           pinTop();
@@ -124,10 +190,17 @@
             if (bootPinActive) pinTop();
           });
         });
+        // Late iOS chrome / PTR settle
+        if (isCoarse) {
+          window.setTimeout(function () { if (bootPinActive || scrollYNow() < 24) pinTopHard(); }, 300);
+          window.setTimeout(function () { if (bootPinActive || scrollYNow() < 24) pinTop(); }, 700);
+          window.setTimeout(function () { if (scrollYNow() < 24) pinTop(); }, 1200);
+        }
       });
 
-      window.addEventListener("pageshow", function () {
-        startBootPin(400);
+      window.addEventListener("pageshow", function (e) {
+        startBootPin(isCoarse ? (e.persisted ? 1200 : 1400) : 400);
+        pinTopHard();
       });
 
       window.addEventListener("hashchange", function () {
@@ -4365,9 +4438,19 @@
       border-top: 1px solid var(--line);
       backdrop-filter: blur(10px);
       transform: translateY(110%);
-      transition: transform 0.35s var(--ease);
+      transition: transform 0.55s cubic-bezier(0.45, 0, 0.55, 1);
     }
     .sticky-promo.is-visible { transform: none; }
+    .sticky-promo__ctl {
+      display: grid;
+      grid-template-areas: "sticky-ctl";
+      flex: 0 0 auto;
+      align-self: stretch;
+      width: var(--sticky-ctrl-w);
+      min-width: var(--sticky-ctrl-w);
+      height: var(--sticky-ctrl-h);
+      min-height: var(--sticky-ctrl-h);
+    }
     .sticky-promo__bar {
       display: flex;
       align-items: center;
@@ -4446,20 +4529,29 @@
       background: var(--black);
     }
     .sticky-promo__actions {
-      flex: 0 0 var(--sticky-ctrl-w);
+      grid-area: sticky-ctl;
+      flex: unset;
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      width: var(--sticky-ctrl-w);
-      min-width: var(--sticky-ctrl-w);
-      height: var(--sticky-ctrl-h);
-      min-height: var(--sticky-ctrl-h);
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      min-height: 0;
       box-sizing: border-box;
       gap: 0.2rem;
       padding: 0.24rem;
       border-radius: 14px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+      transition:
+        opacity 0.45s cubic-bezier(0.45, 0, 0.55, 1),
+        transform 0.45s cubic-bezier(0.45, 0, 0.55, 1),
+        visibility 0.45s;
     }
     .sticky-promo__choose,
     .sticky-promo__stay,
@@ -4497,20 +4589,29 @@
       background: rgba(0, 0, 0, 0.05);
     }
     .sticky-promo__itin {
-      flex: 0 0 var(--sticky-ctrl-w);
-      display: none;
+      grid-area: sticky-ctl;
+      flex: unset;
+      display: flex;
       flex-direction: column;
       align-items: stretch;
-      width: var(--sticky-ctrl-w);
-      min-width: var(--sticky-ctrl-w);
-      height: var(--sticky-ctrl-h);
-      min-height: var(--sticky-ctrl-h);
+      width: 100%;
+      min-width: 0;
+      height: 100%;
+      min-height: 0;
       box-sizing: border-box;
       gap: 0.2rem;
       padding: 0.24rem;
       border-radius: 14px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(0.4rem);
+      pointer-events: none;
+      transition:
+        opacity 0.45s cubic-bezier(0.45, 0, 0.55, 1),
+        transform 0.45s cubic-bezier(0.45, 0, 0.55, 1),
+        visibility 0.45s;
     }
     .sticky-promo__save,
     .sticky-promo__reset {
@@ -4547,10 +4648,16 @@
       background: rgba(0, 0, 0, 0.05);
     }
     .sticky-promo.is-itin .sticky-promo__actions {
-      display: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-0.35rem);
+      pointer-events: none;
     }
     .sticky-promo.is-itin .sticky-promo__itin {
-      display: flex;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
     }
     @media (min-width: 900px) {
       :root {
@@ -4596,14 +4703,19 @@
         font-size: 0.84rem;
         border-radius: 10px;
       }
-      .sticky-promo__actions,
-      .sticky-promo__itin {
-        flex: 0 0 auto;
-        flex-direction: row;
+      .sticky-promo__ctl {
         width: auto;
         min-width: 0;
         height: var(--sticky-ctrl-h);
         min-height: var(--sticky-ctrl-h);
+      }
+      .sticky-promo__actions,
+      .sticky-promo__itin {
+        flex-direction: row;
+        width: auto;
+        min-width: 0;
+        height: 100%;
+        min-height: 0;
         gap: 0.35rem;
         padding: 0.3rem;
         border-radius: 14px;
@@ -4629,7 +4741,6 @@
         display: inline-flex;
       }
       .sticky-promo.is-itin .sticky-promo__itin {
-        display: flex;
         flex-direction: row;
       }
     }
@@ -4647,6 +4758,13 @@
     }
     html.is-embed .sticky-promo.is-visible {
       transform: translate(-50%, 0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sticky-promo,
+      .sticky-promo__actions,
+      .sticky-promo__itin {
+        transition-duration: 0.01ms !important;
+      }
     }
     @media (min-width: 900px) {
       html.is-embed .sticky-promo {
@@ -7634,14 +7752,16 @@
       </div>
       <button type="button" class="sticky-promo__copy" id="stickyCopy" data-track="copy_promo_code">Copy</button>
     </div>
-    <div class="sticky-promo__actions" role="group" aria-label="Plan your stay">
-      <a class="sticky-promo__choose" href="#stay" data-track="cta_choose_stay_sticky">Choose stay</a>
-      <a class="sticky-promo__activities" href="#experience" data-track="cta_find_activities_sticky">Find activities</a>
-      <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
-    </div>
-    <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
-      <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky">Reset itinerary</button>
-      <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
+    <div class="sticky-promo__ctl">
+      <div class="sticky-promo__actions" role="group" aria-label="Plan your stay">
+        <a class="sticky-promo__choose" href="#stay" data-track="cta_choose_stay_sticky">Choose stay</a>
+        <a class="sticky-promo__activities" href="#experience" data-track="cta_find_activities_sticky">Find activities</a>
+        <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
+      </div>
+      <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
+        <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky">Reset itinerary</button>
+        <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
+      </div>
     </div>
   </div>
 
@@ -10873,6 +10993,8 @@
       if (stickyCopy) stickyCopy.addEventListener("click", function () { copyCode(stickyCopy); });
 
       var sticky = document.getElementById("stickyPromo");
+      var stickyActions = sticky && sticky.querySelector(".sticky-promo__actions");
+      var stickyItin = sticky && sticky.querySelector(".sticky-promo__itin");
       var footer = document.querySelector("footer") || document.querySelector(".campaign-footer");
       var itinerary = document.getElementById("itinerary");
       var hero = document.querySelector(".hero");
@@ -10891,9 +11013,12 @@
           inItin = itinerary.getBoundingClientRect().top < window.innerHeight * 0.55;
         }
         var show = pastStart && !nearFooter;
+        var showItin = show && inItin;
         sticky.classList.toggle("is-visible", show);
-        sticky.classList.toggle("is-itin", show && inItin);
+        sticky.classList.toggle("is-itin", showItin);
         sticky.setAttribute("aria-hidden", show ? "false" : "true");
+        if (stickyActions) stickyActions.setAttribute("aria-hidden", showItin ? "true" : "false");
+        if (stickyItin) stickyItin.setAttribute("aria-hidden", showItin ? "false" : "true");
       }
       window.addEventListener("scroll", updateSticky, { passive: true });
       window.addEventListener("resize", updateSticky);
