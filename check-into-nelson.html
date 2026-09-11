@@ -229,8 +229,8 @@
       --ink: #333333;
       --black: #111111;
       --muted: #666666;
-      --line: #ececec;
-      --section-line: #c4c4c4;
+      --line: #d0d0d0;
+      --section-line: #b0b0b0;
       --white: #ffffff;
       --nelson-green: #2d6a4f;
       --panel: rgba(0, 0, 0, 0.42);
@@ -4486,7 +4486,7 @@
       height: var(--sticky-ctrl-h);
       min-height: var(--sticky-ctrl-h);
       box-sizing: border-box;
-      overflow: hidden;
+      overflow: visible;
       border-radius: 14px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
@@ -4536,6 +4536,7 @@
     }
     .sticky-promo__copy {
       appearance: none;
+      position: relative;
       flex: 0 0 auto;
       align-self: stretch;
       border: none;
@@ -4553,6 +4554,7 @@
       cursor: pointer;
       white-space: nowrap;
       text-align: center;
+      -webkit-tap-highlight-color: transparent;
     }
     .sticky-promo__copy:hover {
       background: var(--black);
@@ -4585,6 +4587,7 @@
     .sticky-promo__choose,
     .sticky-promo__stay,
     .sticky-promo__activities {
+      position: relative;
       flex: 1 1 0;
       display: inline-flex;
       align-items: center;
@@ -4602,6 +4605,19 @@
       text-decoration: none;
       white-space: nowrap;
       line-height: 1.1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sticky-promo__choose::before,
+    .sticky-promo__stay::before,
+    .sticky-promo__activities::before,
+    .sticky-promo__edit::before,
+    .sticky-promo__save::before,
+    .sticky-promo__reset::before,
+    .sticky-promo__copy::before {
+      content: "";
+      position: absolute;
+      /* Larger tap target; painted button stays the same size. */
+      inset: -0.55rem -0.45rem;
     }
     .sticky-promo__activities {
       display: none;
@@ -4642,9 +4658,11 @@
         transform 0.45s cubic-bezier(0.45, 0, 0.55, 1),
         visibility 0.45s;
     }
+    .sticky-promo__edit,
     .sticky-promo__save,
     .sticky-promo__reset {
       appearance: none;
+      position: relative;
       flex: 1 1 0;
       display: inline-flex;
       align-items: center;
@@ -4660,11 +4678,15 @@
       cursor: pointer;
       white-space: nowrap;
       line-height: 1.1;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
+    .sticky-promo__edit,
     .sticky-promo__save {
       background: #557645;
       color: var(--white);
     }
+    .sticky-promo__edit:hover,
     .sticky-promo__save:hover {
       background: #46633a;
     }
@@ -4675,6 +4697,19 @@
     }
     .sticky-promo__reset:hover {
       background: rgba(0, 0, 0, 0.05);
+    }
+    .sticky-promo__itin:not(.is-dirty) .sticky-promo__save,
+    .sticky-promo__itin:not(.is-dirty) .sticky-promo__reset {
+      display: none;
+    }
+    .sticky-promo__itin.is-dirty .sticky-promo__edit {
+      display: none;
+    }
+    .sticky-promo__itin:not(.is-dirty) .sticky-promo__edit {
+      flex: 1 1 auto;
+      align-self: stretch;
+      height: 100%;
+      min-height: 0;
     }
     .sticky-promo.is-itin .sticky-promo__actions {
       opacity: 0;
@@ -4756,6 +4791,7 @@
       .sticky-promo__choose,
       .sticky-promo__stay,
       .sticky-promo__activities,
+      .sticky-promo__edit,
       .sticky-promo__save,
       .sticky-promo__reset {
         flex: 0 0 auto;
@@ -4767,6 +4803,7 @@
         border-radius: 10px;
       }
       .sticky-promo__choose,
+      .sticky-promo__edit,
       .sticky-promo__save {
         font-weight: 600;
       }
@@ -6529,11 +6566,29 @@
       }
       .sticky-promo__choose,
       .sticky-promo__stay,
+      .sticky-promo__edit,
       .sticky-promo__save,
       .sticky-promo__reset {
         padding: 0.32rem 0.65rem;
         font-size: 0.88rem;
         border-radius: 9px;
+      }
+      .sticky-promo__choose::before,
+      .sticky-promo__stay::before,
+      .sticky-promo__activities::before,
+      .sticky-promo__edit::before,
+      .sticky-promo__copy::before {
+        inset: -0.65rem -0.5rem;
+      }
+      /* Prefer expanding into outer padding / gap, not into the sibling button. */
+      .sticky-promo__reset::before {
+        inset: -0.55rem -0.5rem -0.12rem;
+      }
+      .sticky-promo__save::before {
+        inset: -0.12rem -0.5rem -0.55rem;
+      }
+      .sticky-promo__itin:not(.is-dirty) .sticky-promo__edit::before {
+        inset: -0.65rem -0.5rem;
       }
 
       .exit-intent {
@@ -6586,6 +6641,7 @@
       }
       .sticky-promo__choose,
       .sticky-promo__stay,
+      .sticky-promo__edit,
       .sticky-promo__save,
       .sticky-promo__reset {
         padding-left: 0.55rem;
@@ -7067,8 +7123,7 @@
     <section class="showcase" id="experience" aria-labelledby="experience-title">
       <div class="wrap">
         <div class="showcase__head">
-          <p class="eyebrow">Build your experience</p>
-          <h2 class="section-title" id="experience-title">Stay longer. Choose what fits your pace.</h2>
+          <h2 class="section-title" id="experience-title">Build your experience</h2>
           <p class="section-copy">Stay for two nights or make it a three-to-four-day getaway. Choose the experiences that fit your pace and create a trip that feels like your own.</p>
         </div>
 
@@ -7797,8 +7852,9 @@
         <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
       </div>
       <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
-        <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky">Reset itinerary</button>
-        <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky">Save itinerary</button>
+        <a class="sticky-promo__edit" href="#itinerary" id="stickyEditItin" data-track="edit_itinerary_sticky">Edit itinerary</a>
+        <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky" hidden>Reset itinerary</button>
+        <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky" hidden>Save itinerary</button>
       </div>
     </div>
   </div>
@@ -9702,6 +9758,7 @@
         writePlanToUrl(plan, true);
         renderMoreStops();
         refreshItineraryMap();
+        syncStickyItinDirty();
       }
 
       function arraysEqual(a, b) {
@@ -9719,6 +9776,37 @@
       }
       function isLegacyOutdoorDefault(plan) {
         return !!(plan && planDaysMatchPreset(plan.days, LEGACY_LENGTH_DEFAULTS[plan.nights]));
+      }
+
+      function isItineraryAtDefault() {
+        var plan = collectPlanState();
+        if (!plan) return true;
+        if (plan.nights !== 2) return false;
+        if (plan.stay && plan.stay !== "farmhouse") return false;
+        if (plan.sip && plan.sip !== "flyingfox") return false;
+        return planDaysMatchPreset(plan.days, LENGTH_DEFAULTS[2]);
+      }
+
+      function syncStickyItinDirty() {
+        var stickyItinEl = document.querySelector(".sticky-promo__itin");
+        if (!stickyItinEl) return;
+        var dirty = !isItineraryAtDefault();
+        stickyItinEl.classList.toggle("is-dirty", dirty);
+        var editBtn = document.getElementById("stickyEditItin");
+        var saveBtn = document.getElementById("stickySaveItin");
+        var resetBtn = document.getElementById("stickyResetItin");
+        if (editBtn) {
+          editBtn.hidden = dirty;
+          editBtn.setAttribute("aria-hidden", dirty ? "true" : "false");
+        }
+        if (saveBtn) {
+          saveBtn.hidden = !dirty;
+          saveBtn.setAttribute("aria-hidden", dirty ? "false" : "true");
+        }
+        if (resetBtn) {
+          resetBtn.hidden = !dirty;
+          resetBtn.setAttribute("aria-hidden", dirty ? "false" : "true");
+        }
       }
 
       function setPlanShareStatus(message) {
@@ -10691,6 +10779,8 @@
 
       function resetTimeline() {
         if (dragItem) endDrag();
+        applyStayChoice("farmhouse", true);
+        applySipChoice("flyingfox", true);
         tripNights = 2;
         applyLengthDefaults(true);
         if (startDate) {
@@ -10703,6 +10793,7 @@
         }
         applyFilter("all");
         persistPlan();
+        syncStickyItinDirty();
       }
 
       function updateHoverFromEvent(e) {
@@ -11149,10 +11240,12 @@
         sticky.setAttribute("aria-hidden", show ? "false" : "true");
         if (stickyActions) stickyActions.setAttribute("aria-hidden", showItin ? "true" : "false");
         if (stickyItin) stickyItin.setAttribute("aria-hidden", showItin ? "false" : "true");
+        if (showItin) syncStickyItinDirty();
       }
       window.addEventListener("scroll", updateSticky, { passive: true });
       window.addEventListener("resize", updateSticky);
       updateSticky();
+      syncStickyItinDirty();
 
       var stickySave = document.getElementById("stickySaveItin");
       if (stickySave) {
@@ -11164,6 +11257,7 @@
       if (stickyReset) {
         stickyReset.addEventListener("click", function () {
           if (typeof resetTimeline === "function") resetTimeline();
+          syncStickyItinDirty();
         });
       }
 

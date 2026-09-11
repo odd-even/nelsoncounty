@@ -49,8 +49,8 @@ export const campaignSeed = {
       cta: {label: 'Book Your Stay', href: 'https://www.dbbrewingcompany.com/camp-at-basecamp'},
     },
   ],
-  experienceEyebrow: 'Build your experience',
-  experienceTitle: 'Stay longer. Choose what fits your pace.',
+  experienceEyebrow: '',
+  experienceTitle: 'Build your experience',
   experienceCopy:
     'Stay for two nights or make it a three- to four-day getaway. Mix sip, create, explore, and get-around stops into a trip that feels like your own.',
   partners: [
