@@ -276,6 +276,7 @@
       max-width: 100%;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      scroll-padding-bottom: calc(var(--sticky-bar-h, 0px) + 0.85rem);
     }
     body {
       font-family: var(--font);
@@ -1080,6 +1081,11 @@
       color: var(--ink);
       max-width: 18ch;
       margin-bottom: 0.9rem;
+      scroll-margin-top: 1rem;
+    }
+    .stay-card__title,
+    .partner-feature__title {
+      scroll-margin-top: 1rem;
     }
     .section-copy {
       font-size: 1.05rem;
@@ -4487,7 +4493,7 @@
       min-height: var(--sticky-ctrl-h);
       box-sizing: border-box;
       overflow: visible;
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
       padding: 0.32rem 0.32rem 0.32rem 0.65rem;
@@ -4529,6 +4535,9 @@
       max-width: 100%;
       min-width: 0;
     }
+    .sticky-promo__note-long {
+      display: none;
+    }
     .sticky-promo__note strong {
       color: var(--ink);
       font-weight: 700;
@@ -4540,11 +4549,11 @@
       flex: 0 0 auto;
       align-self: stretch;
       border: none;
-      border-radius: 10px;
-      background: var(--ink);
-      color: var(--white);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--nelson-green) 16%, #f3f8f4);
+      color: var(--black);
       font: inherit;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.8rem;
       width: auto;
       min-width: 3.6rem;
@@ -4556,23 +4565,20 @@
       text-align: center;
       -webkit-tap-highlight-color: transparent;
     }
-    .sticky-promo__copy:hover {
-      background: var(--black);
-    }
     .sticky-promo__actions {
       grid-area: sticky-ctl;
       flex: unset;
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      width: max-content;
-      min-width: 0;
+      width: 100%;
+      min-width: max-content;
       height: 100%;
       min-height: 0;
       box-sizing: border-box;
       gap: 0.2rem;
       padding: 0.24rem;
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
       opacity: 1;
@@ -4595,7 +4601,7 @@
       width: auto;
       min-width: 0;
       padding: 0.35rem 0.75rem;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 0;
       background: transparent;
       color: var(--ink);
@@ -4606,32 +4612,77 @@
       white-space: nowrap;
       line-height: 1.1;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      cursor: pointer;
     }
-    .sticky-promo__choose::before,
-    .sticky-promo__stay::before,
-    .sticky-promo__activities::before,
-    .sticky-promo__edit::before,
-    .sticky-promo__save::before,
-    .sticky-promo__reset::before,
-    .sticky-promo__copy::before {
-      content: "";
-      position: absolute;
-      /* Larger tap target; painted button stays the same size. */
-      inset: -0.55rem -0.45rem;
+    .sticky-promo__copy,
+    .sticky-promo__edit,
+    .sticky-promo__save,
+    .sticky-promo__reset {
+      touch-action: manipulation;
     }
     .sticky-promo__activities {
       display: none;
     }
+    .sticky-promo__choose,
+    .sticky-promo__activities,
+    .sticky-promo__stay {
+      transition:
+        background 0.35s cubic-bezier(0.45, 0, 0.55, 1),
+        color 0.35s cubic-bezier(0.45, 0, 0.55, 1),
+        border-color 0.35s cubic-bezier(0.45, 0, 0.55, 1);
+    }
     .sticky-promo__choose {
+      background: transparent;
+      color: var(--ink);
+    }
+    .sticky-promo:not(.is-section-activities):not(.is-section-itin) .sticky-promo__choose,
+    .sticky-promo.is-section-stay .sticky-promo__choose {
       background: var(--ink);
       color: var(--white);
     }
-    .sticky-promo__choose:hover {
-      background: var(--black);
+    .sticky-promo.is-section-activities .sticky-promo__activities {
+      background: var(--ink);
+      color: var(--white);
+      border-color: transparent;
     }
-    .sticky-promo__stay:hover,
-    .sticky-promo__activities:hover {
-      background: rgba(0, 0, 0, 0.05);
+    .sticky-promo.is-section-itin .sticky-promo__stay {
+      background: var(--ink);
+      color: var(--white);
+      border-color: transparent;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .sticky-promo__copy:hover {
+        background: color-mix(in srgb, var(--nelson-green) 24%, #eef6f1);
+        color: var(--black);
+      }
+      .sticky-promo:not(.is-section-activities):not(.is-section-itin) .sticky-promo__choose:hover,
+      .sticky-promo.is-section-stay .sticky-promo__choose:hover {
+        background: var(--black);
+      }
+      .sticky-promo.is-section-activities .sticky-promo__choose:hover,
+      .sticky-promo.is-section-itin .sticky-promo__choose:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .sticky-promo.is-section-activities .sticky-promo__activities:hover {
+        background: var(--black);
+        color: var(--white);
+      }
+      .sticky-promo.is-section-itin .sticky-promo__stay:hover {
+        background: var(--black);
+        color: var(--white);
+      }
+      .sticky-promo__stay:hover,
+      .sticky-promo__activities:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .sticky-promo__edit:hover,
+      .sticky-promo__save:hover {
+        background: #46633a;
+      }
+      .sticky-promo__reset:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
     }
     .sticky-promo__itin {
       grid-area: sticky-ctl;
@@ -4639,14 +4690,14 @@
       display: flex;
       flex-direction: column;
       align-items: stretch;
-      width: max-content;
-      min-width: 0;
+      width: 100%;
+      min-width: max-content;
       height: 100%;
       min-height: 0;
       box-sizing: border-box;
       gap: 0.2rem;
       padding: 0.24rem;
-      border-radius: 14px;
+      border-radius: 18px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
       opacity: 0;
@@ -4670,7 +4721,7 @@
       width: auto;
       min-width: 0;
       padding: 0.35rem 0.75rem;
-      border-radius: 10px;
+      border-radius: 12px;
       border: 0;
       font: inherit;
       font-size: 0.9rem;
@@ -4686,17 +4737,10 @@
       background: #557645;
       color: var(--white);
     }
-    .sticky-promo__edit:hover,
-    .sticky-promo__save:hover {
-      background: #46633a;
-    }
     .sticky-promo__reset {
       background: transparent;
       color: var(--ink);
       font-weight: 500;
-    }
-    .sticky-promo__reset:hover {
-      background: rgba(0, 0, 0, 0.05);
     }
     .sticky-promo__itin:not(.is-dirty) .sticky-promo__save,
     .sticky-promo__itin:not(.is-dirty) .sticky-promo__reset {
@@ -4708,8 +4752,15 @@
     .sticky-promo__itin:not(.is-dirty) .sticky-promo__edit {
       flex: 1 1 auto;
       align-self: stretch;
+      width: 100%;
       height: 100%;
       min-height: 0;
+    }
+    .sticky-promo__itin.is-dirty .sticky-promo__reset,
+    .sticky-promo__itin.is-dirty .sticky-promo__save {
+      flex: 1 1 0;
+      width: 100%;
+      min-width: 0;
     }
     .sticky-promo.is-itin .sticky-promo__actions {
       opacity: 0;
@@ -4750,7 +4801,7 @@
         height: var(--sticky-ctrl-h);
         min-height: var(--sticky-ctrl-h);
         padding: 0.3rem 0.3rem 0.3rem 0.85rem;
-        border-radius: 14px;
+        border-radius: 18px;
         gap: 0.5rem;
       }
       .sticky-promo__code {
@@ -4760,6 +4811,12 @@
       .sticky-promo__note {
         font-size: 0.74rem;
       }
+      .sticky-promo__note-short {
+        display: none;
+      }
+      .sticky-promo__note-long {
+        display: inline;
+      }
       .sticky-promo__note strong {
         font-size: 1.05em;
       }
@@ -4767,7 +4824,7 @@
         min-width: 4.5rem;
         padding: 0 0.95rem;
         font-size: 0.84rem;
-        border-radius: 10px;
+        border-radius: 12px;
       }
       .sticky-promo__ctl {
         flex: 0 0 auto;
@@ -4780,13 +4837,13 @@
       .sticky-promo__actions,
       .sticky-promo__itin {
         flex-direction: row;
-        width: max-content;
-        min-width: 0;
+        width: 100%;
+        min-width: max-content;
         height: 100%;
         min-height: 0;
         gap: 0.35rem;
         padding: 0.28rem;
-        border-radius: 14px;
+        border-radius: 18px;
       }
       .sticky-promo__choose,
       .sticky-promo__stay,
@@ -4800,7 +4857,7 @@
         padding: 0 0.9rem;
         font-size: 0.88rem;
         font-weight: 500;
-        border-radius: 10px;
+        border-radius: 12px;
       }
       .sticky-promo__choose,
       .sticky-promo__edit,
@@ -4813,11 +4870,53 @@
         border: 1px solid #d8d8d8;
         background: var(--white);
       }
+      .sticky-promo.is-section-activities .sticky-promo__activities {
+        background: var(--ink);
+        color: var(--white);
+        border-color: transparent;
+      }
+      .sticky-promo.is-section-itin .sticky-promo__stay {
+        background: var(--ink);
+        color: var(--white);
+        border-color: transparent;
+        font-weight: 600;
+      }
+      .sticky-promo:not(.is-section-activities):not(.is-section-itin) .sticky-promo__choose,
+      .sticky-promo.is-section-stay .sticky-promo__choose {
+        border-color: transparent;
+      }
+      .sticky-promo.is-section-activities .sticky-promo__choose,
+      .sticky-promo.is-section-itin .sticky-promo__choose {
+        border: 1px solid #d8d8d8;
+        background: var(--white);
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .sticky-promo.is-section-itin .sticky-promo__activities {
+        border: 1px solid #d8d8d8;
+        background: var(--white);
+        color: var(--ink);
+      }
       .sticky-promo__activities {
         display: inline-flex;
       }
+      /* Desktop: no Edit — Save/Reset only when the itinerary is dirty. */
+      .sticky-promo__edit {
+        display: none !important;
+      }
       .sticky-promo.is-itin .sticky-promo__itin {
         flex-direction: row;
+      }
+      .sticky-promo.is-itin .sticky-promo__reset,
+      .sticky-promo.is-itin .sticky-promo__save {
+        display: inline-flex;
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+      }
+      .sticky-promo.is-itin .sticky-promo__reset {
+        border: 1px solid #d8d8d8;
+        background: var(--white);
       }
     }
 
@@ -6541,7 +6640,7 @@
       }
       .sticky-promo__bar {
         padding: 0.3rem 0.3rem 0.3rem 0.6rem;
-        border-radius: 12px;
+        border-radius: 16px;
         gap: 0.35rem;
       }
       .sticky-promo__code {
@@ -6557,12 +6656,12 @@
         min-width: 3.4rem;
         padding: 0 0.55rem;
         font-size: 0.76rem;
-        border-radius: 9px;
+        border-radius: 11px;
       }
       .sticky-promo__itin {
         padding: 0.22rem;
         gap: 0.18rem;
-        border-radius: 12px;
+        border-radius: 16px;
       }
       .sticky-promo__choose,
       .sticky-promo__stay,
@@ -6571,24 +6670,7 @@
       .sticky-promo__reset {
         padding: 0.32rem 0.65rem;
         font-size: 0.88rem;
-        border-radius: 9px;
-      }
-      .sticky-promo__choose::before,
-      .sticky-promo__stay::before,
-      .sticky-promo__activities::before,
-      .sticky-promo__edit::before,
-      .sticky-promo__copy::before {
-        inset: -0.65rem -0.5rem;
-      }
-      /* Prefer expanding into outer padding / gap, not into the sibling button. */
-      .sticky-promo__reset::before {
-        inset: -0.55rem -0.5rem -0.12rem;
-      }
-      .sticky-promo__save::before {
-        inset: -0.12rem -0.5rem -0.55rem;
-      }
-      .sticky-promo__itin:not(.is-dirty) .sticky-promo__edit::before {
-        inset: -0.65rem -0.5rem;
+        border-radius: 11px;
       }
 
       .exit-intent {
@@ -6786,8 +6868,8 @@
           </h1>
           <p class="hero__lede">Trade the rushed day trip for a few days surrounded by Blue Ridge views, local wine, creative experiences, outdoor adventure, and room to slow down.</p>
           <div class="cta-row">
-            <a class="btn btn--light" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
-            <a class="btn btn--ghost" href="#experience" data-track="cta_explore_experience">Explore the Experience</a>
+            <a class="btn btn--light" href="#stay-title" data-track="cta_choose_stay">Choose Your Stay</a>
+            <a class="btn btn--ghost" href="#experience-title" data-track="cta_find_activities">Find Activities</a>
           </div>
         </div>
         <aside class="hero__promo" aria-label="Campaign promo code">
@@ -6814,7 +6896,7 @@
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="4" data-hero-target="#feature-tunnel"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Flying Fox Vineyard" data-hero-slide="5" data-hero-target="#feature-flying-fox"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Glass Hollow Studio" data-hero-slide="6" data-hero-target="#feature-glass-hollow"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="7" data-hero-target="#itinerary"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="7" data-hero-target="#itin-title"></button>
         </div>
       </div>
     </section>
@@ -6823,8 +6905,8 @@
       <div class="wrap">
         <p class="hero-below__lede">Trade the rushed day trip for a few days surrounded by Blue Ridge views, local wine, creative experiences, outdoor adventure, and room to slow down.</p>
         <div class="cta-row">
-          <a class="btn btn--dark" href="#stay" data-track="cta_choose_stay">Choose Your Stay</a>
-          <a class="btn btn--outline" href="#experience" data-track="cta_explore_experience">Explore the Experience</a>
+          <a class="btn btn--dark" href="#stay-title" data-track="cta_choose_stay">Choose Your Stay</a>
+          <a class="btn btn--outline" href="#experience-title" data-track="cta_find_activities">Find Activities</a>
         </div>
       </div>
     </section>
@@ -6917,7 +6999,7 @@
               <span class="do-card__copy">Walk the restored 1850s Blue Ridge Railroad tunnel on a 2.25-mile crushed-gravel path with dramatic stone portals.</span>
             </span>
           </a>
-          <a class="do-card" data-cat="outdoor" href="#itinerary">
+          <a class="do-card" data-cat="outdoor" href="https://nelsoncounty.com/explore/crabtree-falls" target="_blank" rel="noopener noreferrer" data-track="do_card_outbound" data-partner="crabtree-falls">
             <img class="do-card__img" data-src="assets/check-into-nelson/cards/crabtree-falls-480.webp" data-srcset="assets/check-into-nelson/cards/crabtree-falls-480.webp 480w, assets/check-into-nelson/cards/crabtree-falls-581.webp 581w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="581" height="726" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
@@ -6935,7 +7017,7 @@
               <span class="do-card__copy">Mountain basecamp brewery pouring award-winning lagers, cocktails, and distillery releases with expansive meadows.</span>
             </span>
           </a>
-          <a class="do-card" data-cat="outdoor" href="#itinerary">
+          <a class="do-card" data-cat="outdoor" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer" data-track="do_card_outbound" data-partner="spy-rock">
             <img class="do-card__img" data-src="assets/check-into-nelson/cards/spy-rock-480.webp" data-srcset="assets/check-into-nelson/cards/spy-rock-480.webp 480w, assets/check-into-nelson/cards/spy-rock-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
@@ -6962,7 +7044,7 @@
               <span class="do-card__copy">Spend less time thinking about transportation and more time enjoying your stay between participating stops.</span>
             </span>
           </a>
-          <a class="do-card" data-cat="outdoor" href="#itinerary">
+          <a class="do-card" data-cat="outdoor" href="https://nelsoncounty.com/explore/tye-river" target="_blank" rel="noopener noreferrer" data-track="do_card_outbound" data-partner="tye-river">
             <img class="do-card__img" data-src="assets/check-into-nelson/cards/tye-river-480.webp" data-srcset="assets/check-into-nelson/cards/tye-river-480.webp 480w, assets/check-into-nelson/cards/tye-river-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="640" height="800" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
@@ -7754,7 +7836,7 @@
 
             <div class="passport__actions">
               <a class="btn btn--dark" id="openPassport" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Open digital passport</a>
-              <a class="btn btn--outline" href="#itinerary">See sample stay</a>
+              <a class="btn btn--outline" href="#itin-title">See sample stay</a>
             </div>
             <p class="passport__note">
               Sample setup: replace the passport link with the live Check Into Nelson LoyalBrew URL when the trail goes live.
@@ -7841,18 +7923,21 @@
     <div class="sticky-promo__bar" role="group" aria-label="Promotional code">
       <div class="sticky-promo__text">
         <span class="sticky-promo__code"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span>
-        <p class="sticky-promo__note">Up to <strong>15%</strong> off</p>
+        <p class="sticky-promo__note">
+          <span class="sticky-promo__note-short">Up to <strong>15%</strong> off</span>
+          <span class="sticky-promo__note-long">Up to <strong>15%</strong> off participating stays and offers</span>
+        </p>
       </div>
       <button type="button" class="sticky-promo__copy" id="stickyCopy" data-track="copy_promo_code">Copy</button>
     </div>
     <div class="sticky-promo__ctl">
       <div class="sticky-promo__actions" role="group" aria-label="Plan your stay">
-        <a class="sticky-promo__choose" href="#stay" data-track="cta_choose_stay_sticky">Choose stay</a>
-        <a class="sticky-promo__activities" href="#experience" data-track="cta_find_activities_sticky">Find activities</a>
-        <a class="sticky-promo__stay" href="#itinerary" data-track="cta_see_itinerary">See itinerary</a>
+        <a class="sticky-promo__choose" href="#stay-title" data-track="cta_choose_stay_sticky">Choose stay</a>
+        <a class="sticky-promo__activities" href="#experience-title" data-track="cta_find_activities_sticky">Find activities</a>
+        <a class="sticky-promo__stay" href="#itin-title" data-track="cta_see_itinerary">See itinerary</a>
       </div>
       <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
-        <a class="sticky-promo__edit" href="#itinerary" id="stickyEditItin" data-track="edit_itinerary_sticky">Edit itinerary</a>
+        <a class="sticky-promo__edit" href="#itin-title" id="stickyEditItin" data-track="edit_itinerary_sticky">Edit itinerary</a>
         <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky" hidden>Reset itinerary</button>
         <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky" hidden>Save itinerary</button>
       </div>
@@ -7943,6 +8028,73 @@
     (function () {
       window.LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL || "https://www.loyalbrew.com/";
       var LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL;
+
+      // In-page jumps: land on readable titles, not section padding or card media.
+      var SECTION_HASH_ALIASES = {
+        stay: "stay-title",
+        experience: "experience-title",
+        itinerary: "itin-title"
+      };
+
+      function resolveNelsonAnchor(hash) {
+        if (!hash) return null;
+        var raw = String(hash);
+        var id = raw.charAt(0) === "#" ? raw.slice(1) : raw;
+        if (!id) return null;
+        var hashId = SECTION_HASH_ALIASES[id] || id;
+        var el = document.getElementById(hashId) || document.getElementById(id);
+        if (!el) return null;
+        if (el.classList && (el.classList.contains("stay-card") || el.classList.contains("partner-feature"))) {
+          var title = el.querySelector(".stay-card__title, .partner-feature__title");
+          if (title) {
+            return { el: title, hashId: el.id || hashId };
+          }
+        }
+        return { el: el, hashId: el.id || hashId };
+      }
+
+      window.jumpToNelsonAnchor = function jumpToNelsonAnchor(hash) {
+        var resolved = resolveNelsonAnchor(hash);
+        if (!resolved || !resolved.el) return false;
+        var isEmbed = document.documentElement.classList.contains("is-embed");
+        var reduceMotion = false;
+        try {
+          reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        } catch (errRm) {}
+        if (isEmbed) {
+          var y = Math.round(resolved.el.getBoundingClientRect().top);
+          try {
+            window.parent.postMessage({
+              type: "checkIntoNelsonScrollTo",
+              y: y,
+              id: resolved.hashId
+            }, "*");
+          } catch (err) {}
+        } else {
+          resolved.el.scrollIntoView({
+            behavior: reduceMotion ? "auto" : "smooth",
+            block: "start"
+          });
+        }
+        try {
+          history.replaceState(null, "", "#" + resolved.hashId);
+        } catch (err2) {}
+        return true;
+      };
+
+      document.addEventListener("click", function (e) {
+        if (e.defaultPrevented) return;
+        if (e.button !== 0) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        var link = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+        if (!link) return;
+        var href = link.getAttribute("href");
+        if (!href || href === "#" || href.indexOf("#") !== 0) return;
+        if (href.length > 1 && href.charAt(1) === "!") return;
+        if (!resolveNelsonAnchor(href)) return;
+        e.preventDefault();
+        window.jumpToNelsonAnchor(href);
+      }, true);
 
       (function initSiteNav() {
         var nav = document.getElementById("siteNav");
@@ -8249,25 +8401,9 @@
         }
 
         function jumpToTarget(hash) {
-          if (!hash) return;
-          var id = hash.charAt(0) === "#" ? hash.slice(1) : hash;
-          var el = document.getElementById(id);
-          if (!el) return;
-          if (isEmbed) {
-            var y = Math.round(el.getBoundingClientRect().top);
-            try {
-              window.parent.postMessage({
-                type: "checkIntoNelsonScrollTo",
-                y: y,
-                id: id
-              }, "*");
-            } catch (err) {}
-          } else {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (typeof window.jumpToNelsonAnchor === "function") {
+            window.jumpToNelsonAnchor(hash);
           }
-          try {
-            history.replaceState(null, "", "#" + id);
-          } catch (err2) {}
         }
 
         function show(next) {
@@ -8462,6 +8598,7 @@
       var lastDropKey = "";
       var suppressPlanPersist = false;
       var PLAN_STORAGE_KEY = "checkIntoNelson.plan.v5";
+      var baselineStartIso = null;
       var VALID_STOP_IDS = { checkin: 1, sip: 1, create: 1, backbone: 1, explore: 1, crabtree: 1, spyrock: 1, tyeriver: 1, rides: 1 };
       var OPTIONAL_STOP_IDS = { backbone: 1, spyrock: 1, tyeriver: 1 };
       var VALID_DAY_KEYS = { "1": 1, "2": 1, "3": 1, "4": 1, "5": 1, anytime: 1 };
@@ -8966,6 +9103,7 @@
           hoverDate = null;
           setRangeSelecting("out");
           syncLengthUI();
+          syncStickyItinDirty();
           return;
         }
 
@@ -8977,6 +9115,7 @@
           hoverDate = null;
           setRangeSelecting("out");
           syncLengthUI();
+          syncStickyItinDirty();
           return;
         }
 
@@ -9781,10 +9920,16 @@
       function isItineraryAtDefault() {
         var plan = collectPlanState();
         if (!plan) return true;
+        // Any check-in date change (even same night count) counts as dirty.
+        if (baselineStartIso && plan.start !== baselineStartIso) return false;
         if (plan.nights !== 2) return false;
         if (plan.stay && plan.stay !== "farmhouse") return false;
         if (plan.sip && plan.sip !== "flyingfox") return false;
         return planDaysMatchPreset(plan.days, LENGTH_DEFAULTS[2]);
+      }
+
+      function captureBaselineStart() {
+        baselineStartIso = startDate ? toISODate(startDate) : null;
       }
 
       function syncStickyItinDirty() {
@@ -9795,9 +9940,15 @@
         var editBtn = document.getElementById("stickyEditItin");
         var saveBtn = document.getElementById("stickySaveItin");
         var resetBtn = document.getElementById("stickyResetItin");
+        var desktopSticky = false;
+        try {
+          desktopSticky = window.matchMedia("(min-width: 900px)").matches;
+        } catch (errDesk) {}
         if (editBtn) {
-          editBtn.hidden = dirty;
-          editBtn.setAttribute("aria-hidden", dirty ? "true" : "false");
+          // Desktop skips Edit entirely; mobile keeps Edit until dirty.
+          var hideEdit = desktopSticky || dirty;
+          editBtn.hidden = hideEdit;
+          editBtn.setAttribute("aria-hidden", hideEdit ? "true" : "false");
         }
         if (saveBtn) {
           saveBtn.hidden = !dirty;
@@ -9806,6 +9957,9 @@
         if (resetBtn) {
           resetBtn.hidden = !dirty;
           resetBtn.setAttribute("aria-hidden", dirty ? "false" : "true");
+        }
+        if (typeof window.updateStickyPromo === "function") {
+          window.updateStickyPromo();
         }
       }
 
@@ -10792,6 +10946,8 @@
           refreshTimelineMeta();
         }
         applyFilter("all");
+        // Treat the current dates as the new clean baseline after reset.
+        captureBaselineStart();
         persistPlan();
         syncStickyItinDirty();
       }
@@ -11103,6 +11259,8 @@
           setRangeSelecting("in");
           resetCalendarToCurrentMonth();
           refreshItineraryMap();
+          captureBaselineStart();
+          syncStickyItinDirty();
           return;
         }
         tripNights = 2;
@@ -11111,6 +11269,8 @@
         resetCalendarToCurrentMonth();
         setRangeSelecting("in");
         refreshItineraryMap();
+        captureBaselineStart();
+        syncStickyItinDirty();
       })();
 
       var observer = new IntersectionObserver(function (entries) {
@@ -11216,7 +11376,11 @@
       var sticky = document.getElementById("stickyPromo");
       var stickyActions = sticky && sticky.querySelector(".sticky-promo__actions");
       var stickyItin = sticky && sticky.querySelector(".sticky-promo__itin");
+      var stickyChoose = sticky && sticky.querySelector(".sticky-promo__choose");
+      var stickyActivities = sticky && sticky.querySelector(".sticky-promo__activities");
+      var stickySeeItin = sticky && sticky.querySelector(".sticky-promo__stay");
       var footer = document.querySelector("footer") || document.querySelector(".campaign-footer");
+      var experienceSection = document.getElementById("experience");
       var itinerary = document.getElementById("itinerary");
       var hero = document.querySelector(".hero");
       function updateSticky() {
@@ -11228,24 +11392,98 @@
           // Hide once the site footer starts entering the viewport
           nearFooter = fr.top < window.innerHeight;
         }
-        // Save / Reset once itinerary is reached; restore plan buttons when scrolling back above it.
+        var mark = window.innerHeight * 0.45;
         var inItin = false;
         if (itinerary) {
-          inItin = itinerary.getBoundingClientRect().top < window.innerHeight * 0.55;
+          inItin = itinerary.getBoundingClientRect().top < mark;
         }
+        var inActivities = false;
+        if (experienceSection) {
+          inActivities = experienceSection.getBoundingClientRect().top < mark;
+        }
+        // Activities highlight only when that control is shown (desktop sticky row).
+        var activitiesCtlVisible = false;
+        var desktopSticky = false;
+        try {
+          activitiesCtlVisible = !!(stickyActivities && window.getComputedStyle(stickyActivities).display !== "none");
+          desktopSticky = window.matchMedia("(min-width: 900px)").matches;
+        } catch (errAct) {}
+        var dirty = !!(stickyItin && stickyItin.classList.contains("is-dirty"));
         var show = pastStart && !nearFooter;
-        var showItin = show && inItin;
+        // Desktop: keep Stay / Activities / Itinerary for section highlighting.
+        // Swap to Save/Reset only once the itinerary section is reached and the plan is dirty
+        // (no Edit step). Mobile still swaps to Edit (or Save/Reset when dirty) in-section.
+        var showItin = show && inItin && (desktopSticky ? dirty : true);
+        var section = "stay";
+        if (show && inItin) section = "itin";
+        else if (show && inActivities && activitiesCtlVisible) section = "activities";
         sticky.classList.toggle("is-visible", show);
         sticky.classList.toggle("is-itin", showItin);
+        sticky.classList.toggle("is-section-stay", show && !showItin && section === "stay");
+        sticky.classList.toggle("is-section-activities", show && !showItin && section === "activities");
+        sticky.classList.toggle("is-section-itin", show && !showItin && section === "itin");
         sticky.setAttribute("aria-hidden", show ? "false" : "true");
+        if (stickyChoose) stickyChoose.setAttribute("aria-current", !showItin && section === "stay" ? "true" : "false");
+        if (stickyActivities) stickyActivities.setAttribute("aria-current", !showItin && section === "activities" ? "true" : "false");
+        if (stickySeeItin) stickySeeItin.setAttribute("aria-current", !showItin && section === "itin" ? "true" : "false");
         if (stickyActions) stickyActions.setAttribute("aria-hidden", showItin ? "true" : "false");
         if (stickyItin) stickyItin.setAttribute("aria-hidden", showItin ? "false" : "true");
-        if (showItin) syncStickyItinDirty();
       }
+      window.updateStickyPromo = updateSticky;
       window.addEventListener("scroll", updateSticky, { passive: true });
-      window.addEventListener("resize", updateSticky);
-      updateSticky();
+      window.addEventListener("resize", function () {
+        syncStickyItinDirty();
+        updateSticky();
+      });
       syncStickyItinDirty();
+      updateSticky();
+
+      // Mobile: fire sticky controls on first touchend (avoid iOS hover/first-tap no-op).
+      if (sticky) {
+        var stickyTouchMoved = false;
+        var stickyTouchX = 0;
+        var stickyTouchY = 0;
+        sticky.addEventListener("touchstart", function (e) {
+          stickyTouchMoved = false;
+          if (e.touches && e.touches[0]) {
+            stickyTouchX = e.touches[0].clientX;
+            stickyTouchY = e.touches[0].clientY;
+          }
+        }, { passive: true });
+        sticky.addEventListener("touchmove", function (e) {
+          if (!e.touches || !e.touches[0]) return;
+          if (
+            Math.abs(e.touches[0].clientX - stickyTouchX) > 10 ||
+            Math.abs(e.touches[0].clientY - stickyTouchY) > 10
+          ) {
+            stickyTouchMoved = true;
+          }
+        }, { passive: true });
+        sticky.addEventListener("touchend", function (e) {
+          if (stickyTouchMoved) return;
+          if (!e.changedTouches || !e.changedTouches[0]) return;
+          var target = document.elementFromPoint(
+            e.changedTouches[0].clientX,
+            e.changedTouches[0].clientY
+          );
+          if (!target || !sticky.contains(target)) return;
+          var link = target.closest ? target.closest('a[href^="#"]') : null;
+          if (link && sticky.contains(link)) {
+            var href = link.getAttribute("href");
+            if (!href || href === "#") return;
+            e.preventDefault();
+            if (typeof window.jumpToNelsonAnchor === "function") {
+              window.jumpToNelsonAnchor(href);
+            }
+            return;
+          }
+          var btn = target.closest ? target.closest("button") : null;
+          if (btn && sticky.contains(btn) && !btn.disabled && !btn.hidden) {
+            e.preventDefault();
+            btn.click();
+          }
+        }, { passive: false });
+      }
 
       var stickySave = document.getElementById("stickySaveItin");
       if (stickySave) {
