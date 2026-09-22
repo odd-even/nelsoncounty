@@ -3440,19 +3440,7 @@
       margin-bottom: 0.35rem;
     }
     .timeline-item__copy {
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.45;
-      margin-bottom: 0.85rem;
-      max-width: 36ch;
-      text-wrap: balance;
-    }
-    .timeline-item__copy > span {
-      display: block;
-      text-wrap: balance;
-    }
-    .timeline-item__copy > span + span {
-      margin-top: 0.55em;
+      display: none;
     }
     .timeline-item__offer {
       display: block;
@@ -3468,7 +3456,7 @@
     }
     .stay-choice {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
       gap: 0.45rem;
       margin: 0 0 0.85rem;
     }
@@ -3756,21 +3744,6 @@
         margin-bottom: clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
         padding-right: 0;
         line-height: 1.2;
-      }
-      .timeline-item__copy {
-        font-size: var(--chip-copy);
-        line-height: 1.35;
-        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        overflow: hidden;
-        max-width: none;
-      }
-      .timeline-item:has(.stay-choice) .timeline-item__copy,
-      .timeline-item:has(.stay-swap) .timeline-item__copy {
-        display: none;
       }
       .timeline-item:has(.stay-choice) .stay-choice,
       .timeline-item:has(.stay-swap) .stay-swap {
@@ -6401,21 +6374,6 @@
         margin-bottom: clamp(0.3rem, 0.2rem + 0.5vw, 0.45rem);
         line-height: 1.2;
       }
-      .timeline-item__copy {
-        font-size: var(--chip-copy);
-        line-height: 1.35;
-        max-width: none;
-        margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        overflow: hidden;
-      }
-      .timeline-item:has(.stay-choice) .timeline-item__copy,
-      .timeline-item:has(.stay-swap) .timeline-item__copy {
-        display: none;
-      }
       .timeline-item:has(.stay-choice) .stay-choice,
       .timeline-item:has(.stay-swap) .stay-swap {
         margin-bottom: clamp(0.45rem, 0.3rem + 0.7vw, 0.7rem);
@@ -7459,9 +7417,9 @@
                           <img src="assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
                           <span class="stay-swap__name">Farmhouse at Veritas</span>
                         </button>
-                        <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="backbone" id="stayOptBackbone">
-                          <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
-                          <span class="stay-swap__name">Devils Backbone Campground</span>
+                        <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="wintergreen" id="stayOptWintergreen">
+                          <img src="assets/check-into-nelson/cards/wintergreen-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+                          <span class="stay-swap__name">Wintergreen Resort</span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="indigo" id="stayOptIndigo">
                           <img src="assets/check-into-nelson/cards/indigo-house-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
@@ -7472,7 +7430,6 @@
                           <span class="stay-swap__name">Retreat at Crabtree Falls</span>
                         </button>
                       </div>
-                      <p class="timeline-item__copy" id="checkinCopy"><span>Check in, unpack, and let the Blue Ridge set the pace.</span></p>
                       <p class="timeline-item__offer" id="checkinOffer">15% off lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--dark" id="checkinBook" href="https://www.veritasfarmhouse.com/" data-track="partner_outbound" data-partner="farmhouse">Book Farmhouse <span class="btn__discount">15% off</span></a>
@@ -7510,8 +7467,11 @@
                           <span class="stay-choice__label">Craft</span>
                           <span class="stay-choice__name">Devils Backbone</span>
                         </button>
+                        <button type="button" class="stay-choice__btn" role="radio" aria-checked="false" data-sip-option="nelson29" id="sipOptNelson29">
+                          <span class="stay-choice__label">Trail</span>
+                          <span class="stay-choice__name">Nelson 29 Craft Beverage Trail</span>
+                        </button>
                       </div>
-                      <p class="timeline-item__copy" id="sipCopy">A pour with a view. No rush back to anywhere.</p>
                       <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the offer</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" id="sipVisit" href="https://www.flyingfoxvineyard.com/" data-track="partner_outbound" data-partner="flying-fox">Visit Flying Fox</a>
@@ -7533,7 +7493,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--culture">Create</span><span class="timeline-item__daymeta">Day 2</span></p>
                       <h3 class="timeline-item__title">Glass Hollow Studio</h3>
-                      <p class="timeline-item__copy">Hands-on glassblowing with local makers.</p>
                       <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when you book</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.glasshollow.com/visit" data-track="partner_outbound" data-partner="glass-hollow">Explore Glass Hollow</a>
@@ -7555,7 +7514,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--experience">Experience</span><span class="timeline-item__daymeta">Day 2</span></p>
                       <h3 class="timeline-item__title">Devils Backbone</h3>
-                      <p class="timeline-item__copy">Craft pours, greenhouses, and the Basecamp scene.</p>
                       <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the offer</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
@@ -7589,7 +7547,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Blue Ridge Tunnel</h3>
-                      <p class="timeline-item__copy">A nearly mile-long tunnel hike through solid greenstone.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" data-track="partner_outbound" data-partner="blue-ridge-tunnel">Learn more</a>
                         <a class="btn btn--outline" href="#feature-tunnel">About the Tunnel</a>
@@ -7610,7 +7567,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Crabtree Falls</h3>
-                      <p class="timeline-item__copy">The highest waterfall series east of the Mississippi.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/crabtree-falls" data-track="partner_outbound" data-partner="crabtree-falls">Plan Your Visit</a>
                       </div>
@@ -7630,7 +7586,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Spy Rock</h3>
-                      <p class="timeline-item__copy">Take in the view from Spy Rock.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" data-track="partner_outbound" data-partner="spy-rock">Plan Your Visit</a>
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer">View on nelsoncounty.com</a>
@@ -7651,7 +7606,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--outdoor">Explore</span><span class="timeline-item__daymeta">Day 3</span></p>
                       <h3 class="timeline-item__title">Tye River</h3>
-                      <p class="timeline-item__copy">Or cast a line in the Tye River.</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/tye-river" data-track="partner_outbound" data-partner="tye-river">Plan Your Visit</a>
                         <a class="btn btn--outline" href="https://nelsoncounty.com/explore/fishing-the-tye-river" target="_blank" rel="noopener noreferrer">Fishing the Tye</a>
@@ -7706,7 +7660,6 @@
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--community">Get around</span><span class="timeline-item__daymeta">Anytime</span></p>
                       <h3 class="timeline-item__title">Reliable Rides</h3>
-                      <p class="timeline-item__copy">Safe rides between stops so you can enjoy the pours.</p>
                       <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> when you book</p>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://reliableridesva.com/" data-track="partner_outbound" data-partner="reliable-rides">Arrange Transportation</a>
@@ -8620,7 +8573,6 @@
         farmhouse: {
           id: "farmhouse",
           title: "Farmhouse at Veritas",
-          copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/cards/farmhouse-veritas-sq-400.webp",
           bookHref: "https://www.veritasfarmhouse.com/",
           bookLabel: "Book Farmhouse",
@@ -8630,23 +8582,20 @@
           geoKey: "farmhouse",
           offerHtml: "15% off lodging with <span class=\"code-green\"><span class=\"cin-checkin\">CHECKIN</span><span class=\"cin-to\">TO</span><span class=\"cin-nelson\">NELSON</span></span>"
         },
-        backbone: {
-          id: "backbone",
-          title: "Devils Backbone Campground",
-          copy: ["Check in, unpack, and let the Blue Ridge set the pace."],
-          image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp",
-          bookHref: "https://www.dbbrewingcompany.com/camp-at-basecamp",
-          bookLabel: "Book Devils Backbone",
-          discount: "15% off",
-          aboutHref: "#feature-devils-backbone-camp",
-          partner: "devils-backbone-camp",
-          geoKey: "devils-backbone-camp",
-          offerHtml: "15% off lodging with <span class=\"code-green\"><span class=\"cin-checkin\">CHECKIN</span><span class=\"cin-to\">TO</span><span class=\"cin-nelson\">NELSON</span></span>"
+        wintergreen: {
+          id: "wintergreen",
+          title: "Wintergreen Resort",
+          image: "assets/check-into-nelson/cards/wintergreen-sq-400.webp",
+          bookHref: "https://www.wintergreenresort.com/accommodations-home/",
+          bookLabel: "Book Wintergreen",
+          aboutHref: "https://nelsoncounty.com/locations/wintergreen-resort",
+          partner: "wintergreen-resort",
+          geoKey: "wintergreen",
+          offerHtml: "Mountain lodging with resort amenities across studios, condos, and homes."
         },
         indigo: {
           id: "indigo",
           title: "The Indigo House",
-          copy: ["Check in, unpack, and enjoy complimentary coffee service during your stay."],
           image: "assets/check-into-nelson/cards/indigo-house-sq-400.webp",
           bookHref: "https://indigohouseva.com/",
           bookLabel: "Book Indigo House",
@@ -8659,7 +8608,6 @@
         retreat: {
           id: "retreat",
           title: "The Retreat at Crabtree Falls",
-          copy: ["Check in near the falls and let the Blue Ridge set the pace."],
           image: "assets/check-into-nelson/cards/retreat-crabtree-sq-400.webp",
           bookHref: "https://www.crabtreefalls.com/",
           bookLabel: "Book the Retreat",
@@ -8676,7 +8624,6 @@
         flyingfox: {
           id: "flyingfox",
           title: "Flying Fox Vineyard",
-          copy: "A pour with a view. No rush back to anywhere.",
           image: "assets/check-into-nelson/cards/flying-fox-sq-400.webp",
           visitHref: "https://www.flyingfoxvineyard.com/",
           visitLabel: "Visit Flying Fox",
@@ -8687,13 +8634,22 @@
         backbone: {
           id: "backbone",
           title: "Devils Backbone",
-          copy: "Craft pours and the Basecamp scene. No rush back to anywhere.",
           image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp",
           visitHref: "https://www.dbbrewingcompany.com/",
           visitLabel: "Explore Devils Backbone",
           aboutHref: "#feature-devils-backbone",
           aboutLabel: "About Devils Backbone",
           partner: "devils-backbone"
+        },
+        nelson29: {
+          id: "nelson29",
+          title: "Nelson 29 Craft Beverage Trail",
+          image: "assets/check-into-nelson/cards/nelson-29-sq-400.webp",
+          visitHref: "https://www.nelson29.com/",
+          visitLabel: "Explore Nelson 29",
+          aboutHref: "https://nelsoncounty.com/explore/nelson-29",
+          aboutLabel: "About Nelson 29",
+          partner: "nelson-29"
         }
       };
       var selectedSip = "flyingfox";
@@ -8731,20 +8687,10 @@
         var checkin = document.getElementById("stop-checkin");
         if (checkin) checkin.setAttribute("data-stay", selectedStay);
 
-        var copy = document.getElementById("checkinCopy");
         var image = document.getElementById("checkinImage");
         var book = document.getElementById("checkinBook");
         var about = document.getElementById("checkinAbout");
         var offer = document.getElementById("checkinOffer");
-        if (copy) {
-          var parts = Array.isArray(option.copy) ? option.copy : [option.copy];
-          copy.replaceChildren();
-          parts.forEach(function (part) {
-            var span = document.createElement("span");
-            span.textContent = part;
-            copy.appendChild(span);
-          });
-        }
         if (image) {
           image.src = option.image;
           image.alt = option.title;
@@ -8781,19 +8727,9 @@
         var sip = document.getElementById("stop-sip");
         if (sip) sip.setAttribute("data-sip", selectedSip);
 
-        var copy = document.getElementById("sipCopy");
         var image = document.getElementById("sipImage");
         var visit = document.getElementById("sipVisit");
         var about = document.getElementById("sipAbout");
-        if (copy) {
-          var parts = Array.isArray(option.copy) ? option.copy : [option.copy];
-          copy.replaceChildren();
-          parts.forEach(function (part) {
-            var span = document.createElement("span");
-            span.textContent = part;
-            copy.appendChild(span);
-          });
-        }
         if (image) {
           image.src = option.image;
           image.alt = option.title;
@@ -9249,7 +9185,7 @@
         if (!start || isNaN(start.getTime())) return null;
         start = startOfDay(start);
         if (start.getTime() > PROMO_END_DATE.getTime()) return null;
-        var stay = STAY_OPTIONS[raw.stay] ? raw.stay : "farmhouse";
+        var stay = STAY_OPTIONS[raw.stay] ? raw.stay : (raw.stay === "backbone" ? "wintergreen" : "farmhouse");
         var sip = SIP_OPTIONS[raw.sip] ? raw.sip : "flyingfox";
         var nights = Number(raw.nights);
         if (nights < MIN_NIGHTS || nights > MAX_NIGHTS || isNaN(nights)) {
@@ -9394,10 +9330,12 @@
       var STOP_GEO = {
         farmhouse: { lat: 38.0146783, lng: -78.8413316, color: "var(--cat-stay)" },
         "devils-backbone-camp": { lat: 37.871186, lng: -78.918657, color: "var(--cat-stay)" },
+        wintergreen: { lat: 37.9226, lng: -78.9417, color: "var(--cat-stay)" },
         indigo: { lat: 37.9786, lng: -78.8315, color: "var(--cat-stay)" },
         "retreat-crabtree": { lat: 37.8524, lng: -79.0768, color: "var(--cat-stay)" },
         checkin: { lat: 38.0146783, lng: -78.8413316, color: "var(--cat-stay)" },
         sip: { lat: 38.0039087, lng: -78.8277349, color: "var(--cat-taste)" },
+        nelson29: { lat: 37.7855, lng: -78.8968, color: "var(--cat-taste)" },
         create: { lat: 37.9655865, lng: -78.8342132, color: "var(--cat-culture)" },
         backbone: { lat: 37.871186, lng: -78.918657, color: "var(--cat-experience)" },
         explore: { lat: 38.0332561, lng: -78.8425047, color: "var(--cat-outdoor)" },
@@ -9475,6 +9413,9 @@
         if (id === "sip") {
           if (selectedSip === "backbone") {
             return { lat: STOP_GEO.backbone.lat, lng: STOP_GEO.backbone.lng, color: "var(--cat-taste)" };
+          }
+          if (selectedSip === "nelson29") {
+            return STOP_GEO.nelson29;
           }
           return STOP_GEO.sip;
         }
@@ -10815,17 +10756,7 @@
       }
 
       function stopTrayDesc(item) {
-        var id = item.getAttribute("data-id");
-        if (id === "sip") {
-          var sipCopy = (SIP_OPTIONS[selectedSip] || SIP_OPTIONS.flyingfox).copy;
-          return Array.isArray(sipCopy) ? sipCopy.join(" ") : String(sipCopy || "");
-        }
-        if (id === "checkin") {
-          var stayCopy = (STAY_OPTIONS[selectedStay] || STAY_OPTIONS.farmhouse).copy;
-          return Array.isArray(stayCopy) ? stayCopy.join(" ") : String(stayCopy || "");
-        }
-        var copyEl = item.querySelector(".timeline-item__copy");
-        return copyEl ? copyEl.textContent.replace(/\s+/g, " ").trim() : "";
+        return "";
       }
 
       function escapeTrayText(value) {
