@@ -261,7 +261,7 @@
     return encodeURIComponent('*[_id == "campaign"][0]{...,heroSlides[]{label,imageUrl,"image":{asset->{url}}},stays[]{...,"image":{asset->{url}}},partners[]{...,"image":{asset->{url}}}}')
   }
 
-  if (!PROJECT_ID || PROJECT_ID === 'cinelson') return
+  if (!PROJECT_ID) return
 
   fetch('https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query())
     .then(function (res) { return res.ok ? res.json() : null })

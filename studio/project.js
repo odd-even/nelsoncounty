@@ -1,3 +1,3 @@
-// Odd + Even Sanity project — never Coinfund.
-export const projectId = 'cinelson'
+// Odd + Even Sanity project — Check Into Nelson
+export const projectId = 'ccbigluo'
 export const dataset = 'production'
