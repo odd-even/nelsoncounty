@@ -41,19 +41,6 @@
     "fallback": "assets/check-into-nelson/hero/03-devils-2500.webp"
   },
   {
-    "label": "Devils Backbone",
-    "slug": "04-devils-2",
-    "files": {
-      "1280": "assets/check-into-nelson/hero/04-devils-2-1280.webp",
-      "1920": "assets/check-into-nelson/hero/04-devils-2-1920.webp",
-      "2500": "assets/check-into-nelson/hero/04-devils-2-2500.webp"
-    },
-    "width": 2500,
-    "height": 1502,
-    "srcset": "assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w",
-    "fallback": "assets/check-into-nelson/hero/04-devils-2-2500.webp"
-  },
-  {
     "label": "Blue Ridge Tunnel",
     "slug": "04-tunnel",
     "files": {

@@ -8,3 +8,4 @@ nelsoncounty-404-audit.csv
 listings-amenity-anomaly-report.html
 
 .vercel
+.env*

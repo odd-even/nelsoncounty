@@ -1451,6 +1451,74 @@
       background: #fff;
       transform: scale(1.2);
     }
+    .media-carousel__nav {
+      position: absolute;
+      top: 50%;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 2.55rem;
+      height: 2.55rem;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      cursor: pointer;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06)), rgba(18, 18, 18, 0.42);
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.22),
+        0 1px 0 rgba(255, 255, 255, 0.28) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.18) inset;
+      backdrop-filter: blur(12px) saturate(1.25);
+      -webkit-backdrop-filter: blur(12px) saturate(1.25);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.94);
+      transition:
+        opacity 0.28s ease,
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+    .media-carousel__nav--prev {
+      left: 0.7rem;
+    }
+    .media-carousel__nav--next {
+      right: 0.7rem;
+    }
+    .media-carousel__nav svg {
+      width: 1.05rem;
+      height: 1.05rem;
+      display: block;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+    }
+    .media-carousel:hover .media-carousel__nav,
+    .media-carousel:focus-within .media-carousel__nav {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) scale(1);
+    }
+    .media-carousel__nav:hover {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)), rgba(18, 18, 18, 0.58);
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.28),
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+      transform: translateY(-50%) scale(1.06);
+    }
+    .media-carousel__nav:active {
+      transform: translateY(-50%) scale(0.97);
+    }
+    .media-carousel__nav:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%) scale(1);
+    }
+    .timeline-item__media.media-carousel .media-carousel__nav {
+      display: none;
+    }
     .media-carousel .stay-card__badge,
     .media-carousel .partner-feature__badge {
       z-index: 4;
@@ -1459,8 +1527,17 @@
       .media-carousel__track img {
         transition: none;
       }
-      .media-carousel__dots {
+      .media-carousel__dots,
+      .media-carousel__nav {
         transition: none;
+      }
+      .media-carousel__nav,
+      .media-carousel:hover .media-carousel__nav,
+      .media-carousel:focus-within .media-carousel__nav,
+      .media-carousel__nav:hover,
+      .media-carousel__nav:active,
+      .media-carousel__nav:focus-visible {
+        transform: translateY(-50%);
       }
     }
     .stay-card__badge {
@@ -4818,6 +4895,10 @@
         padding: 0.28rem;
         border-radius: 18px;
       }
+      /* Stretch Reset/Save to the width reserved by the 3 plan buttons underneath. */
+      .sticky-promo__itin.is-dirty {
+        width: 100%;
+      }
       .sticky-promo__choose,
       .sticky-promo__stay,
       .sticky-promo__activities,
@@ -4831,6 +4912,10 @@
         font-size: 0.88rem;
         font-weight: 500;
         border-radius: 12px;
+      }
+      .sticky-promo__itin.is-dirty .sticky-promo__save,
+      .sticky-promo__itin.is-dirty .sticky-promo__reset {
+        flex: 1 1 0;
       }
       .sticky-promo__choose,
       .sticky-promo__edit,
@@ -5911,6 +5996,19 @@
         width: 0.55rem;
         height: 0.55rem;
       }
+      .media-carousel__nav {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%);
+        width: 2.35rem;
+        height: 2.35rem;
+      }
+      .media-carousel__nav--prev {
+        left: 0.55rem;
+      }
+      .media-carousel__nav--next {
+        right: 0.55rem;
+      }
 
       .spokes {
         margin-top: 0.5rem;
@@ -6764,16 +6862,6 @@
             height="1667" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
-          <img
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-devils-2-1280.webp"
-            data-srcset="assets/check-into-nelson/hero/04-devils-2-1280.webp 1280w, assets/check-into-nelson/hero/04-devils-2-1920.webp 1920w, assets/check-into-nelson/hero/04-devils-2-2500.webp 2500w"
-            sizes="100vw"
-            alt=""
-            width="2500"
-            height="1502" loading="lazy"
-          />
-        </div>
         <div class="hero__slide" data-hero-accent="#a8c5c2">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-tunnel-1280.webp"
@@ -6781,7 +6869,7 @@
             sizes="100vw"
             alt=""
             width="3200"
-            height="1707" loading="lazy"
+            height="1707" loading="lazy" decoding="async"
           />
         </div>
         <div class="hero__slide" data-hero-accent="#ff7a6a">
@@ -6850,11 +6938,10 @@
           <button type="button" class="hero__dot is-active" role="tab" aria-selected="true" aria-label="Farmhouse at Veritas" data-hero-slide="0" data-hero-target="#feature-farmhouse"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Farmhouse at Veritas" data-hero-slide="1" data-hero-target="#feature-farmhouse"></button>
           <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="2" data-hero-target="#feature-devils-backbone"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Devils Backbone" data-hero-slide="3" data-hero-target="#feature-devils-backbone"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="4" data-hero-target="#feature-tunnel"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Flying Fox Vineyard" data-hero-slide="5" data-hero-target="#feature-flying-fox"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Glass Hollow Studio" data-hero-slide="6" data-hero-target="#feature-glass-hollow"></button>
-          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="7" data-hero-target="#itin-title"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Blue Ridge Tunnel" data-hero-slide="3" data-hero-target="#feature-tunnel"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Flying Fox Vineyard" data-hero-slide="4" data-hero-target="#feature-flying-fox"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Glass Hollow Studio" data-hero-slide="5" data-hero-target="#feature-glass-hollow"></button>
+          <button type="button" class="hero__dot" role="tab" aria-selected="false" aria-label="Spy Rock" data-hero-slide="6" data-hero-target="#itinerary"></button>
         </div>
       </div>
     </section>
@@ -6882,7 +6969,7 @@
             Farmhouse at Veritas
           </a>
           <a class="partner-chip" href="#feature-devils-backbone-camp">
-            <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+            <img src="assets/check-into-nelson/cards/devils-backbone-camp-chip-400.webp?v=20260930b" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
             Devils Backbone Campground
           </a>
           <a class="partner-chip" href="#feature-flying-fox">
@@ -6890,8 +6977,16 @@
             Flying Fox Vineyard
           </a>
           <a class="partner-chip" href="#feature-glass-hollow">
-            <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
+            <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp?v=20260930b" alt="" width="80" height="80" loading="lazy" />
             Glass Hollow Studio
+          </a>
+          <a class="partner-chip" href="#feature-wintergreen">
+            <img src="assets/check-into-nelson/cards/wintergreen-sq-400.webp?v=20260930h" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+            Wintergreen Resort
+          </a>
+          <a class="partner-chip" href="#feature-nelson-29">
+            <img src="assets/check-into-nelson/cards/nelson-29-sq-400.webp?v=20260930h" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
+            Nelson 29 Trail
           </a>
           <a class="partner-chip" href="#feature-rides">
             <img src="assets/check-into-nelson/cards/reliable-rides-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
@@ -6931,7 +7026,7 @@
       <div class="do-rail__viewport" id="doRailViewport">
         <div class="do-rail__track" id="doRailTrack">
           <a class="do-card" data-cat="taste" href="#feature-flying-fox">
-            <img class="do-card__img" data-src="assets/check-into-nelson/cards/flying-fox-480.webp" data-srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="717" height="896" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/flying-fox-480.webp?v=20260930c" data-srcset="assets/check-into-nelson/cards/flying-fox-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/flying-fox-717.webp?v=20260930c 717w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="717" height="896" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Sip</span>
@@ -6940,7 +7035,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="culture" href="#feature-glass-hollow">
-            <img class="do-card__img" data-src="assets/check-into-nelson/cards/glass-hollow-480.webp" data-srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/glass-hollow-do-480.webp?v=20260930f" data-srcset="assets/check-into-nelson/cards/glass-hollow-do-480.webp?v=20260930f 480w, assets/check-into-nelson/cards/glass-hollow-do-800.webp?v=20260930f 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Create</span>
@@ -6949,7 +7044,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="#feature-tunnel">
-            <img class="do-card__img" data-src="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp" data-srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp?v=20260930c" data-srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp?v=20260930c 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
@@ -6967,12 +7062,30 @@
             </span>
           </a>
           <a class="do-card" data-cat="experience" href="#feature-devils-backbone">
-            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-480.webp" data-srcset="assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-480.webp?v=20260930c" data-srcset="assets/check-into-nelson/cards/devils-backbone-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/devils-backbone-800.webp?v=20260930c 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Experience</span>
               <span class="do-card__title">Devils Backbone</span>
               <span class="do-card__copy">Mountain basecamp brewery pouring award-winning lagers, cocktails, and distillery releases with expansive meadows.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="outdoor" href="#feature-wintergreen">
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/wintergreen-480.webp?v=20260930h" data-srcset="assets/check-into-nelson/cards/wintergreen-480.webp?v=20260930h 480w, assets/check-into-nelson/cards/wintergreen-800.webp?v=20260930h 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Explore</span>
+              <span class="do-card__title">Wintergreen Resort</span>
+              <span class="do-card__copy">Four-season mountain resort for skiing, hiking, golf, and long Blue Ridge views from one Nelson County basecamp.</span>
+            </span>
+          </a>
+          <a class="do-card" data-cat="taste" href="#feature-nelson-29">
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/nelson-29-480.webp?v=20260930h" data-srcset="assets/check-into-nelson/cards/nelson-29-480.webp?v=20260930h 480w, assets/check-into-nelson/cards/nelson-29-800.webp?v=20260930h 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <span class="do-card__fade" aria-hidden="true"></span>
+            <span class="do-card__body">
+              <span class="cat-pill">Sip</span>
+              <span class="do-card__title">Nelson 29 Trail</span>
+              <span class="do-card__copy">A scenic Route 29 stretch of breweries, wineries, and distilleries through the heart of Nelson County.</span>
             </span>
           </a>
           <a class="do-card" data-cat="outdoor" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer" data-track="do_card_outbound" data-partner="spy-rock">
@@ -7012,7 +7125,7 @@
             </span>
           </a>
           <a class="do-card" data-cat="stay" href="#feature-devils-backbone-camp">
-            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp" data-srcset="assets/check-into-nelson/cards/devils-backbone-camp-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-camp-800.webp 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
+            <img class="do-card__img" data-src="assets/check-into-nelson/cards/devils-backbone-camp-480.webp?v=20260930b" data-srcset="assets/check-into-nelson/cards/devils-backbone-camp-480.webp?v=20260930b 480w, assets/check-into-nelson/cards/devils-backbone-camp-800.webp?v=20260930b 800w" data-sizes="(max-width:859px) 13.75rem, 15.5rem" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" loading="lazy" decoding="async" width="800" height="1000" alt="" />
             <span class="do-card__fade" aria-hidden="true"></span>
             <span class="do-card__body">
               <span class="cat-pill">Stay</span>
@@ -7084,18 +7197,16 @@
           <article class="stay-card" id="feature-devils-backbone-camp">
             <div class="stay-card__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="961" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="611" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone Campground" width="1600" height="1069" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone Campground photos">
-              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
             </div>
             <span class="stay-card__badge">15% off</span>
           </div>
@@ -7170,20 +7281,16 @@
         <article class="partner-feature" id="feature-flying-fox" data-cat="taste">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/01-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1200" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/02-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/03-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/04-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/05-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/05-800.webp 800w, assets/check-into-nelson/slides/flying-fox/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/06-800.webp" data-srcset="assets/check-into-nelson/slides/flying-fox/06-800.webp 800w, assets/check-into-nelson/slides/flying-fox/06-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/01-800.webp?v=20260930e" data-srcset="assets/check-into-nelson/slides/flying-fox/01-800.webp?v=20260930e 800w, assets/check-into-nelson/slides/flying-fox/01-1600.webp?v=20260930e 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1065" height="1600" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/02-800.webp?v=20260930e" data-srcset="assets/check-into-nelson/slides/flying-fox/02-800.webp?v=20260930e 800w, assets/check-into-nelson/slides/flying-fox/02-1600.webp?v=20260930e 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1065" height="1600" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/03-800.webp?v=20260930e" data-srcset="assets/check-into-nelson/slides/flying-fox/03-800.webp?v=20260930e 800w, assets/check-into-nelson/slides/flying-fox/03-1600.webp?v=20260930e 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1600" height="2285" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/flying-fox/04-800.webp?v=20260930e" data-srcset="assets/check-into-nelson/slides/flying-fox/04-800.webp?v=20260930e 800w, assets/check-into-nelson/slides/flying-fox/04-1600.webp?v=20260930e 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Flying Fox Vineyard" width="1065" height="1600" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Flying Fox Vineyard photos">
-              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 6" aria-current="true"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 6" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 6" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 6" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 6" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 6 of 6" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
             </div>
             <span class="partner-feature__badge cat-pill">Sip</span>
           </div>
@@ -7203,10 +7310,10 @@
         <article class="partner-feature" id="feature-glass-hollow" data-cat="culture">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/01-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/02-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/03-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/04-800.webp" data-srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/01-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/glass-hollow/01-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/glass-hollow/01-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1065" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/02-800.webp?v=20260930f" data-srcset="assets/check-into-nelson/slides/glass-hollow/02-800.webp?v=20260930f 800w, assets/check-into-nelson/slides/glass-hollow/02-1600.webp?v=20260930f 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1065" height="1600" loading="lazy" decoding="async" style="object-position: center 42%;" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/03-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/glass-hollow/03-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/glass-hollow/03-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/glass-hollow/04-800.webp?v=20260930f" data-srcset="assets/check-into-nelson/slides/glass-hollow/04-800.webp?v=20260930f 800w, assets/check-into-nelson/slides/glass-hollow/04-1600.webp?v=20260930f 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Glass Hollow Studio" width="1600" height="1067" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Glass Hollow Studio photos">
               <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
@@ -7232,12 +7339,14 @@
         <article class="partner-feature" id="feature-tunnel" data-cat="outdoor">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/01-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp?v=20260930c" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/02-800.webp?v=20260930c 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/02-1600.webp?v=20260930c 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="853" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/03-800.webp?v=20260930c" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/03-800.webp?v=20260930c 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/03-1600.webp?v=20260930c 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1024" height="768" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/blue-ridge-tunnel/entrance-800.webp?v=20260930c" data-srcset="assets/check-into-nelson/slides/blue-ridge-tunnel/entrance-800.webp?v=20260930c 800w, assets/check-into-nelson/slides/blue-ridge-tunnel/entrance-1600.webp?v=20260930c 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Blue Ridge Tunnel" width="1600" height="1065" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Blue Ridge Tunnel photos">
-              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 2" aria-current="true"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 2" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 3" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 3" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 3" aria-current="false"></button>
             </div>
             <span class="partner-feature__badge cat-pill">Explore</span>
           </div>
@@ -7254,18 +7363,16 @@
         <article class="partner-feature" id="feature-devils-backbone" data-cat="experience">
           <div class="partner-feature__media media-carousel" data-carousel>
             <div class="media-carousel__track">
-              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/02-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/02-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/02-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="961" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1100" loading="lazy" decoding="async" />
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/01-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/01-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/01-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/03-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/03-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/03-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/04-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/04-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/04-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="611" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/devils-backbone/05-800.webp?v=20260930b" data-srcset="assets/check-into-nelson/slides/devils-backbone/05-800.webp?v=20260930b 800w, assets/check-into-nelson/slides/devils-backbone/05-1600.webp?v=20260930b 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Devils Backbone" width="1600" height="1069" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Devils Backbone photos">
-              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 5" aria-current="true"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 5" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 5 of 5" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
             </div>
             <span class="partner-feature__badge cat-pill">Experience</span>
           </div>
@@ -7275,6 +7382,58 @@
             <p class="partner-feature__copy">Beyond the campground, Devils Backbone offers opportunities to experience Nelson County’s agricultural and craft beverage culture. Explore the property, discover the working greenhouses, and see how locally grown ingredients become part of the experience.</p>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.dbbrewingcompany.com/" data-track="partner_outbound" data-partner="devils-backbone">Explore Devils Backbone</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-wintergreen" data-cat="outdoor">
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/wintergreen/01-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/wintergreen/01-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/wintergreen/01-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Wintergreen Resort" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/wintergreen/02-800.webp?v=20260930j" data-srcset="assets/check-into-nelson/slides/wintergreen/02-800.webp?v=20260930j 800w, assets/check-into-nelson/slides/wintergreen/02-1600.webp?v=20260930j 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Wintergreen Resort" width="1152" height="864" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/wintergreen/03-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/wintergreen/03-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/wintergreen/03-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Wintergreen Resort" width="1600" height="1067" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/wintergreen/04-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/wintergreen/04-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/wintergreen/04-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Wintergreen Resort" width="1398" height="986" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Wintergreen Resort photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+            </div>
+            <span class="partner-feature__badge cat-pill">Explore</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Mountain resort</p>
+            <h3 class="partner-feature__title">Wintergreen Resort</h3>
+            <p class="partner-feature__copy">A four-season Blue Ridge playground. Ski and ride in winter, then hike, golf, and take in long mountain views the rest of the year — all from one Nelson County basecamp.</p>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://www.wintergreenresort.com/" target="_blank" rel="noopener noreferrer" data-track="partner_outbound" data-partner="wintergreen">Explore Wintergreen Resort</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="partner-feature" id="feature-nelson-29" data-cat="taste">
+          <div class="partner-feature__media media-carousel" data-carousel>
+            <div class="media-carousel__track">
+              <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/01-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/01-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/01-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="640" height="800" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/02-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/02-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/02-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="1600" height="900" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/03-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/03-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/03-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="640" height="800" loading="lazy" decoding="async" />
+              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/04-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/04-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/04-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="1000" height="1500" loading="lazy" decoding="async" />
+            </div>
+            <div class="media-carousel__dots" role="tablist" aria-label="Nelson 29 Craft Beverage Trail photos">
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+            </div>
+            <span class="partner-feature__badge cat-pill">Sip</span>
+          </div>
+          <div>
+            <p class="partner-feature__role">Craft beverage trail</p>
+            <h3 class="partner-feature__title">Nelson 29 Craft Beverage Trail</h3>
+            <p class="partner-feature__copy">Follow Route 29 through the heart of Nelson County for a scenic stretch of breweries, wineries, and distilleries — from Blue Mountain Barrel House to Mountain &amp; Vine and stops in between.</p>
+            <div class="partner-feature__actions">
+              <a class="btn btn--dark" href="https://www.nelson29.com/" target="_blank" rel="noopener noreferrer" data-track="partner_outbound" data-partner="nelson-29">Explore Nelson 29</a>
             </div>
           </div>
         </article>
@@ -7501,7 +7660,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp" alt="" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/glass-hollow-sq-400.webp?v=20260930b" alt="" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7522,7 +7681,7 @@
                     </div>
                   </div>
                   <div class="timeline-item__media">
-                    <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp" alt="" width="400" height="400" loading="lazy" />
+                    <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp?v=20260930b" alt="" width="400" height="400" loading="lazy" />
                   </div>
                 </div>
               </article>
@@ -7709,7 +7868,7 @@
         </div>
         <div class="highlights-grid">
           <a class="highlights-grid__item highlights-grid__item--hero" href="https://nelsoncounty.com/explore/blue-ridge-tunnel/" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="blue-ridge-tunnel">
-            <img src="assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp" srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp 800w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp?v=20260930c" srcset="assets/check-into-nelson/cards/blue-ridge-tunnel-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/blue-ridge-tunnel-800.webp?v=20260930c 800w" sizes="(min-width: 720px) 30vw, 92vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Blue Ridge Tunnel</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/spy-rock" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="spy-rock">
@@ -7717,15 +7876,15 @@
             <span class="highlights-grid__name">Spy Rock</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/flying-fox-vineyards" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="flying-fox">
-            <img src="assets/check-into-nelson/cards/flying-fox-717.webp" srcset="assets/check-into-nelson/cards/flying-fox-480.webp 480w, assets/check-into-nelson/cards/flying-fox-717.webp 717w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="717" height="1024" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/flying-fox-717.webp?v=20260930c" srcset="assets/check-into-nelson/cards/flying-fox-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/flying-fox-717.webp?v=20260930c 717w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="717" height="1024" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Flying Fox Vineyard</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/glasshollow" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="glass-hollow">
-            <img src="assets/check-into-nelson/cards/glass-hollow-800.webp" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp 480w, assets/check-into-nelson/cards/glass-hollow-800.webp 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/glass-hollow-800.webp?v=20260930c" srcset="assets/check-into-nelson/cards/glass-hollow-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/glass-hollow-800.webp?v=20260930c 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Glass Hollow Studio</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/devils-backbone-brewing-company" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="devils-backbone">
-            <img src="assets/check-into-nelson/cards/devils-backbone-800.webp" srcset="assets/check-into-nelson/cards/devils-backbone-480.webp 480w, assets/check-into-nelson/cards/devils-backbone-800.webp 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
+            <img src="assets/check-into-nelson/cards/devils-backbone-800.webp?v=20260930c" srcset="assets/check-into-nelson/cards/devils-backbone-480.webp?v=20260930c 480w, assets/check-into-nelson/cards/devils-backbone-800.webp?v=20260930c 800w" sizes="(min-width: 720px) 30vw, 46vw" alt="" width="800" height="1000" loading="lazy" decoding="async" />
             <span class="highlights-grid__name">Devils Backbone</span>
           </a>
           <a class="highlights-grid__item" href="https://nelsoncounty.com/explore/tye-river" target="_blank" rel="noopener noreferrer" data-track="highlight_grid" data-highlight="tye-river">
@@ -8585,10 +8744,10 @@
         wintergreen: {
           id: "wintergreen",
           title: "Wintergreen Resort",
-          image: "assets/check-into-nelson/cards/wintergreen-sq-400.webp",
+          image: "assets/check-into-nelson/cards/wintergreen-sq-400.webp?v=20260930h",
           bookHref: "https://www.wintergreenresort.com/accommodations-home/",
           bookLabel: "Book Wintergreen",
-          aboutHref: "https://nelsoncounty.com/locations/wintergreen-resort",
+          aboutHref: "#feature-wintergreen",
           partner: "wintergreen-resort",
           geoKey: "wintergreen",
           offerHtml: "Mountain lodging with resort amenities across studios, condos, and homes."
@@ -8634,7 +8793,8 @@
         backbone: {
           id: "backbone",
           title: "Devils Backbone",
-          image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp",
+          copy: "Craft pours and the Basecamp scene. No rush back to anywhere.",
+          image: "assets/check-into-nelson/cards/devils-backbone-sq-400.webp?v=20260930b",
           visitHref: "https://www.dbbrewingcompany.com/",
           visitLabel: "Explore Devils Backbone",
           aboutHref: "#feature-devils-backbone",
@@ -8644,11 +8804,12 @@
         nelson29: {
           id: "nelson29",
           title: "Nelson 29 Craft Beverage Trail",
-          image: "assets/check-into-nelson/cards/nelson-29-sq-400.webp",
+          copy: "A scenic Route 29 run of breweries, wineries, and distilleries between Arrington and Faber.",
+          image: "assets/check-into-nelson/cards/nelson-29-sq-400.webp?v=20260930h",
           visitHref: "https://www.nelson29.com/",
           visitLabel: "Explore Nelson 29",
-          aboutHref: "https://nelsoncounty.com/explore/nelson-29",
-          aboutLabel: "About Nelson 29",
+          aboutHref: "#feature-nelson-29",
+          aboutLabel: "About the trail",
           partner: "nelson-29"
         }
       };
@@ -8742,6 +8903,13 @@
         if (about) {
           about.href = option.aboutHref;
           about.textContent = option.aboutLabel;
+          if (/^https?:\/\//i.test(option.aboutHref)) {
+            about.setAttribute("target", "_blank");
+            about.setAttribute("rel", "noopener noreferrer");
+          } else {
+            about.removeAttribute("target");
+            about.removeAttribute("rel");
+          }
         }
 
         document.querySelectorAll("[data-sip-option]").forEach(function (btn) {
@@ -11049,6 +11217,31 @@
             });
           });
 
+          if (dots.length >= 2 && !root.querySelector(".media-carousel__nav")) {
+            var chevronPrev = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14.7 5.3a1 1 0 0 1 0 1.4L9.4 12l5.3 5.3a1 1 0 1 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0z"/></svg>';
+            var chevronNext = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9.3 5.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 1 1-1.4-1.4l5.3-5.3-5.3-5.3a1 1 0 0 1 0-1.4z"/></svg>';
+
+            function makeNav(dir, label, icon) {
+              var btn = document.createElement("button");
+              btn.type = "button";
+              btn.className = "media-carousel__nav media-carousel__nav--" + dir;
+              btn.setAttribute("aria-label", label);
+              btn.innerHTML = icon;
+              btn.addEventListener("click", function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                activate();
+                show(dir === "prev" ? index - 1 : index + 1);
+                lastNudge = performance.now();
+                start();
+              });
+              return btn;
+            }
+
+            root.appendChild(makeNav("prev", "Previous photo", chevronPrev));
+            root.appendChild(makeNav("next", "Next photo", chevronNext));
+          }
+
           root.setAttribute("data-carousel-interactive", "");
 
           function advanceFromUser() {
@@ -11060,7 +11253,7 @@
 
           root.addEventListener("click", function (e) {
             var t = e.target;
-            if (t && t.closest && t.closest(".media-carousel__dot, a, button")) return;
+            if (t && t.closest && t.closest(".media-carousel__dot, .media-carousel__nav, a, button")) return;
             advanceFromUser();
           });
 
