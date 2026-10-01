@@ -175,6 +175,10 @@
       pinTop();
       startBootPin(isCoarse ? 600 : 200);
 
+      // In-page jump helpers call this so the boot pin doesn't yank
+      // smooth scrolls back to 0 while still settling near the top.
+      window.__cinStopBootPin = stopBootPin;
+
       document.addEventListener("DOMContentLoaded", function () {
         startBootPin(isCoarse ? 900 : 400);
       });
@@ -276,7 +280,17 @@
       max-width: 100%;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+      scroll-padding-top: 1.25rem;
       scroll-padding-bottom: calc(var(--sticky-bar-h, 0px) + 0.85rem);
+    }
+    /* While jumping to an in-page target, kill reveal motion so scroll
+       math and the final paint match (no mid-scroll translate overshoot). */
+    html.is-anchor-jumping .reveal,
+    html.is-anchor-jumping .reveal.is-in,
+    html.is-anchor-jumping .reveal *,
+    html.is-anchor-jumping .reveal.is-in * {
+      transition: none !important;
+      animation: none !important;
     }
     body {
       font-family: var(--font);
@@ -1001,6 +1015,7 @@
       font: inherit;
       font-size: 0.95rem;
       font-weight: 500;
+      line-height: 1.2;
       border: none;
       cursor: pointer;
       transition: transform 0.2s var(--ease), background 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
@@ -1029,15 +1044,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      align-self: center;
       margin-left: 0.2rem;
-      padding: 0.4rem 0.75rem;
+      padding: 0.12rem 0.65rem;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.16);
       color: inherit;
-      font-size: 0.84em;
+      font-size: 0.78em;
       font-weight: 700;
       letter-spacing: 0.02em;
-      line-height: 1.1;
+      line-height: 1;
       white-space: nowrap;
     }
     .btn--dark .btn__discount {
@@ -1085,7 +1101,7 @@
     }
     .stay-card__title,
     .partner-feature__title {
-      scroll-margin-top: 1rem;
+      scroll-margin-top: 1.5rem;
     }
     .section-copy {
       font-size: 1.05rem;
@@ -1374,7 +1390,7 @@
       border-radius: var(--radius);
       overflow: hidden;
       background: var(--white);
-      scroll-margin-top: 1.25rem;
+      scroll-margin-top: 1.5rem;
     }
     .stay-card__media {
       position: relative;
@@ -1604,12 +1620,12 @@
       }
       .stay-card__body > .btn .btn__discount {
         margin-left: 0;
-        padding: 0.16rem 0.4rem;
+        padding: 0.1rem 0.4rem;
         border-radius: 5px;
         font-size: 0.7em;
         font-weight: 700;
         letter-spacing: 0.01em;
-        line-height: 1.15;
+        line-height: 1;
       }
       .timeline-item__actions .btn:has(.btn__discount) {
         justify-content: space-between;
@@ -2056,7 +2072,7 @@
       padding: 2.25rem 0;
       border-top: none;
       position: relative;
-      scroll-margin-top: 1.25rem;
+      scroll-margin-top: 1.5rem;
     }
     .partner-feature:first-of-type {
       padding-top: 0;
@@ -5964,7 +5980,7 @@
 
       .stay-card,
       .partner-feature {
-        scroll-margin-top: 1rem;
+        scroll-margin-top: 1.5rem;
       }
       .partner-feature {
         gap: 1rem;
@@ -6870,8 +6886,8 @@
         </div>
         <div class="hero__slide" data-hero-accent="#a8c5c2">
           <img
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-tunnel-1280.webp"
-            data-srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp 3200w"
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/04-tunnel-1280.webp?v=20260930t"
+            data-srcset="assets/check-into-nelson/hero/04-tunnel-1280.webp?v=20260930t 1280w, assets/check-into-nelson/hero/04-tunnel-1920.webp?v=20260930t 1920w, assets/check-into-nelson/hero/04-tunnel-2560.webp?v=20260930t 2560w, assets/check-into-nelson/hero/04-tunnel-3200.webp?v=20260930t 3200w"
             sizes="100vw"
             alt=""
             width="3200"
@@ -7073,7 +7089,7 @@
             <span class="do-card__body">
               <span class="cat-pill">Explore</span>
               <span class="do-card__title">Wintergreen Resort</span>
-              <span class="do-card__copy">Four-season mountain resort for skiing, hiking, golf, and long Blue Ridge views from one Nelson County basecamp.</span>
+              <span class="do-card__copy">Mountain resort for hiking, golf, and long Blue Ridge views — a Nelson County stop for this promo outside winter.</span>
             </span>
           </a>
           <a class="do-card" data-cat="taste" href="#feature-nelson-29">
@@ -7376,7 +7392,7 @@
           <div>
             <p class="partner-feature__role">Mountain resort</p>
             <h3 class="partner-feature__title">Wintergreen Resort</h3>
-            <p class="partner-feature__copy">A four-season Blue Ridge playground. Ski and ride in winter, then hike, golf, and take in long mountain views the rest of the year — all from one Nelson County basecamp.</p>
+            <p class="partner-feature__copy">A Blue Ridge mountain basecamp for hiking, golf, and long views. Check Into Nelson runs here outside winter — plan a spring, summer, or fall visit for this promo.</p>
             <div class="partner-feature__actions">
               <a class="btn btn--dark" href="https://www.wintergreenresort.com/" target="_blank" rel="noopener noreferrer" data-track="partner_outbound" data-partner="wintergreen">Explore Wintergreen Resort</a>
             </div>
@@ -7389,13 +7405,11 @@
               <img class="is-active" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/01-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/01-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/01-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="640" height="800" loading="lazy" decoding="async" />
               <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/02-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/02-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/02-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="1600" height="900" loading="lazy" decoding="async" />
               <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/03-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/03-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/03-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="640" height="800" loading="lazy" decoding="async" />
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/slides/nelson-29/04-800.webp?v=20260930i" data-srcset="assets/check-into-nelson/slides/nelson-29/04-800.webp?v=20260930i 800w, assets/check-into-nelson/slides/nelson-29/04-1600.webp?v=20260930i 1600w" data-sizes="(min-width: 860px) min(48vw, 640px), 92vw" alt="Nelson 29 Craft Beverage Trail" width="1000" height="1500" loading="lazy" decoding="async" />
             </div>
             <div class="media-carousel__dots" role="tablist" aria-label="Nelson 29 Craft Beverage Trail photos">
-              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 4" aria-current="true"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 4" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 4" aria-current="false"></button>
-              <button type="button" class="media-carousel__dot" aria-label="Photo 4 of 4" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot is-active" aria-label="Photo 1 of 3" aria-current="true"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 2 of 3" aria-current="false"></button>
+              <button type="button" class="media-carousel__dot" aria-label="Photo 3 of 3" aria-current="false"></button>
             </div>
             <span class="partner-feature__badge cat-pill">Sip</span>
           </div>
@@ -7874,7 +7888,7 @@
             <p class="timeline-help__hint">Drag to change the order of an itinerary item.</p>
             <div class="timeline-help__actions">
               <button type="button" class="timeline-reset" id="resetTimeline">Reset itinerary</button>
-              <button type="button" class="timeline-share" id="saveItineraryBtn">Save itinerary</button>
+              <button type="button" class="timeline-share" id="saveItineraryBtn">Share itinerary</button>
               <span class="timeline-share-status" id="planShareStatus" aria-live="polite"></span>
             </div>
           </div>
@@ -8072,7 +8086,7 @@
       <div class="sticky-promo__itin" role="group" aria-label="Itinerary actions">
         <a class="sticky-promo__edit" href="#itin-title" id="stickyEditItin" data-track="edit_itinerary_sticky">Edit itinerary</a>
         <button type="button" class="sticky-promo__reset" id="stickyResetItin" data-track="reset_itinerary_sticky" hidden>Reset itinerary</button>
-        <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky" hidden>Save itinerary</button>
+        <button type="button" class="sticky-promo__save" id="stickySaveItin" data-track="save_itinerary_sticky" hidden>Share itinerary</button>
       </div>
     </div>
   </div>
@@ -8144,7 +8158,7 @@
       <div class="itin-share__head">
         <div>
           <p class="itin-share__eyebrow">Your plan</p>
-          <h2 class="itin-share__title" id="itinShareTitle">Save itinerary</h2>
+          <h2 class="itin-share__title" id="itinShareTitle">Share itinerary</h2>
         </div>
         <button type="button" class="itin-share__close" id="itinShareClose" aria-label="Close">&times;</button>
       </div>
@@ -8162,12 +8176,13 @@
       window.LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL || "https://www.loyalbrew.com/";
       var LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL;
 
-      // In-page jumps: land on readable titles, not section padding or card media.
+      // In-page jumps: scroll feature cards into view; focus titles for a11y.
       var SECTION_HASH_ALIASES = {
         stay: "stay-title",
         experience: "experience-title",
         itinerary: "itin-title"
       };
+      var anchorJumpToken = 0;
 
       function resolveNelsonAnchor(hash) {
         if (!hash) return null;
@@ -8177,42 +8192,181 @@
         var hashId = SECTION_HASH_ALIASES[id] || id;
         var el = document.getElementById(hashId) || document.getElementById(id);
         if (!el) return null;
+        var focusEl = el;
+        // Scroll the whole feature/stay card so media + title land together.
+        // Still focus the title for accessibility.
         if (el.classList && (el.classList.contains("stay-card") || el.classList.contains("partner-feature"))) {
           var title = el.querySelector(".stay-card__title, .partner-feature__title");
-          if (title) {
-            return { el: title, hashId: el.id || hashId };
-          }
+          if (title) focusEl = title;
         }
-        return { el: el, hashId: el.id || hashId };
+        return { el: el, focusEl: focusEl, hashId: el.id || hashId };
       }
 
-      window.jumpToNelsonAnchor = function jumpToNelsonAnchor(hash) {
-        var resolved = resolveNelsonAnchor(hash);
-        if (!resolved || !resolved.el) return false;
+      function hydrateImgNode(img) {
+        if (!img || img.dataset.hydrated === "1") return;
+        var src = img.getAttribute("data-src");
+        if (!src && !img.getAttribute("data-srcset")) {
+          img.dataset.hydrated = "1";
+          return;
+        }
+        img.dataset.hydrated = "1";
+        var srcset = img.getAttribute("data-srcset");
+        var sizes = img.getAttribute("data-sizes");
+        if (srcset) img.setAttribute("srcset", srcset);
+        if (sizes) img.setAttribute("sizes", sizes);
+        if (src) img.setAttribute("src", src);
+        img.removeAttribute("data-src");
+        img.removeAttribute("data-srcset");
+        img.removeAttribute("data-sizes");
+      }
+
+      function hydrateImagesThrough(target) {
+        if (!target) return;
+        Array.prototype.forEach.call(document.querySelectorAll("img[data-src]"), function (img) {
+          if (target.contains(img)) {
+            hydrateImgNode(img);
+            return;
+          }
+          var pos = target.compareDocumentPosition(img);
+          if (pos & Node.DOCUMENT_POSITION_PRECEDING) hydrateImgNode(img);
+        });
+      }
+
+      function snapRevealsThrough(target) {
+        if (!target) return;
+        Array.prototype.forEach.call(document.querySelectorAll(".reveal"), function (el) {
+          if (el === target || el.contains(target) || target.contains(el)) {
+            el.classList.add("is-in");
+            return;
+          }
+          var pos = target.compareDocumentPosition(el);
+          if (pos & Node.DOCUMENT_POSITION_PRECEDING) el.classList.add("is-in");
+        });
+      }
+
+      function desiredScrollTop(target, align) {
+        var rect = target.getBoundingClientRect();
+        var y = (window.scrollY || window.pageYOffset || 0) + rect.top;
+        var vh = window.innerHeight || document.documentElement.clientHeight || 700;
+        if (align === "center") {
+          return Math.max(0, Math.round(y - (vh - rect.height) / 2));
+        }
+        return Math.max(0, Math.round(y - 20));
+      }
+
+      window.jumpToNelsonElement = function jumpToNelsonElement(target, opts) {
+        if (!target || !target.getBoundingClientRect) return false;
+        opts = opts || {};
         var isEmbed = document.documentElement.classList.contains("is-embed");
         var reduceMotion = false;
         try {
           reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         } catch (errRm) {}
-        if (isEmbed) {
-          var y = Math.round(resolved.el.getBoundingClientRect().top);
+        var align = opts.align === "center" ? "center" : "start";
+        var hashId = opts.hashId || target.id || "";
+        var focusEl = opts.focusEl || target;
+        var token = ++anchorJumpToken;
+        var html = document.documentElement;
+        var prevBehavior = html.style.scrollBehavior;
+        // Prefer instant for accuracy; optional smooth only when already mid-page
+        // and motion is allowed (smooth-from-top fights boot/layout pin logic).
+        var useSmooth = !opts.instant && !reduceMotion && (window.scrollY || window.pageYOffset || 0) > 40;
+
+        html.classList.add("is-anchor-jumping");
+        html.style.scrollBehavior = "auto";
+        try {
+          if (typeof window.__cinStopBootPin === "function") window.__cinStopBootPin();
+        } catch (errBoot) {}
+        snapRevealsThrough(target);
+        hydrateImagesThrough(target);
+        // Force layout so measurements match the snapped state.
+        void target.offsetTop;
+
+        function scrollPageTo(behavior) {
+          var top = desiredScrollTop(target, align);
+          try {
+            window.scrollTo({ top: top, left: 0, behavior: behavior || "auto" });
+          } catch (errScroll) {
+            window.scrollTo(0, top);
+          }
+        }
+
+        function postEmbedScroll() {
+          var top = desiredScrollTop(target, align);
+          var y = top - (window.scrollY || window.pageYOffset || 0);
           try {
             window.parent.postMessage({
               type: "checkIntoNelsonScrollTo",
-              y: y,
-              id: resolved.hashId
+              y: Math.round(y),
+              id: hashId
             }, "*");
           } catch (err) {}
-        } else {
-          resolved.el.scrollIntoView({
-            behavior: reduceMotion ? "auto" : "smooth",
-            block: "start"
-          });
         }
-        try {
-          history.replaceState(null, "", "#" + resolved.hashId);
-        } catch (err2) {}
+
+        function finishJumpChrome() {
+          if (token !== anchorJumpToken) return;
+          html.classList.remove("is-anchor-jumping");
+          html.style.scrollBehavior = prevBehavior;
+        }
+
+        function runScroll(behavior) {
+          if (isEmbed) postEmbedScroll();
+          else scrollPageTo(behavior);
+        }
+
+        // Scroll now (not after rAF) so nothing else can steal the jump.
+        runScroll(useSmooth ? "smooth" : "auto");
+
+        var tries = 0;
+        function correct() {
+          if (token !== anchorJumpToken || !target.isConnected) {
+            finishJumpChrome();
+            return;
+          }
+          tries += 1;
+          snapRevealsThrough(target);
+          if (isEmbed) {
+            postEmbedScroll();
+          } else {
+            var desired = desiredScrollTop(target, align);
+            var current = window.scrollY || window.pageYOffset || 0;
+            if (Math.abs(desired - current) > 12) scrollPageTo("auto");
+          }
+          if (tries < 10) {
+            window.setTimeout(correct, tries < 3 ? 80 : 160);
+          } else {
+            finishJumpChrome();
+          }
+        }
+        window.setTimeout(correct, useSmooth ? 320 : 48);
+
+        if (focusEl && focusEl !== document.activeElement) {
+          try {
+            if (!focusEl.hasAttribute("tabindex")) focusEl.setAttribute("tabindex", "-1");
+            focusEl.focus({ preventScroll: true });
+          } catch (errFocus) {}
+        }
+
+        if (hashId) {
+          try {
+            history.replaceState(null, "", "#" + hashId);
+          } catch (err2) {}
+        }
         return true;
+      };
+
+      window.jumpToNelsonAnchor = function jumpToNelsonAnchor(hash) {
+        var resolved = resolveNelsonAnchor(hash);
+        if (!resolved || !resolved.el) return false;
+        var align = "start";
+        if (resolved.el.classList && resolved.el.classList.contains("timeline-item")) {
+          align = "center";
+        }
+        return window.jumpToNelsonElement(resolved.el, {
+          focusEl: resolved.focusEl,
+          hashId: resolved.hashId,
+          align: align
+        });
       };
 
       document.addEventListener("click", function (e) {
@@ -9853,7 +10007,13 @@
             el.classList.remove("is-map-focus");
           });
           item.classList.add("is-map-focus");
-          item.scrollIntoView({ behavior: "smooth", block: "center" });
+          if (typeof window.jumpToNelsonAnchor === "function") {
+            window.jumpToNelsonAnchor("#stop-" + stop.id);
+          } else {
+            try {
+              item.scrollIntoView({ behavior: "smooth", block: "center" });
+            } catch (errPin) {}
+          }
         }
       }
 
@@ -10625,9 +10785,13 @@
         refreshTimelineMeta();
         refreshItineraryMap();
         persistPlan();
-        try {
-          item.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } catch (err) {}
+        if (typeof window.jumpToNelsonElement === "function") {
+          window.jumpToNelsonElement(item, { align: "center", hashId: item.id || "", instant: false });
+        } else {
+          try {
+            item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          } catch (err) {}
+        }
       }
 
       function initMoveControls() {
@@ -10754,7 +10918,13 @@
         applyDateRange(date, addDays(startOfDay(date), tripNights), { skipPersist: false });
         if (scrollPlan) {
           var timeline = document.getElementById("timeline");
-          if (timeline) timeline.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          if (timeline) {
+            if (typeof window.jumpToNelsonElement === "function") {
+              window.jumpToNelsonElement(timeline, { align: "start", hashId: "itin-title" });
+            } else {
+              timeline.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          }
         }
       }
 
@@ -10915,9 +11085,13 @@
         refreshTimelineMeta();
         refreshItineraryMap();
         persistPlan();
-        try {
-          item.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        } catch (err) {}
+        if (typeof window.jumpToNelsonElement === "function") {
+          window.jumpToNelsonElement(item, { align: "center", hashId: item.id || "" });
+        } else {
+          try {
+            item.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          } catch (err) {}
+        }
       }
 
       function stopTrayTitle(item) {
