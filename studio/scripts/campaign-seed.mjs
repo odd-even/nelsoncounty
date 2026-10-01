@@ -4,7 +4,7 @@ export const campaignSeed = {
   seoTitle: 'Check Into Nelson — Visit Nelson County',
   seoDescription:
     'Check Into Nelson — Stay Longer. Experience More. Use promo code CHECKINTONELSON for 15% off participating lodging and offers across Nelson County.',
-  canonicalUrl: 'https://checkin.nelsoncounty.com/',
+  canonicalUrl: 'https://visit.nelsoncounty.com/',
   heroPhrase1Line1: 'Check Into',
   heroPhrase1Line2: 'Nelson.',
   heroPhrase2Line1: 'Stay Longer.',

@@ -7,4 +7,7 @@ export default defineCliConfig({
     dataset,
   },
   studioHost: 'check-into-nelson',
+  deployment: {
+    appId: 'hbjlgqzncnuag1rb7cv3oekx',
+  },
 })
