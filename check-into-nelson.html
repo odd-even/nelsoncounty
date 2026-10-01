@@ -337,7 +337,7 @@
       padding: 0.5rem 1rem;
     }
 
-    /* —— Site nav (Visit Nelson County) —— */
+    /* —— Site nav (this page + Visit Nelson County) —— */
     .site-nav {
       position: absolute;
       top: 0;
@@ -347,12 +347,19 @@
       padding: 0.85rem 1.15rem;
     }
     .site-nav.is-open {
-      background: rgba(12, 12, 12, 0.72);
-      box-shadow: none;
-      backdrop-filter: blur(18px) saturate(1.2);
-      -webkit-backdrop-filter: blur(18px) saturate(1.2);
+      z-index: 90;
+    }
+    .site-nav.is-open::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 12, 12, 0.34);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
     }
     .site-nav__bar {
+      position: relative;
+      z-index: 2;
       width: min(100%, var(--max));
       margin: 0 auto;
       display: flex;
@@ -370,11 +377,10 @@
       text-transform: uppercase;
       color: var(--white);
       flex: 0 0 auto;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
     }
     .site-nav__logo b { font-weight: inherit; }
     .site-nav__visit { color: rgba(255, 255, 255, 0.4); }
-    .site-nav.is-open .site-nav__logo { color: var(--white); }
-    .site-nav.is-open .site-nav__visit { color: rgba(255, 255, 255, 0.4); }
     .site-nav__links {
       display: none;
       align-items: center;
@@ -386,8 +392,38 @@
       font-size: 0.98rem;
       font-weight: 500;
       padding: 0.45rem 0.65rem;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
     }
-    .site-nav.is-open .site-nav__links a { color: var(--ink); }
+    .site-nav__links a:hover {
+      color: var(--white);
+    }
+    .site-nav__cta {
+      display: none;
+      align-items: center;
+      gap: 0.4rem;
+      flex: 0 0 auto;
+      margin-left: 0.35rem;
+      padding: 0.52rem 0.9rem;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      transition: background 0.2s var(--ease), border-color 0.2s var(--ease);
+    }
+    .site-nav__cta:hover {
+      background: rgba(255, 255, 255, 0.22);
+      border-color: rgba(255, 255, 255, 0.45);
+      color: var(--white);
+    }
+    .site-nav__cta svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      flex: 0 0 auto;
+    }
     .site-nav__toggle {
       appearance: none;
       display: inline-flex;
@@ -401,9 +437,10 @@
       background: transparent;
       color: var(--white);
       cursor: pointer;
+      transition: background 0.2s var(--ease);
     }
     .site-nav.is-open .site-nav__toggle {
-      color: var(--white);
+      background: rgba(255, 255, 255, 0.16);
     }
     .site-nav__toggle svg {
       width: 1.2rem;
@@ -411,34 +448,91 @@
     }
     .site-nav__mobile {
       display: none;
-      width: min(100%, var(--max));
-      margin: 0.55rem auto 0;
-      padding: 0.25rem 0 0.55rem;
-      background: transparent;
-      border-radius: 0;
-      box-shadow: none;
+      position: absolute;
+      z-index: 2;
+      top: calc(100% + 0.55rem);
+      right: max(0.85rem, env(safe-area-inset-right, 0px));
+      left: auto;
+      width: min(22.5rem, calc(100vw - 1.7rem));
+      margin: 0;
+      padding: 1.55rem 1.35rem 1.45rem;
+      border-radius: 1.45rem;
+      background: rgba(255, 255, 255, 0.96);
+      color: var(--ink);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.28),
+        0 2px 10px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(18px) saturate(1.2);
+      -webkit-backdrop-filter: blur(18px) saturate(1.2);
     }
     .site-nav.is-open .site-nav__mobile {
-      display: grid;
-      gap: 0.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      animation: siteNavDrop 0.32s var(--ease) both;
     }
-    .site-nav__mobile a {
-      color: rgba(255, 255, 255, 0.92);
-      padding: 0.7rem 0.15rem;
-      border-radius: 0;
-      font-weight: 500;
+    @keyframes siteNavDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
     }
-    .site-nav__mobile a:hover {
-      background: transparent;
+    .site-nav__mobile a:not(.site-nav__cta) {
+      color: var(--ink);
+      padding: 0.95rem 0.85rem;
+      border-radius: 14px;
+      font-size: clamp(1.45rem, 5.8vw, 1.75rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      transition: background 0.2s var(--ease);
+    }
+    .site-nav__mobile a:not(.site-nav__cta):hover,
+    .site-nav__mobile a:not(.site-nav__cta):focus-visible {
+      background: rgba(0, 0, 0, 0.045);
+      color: var(--ink);
+    }
+    .site-nav__mobile .site-nav__cta {
+      display: inline-flex;
+      justify-content: center;
+      align-self: stretch;
+      width: 100%;
+      margin: 1rem 0 0;
+      padding: 1.05rem 1.15rem;
+      font-size: 1.02rem;
+      border-radius: 14px;
+      background: var(--ink);
+      border-color: var(--ink);
       color: var(--white);
+    }
+    .site-nav__mobile .site-nav__cta:hover {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .site-nav.is-open .site-nav__mobile {
+        animation: none;
+      }
     }
     @media (min-width: 900px) {
       .site-nav__links { display: flex; }
+      .site-nav__cta { display: inline-flex; }
       .site-nav__toggle,
       .site-nav__mobile,
       .site-nav.is-open .site-nav__mobile { display: none; }
+      .site-nav.is-open::before { display: none; }
     }
     html.is-embed .site-nav { display: none; }
+    body.is-nav-open {
+      overflow: hidden;
+      touch-action: none;
+    }
 
     /* —— Hero —— */
     @property --hero-accent {
@@ -730,15 +824,21 @@
       color: var(--hero-accent, #f0a8c0);
     }
     .hero__promo .promo-code--sm {
+      display: flex;
       margin-bottom: 0;
       width: 100%;
+      max-width: 100%;
       border-radius: 999px;
       border-color: rgba(255, 255, 255, 0.22);
       background: rgba(255, 255, 255, 0.08);
       box-shadow: none;
       overflow: visible;
-      align-items: center;
-      padding: 0.35rem;
+      align-items: stretch;
+      justify-content: space-between;
+      --promo-copy-inset: 0.35rem;
+      padding-top: var(--promo-copy-inset);
+      padding-right: var(--promo-copy-inset);
+      padding-bottom: var(--promo-copy-inset);
       padding-left: 0.95rem;
       gap: 0.55rem;
       box-sizing: border-box;
@@ -747,12 +847,17 @@
       flex: 1;
       padding: 0;
     }
+    .hero__promo .promo-code--sm .promo-code__copy,
     .hero__promo .promo-code__copy {
       flex: 0 0 auto;
-      align-self: center;
+      align-self: stretch;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       height: auto;
       min-height: 0;
-      padding: 0.55rem 1.05rem;
+      margin: 0;
+      padding: 0 1.05rem;
       border: 0;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.95);
@@ -953,13 +1058,16 @@
       }
       .hero__promo .promo-code--sm {
         display: flex;
-        align-items: center;
+        align-items: stretch;
         justify-content: space-between;
         gap: 0.55rem;
         width: 100%;
-        max-width: none;
+        max-width: 100%;
         margin: 0;
-        padding: 0.35rem;
+        --promo-copy-inset: 0.35rem;
+        padding-top: var(--promo-copy-inset);
+        padding-right: var(--promo-copy-inset);
+        padding-bottom: var(--promo-copy-inset);
         padding-left: 0.9rem;
         border: 1px solid rgba(255, 255, 255, 0.22);
         border-radius: 999px;
@@ -997,18 +1105,23 @@
         text-overflow: ellipsis;
         line-height: 1.15;
       }
+      .hero__promo .promo-code--sm .promo-code__copy,
       .hero__promo .promo-code__copy {
         flex: 0 0 auto;
+        align-self: stretch;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         width: auto;
         min-width: 4.75rem;
         height: auto;
         min-height: 0;
-        padding: 0.6rem 1.05rem;
+        margin: 0;
+        padding: 0 1.05rem;
         border: 0;
         border-radius: var(--pill);
         font-size: 0.8rem;
         text-align: center;
-        align-self: center;
       }
       .hero__promo-note {
         display: none;
@@ -4596,7 +4709,7 @@
     }
     .sticky-promo__bar {
       display: flex;
-      align-items: center;
+      align-items: stretch;
       justify-content: space-between;
       gap: 0.4rem;
       flex: 1 1 auto;
@@ -4609,7 +4722,9 @@
       border-radius: 18px;
       border: 1.5px solid #d8d8d8;
       background: var(--white);
-      padding: 0.32rem 0.32rem 0.32rem 0.65rem;
+      --promo-copy-inset: 0.32rem;
+      padding: var(--promo-copy-inset);
+      padding-left: 0.65rem;
     }
     .sticky-promo__text {
       display: flex;
@@ -4913,7 +5028,9 @@
         max-width: none;
         height: var(--sticky-ctrl-h);
         min-height: var(--sticky-ctrl-h);
-        padding: 0.3rem 0.3rem 0.3rem 0.85rem;
+        --promo-copy-inset: 0.3rem;
+        padding: var(--promo-copy-inset);
+        padding-left: 0.85rem;
         border-radius: 18px;
         gap: 0.5rem;
       }
@@ -5816,15 +5933,28 @@
       .site-nav {
         padding: calc(0.65rem + var(--safe-top)) max(0.85rem, env(safe-area-inset-right, 0px)) 0.65rem max(0.85rem, env(safe-area-inset-left, 0px));
       }
+      .site-nav__mobile {
+        top: calc(100% + 0.45rem);
+        right: max(0.85rem, env(safe-area-inset-right, 0px));
+        width: min(23.5rem, calc(100vw - 1.5rem));
+        padding: 1.75rem 1.45rem 1.6rem;
+        border-radius: 1.55rem;
+      }
       .site-nav__toggle {
         width: 2.75rem;
         height: 2.75rem;
       }
-      .site-nav__mobile a {
-        min-height: 2.75rem;
+      .site-nav__mobile a:not(.site-nav__cta) {
+        min-height: 3.35rem;
         display: flex;
         align-items: center;
-        font-size: 1.02rem;
+        font-size: clamp(1.55rem, 6.8vw, 1.9rem);
+        padding: 1rem 0.95rem;
+      }
+      .site-nav__mobile .site-nav__cta {
+        min-height: 3.15rem;
+        margin-top: 1.15rem;
+        font-size: 1.05rem;
       }
 
       .wrap {
@@ -6941,17 +7071,29 @@
 
   <header class="site-nav" id="siteNav">
     <div class="site-nav__bar">
-      <a class="site-nav__logo" href="https://nelsoncounty.com/" aria-label="Visit Nelson County">
+      <a class="site-nav__logo" href="#main" aria-label="Check Into Nelson">
         <span><span class="site-nav__visit">Visit</span> Nelson</span>
         <b>County</b>
       </a>
-      <nav class="site-nav__links" aria-label="Primary">
-        <a href="https://nelsoncounty.com/find-your-adventure">Destinations</a>
-        <a href="https://nelsoncounty.com/calendar-of-events">Events</a>
-        <a href="https://nelsoncounty.com/blog">Blog</a>
-        <a href="https://nelsoncounty.com/about">About</a>
-        <a href="https://nelsoncounty.com/contact">Contact</a>
+      <nav class="site-nav__links" aria-label="On this page">
+        <a href="#stay">Stay</a>
+        <a href="#experience">Experience</a>
+        <a href="#itinerary">Itinerary</a>
       </nav>
+      <a
+        class="site-nav__cta"
+        href="https://nelsoncounty.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="nav_external_nelson"
+        aria-label="Visit Nelson County (opens in a new tab)"
+      >
+        Visit Nelson County
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17L17 7"></path>
+          <path d="M9 7h8v8"></path>
+        </svg>
+      </a>
       <button class="site-nav__toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
           <path d="M4 7h16M4 12h16M4 17h16"></path>
@@ -6959,11 +7101,23 @@
       </button>
     </div>
     <nav class="site-nav__mobile" id="mobileNav" aria-label="Mobile">
-      <a href="https://nelsoncounty.com/find-your-adventure">Destinations</a>
-      <a href="https://nelsoncounty.com/calendar-of-events">Events</a>
-      <a href="https://nelsoncounty.com/blog">Blog</a>
-      <a href="https://nelsoncounty.com/about">About</a>
-      <a href="https://nelsoncounty.com/contact">Contact</a>
+      <a href="#stay">Stay</a>
+      <a href="#experience">Experience</a>
+      <a href="#itinerary">Itinerary</a>
+      <a
+        class="site-nav__cta"
+        href="https://nelsoncounty.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track="nav_external_nelson"
+        aria-label="Visit Nelson County (opens in a new tab)"
+      >
+        Visit Nelson County
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 17L17 7"></path>
+          <path d="M9 7h8v8"></path>
+        </svg>
+      </a>
     </nav>
   </header>
 
@@ -8384,9 +8538,8 @@
         var token = ++anchorJumpToken;
         var html = document.documentElement;
         var prevBehavior = html.style.scrollBehavior;
-        // Prefer instant for accuracy; optional smooth only when already mid-page
-        // and motion is allowed (smooth-from-top fights boot/layout pin logic).
-        var useSmooth = !opts.instant && !reduceMotion && (window.scrollY || window.pageYOffset || 0) > 40;
+        // Fluid in-page jumps by default; callers can force instant.
+        var useSmooth = !opts.instant && !reduceMotion && opts.smooth !== false;
 
         html.classList.add("is-anchor-jumping");
         html.style.scrollBehavior = "auto";
@@ -8400,6 +8553,25 @@
 
         function scrollPageTo(behavior) {
           var top = desiredScrollTop(target, align);
+          if (behavior === "smooth") {
+            var start = window.scrollY || window.pageYOffset || 0;
+            var dist = top - start;
+            if (Math.abs(dist) < 2) return;
+            var duration = Math.min(980, Math.max(480, Math.abs(dist) * 0.42));
+            var t0 = performance.now();
+            function frame(now) {
+              if (token !== anchorJumpToken) return;
+              var t = Math.min(1, (now - t0) / duration);
+              // easeInOutCubic
+              var eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+              window.scrollTo(0, Math.round(start + dist * eased));
+              if (t < 1) {
+                window.requestAnimationFrame(frame);
+              }
+            }
+            window.requestAnimationFrame(frame);
+            return;
+          }
           try {
             window.scrollTo({ top: top, left: 0, behavior: behavior || "auto" });
           } catch (errScroll) {
@@ -8431,30 +8603,51 @@
         }
 
         // Scroll now (not after rAF) so nothing else can steal the jump.
+        var smoothStartY = window.scrollY || window.pageYOffset || 0;
+        var smoothEndY = desiredScrollTop(target, align);
+        var smoothDuration = Math.min(980, Math.max(480, Math.abs(smoothEndY - smoothStartY) * 0.42));
         runScroll(useSmooth ? "smooth" : "auto");
 
-        var tries = 0;
-        function correct() {
-          if (token !== anchorJumpToken || !target.isConnected) {
-            finishJumpChrome();
-            return;
+        if (useSmooth) {
+          window.setTimeout(function () {
+            if (token !== anchorJumpToken || !target.isConnected) {
+              finishJumpChrome();
+              return;
+            }
+            snapRevealsThrough(target);
+            if (isEmbed) {
+              postEmbedScroll();
+            } else {
+              var desired = desiredScrollTop(target, align);
+              var current = window.scrollY || window.pageYOffset || 0;
+              if (Math.abs(desired - current) > 28) scrollPageTo("smooth");
+            }
+            window.setTimeout(finishJumpChrome, 420);
+          }, smoothDuration + 80);
+        } else {
+          var tries = 0;
+          function correct() {
+            if (token !== anchorJumpToken || !target.isConnected) {
+              finishJumpChrome();
+              return;
+            }
+            tries += 1;
+            snapRevealsThrough(target);
+            if (isEmbed) {
+              postEmbedScroll();
+            } else {
+              var desired = desiredScrollTop(target, align);
+              var current = window.scrollY || window.pageYOffset || 0;
+              if (Math.abs(desired - current) > 12) scrollPageTo("auto");
+            }
+            if (tries < 10) {
+              window.setTimeout(correct, tries < 3 ? 80 : 160);
+            } else {
+              finishJumpChrome();
+            }
           }
-          tries += 1;
-          snapRevealsThrough(target);
-          if (isEmbed) {
-            postEmbedScroll();
-          } else {
-            var desired = desiredScrollTop(target, align);
-            var current = window.scrollY || window.pageYOffset || 0;
-            if (Math.abs(desired - current) > 12) scrollPageTo("auto");
-          }
-          if (tries < 10) {
-            window.setTimeout(correct, tries < 3 ? 80 : 160);
-          } else {
-            finishJumpChrome();
-          }
+          window.setTimeout(correct, 48);
         }
-        window.setTimeout(correct, useSmooth ? 320 : 48);
 
         if (focusEl && focusEl !== document.activeElement) {
           try {
@@ -8506,6 +8699,7 @@
 
         function setOpen(open) {
           nav.classList.toggle("is-open", open);
+          document.body.classList.toggle("is-nav-open", open);
           toggle.setAttribute("aria-expanded", open ? "true" : "false");
           toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
         }
@@ -8515,6 +8709,10 @@
           setOpen(!nav.classList.contains("is-open"));
         });
         nav.addEventListener("click", function (e) {
+          if (e.target === nav) {
+            setOpen(false);
+            return;
+          }
           if (e.target.closest("a")) setOpen(false);
         });
         document.addEventListener("click", function (e) {
