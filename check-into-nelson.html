@@ -28,16 +28,22 @@
     })();
   </script>
   <script>
-    // Reload / shared itinerary links: keep #hash in the URL, but always open at the top
-    // (desktop + mobile). Suppress browser scroll restoration and late hash jumps.
-    // iOS pull-to-refresh can leave a visual offset + fire touchmove; keep pinning
-    // while still near the top so the page springs back instead of sticking mid-bounce.
+    // Fresh loads / shared links: open at the top and avoid late hash jumps.
+    // Do not yank scroll when the visitor returns via back/forward (or bfcache).
     (function () {
+      var isBackForward = false;
       try {
-        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        var navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+        isBackForward = !!(navEntry && navEntry.type === "back_forward");
+      } catch (errNav) {}
+
+      try {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = isBackForward ? "auto" : "manual";
+        }
       } catch (err) {}
 
-      var pendingHash = window.location.hash || "";
+      var pendingHash = isBackForward ? "" : (window.location.hash || "");
       var bootPinUntil = 0;
       var bootPinTimer = 0;
       var bootPinActive = false;
@@ -46,14 +52,33 @@
         isCoarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
       } catch (err0) {}
 
+      function scrollYNow() {
+        return window.scrollY || window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop) || 0;
+      }
+
+      function stopBootPin() {
+        bootPinUntil = 0;
+        bootPinActive = false;
+        if (bootPinTimer) {
+          window.clearInterval(bootPinTimer);
+          bootPinTimer = 0;
+        }
+      }
+
+      window.__cinStopBootPin = stopBootPin;
+
+      // Returning from another page: keep whatever scroll position the browser has.
+      if (isBackForward) {
+        window.addEventListener("pageshow", function () {
+          stopBootPin();
+        });
+        return;
+      }
+
       if (pendingHash) {
         try {
           history.replaceState(null, "", window.location.pathname + window.location.search);
         } catch (err2) {}
-      }
-
-      function scrollYNow() {
-        return window.scrollY || window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop) || 0;
       }
 
       function pinTop() {
@@ -74,7 +99,6 @@
         if (html) html.scrollTop = 0;
         if (body) body.scrollTop = 0;
 
-        // visualViewport can stay offset after pull-to-refresh even when scrollY is 0
         try {
           var vv = window.visualViewport;
           if (vv && typeof vv.offsetTop === "number" && vv.offsetTop > 0) {
@@ -106,15 +130,6 @@
         pendingHash = "";
       }
 
-      function stopBootPin() {
-        bootPinUntil = 0;
-        bootPinActive = false;
-        if (bootPinTimer) {
-          window.clearInterval(bootPinTimer);
-          bootPinTimer = 0;
-        }
-      }
-
       function startBootPin(ms) {
         bootPinActive = true;
         bootPinUntil = Math.max(bootPinUntil, Date.now() + (ms || 400));
@@ -130,8 +145,13 @@
         }, 50);
       }
 
-      // Only release the pin once the user has clearly scrolled away from the top.
-      // Near-top touchmove is often iOS rubber-band / PTR settling — keep correcting.
+      function releaseBootPinForBrowsing() {
+        stopBootPin();
+        try {
+          if ("scrollRestoration" in history) history.scrollRestoration = "auto";
+        } catch (errRel) {}
+      }
+
       function onUserScrollAway() {
         if (!bootPinActive) return;
         if (scrollYNow() < 24) {
@@ -175,10 +195,6 @@
       pinTop();
       startBootPin(isCoarse ? 600 : 200);
 
-      // In-page jump helpers call this so the boot pin doesn't yank
-      // smooth scrolls back to 0 while still settling near the top.
-      window.__cinStopBootPin = stopBootPin;
-
       document.addEventListener("DOMContentLoaded", function () {
         startBootPin(isCoarse ? 900 : 400);
       });
@@ -194,17 +210,20 @@
             if (bootPinActive) pinTop();
           });
         });
-        // Late iOS chrome / PTR settle
         if (isCoarse) {
           window.setTimeout(function () { if (bootPinActive || scrollYNow() < 24) pinTopHard(); }, 300);
           window.setTimeout(function () { if (bootPinActive || scrollYNow() < 24) pinTop(); }, 700);
           window.setTimeout(function () { if (scrollYNow() < 24) pinTop(); }, 1200);
         }
+        window.setTimeout(releaseBootPinForBrowsing, isCoarse ? 1600 : 700);
       });
 
+      // bfcache / return visit: never force the top.
       window.addEventListener("pageshow", function (e) {
-        startBootPin(isCoarse ? (e.persisted ? 1200 : 1400) : 400);
-        pinTopHard();
+        if (e.persisted) {
+          releaseBootPinForBrowsing();
+          return;
+        }
       });
 
       window.addEventListener("hashchange", function () {
@@ -1010,6 +1029,8 @@
       align-items: center;
       justify-content: center;
       gap: 0.45rem;
+      box-sizing: border-box;
+      min-height: 2.85rem;
       padding: 0.85rem 1.35rem;
       border-radius: var(--pill);
       font: inherit;
@@ -1045,8 +1066,9 @@
       align-items: center;
       justify-content: center;
       align-self: center;
+      flex-shrink: 0;
       margin-left: 0.2rem;
-      padding: 0.12rem 0.65rem;
+      padding: 0.3rem 0.7rem;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.16);
       color: inherit;
@@ -1620,9 +1642,9 @@
       }
       .stay-card__body > .btn .btn__discount {
         margin-left: 0;
-        padding: 0.1rem 0.4rem;
-        border-radius: 5px;
-        font-size: 0.7em;
+        padding: 0.32rem 0.58rem;
+        border-radius: 999px;
+        font-size: 0.76em;
         font-weight: 700;
         letter-spacing: 0.01em;
         line-height: 1;
@@ -1965,32 +1987,48 @@
       display: none;
       align-items: center;
       justify-content: center;
-      width: 2.4rem;
-      height: 2.4rem;
+      width: 2.55rem;
+      height: 2.55rem;
       margin: 0;
       padding: 0;
       border: 0;
       border-radius: 999px;
       color: #fff;
-      background: rgba(17, 17, 17, 0.55);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transform: translateY(-60%);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06)), rgba(18, 18, 18, 0.42);
+      box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.22),
+        0 1px 0 rgba(255, 255, 255, 0.28) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.18) inset;
+      backdrop-filter: blur(12px) saturate(1.25);
+      -webkit-backdrop-filter: blur(12px) saturate(1.25);
+      transform: translateY(-50%);
       cursor: pointer;
+      transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .partner-strip__nav svg {
-      width: 1rem;
-      height: 1rem;
+      width: 1.05rem;
+      height: 1.05rem;
       display: block;
+      filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
     }
     .partner-strip__nav--prev { left: 0.55rem; }
     .partner-strip__nav--next { right: 0.55rem; }
     .partner-strip__nav:hover {
-      background: rgba(17, 17, 17, 0.72);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1)), rgba(18, 18, 18, 0.58);
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.28),
+        0 1px 0 rgba(255, 255, 255, 0.35) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.2) inset;
+      transform: translateY(-50%) scale(1.06);
+    }
+    .partner-strip__nav:active {
+      transform: translateY(-50%) scale(0.97);
     }
     .partner-strip__nav:focus-visible {
-      outline: 2px solid var(--nelson-green);
+      outline: 2px solid #fff;
       outline-offset: 2px;
     }
     @media (hover: hover) and (pointer: fine) {
@@ -2531,8 +2569,8 @@
     .range-picker__fields {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.25rem;
-      padding: 0.3rem;
+      gap: 0.35rem;
+      padding: 0.35rem;
       border-bottom: 1px solid var(--line);
     }
     .range-picker__field {
@@ -2548,20 +2586,16 @@
       border-radius: 10px;
       transition: border-color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
     }
-    .range-picker__field + .range-picker__field {
-      border-left: 1.5px solid transparent;
-    }
     .range-picker__field:hover:not(.is-active) {
       background: #fafafa;
     }
     .range-picker__field.is-active {
       background: var(--white);
-      border-color: var(--accent-in);
-      box-shadow: 0 0 0 1px var(--accent-in);
+      border: 2px solid var(--accent-in);
+      box-shadow: none;
     }
     .range-picker__field[data-range-field="out"].is-active {
       border-color: var(--accent-out);
-      box-shadow: 0 0 0 1px var(--accent-out);
     }
     .range-picker__field.is-active .range-picker__field-label {
       color: var(--accent-in-text);
@@ -3824,7 +3858,10 @@
         padding-right: 0;
         padding-top: 0;
         min-width: 0;
-        align-self: start;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
       }
       .timeline-item__beat {
         position: static;
@@ -3853,7 +3890,8 @@
       }
       .timeline-item__actions {
         gap: 0.3rem;
-        margin-top: 0.15rem;
+        margin-top: auto;
+        padding-top: 0.45rem;
         flex-wrap: wrap;
       }
       .timeline-item__actions .btn:nth-child(n + 2) {
@@ -3957,6 +3995,9 @@
       .stay-choice__name {
         font-size: var(--chip-choice-name);
         line-height: 1.15;
+      }
+      .chip-name-full {
+        display: none;
       }
       .stay-swap {
         grid-template-columns: 1fr;
@@ -5853,21 +5894,25 @@
         border: 0;
         border-radius: 999px;
         color: #fff;
-        background: rgba(17, 17, 17, 0.55);
-        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06)), rgba(18, 18, 18, 0.42);
+        box-shadow:
+          0 8px 24px rgba(0, 0, 0, 0.22),
+          0 1px 0 rgba(255, 255, 255, 0.28) inset,
+          0 -1px 0 rgba(0, 0, 0, 0.18) inset;
+        backdrop-filter: blur(12px) saturate(1.25);
+        -webkit-backdrop-filter: blur(12px) saturate(1.25);
         transform: translateY(-50%);
         cursor: pointer;
         opacity: 1;
         pointer-events: auto;
-        transition: opacity 0.28s var(--ease), transform 0.28s var(--ease);
+        transition: opacity 0.28s var(--ease), transform 0.28s var(--ease), background 0.2s ease, box-shadow 0.2s ease;
         animation: rail-hint-nudge 1.8s var(--ease) infinite;
       }
       .rail-scroll-hint svg {
         width: 1.05rem;
         height: 1.05rem;
         display: block;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
       }
       .rail-scroll-hint.is-hidden {
         opacity: 0;
@@ -5876,7 +5921,7 @@
         animation: none;
       }
       .rail-scroll-hint:focus-visible {
-        outline: 2px solid var(--accent);
+        outline: 2px solid #fff;
         outline-offset: 2px;
       }
       @keyframes rail-hint-nudge {
@@ -6008,15 +6053,7 @@
       }
 
       .media-carousel__dots {
-        opacity: 1;
-        pointer-events: auto;
-        bottom: 0.7rem;
-        padding: 0.35rem 0.55rem;
-        gap: 0.45rem;
-      }
-      .media-carousel__dot {
-        width: 0.55rem;
-        height: 0.55rem;
+        display: none;
       }
       .media-carousel__nav {
         opacity: 1;
@@ -6148,17 +6185,14 @@
       }
       .range-picker__fields {
         grid-template-columns: 1fr;
-        gap: 0;
-        padding: 0.2rem;
+        gap: 0.4rem;
+        padding: 0.4rem;
+        padding-bottom: 0.5rem;
       }
       .range-picker__field {
         min-height: 3.35rem;
         padding: 0.65rem 0.85rem;
         border-radius: 12px;
-      }
-      .range-picker__field + .range-picker__field {
-        border-left: 0;
-        border-top: 1px solid var(--line);
       }
       .range-picker__field-label {
         font-size: 0.68rem;
@@ -6170,7 +6204,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.2rem;
-        padding: 0.65rem 0.9rem;
+        padding: 0.75rem 0.9rem 0.65rem;
       }
       .cal {
         padding: 0.55rem 0.45rem 0.85rem;
@@ -6435,7 +6469,10 @@
         padding-right: 0;
         padding-top: 0;
         min-width: 0;
-        align-self: start;
+        align-self: stretch;
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
       }
       .timeline-item__beat {
         position: static;
@@ -6503,7 +6540,8 @@
       }
       .timeline-item__actions {
         gap: 0.3rem;
-        margin-top: 0.15rem;
+        margin-top: auto;
+        padding-top: 0.45rem;
       }
       .timeline-item__actions .btn:nth-child(n + 2) {
         display: none;
@@ -6566,6 +6604,9 @@
       .stay-choice__name {
         font-size: var(--chip-choice-name);
         line-height: 1.15;
+      }
+      .chip-name-full {
+        display: none;
       }
       .stay-swap {
         grid-template-columns: 1fr;
@@ -6983,7 +7024,7 @@
         <p class="partner-strip__label">Participating partners</p>
         <div class="partner-strip__scroller">
           <button type="button" class="partner-strip__nav partner-strip__nav--prev" id="partnerStripPrev" aria-label="Scroll partners left" hidden>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15.5 5.5 9 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14.7 5.3a1 1 0 0 1 0 1.4L9.4 12l5.3 5.3a1 1 0 1 1-1.4 1.4l-6-6a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0z"/></svg>
           </button>
           <div class="partner-strip__row" id="partnerStripRow">
           <a class="partner-chip" href="#feature-farmhouse">
@@ -7024,7 +7065,7 @@
           </a>
           </div>
           <button type="button" class="partner-strip__nav partner-strip__nav--next" id="partnerStripNext" aria-label="Scroll partners right" hidden>
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8.5 5.5 15 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M9.3 5.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 1 1-1.4-1.4l5.3-5.3-5.3-5.3a1 1 0 0 1 0-1.4z"/></svg>
           </button>
         </div>
       </div>
@@ -7168,7 +7209,7 @@
       </div>
       <button type="button" class="rail-scroll-hint" id="doRailScrollHint" aria-label="Scroll for more">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <path fill="currentColor" d="M9.3 5.3a1 1 0 0 1 1.4 0l6 6a1 1 0 0 1 0 1.4l-6 6a1 1 0 1 1-1.4-1.4l5.3-5.3-5.3-5.3a1 1 0 0 1 0-1.4z"/>
         </svg>
       </button>
       </div>
@@ -7563,7 +7604,7 @@
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="backbone" id="stayOptBackbone">
                           <img src="assets/check-into-nelson/cards/devils-backbone-sq-400.webp?v=20260930b" alt="" width="80" height="80" loading="lazy" decoding="async" fetchpriority="low" />
-                          <span class="stay-swap__name">Devils Backbone Campground</span>
+                          <span class="stay-swap__name">Devils Backbone<span class="chip-name-full"> Campground</span></span>
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="indigo" id="stayOptIndigo">
                           <img src="assets/check-into-nelson/cards/indigo-house-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
@@ -7571,7 +7612,7 @@
                         </button>
                         <button type="button" class="stay-swap__chip" role="radio" aria-checked="false" data-stay-option="retreat" id="stayOptRetreat">
                           <img src="assets/check-into-nelson/cards/retreat-crabtree-sq-400.webp" alt="" width="80" height="80" loading="lazy" />
-                          <span class="stay-swap__name">Retreat at Crabtree Falls</span>
+                          <span class="stay-swap__name">Retreat at Crabtree<span class="chip-name-full"> Falls</span></span>
                         </button>
                       </div>
                       <p class="timeline-item__offer" id="checkinOffer">15% off lodging with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span></p>
@@ -7612,7 +7653,7 @@
                         </button>
                         <button type="button" class="stay-choice__btn" role="radio" aria-checked="false" data-sip-option="nelson29" id="sipOptNelson29">
                           <span class="stay-choice__label">Trail</span>
-                          <span class="stay-choice__name">Nelson 29 Craft Beverage Trail</span>
+                          <span class="stay-choice__name">Nelson 29 <span class="chip-name-full">Craft </span>Beverage Trail</span>
                         </button>
                       </div>
                       <p class="timeline-item__offer"><span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for the offer</p>
@@ -7694,7 +7735,7 @@
                     <button type="button" class="timeline-item__handle" aria-label="Drag to reorder" title="Drag to reorder">⠿</button>
                     <div class="timeline-item__content">
                       <p class="timeline-item__beat"><span class="cat-pill cat-pill--taste">Sip</span><span class="timeline-item__daymeta">Day 2</span></p>
-                      <h3 class="timeline-item__title">Nelson 29 Craft Beverage Trail</h3>
+                      <h3 class="timeline-item__title">Nelson 29 <span class="chip-name-full">Craft </span>Beverage Trail</h3>
                       <div class="timeline-item__actions">
                         <a class="btn btn--outline" href="https://www.nelson29.com/" data-track="partner_outbound" data-partner="nelson-29">Explore Nelson 29</a>
                       </div>
@@ -9325,10 +9366,18 @@
         if (!opts.skipPersist) persistPlan();
       }
 
-      function resetCalendarToCurrentMonth() {
-        var today = startOfDay(new Date());
-        calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+      function showCalendarMonthForDate(date) {
+        var anchor = date && !isNaN(date.getTime()) ? startOfDay(date) : startOfDay(new Date());
+        calMonth = new Date(anchor.getFullYear(), anchor.getMonth(), 1);
         renderCalendar();
+      }
+
+      function resetCalendarToCurrentMonth() {
+        showCalendarMonthForDate(new Date());
+      }
+
+      function syncCalendarToStartDate() {
+        showCalendarMonthForDate(startDate || new Date());
       }
 
       function defaultCheckInInCurrentMonth() {
@@ -11232,18 +11281,28 @@
         applySipChoice("flyingfox", true);
         tripNights = 2;
         applyLengthDefaults(true);
-        if (startDate) {
-          endDate = endDateFromStart(startDate);
-          syncLengthUI();
-          updateItineraryForDate(startDate);
-        } else {
-          syncLengthUI();
-          refreshTimelineMeta();
-        }
+        startDate = null;
+        endDate = null;
+        hoverDate = null;
+        setRangeSelecting("in");
+        resetCalendarToCurrentMonth();
+        syncLengthUI();
+        refreshTimelineMeta();
         applyFilter("all");
-        // Treat the current dates as the new clean baseline after reset.
         captureBaselineStart();
-        persistPlan();
+        try {
+          window.localStorage.removeItem(PLAN_STORAGE_KEY);
+        } catch (errStore) {}
+        try {
+          var url = new URL(window.location.href);
+          ["start", "nights", "stay", "sip", "d1", "d2", "d3", "d4", "d5", "a"].forEach(function (key) {
+            url.searchParams.delete(key);
+          });
+          var qs = url.searchParams.toString();
+          window.history.replaceState(null, "", url.pathname + (qs ? "?" + qs : "") + (url.hash || ""));
+        } catch (errUrl) {}
+        renderMoreStops();
+        refreshItineraryMap();
         syncStickyItinDirty();
       }
 
@@ -11577,7 +11636,7 @@
           var restored = collectPlanState();
           if (!keepCustomLayout || isLegacyOutdoorDefault(restored) || isDefaultLayoutWithWintergreenExtra(restored)) applySampleScheduleOnLoad();
           setRangeSelecting("in");
-          resetCalendarToCurrentMonth();
+          syncCalendarToStartDate();
           refreshItineraryMap();
           captureBaselineStart();
           syncStickyItinDirty();
@@ -11586,7 +11645,7 @@
         tripNights = 2;
         var checkIn = defaultCheckInInCurrentMonth();
         applyDateRange(checkIn, addDays(checkIn, tripNights), { resetLayout: true, skipPersist: false });
-        resetCalendarToCurrentMonth();
+        syncCalendarToStartDate();
         setRangeSelecting("in");
         refreshItineraryMap();
         captureBaselineStart();
