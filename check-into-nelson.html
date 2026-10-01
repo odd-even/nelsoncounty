@@ -11280,27 +11280,13 @@
         applyStayChoice("farmhouse", true);
         applySipChoice("flyingfox", true);
         tripNights = 2;
-        applyLengthDefaults(true);
-        startDate = null;
-        endDate = null;
         hoverDate = null;
+        var checkIn = defaultCheckInInCurrentMonth();
+        applyDateRange(checkIn, addDays(checkIn, tripNights), { resetLayout: true, skipPersist: false });
         setRangeSelecting("in");
-        resetCalendarToCurrentMonth();
-        syncLengthUI();
-        refreshTimelineMeta();
+        syncCalendarToStartDate();
         applyFilter("all");
         captureBaselineStart();
-        try {
-          window.localStorage.removeItem(PLAN_STORAGE_KEY);
-        } catch (errStore) {}
-        try {
-          var url = new URL(window.location.href);
-          ["start", "nights", "stay", "sip", "d1", "d2", "d3", "d4", "d5", "a"].forEach(function (key) {
-            url.searchParams.delete(key);
-          });
-          var qs = url.searchParams.toString();
-          window.history.replaceState(null, "", url.pathname + (qs ? "?" + qs : "") + (url.hash || ""));
-        } catch (errUrl) {}
         renderMoreStops();
         refreshItineraryMap();
         syncStickyItinDirty();
