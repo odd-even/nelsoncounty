@@ -28,6 +28,30 @@
     })();
   </script>
   <script>
+    // Send data-track clicks to GA4 (exit_origin uses a richer event elsewhere).
+    (function () {
+      document.addEventListener("click", function (e) {
+        var el = e.target && e.target.closest && e.target.closest("[data-track]");
+        if (!el || typeof window.gtag !== "function") return;
+        var name = el.getAttribute("data-track");
+        if (!name || name === "exit_origin") return;
+        var payload = { event_category: "check_into_nelson" };
+        var partner = el.getAttribute("data-partner");
+        var highlight = el.getAttribute("data-highlight");
+        if (partner) payload.partner = partner;
+        if (highlight) payload.highlight = highlight;
+        if (el.tagName === "A" && el.href) {
+          payload.link_url = el.href;
+          try {
+            var host = new URL(el.href, window.location.href).hostname;
+            if (host && host !== window.location.hostname) payload.outbound = true;
+          } catch (err) {}
+        }
+        window.gtag("event", name, payload);
+      }, true);
+    })();
+  </script>
+  <script>
     // Fresh loads / shared links: open at the top and avoid late hash jumps.
     // Do not yank scroll when the visitor returns via back/forward (or bfcache).
     (function () {

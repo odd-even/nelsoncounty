@@ -5,8 +5,8 @@
     { "source": "/", "destination": "/check-into-nelson" }
   ],
   "redirects": [
-    { "source": "/index.html", "destination": "/", "permanent": false },
-    { "source": "/check-into-nelson.html", "destination": "/", "permanent": false }
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/check-into-nelson.html", "destination": "/", "permanent": true }
   ],
   "headers": [
     {
