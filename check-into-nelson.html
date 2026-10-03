@@ -5715,6 +5715,9 @@
       min-height: 2.75rem;
       justify-content: center;
     }
+    .itin-share__actions .btn[hidden] {
+      display: none !important;
+    }
     .itin-share__status {
       min-height: 1.1em;
       margin: 0.15rem 0 0;
@@ -8434,7 +8437,8 @@
       </div>
       <div class="itin-share__card" id="itinShareCard"></div>
       <div class="itin-share__actions">
-        <button type="button" class="btn btn--dark" id="itinShareNative" data-track="share_itinerary">Share plan</button>
+        <button type="button" class="btn btn--dark" id="itinShareNative" data-track="share_itinerary">Share</button>
+        <button type="button" class="btn btn--outline" id="itinShareDownload" data-track="download_plan_text">Save as text</button>
         <button type="button" class="btn btn--outline" id="itinShareCopy" data-track="copy_plan_link">Copy link</button>
       </div>
       <p class="itin-share__status" id="itinShareStatus" aria-live="polite"></p>
@@ -10735,32 +10739,91 @@
         if (typeof navigator.share !== "function") return false;
         if (typeof navigator.canShare !== "function") return true;
         try {
-          return !!navigator.canShare(data || { url: location.href, title: "Check Into Nelson" });
+          return !!navigator.canShare(data);
         } catch (err) {
           return false;
         }
       }
 
+      function hasNativeShare() {
+        return typeof navigator.share === "function";
+      }
+
+      function buildPlanPlainText(summary, link) {
+        return String(summary || "").trim() + "\n\nPlan link:\n" + link + "\n";
+      }
+
+      function buildShareFile(summary, link) {
+        try {
+          if (typeof File === "undefined") return null;
+          return new File(
+            [buildPlanPlainText(summary, link)],
+            "check-into-nelson-itinerary.txt",
+            { type: "text/plain" }
+          );
+        } catch (err) {
+          return null;
+        }
+      }
+
       function buildSharePayloads(link, summary) {
         var title = "Check Into Nelson itinerary";
-        return [
-          { title: title, text: summary, url: link },
-          { title: title, url: link },
-          { text: summary + "\n\n" + link },
-          { url: link }
-        ].filter(function (payload) {
+        var textWithLink = String(summary || "").trim() + "\n\n" + link;
+        var file = buildShareFile(summary, link);
+        var payloads = [];
+
+        // File share unlocks Save to Files / Notes / Drive on many phones and Macs.
+        if (file) {
+          payloads.push({ title: title, text: title, files: [file] });
+          payloads.push({ files: [file] });
+        }
+
+        // Prefer rich text+url, then simpler shapes Safari/Chrome accept.
+        payloads.push({ title: title, text: summary, url: link });
+        payloads.push({ title: title, text: textWithLink });
+        payloads.push({ title: title, url: link });
+        payloads.push({ text: textWithLink });
+        payloads.push({ url: link });
+
+        // If canShare exists, keep only accepted payloads. If it rejects everything
+        // but share() still exists, keep the non-file text/url shapes as a last try.
+        if (typeof navigator.canShare !== "function") return payloads;
+
+        var accepted = payloads.filter(function (payload) {
           return canUseNativeShare(payload);
+        });
+        if (accepted.length) return accepted;
+
+        return payloads.filter(function (payload) {
+          return !payload.files;
         });
       }
 
       function syncItinShareActions() {
         var shareBtn = document.getElementById("itinShareNative");
-        if (!shareBtn) return;
-        var available = canUseNativeShare({ url: location.href, title: "Check Into Nelson" })
-          || canUseNativeShare({ text: "Check Into Nelson", url: location.href })
-          || canUseNativeShare({ url: location.href });
-        shareBtn.hidden = !available;
-        shareBtn.textContent = "Share plan";
+        var downloadBtn = document.getElementById("itinShareDownload");
+        var copyBtn = document.getElementById("itinShareCopy");
+        var native = hasNativeShare();
+
+        if (shareBtn) {
+          // Show whenever Web Share exists; canShare can be overly strict on some browsers.
+          shareBtn.hidden = !native;
+          shareBtn.textContent = "Share";
+          shareBtn.classList.toggle("btn--dark", native);
+          shareBtn.classList.toggle("btn--outline", false);
+        }
+        if (downloadBtn) {
+          downloadBtn.hidden = false;
+          // When native share is missing (common on desktop Chrome), make Save as text primary.
+          downloadBtn.classList.toggle("btn--dark", !native);
+          downloadBtn.classList.toggle("btn--outline", native);
+          downloadBtn.textContent = "Save as text";
+        }
+        if (copyBtn) {
+          copyBtn.hidden = false;
+          copyBtn.classList.add("btn--outline");
+          copyBtn.classList.remove("btn--dark");
+        }
       }
 
       function openItinShare() {
@@ -10816,6 +10879,58 @@
         copyTextFallback(link, done);
       }
 
+      function downloadPlanText() {
+        var plan = collectPlanState();
+        if (!plan) {
+          setItinShareStatus("Pick a check-in date first.");
+          return;
+        }
+        persistPlan();
+        var link = buildShareablePlanUrl(plan);
+        var summary = buildShareSummary(collectShareDays());
+        var body = buildPlanPlainText(summary, link);
+        var filename = "check-into-nelson-itinerary.txt";
+
+        try {
+          var blob = new Blob([body], { type: "text/plain" });
+          var objectUrl = URL.createObjectURL(blob);
+          var anchor = document.createElement("a");
+          anchor.href = objectUrl;
+          anchor.download = filename;
+          anchor.rel = "noopener";
+          document.body.appendChild(anchor);
+          anchor.click();
+          document.body.removeChild(anchor);
+          setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
+          setItinShareStatus("Text file ready.");
+          setTimeout(function () { setItinShareStatus(""); }, 2200);
+          return;
+        } catch (err) {
+          // Fall through to share/copy when download is blocked (some iOS cases).
+        }
+
+        // iOS Safari often ignores download=; prefer native share of the text file.
+        var file = buildShareFile(summary, link);
+        if (file && hasNativeShare() && canUseNativeShare({ files: [file] })) {
+          navigator.share({ files: [file], title: "Check Into Nelson itinerary" }).then(function () {
+            setItinShareStatus("Shared.");
+            setTimeout(function () { setItinShareStatus(""); }, 1800);
+          }).catch(function (shareErr) {
+            if (shareErr && shareErr.name === "AbortError") return;
+            copyTextFallback(body, function () {
+              setItinShareStatus("Copied as text.");
+              setTimeout(function () { setItinShareStatus(""); }, 2200);
+            });
+          });
+          return;
+        }
+
+        copyTextFallback(body, function () {
+          setItinShareStatus("Copied as text.");
+          setTimeout(function () { setItinShareStatus(""); }, 2200);
+        });
+      }
+
       function sharePlanNative() {
         var plan = collectPlanState();
         if (!plan) {
@@ -10827,20 +10942,16 @@
         var days = collectShareDays();
         var summary = buildShareSummary(days);
         var payloads = buildSharePayloads(link, summary);
-        if (!payloads.length) {
-          copyTextFallback(link, function () {
-            setItinShareStatus("Link copied.");
-            setTimeout(function () { setItinShareStatus(""); }, 2200);
-          });
+
+        if (!hasNativeShare() || !payloads.length) {
+          downloadPlanText();
           return;
         }
 
         function tryShare(index) {
           if (index >= payloads.length) {
-            copyTextFallback(link, function () {
-              setItinShareStatus("Link copied.");
-              setTimeout(function () { setItinShareStatus(""); }, 2200);
-            });
+            // Native share failed every shape — leave people with a saved text file.
+            downloadPlanText();
             return;
           }
           navigator.share(payloads[index]).then(function () {
@@ -10848,15 +10959,12 @@
             setTimeout(function () { setItinShareStatus(""); }, 1800);
           }).catch(function (err) {
             if (err && err.name === "AbortError") return;
-            // Safari/macOS can reject text+url; try a simpler payload before copying.
-            if (err && (err.name === "TypeError" || err.name === "DataError") && index + 1 < payloads.length) {
+            // Safari/macOS can reject some payload shapes; try the next one.
+            if (index + 1 < payloads.length) {
               tryShare(index + 1);
               return;
             }
-            copyTextFallback(link, function () {
-              setItinShareStatus("Link copied.");
-              setTimeout(function () { setItinShareStatus(""); }, 2200);
-            });
+            downloadPlanText();
           });
         }
 
@@ -10872,6 +10980,8 @@
         if (closeBtn) closeBtn.addEventListener("click", closeItinShare);
         var copyBtn = document.getElementById("itinShareCopy");
         if (copyBtn) copyBtn.addEventListener("click", function () { copyPlanLink(true); });
+        var downloadBtn = document.getElementById("itinShareDownload");
+        if (downloadBtn) downloadBtn.addEventListener("click", downloadPlanText);
         var shareBtn = document.getElementById("itinShareNative");
         if (shareBtn) shareBtn.addEventListener("click", sharePlanNative);
         syncItinShareActions();
