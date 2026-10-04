@@ -80,6 +80,14 @@
       try {
         isCoarse = window.matchMedia && window.matchMedia("(pointer: coarse)").matches;
       } catch (err0) {}
+      // Remember shared-plan deep links before later URL rewrites.
+      try {
+        var bootParams = new URLSearchParams(window.location.search);
+        var bootView = String(bootParams.get("view") || "").toLowerCase();
+        window.__cinOpenPlanCard = bootView === "plan" || bootView === "share" || bootParams.get("share") === "1";
+      } catch (errBootShare) {
+        window.__cinOpenPlanCard = false;
+      }
 
       function scrollYNow() {
         return window.scrollY || window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || (document.body && document.body.scrollTop) || 0;
@@ -5471,8 +5479,8 @@
       transition: opacity 0.28s var(--ease), visibility 0.28s;
     }
     .itin-share.is-open {
-      opacity: 1;
-      visibility: visible;
+      opacity: 1 !important;
+      visibility: visible !important;
       pointer-events: auto;
     }
     .itin-share[hidden] {
@@ -10004,10 +10012,56 @@
 
       function buildShareablePlanUrl(plan) {
         var params = planToSearchParams(plan);
+        // Recipients who open this link get the finished plan card modal.
+        params.set("view", "plan");
         var url = new URL(window.location.href);
         url.search = params.toString();
         url.hash = "itinerary";
         return url.toString();
+      }
+
+      function urlRequestsSharedPlanCard() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var view = String(params.get("view") || "").toLowerCase();
+          return view === "plan" || view === "share" || params.get("share") === "1";
+        } catch (err) {
+          return false;
+        }
+      }
+
+      // Prefer the early boot flag; fall back to the live URL.
+      var openSharedPlanCardOnLoad = !!window.__cinOpenPlanCard || urlRequestsSharedPlanCard();
+
+      function clearSharedPlanCardFlagFromUrl() {
+        try {
+          window.__cinOpenPlanCard = false;
+          var url = new URL(window.location.href);
+          var view = String(url.searchParams.get("view") || "").toLowerCase();
+          var changed = false;
+          if (view === "plan" || view === "share") {
+            url.searchParams.delete("view");
+            changed = true;
+          }
+          if (url.searchParams.has("share")) {
+            url.searchParams.delete("share");
+            changed = true;
+          }
+          if (!changed) return;
+          var next = url.pathname + (url.searchParams.toString() ? "?" + url.searchParams.toString() : "") + url.hash;
+          window.history.replaceState(null, "", next);
+        } catch (err) {}
+      }
+
+      function openSharedPlanCardIfRequested() {
+        if (!openSharedPlanCardOnLoad && !window.__cinOpenPlanCard) return;
+        openSharedPlanCardOnLoad = false;
+        window.__cinOpenPlanCard = false;
+        if (typeof collectPlanState !== "function" || !collectPlanState()) return;
+        window.setTimeout(function () {
+          openItinShare();
+          clearSharedPlanCardFlagFromUrl();
+        }, 480);
       }
 
       var STOP_GEO = {
@@ -10869,9 +10923,16 @@
         if (!root) return;
         root.hidden = false;
         root.setAttribute("aria-hidden", "false");
-        requestAnimationFrame(function () {
-          root.classList.add("is-open");
-        });
+        // Force a reflow so the open transition still runs, then show.
+        void root.offsetWidth;
+        root.classList.add("is-open");
+        try {
+          if (root.getAnimations) {
+            root.getAnimations({ subtree: true }).forEach(function (anim) {
+              try { anim.finish(); } catch (errAnim) {}
+            });
+          }
+        } catch (errFinish) {}
         setItinShareStatus("");
         syncItinShareActions();
       }
@@ -12038,6 +12099,7 @@
           refreshItineraryMap();
           captureBaselineStart();
           syncStickyItinDirty();
+          openSharedPlanCardIfRequested();
           return;
         }
         tripNights = 2;
@@ -12048,6 +12110,7 @@
         refreshItineraryMap();
         captureBaselineStart();
         syncStickyItinDirty();
+        openSharedPlanCardIfRequested();
       })();
 
       var observer = new IntersectionObserver(function (entries) {
