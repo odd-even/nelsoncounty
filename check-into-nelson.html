@@ -5465,6 +5465,11 @@
     }
 
     /* —— Save / share itinerary —— */
+    html.is-itin-share-open,
+    body.is-itin-share-open {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
     .itin-share {
       position: fixed;
       inset: 0;
@@ -5472,7 +5477,9 @@
       display: grid;
       place-items: end center;
       padding: 0;
-      background: rgba(17, 17, 17, 0.48);
+      background: rgba(12, 12, 12, 0.46);
+      backdrop-filter: blur(14px) saturate(1.15);
+      -webkit-backdrop-filter: blur(14px) saturate(1.15);
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -8475,7 +8482,6 @@
       <div class="itin-share__card" id="itinShareCard"></div>
       <div class="itin-share__actions">
         <button type="button" class="btn btn--dark" id="itinShareNative" data-track="share_itinerary">Share</button>
-        <button type="button" class="btn btn--outline" id="itinShareDownload" data-track="download_plan_text">Save as text</button>
         <button type="button" class="btn btn--outline" id="itinShareCopy" data-track="copy_plan_link">Copy link</button>
       </div>
       <p class="itin-share__status" id="itinShareStatus" aria-live="polite"></p>
@@ -10809,6 +10815,30 @@
         card.innerHTML = html;
       }
 
+      var itinShareScrollY = 0;
+
+      function lockItinShareScroll() {
+        itinShareScrollY = window.scrollY || window.pageYOffset || 0;
+        document.documentElement.classList.add("is-itin-share-open");
+        document.body.classList.add("is-itin-share-open");
+        document.body.style.position = "fixed";
+        document.body.style.top = "-" + itinShareScrollY + "px";
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+      }
+
+      function unlockItinShareScroll() {
+        document.documentElement.classList.remove("is-itin-share-open");
+        document.body.classList.remove("is-itin-share-open");
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+        window.scrollTo(0, itinShareScrollY || 0);
+      }
+
       function closeItinShare() {
         var root = document.getElementById("itinShare");
         if (!root) return;
@@ -10816,6 +10846,7 @@
         root.setAttribute("aria-hidden", "true");
         root.hidden = true;
         setItinShareStatus("");
+        unlockItinShareScroll();
       }
 
       function canUseNativeShare(data) {
@@ -10832,24 +10863,7 @@
         return typeof navigator.share === "function";
       }
 
-      function buildPlanPlainText(summary, link) {
-        return String(summary || "").trim() + "\n\nPlan link:\n" + link + "\n";
-      }
-
-      function buildShareFile(summary, link) {
-        try {
-          if (typeof File === "undefined") return null;
-          return new File(
-            [buildPlanPlainText(summary, link)],
-            "check-into-nelson-itinerary.txt",
-            { type: "text/plain" }
-          );
-        } catch (err) {
-          return null;
-        }
-      }
-
-      function buildSharePayloads(link, summary) {
+      function buildSharePayloads(link) {
         var title = "Check Into Nelson itinerary";
         var blurb = "My Check Into Nelson itinerary";
         // Prefer the plan link only — the URL already restores the full itinerary card.
@@ -10871,7 +10885,6 @@
 
       function syncItinShareActions() {
         var shareBtn = document.getElementById("itinShareNative");
-        var downloadBtn = document.getElementById("itinShareDownload");
         var copyBtn = document.getElementById("itinShareCopy");
         var native = hasNativeShare();
 
@@ -10880,18 +10893,13 @@
           shareBtn.hidden = !native;
           shareBtn.textContent = "Share";
           shareBtn.classList.toggle("btn--dark", native);
-          shareBtn.classList.toggle("btn--outline", false);
-        }
-        if (downloadBtn) {
-          downloadBtn.hidden = false;
-          downloadBtn.classList.toggle("btn--dark", !native);
-          downloadBtn.classList.toggle("btn--outline", native);
-          downloadBtn.textContent = "Save as text";
+          shareBtn.classList.toggle("btn--outline", !native);
         }
         if (copyBtn) {
           copyBtn.hidden = false;
-          copyBtn.classList.add("btn--outline");
-          copyBtn.classList.remove("btn--dark");
+          // When native share is missing, Copy link is the primary action.
+          copyBtn.classList.toggle("btn--dark", !native);
+          copyBtn.classList.toggle("btn--outline", native);
         }
       }
 
@@ -10907,6 +10915,7 @@
         renderItinShareCard(days);
         var root = document.getElementById("itinShare");
         if (!root) return;
+        lockItinShareScroll();
         root.hidden = false;
         root.setAttribute("aria-hidden", "false");
         // Force a reflow so the open transition still runs, then show.
@@ -10953,58 +10962,6 @@
           }
         };
         copyTextFallback(link, done);
-      }
-
-      function downloadPlanText() {
-        var plan = collectPlanState();
-        if (!plan) {
-          setItinShareStatus("Pick a check-in date first.");
-          return;
-        }
-        persistPlan();
-        var link = buildShareablePlanUrl(plan);
-        var summary = buildShareSummary(collectShareDays());
-        var body = buildPlanPlainText(summary, link);
-        var filename = "check-into-nelson-itinerary.txt";
-
-        try {
-          var blob = new Blob([body], { type: "text/plain" });
-          var objectUrl = URL.createObjectURL(blob);
-          var anchor = document.createElement("a");
-          anchor.href = objectUrl;
-          anchor.download = filename;
-          anchor.rel = "noopener";
-          document.body.appendChild(anchor);
-          anchor.click();
-          document.body.removeChild(anchor);
-          setTimeout(function () { URL.revokeObjectURL(objectUrl); }, 1000);
-          setItinShareStatus("Text file ready.");
-          setTimeout(function () { setItinShareStatus(""); }, 2200);
-          return;
-        } catch (err) {
-          // Fall through to share/copy when download is blocked (some iOS cases).
-        }
-
-        // iOS Safari often ignores download=; prefer native share of the text file.
-        var file = buildShareFile(summary, link);
-        if (file && hasNativeShare() && canUseNativeShare({ files: [file] })) {
-          navigator.share({ files: [file], title: "Check Into Nelson itinerary" }).then(function () {
-            setItinShareStatus("Shared.");
-            setTimeout(function () { setItinShareStatus(""); }, 1800);
-          }).catch(function (shareErr) {
-            if (shareErr && shareErr.name === "AbortError") return;
-            copyTextFallback(body, function () {
-              setItinShareStatus("Copied as text.");
-              setTimeout(function () { setItinShareStatus(""); }, 2200);
-            });
-          });
-          return;
-        }
-
-        copyTextFallback(body, function () {
-          setItinShareStatus("Copied as text.");
-          setTimeout(function () { setItinShareStatus(""); }, 2200);
-        });
       }
 
       function sharePlanNative() {
@@ -11060,8 +11017,6 @@
         if (closeBtn) closeBtn.addEventListener("click", closeItinShare);
         var copyBtn = document.getElementById("itinShareCopy");
         if (copyBtn) copyBtn.addEventListener("click", function () { copyPlanLink(true); });
-        var downloadBtn = document.getElementById("itinShareDownload");
-        if (downloadBtn) downloadBtn.addEventListener("click", downloadPlanText);
         var shareBtn = document.getElementById("itinShareNative");
         if (shareBtn) shareBtn.addEventListener("click", sharePlanNative);
         syncItinShareActions();
