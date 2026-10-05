@@ -4908,6 +4908,9 @@ function mapCSVRowToListing(row, index) {
         amenities: amenities,
         featured: featured,
         private: isPrivate,
+        isEvent: getField('isEvent', ['Is Event', 'is event', 'Event']) || '',
+        eventStartDate: getField('eventStartDate', ['Event Start Date', 'event start date', 'Start Date', 'startDate']) || '',
+        eventEndDate: getField('eventEndDate', ['Event End Date', 'event end date', 'End Date', 'endDate']) || '',
         document1: getField('Document1', ['document1', 'Document 1', 'document1link', 'Document 1 URL']) || '',
         document1Name: getField('Document1Name', ['document1Name', 'Document 1 Name', 'document 1 name']) || '',
         document2: getField('Document2', ['document2', 'Document 2', 'document2link', 'Document 2 URL']) || '',
@@ -4915,24 +4918,74 @@ function mapCSVRowToListing(row, index) {
     };
 }
 
-// Helper function to filter out private listings
+function getLocalDateYYYYMMDD() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + d;
+}
+
+function normalizeEventDate(value) {
+    const raw = String(value || '').trim();
+    if (!raw) return '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
+    const parsed = new Date(raw);
+    if (isNaN(parsed.getTime())) return '';
+    const y = parsed.getFullYear();
+    const m = String(parsed.getMonth() + 1).padStart(2, '0');
+    const d = String(parsed.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + d;
+}
+
+function isTruthyListingFlag(value) {
+    const s = String(value == null ? '' : value).trim().toLowerCase();
+    return value === true || s === 'true' || s === '1' || s === 'yes';
+}
+
+function isListingEvent(listing) {
+    if (!listing) return false;
+    if (isTruthyListingFlag(listing.isEvent)) return true;
+    return String(listing.type || '').trim().toLowerCase() === 'event';
+}
+
+// Events drop off the day after their end date (falls back to start date).
+function isPastEvent(listing) {
+    if (!isListingEvent(listing)) return false;
+    const end = normalizeEventDate(listing.eventEndDate || listing.eventStartDate || '');
+    if (!end) return false;
+    return end < getLocalDateYYYYMMDD();
+}
+
+function isPublicActiveListing(listing) {
+    return !isTruthyListingFlag(listing && listing.private) && !isPastEvent(listing);
+}
+
+// Helper function to filter out private listings and past events
 function filterPrivateListings(data) {
     if (!data || !data.listings) return data;
-    
+
+    let privateCount = 0;
+    let pastEventCount = 0;
     const publicListings = data.listings.filter(function(listing) {
-        const isPrivate = listing.private === true || 
-                         listing.private === 'true' || 
-                         listing.private === 'TRUE' || 
-                         listing.private === '1' || 
-                         String(listing.private || '').toLowerCase() === 'yes';
-        return !isPrivate;
+        if (isTruthyListingFlag(listing.private)) {
+            privateCount += 1;
+            return false;
+        }
+        if (isPastEvent(listing)) {
+            pastEventCount += 1;
+            return false;
+        }
+        return true;
     });
-    
-    const privateCount = data.listings.length - publicListings.length;
+
     if (privateCount > 0) {
         console.log('🔒 Filtered out', privateCount, 'private listing(s)');
     }
-    
+    if (pastEventCount > 0) {
+        console.log('📅 Filtered out', pastEventCount, 'past event(s)');
+    }
+
     return {
         listings: publicListings,
         filterOptions: data.filterOptions || extractFilterOptions(publicListings)
@@ -7122,18 +7175,11 @@ function loadDataFromListingsJSON() {
 
             const listings = rows.map(function(row, index) { return mapCSVRowToListing(row, index); });
 
-            const publicListings = listings.filter(function(listing) {
-                const isPrivate = listing.private === true ||
-                                 listing.private === 'true' ||
-                                 listing.private === 'TRUE' ||
-                                 listing.private === '1' ||
-                                 String(listing.private || '').toLowerCase() === 'yes';
-                return !isPrivate;
-            });
+            const publicListings = listings.filter(isPublicActiveListing);
 
-            const privateCount = listings.length - publicListings.length;
-            if (privateCount > 0) {
-                console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+            const hiddenCount = listings.length - publicListings.length;
+            if (hiddenCount > 0) {
+                console.log('🔒 Filtered out', hiddenCount, 'private/past listing(s)');
             }
 
             const filterOptions = extractFilterOptions(publicListings);
@@ -7282,19 +7328,12 @@ function loadDataFromGoogleSheets() {
                 console.log('📋 Last listing:', JSON.stringify(listings[listings.length - 1]).substring(0, 300));
             }
             
-            // Filter out private listings
-            const publicListings = listings.filter(function(listing) {
-                const isPrivate = listing.private === true || 
-                                 listing.private === 'true' || 
-                                 listing.private === 'TRUE' || 
-                                 listing.private === '1' || 
-                                 String(listing.private || '').toLowerCase() === 'yes';
-                return !isPrivate;
-            });
+            // Filter out private listings and past events
+            const publicListings = listings.filter(isPublicActiveListing);
             
-            const privateCount = listings.length - publicListings.length;
-            if (privateCount > 0) {
-                console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+            const hiddenCount = listings.length - publicListings.length;
+            if (hiddenCount > 0) {
+                console.log('🔒 Filtered out', hiddenCount, 'private/past listing(s)');
             }
             
             // Extract filter options from public listings only
@@ -7409,19 +7448,12 @@ loadDataFromListingsJSON()
             throw new Error('Loaded data is empty or missing listings');
         }
         
-        // Filter out private listings before assigning to data
-        const publicListings = (loadedData.listings || []).filter(function(listing) {
-            const isPrivate = listing.private === true || 
-                             listing.private === 'true' || 
-                             listing.private === 'TRUE' || 
-                             listing.private === '1' || 
-                             String(listing.private || '').toLowerCase() === 'yes';
-            return !isPrivate;
-        });
+        // Filter out private listings and past events before assigning to data
+        const publicListings = (loadedData.listings || []).filter(isPublicActiveListing);
         
-        const privateCount = (loadedData.listings || []).length - publicListings.length;
-        if (privateCount > 0) {
-            console.log('🔒 Filtered out', privateCount, 'private listing(s)');
+        const hiddenCount = (loadedData.listings || []).length - publicListings.length;
+        if (hiddenCount > 0) {
+            console.log('🔒 Filtered out', hiddenCount, 'private/past listing(s)');
         }
         
         data = {
