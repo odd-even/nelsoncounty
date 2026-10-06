@@ -59,12 +59,14 @@
     "slug": "05-flying-fox",
     "files": {
       "1280": "assets/check-into-nelson/hero/05-flying-fox-1280.webp",
-      "1832": "assets/check-into-nelson/hero/05-flying-fox-1832.webp"
+      "1920": "assets/check-into-nelson/hero/05-flying-fox-1920.webp",
+      "2560": "assets/check-into-nelson/hero/05-flying-fox-2560.webp",
+      "3200": "assets/check-into-nelson/hero/05-flying-fox-3200.webp"
     },
-    "width": 1832,
-    "height": 1374,
-    "srcset": "assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1832.webp 1832w",
-    "fallback": "assets/check-into-nelson/hero/05-flying-fox-1832.webp"
+    "width": 3200,
+    "height": 2133,
+    "srcset": "assets/check-into-nelson/hero/05-flying-fox-1280.webp 1280w, assets/check-into-nelson/hero/05-flying-fox-1920.webp 1920w, assets/check-into-nelson/hero/05-flying-fox-2560.webp 2560w, assets/check-into-nelson/hero/05-flying-fox-3200.webp 3200w",
+    "fallback": "assets/check-into-nelson/hero/05-flying-fox-3200.webp"
   },
   {
     "label": "Glass Hollow Studio",
