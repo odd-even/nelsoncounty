@@ -1351,6 +1351,8 @@ function getData(sheet) {
           listing.eventCost = String(value || '');
         } else if (['eventvenuename', 'event venue name', 'venuename', 'venue name', 'venue'].includes(headerLower)) {
           listing.eventVenueName = String(value || '');
+        } else if (['eventdaterange', 'event date range', 'daterange', 'date range'].includes(headerLower)) {
+          listing.eventDateRange = String(value || '');
         } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
           listing.customHtml = String(value || '');
         } else if (['category'].includes(headerLower)) {
@@ -1678,6 +1680,8 @@ function saveListing(sheet, listing) {
         rowData.push(listing.eventCost || '');
       } else if (['eventvenuename', 'event venue name'].includes(headerLower)) {
         rowData.push(listing.eventVenueName || '');
+      } else if (['eventdaterange', 'event date range'].includes(headerLower)) {
+        rowData.push(listing.eventDateRange || '');
       } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
         rowData.push(listing.customHtml || '');
       } else if (['category'].includes(headerLower)) {
@@ -1829,7 +1833,8 @@ const CANONICAL_LISTING_HEADERS = [
   'eventAllDay',
   'eventTicketUrl',
   'eventCost',
-  'eventVenueName'
+  'eventVenueName',
+  'eventDateRange'
 ];
 
 // Helper function to convert date string (YYYY-MM-DD) to Date object

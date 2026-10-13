@@ -211,6 +211,31 @@ function formatEventDateLabel(dateStr) {
     }
 }
 
+function formatEventDateShort(dateStr) {
+    if (!dateStr) return '';
+    const day = normalizeDate(String(dateStr));
+    if (!day) return '';
+    try {
+        const date = new Date(day + 'T12:00:00');
+        if (isNaN(date.getTime())) return '';
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        return months[date.getMonth()] + ' ' + date.getDate();
+    } catch (e) {
+        return '';
+    }
+}
+
+// Combined display range for events, e.g. "Nov 4" or "Nov 4 - Feb 16".
+function buildEventDateRange(listing) {
+    if (!isListingEvent(listing)) return '';
+    const startDay = normalizeDate(String(listing.eventStartDate || ''));
+    const endDay = normalizeDate(String(listing.eventEndDate || ''));
+    const start = formatEventDateShort(startDay);
+    const end = formatEventDateShort(endDay);
+    if (start && end && endDay && endDay !== startDay) return start + ' - ' + end;
+    return start || end || '';
+}
+
 function formatEventTimeLabel(timeStr) {
     const raw = String(timeStr || '').trim();
     if (!raw) return '';
@@ -340,6 +365,7 @@ function sanitizeListing(listing) {
     if ('eventAllDay' in listing) {
         listing.eventAllDay = parseListingBool(listing.eventAllDay);
     }
+    listing.eventDateRange = buildEventDateRange(listing);
     
     REMOVED_LISTING_FIELDS.forEach(function(field) {
         if (field in listing) {
@@ -1713,13 +1739,17 @@ const LISTING_SHEET_HEADERS = [
     'eventAllDay',
     'eventTicketUrl',
     'eventCost',
-    'eventVenueName'
+    'eventVenueName',
+    'eventDateRange'
 ];
 
 function listingValueForSheetField(listing, field) {
     if (!listing) listing = {};
     if (field === 'isEvent' || field === 'eventAllDay' || field === 'featured' || field === 'private') {
         return parseListingBool(listing[field]);
+    }
+    if (field === 'eventDateRange') {
+        return buildEventDateRange(listing);
     }
     if (field === 'amenities') {
         return Array.isArray(listing.amenities)
@@ -3023,6 +3053,7 @@ function updateTabsStickyStackStuck() {
                 eventTicketUrl: getField('eventTicketUrl', ['Event Ticket URL', 'event ticket url', 'Ticket URL', 'ticketUrl', 'RSVP URL', 'rsvpUrl']),
                 eventCost: getField('eventCost', ['Event Cost', 'event cost', 'Cost', 'Price', 'price']),
                 eventVenueName: getField('eventVenueName', ['Event Venue Name', 'event venue name', 'Venue Name', 'venueName', 'Venue']),
+                eventDateRange: getField('eventDateRange', ['Event Date Range', 'event date range', 'Date Range', 'dateRange']),
                 slug: getField('slug'),
                 authorName: getField('authorName', ['Author Name', 'Author', 'author', 'contributor', 'contributor name']),
                 publishedDate: (function() {
@@ -11716,7 +11747,7 @@ function updateTabsStickyStackStuck() {
                     'accordionPanel4Title', 'accordionPanel4Content',
                     'amenities', 'featured', 'private', 'googleMapsUrl',
                     'isEvent', 'eventStartDate', 'eventEndDate', 'eventStartTime', 'eventEndTime',
-                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName'
+                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName', 'eventDateRange'
                 ];
                 
                 standardFields.forEach(field => allFields.add(field));
@@ -11824,7 +11855,7 @@ function updateTabsStickyStackStuck() {
                     'accordionPanel4Title', 'accordionPanel4Content',
                     'amenities', 'featured', 'private', 'googleMapsUrl',
                     'isEvent', 'eventStartDate', 'eventEndDate', 'eventStartTime', 'eventEndTime',
-                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName'
+                    'eventAllDay', 'eventTicketUrl', 'eventCost', 'eventVenueName', 'eventDateRange'
                 ];
                 
                 standardFields.forEach(field => allFields.add(field));
