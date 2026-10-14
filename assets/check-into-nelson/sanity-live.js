@@ -459,10 +459,19 @@
     return encodeURIComponent('*[_id == "campaign"][0]{' + projection + '}')
   }
 
+  function loadCampaign() {
+    return fetch('/api/campaign')
+      .then(function (res) { return res.ok ? res.json() : null })
+      .then(function (json) {
+        if (json && json.result) return json
+        return fetch('https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query())
+          .then(function (res) { return res.ok ? res.json() : null })
+      })
+  }
+
   if (!PROJECT_ID) return
 
-  fetch('https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query())
-    .then(function (res) { return res.ok ? res.json() : null })
+  loadCampaign()
     .then(function (json) {
       if (json && json.result) applyCampaign(json.result)
       else markFields()
