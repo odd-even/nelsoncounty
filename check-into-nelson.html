@@ -32,6 +32,7 @@
     gtag("js", new Date());
     (function () {
       var params = new URLSearchParams(window.location.search);
+      window.__cinSanityPreview = params.get("sanity-preview") === "1";
       var isEmbed = params.get("embed") === "1" || params.get("embed") === "true";
       if (isEmbed) document.documentElement.classList.add("is-embed");
       gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
@@ -10061,6 +10062,7 @@
 
       function planToSearchParams(plan) {
         var params = new URLSearchParams();
+        if (window.__cinSanityPreview) params.set("sanity-preview", "1");
         params.set("start", plan.start);
         if (plan.nights && plan.nights !== 2) params.set("nights", String(plan.nights));
         if (plan.stay && plan.stay !== "farmhouse") params.set("stay", plan.stay);
@@ -13381,5 +13383,10 @@
     };
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ&callback=initItineraryMap" async defer></script>
+  <script>
+    window.CHECKIN_SANITY_PROJECT_ID = "ccbigluo";
+    window.CHECKIN_SANITY_DATASET = "production";
+  </script>
+  <script src="assets/check-into-nelson/sanity-live.js?v=20261014a"></script>
 </body>
 </html>

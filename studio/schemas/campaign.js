@@ -12,6 +12,7 @@ export const campaignType = defineType({
     {name: 'experiences', title: 'Experiences'},
     {name: 'itinerary', title: 'Itinerary'},
     {name: 'passport', title: 'Passport'},
+    {name: 'highlights', title: 'Highlights'},
     {name: 'offers', title: 'Offers'},
     {name: 'closing', title: 'Closing'},
   ],
@@ -130,6 +131,14 @@ export const campaignType = defineType({
       type: 'string',
       group: 'experiences',
     }),
+    defineField({
+      name: 'partnerChips',
+      title: 'Partner strip',
+      type: 'array',
+      of: [{type: 'placeCard'}],
+      group: 'experiences',
+      description: 'Logos and names in the partner strip. Description is unused here.',
+    }),
 
     defineField({
       name: 'introEyebrow',
@@ -156,6 +165,14 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'intro',
+    }),
+    defineField({
+      name: 'introCards',
+      title: 'Intro cards',
+      type: 'array',
+      of: [{type: 'placeCard'}],
+      group: 'intro',
+      description: 'The scrolling “things to do” cards under the intro. Order matches the page.',
     }),
 
     defineField({
@@ -210,6 +227,27 @@ export const campaignType = defineType({
       type: 'array',
       of: [{type: 'partner'}],
       group: 'experiences',
+    }),
+
+    defineField({
+      name: 'highlightsTitle',
+      title: 'Highlights title',
+      type: 'string',
+      group: 'highlights',
+    }),
+    defineField({
+      name: 'highlightsCta',
+      title: 'Highlights button',
+      type: 'cta',
+      group: 'highlights',
+    }),
+    defineField({
+      name: 'highlights',
+      title: 'Highlight tiles',
+      type: 'array',
+      of: [{type: 'placeCard'}],
+      group: 'highlights',
+      description: 'The photo grid. Order matches the page.',
     }),
 
     defineField({
