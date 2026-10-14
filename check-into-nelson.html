@@ -38,26 +38,84 @@
     })();
   </script>
   <script>
-    // Send data-track clicks to GA4 (exit_origin uses a richer event elsewhere).
+    // Send clicks to GA4 and Vercel Web Analytics.
+    // Named actions use data-track. Other links and buttons are recorded as "click".
+    // exit_origin is sent from the travel-from handler so the origin is included.
     (function () {
+      function vercelEventName(name) {
+        var cleaned = String(name || "click").replace(/[^A-Za-z0-9_ -]/g, "").trim();
+        if (!/^[A-Za-z]/.test(cleaned)) cleaned = "click";
+        return cleaned.slice(0, 255);
+      }
+
+      function vercelValue(value) {
+        if (typeof value === "boolean" || typeof value === "number") return value;
+        if (value == null) return "";
+        return String(value).replace(/\s+/g, " ").trim().slice(0, 255);
+      }
+
+      window.cinTrackVercel = function (name, data) {
+        if (typeof window.va !== "function") return;
+        var safe = {};
+        var source = data || {};
+        Object.keys(source).forEach(function (key) {
+          var cleanKey = String(key || "").replace(/[^A-Za-z0-9_]/g, "").slice(0, 255);
+          var value = vercelValue(source[key]);
+          if (!cleanKey || value === "") return;
+          safe[cleanKey] = value;
+        });
+        try {
+          window.va("event", { name: vercelEventName(name), data: safe });
+        } catch (err) {}
+      };
+
+      function linkHref(el) {
+        if (!el || el.tagName !== "A" || !el.href) return "";
+        try {
+          var url = new URL(el.href, window.location.href);
+          return (url.origin + url.pathname).slice(0, 255);
+        } catch (err) {
+          return "";
+        }
+      }
+
       document.addEventListener("click", function (e) {
-        var el = e.target && e.target.closest && e.target.closest("[data-track]");
-        if (!el || typeof window.gtag !== "function") return;
-        var name = el.getAttribute("data-track");
+        var target = e.target;
+        if (!target || !target.closest) return;
+        var tracked = target.closest("[data-track]");
+        var el = tracked || target.closest("a, button, summary, [role='button'], [role='tab'], [role='option']");
+        if (!el) return;
+        var name = tracked ? tracked.getAttribute("data-track") : "click";
         if (!name || name === "exit_origin") return;
-        var payload = { event_category: "check_into_nelson" };
+
         var partner = el.getAttribute("data-partner");
         var highlight = el.getAttribute("data-highlight");
-        if (partner) payload.partner = partner;
-        if (highlight) payload.highlight = highlight;
-        if (el.tagName === "A" && el.href) {
-          payload.link_url = el.href;
+        var href = linkHref(el);
+        var label = vercelValue(el.getAttribute("aria-label") || el.id || el.textContent);
+        var outbound = false;
+        if (href) {
           try {
-            var host = new URL(el.href, window.location.href).hostname;
-            if (host && host !== window.location.hostname) payload.outbound = true;
+            outbound = new URL(href).hostname !== window.location.hostname;
           } catch (err) {}
         }
-        window.gtag("event", name, payload);
+
+        if (typeof window.gtag === "function") {
+          var payload = { event_category: "check_into_nelson" };
+          if (partner) payload.partner = partner;
+          if (highlight) payload.highlight = highlight;
+          if (href) payload.link_url = href;
+          if (outbound) payload.outbound = true;
+          if (!tracked && label) payload.click_label = label;
+          window.gtag("event", name, payload);
+        }
+
+        window.cinTrackVercel(name, {
+          partner: partner,
+          highlight: highlight,
+          href: href,
+          outbound: outbound,
+          label: label
+        });
       }, true);
     })();
   </script>
@@ -12482,6 +12540,14 @@
               });
             }
           } catch (err3) {}
+          try {
+            if (typeof window.cinTrackVercel === "function") {
+              window.cinTrackVercel("cin_travel_from", {
+                travel_from: origin,
+                travel_from_custom: customLabel || ""
+              });
+            }
+          } catch (err3b) {}
           try {
             fetch("/api/travel-from", {
               method: "POST",

@@ -1680,8 +1680,8 @@ function saveListing(sheet, listing) {
         rowData.push(listing.eventCost || '');
       } else if (['eventvenuename', 'event venue name'].includes(headerLower)) {
         rowData.push(listing.eventVenueName || '');
-      } else if (['eventdaterange', 'event date range'].includes(headerLower)) {
-        rowData.push(listing.eventDateRange || '');
+      } else if (['eventdaterange', 'event date range', 'daterange', 'date range'].includes(headerLower)) {
+        rowData.push(sheetEventDateRangeText(listing));
       } else if (['customhtml', 'custom html', 'customhtml'].includes(headerLower)) {
         rowData.push(listing.customHtml || '');
       } else if (['category'].includes(headerLower)) {
@@ -1748,6 +1748,7 @@ function saveListing(sheet, listing) {
     });
 
     if (rowIndex > 0) {
+      formatEventDateRangeColumnAsText(sheet, headers, rowIndex, 1);
       sheet.getRange(rowIndex, 1, 1, rowData.length).setValues([rowData]);
       
       // Format date columns for this row
@@ -1760,10 +1761,9 @@ function saveListing(sheet, listing) {
         }
       });
     } else {
-      sheet.appendRow(rowData);
-      
-      // Format date columns for the newly appended row
-      const newRowIndex = sheet.getLastRow();
+      const newRowIndex = sheet.getLastRow() + 1;
+      formatEventDateRangeColumnAsText(sheet, headers, newRowIndex, 1);
+      sheet.getRange(newRowIndex, 1, 1, rowData.length).setValues([rowData]);
       headers.forEach((header, colIndex) => {
         const headerLower = String(header).toLowerCase().trim();
         if (['publisheddate', 'published date', 'publish date', 'created date'].includes(headerLower) ||
@@ -1837,6 +1837,46 @@ const CANONICAL_LISTING_HEADERS = [
   'eventDateRange'
 ];
 
+function eventDateRangeColumnIndex(headers) {
+  if (!headers || !headers.length) return -1;
+  for (var i = 0; i < headers.length; i++) {
+    var key = String(headers[i] || '').toLowerCase().replace(/\s+/g, '');
+    if (key === 'eventdaterange' || key === 'daterange') return i;
+  }
+  return -1;
+}
+
+// Keep labels like "Nov 8" as text. Sheets otherwise stores that single day as a serial (46333).
+function formatEventDateRangeColumnAsText(sheet, headers, startRow, rowCount) {
+  var index = eventDateRangeColumnIndex(headers);
+  if (index < 0 || !startRow) return;
+  var count = rowCount > 0 ? rowCount : 1;
+  sheet.getRange(startRow, index + 1, count, 1).setNumberFormat('@');
+}
+
+function formatSheetDayLabel(value) {
+  if (value == null || value === '') return '';
+  var date = value instanceof Date ? value : null;
+  if (!date) {
+    var parsed = parseDateString(String(value));
+    if (parsed instanceof Date && !isNaN(parsed.getTime())) date = parsed;
+  }
+  if (!date || isNaN(date.getTime())) return '';
+  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return months[date.getMonth()] + ' ' + date.getDate();
+}
+
+function sheetEventDateRangeText(listing) {
+  var raw = listing && listing.eventDateRange != null ? listing.eventDateRange : '';
+  var text = raw instanceof Date ? '' : String(raw == null ? '' : raw).trim();
+  if (text && !/^\d+(\.\d+)?$/.test(text)) return text;
+  if (!listing) return '';
+  var start = formatSheetDayLabel(listing.eventStartDate);
+  var end = formatSheetDayLabel(listing.eventEndDate);
+  if (start && end && start !== end) return start + ' - ' + end;
+  return start || end || '';
+}
+
 // Helper function to convert date string (YYYY-MM-DD) to Date object
 function parseDateString(dateStr) {
   if (!dateStr || typeof dateStr !== 'string') {
@@ -1887,7 +1927,7 @@ function replaceAllListings(sheet, listings) {
       return { success: true, message: 'Sheet cleared' };
     }
 
-    const toCsvValue = function(value, headerKey) {
+    const toCsvValue = function(value, headerKey, listing) {
       if (headerKey === 'amenities') {
         if (Array.isArray(value)) {
           return value.join(', ');
@@ -1902,6 +1942,9 @@ function replaceAllListings(sheet, listings) {
       }
       if (headerKey === 'isEvent' || headerKey === 'eventAllDay') {
         return value ? 'TRUE' : 'FALSE';
+      }
+      if (headerKey === 'eventDateRange') {
+        return sheetEventDateRangeText(listing);
       }
       // Convert date strings to Date objects for proper formatting
       if (headerKey === 'publishedDate' || headerKey === 'modifiedDate' ||
@@ -1935,11 +1978,12 @@ function replaceAllListings(sheet, listings) {
           Logger.log('   Available keys: ' + Object.keys(listing).filter(k => k.toLowerCase().includes('accordion')).join(', '));
         }
 
-        return toCsvValue(value, normalizedKey);
+        return toCsvValue(value, normalizedKey, listing);
       });
     });
 
     if (rows.length > 0) {
+      formatEventDateRangeColumnAsText(sheet, headers, 2, rows.length);
       sheet.getRange(2, 1, rows.length, headers.length).setValues(rows);
       
       // Format date columns to display as dates only (no time)
