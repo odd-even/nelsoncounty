@@ -459,23 +459,6 @@
     return encodeURIComponent('*[_id == "campaign"][0]{' + projection + '}')
   }
 
-  function inStudioPreview() {
-    if (window.__cinSanityPreview) return true
-    if (/[?&]sanity-preview=1(?:&|$)/.test(location.search)) return true
-    return document.referrer.indexOf('sanity.studio') !== -1 || document.referrer.indexOf('www.sanity.io') !== -1
-  }
-
-  function enablePreview() {
-    if (!inStudioPreview() || window.__cinVisualEditing) return
-    window.__cinVisualEditing = true
-    var script = document.createElement('script')
-    script.src = 'https://core.sanity-cdn.com/bridge.js'
-    script.async = true
-    script.type = 'module'
-    script.setAttribute('data-sanity-core', '')
-    document.head.appendChild(script)
-  }
-
   if (!PROJECT_ID) return
 
   fetch('https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query())
@@ -483,10 +466,8 @@
     .then(function (json) {
       if (json && json.result) applyCampaign(json.result)
       else markFields()
-      enablePreview()
     })
     .catch(function () {
       markFields()
-      enablePreview()
     })
 })()

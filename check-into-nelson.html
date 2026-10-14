@@ -38,6 +38,15 @@
       gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
     })();
   </script>
+  <script type="module">
+    if (window.__cinSanityPreview) {
+      import("https://esm.sh/@sanity/visual-editing@6.1.3").then(function (mod) {
+        mod.enableVisualEditing({ zIndex: 100000 });
+      }).catch(function (err) {
+        console.error("Check Into Nelson visual editing failed to start", err);
+      });
+    }
+  </script>
   <script>
     // Send clicks to GA4 and Vercel Web Analytics.
     // Named actions use data-track. Other links and buttons are recorded as "click".
