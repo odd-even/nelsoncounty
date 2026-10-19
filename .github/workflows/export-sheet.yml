@@ -2,9 +2,10 @@ name: Export Google Sheet to data/listings.json
 
 on:
   schedule:
-    # Backup snapshot for SEO. GitHub often runs this hours late.
-    # Visitors refresh from /api/listings after the snapshot paints.
-    - cron: "*/5 * * * *"
+    # SEO snapshot only. A */5 cron gets delayed for hours on GitHub, so this
+    # runs once an hour at :17. Visitors do not wait on it; they refresh from
+    # /api/listings after the snapshot paints.
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     branches:
