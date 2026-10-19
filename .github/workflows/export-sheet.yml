@@ -2,9 +2,8 @@ name: Export Google Sheet to data/listings.json
 
 on:
   schedule:
-    # Every 5 minutes. GitHub may delay schedules during heavy load,
-    # and Google's published-CSV cache also adds a few minutes of lag,
-    # so real-world freshness ends up in the ~3-8 minute range.
+    # Backup snapshot for SEO. GitHub often runs this hours late.
+    # Visitors refresh from /api/listings after the snapshot paints.
     - cron: "*/5 * * * *"
   workflow_dispatch:
   push:

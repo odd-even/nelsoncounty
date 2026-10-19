@@ -4656,11 +4656,13 @@ const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu1ukNV
 // Fetch adventure data from Google Sheets (or GitHub as fallback)
 const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/odd-even/nelsoncounty/main/data/config.json';
 
-// Static JSON exported from the Google Sheet by the export-sheet GitHub Action.
-// Primary data source at runtime: served same-origin from GitHub Pages, no CORS,
-// no Sheets call, and updated every ~15 min by the scheduled workflow.
-// Resolved relative to the document URL (works under file:// and https://).
+// Static JSON exported from the Google Sheet. First paint and JSON-LD use this
+// same-origin file so the embedded directory stays crawlable.
 const LISTINGS_JSON_URL = 'data/listings.json';
+
+// Live sheet feed. Loaded after the snapshot so visitors see sheet edits within
+// about a minute, without waiting on the GitHub Actions export.
+const LIVE_LISTINGS_URL = 'https://visit.nelsoncounty.com/api/listings';
 
 console.log('🔍 Adventure Directory Loading...');
 console.log('📍 Google Sheet URL:', GOOGLE_SHEET_CSV_URL);
@@ -7141,6 +7143,65 @@ function handleUrlParameters() {
     }
 }
 
+// Live sheet feed (same row shape as listings.json).
+function loadDataFromLiveListings() {
+    if (!LIVE_LISTINGS_URL) {
+        return Promise.reject(new Error('LIVE_LISTINGS_URL not configured'));
+    }
+    console.log('📡 Attempting to load live listings:', LIVE_LISTINGS_URL);
+    return fetch(LIVE_LISTINGS_URL, {
+        method: 'GET',
+        cache: 'default',
+        credentials: 'omit'
+    })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('live listings fetch failed: ' + response.status + ' ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(function(payload) {
+            return listingsPayloadToData(payload, 'live sheet');
+        });
+}
+
+function listingsPayloadToData(payload, sourceLabel) {
+    const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
+    if (!Array.isArray(rows) || rows.length === 0) {
+        throw new Error(sourceLabel + ' contained no rows');
+    }
+    const generatedAt = (payload && payload.generatedAt) || 'unknown';
+    console.log('✅ Loaded', rows.length, 'rows from', sourceLabel, '(generated', generatedAt + ')');
+
+    const listings = rows.map(function(row, index) { return mapCSVRowToListing(row, index); });
+    const publicListings = listings.filter(isPublicActiveListing);
+    const hiddenCount = listings.length - publicListings.length;
+    if (hiddenCount > 0) {
+        console.log('🔒 Filtered out', hiddenCount, 'private/past listing(s)');
+    }
+    return {
+        listings: publicListings,
+        filterOptions: extractFilterOptions(publicListings),
+        _source: sourceLabel + ' (generated ' + generatedAt + ')'
+    };
+}
+
+// Compare the fields the directory actually renders. Sheet date columns are
+// left out so a timezone shift does not force a second paint.
+function listingsFingerprint(listings) {
+    return (listings || []).map(function(listing) {
+        return [
+            listing.slug, listing.name, listing.type, listing.category, listing.area,
+            listing.description, listing.detailedDescription,
+            listing.image1, listing.image1Desc, listing.image2, listing.image2Desc,
+            listing.image3, listing.image3Desc, listing.website, listing.phone,
+            listing.address, listing.latitude, listing.longitude, listing.featured,
+            listing.isEvent, listing.eventStartDate, listing.eventEndDate,
+            Array.isArray(listing.amenities) ? listing.amenities.join('|') : ''
+        ].join('\u001f');
+    }).sort().join('\u001e');
+}
+
 // Function to load data from the static JSON exported by GitHub Actions.
 // The file is an array of row objects with the same shape that parseCSV()
 // produces in the browser, so we run the same mapCSVRowToListing pipeline.
@@ -7165,30 +7226,7 @@ function loadDataFromListingsJSON() {
             return response.json();
         })
         .then(function(payload) {
-            // Accept either { rows: [...] } (new exporter) or a bare array
-            // (in case the file ever gets simplified manually).
-            const rows = Array.isArray(payload) ? payload : (payload && payload.rows) || [];
-            if (!Array.isArray(rows) || rows.length === 0) {
-                throw new Error('listings.json contained no rows');
-            }
-            console.log('✅ Loaded', rows.length, 'rows from static listings.json (generated', (payload && payload.generatedAt) || 'unknown', ')');
-
-            const listings = rows.map(function(row, index) { return mapCSVRowToListing(row, index); });
-
-            const publicListings = listings.filter(isPublicActiveListing);
-
-            const hiddenCount = listings.length - publicListings.length;
-            if (hiddenCount > 0) {
-                console.log('🔒 Filtered out', hiddenCount, 'private/past listing(s)');
-            }
-
-            const filterOptions = extractFilterOptions(publicListings);
-            const generatedAt = (payload && payload.generatedAt) || 'unknown';
-            return {
-                listings: publicListings,
-                filterOptions: filterOptions,
-                _source: 'data/listings.json (generated ' + generatedAt + ')'
-            };
+            return listingsPayloadToData(payload, 'data/listings.json');
         });
 }
 
@@ -7436,8 +7474,9 @@ function loadDataFromGitHub() {
         });
 }
 
-// Load data: Try static listings.json first (fast, same-origin, no Sheets call),
-// then Google Sheets, then GitHub config.json, then embedded fallback.
+// Load data: same-origin listings.json first (SEO / JSON-LD), then the published
+// Sheet CSV, then GitHub config.json, then embedded fallback.
+// After that first paint, a live feed refreshes the grid when the sheet is newer.
 loadDataFromListingsJSON()
     .catch(function(err) {
         console.warn('⚠️ Static listings.json failed, falling back to Google Sheets:', err && err.message);
@@ -7757,6 +7796,28 @@ loadDataFromListingsJSON()
         // Start processing immediately with defaults (categories will update when they load)
         // This will render once, and when categories load, they'll just update the buttons
         processCategoriesAndRender();
+
+        // Snapshot is on screen. Pull the live sheet and repaint only when public
+        // listing content differs, then rewrite JSON-LD to match.
+        if (loadedData._source && loadedData._source.indexOf('listings.json') !== -1) {
+            loadDataFromLiveListings()
+                .then(function(live) {
+                    if (!live || !live.listings) return;
+                    if (listingsFingerprint(live.listings) === listingsFingerprint(data.listings)) {
+                        console.log('📡 Live sheet matches listings.json');
+                        return;
+                    }
+                    console.log('📡 Live sheet differs from listings.json — refreshing directory');
+                    data = {
+                        listings: live.listings,
+                        filterOptions: live.filterOptions || extractFilterOptions(live.listings)
+                    };
+                    processCategoriesAndRender(true);
+                })
+                .catch(function(err) {
+                    console.warn('⚠️ Live listings refresh skipped:', err && err.message);
+                });
+        }
         
         // Set up debounced search input handlers
         setTimeout(function() {
