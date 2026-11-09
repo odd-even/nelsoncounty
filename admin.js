@@ -6244,9 +6244,6 @@ function updateTabsStickyStackStuck() {
                     addressInput.style.display = 'block';
                 }
             }
-            if (typeof syncListingAddressTypeUi === 'function') {
-                syncListingAddressTypeUi();
-            }
             // Populate latitude/longitude if available
             const latInput = document.getElementById('listingLatitude');
             const lngInput = document.getElementById('listingLongitude');
@@ -6273,12 +6270,18 @@ function updateTabsStickyStackStuck() {
             if (directionsInput) {
                 if (listing.directionsLink && listing.directionsLink.trim()) {
                     directionsInput.value = listing.directionsLink;
+                } else if (listing.googleMapsUrl && listing.googleMapsUrl.trim()) {
+                    directionsInput.value = listing.googleMapsUrl;
                 } else if (listing.address && listing.address.trim() && listing.address !== bookingSiteText) {
                     const encodedAddress = encodeURIComponent(listing.address.trim());
                     directionsInput.value = 'https://www.google.com/maps/search/?api=1&query=' + encodedAddress;
                 } else {
                     directionsInput.value = '';
                 }
+            }
+            // Sync after directions/maps are loaded so address is not forced when a link exists.
+            if (typeof syncListingAddressTypeUi === 'function') {
+                syncListingAddressTypeUi();
             }
             const videoLinkInput = document.getElementById('listingVideoLink');
             if (videoLinkInput) videoLinkInput.value = listing.videoLink || '';
@@ -6746,13 +6749,16 @@ function updateTabsStickyStackStuck() {
                 return el ? el.checked : false;
             };
 
-            // Address is required only for "Full Address" mode (not booking-site).
+            // Address is required only for "Full Address" mode when there is no maps link.
             const addressTypeEl = document.getElementById('listingAddressType');
             const addressType = addressTypeEl ? addressTypeEl.value : 'full';
             if (addressType !== 'booking') {
                 const addressVal = String(getValue('listingAddress') || '').trim();
-                if (!addressVal) {
-                    alert('⚠️ Please enter an address, or choose "Full address available on booking site".');
+                const mapsLinkVal = String(
+                    getValue('listingDirectionsLink') || getValue('listingGoogleMapsUrl') || ''
+                ).trim();
+                if (!addressVal && !mapsLinkVal) {
+                    alert('⚠️ Please enter an address, a directions/maps link, or choose "Full address available on booking site".');
                     const addressInput = document.getElementById('listingAddress');
                     if (addressInput) {
                         addressInput.focus();
@@ -7407,22 +7413,45 @@ function updateTabsStickyStackStuck() {
         }
         
         // Keep address required state in sync with Full vs booking-site mode.
+        // Address is optional when a directions/maps link is already present.
         // Hidden + required fields silently block Save (no visible validation UI).
+        function listingHasMapsOrDirectionsLink() {
+            const directions = document.getElementById('listingDirectionsLink');
+            const maps = document.getElementById('listingGoogleMapsUrl');
+            const directionsVal = directions && String(directions.value || '').trim();
+            const mapsVal = maps && String(maps.value || '').trim();
+            return !!(directionsVal || mapsVal);
+        }
+
         function syncListingAddressTypeUi() {
             const addressTypeSelect = document.getElementById('listingAddressType');
             const addressInput = document.getElementById('listingAddress');
+            const addressLabel = document.querySelector('label[for="listingAddress"]');
             if (!addressTypeSelect || !addressInput) return;
-            if (addressTypeSelect.value === 'booking') {
+            const isBooking = addressTypeSelect.value === 'booking';
+            const hasMapsLink = listingHasMapsOrDirectionsLink();
+            const requireAddress = !isBooking && !hasMapsLink;
+
+            if (isBooking) {
                 addressInput.style.display = 'none';
-                addressInput.required = false;
-                addressInput.removeAttribute('required');
             } else {
                 addressInput.style.display = 'block';
+            }
+
+            if (requireAddress) {
                 addressInput.required = true;
                 addressInput.setAttribute('required', '');
+            } else {
+                addressInput.required = false;
+                addressInput.removeAttribute('required');
+            }
+
+            if (addressLabel) {
+                addressLabel.textContent = requireAddress ? 'Address *' : 'Address';
             }
         }
         window.syncListingAddressTypeUi = syncListingAddressTypeUi;
+        window.listingHasMapsOrDirectionsLink = listingHasMapsOrDirectionsLink;
 
         // Event mode: show/hide event fields and only require start date while on.
         // Place listing fields are unchanged; this is additive only.
@@ -7590,6 +7619,16 @@ function updateTabsStickyStackStuck() {
                         addressInput.value = '';
                         if (directionsLinkInput) directionsLinkInput.value = '';
                     }
+                    syncListingAddressTypeUi();
+                });
+            }
+            // Maps/directions link makes street address optional — keep required state live.
+            if (directionsLinkInput && !directionsLinkInput.dataset.boundMapsLinkChange) {
+                directionsLinkInput.dataset.boundMapsLinkChange = '1';
+                directionsLinkInput.addEventListener('input', function() {
+                    syncListingAddressTypeUi();
+                });
+                directionsLinkInput.addEventListener('change', function() {
                     syncListingAddressTypeUi();
                 });
             }
