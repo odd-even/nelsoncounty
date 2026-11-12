@@ -359,6 +359,10 @@ function sanitizeListing(listing) {
     if (listing.eventEndDate && typeof listing.eventEndDate === 'string') {
         listing.eventEndDate = normalizeDate(listing.eventEndDate);
     }
+    // Single-day events must still store an end date (same as start).
+    if (listing.eventStartDate && !listing.eventEndDate) {
+        listing.eventEndDate = listing.eventStartDate;
+    }
     if ('isEvent' in listing) {
         listing.isEvent = parseListingBool(listing.isEvent);
     }
@@ -6299,9 +6303,15 @@ function updateTabsStickyStackStuck() {
             const isEventInput = document.getElementById('listingIsEvent');
             if (isEventInput) isEventInput.checked = parseListingBool(listing.isEvent);
             const eventStartDateInput = document.getElementById('listingEventStartDate');
-            if (eventStartDateInput) eventStartDateInput.value = listing.eventStartDate ? normalizeDate(listing.eventStartDate) : '';
+            const startDay = listing.eventStartDate ? normalizeDate(listing.eventStartDate) : '';
+            if (eventStartDateInput) eventStartDateInput.value = startDay;
             const eventEndDateInput = document.getElementById('listingEventEndDate');
-            if (eventEndDateInput) eventEndDateInput.value = listing.eventEndDate ? normalizeDate(listing.eventEndDate) : '';
+            const endDay = listing.eventEndDate ? normalizeDate(listing.eventEndDate) : '';
+            if (eventEndDateInput) eventEndDateInput.value = endDay || startDay;
+            const eventSingleDayInput = document.getElementById('listingEventSingleDay');
+            if (eventSingleDayInput) {
+                eventSingleDayInput.checked = !!(startDay && (!endDay || endDay === startDay));
+            }
             const eventStartTimeInput = document.getElementById('listingEventStartTime');
             if (eventStartTimeInput) eventStartTimeInput.value = listing.eventStartTime || '';
             const eventEndTimeInput = document.getElementById('listingEventEndTime');
@@ -6770,6 +6780,9 @@ function updateTabsStickyStackStuck() {
 
             const isEvent = getChecked('listingIsEvent');
             if (isEvent) {
+                if (typeof syncListingEventSingleDayDates === 'function') {
+                    syncListingEventSingleDayDates();
+                }
                 const eventStartDateVal = String(getValue('listingEventStartDate') || '').trim();
                 if (!eventStartDateVal) {
                     alert('⚠️ Please enter an event start date, or turn off Event mode.');
@@ -6777,6 +6790,21 @@ function updateTabsStickyStackStuck() {
                     if (eventStartDateInput) {
                         eventStartDateInput.focus();
                         eventStartDateInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                    }
+                    return;
+                }
+                let eventEndDateVal = String(getValue('listingEventEndDate') || '').trim();
+                if (!eventEndDateVal || getChecked('listingEventSingleDay')) {
+                    const endInput = document.getElementById('listingEventEndDate');
+                    if (endInput) endInput.value = eventStartDateVal;
+                    eventEndDateVal = eventStartDateVal;
+                }
+                if (!eventEndDateVal) {
+                    alert('⚠️ Please enter an event end date, or turn on Single day.');
+                    const eventEndDateInput = document.getElementById('listingEventEndDate');
+                    if (eventEndDateInput) {
+                        eventEndDateInput.focus();
+                        eventEndDateInput.scrollIntoView({ block: 'center', behavior: 'smooth' });
                     }
                     return;
                 }
@@ -6950,7 +6978,11 @@ function updateTabsStickyStackStuck() {
                 private: getChecked('listingPrivate'),
                 isEvent: isEvent,
                 eventStartDate: isEvent ? getValue('listingEventStartDate') : '',
-                eventEndDate: isEvent ? getValue('listingEventEndDate') : '',
+                eventEndDate: isEvent
+                    ? (getChecked('listingEventSingleDay')
+                        ? getValue('listingEventStartDate')
+                        : (getValue('listingEventEndDate') || getValue('listingEventStartDate')))
+                    : '',
                 eventStartTime: isEvent && !getChecked('listingEventAllDay') ? getValue('listingEventStartTime') : '',
                 eventEndTime: isEvent && !getChecked('listingEventAllDay') ? getValue('listingEventEndTime') : '',
                 eventAllDay: isEvent ? getChecked('listingEventAllDay') : false,
@@ -7455,10 +7487,33 @@ function updateTabsStickyStackStuck() {
 
         // Event mode: show/hide event fields and only require start date while on.
         // Place listing fields are unchanged; this is additive only.
+        function syncListingEventSingleDayDates() {
+            const singleDay = document.getElementById('listingEventSingleDay');
+            const startDate = document.getElementById('listingEventStartDate');
+            const endDate = document.getElementById('listingEventEndDate');
+            const endHint = document.getElementById('listingEventEndDateHint');
+            if (!singleDay || !endDate) return;
+
+            const singleDayOn = !!singleDay.checked;
+            if (singleDayOn && startDate && startDate.value) {
+                endDate.value = startDate.value;
+            }
+            // Disabled keeps the picker closed; value is still readable for save.
+            endDate.disabled = singleDayOn;
+            endDate.readOnly = singleDayOn;
+            if (endHint) {
+                endHint.textContent = singleDayOn
+                    ? 'Matches the start date while Single day is on.'
+                    : 'Required. Use Single day to match the start date.';
+            }
+        }
+        window.syncListingEventSingleDayDates = syncListingEventSingleDayDates;
+
         function syncListingEventModeUi() {
             const toggle = document.getElementById('listingIsEvent');
             const section = document.getElementById('listingEventSection');
             const startDate = document.getElementById('listingEventStartDate');
+            const endDate = document.getElementById('listingEventEndDate');
             const allDay = document.getElementById('listingEventAllDay');
             const startTime = document.getElementById('listingEventStartTime');
             const endTime = document.getElementById('listingEventEndTime');
@@ -7519,6 +7574,17 @@ function updateTabsStickyStackStuck() {
                     startDate.removeAttribute('required');
                 }
             }
+            if (endDate) {
+                if (on) {
+                    endDate.required = true;
+                    endDate.setAttribute('required', '');
+                } else {
+                    endDate.required = false;
+                    endDate.removeAttribute('required');
+                }
+            }
+
+            syncListingEventSingleDayDates();
 
             const allDayOn = !!(allDay && allDay.checked);
             if (timesRow) {
@@ -7542,12 +7608,26 @@ function updateTabsStickyStackStuck() {
             if (toggle.checked !== wantEvent) {
                 toggle.checked = wantEvent;
             }
+            // New events default to single-day so start/end both get filled.
+            if (wantEvent) {
+                const editingId = document.getElementById('editingId');
+                const isEditing = !!(editingId && String(editingId.value || '').trim());
+                const singleDay = document.getElementById('listingEventSingleDay');
+                const startDate = document.getElementById('listingEventStartDate');
+                const endDate = document.getElementById('listingEventEndDate');
+                if (!isEditing && singleDay && !singleDay.checked) {
+                    const hasRange = !!(startDate && endDate && startDate.value && endDate.value && startDate.value !== endDate.value);
+                    if (!hasRange) singleDay.checked = true;
+                }
+            }
             syncListingEventModeUi();
         }
         window.setListingEntryMode = setListingEntryMode;
 
         (function bindListingEventModeControls() {
             const toggle = document.getElementById('listingIsEvent');
+            const singleDay = document.getElementById('listingEventSingleDay');
+            const startDate = document.getElementById('listingEventStartDate');
             const allDay = document.getElementById('listingEventAllDay');
             const listingBtn = document.getElementById('listingModeListingBtn');
             const eventBtn = document.getElementById('listingModeEventBtn');
@@ -7567,6 +7647,21 @@ function updateTabsStickyStackStuck() {
                 toggle.dataset.boundEventModeChange = '1';
                 toggle.addEventListener('change', function() {
                     syncListingEventModeUi();
+                });
+            }
+            if (singleDay && !singleDay.dataset.boundEventSingleDayChange) {
+                singleDay.dataset.boundEventSingleDayChange = '1';
+                singleDay.addEventListener('change', function() {
+                    syncListingEventSingleDayDates();
+                });
+            }
+            if (startDate && !startDate.dataset.boundEventStartDateChange) {
+                startDate.dataset.boundEventStartDateChange = '1';
+                startDate.addEventListener('change', function() {
+                    syncListingEventSingleDayDates();
+                });
+                startDate.addEventListener('input', function() {
+                    syncListingEventSingleDayDates();
                 });
             }
             if (allDay && !allDay.dataset.boundEventAllDayChange) {

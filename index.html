@@ -715,12 +715,19 @@
                                 <input type="date" id="listingEventStartDate" />
                             </div>
                             <div class="form-group">
-                                <label for="listingEventEndDate">End date</label>
+                                <label for="listingEventEndDate">End date *</label>
                                 <input type="date" id="listingEventEndDate" />
-                                <small class="form-hint">Leave blank for a single-day event.</small>
+                                <small class="form-hint" id="listingEventEndDateHint">Required. Use Single day to match the start date.</small>
                             </div>
                         </div>
                         <div class="listing-flags listing-flags--compact">
+                            <label class="listing-flag" for="listingEventSingleDay">
+                                <input type="checkbox" id="listingEventSingleDay" />
+                                <span class="listing-flag__ui">
+                                    <span class="listing-flag__title">Single day</span>
+                                    <span class="listing-flag__hint">Sets end date to the start date</span>
+                                </span>
+                            </label>
                             <label class="listing-flag" for="listingEventAllDay">
                                 <input type="checkbox" id="listingEventAllDay" />
                                 <span class="listing-flag__ui">
