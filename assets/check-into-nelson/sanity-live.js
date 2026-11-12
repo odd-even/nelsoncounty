@@ -89,9 +89,14 @@
     return listName + '[' + index + ']'
   }
 
+  var STUDIO_URL = window.CHECKIN_SANITY_STUDIO_URL || 'https://check-into-nelson.sanity.studio'
+
   function mark(el, path) {
-    if (!el || !path || el.getAttribute('data-sanity')) return
-    el.setAttribute('data-sanity', 'id=' + DOC_ID + ';type=campaign;path=' + path)
+    if (!el || !path) return
+    el.setAttribute(
+      'data-sanity',
+      'id=' + DOC_ID + ';type=campaign;path=' + path + ';base=' + encodeURIComponent(STUDIO_URL)
+    )
   }
 
   function applyCampaign(data) {
@@ -121,6 +126,9 @@
     setCta('.hero__main .btn--ghost', data.heroSecondaryCta)
     setText('.hero__promo-label', data.heroPromoLabel)
     if (data.heroPromoCopy) setText('.hero__promo-copy', data.heroPromoCopy)
+    if (data.heroPromoNote) setText('.hero__promo-note', data.heroPromoNote)
+    if (data.stickyPromoNoteShort) setHtml('.sticky-promo__note-short', data.stickyPromoNoteShort)
+    if (data.stickyPromoNoteLong) setHtml('.sticky-promo__note-long', data.stickyPromoNoteLong)
     if (data.heroPromoTitle) {
       var title = document.querySelector('.hero__promo-title')
       if (title) {
@@ -245,7 +253,10 @@
         if (partner.cta) {
           var primary = card.querySelector('.btn--dark')
           if (primary) {
-            primary.textContent = partner.cta.label
+            var partnerDiscount = partner.discount
+              ? ' <span class="btn__discount">' + escapeHtml(partner.discount) + '</span>'
+              : ''
+            primary.innerHTML = escapeHtml(partner.cta.label) + partnerDiscount
             if (partner.cta.href) primary.setAttribute('href', partner.cta.href)
             mark(primary, partnerPath + '.cta.label')
           }
@@ -264,6 +275,8 @@
     setText('#itinerary .eyebrow', data.itineraryEyebrow)
     setText('#itin-title', data.itineraryTitle)
     setText('#itinerary .itinerary__head .section-copy', data.itineraryCopy)
+    applyItineraryStays(data.itineraryStays, data.promoCode)
+    applyItinerarySips(data.itinerarySips, data.promoCode)
 
     setText('#passport .eyebrow', data.passportEyebrow)
     setText('#passport-title', data.passportTitle)
@@ -333,6 +346,56 @@
     markFields(data)
   }
 
+  function offerHtmlFromNote(note, code) {
+    if (!note) return ''
+    return escapeHtml(String(note)).replace(
+      /\{code\}/g,
+      '<span class="code-green">' + promoHtml(code) + '</span>'
+    )
+  }
+
+  function applyItineraryStays(items, promoCode) {
+    var opts = window.CIN_STAY_OPTIONS
+    if (!opts || !items || !items.length) return
+    items.forEach(function (item, index) {
+      if (!item || !item.key || !opts[item.key]) return
+      var target = opts[item.key]
+      if (item.title) target.title = item.title
+      var src = imageSrc(item)
+      if (src) target.image = src
+      if (item.bookHref) target.bookHref = item.bookHref
+      if (item.bookLabel) target.bookLabel = item.bookLabel
+      if (item.discount) target.discount = item.discount
+      if (item.partner) target.partner = item.partner
+      if (item.offerNote) target.offerHtml = offerHtmlFromNote(item.offerNote, promoCode)
+      mark(document.querySelector('[data-stay-option="' + item.key + '"] .stay-swap__name'), itemPath('itineraryStays', item, index) + '.title')
+    })
+    if (typeof window.applyStayChoice === 'function') {
+      window.applyStayChoice((typeof window.getSelectedStay === 'function' && window.getSelectedStay()) || 'farmhouse', true)
+    }
+  }
+
+  function applyItinerarySips(items, promoCode) {
+    var opts = window.CIN_SIP_OPTIONS
+    if (!opts || !items || !items.length) return
+    items.forEach(function (item, index) {
+      if (!item || !item.key || !opts[item.key]) return
+      var target = opts[item.key]
+      if (item.title) target.title = item.title
+      var src = imageSrc(item)
+      if (src) target.image = src
+      if (item.visitHref) target.visitHref = item.visitHref
+      if (item.visitLabel) target.visitLabel = item.visitLabel
+      target.discount = item.discount || ''
+      if (item.partner) target.partner = item.partner
+      if (item.offerNote) target.offerHtml = offerHtmlFromNote(item.offerNote, promoCode)
+      mark(document.querySelector('[data-sip-option="' + item.key + '"] .stay-choice__name'), itemPath('itinerarySips', item, index) + '.title')
+    })
+    if (typeof window.applySipChoice === 'function') {
+      window.applySipChoice((typeof window.getSelectedSip === 'function' && window.getSelectedSip()) || 'flyingfox', true)
+    }
+  }
+
   function applyPlaceCards(selector, items, listName) {
     if (!items || !items.length) return
     var nodes = Array.prototype.slice.call(document.querySelectorAll(selector))
@@ -368,6 +431,9 @@
     mark(document.querySelector('.hero__main .btn--light'), 'heroPrimaryCta.label')
     mark(document.querySelector('.hero__main .btn--ghost'), 'heroSecondaryCta.label')
     mark(document.querySelector('.hero__promo-copy'), 'heroPromoCopy')
+    mark(document.querySelector('.hero__promo-note'), 'heroPromoNote')
+    mark(document.querySelector('.sticky-promo__note-short'), 'stickyPromoNoteShort')
+    mark(document.querySelector('.sticky-promo__note-long'), 'stickyPromoNoteLong')
     mark(document.querySelector('.partner-strip__label'), 'partnersStripLabel')
     mark(document.querySelector('#about .section-title'), 'introTitle')
     mark(document.querySelector('#introCopy'), 'introCopy')
@@ -450,33 +516,48 @@
       '...',
       'heroSlides[]{_key,label,imageUrl,image{asset->{url}}}',
       'stays[]{_key,key,name,copy,offerNote,badge,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta}',
-      'partners[]{_key,key,name,role,badge,copy,offerNote,category,showInStrip,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta,secondaryCta}',
+      'partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta,secondaryCta}',
       'introCards[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}}',
       'partnerChips[]{_key,name,label,href,alt,imageUrl,image{asset->{url}}}',
       'highlights[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}}',
       'passportSteps[]{_key,title,copy}',
+      'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}}',
+      'itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}}',
     ].join(',')
     return encodeURIComponent('*[_id == "campaign"][0]{' + projection + '}')
   }
 
+  function campaignApiUrl() {
+    var preview = window.__cinSanityPreview ? '?sanity-preview=1' : ''
+    return '/api/campaign' + preview
+  }
+
   function loadCampaign() {
-    return fetch('/api/campaign')
+    return fetch(campaignApiUrl(), {credentials: 'same-origin', cache: 'no-store'})
       .then(function (res) { return res.ok ? res.json() : null })
       .then(function (json) {
         if (json && json.result) return json
-        return fetch('https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query())
-          .then(function (res) { return res.ok ? res.json() : null })
+        var perspective = window.__cinSanityPreview ? '&perspective=drafts' : ''
+        return fetch(
+          'https://' + PROJECT_ID + '.api.sanity.io/v' + API + '/data/query/' + DATASET + '?query=' + query() + perspective
+        ).then(function (res) { return res.ok ? res.json() : null })
       })
   }
 
+  function reloadCampaign() {
+    return loadCampaign()
+      .then(function (json) {
+        if (json && json.result) applyCampaign(json.result)
+        else markFields()
+      })
+      .catch(function () {
+        markFields()
+      })
+  }
+
+  window.__cinReloadCampaign = reloadCampaign
+
   if (!PROJECT_ID) return
 
-  loadCampaign()
-    .then(function (json) {
-      if (json && json.result) applyCampaign(json.result)
-      else markFields()
-    })
-    .catch(function () {
-      markFields()
-    })
+  reloadCampaign()
 })()

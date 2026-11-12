@@ -6,7 +6,7 @@ import {schemaTypes} from './schemas/index.js'
 import {deskStructure} from './deskStructure.js'
 import {projectId, dataset} from './project.js'
 
-const previewOrigin = 'https://visit.nelsoncounty.com'
+const previewOrigin = process.env.SANITY_STUDIO_PREVIEW_ORIGIN || 'https://visit.nelsoncounty.com'
 
 export default defineConfig({
   name: 'check-into-nelson',
@@ -14,15 +14,19 @@ export default defineConfig({
   projectId,
   dataset,
   plugins: [
-    structureTool({structure: deskStructure}),
     presentationTool({
-      title: 'Visual editor',
+      name: 'preview',
+      title: 'Preview',
       previewUrl: {
         origin: previewOrigin,
-        preview: '/?sanity-preview=1',
-        initial: previewOrigin + '/?sanity-preview=1',
+        preview: '/',
+        initial: '/',
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+          disable: '/api/draft-mode/disable',
+        },
       },
-      allowOrigins: [previewOrigin],
+      allowOrigins: [previewOrigin, 'http://127.0.0.1:8765', 'http://localhost:8765'],
       resolve: {
         mainDocuments: defineDocuments([
           {
@@ -37,7 +41,7 @@ export default defineConfig({
               locations: [
                 {
                   title: doc?.title || 'Check Into Nelson',
-                  href: '/?sanity-preview=1',
+                  href: '/',
                 },
               ],
             }),
@@ -45,6 +49,7 @@ export default defineConfig({
         },
       },
     }),
+    structureTool({structure: deskStructure}),
     visionTool({defaultApiVersion: '2024-10-01'}),
   ],
   schema: {

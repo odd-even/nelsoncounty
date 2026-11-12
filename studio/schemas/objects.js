@@ -82,9 +82,10 @@ export const partnerType = defineType({
     defineField({name: 'key', title: 'ID', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'role', title: 'Role line', type: 'string'}),
-    defineField({name: 'badge', title: 'Badge', type: 'string'}),
+    defineField({name: 'badge', title: 'Category badge', type: 'string', description: 'Pill on the photo, for example Sip or Create.'}),
+    defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'Shown on the button, for example 10% off.'}),
     defineField({name: 'copy', title: 'Description', type: 'text', rows: 4}),
-    defineField({name: 'offerNote', title: 'Offer note', type: 'string'}),
+    defineField({name: 'offerNote', title: 'Offer note', type: 'string', description: 'Shown next to the promo code, for example 10% off.'}),
     defineField({
       name: 'category',
       title: 'Category',
@@ -165,4 +166,66 @@ export const passportStepType = defineType({
     defineField({name: 'title', title: 'Title', type: 'string'}),
     defineField({name: 'copy', title: 'Copy', type: 'text', rows: 3}),
   ],
+})
+
+export const itineraryStayType = defineType({
+  name: 'itineraryStay',
+  title: 'Itinerary stay option',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'key',
+      title: 'ID',
+      type: 'string',
+      description: 'Must match the page key: farmhouse, backbone, indigo, or retreat.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
+    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
+    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    defineField({name: 'bookHref', title: 'Book link', type: 'url'}),
+    defineField({name: 'bookLabel', title: 'Book button label', type: 'string'}),
+    defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off.'}),
+    defineField({
+      name: 'offerNote',
+      title: 'Offer note',
+      type: 'string',
+      description: 'Use {code} where the promo code should appear.',
+    }),
+    defineField({name: 'partner', title: 'Tracking partner id', type: 'string'}),
+  ],
+  preview: {
+    select: {title: 'title', subtitle: 'discount', media: 'image'},
+  },
+})
+
+export const itinerarySipType = defineType({
+  name: 'itinerarySip',
+  title: 'Itinerary sip option',
+  type: 'object',
+  fields: [
+    defineField({
+      name: 'key',
+      title: 'ID',
+      type: 'string',
+      description: 'Must match the page key: flyingfox, backbone, or nelson29.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
+    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
+    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    defineField({name: 'visitHref', title: 'Visit link', type: 'url'}),
+    defineField({name: 'visitLabel', title: 'Visit button label', type: 'string'}),
+    defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off. Leave blank for no pill.'}),
+    defineField({
+      name: 'offerNote',
+      title: 'Offer note',
+      type: 'string',
+      description: 'Use {code} where the promo code should appear.',
+    }),
+    defineField({name: 'partner', title: 'Tracking partner id', type: 'string'}),
+  ],
+  preview: {
+    select: {title: 'title', subtitle: 'discount', media: 'image'},
+  },
 })

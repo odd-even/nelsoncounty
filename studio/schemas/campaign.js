@@ -118,6 +118,27 @@ export const campaignType = defineType({
       group: 'hero',
     }),
     defineField({
+      name: 'heroPromoNote',
+      title: 'Hero promo note',
+      type: 'string',
+      group: 'hero',
+      description: 'Small line under the code, for example Up to 15% off participating stays and offers.',
+    }),
+    defineField({
+      name: 'stickyPromoNoteShort',
+      title: 'Sticky promo note (short)',
+      type: 'string',
+      group: 'hero',
+      description: 'Compact sticky bar text. Use plain text or light HTML like Up to <strong>15%</strong> off.',
+    }),
+    defineField({
+      name: 'stickyPromoNoteLong',
+      title: 'Sticky promo note (long)',
+      type: 'string',
+      group: 'hero',
+      description: 'Wider sticky bar text. Use plain text or light HTML.',
+    }),
+    defineField({
       name: 'heroSlides',
       title: 'Hero slides',
       type: 'array',
@@ -268,6 +289,22 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'itinerary',
+    }),
+    defineField({
+      name: 'itineraryStays',
+      title: 'Itinerary stay options',
+      type: 'array',
+      of: [{type: 'itineraryStay'}],
+      group: 'itinerary',
+      description: 'Powers the stay picker in the itinerary. Keys must match farmhouse, backbone, indigo, retreat.',
+    }),
+    defineField({
+      name: 'itinerarySips',
+      title: 'Itinerary sip options',
+      type: 'array',
+      of: [{type: 'itinerarySip'}],
+      group: 'itinerary',
+      description: 'Powers the sip picker in the itinerary. Keys must match flyingfox, backbone, nelson29.',
     }),
 
     defineField({
