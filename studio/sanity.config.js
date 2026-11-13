@@ -6,7 +6,8 @@ import {schemaTypes} from './schemas/index.js'
 import {deskStructure} from './deskStructure.js'
 import {projectId, dataset} from './project.js'
 
-const previewOrigin = process.env.SANITY_STUDIO_PREVIEW_ORIGIN || 'https://visit.nelsoncounty.com'
+// Stable production preview only — never localhost.
+const previewOrigin = 'https://visit.nelsoncounty.com'
 
 export default defineConfig({
   name: 'check-into-nelson',
@@ -20,13 +21,13 @@ export default defineConfig({
       previewUrl: {
         origin: previewOrigin,
         preview: '/',
-        initial: '/',
+        initial: previewOrigin + '/',
         previewMode: {
           enable: '/api/draft-mode/enable',
           disable: '/api/draft-mode/disable',
         },
       },
-      allowOrigins: [previewOrigin, 'http://127.0.0.1:8765', 'http://localhost:8765'],
+      allowOrigins: [previewOrigin],
       resolve: {
         mainDocuments: defineDocuments([
           {

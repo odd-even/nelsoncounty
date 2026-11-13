@@ -11,6 +11,15 @@
   ],
   "headers": [
     {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://check-into-nelson.sanity.studio https://www.sanity.io"
+        }
+      ]
+    },
+    {
       "source": "/edit",
       "headers": [
         { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
@@ -21,6 +30,13 @@
       "source": "/assets/(.*)\\.(css|js)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/check-into-nelson/vendor/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
       ]
     },
     {
