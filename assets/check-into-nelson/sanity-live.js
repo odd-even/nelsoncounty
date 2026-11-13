@@ -195,8 +195,19 @@
         paintImg(img, slide, slide.label, 'hero')
         mark(img, itemPath('heroSlides', slide, i) + '.image')
         var dot = document.querySelectorAll('.hero__dot')[i]
-        if (dot && slide.label) dot.setAttribute('aria-label', slide.label)
+        if (dot) {
+          if (slide.label) dot.setAttribute('aria-label', slide.label)
+          if (slide.href) dot.setAttribute('data-hero-target', slide.href)
+        }
       })
+      var activeDot = document.querySelector('.hero__dot.is-active') || document.querySelector('.hero__dot')
+      var caption = document.getElementById('heroCaption')
+      if (caption && activeDot) {
+        var activeLabel = activeDot.getAttribute('aria-label')
+        var activeHref = activeDot.getAttribute('data-hero-target')
+        if (activeLabel) caption.textContent = activeLabel
+        if (activeHref) caption.setAttribute('data-hero-target', activeHref)
+      }
     }
 
     setText('.partner-strip__label', data.partnersStripLabel)
@@ -522,7 +533,7 @@
     var image = 'image{asset->{_id,url,metadata{dimensions}},hotspot,crop}'
     var projection = [
       '...',
-      'heroSlides[]{_key,label,imageUrl,' + image + '}',
+      'heroSlides[]{_key,label,href,imageUrl,' + image + '}',
       'stays[]{_key,key,name,copy,offerNote,badge,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta}',
       'partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta,secondaryCta}',
       'introCards[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',

@@ -38,6 +38,7 @@ export const campaignType = defineType({
       title: 'Browser title',
       type: 'string',
       group: 'seo',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'seoDescription',
@@ -45,6 +46,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'seo',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'canonicalUrl',
@@ -58,24 +60,28 @@ export const campaignType = defineType({
       title: 'Headline A · line 1',
       type: 'string',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPhrase1Line2',
       title: 'Headline A · line 2 (accent)',
       type: 'string',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPhrase2Line1',
       title: 'Headline B · line 1',
       type: 'string',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPhrase2Line2',
       title: 'Headline B · line 2 (accent)',
       type: 'string',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroLede',
@@ -83,24 +89,28 @@ export const campaignType = defineType({
       type: 'text',
       rows: 4,
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPrimaryCta',
       title: 'Hero primary button',
       type: 'cta',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroSecondaryCta',
       title: 'Hero secondary button',
       type: 'cta',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPromoLabel',
       title: 'Promo card label',
       type: 'string',
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPromoTitle',
@@ -108,6 +118,7 @@ export const campaignType = defineType({
       type: 'string',
       group: 'hero',
       description: 'Use {code} where the promo code should appear.',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPromoCopy',
@@ -115,6 +126,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'hero',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'heroPromoNote',
@@ -143,6 +155,7 @@ export const campaignType = defineType({
       type: 'array',
       of: [{type: 'heroSlide'}],
       group: 'hero',
+      validation: (Rule) => Rule.required().min(1).error('Add at least one banner slide'),
     }),
 
     defineField({
@@ -171,6 +184,7 @@ export const campaignType = defineType({
       title: 'Intro title',
       type: 'string',
       group: 'intro',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'introCopy',
@@ -178,6 +192,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 5,
       group: 'intro',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'introAside',
@@ -206,6 +221,7 @@ export const campaignType = defineType({
       title: 'Stays title',
       type: 'string',
       group: 'stays',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'staysCopy',
@@ -213,6 +229,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'stays',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'stays',
@@ -220,6 +237,7 @@ export const campaignType = defineType({
       type: 'array',
       of: [{type: 'stay'}],
       group: 'stays',
+      validation: (Rule) => Rule.required().min(1),
     }),
 
     defineField({
@@ -233,6 +251,7 @@ export const campaignType = defineType({
       title: 'Experiences title',
       type: 'string',
       group: 'experiences',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'experienceCopy',
@@ -240,6 +259,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'experiences',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'partners',
@@ -247,6 +267,7 @@ export const campaignType = defineType({
       type: 'array',
       of: [{type: 'partner'}],
       group: 'experiences',
+      validation: (Rule) => Rule.required().min(1),
     }),
 
     defineField({
@@ -254,12 +275,14 @@ export const campaignType = defineType({
       title: 'Highlights title',
       type: 'string',
       group: 'highlights',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'highlightsCta',
       title: 'Highlights button',
       type: 'cta',
       group: 'highlights',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'highlights',
@@ -281,6 +304,7 @@ export const campaignType = defineType({
       title: 'Itinerary title',
       type: 'string',
       group: 'itinerary',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'itineraryCopy',
@@ -318,6 +342,7 @@ export const campaignType = defineType({
       type: 'string',
       group: 'offers',
       description: 'Use {code} where the promo code should appear.',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'offersCopy',
@@ -325,6 +350,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'offers',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'offerPerks',
@@ -351,6 +377,7 @@ export const campaignType = defineType({
       title: 'Closing title',
       type: 'string',
       group: 'closing',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'closingCopy',
@@ -358,12 +385,14 @@ export const campaignType = defineType({
       type: 'text',
       rows: 4,
       group: 'closing',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'closingPrimaryCta',
       title: 'Closing primary button',
       type: 'cta',
       group: 'closing',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'closingSecondaryCta',
@@ -376,6 +405,7 @@ export const campaignType = defineType({
       title: 'Footer title',
       type: 'string',
       group: 'closing',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'footerCopy',
@@ -383,6 +413,7 @@ export const campaignType = defineType({
       type: 'text',
       rows: 3,
       group: 'closing',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'footerPromoNote',

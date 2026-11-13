@@ -7,7 +7,7 @@ const IMAGE = `image{asset->{_id,url,metadata{dimensions}},hotspot,crop}`
 
 const QUERY = `*[_id == "campaign"][0]{
   ...,
-  heroSlides[]{_key,label,imageUrl,${IMAGE}},
+  heroSlides[]{_key,label,href,imageUrl,${IMAGE}},
   stays[]{_key,key,name,copy,offerNote,badge,imageUrl,${IMAGE},gallery[]{_key,alt,imageUrl,${IMAGE}},cta},
   partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,${IMAGE},gallery[]{_key,alt,imageUrl,${IMAGE}},cta,secondaryCta},
   introCards[]{_key,name,label,copy,href,alt,imageUrl,${IMAGE}},

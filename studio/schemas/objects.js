@@ -1,11 +1,25 @@
 import {defineField, defineType} from 'sanity'
 
+function requireImageOrUrl(message = 'Upload an image or provide a fallback URL') {
+  return (Rule) =>
+    Rule.custom((value, context) => {
+      const parent = context?.parent || {}
+      if (value?.asset?._ref || parent.imageUrl) return true
+      return message
+    })
+}
+
 const imageUpload = defineField({
   name: 'image',
   title: 'Upload image',
   type: 'image',
   options: {hotspot: true},
   description: 'Preferred. Served as optimized WebP from the Sanity CDN.',
+})
+
+const requiredImageUpload = defineField({
+  ...imageUpload,
+  validation: requireImageOrUrl(),
 })
 
 const legacyImageUrl = defineField({
@@ -44,12 +58,31 @@ export const heroSlideType = defineType({
   title: 'Hero / banner slide',
   type: 'object',
   fields: [
-    defineField({name: 'label', title: 'Label', type: 'string'}),
-    imageUpload,
+    defineField({
+      name: 'label',
+      title: 'Name',
+      type: 'string',
+      description: 'Shown on the banner caption and slide control.',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'href',
+      title: 'Scroll to section',
+      type: 'string',
+      description:
+        'Page anchor the caption jumps to, for example #feature-farmhouse, #feature-flying-fox, or #itinerary.',
+      validation: (Rule) =>
+        Rule.required().custom((value) => {
+          if (!value) return 'Add a section link'
+          if (value.startsWith('#') || value.startsWith('/') || /^https?:\/\//.test(value)) return true
+          return 'Use a page anchor like #feature-farmhouse, a path, or a full URL'
+        }),
+    }),
+    requiredImageUpload,
     legacyImageUrl,
   ],
   preview: {
-    select: {title: 'label', media: 'image'},
+    select: {title: 'label', subtitle: 'href', media: 'image'},
   },
 })
 
@@ -60,10 +93,10 @@ export const stayType = defineType({
   fields: [
     defineField({name: 'key', title: 'ID', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    defineField({name: 'copy', title: 'Description', type: 'text', rows: 3}),
+    defineField({name: 'copy', title: 'Description', type: 'text', rows: 3, validation: (Rule) => Rule.required()}),
     defineField({name: 'offerNote', title: 'Offer note', type: 'string'}),
     defineField({name: 'badge', title: 'Badge', type: 'string', description: 'Shown on the photo, for example 15% off.'}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
     defineField({
       name: 'gallery',
@@ -72,7 +105,7 @@ export const stayType = defineType({
       of: [{type: 'galleryImage'}],
       description: 'Carousel photos. Upload each image — served as optimized WebP.',
     }),
-    defineField({name: 'cta', title: 'Button', type: 'cta'}),
+    defineField({name: 'cta', title: 'Button', type: 'cta', validation: (Rule) => Rule.required()}),
   ],
   preview: {
     select: {title: 'name', subtitle: 'cta.label', media: 'image'},
@@ -86,10 +119,10 @@ export const partnerType = defineType({
   fields: [
     defineField({name: 'key', title: 'ID', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    defineField({name: 'role', title: 'Role line', type: 'string'}),
+    defineField({name: 'role', title: 'Role line', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'badge', title: 'Category badge', type: 'string', description: 'Pill on the photo, for example Sip or Create.'}),
     defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'Shown on the button, for example 10% off.'}),
-    defineField({name: 'copy', title: 'Description', type: 'text', rows: 4}),
+    defineField({name: 'copy', title: 'Description', type: 'text', rows: 4, validation: (Rule) => Rule.required()}),
     defineField({name: 'offerNote', title: 'Offer note', type: 'string', description: 'Shown next to the promo code, for example 10% off.'}),
     defineField({
       name: 'category',
@@ -106,7 +139,7 @@ export const partnerType = defineType({
       },
     }),
     defineField({name: 'showInStrip', title: 'Show in partner strip', type: 'boolean', initialValue: true}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
     defineField({
       name: 'gallery',
@@ -115,7 +148,7 @@ export const partnerType = defineType({
       of: [{type: 'galleryImage'}],
       description: 'Carousel photos. Upload each image — served as optimized WebP.',
     }),
-    defineField({name: 'cta', title: 'Primary button', type: 'cta'}),
+    defineField({name: 'cta', title: 'Primary button', type: 'cta', validation: (Rule) => Rule.required()}),
     defineField({name: 'secondaryCta', title: 'Secondary button', type: 'cta'}),
   ],
   preview: {
@@ -129,7 +162,7 @@ export const galleryImageType = defineType({
   type: 'object',
   fields: [
     defineField({name: 'alt', title: 'Alt text', type: 'string'}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
   ],
   preview: {
@@ -148,9 +181,15 @@ export const placeCardType = defineType({
     defineField({name: 'name', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'label', title: 'Label', type: 'string', description: 'Short pill, such as Sip or Stay.'}),
     defineField({name: 'copy', title: 'Description', type: 'text', rows: 3}),
-    defineField({name: 'href', title: 'Link', type: 'string'}),
+    defineField({
+      name: 'href',
+      title: 'Link',
+      type: 'string',
+      description: 'Page anchor (#feature-farmhouse) or full URL.',
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({name: 'alt', title: 'Alt text', type: 'string'}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
   ],
   preview: {
@@ -172,10 +211,10 @@ export const itineraryStayType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
-    defineField({name: 'bookHref', title: 'Book link', type: 'url'}),
-    defineField({name: 'bookLabel', title: 'Book button label', type: 'string'}),
+    defineField({name: 'bookHref', title: 'Book link', type: 'url', validation: (Rule) => Rule.required()}),
+    defineField({name: 'bookLabel', title: 'Book button label', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off.'}),
     defineField({
       name: 'offerNote',
@@ -203,10 +242,10 @@ export const itinerarySipType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    imageUpload,
+    requiredImageUpload,
     legacyImageUrl,
-    defineField({name: 'visitHref', title: 'Visit link', type: 'url'}),
-    defineField({name: 'visitLabel', title: 'Visit button label', type: 'string'}),
+    defineField({name: 'visitHref', title: 'Visit link', type: 'url', validation: (Rule) => Rule.required()}),
+    defineField({name: 'visitLabel', title: 'Visit button label', type: 'string', validation: (Rule) => Rule.required()}),
     defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off. Leave blank for no pill.'}),
     defineField({
       name: 'offerNote',
