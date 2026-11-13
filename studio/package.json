@@ -9,7 +9,8 @@
     "start": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "seed": "node scripts/seed.mjs"
+    "seed": "node scripts/seed.mjs",
+    "upload-images": "node scripts/upload-campaign-images.mjs"
   },
   "dependencies": {
     "@sanity/client": "^7.12.0",

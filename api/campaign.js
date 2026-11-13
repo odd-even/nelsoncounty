@@ -3,17 +3,19 @@ const DATASET = process.env.SANITY_DATASET || 'production'
 const API_VERSION = process.env.SANITY_API_VERSION || '2024-10-01'
 const PREVIEW_COOKIE = '__sanity_preview'
 
+const IMAGE = `image{asset->{_id,url,metadata{dimensions}},hotspot,crop}`
+
 const QUERY = `*[_id == "campaign"][0]{
   ...,
-  heroSlides[]{_key,label,imageUrl,image{asset->{url}}},
-  stays[]{_key,key,name,copy,offerNote,badge,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta},
-  partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta,secondaryCta},
-  introCards[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}},
-  partnerChips[]{_key,name,label,href,alt,imageUrl,image{asset->{url}}},
-  highlights[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}},
+  heroSlides[]{_key,label,imageUrl,${IMAGE}},
+  stays[]{_key,key,name,copy,offerNote,badge,imageUrl,${IMAGE},gallery[]{_key,alt,imageUrl,${IMAGE}},cta},
+  partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,${IMAGE},gallery[]{_key,alt,imageUrl,${IMAGE}},cta,secondaryCta},
+  introCards[]{_key,name,label,copy,href,alt,imageUrl,${IMAGE}},
+  partnerChips[]{_key,name,label,href,alt,imageUrl,${IMAGE}},
+  highlights[]{_key,name,label,copy,href,alt,imageUrl,${IMAGE}},
   passportSteps[]{_key,title,copy},
-  itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}},
-  itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}}
+  itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,${IMAGE}},
+  itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,${IMAGE}}
 }`
 
 function hasPreviewCookie(req) {

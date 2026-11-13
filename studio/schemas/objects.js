@@ -1,5 +1,20 @@
 import {defineField, defineType} from 'sanity'
 
+const imageUpload = defineField({
+  name: 'image',
+  title: 'Upload image',
+  type: 'image',
+  options: {hotspot: true},
+  description: 'Preferred. Served as optimized WebP from the Sanity CDN.',
+})
+
+const legacyImageUrl = defineField({
+  name: 'imageUrl',
+  title: 'Fallback image URL',
+  type: 'url',
+  description: 'Optional fallback only. Prefer Upload image above.',
+})
+
 export const ctaType = defineType({
   name: 'cta',
   title: 'Button',
@@ -26,22 +41,12 @@ export const ctaType = defineType({
 
 export const heroSlideType = defineType({
   name: 'heroSlide',
-  title: 'Hero slide',
+  title: 'Hero / banner slide',
   type: 'object',
   fields: [
     defineField({name: 'label', title: 'Label', type: 'string'}),
-    defineField({
-      name: 'imageUrl',
-      title: 'Image URL',
-      type: 'url',
-      description: 'Existing ImageKit or site asset URL',
-    }),
-    defineField({
-      name: 'image',
-      title: 'Upload image',
-      type: 'image',
-      options: {hotspot: true},
-    }),
+    imageUpload,
+    legacyImageUrl,
   ],
   preview: {
     select: {title: 'label', media: 'image'},
@@ -58,14 +63,14 @@ export const stayType = defineType({
     defineField({name: 'copy', title: 'Description', type: 'text', rows: 3}),
     defineField({name: 'offerNote', title: 'Offer note', type: 'string'}),
     defineField({name: 'badge', title: 'Badge', type: 'string', description: 'Shown on the photo, for example 15% off.'}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url', description: 'Used when the photo is hosted outside Sanity. Gallery uploads replace carousel slides in order.'}),
-    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    imageUpload,
+    legacyImageUrl,
     defineField({
       name: 'gallery',
       title: 'Photo gallery',
       type: 'array',
       of: [{type: 'galleryImage'}],
-      description: 'Replaces the stay carousel, one photo per slide, in order.',
+      description: 'Carousel photos. Upload each image — served as optimized WebP.',
     }),
     defineField({name: 'cta', title: 'Button', type: 'cta'}),
   ],
@@ -101,14 +106,14 @@ export const partnerType = defineType({
       },
     }),
     defineField({name: 'showInStrip', title: 'Show in partner strip', type: 'boolean', initialValue: true}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url', description: 'Used when the photo is hosted outside Sanity. Gallery uploads replace carousel slides in order.'}),
-    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    imageUpload,
+    legacyImageUrl,
     defineField({
       name: 'gallery',
       title: 'Photo gallery',
       type: 'array',
       of: [{type: 'galleryImage'}],
-      description: 'Replaces the experience carousel, one photo per slide, in order.',
+      description: 'Carousel photos. Upload each image — served as optimized WebP.',
     }),
     defineField({name: 'cta', title: 'Primary button', type: 'cta'}),
     defineField({name: 'secondaryCta', title: 'Secondary button', type: 'cta'}),
@@ -124,13 +129,8 @@ export const galleryImageType = defineType({
   type: 'object',
   fields: [
     defineField({name: 'alt', title: 'Alt text', type: 'string'}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
-    defineField({
-      name: 'image',
-      title: 'Upload image',
-      type: 'image',
-      options: {hotspot: true},
-    }),
+    imageUpload,
+    legacyImageUrl,
   ],
   preview: {
     select: {title: 'alt', media: 'image'},
@@ -150,8 +150,8 @@ export const placeCardType = defineType({
     defineField({name: 'copy', title: 'Description', type: 'text', rows: 3}),
     defineField({name: 'href', title: 'Link', type: 'string'}),
     defineField({name: 'alt', title: 'Alt text', type: 'string'}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
-    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    imageUpload,
+    legacyImageUrl,
   ],
   preview: {
     select: {title: 'name', subtitle: 'label', media: 'image'},
@@ -181,8 +181,8 @@ export const itineraryStayType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
-    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    imageUpload,
+    legacyImageUrl,
     defineField({name: 'bookHref', title: 'Book link', type: 'url'}),
     defineField({name: 'bookLabel', title: 'Book button label', type: 'string'}),
     defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off.'}),
@@ -212,8 +212,8 @@ export const itinerarySipType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({name: 'title', title: 'Name', type: 'string', validation: (Rule) => Rule.required()}),
-    defineField({name: 'imageUrl', title: 'Image URL', type: 'url'}),
-    defineField({name: 'image', title: 'Upload image', type: 'image', options: {hotspot: true}}),
+    imageUpload,
+    legacyImageUrl,
     defineField({name: 'visitHref', title: 'Visit link', type: 'url'}),
     defineField({name: 'visitLabel', title: 'Visit button label', type: 'string'}),
     defineField({name: 'discount', title: 'Discount pill', type: 'string', description: 'For example 10% off. Leave blank for no pill.'}),

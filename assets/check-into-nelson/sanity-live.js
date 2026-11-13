@@ -53,35 +53,88 @@
     return String(text).replace(/\{code\}/g, '')
   }
 
-  function imageSrc(item) {
+  var IMAGE_PRESETS = {
+    hero: {widths: [960, 1440, 1920, 2560], sizes: '100vw', width: 1920},
+    gallery: {widths: [480, 800, 1200, 1600], sizes: '(min-width: 900px) 42vw, 92vw', width: 1200},
+    card: {widths: [320, 480, 800], sizes: '(min-width: 720px) 30vw, 70vw', width: 640},
+    chip: {widths: [160, 320, 400], sizes: '72px', width: 320},
+    highlight: {widths: [480, 800, 1200], sizes: '(min-width: 720px) 30vw, 46vw', width: 800},
+    thumb: {widths: [240, 400, 640], sizes: '(min-width: 720px) 18vw, 40vw', width: 400},
+  }
+
+  function assetUrl(item) {
     if (!item) return ''
-    if (item.imageUrl) return item.imageUrl
     if (item.image && item.image.asset && item.image.asset.url) return item.image.asset.url
     if (item.asset && item.asset.url) return item.asset.url
     return ''
   }
 
-  function paintImg(img, src, alt) {
-    if (!img || !src) return
+  function isSanityCdn(url) {
+    return !!(url && url.indexOf('cdn.sanity.io/images/') !== -1)
+  }
+
+  function sanityImageUrl(url, width) {
+    if (!url) return ''
+    if (!isSanityCdn(url)) return url
+    var base = String(url).split('?')[0]
+    var params = 'auto=format&fm=webp&fit=max&q=75'
+    if (width) params += '&w=' + width
+    return base + '?' + params
+  }
+
+  function imageSrc(item, width) {
+    if (!item) return ''
+    if (typeof item === 'string') return item
+    var url = assetUrl(item)
+    if (url) return sanityImageUrl(url, width || 1600)
+    if (item.imageUrl) return item.imageUrl
+    return ''
+  }
+
+  function imageSrcSet(item, widths) {
+    var url = assetUrl(item)
+    if (!isSanityCdn(url) || !widths || !widths.length) return ''
+    return widths
+      .map(function (w) {
+        return sanityImageUrl(url, w) + ' ' + w + 'w'
+      })
+      .join(', ')
+  }
+
+  function paintImg(img, itemOrSrc, alt, presetName) {
+    if (!img) return
+    var preset = IMAGE_PRESETS[presetName] || IMAGE_PRESETS.card
+    var item = typeof itemOrSrc === 'string' ? null : itemOrSrc
+    var src = typeof itemOrSrc === 'string' ? itemOrSrc : imageSrc(itemOrSrc, preset.width)
+    if (!src) return
     img.setAttribute('src', src)
     img.setAttribute('data-src', src)
-    img.removeAttribute('srcset')
-    img.removeAttribute('data-srcset')
+    var srcset = item ? imageSrcSet(item, preset.widths) : ''
+    if (srcset) {
+      img.setAttribute('srcset', srcset)
+      img.setAttribute('data-srcset', srcset)
+      img.setAttribute('sizes', preset.sizes)
+    } else {
+      img.removeAttribute('srcset')
+      img.removeAttribute('data-srcset')
+    }
+    img.loading = img.loading || 'lazy'
+    img.decoding = 'async'
     img.dataset.hydrated = '1'
     if (alt) img.alt = alt
   }
 
-  function paintGallery(root, images, fallbackSrc, fallbackAlt) {
+  function paintGallery(root, images, fallbackItem, fallbackAlt, presetName) {
     if (!root) return
     var imgs = root.querySelectorAll('.media-carousel__track img, .hero__slide img')
     if (!imgs.length) imgs = root.querySelectorAll('img')
     if (images && images.length) {
       images.forEach(function (shot, i) {
-        if (imgs[i]) paintImg(imgs[i], imageSrc(shot), shot.alt)
+        if (imgs[i]) paintImg(imgs[i], shot, shot.alt || fallbackAlt, presetName || 'gallery')
       })
       return
     }
-    if (fallbackSrc && imgs[0]) paintImg(imgs[0], fallbackSrc, fallbackAlt)
+    if (fallbackItem && imgs[0]) paintImg(imgs[0], fallbackItem, fallbackAlt, presetName || 'gallery')
   }
 
   function itemPath(listName, item, index) {
@@ -139,7 +192,7 @@
     if (data.heroSlides && data.heroSlides.length) {
       data.heroSlides.forEach(function (slide, i) {
         var img = document.querySelectorAll('.hero__slide img')[i]
-        paintImg(img, imageSrc(slide), slide.label)
+        paintImg(img, slide, slide.label, 'hero')
         mark(img, itemPath('heroSlides', slide, i) + '.image')
         var dot = document.querySelectorAll('.hero__dot')[i]
         if (dot && slide.label) dot.setAttribute('aria-label', slide.label)
@@ -181,7 +234,7 @@
           }
         }
         if (stay.badge) setNode(card, '.stay-card__badge', stay.badge)
-        paintGallery(card, stay.gallery, imageSrc(stay), stay.name)
+        paintGallery(card, stay.gallery, stay, stay.name, 'gallery')
         var stayPath = itemPath('stays', stay, data.stays.indexOf(stay))
         mark(card.querySelector('.stay-card__title'), stayPath + '.name')
         mark(card.querySelector('.stay-card__copy'), stayPath + '.copy')
@@ -240,7 +293,7 @@
             meta.innerHTML = '<span class="code-green">' + promoHtml(data.promoCode) + '</span> <span>· ' + escapeHtml(partner.offerNote) + '</span>'
           }
         }
-        paintGallery(card, partner.gallery, imageSrc(partner), partner.name)
+        paintGallery(card, partner.gallery, partner, partner.name, 'gallery')
         var partnerPath = itemPath('partners', partner, data.partners.indexOf(partner))
         mark(card.querySelector('.partner-feature__role'), partnerPath + '.role')
         mark(card.querySelector('.partner-feature__title'), partnerPath + '.name')
@@ -361,7 +414,7 @@
       if (!item || !item.key || !opts[item.key]) return
       var target = opts[item.key]
       if (item.title) target.title = item.title
-      var src = imageSrc(item)
+      var src = imageSrc(item, 640)
       if (src) target.image = src
       if (item.bookHref) target.bookHref = item.bookHref
       if (item.bookLabel) target.bookLabel = item.bookLabel
@@ -382,7 +435,7 @@
       if (!item || !item.key || !opts[item.key]) return
       var target = opts[item.key]
       if (item.title) target.title = item.title
-      var src = imageSrc(item)
+      var src = imageSrc(item, 640)
       if (src) target.image = src
       if (item.visitHref) target.visitHref = item.visitHref
       if (item.visitLabel) target.visitLabel = item.visitLabel
@@ -398,6 +451,8 @@
 
   function applyPlaceCards(selector, items, listName) {
     if (!items || !items.length) return
+    var preset =
+      listName === 'partnerChips' ? 'chip' : listName === 'highlights' ? 'highlight' : 'card'
     var nodes = Array.prototype.slice.call(document.querySelectorAll(selector))
     nodes.forEach(function (node, i) {
       var item = items[i % items.length]
@@ -416,7 +471,7 @@
       if (item.label && label) label.textContent = item.label
       if (item.href && node.tagName === 'A') node.setAttribute('href', item.href)
       var img = node.querySelector('img')
-      paintImg(img, imageSrc(item), item.alt || item.name)
+      paintImg(img, item, item.alt || item.name, preset)
       mark(title || node, path + '.name')
       mark(copy, path + '.copy')
       mark(img, path + '.image')
@@ -512,17 +567,18 @@
   }
 
   function query() {
+    var image = 'image{asset->{_id,url,metadata{dimensions}},hotspot,crop}'
     var projection = [
       '...',
-      'heroSlides[]{_key,label,imageUrl,image{asset->{url}}}',
-      'stays[]{_key,key,name,copy,offerNote,badge,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta}',
-      'partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,image{asset->{url}},gallery[]{_key,alt,imageUrl,image{asset->{url}}},cta,secondaryCta}',
-      'introCards[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}}',
-      'partnerChips[]{_key,name,label,href,alt,imageUrl,image{asset->{url}}}',
-      'highlights[]{_key,name,label,copy,href,alt,imageUrl,image{asset->{url}}}',
+      'heroSlides[]{_key,label,imageUrl,' + image + '}',
+      'stays[]{_key,key,name,copy,offerNote,badge,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta}',
+      'partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta,secondaryCta}',
+      'introCards[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
+      'partnerChips[]{_key,name,label,href,alt,imageUrl,' + image + '}',
+      'highlights[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
       'passportSteps[]{_key,title,copy}',
-      'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}}',
-      'itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,image{asset->{url}}}',
+      'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,' + image + '}',
+      'itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,' + image + '}',
     ].join(',')
     return encodeURIComponent('*[_id == "campaign"][0]{' + projection + '}')
   }
