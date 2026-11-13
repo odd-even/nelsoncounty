@@ -190,17 +190,28 @@
     }
 
     if (data.heroSlides && data.heroSlides.length) {
+      var heroSlideEls = document.querySelectorAll('.hero__slide')
+      var heroDots = document.querySelectorAll('.hero__dot')
       data.heroSlides.forEach(function (slide, i) {
-        var img = document.querySelectorAll('.hero__slide img')[i]
-        paintImg(img, slide, slide.label, 'hero')
-        mark(img, itemPath('heroSlides', slide, i) + '.image')
-        var dot = document.querySelectorAll('.hero__dot')[i]
+        var slideEl = heroSlideEls[i]
+        if (slideEl) {
+          // Prefer the sharp slide image — blur clones must not shift the index.
+          var sharp =
+            slideEl.querySelector('img.hero__slide-sharp') ||
+            slideEl.querySelector('img:not(.hero__slide-blur)') ||
+            slideEl.querySelector('img')
+          var blur = slideEl.querySelector('img.hero__slide-blur')
+          paintImg(sharp, slide, slide.label, 'hero')
+          if (blur) paintImg(blur, slide, '', 'hero')
+          mark(sharp, itemPath('heroSlides', slide, i) + '.image')
+        }
+        var dot = heroDots[i]
         if (dot) {
           if (slide.label) dot.setAttribute('aria-label', slide.label)
           if (slide.href) dot.setAttribute('data-hero-target', slide.href)
         }
       })
-      var activeDot = document.querySelector('.hero__dot.is-active') || document.querySelector('.hero__dot')
+      var activeDot = document.querySelector('.hero__dot.is-active') || heroDots[0]
       var caption = document.getElementById('heroCaption')
       if (caption && activeDot) {
         var activeLabel = activeDot.getAttribute('aria-label')
@@ -478,8 +489,12 @@
     var footerPs = document.querySelectorAll('.nc-footer-campaign p')
     mark(footerPs[0], 'footerCopy')
     mark(footerPs[1], 'footerPromoNote')
-    document.querySelectorAll('.hero__slide img').forEach(function (img, i) {
-      mark(img, 'heroSlides[' + i + '].image')
+    document.querySelectorAll('.hero__slide').forEach(function (slideEl, i) {
+      var sharp =
+        slideEl.querySelector('img.hero__slide-sharp') ||
+        slideEl.querySelector('img:not(.hero__slide-blur)') ||
+        slideEl.querySelector('img')
+      mark(sharp, 'heroSlides[' + i + '].image')
     })
     document.querySelectorAll('#stay .stay-card').forEach(function (card, i) {
       mark(card.querySelector('.stay-card__title'), 'stays[' + i + '].name')

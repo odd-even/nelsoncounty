@@ -28,8 +28,8 @@ export const campaignSeed = {
     {label: 'Devils Backbone', href: '#feature-devils-backbone-camp', imageUrl: asset('assets/check-into-nelson/hero/03-devils-1920.webp')},
     {label: 'Blue Ridge Tunnel', href: '#feature-tunnel', imageUrl: asset('assets/check-into-nelson/hero/04-tunnel-1920.webp')},
     {label: 'Flying Fox Vineyard', href: '#feature-flying-fox', imageUrl: asset('assets/check-into-nelson/hero/05-flying-fox-1920.webp')},
-    {label: 'Spy Rock', href: '#itinerary', imageUrl: asset('assets/check-into-nelson/hero/06-spy-rock-1920.webp')},
     {label: 'Glass Hollow Studio', href: '#feature-glass-hollow', imageUrl: asset('assets/check-into-nelson/hero/07-glass-hollow-1920.webp')},
+    {label: 'Spy Rock', href: '#itinerary', imageUrl: asset('assets/check-into-nelson/hero/06-spy-rock-1920.webp')},
   ],
   partnersStripLabel: 'Participating partners',
   partnerChips: [
