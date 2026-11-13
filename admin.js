@@ -2132,7 +2132,7 @@ function initDataTableColumnResize() {
         // This URL is already configured and working!
         const GOOGLE_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu1ukNVAwEPf_xWoerojDRDGWmsCYanERrc_yZsAq1XnUskOgq1usxY0JNx2c3EiKvGA/exec';
         const LISTINGS_JSON_URL = 'data/listings.json';
-        const GOOGLE_MAPS_API_KEY = 'AIzaSyDysf1CQM7-kZd_mhDcBIhp92o7Tb6SmAQ';
+        const GOOGLE_MAPS_API_KEY = 'AIzaSyA1-CxcxrZnBuDfz4TrDlSRXlSGKg9Aa6I';
         const IMAGEKIT_PUBLIC_KEY = 'public_bEXbACd1Av+LMd7EASiu/x25f4o=';
         const IMAGEKIT_URL_ENDPOINT = 'https://ik.imagekit.io/OE';
         const IMAGEKIT_AUTH_ACTION = 'getImageKitUploadParams';
