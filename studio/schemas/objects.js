@@ -158,15 +158,6 @@ export const placeCardType = defineType({
   },
 })
 
-export const passportStepType = defineType({
-  name: 'passportStep',
-  title: 'Passport step',
-  type: 'object',
-  fields: [
-    defineField({name: 'title', title: 'Title', type: 'string'}),
-    defineField({name: 'copy', title: 'Copy', type: 'text', rows: 3}),
-  ],
-})
 
 export const itineraryStayType = defineType({
   name: 'itineraryStay',

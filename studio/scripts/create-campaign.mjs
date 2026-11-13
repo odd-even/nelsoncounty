@@ -46,8 +46,6 @@ await client.createOrReplace({
     label: 'See all activities',
     href: 'https://nelsoncounty.com/find-your-adventure',
   },
-  passportEyebrow: 'Loyalty · Powered by LoyalBrew',
-  passportTitle: 'Collect stamps while you stay longer',
   footerTitle: 'Check Into Nelson',
   footerCopy:
     'Check Into Nelson is presented by Nelson County Tourism in partnership with participating Nelson County businesses.',

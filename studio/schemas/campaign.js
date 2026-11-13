@@ -11,7 +11,6 @@ export const campaignType = defineType({
     {name: 'stays', title: 'Stays'},
     {name: 'experiences', title: 'Experiences'},
     {name: 'itinerary', title: 'Itinerary'},
-    {name: 'passport', title: 'Passport'},
     {name: 'highlights', title: 'Highlights'},
     {name: 'offers', title: 'Offers'},
     {name: 'closing', title: 'Closing'},
@@ -305,58 +304,6 @@ export const campaignType = defineType({
       of: [{type: 'itinerarySip'}],
       group: 'itinerary',
       description: 'Powers the sip picker in the itinerary. Keys must match flyingfox, backbone, nelson29.',
-    }),
-
-    defineField({
-      name: 'passportEyebrow',
-      title: 'Passport eyebrow',
-      type: 'string',
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportTitle',
-      title: 'Passport title',
-      type: 'string',
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportCopy',
-      title: 'Passport copy',
-      type: 'text',
-      rows: 4,
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportUrl',
-      title: 'LoyalBrew passport URL',
-      type: 'url',
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportPrimaryCta',
-      title: 'Passport button',
-      type: 'cta',
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportSecondaryCta',
-      title: 'Passport secondary button',
-      type: 'cta',
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportNote',
-      title: 'Passport note',
-      type: 'text',
-      rows: 3,
-      group: 'passport',
-    }),
-    defineField({
-      name: 'passportSteps',
-      title: 'Passport steps',
-      type: 'array',
-      of: [{type: 'passportStep'}],
-      group: 'passport',
     }),
 
     defineField({

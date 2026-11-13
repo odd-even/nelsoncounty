@@ -370,29 +370,6 @@ export const campaignSeed = {
       offerNote: '{code} for the offer',
     },
   ],
-  passportEyebrow: 'Loyalty · Powered by LoyalBrew',
-  passportTitle: 'Collect stamps while you stay longer',
-  passportCopy:
-    'A free digital passport for Check Into Nelson. Check in at participating stops, earn stamps, and unlock a campaign reward — no app download required.',
-  passportUrl: 'https://www.loyalbrew.com/',
-  passportPrimaryCta: {label: 'Open digital passport', href: 'https://www.loyalbrew.com/'},
-  passportSecondaryCta: {label: 'See sample stay', href: '#itinerary'},
-  passportNote:
-    'Sample setup: replace the passport link with the live Check Into Nelson LoyalBrew URL when the trail goes live.',
-  passportSteps: [
-    {
-      title: 'Open your passport',
-      copy: 'Launch the Check Into Nelson passport in LoyalBrew from this page or a partner QR code.',
-    },
-    {
-      title: 'Check in at each stop',
-      copy: 'GPS check-in or photo upload claims a stamp at lodging, sip, create, explore, and ride stops.',
-    },
-    {
-      title: 'Earn your reward',
-      copy: 'Complete the passport to unlock the campaign gift. Pair visits with {code} for special partner incentives.',
-    },
-  ],
   offersEyebrow: 'Participating offers',
   offersTitle: 'Save with {code}',
   offersCopy:

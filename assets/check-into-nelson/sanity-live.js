@@ -331,45 +331,6 @@
     applyItineraryStays(data.itineraryStays, data.promoCode)
     applyItinerarySips(data.itinerarySips, data.promoCode)
 
-    setText('#passport .eyebrow', data.passportEyebrow)
-    setText('#passport-title', data.passportTitle)
-    setText('#passport .section-copy', data.passportCopy)
-    if (data.passportNote) {
-      var note = document.querySelector('.passport__note')
-      if (note) {
-        var first = data.passportNote
-        note.childNodes.forEach(function (node) {
-          if (node.nodeType === 3 && node.textContent.trim()) {
-            node.textContent = first + ' '
-          }
-        })
-      }
-    }
-    if (data.passportUrl) {
-      window.LOYALBREW_PASSPORT_URL = data.passportUrl
-      document.querySelectorAll('#openPassport, .passport-card__footer .btn--dark').forEach(function (el) {
-        el.setAttribute('href', data.passportUrl)
-      })
-    }
-    setCta('#openPassport', data.passportPrimaryCta)
-    setCta('.passport__actions .btn--outline', data.passportSecondaryCta)
-    if (data.passportSteps) {
-      var steps = document.querySelectorAll('.passport__step')
-      data.passportSteps.forEach(function (step, i) {
-        if (!steps[i]) return
-        if (step.title) {
-          var h = steps[i].querySelector('h3')
-          if (h) h.textContent = step.title
-        }
-        if (step.copy) {
-          var p = steps[i].querySelector('p')
-          if (p) p.textContent = step.copy.replace('{code}', splitPromo(data.promoCode).raw)
-        }
-        mark(steps[i].querySelector('h3'), itemPath('passportSteps', step, i) + '.title')
-        mark(steps[i].querySelector('p'), itemPath('passportSteps', step, i) + '.copy')
-      })
-    }
-
     setText('#promo .eyebrow', data.offersEyebrow)
     setText('#promo .section-copy', data.offersCopy)
     if (data.offerPerks && data.offerPerks.length) {
@@ -502,11 +463,6 @@
     mark(document.querySelector('#itinerary .itinerary__head .section-copy'), 'itineraryCopy')
     mark(document.querySelector('#highlights-title'), 'highlightsTitle')
     mark(document.querySelector('#highlights .highlights__actions .btn'), 'highlightsCta.label')
-    mark(document.querySelector('#passport .eyebrow'), 'passportEyebrow')
-    mark(document.querySelector('#passport-title'), 'passportTitle')
-    mark(document.querySelector('#passport .section-copy'), 'passportCopy')
-    mark(document.querySelector('#openPassport'), 'passportPrimaryCta.label')
-    mark(document.querySelector('.passport__note'), 'passportNote')
     mark(document.querySelector('.nc-footer-campaign strong'), 'footerTitle')
     var footerPs = document.querySelectorAll('.nc-footer-campaign p')
     mark(footerPs[0], 'footerCopy')
@@ -548,10 +504,6 @@
       mark(tile.querySelector('.highlights-grid__name'), 'highlights[' + i + '].name')
       mark(tile.querySelector('img'), 'highlights[' + i + '].image')
     })
-    document.querySelectorAll('.passport__step').forEach(function (step, i) {
-      mark(step.querySelector('h3'), 'passportSteps[' + i + '].title')
-      mark(step.querySelector('p'), 'passportSteps[' + i + '].copy')
-    })
   }
 
   function setNode(root, sel, value) {
@@ -576,7 +528,6 @@
       'introCards[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
       'partnerChips[]{_key,name,label,href,alt,imageUrl,' + image + '}',
       'highlights[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
-      'passportSteps[]{_key,title,copy}',
       'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,' + image + '}',
       'itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,' + image + '}',
     ].join(',')

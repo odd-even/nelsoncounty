@@ -13,7 +13,6 @@ const QUERY = `*[_id == "campaign"][0]{
   introCards[]{_key,name,label,copy,href,alt,imageUrl,${IMAGE}},
   partnerChips[]{_key,name,label,href,alt,imageUrl,${IMAGE}},
   highlights[]{_key,name,label,copy,href,alt,imageUrl,${IMAGE}},
-  passportSteps[]{_key,title,copy},
   itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,${IMAGE}},
   itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,${IMAGE}}
 }`

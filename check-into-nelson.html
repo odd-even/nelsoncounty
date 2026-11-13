@@ -3522,119 +3522,6 @@
       display: none;
     }
 
-    /* —— Passport / LoyalBrew —— */
-    .timeline-item__rail {
-      position: relative;
-      display: flex;
-      justify-content: center;
-    }
-    .timeline-item__rail::before {
-      content: "";
-      position: absolute;
-      top: 2.1rem;
-      bottom: -1.9rem;
-      left: 50%;
-      width: 2px;
-      transform: translateX(-50%);
-      background: #e4e4e4;
-      display: none;
-    }
-    /* Only connect to a following visible stop in the same day */
-    .timeline-list > .timeline-item:not(.is-removed):has(~ .timeline-item:not(.is-removed)) .timeline-item__rail::before {
-      display: block;
-    }
-    .timeline-item__dot {
-      position: relative;
-      z-index: 1;
-      width: 2rem;
-      height: 2rem;
-      border-radius: 50%;
-      background: var(--ink);
-      color: var(--white);
-      display: grid;
-      place-items: center;
-      font-size: 0.78rem;
-      font-weight: 700;
-      margin-top: 1.15rem;
-    }
-    .timeline-item[data-id="checkin"] .timeline-item__dot { background: var(--cat-stay); }
-    .timeline-item[data-id="sip"] .timeline-item__dot,
-    .timeline-item[data-id="flyingfox"] .timeline-item__dot,
-    .timeline-item[data-id="nelson29"] .timeline-item__dot { background: var(--cat-taste); }
-    .timeline-item[data-id="create"] .timeline-item__dot { background: var(--cat-culture); }
-    .timeline-item[data-id="backbone"] .timeline-item__dot { background: var(--cat-experience); }
-    .timeline-item[data-id="explore"] .timeline-item__dot,
-    .timeline-item[data-id="crabtree"] .timeline-item__dot,
-    .timeline-item[data-id="spyrock"] .timeline-item__dot,
-    .timeline-item[data-id="tyeriver"] .timeline-item__dot,
-    .timeline-item[data-id="wintergreen"] .timeline-item__dot { background: var(--cat-outdoor); }
-    .timeline-item[data-id="rides"] .timeline-item__dot { background: var(--cat-community); }
-    .timeline-item[data-id="checkin"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-stay) 55%, #cfcfcf); }
-    .timeline-item[data-id="sip"] .timeline-item__card:hover,
-    .timeline-item[data-id="flyingfox"] .timeline-item__card:hover,
-    .timeline-item[data-id="nelson29"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-taste) 55%, #cfcfcf); }
-    .timeline-item[data-id="create"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-culture) 55%, #cfcfcf); }
-    .timeline-item[data-id="backbone"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-experience) 55%, #cfcfcf); }
-    .timeline-item[data-id="explore"] .timeline-item__card:hover,
-    .timeline-item[data-id="crabtree"] .timeline-item__card:hover,
-    .timeline-item[data-id="spyrock"] .timeline-item__card:hover,
-    .timeline-item[data-id="tyeriver"] .timeline-item__card:hover,
-    .timeline-item[data-id="wintergreen"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-outdoor) 55%, #cfcfcf); }
-    .timeline-item[data-id="rides"] .timeline-item__card:hover { border-color: color-mix(in srgb, var(--cat-community) 55%, #cfcfcf); }
-    .timeline-item__card {
-      position: relative;
-      display: grid;
-      gap: 0.9rem;
-      align-items: start;
-      background: var(--white);
-      border: 1.5px solid var(--line);
-      border-radius: 18px;
-      padding: 0.95rem;
-      cursor: default;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease);
-    }
-    .timeline-item.is-removed {
-      display: none !important;
-    }
-    .timeline-item__remove {
-      appearance: none;
-      position: absolute;
-      top: 0.55rem;
-      right: 0.55rem;
-      z-index: 2;
-      width: 1.75rem;
-      height: 1.75rem;
-      border: 1.5px solid #e2e2e2;
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--muted);
-      font: inherit;
-      font-size: 1.15rem;
-      font-weight: 400;
-      line-height: 1;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      padding: 0;
-      transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-    }
-    .timeline-item__remove:hover,
-    .timeline-item__remove:focus-visible {
-      border-color: #c9c9c9;
-      color: var(--ink);
-      background: #f7f7f7;
-    }
-    .timeline-item__remove:focus-visible {
-      outline: 2px solid var(--ink);
-      outline-offset: 2px;
-    }
-    .timeline-item__card:active {
-      cursor: default;
-    }
-    .timeline-item__card:hover {
-      border-color: #cfcfcf;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    }
     @media (min-width: 720px) {
       .timeline-item__card {
         grid-template-columns: 1fr 8.5rem;
@@ -4297,10 +4184,7 @@
     .hub,
     .itinerary,
     .highlights,
-    .passport {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 1200px;
-    }
+
 
     /* —— Highlights photo grid —— */
     .highlights {
@@ -4420,178 +4304,6 @@
         transform: none;
       }
     }
-
-    /* —— Passport / LoyalBrew —— */
-    .passport {
-      display: none !important;
-    }
-    .passport__grid {
-      display: grid;
-      gap: 2rem;
-      margin-top: 2.25rem;
-    }
-    @media (min-width: 900px) {
-      .passport__grid {
-        grid-template-columns: 0.95fr 1.05fr;
-        gap: 2.75rem;
-        align-items: start;
-      }
-    }
-    .passport__steps {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    .passport__step {
-      display: grid;
-      grid-template-columns: 2.4rem 1fr;
-      gap: 0.9rem;
-      align-items: start;
-    }
-    .passport__step-num {
-      width: 2.4rem;
-      height: 2.4rem;
-      border-radius: 50%;
-      background: #f4f4f4;
-      display: grid;
-      place-items: center;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--ink);
-    }
-    .passport__step h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-    .passport__step p {
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-    .passport__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.75rem;
-    }
-    .passport__note {
-      margin-top: 1rem;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .passport__note a {
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      color: var(--ink);
-      font-weight: 500;
-    }
-    .passport-card {
-      background: #f7f7f7;
-      border-radius: var(--radius);
-      padding: 1.35rem 1.25rem 1.25rem;
-    }
-    .passport-card__top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1.15rem;
-    }
-    .passport-card__title {
-      font-size: 1.15rem;
-      font-weight: 500;
-    }
-    .passport-card__progress {
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--muted);
-    }
-    .stamp-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-    }
-    @media (min-width: 520px) {
-      .stamp-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    .stamp {
-      appearance: none;
-      border: 1.5px dashed #d0d0d0;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 1rem 0.75rem;
-      text-align: center;
-      cursor: pointer;
-      font: inherit;
-      color: var(--ink);
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s var(--ease);
-      min-height: 7.5rem;
-      display: grid;
-      align-content: center;
-      gap: 0.35rem;
-    }
-    .stamp:hover {
-      border-color: #bdbdbd;
-      transform: translateY(-1px);
-    }
-    .stamp.is-claimed {
-      border-style: solid;
-      border-color: var(--ink);
-      background: var(--white);
-      color: var(--ink);
-    }
-    .stamp__role {
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0.7;
-    }
-    .stamp.is-claimed .stamp__role { opacity: 1; }
-    .stamp[data-stamp="lodging"].is-claimed { border-color: var(--cat-stay); }
-    .stamp[data-stamp="lodging"].is-claimed .stamp__role { color: var(--cat-stay-text); }
-    .stamp[data-stamp="flying-fox"].is-claimed { border-color: var(--cat-taste); }
-    .stamp[data-stamp="flying-fox"].is-claimed .stamp__role { color: var(--cat-taste-text); }
-    .stamp[data-stamp="glass-hollow"].is-claimed { border-color: var(--cat-culture); }
-    .stamp[data-stamp="glass-hollow"].is-claimed .stamp__role { color: var(--cat-culture-text); }
-    .stamp[data-stamp="tunnel"].is-claimed { border-color: var(--cat-outdoor); }
-    .stamp[data-stamp="tunnel"].is-claimed .stamp__role { color: var(--cat-outdoor-text); }
-    .stamp[data-stamp="devils-backbone"].is-claimed { border-color: var(--cat-experience); }
-    .stamp[data-stamp="devils-backbone"].is-claimed .stamp__role { color: var(--cat-experience-text); }
-    .stamp[data-stamp="rides"].is-claimed { border-color: var(--cat-community); }
-    .stamp[data-stamp="rides"].is-claimed .stamp__role { color: var(--cat-community-text); }
-    .stamp__name {
-      font-size: 0.92rem;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-    .stamp__status {
-      font-size: 0.72rem;
-      font-weight: 500;
-      opacity: 0.65;
-    }
-    .passport-card__footer {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid #e4e4e4;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .passport-card__reward {
-      font-size: 0.9rem;
-      color: var(--muted);
-      max-width: 28ch;
-    }
-    .passport-card__reward strong {
-      color: var(--ink);
-      font-weight: 500;
-    }
-
     /* —— Promo —— */
     .promo {
       text-align: center;
@@ -8366,100 +8078,6 @@
         </div>
       </div>
     </section>
-
-
-    <section class="passport" id="passport" aria-labelledby="passport-title">
-      <div class="wrap">
-        <p class="eyebrow">Loyalty · Powered by LoyalBrew</p>
-        <h2 class="section-title" id="passport-title">Collect stamps while you stay longer</h2>
-        <p class="section-copy">
-          A free digital passport for Check Into Nelson. Check in at participating stops, earn stamps,
-          and unlock a campaign reward. No app download required.
-        </p>
-
-        <div class="passport__grid">
-          <div>
-            <div class="passport__steps">
-              <div class="passport__step">
-                <div class="passport__step-num" aria-hidden="true">1</div>
-                <div>
-                  <h3>Open your passport</h3>
-                  <p>Launch the Check Into Nelson passport in LoyalBrew from this page or a partner QR code.</p>
-                </div>
-              </div>
-              <div class="passport__step">
-                <div class="passport__step-num" aria-hidden="true">2</div>
-                <div>
-                  <h3>Check in at each stop</h3>
-                  <p>GPS check-in or photo upload claims a stamp at lodging, sip, create, explore, and ride stops.</p>
-                </div>
-              </div>
-              <div class="passport__step">
-                <div class="passport__step-num" aria-hidden="true">3</div>
-                <div>
-                  <h3>Earn your reward</h3>
-                  <p>Complete the passport to unlock the campaign gift. Pair visits with <span class="code-green"><span class="cin-checkin">CHECKIN</span><span class="cin-to">TO</span><span class="cin-nelson">NELSON</span></span> for special partner incentives.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="passport__actions">
-              <a class="btn btn--dark" id="openPassport" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Open digital passport</a>
-              <a class="btn btn--outline" href="#itin-title">See sample stay</a>
-            </div>
-            <p class="passport__note">
-              Sample setup: replace the passport link with the live Check Into Nelson LoyalBrew URL when the trail goes live.
-              Learn more at <a href="https://www.loyalbrew.com/" target="_blank" rel="noopener">loyalbrew.com</a>.
-            </p>
-          </div>
-
-          <div class="passport-card" aria-label="Digital passport preview">
-            <div class="passport-card__top">
-              <h3 class="passport-card__title">Your Nelson passport</h3>
-              <p class="passport-card__progress"><span id="stampCount">0</span> / 6 stamps</p>
-            </div>
-            <div class="stamp-grid" id="stampGrid">
-              <button type="button" class="stamp" data-stamp="lodging" aria-pressed="false">
-                <span class="stamp__role">Stay</span>
-                <span class="stamp__name">Your lodging</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-              <button type="button" class="stamp" data-stamp="flying-fox" aria-pressed="false">
-                <span class="stamp__role">Sip</span>
-                <span class="stamp__name">Flying Fox</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-              <button type="button" class="stamp" data-stamp="glass-hollow" aria-pressed="false">
-                <span class="stamp__role">Create</span>
-                <span class="stamp__name">Glass Hollow</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-              <button type="button" class="stamp" data-stamp="tunnel" aria-pressed="false">
-                <span class="stamp__role">Explore</span>
-                <span class="stamp__name">Blue Ridge Tunnel</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-              <button type="button" class="stamp" data-stamp="devils-backbone" aria-pressed="false">
-                <span class="stamp__role">Experience</span>
-                <span class="stamp__name">Devils Backbone</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-              <button type="button" class="stamp" data-stamp="rides" aria-pressed="false">
-                <span class="stamp__role">Ride</span>
-                <span class="stamp__name">Reliable Rides</span>
-                <span class="stamp__status">Tap to preview</span>
-              </button>
-            </div>
-            <div class="passport-card__footer">
-              <p class="passport-card__reward" id="passportReward">
-                Preview only. Live stamps are claimed in LoyalBrew at each stop.
-              </p>
-              <a class="btn btn--dark" href="https://www.loyalbrew.com/" target="_blank" rel="noopener" data-track="cta_open_passport">Start passport</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
 
@@ -8595,8 +8213,6 @@
 
   <script>
     (function () {
-      window.LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL || "https://www.loyalbrew.com/";
-      var LOYALBREW_PASSPORT_URL = window.LOYALBREW_PASSPORT_URL;
 
       // In-page jumps: scroll feature cards into view; focus titles for a11y.
       var SECTION_HASH_ALIASES = {
@@ -9281,36 +8897,6 @@
         show(0);
         start();
       })();
-
-      document.querySelectorAll('a[href="https://www.loyalbrew.com/"]').forEach(function (link) {
-        link.setAttribute("href", LOYALBREW_PASSPORT_URL);
-      });
-
-      var stampCountEl = document.getElementById("stampCount");
-      var rewardEl = document.getElementById("passportReward");
-      var stamps = document.querySelectorAll(".stamp");
-
-      function updatePassportPreview() {
-        var claimed = document.querySelectorAll(".stamp.is-claimed").length;
-        if (stampCountEl) stampCountEl.textContent = String(claimed);
-        if (!rewardEl) return;
-        if (claimed >= 6) {
-          rewardEl.innerHTML = "<strong>Passport complete (preview).</strong> In LoyalBrew, this unlocks the campaign reward.";
-        } else if (claimed > 0) {
-          rewardEl.innerHTML = "<strong>" + claimed + " stamp" + (claimed === 1 ? "" : "s") + " previewed.</strong> Live check-ins happen in LoyalBrew.";
-        } else {
-          rewardEl.textContent = "Preview only. Live stamps are claimed in LoyalBrew at each stop.";
-        }
-      }
-
-      stamps.forEach(function (stamp) {
-        stamp.addEventListener("click", function () {
-          var on = stamp.classList.toggle("is-claimed");
-          stamp.setAttribute("aria-pressed", on ? "true" : "false");
-          var status = stamp.querySelector(".stamp__status");
-          if (status) status.textContent = on ? "Stamped" : "Tap to preview";
-          updatePassportPreview();
-        });
       });
 
       /* —— Interactive weekday calendar + draggable timeline —— */
@@ -13290,9 +12876,6 @@
           { sel: ".itinerary__head", kind: "soft" },
           { sel: ".highlights .section-title, .highlights .section-copy", kind: "soft", stagger: 70 },
           { sel: ".highlights-grid__item", kind: "zoom", stagger: 70 },
-          { sel: ".passport .eyebrow, .passport .section-title, .passport .section-copy", kind: "soft", stagger: 70 },
-          { sel: ".passport__step", kind: "left", stagger: 90 },
-          { sel: ".passport-card", kind: "right" },
           { sel: ".promo .section-title, .promo .section-copy, .promo-perks, .promo-code, .promo__fine", kind: "soft", stagger: 70 }
         ];
         if (!window.matchMedia("(max-width: 859px)").matches) {
@@ -13446,6 +13029,6 @@
     window.CHECKIN_SANITY_PROJECT_ID = "ccbigluo";
     window.CHECKIN_SANITY_DATASET = "production";
   </script>
-  <script src="assets/check-into-nelson/sanity-live.js?v=20261112e"></script>
+  <script src="assets/check-into-nelson/sanity-live.js?v=20261112f"></script>
 </body>
 </html>
