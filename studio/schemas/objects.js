@@ -67,16 +67,29 @@ export const heroSlideType = defineType({
     }),
     defineField({
       name: 'href',
-      title: 'Scroll to section',
+      title: 'Caption tag links to',
       type: 'string',
-      description:
-        'Page anchor the caption jumps to, for example #feature-farmhouse, #feature-flying-fox, or #itinerary.',
-      validation: (Rule) =>
-        Rule.required().custom((value) => {
-          if (!value) return 'Add a section link'
-          if (value.startsWith('#') || value.startsWith('/') || /^https?:\/\//.test(value)) return true
-          return 'Use a page anchor like #feature-farmhouse, a path, or a full URL'
-        }),
+      description: 'Same jump target the little banner caption tag uses when clicked.',
+      options: {
+        list: [
+          {title: 'Farmhouse at Veritas', value: '#feature-farmhouse'},
+          {title: 'Devils Backbone Campground', value: '#feature-devils-backbone-camp'},
+          {title: 'The Indigo House', value: '#feature-indigo-house'},
+          {title: 'Retreat at Crabtree Falls', value: '#feature-retreat-crabtree'},
+          {title: 'Flying Fox Vineyard', value: '#feature-flying-fox'},
+          {title: 'Glass Hollow Studio', value: '#feature-glass-hollow'},
+          {title: 'Blue Ridge Tunnel', value: '#feature-tunnel'},
+          {title: 'Wintergreen Resort', value: '#feature-wintergreen'},
+          {title: 'Nelson 29', value: '#feature-nelson-29'},
+          {title: 'Reliable Rides', value: '#feature-rides'},
+          {title: 'Choose your stay', value: '#stay'},
+          {title: 'Build your experience', value: '#experience'},
+          {title: 'Itinerary', value: '#itinerary'},
+          {title: 'Highlights', value: '#highlights'},
+        ],
+        layout: 'dropdown',
+      },
+      validation: (Rule) => Rule.required(),
     }),
     requiredImageUpload,
     legacyImageUrl,
