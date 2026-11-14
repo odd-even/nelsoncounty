@@ -3492,13 +3492,16 @@
       gap: 0.85rem;
       padding: 0.35rem 0;
       opacity: 0;
+      visibility: hidden;
       transform: translateY(14px);
-      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease), visibility 0s 0.55s;
       touch-action: pan-y;
     }
     .timeline-item.is-in {
       opacity: 1;
+      visibility: visible;
       transform: none;
+      transition-delay: 0s;
     }
     .timeline-item.is-dragging {
       display: none !important;
