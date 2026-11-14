@@ -38,10 +38,10 @@ export default defineConfig({
         locations: {
           campaign: defineLocations({
             select: {title: 'seoTitle'},
-            resolve: (doc) => ({
+            resolve: () => ({
               locations: [
                 {
-                  title: doc?.title || 'Check Into Nelson',
+                  title: 'Campaign page',
                   href: '/',
                 },
               ],

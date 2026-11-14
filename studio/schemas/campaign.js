@@ -423,11 +423,12 @@ export const campaignType = defineType({
     }),
   ],
   preview: {
-    select: {title: 'heroPhrase1Line1', subtitle: 'promoCode'},
-    prepare({title, subtitle}) {
+    select: {subtitle: 'promoCode'},
+    prepare({subtitle}) {
       return {
-        title: title || 'Check Into Nelson',
-        subtitle: subtitle || 'Campaign page',
+        // Stable document title — Presentation overlays use this on every field tab.
+        title: 'Campaign page',
+        subtitle: subtitle || 'Check Into Nelson',
       }
     },
   },
