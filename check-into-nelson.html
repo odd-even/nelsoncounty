@@ -7108,7 +7108,7 @@
             height="2134" fetchpriority="high"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#e8b4c8">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/02-farmhouse-1280.webp"
             data-srcset="assets/check-into-nelson/hero/02-farmhouse-1280.webp 1280w, assets/check-into-nelson/hero/02-farmhouse-1920.webp 1920w, assets/check-into-nelson/hero/02-farmhouse-2560.webp 2560w, assets/check-into-nelson/hero/02-farmhouse-3200.webp 3200w"
@@ -7118,7 +7118,7 @@
             height="2285" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#e5ba7a">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/03-devils-1280.webp"
             data-srcset="assets/check-into-nelson/hero/03-devils-1280.webp 1280w, assets/check-into-nelson/hero/03-devils-1920.webp 1920w, assets/check-into-nelson/hero/03-devils-2500.webp 2500w"
@@ -7158,7 +7158,7 @@
             height="1667" loading="lazy"
           />
         </div>
-        <div class="hero__slide">
+        <div class="hero__slide" data-hero-accent="#9eb89a">
           <img
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" data-src="assets/check-into-nelson/hero/06-spy-rock-1280.webp"
             data-srcset="assets/check-into-nelson/hero/06-spy-rock-1280.webp 1280w, assets/check-into-nelson/hero/06-spy-rock-1920.webp 1920w"
@@ -8854,8 +8854,13 @@
           }
         }
 
+        var lastAccent = DEFAULT_ACCENT;
         function applyAccent(slideIndex) {
-          var color = accentColors[slideIndex] || DEFAULT_ACCENT;
+          // Prefer a known slide accent. If sampling hasn't landed yet (common once
+          // Sanity swaps in cross-origin CDN images), keep the last good color
+          // instead of snapping back to the pink default.
+          var color = accentColors[slideIndex] || lastAccent || DEFAULT_ACCENT;
+          lastAccent = color;
           heroRoot.style.setProperty("--hero-accent", color);
         }
 
@@ -8871,13 +8876,20 @@
           var img = slide.querySelector("img.hero__slide-sharp, img:not(.hero__slide-blur)");
           if (!img) return;
           function run() {
+            // Cross-origin Sanity CDN images taint the canvas — skip quietly.
+            try {
+              if (img.crossOrigin !== "anonymous") {
+                var src = img.currentSrc || img.src || "";
+                if (/^https?:/i.test(src) && src.indexOf(location.origin) !== 0) return;
+              }
+            } catch (errCors) {}
             var color = extractAccentFromImage(img);
             if (color) {
               accentColors[i] = color;
               if (i === index) applyAccent(i);
             }
           }
-          if (img.complete && img.naturalWidth) run();
+          if (img.complete && img.naturalWidth > 2) run();
           else img.addEventListener("load", run, { once: true });
         }
 
@@ -9003,6 +9015,13 @@
         // sits on the banner continuously and would freeze autoplay.
         document.addEventListener("visibilitychange", function () {
           if (!document.hidden) lastTick = performance.now();
+        });
+
+        // Pre-seed forced accents so the first advance never flashes pink while
+        // image sampling is blocked by cross-origin Sanity CDN urls.
+        slides.forEach(function (slide, i) {
+          var forced = slide.getAttribute("data-hero-accent");
+          if (forced) accentColors[i] = forced;
         });
 
         // Hydrate the first slide (+ prefetch next) without loading the whole hero set.
