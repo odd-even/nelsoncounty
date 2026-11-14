@@ -172,7 +172,16 @@
       if (data.heroPhrase2Line1) swaps[1].setAttribute('data-line1', data.heroPhrase2Line1)
       if (data.heroPhrase2Line2) swaps[1].setAttribute('data-line2', data.heroPhrase2Line2)
     }
-    if (typeof window.initHeroTitleSwap === 'function') window.initHeroTitleSwap(true)
+    if (typeof window.initHeroTitleSwap === 'function') {
+      window.initHeroTitleSwap(true)
+      var activeIndex = 0
+      document.querySelectorAll('.hero__slide').forEach(function (slide, i) {
+        if (slide.classList.contains('is-active')) activeIndex = i
+      })
+      if (typeof window.syncHeroTitleToSlide === 'function') {
+        window.syncHeroTitleToSlide(activeIndex)
+      }
+    }
 
     setText('.hero__lede', data.heroLede)
     setCta('.hero__main .btn--light', data.heroPrimaryCta)
@@ -592,5 +601,17 @@
 
   if (!PROJECT_ID) return
 
-  reloadCampaign()
+  // Wait until the page script has finished booting hero/itinerary globals.
+  function bootWhenReady() {
+    if (typeof window.initHeroTitleSwap === 'function' && window.CIN_STAY_OPTIONS) {
+      reloadCampaign()
+      return
+    }
+    window.setTimeout(bootWhenReady, 50)
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootWhenReady)
+  } else {
+    bootWhenReady()
+  }
 })()

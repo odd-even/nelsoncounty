@@ -8501,8 +8501,6 @@
         var title = document.querySelector(".hero__campaign");
         var lines = title ? title.querySelectorAll(".hero__swap") : [];
         if (!title || lines.length < 2) return;
-        if (title.getAttribute("data-swap-ready") === "1" && !restart) return;
-        title.setAttribute("data-swap-ready", "1");
 
         var index = 0;
         var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -8554,11 +8552,13 @@
           title.setAttribute("aria-label", labels[index]);
         }
 
-        // Driven by the hero slideshow: even slides → Nelson, odd → Experience More.
+        // Always (re)bind — even when restarting from Sanity — so slideshow sync never drops.
         window.syncHeroTitleToSlide = function syncHeroTitleToSlide(slideIndex) {
           show((Number(slideIndex) || 0) % 2);
         };
 
+        if (title.getAttribute("data-swap-ready") === "1" && !restart) return;
+        title.setAttribute("data-swap-ready", "1");
         lines.forEach(function (line) { wrapLetters(line); });
         show(0);
       };
@@ -8902,7 +8902,6 @@
         show(0);
         start();
       })();
-      });
 
       /* —— Interactive weekday calendar + draggable timeline —— */
       var timeline = document.getElementById("timeline");
@@ -13033,6 +13032,6 @@
     window.CHECKIN_SANITY_PROJECT_ID = "ccbigluo";
     window.CHECKIN_SANITY_DATASET = "production";
   </script>
-  <script src="assets/check-into-nelson/sanity-live.js?v=20261113b"></script>
+  <script src="assets/check-into-nelson/sanity-live.js?v=20261114a"></script>
 </body>
 </html>
