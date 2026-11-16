@@ -272,6 +272,7 @@
                 sessionStorage.removeItem('adminEmail');
                 sessionStorage.removeItem('adminName');
             }
+            window.clearAuthSession = clearAuthSession;
             
             // Get GOOGLE_APPS_SCRIPT_URL from the page (defined later in script)
             function getGoogleAppsScriptURL() {
@@ -747,15 +748,10 @@
                 let finalIsLoggedIn = isLoggedIn;
                 let finalAdminEmail = adminEmail;
                 
-                // If server validation didn't find a session, but sessionStorage has one, use it
-                // This handles cases where server validation fails due to network issues
-                if (!finalIsLoggedIn && sessionStorageLoggedIn === 'true' && sessionStorageEmail) {
-                    console.log('⚠️ enforceAuth: Server validation failed, but sessionStorage has session - using it');
-                    finalIsLoggedIn = true;
-                    finalAdminEmail = sessionStorageEmail;
-                }
-                
-                // Also check if we have a session token in localStorage even if validation failed
+                // Recover a still-valid localStorage token if getAuthSession() returned null
+                // due to a transient validation failure. Never treat sessionStorage-only as
+                // logged in — Sheets writes require a real signed session token.
+                let finalSessionToken = session && session.token ? session.token : null;
                 if (!finalIsLoggedIn && sessionData) {
                     try {
                         const parsedSession = JSON.parse(sessionData);
@@ -764,6 +760,8 @@
                             console.log('⚠️ enforceAuth: Session token exists, email:', parsedSession.email, 'expires:', new Date(parsedSession.expires));
                             finalIsLoggedIn = true;
                             finalAdminEmail = parsedSession.email;
+                            finalSessionToken = parsedSession.token;
+                            session = parsedSession;
                         } else {
                             console.log('⚠️ enforceAuth: Session token found but invalid:', {
                                 hasToken: !!parsedSession.token,
@@ -775,6 +773,10 @@
                         console.error('⚠️ enforceAuth: Error parsing session data:', e);
                     }
                 }
+
+                if (!finalSessionToken) {
+                    finalIsLoggedIn = false;
+                }
                 
                 const overlay = document.getElementById('loginOverlay');
                 
@@ -784,15 +786,13 @@
                 console.log('🔍 Final auth check:', {
                     finalIsLoggedIn: finalIsLoggedIn,
                     finalAdminEmail: finalAdminEmail,
-                    hasSessionToken: session ? !!session.token : false,
+                    hasSessionToken: !!finalSessionToken,
                     note: 'Server-validated session token is proof of authorization'
                 });
                 
-                // ONLY allow login if BOTH conditions are met:
-                // 1. Valid session (localStorage or sessionStorage)
-                // 2. AND there's a valid email
-                // (Server-validated session token is proof of authorization - no need to check email list)
-                if (finalIsLoggedIn && finalAdminEmail) {
+                // ONLY allow access with a real signed session token + email.
+                // sessionStorage flags alone are not enough (Sheets rejects missing tokens).
+                if (finalIsLoggedIn && finalAdminEmail && finalSessionToken) {
                     // Valid authenticated session
                     console.log('✅ enforceAuth: Valid authenticated session - showing admin panel');
                     console.log('✅ enforceAuth: Email:', finalAdminEmail);

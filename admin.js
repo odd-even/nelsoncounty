@@ -3854,7 +3854,34 @@ function updateTabsStickyStackStuck() {
                 // Send all listings at once with a "replaceAll" action
                 // This tells the Apps Script to clear the sheet and replace with these listings
                 const session = (typeof getAuthSession === 'function') ? await getAuthSession() : null;
-                const postData = buildReplaceAllListingsBody(data.listings, session && session.token ? session.token : null);
+                let sessionToken = session && session.token ? session.token : null;
+                if (!sessionToken && typeof window.getAdminSessionToken === 'function') {
+                    sessionToken = window.getAdminSessionToken();
+                }
+                if (!sessionToken) {
+                    updateSyncStatus(false, 'Login required');
+                    alert(
+                        '❌ Error saving to Google Sheets: Unauthorized: Missing session token\n\n' +
+                        'Your admin login expired or never finished OTP verification.\n' +
+                        'Please sign in again with your email code, then click Save to Sheets.'
+                    );
+                    if (typeof clearAuthSession === 'function') clearAuthSession();
+                    else if (typeof window.clearAuthSession === 'function') window.clearAuthSession();
+                    sessionStorage.removeItem('adminLoggedIn');
+                    sessionStorage.removeItem('adminEmail');
+                    sessionStorage.removeItem('adminName');
+                    document.body.classList.remove('logged-in');
+                    const overlay = document.getElementById('loginOverlay');
+                    if (overlay) {
+                        overlay.style.display = 'flex';
+                        overlay.style.zIndex = '10000';
+                    }
+                    if (typeof window.enforceAuth === 'function') {
+                        try { await window.enforceAuth(); } catch (e) {}
+                    }
+                    return;
+                }
+                const postData = buildReplaceAllListingsBody(data.listings, sessionToken);
                 
                 let result = { success: false };
                 
@@ -12848,10 +12875,15 @@ function updateTabsStickyStackStuck() {
                 google.accounts.id.disableAutoSelect();
             }
             
-            // Clear session data
-            sessionStorage.removeItem('adminLoggedIn');
-            sessionStorage.removeItem('adminEmail');
-            sessionStorage.removeItem('adminName');
+            // Clear session data (including signed OTP session token)
+            if (typeof window.clearAuthSession === 'function') {
+                window.clearAuthSession();
+            } else {
+                localStorage.removeItem('adminAuthSession');
+                sessionStorage.removeItem('adminLoggedIn');
+                sessionStorage.removeItem('adminEmail');
+                sessionStorage.removeItem('adminName');
+            }
             localStorage.removeItem('adminLoggedIn');
             
             // Reload page to show login screen
