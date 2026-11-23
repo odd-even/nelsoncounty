@@ -242,12 +242,11 @@
 
     if (data.stays) {
       data.stays.forEach(function (stay) {
-        var card =
-          stayCardForKey(stay.key) ||
+        var card = document.getElementById('feature-' + stay.key) ||
           document.querySelector('[data-partner="' + stay.key + '"]')
+        if (!card && stay.key === 'farmhouse') card = document.getElementById('feature-farmhouse')
+        if (!card && stay.key === 'devils-backbone-camp') card = document.getElementById('feature-devils-backbone-camp')
         if (!card) return
-        var stayPath = itemPath('stays', stay, data.stays.indexOf(stay))
-        var termsId = card.id ? card.id.replace(/^feature-/, '') + '-terms' : null
         if (stay.name) {
           var name = card.querySelector('.stay-card__title')
           if (name) name.textContent = stay.name
@@ -256,32 +255,18 @@
           var copy = card.querySelector('.stay-card__copy')
           if (copy) copy.textContent = stay.copy
         }
-        applyStayTerms(card, stay, stayPath, termsId)
         if (stay.offerNote) {
           var offer = card.querySelector('.stay-card__offer')
           if (offer) {
-            var offerHtml = escapeHtml(stay.offerNote).replace(
+            offer.innerHTML = escapeHtml(stay.offerNote).replace(
               /\{code\}/g,
               '<span class="code-green">' + promoHtml(data.promoCode) + '</span>'
             )
-            if (hasTerms(stay) && termsId && stay.offerNote.indexOf('{code}') === -1) {
-              offer.innerHTML = linkOfferText(stay.offerNote, termsId)
-            } else {
-              offer.innerHTML = offerHtml
-            }
           }
         }
-        if (stay.badge) {
-          var badge = card.querySelector('.stay-card__badge')
-          if (badge) {
-            if (hasTerms(stay) && termsId) {
-              badge.innerHTML = linkOfferText(stay.badge, termsId)
-            } else {
-              badge.textContent = stay.badge
-            }
-          }
-        }
+        if (stay.badge) setNode(card, '.stay-card__badge', stay.badge)
         paintGallery(card, stay.gallery, stay, stay.name, 'gallery')
+        var stayPath = itemPath('stays', stay, data.stays.indexOf(stay))
         mark(card.querySelector('.stay-card__title'), stayPath + '.name')
         mark(card.querySelector('.stay-card__copy'), stayPath + '.copy')
         mark(card.querySelector('.stay-card__offer'), stayPath + '.offerNote')
@@ -294,13 +279,7 @@
           var btn = card.querySelector('.btn--dark')
           if (btn) {
             var discount = stay.badge
-              ? hasTerms(stay) && termsId
-                ? ' <span class="btn__discount offer-terms-link" data-terms-target="' +
-                  escapeHtml(termsId) +
-                  '" role="link" tabindex="0">' +
-                  escapeHtml(stay.badge) +
-                  '</span>'
-                : ' <span class="btn__discount">' + escapeHtml(stay.badge) + '</span>'
+              ? ' <span class="btn__discount">' + escapeHtml(stay.badge) + '</span>'
               : ''
             btn.innerHTML = escapeHtml(stay.cta.label) + discount
             if (stay.cta.href) btn.setAttribute('href', stay.cta.href)
@@ -420,109 +399,12 @@
     )
   }
 
-  function hasTerms(item) {
-    if (!item) return false
-    return !!(
-      item.termsSummary ||
-      item.termsLead ||
-      item.termsFinePrint ||
-      (item.termsRequirements && item.termsRequirements.length)
-    )
-  }
-
-  function buildTermsBodyHtml(item) {
-    if (!hasTerms(item)) return ''
-    var html = ''
-    if (item.termsLead) html += '<p>' + escapeHtml(item.termsLead) + '</p>'
-    if (item.termsFinePrint) html += '<p>' + escapeHtml(item.termsFinePrint) + '</p>'
-    if (item.termsRequirements && item.termsRequirements.length) {
-      html +=
-        '<p class="stay-terms__label">' +
-        escapeHtml(item.termsRequirementsLabel || 'Requirements') +
-        '</p><ul>' +
-        item.termsRequirements
-          .map(function (line) {
-            return '<li>' + escapeHtml(line) + '</li>'
-          })
-          .join('') +
-        '</ul>'
-    }
-    return html
-  }
-
-  function buildTermsDetailsHtml(item, termsId) {
-    if (!hasTerms(item)) return ''
-    var summary = escapeHtml(item.termsSummary || 'Terms apply*')
-    var idAttr = termsId ? ' id="' + escapeHtml(termsId) + '"' : ''
-    return (
-      '<details class="stay-terms"' +
-      idAttr +
-      '><summary>' +
-      summary +
-      '</summary><div class="stay-terms__body">' +
-      buildTermsBodyHtml(item) +
-      '</div></details>'
-    )
-  }
-
-  function linkOfferText(text, termsId) {
-    if (!text || !termsId) return escapeHtml(text || '')
-    return (
-      '<a class="offer-terms-link" href="#' +
-      escapeHtml(termsId) +
-      '" data-terms-target="' +
-      escapeHtml(termsId) +
-      '">' +
-      escapeHtml(text) +
-      '</a>'
-    )
-  }
-
-  function applyStayTerms(card, stay, stayPath, termsId) {
-    if (!card) return
-    var existing = card.querySelector('.stay-terms')
-    if (!hasTerms(stay)) {
-      if (existing) existing.remove()
-      return
-    }
-    var html = buildTermsDetailsHtml(stay, termsId)
-    if (existing) {
-      existing.outerHTML = html
-    } else {
-      var copy = card.querySelector('.stay-card__copy')
-      var btn = card.querySelector('.btn--dark')
-      var wrap = document.createElement('div')
-      wrap.innerHTML = html
-      var node = wrap.firstChild
-      if (copy && copy.nextSibling) copy.parentNode.insertBefore(node, copy.nextSibling)
-      else if (btn) btn.parentNode.insertBefore(node, btn)
-      else card.querySelector('.stay-card__body') && card.querySelector('.stay-card__body').appendChild(node)
-    }
-    var details = card.querySelector('.stay-terms')
-    if (details) mark(details.querySelector('summary'), stayPath + '.termsSummary')
-  }
-
-  function stayCardForKey(key) {
-    if (!key) return null
-    var card = document.getElementById('feature-' + key)
-    if (card) return card
-    if (key === 'farmhouse') return document.getElementById('feature-farmhouse')
-    if (key === 'devils-backbone-camp') return document.getElementById('feature-devils-backbone-camp')
-    var slug = String(key)
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/^-|-$/g, '')
-    return document.getElementById('feature-' + slug)
-  }
-
   function applyItineraryStays(items, promoCode) {
     var opts = window.CIN_STAY_OPTIONS
     if (!opts || !items || !items.length) return
     items.forEach(function (item, index) {
       if (!item || !item.key || !opts[item.key]) return
       var target = opts[item.key]
-      var termsId = item.key === 'loveridge' ? 'love-ridge-terms-itin' : null
       if (item.title) target.title = item.title
       var src = imageSrc(item, 640)
       if (src) target.image = src
@@ -530,20 +412,7 @@
       if (item.bookLabel) target.bookLabel = item.bookLabel
       if (item.discount) target.discount = item.discount
       if (item.partner) target.partner = item.partner
-      if (item.offerNote) {
-        if (termsId && hasTerms(item) && item.offerNote.indexOf('{code}') === -1) {
-          target.offerHtml = linkOfferText(item.offerNote, termsId)
-        } else {
-          target.offerHtml = offerHtmlFromNote(item.offerNote, promoCode)
-        }
-      }
-      if (hasTerms(item)) {
-        target.termsHtml = buildTermsDetailsHtml(item, termsId || undefined)
-        target.discountTermsTarget = termsId || undefined
-      } else {
-        target.termsHtml = ''
-        target.discountTermsTarget = undefined
-      }
+      if (item.offerNote) target.offerHtml = offerHtmlFromNote(item.offerNote, promoCode)
       mark(document.querySelector('[data-stay-option="' + item.key + '"] .stay-swap__name'), itemPath('itineraryStays', item, index) + '.title')
     })
     if (typeof window.applyStayChoice === 'function') {
@@ -703,12 +572,12 @@
     var projection = [
       '...',
       'heroSlides[]{_key,label,href,imageUrl,' + image + '}',
-      'stays[]{_key,key,name,copy,offerNote,badge,termsSummary,termsLead,termsFinePrint,termsRequirementsLabel,termsRequirements,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta}',
+      'stays[]{_key,key,name,copy,offerNote,badge,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta}',
       'partners[]{_key,key,name,role,badge,discount,copy,offerNote,category,showInStrip,imageUrl,' + image + ',gallery[]{_key,alt,imageUrl,' + image + '},cta,secondaryCta}',
       'introCards[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
       'partnerChips[]{_key,name,label,href,alt,imageUrl,' + image + '}',
       'highlights[]{_key,name,label,copy,href,alt,imageUrl,' + image + '}',
-      'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,termsSummary,termsLead,termsFinePrint,termsRequirementsLabel,termsRequirements,imageUrl,' + image + '}',
+      'itineraryStays[]{_key,key,title,bookHref,bookLabel,discount,offerNote,partner,imageUrl,' + image + '}',
       'itinerarySips[]{_key,key,title,visitHref,visitLabel,discount,offerNote,partner,imageUrl,' + image + '}',
     ].join(',')
     return encodeURIComponent('*[_id == "campaign"][0]{' + projection + '}')

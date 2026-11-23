@@ -319,7 +319,7 @@ export const campaignType = defineType({
       type: 'array',
       of: [{type: 'itineraryStay'}],
       group: 'itinerary',
-      description: 'Powers the stay picker in the itinerary. Keys must match farmhouse, backbone, indigo, retreat, loveridge.',
+      description: 'Powers the stay picker in the itinerary. Keys must match farmhouse, backbone, indigo, retreat.',
     }),
     defineField({
       name: 'itinerarySips',
