@@ -446,10 +446,24 @@
     var preset =
       listName === 'partnerChips' ? 'chip' : listName === 'highlights' ? 'highlight' : 'card'
     var nodes = Array.prototype.slice.call(document.querySelectorAll(selector))
+    var byHref = Object.create(null)
+    items.forEach(function (item, index) {
+      if (!item || !item.href) return
+      byHref[String(item.href)] = { item: item, index: index }
+    })
     nodes.forEach(function (node, i) {
-      var item = items[i % items.length]
+      // Match CMS items to DOM by href so new static partners (e.g. Love Ridge)
+      // are not overwritten/cycled when they are not yet in Sanity.
+      var href = node.getAttribute('href') || ''
+      var matched = href ? byHref[href] : null
+      var item = matched ? matched.item : null
+      var index = matched ? matched.index : i
+      if (!item && nodes.length === items.length) {
+        item = items[i]
+        index = i
+      }
       if (!item) return
-      var path = itemPath(listName, item, i % items.length)
+      var path = itemPath(listName, item, index)
       var title = node.querySelector('.do-card__title, .highlights-grid__name')
       if (item.name && title) title.textContent = item.name
       if (item.name && node.classList.contains('partner-chip')) {
