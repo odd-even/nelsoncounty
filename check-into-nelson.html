@@ -35,7 +35,32 @@
       window.__cinSanityPreview = params.get("sanity-preview") === "1";
       var isEmbed = params.get("embed") === "1" || params.get("embed") === "true";
       if (isEmbed) document.documentElement.classList.add("is-embed");
-      gtag("config", "G-9GZ2Y2JTC9", isEmbed ? { send_page_view: false } : {});
+
+      // Capture campaign/click ids before the itinerary rewrite strips the query.
+      var marketingKeys = [
+        "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id",
+        "gclid", "gbraid", "wbraid", "dclid", "fbclid", "msclkid"
+      ];
+      var marketing = {};
+      marketingKeys.forEach(function (key) {
+        var value = params.get(key);
+        if (value) marketing[key] = value;
+      });
+      window.__cinMarketingParams = marketing;
+
+      var config = isEmbed ? { send_page_view: false } : {};
+      if (marketing.utm_source) config.campaign_source = marketing.utm_source;
+      if (marketing.utm_medium) config.campaign_medium = marketing.utm_medium;
+      if (marketing.utm_campaign) config.campaign_name = marketing.utm_campaign;
+      if (marketing.utm_content) config.campaign_content = marketing.utm_content;
+      if (marketing.utm_term) config.campaign_term = marketing.utm_term;
+      if (marketing.utm_id) config.campaign_id = marketing.utm_id;
+      // Keep the first page_view attached to the landing URL (with UTMs) even if
+      // the itinerary script replaceStates the query before gtag.js finishes loading.
+      if (Object.keys(marketing).length) {
+        config.page_location = window.location.href;
+      }
+      gtag("config", "G-9GZ2Y2JTC9", config);
     })();
   </script>
   <link rel="stylesheet" href="assets/check-into-nelson/vendor/visual-editing/styles.css?v=20261112d" />
@@ -10027,9 +10052,33 @@
         }
       }
 
-      function planToSearchParams(plan) {
+      var CIN_ATTRIBUTION_KEYS = [
+        "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id",
+        "gclid", "gbraid", "wbraid", "dclid", "fbclid", "msclkid"
+      ];
+
+      function getCapturedAttributionParams() {
+        var captured = window.__cinMarketingParams || {};
+        var out = {};
+        CIN_ATTRIBUTION_KEYS.forEach(function (key) {
+          if (captured[key]) out[key] = captured[key];
+        });
+        // Also accept any still present on the live URL (e.g. if boot capture missed).
+        try {
+          var live = new URLSearchParams(window.location.search);
+          CIN_ATTRIBUTION_KEYS.forEach(function (key) {
+            var value = live.get(key);
+            if (value && !out[key]) out[key] = value;
+          });
+        } catch (err) {}
+        return out;
+      }
+
+      function planToSearchParams(plan, options) {
+        var opts = options || {};
         var params = new URLSearchParams();
         if (window.__cinSanityPreview) params.set("sanity-preview", "1");
+        if (document.documentElement.classList.contains("is-embed")) params.set("embed", "1");
         params.set("start", plan.start);
         if (plan.nights && plan.nights !== 2) params.set("nights", String(plan.nights));
         if (plan.stay && plan.stay !== "farmhouse") params.set("stay", plan.stay);
@@ -10038,12 +10087,20 @@
           var ids = plan.days[day] || [];
           if (ids.length) params.set(DAY_URL_KEYS[day], ids.join(","));
         });
+        // Keep campaign/click ids on in-session URL rewrites so GA4 (and the
+        // address bar) still see the landing attribution. Omit from share links.
+        if (opts.preserveAttribution !== false) {
+          var attribution = getCapturedAttributionParams();
+          Object.keys(attribution).forEach(function (key) {
+            params.set(key, attribution[key]);
+          });
+        }
         return params;
       }
 
       function writePlanToUrl(plan, replace) {
         try {
-          var params = planToSearchParams(plan);
+          var params = planToSearchParams(plan, { preserveAttribution: true });
           var next = window.location.pathname + "?" + params.toString() + window.location.hash;
           if (replace !== false) window.history.replaceState(null, "", next);
           else window.history.pushState(null, "", next);
@@ -10051,7 +10108,7 @@
       }
 
       function buildShareablePlanUrl(plan) {
-        var params = planToSearchParams(plan);
+        var params = planToSearchParams(plan, { preserveAttribution: false });
         // Recipients who open this link get the finished plan card modal.
         params.set("view", "plan");
         var url = new URL(window.location.href);
