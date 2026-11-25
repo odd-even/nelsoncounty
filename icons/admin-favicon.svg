@@ -1,18 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150" role="img" aria-label="Visit Nelson Admin">
-  <!-- Inverted Visit Nelson mark: white field, blue V, black N -->
-  <rect width="150" height="150" rx="28" fill="#FFFFFF"/>
-  <path
-    d="M16 48 L43 110 L70 48"
-    fill="none"
-    stroke="#007AFF"
-    stroke-width="22"
-    stroke-linecap="butt"
-    stroke-linejoin="miter"/>
-  <path
-    d="M92 48 V110 M92 48 L132 110 M132 48 V110"
-    fill="none"
-    stroke="#111111"
-    stroke-width="20"
-    stroke-linecap="butt"
-    stroke-linejoin="miter"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.93 72.93" role="img" aria-label="Visit Nelson Admin">
+  <!-- Exact framer-favicon-source.svg; lime (#d7df23) -> #007AFF; Lucide-style gear -->
+  <rect width="72.93" height="72.93" rx="18.36" ry="18.36" fill="#231f20"/>
+  <path d="M64.14 55.18H56.1L42.66 34.83v20.35h-8.04V22.19h8.04L56.1 42.64V22.19h8.04z" fill="#fff"/>
+  <path d="m37.83 22.19-11.7 32.99H16.07L4.37 22.19h8.55L21.1 47.1l8.22-24.91z" fill="#007AFF"/>
+  <path d="M40.16 18.84 26.69 56.46" fill="none" stroke="#231f20" stroke-miterlimit="10" stroke-width="2"/>
+  <circle cx="58.5" cy="58.5" r="13.6" fill="#231f20"/>
+  <circle cx="58.5" cy="58.5" r="12.0" fill="#007AFF"/>
+  <!-- settings cog: Lucide 24x24 path, centered & scaled -->
+  <g transform="translate(58.5 58.5) scale(0.72) translate(-12 -12)" fill="#fff">
+    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+    <circle cx="12" cy="12" r="3" fill="#007AFF"/>
+  </g>
 </svg>
